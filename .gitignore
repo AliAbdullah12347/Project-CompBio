@@ -1,61 +1,70 @@
 # ---------------------------------------------------------------------------
 # Project 7 — what does and does not belong in version control.
 #
-# Principle: track everything we wrote, and nothing a script can rebuild.
-# Every excluded dataset is recoverable with the download scripts, so a fresh
-# clone plus `download_data.sh` reproduces the full tree.
+# Ava needs to open the normalised data and the results without rebuilding
+# anything, so the canonical cohort and every results table ARE tracked.
+# What stays out is material that is either
+#   (a) not ours to redistribute — journal PDFs and publisher supplementary,
+#   (b) unreadable to a human and regenerable — R .rds caches, or
+#   (c) a large public download that a script re-fetches — GEO, GENCODE, DICE.
 #
-# Two things are excluded for reasons other than size:
-#   - Journal PDFs and publisher supplementary files are copyrighted. They are
-#     not ours to redistribute, even in a private repo.
-#   - Derived tables extracted from those supplementary files are likewise left
-#     out; `01_extract_ground_truth.py` regenerates them in seconds.
+# Rule of thumb: if you would open it to check a number, it is tracked.
 # ---------------------------------------------------------------------------
 
-# --- raw and derived data (regenerable) ---
-**/data/raw/
-**/data/processed/
-**/data/reference/
-**/data/external/
-**/data/cohort_*/
-*.tsv.gz
-*.txt.gz
-*.gtf.gz
-mixture_TPM_*.txt
+# === TRACKED — listed so nobody re-excludes them by accident ===============
+#   data/cohort_474/**      canonical cohort: counts, metadata, sample list
+#   **/results/**           every results table from every arm
+#   cibersortx/data/*.csv   QC screen and gene-mapping reports
 
-# --- generated outputs ---
-**/results/
-**/outputs/
-**/out/
-
-# --- copyrighted third-party material ---
-# Papers and publisher supplementary files. Cite them; don't redistribute them.
+# === (a) copyrighted third-party material ==================================
+# Cite these; don't redistribute them. Download your own via the library.
 **/paper/
 **/data/supplementary/
+**/data/reference/
 *.pdf
-
-# Extracted full text of copyrighted papers
 **/docs/*fulltext*.txt
 **/docs/supplementary_methods.txt
+**/docs/supplementary_figures*.txt
 
-# --- caches and editor cruft ---
+# === (b) binary caches — unreadable and regenerable ========================
+*.rds
+**/bmind_chunks/
 __pycache__/
 *.py[cod]
 .Rhistory
 .RData
 .Rproj.user/
 .ipynb_checkpoints/
+
+# === (c) large public downloads a script re-fetches ========================
+# Recover all of these with the download_data.sh scripts. Checksums stay
+# tracked, so a fresh clone can verify it got byte-identical data.
+**/data/raw/
+**/data/external/
+**/data/raw_as_deposited/*.gz
+*.gtf.gz
+
+# Paper-reproduction intermediates: these exist only to rebuild the two
+# published analyses, and data/cohort_474/ is canonical for our own work,
+# so tracking them would add ~150 MB of duplicates. Rebuild with
+# 00_prepare_data.py in each folder.
+Krebs Paper/data/processed/
+Boltz Paper/data/processed/
+
+# Superseded CIBERSORTx inputs — cohort_474 carries the canonical mixture.
+# Regenerate with `python cibersortx/subset_mixture.py`.
+cibersortx/data/mixture_TPM_hgnc_480.txt
+cibersortx/data/mixture_TPM_hgnc_analysis_431.txt
+
+# === keep these despite the rules above ====================================
+!**/CHECKSUMS.sha256
+!**/data/**/README.md
+!**/data/**/*.py
+!**/data/**/*.R
+
+# === editor / OS cruft =====================================================
 .DS_Store
 Thumbs.db
 *.swp
 .venv/
 venv/
-
-# --- keep these despite the rules above ---
-# Checksums and READMEs are small, and they are how a fresh clone verifies
-# that its re-downloaded data matches what we actually analysed.
-!**/CHECKSUMS.sha256
-!**/data/**/README.md
-!**/data/**/*.py
-!**/data/**/*.R
-**/docs/supplementary_figures*.txt

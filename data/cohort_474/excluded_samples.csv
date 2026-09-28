@@ -1,0 +1,7 @@
+title,gsm,bipolar disorder diagnosis,library_size,rin_value,n_missing_covariates,reason
+099252A,GSM3529129,Control,5351081,7.1,0,sample mix-up (subject identity error; covariates complete)
+108773A,GSM3529147,Control,9899984,5.9,0,sample mix-up (subject identity error; covariates complete)
+118140B,GSM3529204,Control,8962441,7.9,0,sample mix-up (subject identity error; covariates complete)
+118141A,GSM3529205,Control,7669689,6.7,0,sample mix-up (subject identity error; covariates complete)
+12R1998,GSM3529491,Control,9096323,8.3,6,six of nine covariates missing (not recoverable by imputation)
+13R1190,GSM3529591,Control,14191009,8.0,6,six of nine covariates missing (not recoverable by imputation)

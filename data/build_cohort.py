@@ -229,6 +229,31 @@ def main() -> int:
               "sample_list.txt"):
         print(f"  {f:24s} {(OUT / f).stat().st_size / 1e6:8.2f} MB")
 
+    # --- CIBERSORT mixture, subset to this cohort ---------------------------
+    # Subsetting after the fact is only valid because the 480-sample mixture is
+    # deconvolved with quantile normalisation and batch correction OFF, which
+    # makes every sample independent of the others. With batch correction ON the
+    # correction is fitted across the whole matrix, and dropping a sample would
+    # move everyone else's fractions -- the run would have to be redone on
+    # exactly this set.
+    mix_src = HERE.parent / "cibersortx" / "data" / "mixture_TPM_hgnc_480.txt"
+    if mix_src.exists():
+        mix = pd.read_csv(mix_src, sep="\t", index_col=0)
+        absent = [t for t in titles if t not in mix.columns]
+        if absent:
+            print(f"\n  WARNING: {len(absent)} cohort samples absent from the "
+                  f"mixture file; skipping: {absent[:3]}")
+        else:
+            out = mix[titles]
+            out.index.name = "GeneSymbol"
+            out.to_csv(OUT / f"mixture_TPM_hgnc_{len(titles)}.txt", sep="\t",
+                       float_format="%.4g")
+            print(f"  mixture_TPM_hgnc_{len(titles)}.txt  "
+                  f"{(OUT / f'mixture_TPM_hgnc_{len(titles)}.txt').stat().st_size/1e6:7.2f} MB"
+                  f"   {out.shape[0]:,} genes x {out.shape[1]}")
+    else:
+        print(f"\n  (no 480-sample mixture at {mix_src}; skipping CIBERSORT file)")
+
     print(f"\ncohort: {counts_cohort.shape[0]:,} genes x {counts_cohort.shape[1]} samples")
     print("diagnosis breakdown:")
     print(cohort["bipolar disorder diagnosis"].value_counts().to_string())

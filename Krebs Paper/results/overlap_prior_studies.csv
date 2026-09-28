@@ -1,0 +1,3 @@
+"list","n_deposited","n_in_universe","n_sig_ours","n_sig_their_pre","n_sig_their_post","sign_conc_pct","paper_OR","paper_p","OR_at_976","p_at_976","implied_DEG_list_size","OR_at_implied","p_at_implied"
+"Anand et al. 2016",20,20,20,16,18,100,13.57,4.66e-12,12.546,1.56188843617547e-11,908,13.585,4.62742681901335e-12
+"Breen et al. 2016",134,134,130,91,35,98.5,1.27,0.00923,1.161,0.0701159266785636,908,1.272,0.00911413898856066

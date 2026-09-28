@@ -1,0 +1,22 @@
+stage,quantity,paper,ours,pass
+dataset,samples in count matrix,480,480,True
+dataset,samples passing QC,444,444,True
+dataset,cases post-QC,240 (paper) / 239 (deposit),239,True
+dataset,lithium users,152,152,True
+dataset,genes after filter,"12,344 (text) / 12,353 (their DE table)","12,353",True
+DE / BD,DEGs at FDR<0.05,6,6,True
+DE / BD,their genes also sig in ours,6 of 6,5 of 6,
+DE / BD,their 6 genes in our top 0.1% (<=12),6 of 6,top 10 (last at adj.P=0.054),True
+DE / BD,logFC correlation on those genes,>0.99,0.9998,True
+DE / lithium,"DEGs, documented model","976 (text) / 897 (MAGMA) / 3,031 (deposit)",1023,
+DE / lithium+cells,logFC correlation vs deposit,~0.99,0.9891,True
+DE / lithium+cells,DEGs at FDR<0.05,233,238,True
+WGCNA,modules detected,27,31,True
+WGCNA,module size range,48-2760,47-1697,
+WGCNA,mean module size,441,388,True
+WGCNA,lithium-associated modules (Bonferroni),5,6,True
+WGCNA,BD-associated modules,0,0,True
+cell type,neutrophils retained by stepAIC,yes,yes,True
+cell type,neutrophil beta,0.63,0.630,True
+cell type,neutrophil p,0.024,0.0234,True
+cell type,monocytes vs 2-8% reference,~24.6% (3x over),see celltype_reference_comparison.csv,

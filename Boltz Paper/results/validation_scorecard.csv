@@ -1,0 +1,50 @@
+area,claim,paper,here,verdict,criterion
+deposit,Table S15 lithium DEG count = text,100,100,EXACT,row count
+deposit,Table S15 case/control DEG count = text,64,64,EXACT,row count
+deposit,lithium DEG logFC range = text,-0.191 to 0.177,-0.192 to 0.178,EXACT,within rounding (text truncates)
+deposit,case/control DEG logFC range = text,-0.126 to 0.104,-0.217 to 0.104,DISCREPANCY,text minimum is wrong: 3 deposited DEGs lie below -0.126 (PDK4 -0.217)
+deposit,lithium & case/control DEG overlap = text,9,9,EXACT,set intersection
+deposit,bmind_de case/control Bcellsnaive DEGs = text,21,21,EXACT,q < 0.05
+deposit,bmind_de case/control Bcellsmemory DEGs = text,24,24,EXACT,q < 0.05
+deposit,bmind_de case/control Neutrophils DEGs = text,4,4,EXACT,q < 0.05
+deposit,bmind_de naive & memory B shared = text,18,18,EXACT,q < 0.05 in both
+deposit,bmind_de lithium: no DEG in any cell type,0,0,EXACT,q < 0.05
+deposit,bmind_de gene universe = bulk DE universe,17194,19099,DISCREPANCY,"bMIND sheets hold 19,099 genes; no filter for this set is described"
+proportions,neutrophils most abundant (Table 1),0.51,0.40,REPLICATED,rank 1 of 22
+proportions,monocyte proportion (Table 1),0.050,0.226,DIFFERS,LM22 CIBERSORT without CIBERSORTx batch correction overestimates monocytes ~4x
+proportions,b.cells.memory passes mean > 0.02,yes,no (0.0000),DIFFERS,"Boltz's own selection rule, applied here"
+proportions,t.cells.cd8 passes mean > 0.02,yes,no (0.0068),DIFFERS,"Boltz's own selection rule, applied here"
+proportions,case_vs_control: neutrophils higher in cases,p = 2.3e-08,"p = 2.8e-06, beta +4.64",REPLICATED,"same sign; REPLICATED needs p < 0.05 (Boltz n = 1,730 vs 444 here)"
+proportions,case_vs_control: nk.cells.resting higher in controls,p = 1.2e-07,"p = 0.00032, beta -13.30",REPLICATED,"same sign; REPLICATED needs p < 0.05 (Boltz n = 1,730 vs 444 here)"
+proportions,case_vs_control: t.cells.cd4.naive CD4 higher in controls,p = 1.8e-07,"p = 0.12, beta -3.28",CONSISTENT,"same sign; REPLICATED needs p < 0.05 (Boltz n = 1,730 vs 444 here)"
+proportions,lithium_user_vs_non: neutrophils higher in users,p = 1.5e-09,"p = 0.012, beta +3.08",REPLICATED,"same sign; REPLICATED needs p < 0.05 (Boltz n = 1,730 vs 444 here)"
+proportions,lithium_user_vs_non: t.cells.cd4.naive higher in non-users,p = 0.0008,"p = 0.027, beta -7.00",REPLICATED,"same sign; REPLICATED needs p < 0.05 (Boltz n = 1,730 vs 444 here)"
+proportions,lithium_user_vs_non: t.cells.cd4.memory.resting higher in non-users,p = 0.0004,"p = 0.079, beta -5.63",CONSISTENT,"same sign; REPLICATED needs p < 0.05 (Boltz n = 1,730 vs 444 here)"
+proportions,lithium_user_vs_non: nk.cells.resting higher in non-users,p = 0.0003,"p = 0.053, beta -9.93",CONSISTENT,"same sign; REPLICATED needs p < 0.05 (Boltz n = 1,730 vs 444 here)"
+proportions,non-users vs controls: no cell type differs (Boltz's 8),0,0,REPLICATED,Bonferroni p < 0.05 over the types tested
+proportions,non-users vs controls: t.cells.cd4.memory.activated (not tested by Boltz),not tested,Bonferroni p = 0.019,DIFFERS,a type only the >0.02 rule selects here; controls are QC-filtered non-randomly (CLAUDE.md s2)
+bulk DE,genes tested after >=1 TPM in 25% filter,17194,18006,CONSISTENT,same rule; different cohort and quantifier
+bulk DE,lithium DEGs (FDR < 0.05),100,46,CONSISTENT,"non-zero; count scales with n (239 cases here vs 1,045)"
+bulk DE,case/control DEGs (FDR < 0.05),64,236,DIFFERS,more here than Boltz despite 1/4 the n; mostly assessment-group batch (see next row)
+bulk DE,"case/control DEGs, + assessment group (sensitivity)",n/a,80,CONSISTENT,batch adjustment removes most of the excess; not a Boltz analysis
+bulk DE,"cell-adjusted lithium DEGs, mostly shared with unadjusted",82 of 94,23 of 25,REPLICATED,most cell-adjusted DEGs also significant unadjusted
+bulk DE,Boltz's 100 lithium DEGs: same sign here,>50% expected,85% (logFC r = 0.80),REPLICATED,sign concordance > 75%
+bulk DE,Boltz's 64 case_control DEGs: same sign here,>50% expected,92% (logFC r = 0.80),REPLICATED,sign concordance > 75%
+Krebs overlap,Boltz's 100 lithium DEGs in Krebs (which list?),"33, OR 6.43, p 4.7e-14","32, OR 5.92, p 1.1e-12",REPLICATED,"matches Krebs' documented model (text: 976 DEGs), not either deposited sheet"
+Krebs overlap,our lithium DEGs enriched in Krebs' list,OR 6.43,"19 of 38, OR 11.2, p 2.1e-11",REPLICATED,Fisher p < 0.05 (not independent: overlapping samples)
+bMIND,bmind_de lithium: no DEG in any cell type,0,0,REPLICATED,q < 0.05
+bMIND,bmind_de case/control b.cells.naive DEGs,21,0,DIFFERS,"any q < 0.05 (n 444 vs 1,730)"
+bMIND,bmind_de case/control neutrophils DEGs,4,0,DIFFERS,"any q < 0.05 (n 444 vs 1,730)"
+bMIND,bmind_de case/control memory B DEGs,24,not estimable,DIFFERS,memory B fraction ~0 in the GEO CIBERSORT deposit
+bMIND,bmind_de case/control monocyte DEGs,0,2,DIFFERS,q < 0.05
+bMIND,Boltz's b.cells.naive case/control DEGs nominally significant here,21 DEGs,1 of 14 tested,DIFFERS,more than half at p < 0.05 here
+bMIND,Boltz's neutrophils case/control DEGs nominally significant here,4 DEGs,0 of 3 tested,DIFFERS,more than half at p < 0.05 here
+bMIND,real bmind_de() vs exact posterior p (check subset),n/a,cor(log10 p) min 0.989; p<0.05 agreement min 0.970,EXACT,cor > 0.95 in every cell type and contrast
+bMIND,Table S3 R2 vs DICE monocytes,0.82,"0.45 (bulk 0.42, best mismatched 0.42)",CONSISTENT,REPLICATED: within 0.10 of Boltz and >= 0.02 above both bulk and every mismatched type; CONSISTENT: clearly above both baselines but lower than Boltz
+bMIND,Table S3 R2 vs DICE t.cells.cd4.naive,0.84,"0.52 (bulk 0.31, best mismatched 0.35)",CONSISTENT,REPLICATED: within 0.10 of Boltz and >= 0.02 above both bulk and every mismatched type; CONSISTENT: clearly above both baselines but lower than Boltz
+bMIND,Table S3 R2 vs DICE b.cells.naive,0.61,"0.32 (bulk 0.25, best mismatched 0.32)",DIFFERS,REPLICATED: within 0.10 of Boltz and >= 0.02 above both bulk and every mismatched type; CONSISTENT: clearly above both baselines but lower than Boltz
+bMIND,Fig 1B: cell types highly correlated in mean expression,0.60-0.95 (figure scale),"off-diagonal R2 0.43-0.98, median 0.80",CONSISTENT,"REPLICATED if every pair >= 0.60, Boltz's colour-scale floor; CONSISTENT if the median is"
+preprint,lithium: expression adds nothing over proportions (single split),no added value,proportions 0.59; best expression model 0.60,REPLICATED,no expression model beats proportions by > 0.05 AUC
+preprint,lithium: spread of proportions-only AUC over 100 splits,single split only,0.51-0.72,CONSISTENT,95% range; one split cannot support an equivalence claim
+preprint,casecontrol: expression adds nothing over proportions (single split),no added value,proportions 0.71; best expression model 0.61,REPLICATED,no expression model beats proportions by > 0.05 AUC
+preprint,casecontrol: spread of proportions-only AUC over 100 splits,single split only,0.63-0.77,CONSISTENT,95% range; one split cannot support an equivalence claim

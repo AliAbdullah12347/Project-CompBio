@@ -1,0 +1,3 @@
+"contrast","boltz_degs","tested_here","sign_concordant","logFC_r","nominal_p05_same_sign","fdr05_here"
+"lithium",100,94,0.851063829787234,0.795946867490542,0.457446808510638,7
+"case_control",64,60,0.916666666666667,0.800166606633151,0.55,18

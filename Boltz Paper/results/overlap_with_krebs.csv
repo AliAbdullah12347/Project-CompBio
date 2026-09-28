@@ -1,0 +1,11 @@
+"query","krebs_list","universe","query_in_universe","krebs_sig","overlap","OR","p"
+"boltz_published_100","deposited_pre_celltype",12173,93,3016,35,1.84175920278134,0.00540642660102698
+"ours_lithium","deposited_pre_celltype",12173,38,3016,18,2.74265465050627,0.00232641008695393
+"boltz_published_100","deposited_post_celltype",12173,93,230,26,22.5540448130433,9.52477187726753e-24
+"ours_lithium","deposited_post_celltype",12173,38,230,21,70.2952494917542,5.47541810181055e-27
+"boltz_published_100","recreated_all444",12173,93,1015,32,5.92025295299059,1.12041504356632e-12
+"ours_lithium","recreated_all444",12173,38,1015,19,11.1789804865696,2.05702000424116e-11
+"boltz_published_100","recreated_cases_only",12173,93,432,24,9.94514401829736,9.63245106920957e-15
+"ours_lithium","recreated_cases_only",12173,38,432,18,25.4532491901471,9.82395050305345e-17
+"boltz_published_100","recreated_celltype",12173,93,235,27,23.329853876427,7.29978710206303e-25
+"ours_lithium","recreated_celltype",12173,38,235,22,76.9376750237233,1.2079100410039e-28

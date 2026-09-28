@@ -1,7 +1,7 @@
 ===============================================================================
  PROJECT 7 -- DIRECTORY
  Every file under Implementation/, and what it is.
- Last updated: 28 September 2026 (cohort 474; quality flagged, not applied)
+ Last updated: 28 September 2026 (cohort 474, tobacco imputed, CIBERSORT mixture built)
 ===============================================================================
 
  HOW TO READ THIS
@@ -16,7 +16,27 @@
 
 
 ===============================================================================
- !! READ THIS FIRST -- ONE SAMPLE SET: 474
+ WHICH FILE DO I USE?
+===============================================================================
+
+ Four final files, all in data/cohort_474/, all carrying the same 474 samples
+ in the same order. They are separate files because expression and covariates
+ are different shapes, not because anything is unfinished.
+
+   feeding CIBERSORT / CIBERSORTx  ->  mixture_TPM_hgnc_474.txt
+   any gene-level analysis         ->  counts_474.tsv.gz
+   any model with covariates       ->  metadata_474_imputed.csv
+   normalising some other file     ->  sample_list.txt
+
+ TOBACCO IS NOT IN THE EXPRESSION FILES, and cannot be. A counts matrix is
+ genes x samples; tobacco use is a property of a sample, not a gene. Adding it
+ as a row would make CIBERSORT deconvolve it as though it were a transcript.
+ It lives in metadata_474_imputed.csv, joined to the expression files by the
+ sample title, which is why all four files are kept in the same order.
+
+
+===============================================================================
+ !! ONE SAMPLE SET: 474
 ===============================================================================
 
  data/cohort_474/sample_list.txt is the canonical list. Normalise every other
@@ -62,24 +82,45 @@
    exclusion rules: sample mix-ups and six-of-nine missing covariates. Depth
    and RIN are computed and FLAGGED but never applied. Derives every exclusion
    list by rule rather than by hard-coded ids, and fails rather than writing if
-   the two raw files disagree on the sample set.
+   the two raw files disagree on the sample set. Also subsets the 480-sample
+   CIBERSORT mixture in cibersortx/ down to this cohort, when that file exists.
    Run:  python data/build_cohort.py
 
  data/cohort_474/                                                 [OUTPUT]
-   metadata_474_imputed.csv         THE COMPLETE DATASET. 474 rows x 65 cols,
-                                    no missing values. Carries tobacco_observed,
-                                    tobacco_imp_01..imp_20 (the 20 completed
-                                    datasets -- run the analysis on all twenty
-                                    and pool), tobacco_posterior_mean (plotting
-                                    only, never analyse it as observed) and
-                                    tobacco_was_imputed.
-   sample_list.txt                  THE CANONICAL LIST. 474 sample titles, one
-                                    per line. Normalise every other file to it.
-   counts_474.tsv.gz               16.1 MB  57,820 genes x 474 samples, raw
-                                            counts, columns in metadata order.
-   metadata_474.csv                 The same 474 rows before imputation, plus
-                                            qc_pass, n_missing_covariates,
-                                            library_size, depth_ok, rin_ok.
+   mixture_TPM_hgnc_474.txt        50.7 MB  CIBERSORT-READY. 20,628 genes x
+                                            474, TPM, HGNC symbols, first
+                                            column header "GeneSymbol" --
+                                            exactly the layout CIBERSORT and
+                                            CIBERSORTx expect. Subset from the
+                                            480-sample mixture in cibersortx/.
+                                            Valid to subset only because that
+                                            run had quantile normalisation and
+                                            batch correction OFF, which makes
+                                            each sample independent. Turn batch
+                                            correction ON and the run must be
+                                            redone on exactly this set.
+   counts_474.tsv.gz               16.1 MB  57,820 genes x 474, RAW INTEGER
+                                            COUNTS, Ensembl ids -- byte-for-byte
+                                            the deposited format, just with the
+                                            6 unwanted samples removed. Use for
+                                            everything gene-level: filtering,
+                                            TMM, voom, WGCNA.
+   metadata_474_imputed.csv         474 rows x 65 cols. ALL COVARIATES,
+                                            TOBACCO IMPUTED. Carries
+                                            tobacco_observed (blank for the 30,
+                                            kept as the audit trail),
+                                            tobacco_imp_01..imp_20 (the twenty
+                                            completed datasets -- run the
+                                            analysis on all twenty and pool
+                                            with Rubin's rules),
+                                            tobacco_posterior_mean (plotting
+                                            only, never analyse it as though
+                                            observed), tobacco_was_imputed, and
+                                            the depth_ok / rin_ok quality flags.
+   sample_list.txt                  474 sample titles, one per line. THE
+                                            CANONICAL LIST -- normalise any
+                                            other file to it.
+   metadata_474.csv                 The same 474 rows before imputation.
    excluded_samples.csv             The 6 dropped samples and why.
    README.md              [DOC]     How to use the 20 imputed columns, and why
                                     no quality screen is applied.
@@ -196,8 +237,11 @@
  TO REBUILD EVERYTHING FROM SCRATCH
 ===============================================================================
 
-   python data/build_cohort.py                    # 480 -> 474
+   python data/build_cohort.py                    # 480 -> 474, + CIBERSORT mixture
    python data/impute_tobacco.py                  # the 30 missing tobacco values
    python data/impute_tobacco.py --delta 0.912    # MNAR sensitivity
+
+ metadata_474_imputed.csv is assembled from metadata_474.csv plus
+ imputed_tobacco/tobacco_imputations.csv; rebuild it after re-running either.
 
  Only raw_as_deposited/ is irreplaceable. Everything else regenerates.

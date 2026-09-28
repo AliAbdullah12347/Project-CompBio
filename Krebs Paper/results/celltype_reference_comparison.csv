@@ -1,0 +1,5 @@
+"class","n_controls","raw_mean_pct","renorm_mean_pct","renorm_sd_pct","ref_low_pct","ref_high_pct","verdict"
+"neutrophils",205,37.535,38.79,9.513,40,70,"BELOW reference"
+"lymphocytes",205,35.486,36.649,8.631,20,40,"within reference"
+"monocytes",205,23.759,24.559,6.982,2,8,"ABOVE reference"
+"eosinophils",205,0.001,0.001,0.018,1,6,"BELOW reference"

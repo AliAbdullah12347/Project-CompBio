@@ -1,0 +1,28 @@
+"dice_cell_type","estimate","n_genes","R2_log","R2_linear","boltz_R2"
+"monocytes","bMIND monocytes",1248,0.453535907856576,0.250947562331622,0.82
+"monocytes","bulk (no deconvolution)",1248,0.421930760286008,0.250953020625135,NA
+"monocytes","bMIND neutrophils (mismatched)",1248,0.408831262185017,0.220133159142125,NA
+"monocytes","bMIND t.cells.cd4.naive (mismatched)",1248,0.207186189808444,0.149160089441001,NA
+"monocytes","bMIND t.cells.cd4.memory.resting (mismatched)",1248,0.134808400377335,0.130858904471211,NA
+"monocytes","bMIND nk.cells.resting (mismatched)",1248,0.421069440647262,0.241441607801759,NA
+"monocytes","bMIND t.cells.cd4.memory.activated (mismatched)",1248,0.318035125830727,0.260186809546944,NA
+"monocytes","bMIND mast.cells.resting (mismatched)",1248,0.384977579135873,0.254487487311819,NA
+"monocytes","bMIND b.cells.naive (mismatched)",1248,0.357342361047045,0.226289481605834,NA
+"t.cells.cd4.naive","bMIND t.cells.cd4.naive",1248,0.520266943388365,0.0372017241116799,0.84
+"t.cells.cd4.naive","bulk (no deconvolution)",1248,0.313005730584483,0.0125547981228051,NA
+"t.cells.cd4.naive","bMIND neutrophils (mismatched)",1248,0.19748161445275,0.00952961997654926,NA
+"t.cells.cd4.naive","bMIND monocytes (mismatched)",1248,0.239046441797733,0.00907427229285592,NA
+"t.cells.cd4.naive","bMIND t.cells.cd4.memory.resting (mismatched)",1248,0.329196712378512,0.0282406697634951,NA
+"t.cells.cd4.naive","bMIND nk.cells.resting (mismatched)",1248,0.283459048991914,0.0123343061953538,NA
+"t.cells.cd4.naive","bMIND t.cells.cd4.memory.activated (mismatched)",1248,0.327469060229369,0.0160171480034374,NA
+"t.cells.cd4.naive","bMIND mast.cells.resting (mismatched)",1248,0.320951097956214,0.0126178980834626,NA
+"t.cells.cd4.naive","bMIND b.cells.naive (mismatched)",1248,0.349084061717522,0.0228854814181096,NA
+"b.cells.naive","bMIND b.cells.naive",1248,0.318160184333298,0.0149537034654784,0.61
+"b.cells.naive","bulk (no deconvolution)",1248,0.250202016020036,0.00882656504791154,NA
+"b.cells.naive","bMIND neutrophils (mismatched)",1248,0.172945504529924,0.00700327910947307,NA
+"b.cells.naive","bMIND monocytes (mismatched)",1248,0.203288242285157,0.00674330369332904,NA
+"b.cells.naive","bMIND t.cells.cd4.naive (mismatched)",1248,0.316129647713333,0.0153558114053689,NA
+"b.cells.naive","bMIND t.cells.cd4.memory.resting (mismatched)",1248,0.252294784268021,0.0113873381851424,NA
+"b.cells.naive","bMIND nk.cells.resting (mismatched)",1248,0.207218678053031,0.00940088970602251,NA
+"b.cells.naive","bMIND t.cells.cd4.memory.activated (mismatched)",1248,0.257790446682252,0.0105624989371648,NA
+"b.cells.naive","bMIND mast.cells.resting (mismatched)",1248,0.255423906619681,0.00887950295030382,NA

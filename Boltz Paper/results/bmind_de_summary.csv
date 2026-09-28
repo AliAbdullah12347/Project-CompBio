@@ -1,0 +1,17 @@
+"contrast","cell_type","degs_here","boltz_degs","boltz_degs_tested_here","boltz_degs_nominal_p05_here"
+"casecontrol","neutrophils",0,4,3,0
+"casecontrol","monocytes",2,0,0,NA
+"casecontrol","t.cells.cd4.naive",0,0,0,NA
+"casecontrol","t.cells.cd4.memory.resting",0,0,0,NA
+"casecontrol","nk.cells.resting",0,0,0,NA
+"casecontrol","t.cells.cd4.memory.activated",0,NA,0,NA
+"casecontrol","mast.cells.resting",0,NA,0,NA
+"casecontrol","b.cells.naive",0,21,14,1
+"lithium","neutrophils",0,0,0,NA
+"lithium","monocytes",0,0,0,NA
+"lithium","t.cells.cd4.naive",0,0,0,NA
+"lithium","t.cells.cd4.memory.resting",0,0,0,NA
+"lithium","nk.cells.resting",0,0,0,NA
+"lithium","t.cells.cd4.memory.activated",0,NA,0,NA
+"lithium","mast.cells.resting",0,NA,0,NA
+"lithium","b.cells.naive",0,0,0,NA
