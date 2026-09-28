@@ -1,0 +1,61 @@
+# ---------------------------------------------------------------------------
+# Project 7 — what does and does not belong in version control.
+#
+# Principle: track everything we wrote, and nothing a script can rebuild.
+# Every excluded dataset is recoverable with the download scripts, so a fresh
+# clone plus `download_data.sh` reproduces the full tree.
+#
+# Two things are excluded for reasons other than size:
+#   - Journal PDFs and publisher supplementary files are copyrighted. They are
+#     not ours to redistribute, even in a private repo.
+#   - Derived tables extracted from those supplementary files are likewise left
+#     out; `01_extract_ground_truth.py` regenerates them in seconds.
+# ---------------------------------------------------------------------------
+
+# --- raw and derived data (regenerable) ---
+**/data/raw/
+**/data/processed/
+**/data/reference/
+**/data/external/
+**/data/cohort_*/
+*.tsv.gz
+*.txt.gz
+*.gtf.gz
+mixture_TPM_*.txt
+
+# --- generated outputs ---
+**/results/
+**/outputs/
+**/out/
+
+# --- copyrighted third-party material ---
+# Papers and publisher supplementary files. Cite them; don't redistribute them.
+**/paper/
+**/data/supplementary/
+*.pdf
+
+# Extracted full text of copyrighted papers
+**/docs/*fulltext*.txt
+**/docs/supplementary_methods.txt
+
+# --- caches and editor cruft ---
+__pycache__/
+*.py[cod]
+.Rhistory
+.RData
+.Rproj.user/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+*.swp
+.venv/
+venv/
+
+# --- keep these despite the rules above ---
+# Checksums and READMEs are small, and they are how a fresh clone verifies
+# that its re-downloaded data matches what we actually analysed.
+!**/CHECKSUMS.sha256
+!**/data/**/README.md
+!**/data/**/*.py
+!**/data/**/*.R
+**/docs/supplementary_figures*.txt

@@ -1,0 +1,9 @@
+# Raw downloads and derived data are reproducible from src/, so they are not tracked.
+data/raw/*.gz
+data/processed/
+data/supplementary/*.xlsx
+data/supplementary/*.docx
+results/
+__pycache__/
+.Rhistory
+.RData

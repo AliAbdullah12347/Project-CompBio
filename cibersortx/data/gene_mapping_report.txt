@@ -1,0 +1,7 @@
+Ensembl IDs in counts after ENSGR removal: 57,773
+Matched to GENCODE v19 annotation:         57,773
+Unmatched (dropped):                       0
+Duplicate HGNC symbols (summed):           85
+Final unique symbols in mixture file:      20,628
+
+Unmatched Ensembl IDs:
