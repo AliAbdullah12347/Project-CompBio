@@ -1,0 +1,3 @@
+== 04_permutation ==  200 permutations per contrast
+
+calcNormFactors has been renamed to normLibSizes
