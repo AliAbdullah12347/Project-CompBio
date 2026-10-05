@@ -1,5 +1,5 @@
 path,folder,kind,status,produced_by,size_human,modified,description
-.gitignore,.,CODE,current,,2.5K,2026-09-28 22:18,"Keeps raw downloads, caches and results out of version control."
+.gitignore,.,CODE,current,,2.9K,2026-10-05 00:25,"Keeps raw downloads, caches and results out of version control."
 "Ali, Ava Project Preproposal.docx",.,EXT,external,,187.8K,2026-09-20 16:12,Course paperwork: the pre-proposal and weekly timesheets.
 Boltz Paper/README.md,Boltz Paper,EXT,external,,6.3K,2026-09-28 11:28,"Reproduction of Boltz et al. (2024), the paper that reported zero cell-type lithium genes. Described at folder level; we did not write the inputs."
 Boltz Paper/REPRODUCIBILITY.md,Boltz Paper,EXT,external,,6.9K,2026-09-28 09:30,"Reproduction of Boltz et al. (2024), the paper that reported zero cell-type lithium genes. Described at folder level; we did not write the inputs."
@@ -110,8 +110,8 @@ Boltz Paper/src/06_preprint_prediction.R,Boltz Paper/src,CODE,current,,7.3K,2026
 Boltz Paper/src/07_validate.py,Boltz Paper/src,CODE,current,,13.8K,2026-09-28 10:50,Our code for the Boltz reproduction.
 DIRECTORY.txt,.,DOC,current,,29.3K,2026-10-02 05:26,"Hand-written tour of the project, written to be read start to finish. INDEX.db is the queryable counterpart."
 HANDOFF.md,.,DOC,current,,10.7K,2026-09-28 19:53,Session handoff notes from the September work.
-INDEX.csv,.,OUTPUT,current,index/build_index.py,173.8K,2026-10-03 03:58,The file table from INDEX.db as a spreadsheet.
-INDEX.db,.,OUTPUT,current,index/build_index.py,368.0K,2026-10-03 03:58,SQLite index of every file and folder here. Query it instead of guessing where something lives.
+INDEX.csv,.,OUTPUT,current,index/build_index.py,177.3K,2026-10-04 23:06,The file table from INDEX.db as a spreadsheet.
+INDEX.db,.,OUTPUT,current,index/build_index.py,372.0K,2026-10-04 23:06,SQLite index of every file and folder here. Query it instead of guessing where something lives.
 Krebs Paper/README.md,Krebs Paper,EXT,external,,5.3K,2026-09-27 21:44,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
 Krebs Paper/REPRODUCIBILITY.md,Krebs Paper,EXT,external,,7.9K,2026-09-28 04:10,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
 Krebs Paper/STATUS.md,Krebs Paper,EXT,external,,5.2K,2026-09-27 22:35,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
@@ -189,6 +189,7 @@ Krebs Paper/src/06_module_preservation.R,Krebs Paper/src,CODE,current,,15.5K,202
 Krebs Paper/src/07_remaining_claims.R,Krebs Paper/src,CODE,current,,23.6K,2026-09-28 04:18,Our code for the Krebs reproduction.
 Krebs Paper/src/verify_presheet_claim.R,Krebs Paper/src,CODE,current,,15.6K,2026-09-28 04:07,Our code for the Krebs reproduction.
 Krebs_AnnotatedBib1.pptx,.,EXT,external,,357.2K,2026-09-21 01:24,Course slide deck.
+START_HERE.md,.,DOC,current,,4.8K,2026-10-05 00:28,"Orientation for a new session: what to read first, how to navigate with INDEX.db, which folder is live, and five facts that prevent misreading the results."
 WeeklyTimeSheet.docx,.,EXT,external,,14.4K,2026-09-21 00:31,Course paperwork: the pre-proposal and weekly timesheets.
 WeeklyTimeSheetWeek3.docx,.,EXT,external,,15.0K,2026-09-22 22:41,Course paperwork: the pre-proposal and weekly timesheets.
 _archive_exploratory_DE/ARCHIVED.md,_archive_exploratory_DE,DOC,archived,,1.1K,2026-09-30 22:04,States what the archive may and may not be used for.
@@ -449,6 +450,20 @@ cibersortx/data/mixture_TPM_hgnc_analysis_431.txt,cibersortx/data,OUTPUT,current
 cibersortx/data/qc_screen.csv,cibersortx/data,OUTPUT,current,,24.6K,2026-09-28 21:45,"Files prepared for the CIBERSORTx portal, plus the GENCODE annotation used to map IDs to symbols."
 cibersortx/make_mixture.py,cibersortx,OUTPUT,current,,10.0K,2026-09-28 21:44,"Files prepared for the CIBERSORTx portal, plus the GENCODE annotation used to map IDs to symbols."
 cibersortx/subset_mixture.py,cibersortx,OUTPUT,current,,3.2K,2026-09-28 21:46,"Files prepared for the CIBERSORTx portal, plus the GENCODE annotation used to map IDs to symbols."
+data/analysis_matrices/ILR_coordinates.csv,data/analysis_matrices,OUTPUT,current,,21.6K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/TMM_normalisation_factors.csv,data/analysis_matrices,OUTPUT,current,,17.7K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/contrast_membership.csv,data/analysis_matrices,OUTPUT,current,,10.0K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/counts_filtered_12368x474.part1.csv,data/analysis_matrices,OUTPUT,current,,11.0M,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/counts_filtered_12368x474.part2.csv,data/analysis_matrices,OUTPUT,current,,10.3M,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/covariates_474.csv,data/analysis_matrices,OUTPUT,current,,42.8K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/fractions_5lineages.csv,data/analysis_matrices,OUTPUT,current,,25.7K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/fractions_5lineages_zeroreplaced.csv,data/analysis_matrices,OUTPUT,current,,25.7K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/fractions_LM22_22types.csv,data/analysis_matrices,OUTPUT,current,,63.7K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/gene_lengths_union_exons.csv,data/analysis_matrices,OUTPUT,current,,290.2K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/log2TPM_12368x474.part1.csv,data/analysis_matrices,OUTPUT,current,,12.9M,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/log2TPM_12368x474.part2.csv,data/analysis_matrices,OUTPUT,current,,12.9M,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/log2TPM_12368x474.part3.csv,data/analysis_matrices,OUTPUT,current,,12.9M,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
+data/analysis_matrices/tobacco_20_imputations.csv,data/analysis_matrices,OUTPUT,current,,23.9K,2026-10-05 00:23,Cohort construction: the 480-sample deposit reduced to the 474 used everywhere.
 data/build_cohort.py,data,CODE,current,,14.4K,2026-09-28 22:37,Cohort-building scripts. See TO REBUILD in DIRECTORY.txt for the order.
 data/cohort_474/CIBERSORTX.md,data/cohort_474,DOC,current,,11.2K,2026-09-28 22:50,"Exact portal settings used, and why each was chosen."
 data/cohort_474/CIBERSORTX_HIRES.md,data/cohort_474,DOC,current,,21.1K,2026-10-03 03:58,"Step-by-step instructions for CIBERSORTx Module 3 high-resolution mode: per-sample per-gene per-cell-type expression without single-cell data. Includes the exact portal settings, the Docker fallback, and what the adaptive noise filter does."
@@ -734,7 +749,6 @@ de_analysis/scripts/12_celltype_structure.R,de_analysis/scripts,CODE,superseded,
 de_analysis/scripts/VERIFY_designs.R,de_analysis/scripts,CODE,superseded,,2.4K,2026-09-30 22:49,v1 analysis scripts. Several produce results v2 relies on and does not recompute.
 de_v2/DECISIONS.md,de_v2,DOC,current,,29.2K,2026-10-04 23:06,Every decision in v2 and its justification. Read with README.md.
 de_v2/README.md,de_v2,DOC,current,,4.1K,2026-10-02 05:25,"What v2 is, how it differs from de_analysis/, and how to run it."
-de_v2/results/.chain_done,de_v2/results,OUTPUT,current,de_v2/scripts/,11B,2026-10-02 06:27,Results of the current analysis.
 de_v2/results/00_validate.log,de_v2/results,OUTPUT,current,de_v2/scripts/,2.0K,2026-10-02 05:20,"Console output of each script, kept as the run record."
 de_v2/results/01_refit.log,de_v2/results,OUTPUT,current,de_v2/scripts/,2.3K,2026-10-02 05:23,"Console output of each script, kept as the run record."
 de_v2/results/02_hier.log,de_v2/results,OUTPUT,current,de_v2/scripts/,1.4K,2026-10-02 05:23,"Console output of each script, kept as the run record."
@@ -744,8 +758,16 @@ de_v2/results/14_sweep_ct.log,de_v2/results,OUTPUT,current,de_v2/scripts/,7.9K,2
 de_v2/results/15_sweep_report.log,de_v2/results,OUTPUT,current,de_v2/scripts/,20.3K,2026-10-04 23:05,"Console output of each script, kept as the run record."
 de_v2/results/across_contrast_correction.csv,de_v2/results,OUTPUT,current,02_hierarchical.R,308B,2026-10-02 05:23,What correcting across all four comparisons costs.
 de_v2/results/adjusted.rds,de_v2/results,CACHE,current,01_refit_and_mtc.R,13.7M,2026-10-02 05:22,Model output with the full correction panel attached.
+de_v2/results/candidate_genes_LI_all.csv.gz,de_v2/results,OUTPUT,current,de_v2/scripts/,725.8K,2026-10-04 23:45,Results of the current analysis.
+de_v2/results/candidate_genes_LI_significant.csv,de_v2/results,OUTPUT,current,de_v2/scripts/,319.7K,2026-10-04 23:45,Results of the current analysis.
+de_v2/results/candidate_genes_compositional.csv,de_v2/results,OUTPUT,current,de_v2/scripts/,347B,2026-10-04 23:45,Results of the current analysis.
+de_v2/results/candidate_genes_residual.csv,de_v2/results,OUTPUT,current,de_v2/scripts/,33.9K,2026-10-04 23:45,Results of the current analysis.
+de_v2/results/candidate_genes_tier1.csv,de_v2/results,OUTPUT,current,de_v2/scripts/,4.9K,2026-10-04 23:45,Results of the current analysis.
 de_v2/results/celltype_per_lineage.csv,de_v2/results,OUTPUT,current,02_hierarchical.R,927B,2026-10-02 05:23,Per-lineage discoveries under per-lineage BH and under Benjamini-Bogomolov.
 de_v2/results/celltype_pooled.csv,de_v2/results,OUTPUT,current,02_hierarchical.R,290B,2026-10-02 05:23,"Cell-type discoveries pooled over gene x lineage, collapsed to unique genes."
+de_v2/results/composition_effect_grows.csv,de_v2/results,OUTPUT,current,de_v2/scripts/,1.2K,2026-10-04 23:46,Results of the current analysis.
+de_v2/results/composition_gradient_by_correction.csv,de_v2/results,OUTPUT,current,de_v2/scripts/,176B,2026-10-04 23:46,Results of the current analysis.
+de_v2/results/composition_gradient_by_decile.csv,de_v2/results,OUTPUT,current,de_v2/scripts/,436B,2026-10-04 23:46,Results of the current analysis.
 de_v2/results/correction_comparison.csv,de_v2/results,OUTPUT,current,03_permutation_fdr.R,202B,2026-10-02 06:29,Side-by-side discovery counts for every correction method.
 de_v2/results/fits.rds,de_v2/results,CACHE,current,01_refit_and_mtc.R,9.5M,2026-10-02 05:22,Raw model output before correction.
 de_v2/results/independent_filtering.csv,de_v2/results,OUTPUT,current,01_refit_and_mtc.R,2.8K,2026-10-02 05:23,Whether filtering on mean expression would have bought additional power.
@@ -783,15 +805,19 @@ de_v2/scripts/03_permutation_fdr.R,de_v2/scripts,CODE,current,,8.5K,2026-10-02 0
 de_v2/scripts/13_filter_sweep_wb.R,de_v2/scripts,CODE,current,,11.7K,2026-10-04 21:58,"Whole-blood expression-filter sweep: 31 filters, 2,087-24,084 genes, with per-gene ranks and stability."
 de_v2/scripts/14_filter_sweep_ct.R,de_v2/scripts,CODE,current,,12.8K,2026-10-04 21:58,"Cell-type sweep: 9 nested gene filters, 5 variance floors, 4 posterior-SE quantiles."
 de_v2/scripts/15_sweep_report.R,de_v2/scripts,CODE,current,,6.8K,2026-10-04 21:55,Assembles both sweeps into the stability tables; counts alone are not comparable across filters.
+de_v2/scripts/16_candidate_genes.R,de_v2/scripts,OUTPUT,current,,10.1K,2026-10-04 23:45,THE CURRENT differential expression analysis. No verdict bands; full multiple-testing panel.
+de_v2/scripts/17_composition_gradient.R,de_v2/scripts,OUTPUT,current,,6.4K,2026-10-04 23:46,THE CURRENT differential expression analysis. No verdict bands; full multiple-testing panel.
+de_v2/scripts/18_estimator_and_covariates.R,de_v2/scripts,OUTPUT,current,,8.6K,2026-10-05 00:27,THE CURRENT differential expression analysis. No verdict bands; full multiple-testing panel.
 de_v2/scripts/mtc.R,de_v2/scripts,CODE,current,,10.2K,2026-10-02 06:28,"Multiple-testing library: Storey q-values, Benjamini-Bogomolov, permutation FDR, independent filtering. Hand-written because qvalue/IHW are not installed."
 env.ps1,.,CODE,current,,153B,2026-09-27 21:32,PowerShell version of env.sh.
 env.sh,.,CODE,current,,166B,2026-09-27 21:32,Puts R 4.6.1 on PATH. Source before running any R script.
 index/README.md,index,DOC,current,,3.7K,2026-10-02 05:25,"How to rebuild and query INDEX.db, the schema, and how to add a description."
 index/build_index.py,index,CODE,current,,9.7K,2026-10-02 05:21,"Walks the tree, joins it to descriptions.tsv, writes INDEX.db and INDEX.csv. Also runs queries: --query ""SQL""."
-index/descriptions.tsv,index,DOC,current,,14.5K,2026-10-04 23:06,This file. The curated meaning of every path.
+index/descriptions.tsv,index,DOC,current,,14.7K,2026-10-05 00:28,This file. The curated meaning of every path.
 "preproposal/Ali, Ava Project Preproposal (revised).docx",preproposal,EXT,external,,206.5K,2026-09-20 16:27,Course paperwork: the pre-proposal and weekly timesheets.
 preproposal/build.py,preproposal,EXT,external,,5.3K,2026-09-20 16:26,"Course deliverables: the pre-proposal, the feedback PDF, and the annotated bibliography."
 preproposal/content.py,preproposal,EXT,external,,63.4K,2026-09-20 16:25,"Course deliverables: the pre-proposal, the feedback PDF, and the annotated bibliography."
 preproposal/original.docx,preproposal,EXT,external,,187.8K,2026-09-20 16:13,Course paperwork: the pre-proposal and weekly timesheets.
 preproposal/verify.py,preproposal,EXT,external,,5.0K,2026-09-20 16:27,"Course deliverables: the pre-proposal, the feedback PDF, and the annotated bibliography."
 "preproposal/~$i, Ava Project Preproposal (revised).docx",preproposal,EXT,external,,162B,2026-10-04 22:35,Course paperwork: the pre-proposal and weekly timesheets.
+proposal/Self made flowcharts new/PPM1_new.png,proposal/Self made flowcharts new,?,unknown,,117.1K,2026-10-04 23:28,UNDESCRIBED
