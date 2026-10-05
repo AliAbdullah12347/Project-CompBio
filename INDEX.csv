@@ -110,8 +110,8 @@ Boltz Paper/src/06_preprint_prediction.R,Boltz Paper/src,CODE,current,,7.3K,2026
 Boltz Paper/src/07_validate.py,Boltz Paper/src,CODE,current,,13.8K,2026-09-28 10:50,Our code for the Boltz reproduction.
 DIRECTORY.txt,.,DOC,current,,29.3K,2026-10-02 05:26,"Hand-written tour of the project, written to be read start to finish. INDEX.db is the queryable counterpart."
 HANDOFF.md,.,DOC,current,,10.7K,2026-09-28 19:53,Session handoff notes from the September work.
-INDEX.csv,.,OUTPUT,current,index/build_index.py,177.3K,2026-10-04 23:06,The file table from INDEX.db as a spreadsheet.
-INDEX.db,.,OUTPUT,current,index/build_index.py,372.0K,2026-10-04 23:06,SQLite index of every file and folder here. Query it instead of guessing where something lives.
+INDEX.csv,.,OUTPUT,current,index/build_index.py,181.9K,2026-10-05 00:28,The file table from INDEX.db as a spreadsheet.
+INDEX.db,.,OUTPUT,current,index/build_index.py,388.0K,2026-10-05 00:28,SQLite index of every file and folder here. Query it instead of guessing where something lives.
 Krebs Paper/README.md,Krebs Paper,EXT,external,,5.3K,2026-09-27 21:44,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
 Krebs Paper/REPRODUCIBILITY.md,Krebs Paper,EXT,external,,7.9K,2026-09-28 04:10,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
 Krebs Paper/STATUS.md,Krebs Paper,EXT,external,,5.2K,2026-09-27 22:35,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
@@ -813,11 +813,11 @@ env.ps1,.,CODE,current,,153B,2026-09-27 21:32,PowerShell version of env.sh.
 env.sh,.,CODE,current,,166B,2026-09-27 21:32,Puts R 4.6.1 on PATH. Source before running any R script.
 index/README.md,index,DOC,current,,3.7K,2026-10-02 05:25,"How to rebuild and query INDEX.db, the schema, and how to add a description."
 index/build_index.py,index,CODE,current,,9.7K,2026-10-02 05:21,"Walks the tree, joins it to descriptions.tsv, writes INDEX.db and INDEX.csv. Also runs queries: --query ""SQL""."
-index/descriptions.tsv,index,DOC,current,,14.7K,2026-10-05 00:28,This file. The curated meaning of every path.
+index/descriptions.tsv,index,DOC,current,,14.8K,2026-10-05 00:28,This file. The curated meaning of every path.
 "preproposal/Ali, Ava Project Preproposal (revised).docx",preproposal,EXT,external,,206.5K,2026-09-20 16:27,Course paperwork: the pre-proposal and weekly timesheets.
 preproposal/build.py,preproposal,EXT,external,,5.3K,2026-09-20 16:26,"Course deliverables: the pre-proposal, the feedback PDF, and the annotated bibliography."
 preproposal/content.py,preproposal,EXT,external,,63.4K,2026-09-20 16:25,"Course deliverables: the pre-proposal, the feedback PDF, and the annotated bibliography."
 preproposal/original.docx,preproposal,EXT,external,,187.8K,2026-09-20 16:13,Course paperwork: the pre-proposal and weekly timesheets.
 preproposal/verify.py,preproposal,EXT,external,,5.0K,2026-09-20 16:27,"Course deliverables: the pre-proposal, the feedback PDF, and the annotated bibliography."
 "preproposal/~$i, Ava Project Preproposal (revised).docx",preproposal,EXT,external,,162B,2026-10-04 22:35,Course paperwork: the pre-proposal and weekly timesheets.
-proposal/Self made flowcharts new/PPM1_new.png,proposal/Self made flowcharts new,?,unknown,,117.1K,2026-10-04 23:28,UNDESCRIBED
+proposal/Self made flowcharts new/PPM1_new.png,proposal/Self made flowcharts new,EXT,current,,117.1K,2026-10-04 23:28,Written proposal drafts and hand-made flowchart figures.

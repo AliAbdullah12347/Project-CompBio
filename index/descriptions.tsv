@@ -139,3 +139,4 @@ de_v2/scripts/14_filter_sweep_ct.R	CODE	current		Cell-type sweep: 9 nested gene 
 de_v2/scripts/15_sweep_report.R	CODE	current		Assembles both sweeps into the stability tables; counts alone are not comparable across filters.
 de_v2/results/sweep/**	OUTPUT	current	de_v2/scripts/13-15	Filter sweep results: summaries, per-gene ranks under every filter, robustness and Jaccard overlap.
 START_HERE.md	DOC	current		Orientation for a new session: what to read first, how to navigate with INDEX.db, which folder is live, and five facts that prevent misreading the results.
+proposal/**	EXT	current		Written proposal drafts and hand-made flowchart figures.
