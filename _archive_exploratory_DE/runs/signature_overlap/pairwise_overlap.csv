@@ -1,0 +1,7 @@
+"pair","universe","deg_a","deg_b","overlap","expected_if_independent","fold_enrichment","jaccard","sign_concordance","logFC_spearman"
+"A_off_vs_ctrl vs B_on_vs_ctrl",12353,4,2596,1,0.8,1.2,0,1,0.13
+"A_off_vs_ctrl vs C_lithium",12152,4,1377,2,0.5,4.4,0.001,0,-0.51
+"A_off_vs_ctrl vs D_allBD_vs_ctrl",12359,4,1814,2,0.6,3.4,0.001,1,0.303
+"B_on_vs_ctrl vs C_lithium",12151,2576,1379,834,292.3,2.9,0.267,1,0.653
+"B_on_vs_ctrl vs D_allBD_vs_ctrl",12345,2596,1815,1654,381.7,4.3,0.6,1,0.959
+"C_lithium vs D_allBD_vs_ctrl",12157,1379,1804,412,204.6,2,0.149,0.998,0.475

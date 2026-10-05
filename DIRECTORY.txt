@@ -1,8 +1,27 @@
 ===============================================================================
  PROJECT 7 -- DIRECTORY
  Every file under Implementation/, and what it is.
- Last updated: 28 September 2026 (cohort 474, tobacco imputed, CIBERSORT mixture built)
+ Last updated: 2 October 2026 (adds de_v2/ — the current DE analysis — and INDEX.db)
 ===============================================================================
+
+ THERE IS ALSO A QUERYABLE INDEX
+   This file is written to be read start to finish. INDEX.db is the same
+   information as a database, rebuilt from the filesystem in under a second, so
+   it cannot go stale the way this file can.
+
+     python index/build_index.py                      rebuild it
+     python index/build_index.py --query "SELECT ..." ask it something
+
+   Use it for "where is X", "what made this file", "what is superseded", "what
+   is eating the disk". See index/README.md for the schema and example queries.
+   If the two ever disagree, INDEX.db is right -- it is generated, this is not.
+
+ WHICH ANALYSIS IS CURRENT
+   de_v2/          <- current. No bands, full multiple-testing panel.
+   de_analysis/       v1. Superseded for RESULTS, but config.yaml is the
+                      timestamped pre-registration and METHODS.md is still the
+                      reference for the gene filter, lineage choice, the
+                      bmind_de defects and the detection floors.
 
  HOW TO READ THIS
    Folders that hold many files (the two paper reproductions) are described at
@@ -23,7 +42,8 @@
  in the same order. They are separate files because expression and covariates
  are different shapes, not because anything is unfinished.
 
-   feeding CIBERSORT / CIBERSORTx  ->  mixture_TPM_hgnc_474.txt
+   feeding CIBERSORT / CIBERSORTx  ->  mixture_TPM_hgnc_full_474.txt
+                                       (step by step: CIBERSORTX.md)
    any gene-level analysis         ->  counts_474.tsv.gz
    any model with covariates       ->  metadata_474_imputed.csv
    normalising some other file     ->  sample_list.txt
@@ -76,6 +96,15 @@
                                              make.names, ragged metadata lines,
                                              the 47 ENSGR duplicate rows).
 
+ data/make_mixture_full.py                                          [CODE]
+   Builds the full-transcriptome CIBERSORTx mixture from counts_474.tsv.gz and
+   the GENCODE v19 GTF. Computes TPM using UNION EXON length -- exon intervals
+   are merged before summing, because adding transcript exon lengths naively
+   inflates multi-transcript genes and deflates their TPM. Union is also the
+   right denominator for HTSeq union mode, which assigns a read to a gene only
+   if it overlaps that gene's exons and no other's.
+   Run:  python data/make_mixture_full.py
+
  data/build_cohort.py                                               [CODE]
    Builds the 474-sample cohort from raw_as_deposited/. Removes 6 samples and
    nothing else -- no gene filter, no normalisation, no quality screen. Two
@@ -87,18 +116,55 @@
    Run:  python data/build_cohort.py
 
  data/cohort_474/                                                 [OUTPUT]
-   mixture_TPM_hgnc_474.txt        50.7 MB  CIBERSORT-READY. 20,628 genes x
-                                            474, TPM, HGNC symbols, first
-                                            column header "GeneSymbol" --
-                                            exactly the layout CIBERSORT and
-                                            CIBERSORTx expect. Subset from the
-                                            480-sample mixture in cibersortx/.
-                                            Valid to subset only because that
-                                            run had quantile normalisation and
-                                            batch correction OFF, which makes
-                                            each sample independent. Turn batch
-                                            correction ON and the run must be
-                                            redone on exactly this set.
+   mixture_TPM_hgnc_full_474.txt  107 MB   THE CIBERSORTx UPLOAD. 55,765 gene
+                                            symbols x 474, TPM, linear space,
+                                            every column summing to 1e6, HGNC
+                                            symbols, "GeneSymbol" header. Built
+                                            from the raw counts by
+                                            make_mixture_full.py using union
+                                            exon lengths from the GENCODE v19
+                                            GTF. 57,820 deposited rows minus 47
+                                            ENSGR duplicates minus 2,008 rows
+                                            sharing an HGNC symbol (summed, as
+                                            TPM is additive within a gene) =
+                                            55,765. NO gene was filtered out.
+                                            The 1,976 symbols zero in every
+                                            sample are KEPT: HLA class II
+                                            collapses to zero under HTSeq union
+                                            mode, and Krebs kept them too.
+                                            Verified 12/12; sha256 in
+                                            mixture_full_474.sha256.
+   mixture_full_474.sha256                  Checksum of the above.
+   mixture_TPM_hgnc_474.txt        49.0 MB  SMALLER FALLBACK, for when the web
+                                            portal rejects 107 MB. 20,628 genes x
+                                            474, TPM re-closed to 1e6 per
+                                            column, HGNC symbols, first column
+                                            header "GeneSymbol". Subset from
+                                            the 480-sample mixture in
+                                            cibersortx/, then RE-CLOSED: that
+                                            file had TPM computed over all
+                                            57,773 genes and was then cut to
+                                            the 20,628 with HGNC symbols, so
+                                            columns summed to between 55k and
+                                            522k rather than 1e6 -- a 9.4x
+                                            spread that is not a constant
+                                            rescale. Far fewer genes than the
+                                            counts file because LM22 is keyed on
+                                            HGNC symbols: only protein_coding
+                                            plus IG_*/TR_*_gene can match it.
+                                            The 461 symbols zero in every sample
+                                            are KEPT -- HLA class II collapses to
+                                            zero under HTSeq union mode, and
+                                            Krebs kept them too.
+   CIBERSORTX.md          [DOC]     NINE-STEP WALKTHROUGH of the CIBERSORTx
+                                    web form, with the reason for every choice:
+                                    which file to upload, LM22, and the two
+                                    jobs that differ only in batch correction
+                                    (OFF for Arm 1 because it leaks across the
+                                    train/test split, B-mode for Arms 2-3).
+                                    Also the full verification table, a method
+                                    comparison against Krebs and Boltz, and a
+                                    ready prompt for a fresh Claude chat.
    counts_474.tsv.gz               16.1 MB  57,820 genes x 474, RAW INTEGER
                                             COUNTS, Ensembl ids -- byte-for-byte
                                             the deposited format, just with the
@@ -234,10 +300,182 @@
 
 
 ===============================================================================
+ de_analysis/   --  DIFFERENTIAL EXPRESSION, the pre-registered analysis
+===============================================================================
+
+ Added 1 October 2026. This folder is self-contained: it reads only
+ data/cohort_474/ and writes only inside itself.
+
+ READ THESE TWO FIRST
+   config.yaml                       [DOC]  The pre-specification. Hypotheses,
+                                     bands, decision rules and the seed, all
+                                     committed 2026-09-30 18:05:55 BEFORE any
+                                     analysis here ran. A threshold chosen after
+                                     seeing a result is not a test; this file is
+                                     the evidence that none were.
+   METHODS.md                        [DOC]  Decision log, 21 sections. Every
+                                     choice and why, written as the work was
+                                     done. Where a decision changed, both the
+                                     original and the reason are kept.
+
+ SCRIPTS -- run in numeric order; each writes to results/
+   01_prep.R          [CODE] Filter to 12,368 genes, TMM, TPM, gene lengths by
+                             union of exons, five-lineage aggregation, ILR
+                             balances. Writes data/prep.rds.
+   03_wholeblood.R    [CODE] WB_LI and WB_BPD, each fitted raw and composition-
+                             adjusted. TREAT, estimator sensitivity, and the
+                             whole-blood minimum detectable effect by spike-in.
+   04_permutation.R   [CODE] 200 label permutations per contrast.
+   04b_permutation_summary.R
+                      [CODE] Correct one-sided summary of 04. Supersedes 04's
+                             own two-sided reading -- see METHODS.md section 7.
+   06_bmind_profiles.R[CODE] bMIND WITHOUT the phenotype -> per-sample,
+                             per-lineage expression. 3.1 hours, 31 chunks.
+   06b_bmind_clip_qc.R[CODE] Measures an undocumented clip inside bMIND that
+                             chunking interacts with. Section 13.
+   07_celltype_limma.R[CODE] CT_LI and CT_BPD, limma with 1/SE^2 precision
+                             weights from bMIND's posterior.
+   08_celltype_mde.R  [CODE] Per-lineage detection floors by spike-in. The most
+                             important script for interpreting any null here.
+   08b_mde_spikeratio_check.R
+                      [CODE] Shows 08's false-positive rate was an artifact of
+                             spiking 75% of genes. Section 18.
+   09_wholeblood_sensitivity.R
+                      [CODE] Tobacco multiple imputation pooled by Rubin's
+                             rules, and the depth/RIN screened subset.
+   10_celltype_null.R [CODE] Permutation null for the cell-type level: is pi0
+                             usable (no), plus the pre-specified masking
+                             mechanism test.
+   11_composition_link.R
+                      [CODE] Tests the "lithium signature = cell-mix signature"
+                             claim against our own data.
+   12_celltype_structure.R
+                      [CODE] Confirms bMIND separates lineages, and locates
+                             which lineage carries the effect.
+   VERIFY_designs.R   [CODE] Prints every design matrix and asserts full rank.
+                             Proof the covariates were actually adjusted for.
+
+ RESULTS -- all regenerable; delete and re-run
+   wholeblood_*.csv                  WB_LI / WB_BPD summaries, TREAT, MDE,
+                                     estimator sensitivity, decisions.
+   WB_*_toptable.csv                 Per-gene results, whole blood.
+   permnull_*.csv, permutation_vs_observed.csv
+                                     Permutation nulls and the corrected
+                                     one-sided comparison.
+   celltype_limma_*.csv              Per-lineage and pooled cell-type results
+                                     and decisions.  <- the current ones
+   CT_*_toptable.csv                 Per-gene results, 2 contrasts x 2
+                                     adjustments x 5 lineages.
+   celltype_mde*.csv, mde_spikeratio_check.csv
+                                     Detection floors per lineage.
+   celltype_permutation_calibration.csv, celltype_mechanism_*.csv
+                                     Is pi0 usable; the masking mechanism test.
+   celltype_effect_location.csv, celltype_level_correlations.csv
+                                     Where the effect sits; proof the lineages
+                                     are not copies of each other.
+   composition_link_*.csv            Granulocyte-fraction correlations.
+   sens_*.csv                        Rubin pooling, depth/RIN screen, band
+                                     stability.
+   bmind_clip_by_*.csv               The clip measurement.
+   bmind_profiles.rds                441 MB. 12,368 x 5 x 474 posterior means
+                                     and standard errors. The expensive object.
+   bmind_profiles/                   422 MB of 400-gene chunks. Only 06b needs
+                                     them. Safe to delete if disk is short --
+                                     bmind_profiles.rds is the assembled form.
+
+ _superseded/                        [DOC] Output of bmind_de(), abandoned after
+                                     two verified defects. DO_NOT_USE.md
+                                     explains. Kept because the defects are
+                                     themselves a reportable finding about a
+                                     published paper.
+
+ _archive_exploratory_DE/            [DOC] Earlier exploratory work, deliberately
+                                     NOT read by anything in de_analysis/.
+                                     ARCHIVED.md says what it may be used for.
+
+ HEADLINE RESULTS (full writeup in the published report)
+   WB_LI   1,426 genes, 11.53%   SUPPORTED   (positive control -- pipeline works)
+   WB_BPD  4 genes, 0.032%       INCONCLUSIVE (and the 4 vanish under Rubin)
+   CT_LI   66 genes, 0.534%      INCONCLUSIVE (granulocytes exceed the band)
+   CT_BPD  0 genes               REFUTED*, but see the asterisk:
+   * No cell-type null in this study is interpretable. Every lineage's detection
+     floor exceeds the 0.5 log2FC meaningfulness threshold set in advance --
+     B cells need a 72,000,000-fold change. Read "refuted" as "prediction not
+     borne out", never as "shown absent".
+===============================================================================
+ de_v2/   --  THE CURRENT DIFFERENTIAL EXPRESSION ANALYSIS
+===============================================================================
+
+ Added 2 October 2026. Supersedes de_analysis/ for results. No verdict bands;
+ every multiple-testing correction applied to all four comparisons.
+
+ WHY A SECOND FOLDER RATHER THAN EDITING THE FIRST
+   de_analysis/config.yaml is a timestamped pre-registration -- hypotheses and
+   decision rules committed before any analysis ran. Overwriting it would
+   destroy the only evidence that the rules were fixed in advance. So v1 stays
+   intact as the record, and v2 carries the analysis forward.
+
+ WHAT CHANGED
+   The 0.5% / 2% bands are gone. They turned "0.881% of genes" into
+   "INCONCLUSIVE", which is strictly less information, and they were an
+   uncorrected second decision layered on top of the gene-level testing.
+   v2 reports quantities and their uncertainty, with thresholds as columns in
+   a table rather than as verdicts.
+
+ WHAT IT REUSES (as input, not as results)
+   ../de_analysis/data/prep.rds            filtered counts, TMM, ILR balances
+   ../de_analysis/results/bmind_profiles.rds   3.1 h of deconvolution
+   Both are independent of any threshold and of the group labels, so
+   re-running them would reproduce the same numbers. No v1 RESULT is read.
+
+ READ THESE TWO FIRST
+   README.md                         [DOC]  What is here, how to run it, which
+                                     file answers which question.
+   DECISIONS.md                      [DOC]  Every decision and its
+                                     justification, 12 sections.
+
+ SCRIPTS -- run in order; 00 gates everything after it
+   scripts/mtc.R                [CODE] Correction library: Storey q-values,
+                                Benjamini-Bogomolov, permutation FDR,
+                                independent filtering. Hand-written because
+                                qvalue/IHW/fdrtool are not installed and
+                                CLAUDE.md forbids adding a dependency unasked.
+   scripts/00_validate_mtc.R    [CODE] Proves mtc.R correct BEFORE it touches
+                                real data: 14 exact identities plus a
+                                known-truth simulation. Must print ALL CHECKS
+                                PASSED or nothing below is trustworthy.
+   scripts/01_refit_and_mtc.R   [CODE] Re-fits all four comparisons from
+                                scratch, applies the whole correction panel.
+   scripts/02_hierarchical.R    [CODE] Multiplicity ACROSS the five lineages
+                                and ACROSS the four comparisons.
+   scripts/03_permutation_fdr.R [CODE] Empirical FDR from 100 label
+                                permutations -- the only correction here that
+                                assumes nothing about gene-gene dependence.
+
+ RESULTS
+   summary_by_analysis.csv           THE HEADLINE TABLE. One row per analysis,
+                                     counts under every correction.
+   tests_<analysis>.csv.gz           Per-gene, every adjusted p-value.
+   celltype_per_lineage.csv          Which lineage carries the signal.
+   celltype_pooled.csv               Cell type vs whole blood, fairly compared.
+   across_contrast_correction.csv    What running four comparisons costs.
+   permutation_fdr.csv               Measured null vs the null BH assumes.
+   correction_comparison.csv         All methods side by side.
+   mtc_validation.csv                Measured error rate and power of each
+                                     correction on data with known truth.
+
+ THE ZEROS ARE NOT EVIDENCE OF ABSENCE
+   Every lineage's detection floor exceeds the smallest effect anyone called
+   meaningful; B cells would need a 72,000,000-fold change. No correction
+   method can repair a power problem. See DECISIONS.md section 11.
+
+
+
  TO REBUILD EVERYTHING FROM SCRATCH
 ===============================================================================
 
-   python data/build_cohort.py                    # 480 -> 474, + CIBERSORT mixture
+   python data/build_cohort.py                    # 480 -> 474, + fallback mixture
+   python data/make_mixture_full.py               # the 107 MB CIBERSORTx upload
    python data/impute_tobacco.py                  # the 30 missing tobacco values
    python data/impute_tobacco.py --delta 0.912    # MNAR sensitivity
 

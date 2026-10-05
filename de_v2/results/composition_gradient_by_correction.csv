@@ -1,0 +1,4 @@
+"passes","n","median_logFC","median_pct_lost","pct_survive_adjustment"
+"Holm (FWER)",125,0.343,32.2,100
+"BY (any dependence)",178,0.237,38,63.5
+"BH only",1123,0.162,43,4.8

@@ -1,0 +1,3 @@
+"method","B","deg05_mean","deg05_max","deg05_n_nonzero","deg10_mean","frac_p05_mean","frac_p01_mean","frac_p001_mean","lambda_mean","pi0_mean","ksD_mean","cpu_mean","excess_type1_at_05","excess_type1_at_01"
+"voom",10,0,0,0,0.1,0.03739,0.0062,0.00056,0.9216,0.971,0.07311,19.5,0.748,0.62
+"trend",10,0,0,0,0,0.0373,0.00626,5e-04,0.9174,0.9702,0.07246,8.6,0.746,0.626

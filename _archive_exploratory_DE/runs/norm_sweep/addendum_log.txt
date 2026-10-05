@@ -1,0 +1,62 @@
+### A1  the fair rival: PC1 of UN-normalised log-CPM ###
+calcNormFactors has been renamed to normLibSizes
+|r| between log2 TMM factor and PC1 of un-normalised log-CPM: 0.965
+|r| between log2 TMM factor and PC1 of TMM-normalised log-CPM: 0.014
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+                     covariate deg_fdr05    pi0 pct_of_baseline
+               none (baseline)      1382 0.5161          100.00
+               log2 TMM factor       158 0.9319           11.43
+  PC1 of UN-normalised log-CPM       202 0.8608           14.62
+ PC1 of TMM-normalised log-CPM       470 0.6838           34.01
+ jaccard_vs_baseline abs_r_with_log2nf
+              1.0000                NA
+              0.1047           1.00000
+              0.1186           0.96547
+              0.2455           0.01443
+
+### A2  confounding vs noise in the factor/lithium association ###
+         covariates     beta      se      t         p beta_shift_vs_crude
+               none -0.07009 0.02742 -2.556 0.0112412              0.0000
+                age -0.04909 0.02720 -1.805 0.0724512            -29.9687
+                sex -0.06972 0.02765 -2.521 0.0123992             -0.5293
+            tobacco -0.06950 0.02748 -2.530 0.0121129             -0.8446
+                rin -0.07039 0.02739 -2.570 0.0108167              0.4254
+              plate -0.07757 0.02337 -3.319 0.0010565             10.6650
+            seq_pcs -0.06686 0.02101 -3.182 0.0016721             -4.6056
+ full_DE_covariates -0.07183 0.01958 -3.668 0.0003086              2.4881
+ se_shift_vs_crude
+            0.0000
+           -0.8101
+            0.8605
+            0.2050
+           -0.1163
+          -14.7710
+          -23.3676
+          -28.5793
+beta moving = confounding removed; se moving = noise removed. Here it is mostly noise.
+
+### A3  the offset determines the gene list ###
+             config          norm method median_lfc_shift sd_lfc_shift deg_up
+        voom_TMMwsp        TMMwsp   voom         0.003913    0.0008103    995
+           voom_TMM           TMM   voom         0.000000    0.0000000    956
+           voom_RLE           RLE   voom        -0.001066    0.0005454    943
+          trend_TMM           TMM  trend        -0.001335    0.0122815    889
+ voom_upperquartile upperquartile   voom        -0.016856    0.0013501    842
+      voom_none_CPM          none   voom        -0.071272    0.0033723    519
+  trend_none_logCPM          none  trend        -0.071948    0.0119325    488
+ deg_dn deg_fdr05 jaccard_vs_TMM log2_up_over_dn
+    353      1348         0.9171         1.49503
+    426      1382         1.0000         1.16616
+    464      1407         0.9627         1.02313
+    417      1306         0.8538         1.09214
+    830      1672         0.7100         0.02071
+   3494      4013         0.2121        -2.75107
+   3530      4018         0.2029        -2.85472
+
+Pearson r(offset, log2 up/down) = 0.9986 over 7 configurations
+linear fit: log2(up/dn) = 1.140 + 55.42 * offset
+
+done.

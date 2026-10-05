@@ -1,0 +1,8 @@
+"quantity","value"
+"median(logFC_none - logFC_TMM)",-0.0712719313192862
+"mean(same)",-0.0712352633319293
+"sd(same)",0.00337232966477604
+"IQR(same)",0.00303584795777023
+"lithium coef on log2(TMM factor), adjusted",0.0718349258366152
+"ratio median_shift / nf_coef",-0.992162663067135
+"R^2 of shift on a constant (1 - var/var of logFC_TMM)",0.999038821338918

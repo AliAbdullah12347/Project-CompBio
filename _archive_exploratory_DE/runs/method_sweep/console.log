@@ -1,0 +1,3 @@
+[A] voom         calcNormFactors has been renamed to normLibSizes
+12173 genes  1382 DEG  cpu   20.7s wall   28.3s
+[A] voomWQW      calcNormFactors has been renamed to normLibSizes

@@ -1,0 +1,361 @@
+"sid","label","kind","analysis","lineage","n_genes","deg_BH05","pi0","min_p"
+"c50_p100",">50 in >=100%","gene_filter","LI_raw","gran",2087,6,0.2307,6.09e-05
+"c50_p100",">50 in >=100%","gene_filter","LI_raw","mono",2087,3,1,2.53e-05
+"c50_p100",">50 in >=100%","gene_filter","LI_raw","T",2087,3,1,3.08e-06
+"c50_p100",">50 in >=100%","gene_filter","LI_raw","NK",2087,0,1,0.00147
+"c50_p100",">50 in >=100%","gene_filter","LI_raw","B",2087,0,0.2227,0.00343
+"c50_p100",">50 in >=100%","gene_filter","LI_ilr","gran",2087,12,0.3216,1.1e-05
+"c50_p100",">50 in >=100%","gene_filter","LI_ilr","mono",2087,0,0.6236,8.35e-05
+"c50_p100",">50 in >=100%","gene_filter","LI_ilr","T",2087,0,0.5634,2.83e-05
+"c50_p100",">50 in >=100%","gene_filter","LI_ilr","NK",2087,0,1,0.00475
+"c50_p100",">50 in >=100%","gene_filter","LI_ilr","B",2087,0,0.1625,0.000425
+"c50_p100",">50 in >=100%","gene_filter","BPD_raw","gran",2087,0,0.6837,0.00729
+"c50_p100",">50 in >=100%","gene_filter","BPD_raw","mono",2087,0,1,0.00496
+"c50_p100",">50 in >=100%","gene_filter","BPD_raw","T",2087,2,0.1076,2.69e-05
+"c50_p100",">50 in >=100%","gene_filter","BPD_raw","NK",2087,0,0.2038,0.00395
+"c50_p100",">50 in >=100%","gene_filter","BPD_raw","B",2087,0,0.6702,0.000147
+"c50_p100",">50 in >=100%","gene_filter","BPD_ilr","gran",2087,0,0.6253,0.0152
+"c50_p100",">50 in >=100%","gene_filter","BPD_ilr","mono",2087,0,1,0.00512
+"c50_p100",">50 in >=100%","gene_filter","BPD_ilr","T",2087,0,0.1303,0.000191
+"c50_p100",">50 in >=100%","gene_filter","BPD_ilr","NK",2087,0,0.368,0.00852
+"c50_p100",">50 in >=100%","gene_filter","BPD_ilr","B",2087,0,0.4522,0.000255
+"c20_p100",">20 in >=100%","gene_filter","LI_raw","gran",4469,3,0.1881,1.13e-09
+"c20_p100",">20 in >=100%","gene_filter","LI_raw","mono",4469,7,1,9.77e-11
+"c20_p100",">20 in >=100%","gene_filter","LI_raw","T",4469,12,1,1.52e-12
+"c20_p100",">20 in >=100%","gene_filter","LI_raw","NK",4469,1,1,1.89e-06
+"c20_p100",">20 in >=100%","gene_filter","LI_raw","B",4469,0,0.2648,0.00289
+"c20_p100",">20 in >=100%","gene_filter","LI_ilr","gran",4469,18,0.3463,3.6e-09
+"c20_p100",">20 in >=100%","gene_filter","LI_ilr","mono",4469,2,0.577,2.84e-10
+"c20_p100",">20 in >=100%","gene_filter","LI_ilr","T",4469,6,0.5416,7.5e-12
+"c20_p100",">20 in >=100%","gene_filter","LI_ilr","NK",4469,2,1,5.47e-06
+"c20_p100",">20 in >=100%","gene_filter","LI_ilr","B",4469,0,0.1784,0.000395
+"c20_p100",">20 in >=100%","gene_filter","BPD_raw","gran",4469,0,0.9021,0.00196
+"c20_p100",">20 in >=100%","gene_filter","BPD_raw","mono",4469,0,1,0.00284
+"c20_p100",">20 in >=100%","gene_filter","BPD_raw","T",4469,3,0.1885,2.63e-05
+"c20_p100",">20 in >=100%","gene_filter","BPD_raw","NK",4469,0,0.3618,0.00397
+"c20_p100",">20 in >=100%","gene_filter","BPD_raw","B",4469,0,0.5338,0.000133
+"c20_p100",">20 in >=100%","gene_filter","BPD_ilr","gran",4469,0,0.8116,0.00327
+"c20_p100",">20 in >=100%","gene_filter","BPD_ilr","mono",4469,0,1,0.00468
+"c20_p100",">20 in >=100%","gene_filter","BPD_ilr","T",4469,0,0.1916,0.00019
+"c20_p100",">20 in >=100%","gene_filter","BPD_ilr","NK",4469,0,0.5687,0.00856
+"c20_p100",">20 in >=100%","gene_filter","BPD_ilr","B",4469,0,0.3278,0.000119
+"c50_p99",">50 in >=99%","gene_filter","LI_raw","gran",5068,26,0.1737,1.13e-09
+"c50_p99",">50 in >=99%","gene_filter","LI_raw","mono",5068,10,1,8.97e-11
+"c50_p99",">50 in >=99%","gene_filter","LI_raw","T",5068,14,1,1.39e-12
+"c50_p99",">50 in >=99%","gene_filter","LI_raw","NK",5068,1,1,1.89e-06
+"c50_p99",">50 in >=99%","gene_filter","LI_raw","B",5068,0,0.2516,0.00198
+"c50_p99",">50 in >=99%","gene_filter","LI_ilr","gran",5068,39,0.3572,3.6e-09
+"c50_p99",">50 in >=99%","gene_filter","LI_ilr","mono",5068,10,0.5488,2.62e-10
+"c50_p99",">50 in >=99%","gene_filter","LI_ilr","T",5068,8,0.5583,6.85e-12
+"c50_p99",">50 in >=99%","gene_filter","LI_ilr","NK",5068,2,1,5.48e-06
+"c50_p99",">50 in >=99%","gene_filter","LI_ilr","B",5068,0,0.1502,0.00038
+"c50_p99",">50 in >=99%","gene_filter","BPD_raw","gran",5068,0,0.9631,0.00395
+"c50_p99",">50 in >=99%","gene_filter","BPD_raw","mono",5068,0,1,0.00297
+"c50_p99",">50 in >=99%","gene_filter","BPD_raw","T",5068,0,0.212,2.54e-05
+"c50_p99",">50 in >=99%","gene_filter","BPD_raw","NK",5068,0,0.4177,0.00394
+"c50_p99",">50 in >=99%","gene_filter","BPD_raw","B",5068,0,0.4813,0.000135
+"c50_p99",">50 in >=99%","gene_filter","BPD_ilr","gran",5068,0,0.897,0.00515
+"c50_p99",">50 in >=99%","gene_filter","BPD_ilr","mono",5068,0,1,0.0039
+"c50_p99",">50 in >=99%","gene_filter","BPD_ilr","T",5068,0,0.1908,0.000188
+"c50_p99",">50 in >=99%","gene_filter","BPD_ilr","NK",5068,0,0.6331,0.00849
+"c50_p99",">50 in >=99%","gene_filter","BPD_ilr","B",5068,0,0.2975,0.000121
+"c10_p100",">10 in >=100%","gene_filter","LI_raw","gran",6560,35,0.1745,1.12e-09
+"c10_p100",">10 in >=100%","gene_filter","LI_raw","mono",6560,12,1,1.03e-10
+"c10_p100",">10 in >=100%","gene_filter","LI_raw","T",6560,17,1,1.53e-12
+"c10_p100",">10 in >=100%","gene_filter","LI_raw","NK",6560,1,1,1.96e-06
+"c10_p100",">10 in >=100%","gene_filter","LI_raw","B",6560,0,0.2695,0.000878
+"c10_p100",">10 in >=100%","gene_filter","LI_ilr","gran",6560,53,0.3476,3.58e-09
+"c10_p100",">10 in >=100%","gene_filter","LI_ilr","mono",6560,12,0.5696,2.97e-10
+"c10_p100",">10 in >=100%","gene_filter","LI_ilr","T",6560,11,0.5775,7.88e-12
+"c10_p100",">10 in >=100%","gene_filter","LI_ilr","NK",6560,3,1,5.67e-06
+"c10_p100",">10 in >=100%","gene_filter","LI_ilr","B",6560,0,0.1531,0.000248
+"c10_p100",">10 in >=100%","gene_filter","BPD_raw","gran",6560,0,1,0.00196
+"c10_p100",">10 in >=100%","gene_filter","BPD_raw","mono",6560,0,1,0.00279
+"c10_p100",">10 in >=100%","gene_filter","BPD_raw","T",6560,0,0.2686,2.62e-05
+"c10_p100",">10 in >=100%","gene_filter","BPD_raw","NK",6560,0,0.489,0.00116
+"c10_p100",">10 in >=100%","gene_filter","BPD_raw","B",6560,0,0.4377,0.000129
+"c10_p100",">10 in >=100%","gene_filter","BPD_ilr","gran",6560,0,0.9867,0.00327
+"c10_p100",">10 in >=100%","gene_filter","BPD_ilr","mono",6560,0,1,0.00396
+"c10_p100",">10 in >=100%","gene_filter","BPD_ilr","T",6560,0,0.2299,0.000148
+"c10_p100",">10 in >=100%","gene_filter","BPD_ilr","NK",6560,0,0.7286,0.00342
+"c10_p100",">10 in >=100%","gene_filter","BPD_ilr","B",6560,0,0.2688,0.000116
+"c20_p99",">20 in >=99%","gene_filter","LI_raw","gran",7901,55,0.185,1.12e-09
+"c20_p99",">20 in >=99%","gene_filter","LI_raw","mono",7901,15,0.9527,1.03e-10
+"c20_p99",">20 in >=99%","gene_filter","LI_raw","T",7901,21,1,1.53e-12
+"c20_p99",">20 in >=99%","gene_filter","LI_raw","NK",7901,2,1,1.54e-07
+"c20_p99",">20 in >=99%","gene_filter","LI_raw","B",7901,0,0.2559,0.000615
+"c20_p99",">20 in >=99%","gene_filter","LI_ilr","gran",7901,67,0.3327,3.59e-09
+"c20_p99",">20 in >=99%","gene_filter","LI_ilr","mono",7901,15,0.5473,2.98e-10
+"c20_p99",">20 in >=99%","gene_filter","LI_ilr","T",7901,17,0.5744,8.08e-12
+"c20_p99",">20 in >=99%","gene_filter","LI_ilr","NK",7901,5,1,9.17e-08
+"c20_p99",">20 in >=99%","gene_filter","LI_ilr","B",7901,0,0.1518,3.71e-05
+"c20_p99",">20 in >=99%","gene_filter","BPD_raw","gran",7901,0,1,0.00196
+"c20_p99",">20 in >=99%","gene_filter","BPD_raw","mono",7901,0,1,0.000461
+"c20_p99",">20 in >=99%","gene_filter","BPD_raw","T",7901,0,0.3047,2.63e-05
+"c20_p99",">20 in >=99%","gene_filter","BPD_raw","NK",7901,0,0.5954,0.00116
+"c20_p99",">20 in >=99%","gene_filter","BPD_raw","B",7901,0,0.3901,0.000127
+"c20_p99",">20 in >=99%","gene_filter","BPD_ilr","gran",7901,0,1,0.00327
+"c20_p99",">20 in >=99%","gene_filter","BPD_ilr","mono",7901,0,1,0.000783
+"c20_p99",">20 in >=99%","gene_filter","BPD_ilr","T",7901,0,0.2626,0.000149
+"c20_p99",">20 in >=99%","gene_filter","BPD_ilr","NK",7901,0,0.8227,0.00343
+"c20_p99",">20 in >=99%","gene_filter","BPD_ilr","B",7901,0,0.2421,0.000114
+"c50_p90",">50 in >=90%","gene_filter","LI_raw","gran",8267,59,0.1863,1.12e-09
+"c50_p90",">50 in >=90%","gene_filter","LI_raw","mono",8267,16,0.9501,1.05e-10
+"c50_p90",">50 in >=90%","gene_filter","LI_raw","T",8267,22,1,1.56e-12
+"c50_p90",">50 in >=90%","gene_filter","LI_raw","NK",8267,2,1,1.55e-07
+"c50_p90",">50 in >=90%","gene_filter","LI_raw","B",8267,0,0.2537,0.000622
+"c50_p90",">50 in >=90%","gene_filter","LI_ilr","gran",8267,71,0.338,3.59e-09
+"c50_p90",">50 in >=90%","gene_filter","LI_ilr","mono",8267,16,0.5497,3.03e-10
+"c50_p90",">50 in >=90%","gene_filter","LI_ilr","T",8267,18,0.5917,8.34e-12
+"c50_p90",">50 in >=90%","gene_filter","LI_ilr","NK",8267,5,1,9.29e-08
+"c50_p90",">50 in >=90%","gene_filter","LI_ilr","B",8267,0,0.1508,3.77e-05
+"c50_p90",">50 in >=90%","gene_filter","BPD_raw","gran",8267,0,1,0.00129
+"c50_p90",">50 in >=90%","gene_filter","BPD_raw","mono",8267,0,1,0.000463
+"c50_p90",">50 in >=90%","gene_filter","BPD_raw","T",8267,0,0.3284,2.65e-05
+"c50_p90",">50 in >=90%","gene_filter","BPD_raw","NK",8267,0,0.6176,0.00117
+"c50_p90",">50 in >=90%","gene_filter","BPD_raw","B",8267,0,0.3759,9.88e-05
+"c50_p90",">50 in >=90%","gene_filter","BPD_ilr","gran",8267,0,1,0.000819
+"c50_p90",">50 in >=90%","gene_filter","BPD_ilr","mono",8267,0,1,0.000786
+"c50_p90",">50 in >=90%","gene_filter","BPD_ilr","T",8267,0,0.291,0.000149
+"c50_p90",">50 in >=90%","gene_filter","BPD_ilr","NK",8267,0,0.8345,0.00343
+"c50_p90",">50 in >=90%","gene_filter","BPD_ilr","B",8267,0,0.2267,9.26e-05
+"c10_p99",">10 in >=99%","gene_filter","LI_raw","gran",9708,82,0.1944,1.11e-09
+"c10_p99",">10 in >=99%","gene_filter","LI_raw","mono",9708,18,0.9247,1.11e-10
+"c10_p99",">10 in >=99%","gene_filter","LI_raw","T",9708,25,1,1.87e-12
+"c10_p99",">10 in >=99%","gene_filter","LI_raw","NK",9708,3,1,1.63e-07
+"c10_p99",">10 in >=99%","gene_filter","LI_raw","B",9708,0,0.2736,0.00027
+"c10_p99",">10 in >=99%","gene_filter","LI_ilr","gran",9708,90,0.3454,1.33e-09
+"c10_p99",">10 in >=99%","gene_filter","LI_ilr","mono",9708,22,0.582,4.16e-12
+"c10_p99",">10 in >=99%","gene_filter","LI_ilr","T",9708,23,0.6113,1.03e-11
+"c10_p99",">10 in >=99%","gene_filter","LI_ilr","NK",9708,6,1,2.91e-09
+"c10_p99",">10 in >=99%","gene_filter","LI_ilr","B",9708,0,0.1682,3.91e-05
+"c10_p99",">10 in >=99%","gene_filter","BPD_raw","gran",9708,0,1,0.000638
+"c10_p99",">10 in >=99%","gene_filter","BPD_raw","mono",9708,0,1,1.4e-05
+"c10_p99",">10 in >=99%","gene_filter","BPD_raw","T",9708,0,0.3911,2.76e-05
+"c10_p99",">10 in >=99%","gene_filter","BPD_raw","NK",9708,0,0.6877,0.00119
+"c10_p99",">10 in >=99%","gene_filter","BPD_raw","B",9708,0,0.3514,7.97e-05
+"c10_p99",">10 in >=99%","gene_filter","BPD_ilr","gran",9708,0,1,0.000446
+"c10_p99",">10 in >=99%","gene_filter","BPD_ilr","mono",9708,0,1,1.88e-05
+"c10_p99",">10 in >=99%","gene_filter","BPD_ilr","T",9708,0,0.3353,0.000152
+"c10_p99",">10 in >=99%","gene_filter","BPD_ilr","NK",9708,0,0.8937,0.00349
+"c10_p99",">10 in >=99%","gene_filter","BPD_ilr","B",9708,0,0.2131,7.38e-05
+"c20_p90",">20 in >=90%","gene_filter","LI_raw","gran",10742,92,0.2019,1.11e-09
+"c20_p90",">20 in >=90%","gene_filter","LI_raw","mono",10742,19,0.8913,1.18e-10
+"c20_p90",">20 in >=90%","gene_filter","LI_raw","T",10742,25,1,2.2e-12
+"c20_p90",">20 in >=90%","gene_filter","LI_raw","NK",10742,4,1,1.72e-07
+"c20_p90",">20 in >=90%","gene_filter","LI_raw","B",10742,0,0.2808,0.000274
+"c20_p90",">20 in >=90%","gene_filter","LI_ilr","gran",10742,103,0.3604,1.3e-09
+"c20_p90",">20 in >=90%","gene_filter","LI_ilr","mono",10742,24,0.5909,4.53e-12
+"c20_p90",">20 in >=90%","gene_filter","LI_ilr","T",10742,26,0.6135,1.25e-11
+"c20_p90",">20 in >=90%","gene_filter","LI_ilr","NK",10742,7,1,3.07e-09
+"c20_p90",">20 in >=90%","gene_filter","LI_ilr","B",10742,0,0.1763,4.04e-05
+"c20_p90",">20 in >=90%","gene_filter","BPD_raw","gran",10742,0,1,0.000642
+"c20_p90",">20 in >=90%","gene_filter","BPD_raw","mono",10742,0,1,1.42e-05
+"c20_p90",">20 in >=90%","gene_filter","BPD_raw","T",10742,0,0.4219,2.88e-05
+"c20_p90",">20 in >=90%","gene_filter","BPD_raw","NK",10742,0,0.7541,0.000395
+"c20_p90",">20 in >=90%","gene_filter","BPD_raw","B",10742,0,0.3369,8.02e-05
+"c20_p90",">20 in >=90%","gene_filter","BPD_ilr","gran",10742,0,1,0.00046
+"c20_p90",">20 in >=90%","gene_filter","BPD_ilr","mono",10742,0,1,1.82e-05
+"c20_p90",">20 in >=90%","gene_filter","BPD_ilr","T",10742,0,0.3767,0.000105
+"c20_p90",">20 in >=90%","gene_filter","BPD_ilr","NK",10742,0,0.9417,0.000874
+"c20_p90",">20 in >=90%","gene_filter","BPD_ilr","B",10742,0,0.2069,7.42e-05
+"c10_p90",">10 in >=90%","gene_filter","LI_raw","gran",12368,109,0.2281,1.1e-09
+"c10_p90",">10 in >=90%","gene_filter","LI_raw","mono",12368,20,0.8603,1.28e-10
+"c10_p90",">10 in >=90%","gene_filter","LI_raw","T",12368,28,1,2.41e-12
+"c10_p90",">10 in >=90%","gene_filter","LI_raw","NK",12368,4,1,1.84e-07
+"c10_p90",">10 in >=90%","gene_filter","LI_raw","B",12368,0,0.3034,0.000133
+"c10_p90",">10 in >=90%","gene_filter","LI_ilr","gran",12368,123,0.3829,1.25e-09
+"c10_p90",">10 in >=90%","gene_filter","LI_ilr","mono",12368,24,0.5932,5.21e-12
+"c10_p90",">10 in >=90%","gene_filter","LI_ilr","T",12368,31,0.6195,1.39e-11
+"c10_p90",">10 in >=90%","gene_filter","LI_ilr","NK",12368,7,1,3.37e-09
+"c10_p90",">10 in >=90%","gene_filter","LI_ilr","B",12368,0,0.1851,2.56e-05
+"c10_p90",">10 in >=90%","gene_filter","BPD_raw","gran",12368,0,1,0.000121
+"c10_p90",">10 in >=90%","gene_filter","BPD_raw","mono",12368,0,1,1.45e-05
+"c10_p90",">10 in >=90%","gene_filter","BPD_raw","T",12368,0,0.4805,3.03e-05
+"c10_p90",">10 in >=90%","gene_filter","BPD_raw","NK",12368,0,0.8031,0.000403
+"c10_p90",">10 in >=90%","gene_filter","BPD_raw","B",12368,0,0.3234,8.08e-05
+"c10_p90",">10 in >=90%","gene_filter","BPD_ilr","gran",12368,0,1,0.000209
+"c10_p90",">10 in >=90%","gene_filter","BPD_ilr","mono",12368,0,1,1.86e-05
+"c10_p90",">10 in >=90%","gene_filter","BPD_ilr","T",12368,0,0.4373,0.000111
+"c10_p90",">10 in >=90%","gene_filter","BPD_ilr","NK",12368,0,0.9898,0.000891
+"c10_p90",">10 in >=90%","gene_filter","BPD_ilr","B",12368,0,0.2061,7.48e-05
+"var0","across-sample variance > 0","variance_floor","LI_raw","gran",12368,109,0.2281,1.1e-09
+"var0","across-sample variance > 0","variance_floor","LI_raw","mono",12368,20,0.8603,1.28e-10
+"var0","across-sample variance > 0","variance_floor","LI_raw","T",12368,28,1,2.41e-12
+"var0","across-sample variance > 0","variance_floor","LI_raw","NK",12368,4,1,1.84e-07
+"var0","across-sample variance > 0","variance_floor","LI_raw","B",12368,0,0.3034,0.000133
+"var0","across-sample variance > 0","variance_floor","LI_ilr","gran",12368,123,0.3829,1.25e-09
+"var0","across-sample variance > 0","variance_floor","LI_ilr","mono",12368,24,0.5932,5.21e-12
+"var0","across-sample variance > 0","variance_floor","LI_ilr","T",12368,31,0.6195,1.39e-11
+"var0","across-sample variance > 0","variance_floor","LI_ilr","NK",12368,7,1,3.37e-09
+"var0","across-sample variance > 0","variance_floor","LI_ilr","B",12368,0,0.1851,2.56e-05
+"var0","across-sample variance > 0","variance_floor","BPD_raw","gran",12368,0,1,0.000121
+"var0","across-sample variance > 0","variance_floor","BPD_raw","mono",12368,0,1,1.45e-05
+"var0","across-sample variance > 0","variance_floor","BPD_raw","T",12368,0,0.4805,3.03e-05
+"var0","across-sample variance > 0","variance_floor","BPD_raw","NK",12368,0,0.8031,0.000403
+"var0","across-sample variance > 0","variance_floor","BPD_raw","B",12368,0,0.3234,8.08e-05
+"var0","across-sample variance > 0","variance_floor","BPD_ilr","gran",12368,0,1,0.000209
+"var0","across-sample variance > 0","variance_floor","BPD_ilr","mono",12368,0,1,1.86e-05
+"var0","across-sample variance > 0","variance_floor","BPD_ilr","T",12368,0,0.4373,0.000111
+"var0","across-sample variance > 0","variance_floor","BPD_ilr","NK",12368,0,0.9898,0.000891
+"var0","across-sample variance > 0","variance_floor","BPD_ilr","B",12368,0,0.2061,7.48e-05
+"var0.005","across-sample variance > 0.005","variance_floor","LI_raw","gran",12368,109,0.2281,1.1e-09
+"var0.005","across-sample variance > 0.005","variance_floor","LI_raw","mono",12360,20,0.861,1.26e-10
+"var0.005","across-sample variance > 0.005","variance_floor","LI_raw","T",12366,29,1,2.33e-12
+"var0.005","across-sample variance > 0.005","variance_floor","LI_raw","NK",12366,4,1,1.84e-07
+"var0.005","across-sample variance > 0.005","variance_floor","LI_raw","B",5521,0,0.3097,0.000207
+"var0.005","across-sample variance > 0.005","variance_floor","LI_ilr","gran",12368,123,0.3829,1.25e-09
+"var0.005","across-sample variance > 0.005","variance_floor","LI_ilr","mono",12360,24,0.5926,5.08e-12
+"var0.005","across-sample variance > 0.005","variance_floor","LI_ilr","T",12366,31,0.6192,1.33e-11
+"var0.005","across-sample variance > 0.005","variance_floor","LI_ilr","NK",12366,7,1,3.37e-09
+"var0.005","across-sample variance > 0.005","variance_floor","LI_ilr","B",5521,0,0.227,2.91e-05
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_raw","gran",12368,0,1,0.000121
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_raw","mono",12360,0,1,1.45e-05
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_raw","T",12366,0,0.4806,3.02e-05
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_raw","NK",12366,0,0.8022,0.000403
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_raw","B",5521,0,0.5717,0.000124
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_ilr","gran",12368,0,1,0.000209
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_ilr","mono",12360,0,1,1.85e-05
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_ilr","T",12366,0,0.4371,0.000111
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_ilr","NK",12366,0,0.9895,0.000891
+"var0.005","across-sample variance > 0.005","variance_floor","BPD_ilr","B",5521,0,0.3566,0.000116
+"var0.01","across-sample variance > 0.01","variance_floor","LI_raw","gran",12368,109,0.2281,1.1e-09
+"var0.01","across-sample variance > 0.01","variance_floor","LI_raw","mono",12338,20,0.8574,1.24e-10
+"var0.01","across-sample variance > 0.01","variance_floor","LI_raw","T",12359,29,1,2.26e-12
+"var0.01","across-sample variance > 0.01","variance_floor","LI_raw","NK",12175,4,1,1.9e-07
+"var0.01","across-sample variance > 0.01","variance_floor","LI_raw","B",452,0,0.3494,0.00191
+"var0.01","across-sample variance > 0.01","variance_floor","LI_ilr","gran",12368,123,0.3829,1.25e-09
+"var0.01","across-sample variance > 0.01","variance_floor","LI_ilr","mono",12338,24,0.5915,4.92e-12
+"var0.01","across-sample variance > 0.01","variance_floor","LI_ilr","T",12359,31,0.6187,1.28e-11
+"var0.01","across-sample variance > 0.01","variance_floor","LI_ilr","NK",12175,7,1,3.32e-09
+"var0.01","across-sample variance > 0.01","variance_floor","LI_ilr","B",452,0,0.2442,0.000643
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_raw","gran",12368,0,1,0.000121
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_raw","mono",12338,0,1,1.45e-05
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_raw","T",12359,0,0.4807,3e-05
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_raw","NK",12175,0,0.8045,0.000403
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_raw","B",452,0,1,0.000141
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_ilr","gran",12368,0,1,0.000209
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_ilr","mono",12338,0,1,1.85e-05
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_ilr","T",12359,0,0.4366,0.00011
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_ilr","NK",12175,0,0.9903,0.000891
+"var0.01","across-sample variance > 0.01","variance_floor","BPD_ilr","B",452,0,1,0.000135
+"var0.05","across-sample variance > 0.05","variance_floor","LI_raw","gran",12367,109,0.2281,1.1e-09
+"var0.05","across-sample variance > 0.05","variance_floor","LI_raw","mono",11799,20,0.8425,1.21e-10
+"var0.05","across-sample variance > 0.05","variance_floor","LI_raw","T",12243,28,1,2.02e-12
+"var0.05","across-sample variance > 0.05","variance_floor","LI_raw","NK",1992,2,0.9581,1e-06
+"var0.05","across-sample variance > 0.05","variance_floor","LI_raw","B",0,NA,NA,NA
+"var0.05","across-sample variance > 0.05","variance_floor","LI_ilr","gran",12367,123,0.383,1.25e-09
+"var0.05","across-sample variance > 0.05","variance_floor","LI_ilr","mono",11799,24,0.5922,4.61e-12
+"var0.05","across-sample variance > 0.05","variance_floor","LI_ilr","T",12243,29,0.6221,1.14e-11
+"var0.05","across-sample variance > 0.05","variance_floor","LI_ilr","NK",1992,2,1,3.81e-09
+"var0.05","across-sample variance > 0.05","variance_floor","LI_ilr","B",0,NA,NA,NA
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_raw","gran",12367,0,1,0.000122
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_raw","mono",11799,0,1,1.45e-05
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_raw","T",12243,0,0.4776,2.97e-05
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_raw","NK",1992,0,1,0.000476
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_raw","B",0,NA,NA,NA
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_ilr","gran",12367,0,1,0.000209
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_ilr","mono",11799,0,1,1.83e-05
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_ilr","T",12243,0,0.4373,0.000109
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_ilr","NK",1992,0,1,0.00103
+"var0.05","across-sample variance > 0.05","variance_floor","BPD_ilr","B",0,NA,NA,NA
+"var0.1","across-sample variance > 0.1","variance_floor","LI_raw","gran",12339,109,0.2275,1.1e-09
+"var0.1","across-sample variance > 0.1","variance_floor","LI_raw","mono",6207,19,0.7691,1.46e-10
+"var0.1","across-sample variance > 0.1","variance_floor","LI_raw","T",11387,27,1,1.96e-12
+"var0.1","across-sample variance > 0.1","variance_floor","LI_raw","NK",310,1,0.8757,1.31e-06
+"var0.1","across-sample variance > 0.1","variance_floor","LI_raw","B",0,NA,NA,NA
+"var0.1","across-sample variance > 0.1","variance_floor","LI_ilr","gran",12339,122,0.3823,1.25e-09
+"var0.1","across-sample variance > 0.1","variance_floor","LI_ilr","mono",6207,32,0.7041,5.05e-12
+"var0.1","across-sample variance > 0.1","variance_floor","LI_ilr","T",11387,28,0.6117,1.1e-11
+"var0.1","across-sample variance > 0.1","variance_floor","LI_ilr","NK",310,1,0.9157,5.48e-09
+"var0.1","across-sample variance > 0.1","variance_floor","LI_ilr","B",0,NA,NA,NA
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_raw","gran",12339,0,1,0.000122
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_raw","mono",6207,2,1,1.5e-05
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_raw","T",11387,0,0.4437,2.97e-05
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_raw","NK",310,0,0.923,0.00146
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_raw","B",0,NA,NA,NA
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_ilr","gran",12339,0,1,0.000209
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_ilr","mono",6207,0,1,1.89e-05
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_ilr","T",11387,0,0.4083,0.00011
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_ilr","NK",310,0,1,0.00416
+"var0.1","across-sample variance > 0.1","variance_floor","BPD_ilr","B",0,NA,NA,NA
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_raw","gran",12368,109,0.2281,1.1e-09
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_raw","mono",12368,20,0.8603,1.28e-10
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_raw","T",12368,28,1,2.41e-12
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_raw","NK",12368,4,1,1.84e-07
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_raw","B",12368,0,0.3034,0.000133
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_ilr","gran",12368,123,0.3829,1.25e-09
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_ilr","mono",12368,24,0.5932,5.21e-12
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_ilr","T",12368,31,0.6195,1.39e-11
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_ilr","NK",12368,7,1,3.37e-09
+"se100","keep most precise 100% by posterior SE","se_quantile","LI_ilr","B",12368,0,0.1851,2.56e-05
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_raw","gran",12368,0,1,0.000121
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_raw","mono",12368,0,1,1.45e-05
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_raw","T",12368,0,0.4805,3.03e-05
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_raw","NK",12368,0,0.8031,0.000403
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_raw","B",12368,0,0.3234,8.08e-05
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_ilr","gran",12368,0,1,0.000209
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_ilr","mono",12368,0,1,1.86e-05
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_ilr","T",12368,0,0.4373,0.000111
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_ilr","NK",12368,0,0.9898,0.000891
+"se100","keep most precise 100% by posterior SE","se_quantile","BPD_ilr","B",12368,0,0.2061,7.48e-05
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_raw","gran",11131,86,0.212,8.24e-08
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_raw","mono",11131,12,0.8565,1.21e-08
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_raw","T",11131,16,1,1.02e-10
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_raw","NK",11131,2,1,1.87e-07
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_raw","B",11131,0,0.2843,0.000128
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_ilr","gran",11131,87,0.3572,1.15e-08
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_ilr","mono",11131,10,0.5476,8.18e-09
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_ilr","T",11131,16,0.6234,1.72e-09
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_ilr","NK",11131,2,1,1.13e-07
+"se90","keep most precise 90% by posterior SE","se_quantile","LI_ilr","B",11131,0,0.1668,2.44e-05
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_raw","gran",11131,0,1,0.000774
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_raw","mono",11131,0,1,1.44e-05
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_raw","T",11131,0,0.499,3e-05
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_raw","NK",11131,0,0.8246,0.00143
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_raw","B",11131,0,0.2576,8.13e-05
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_ilr","gran",11131,0,1,0.000491
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_ilr","mono",11131,0,1,1.94e-05
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_ilr","T",11131,0,0.4368,0.000202
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_ilr","NK",11131,0,1,0.00382
+"se90","keep most precise 90% by posterior SE","se_quantile","BPD_ilr","B",11131,0,0.1624,7.53e-05
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_raw","gran",9276,78,0.1937,8.91e-08
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_raw","mono",9276,5,0.813,1.2e-08
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_raw","T",9276,6,1,1.16e-09
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_raw","NK",9276,1,1,1.85e-07
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_raw","B",9276,0,0.2787,0.000127
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_ilr","gran",9276,83,0.3524,1.17e-08
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_ilr","mono",9276,6,0.5245,8.1e-09
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_ilr","T",9276,8,0.6237,3.81e-09
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_ilr","NK",9276,1,1,1.12e-07
+"se75","keep most precise 75% by posterior SE","se_quantile","LI_ilr","B",9276,0,0.144,2.43e-05
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_raw","gran",9276,0,1,0.00078
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_raw","mono",9276,0,1,1.44e-05
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_raw","T",9276,0,0.5451,2.98e-05
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_raw","NK",9276,0,0.8779,0.00143
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_raw","B",9276,0,0.1936,8.17e-05
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_ilr","gran",9276,0,1,0.000495
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_ilr","mono",9276,0,1,1.94e-05
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_ilr","T",9276,0,0.4679,0.000202
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_ilr","NK",9276,0,1,0.00381
+"se75","keep most precise 75% by posterior SE","se_quantile","BPD_ilr","B",9276,0,0.1178,7.56e-05
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_raw","gran",6184,35,0.202,2.27e-07
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_raw","mono",6184,3,0.7619,1.19e-08
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_raw","T",6184,4,1,9.71e-07
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_raw","NK",6184,1,1,1.84e-07
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_raw","B",6184,0,0.2893,0.000341
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_ilr","gran",6184,40,0.3577,1.26e-08
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_ilr","mono",6184,5,0.5398,8.04e-09
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_ilr","T",6184,4,0.6388,5.25e-07
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_ilr","NK",6184,1,1,1.12e-07
+"se50","keep most precise 50% by posterior SE","se_quantile","LI_ilr","B",6184,0,0.1419,0.000263
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_raw","gran",6184,0,1,0.000796
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_raw","mono",6184,0,1,0.00109
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_raw","T",6184,0,0.6545,0.00029
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_raw","NK",6184,0,1,0.00449
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_raw","B",6184,0,0.1456,0.000133
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_ilr","gran",6184,0,1,0.000505
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_ilr","mono",6184,0,1,0.00101
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_ilr","T",6184,0,0.5784,0.000294
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_ilr","NK",6184,0,1,0.00393
+"se50","keep most precise 50% by posterior SE","se_quantile","BPD_ilr","B",6184,0,0.1162,0.000149

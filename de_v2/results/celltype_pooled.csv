@@ -1,0 +1,5 @@
+"analysis","n_tests","n_genes","pooled_BH_tests_05","pooled_BH_unique_genes_05","BB_families_selected","BB_level2","BB_total_05"
+"CT_LI_raw",61840,12368,105,66,4,0.04,140
+"CT_BPD_raw",61840,12368,0,0,0,NA,0
+"CT_LI_ilr",61840,12368,130,77,4,0.04,152
+"CT_BPD_ilr",61840,12368,0,0,0,NA,0

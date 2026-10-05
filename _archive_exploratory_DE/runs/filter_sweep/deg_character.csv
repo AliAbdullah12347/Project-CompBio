@@ -1,0 +1,4 @@
+"set","n","med_aveexpr","med_detect10","med_abs_lfc","in_canon_universe"
+"DEG in both",679,5.25290897773988,1,0.217983363838023,1
+"DEG only in loose fit",202,-0.644393995835394,0.128318584070796,0.474412685340379,0
+"DEG only in canonical fit",703,5.22981751136694,1,0.148603945866778,1

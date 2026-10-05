@@ -1,0 +1,9 @@
+== 04_permutation ==  200 permutations per contrast
+
+calcNormFactors has been renamed to normLibSizes
+LI  [195.6 min]
+  DEG : mean 17.07  median 0  max 1683  nonzero in 5/200
+  pct : mean 0.1381%  95th pct 0.0000%
+  pi0 : mean 0.9308  2.5th 0.6057  97.5th 1.0000
+
+calcNormFactors has been renamed to normLibSizes

@@ -1,0 +1,29 @@
+== cellcomp_spike2 ==
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+12173 genes, 3141 null-pool candidates, a1 = 0.1558
+  TRANS   x1.0   canon  879 (power 0.73)  survive  797 (0.907)  shrink 1.013
+  TRANS   x1.5   canon 1085 (power 0.90)  survive 1046 (0.964)  shrink 1.007
+  TRANS   x2.0   canon 1150 (power 0.96)  survive 1124 (0.977)  shrink 1.019
+  TRANS   x3.0   canon 1195 (power 1.00)  survive 1190 (0.996)  shrink 0.999
+  TRANS   x4.0   canon 1197 (power 1.00)  survive 1197 (1.000)  shrink 0.994
+  TRANS   x6.0   canon 1198 (power 1.00)  survive 1197 (0.999)  shrink 1.000
+  COMPOS  x1.0   canon    2 (power 0.00)  survive    0 (0.000)  shrink 0.174
+  COMPOS  x1.5   canon    4 (power 0.00)  survive    0 (0.000)  shrink 0.223
+  COMPOS  x2.0   canon    2 (power 0.00)  survive    0 (0.000)  shrink 0.373
+  COMPOS  x3.0   canon    3 (power 0.00)  survive    1 (0.333)  shrink 0.260
+  COMPOS  x4.0   canon    2 (power 0.00)  survive    0 (0.000)  shrink 0.192
+  COMPOS  x6.0   canon    1 (power 0.00)  survive    0 (0.000)  shrink 0.048
+calcNormFactors has been renamed to normLibSizes
+
+REAL: 1382 canonical DEGs, survival 0.2178
+
+--- survival by arm, pooled over multipliers weighted by detections ---
+    arm total_detected total_survivors survival_rate mean_shrinkage
+  TRANS           6704            6551        0.9772         1.0054
+ COMPOS             14               1        0.0714         0.2117
+
+anchors: COMPOS 0.071  ..  REAL 0.218  ..  TRANS 0.977
+the real lithium signature behaves like a signal that is 84% compositional.
+
+done.

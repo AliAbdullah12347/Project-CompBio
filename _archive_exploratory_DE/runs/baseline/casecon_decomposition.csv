@@ -1,0 +1,5 @@
+"spec","label","n","n_genes","DEG10","DEG05","DEG01","pi0","overlap_their6","their6_medFDR"
+"cc_474_noli","474, lithium NOT a covariate (engine `casecon`)",474,12368,2721,1816,762,0.5462,6,0.00411
+"cc_444_noli","444, lithium NOT a covariate",444,12353,2867,1912,746,0.5382,6,0.0036
+"cc_474_li","474, lithium a covariate",474,12368,13,1,1,0.7565,1,0.0585
+"cc_444_li","444, lithium a covariate  <- PUBLISHED BD SPEC",444,12353,35,6,0,0.7352,5,0.0392

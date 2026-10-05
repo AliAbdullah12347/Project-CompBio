@@ -1,0 +1,3 @@
+"hypothesis","expect","pct","pi0_ci_incl_1","verdict"
+"WB_LI (positive control)","many",11.53,FALSE,"SUPPORTED"
+"WB_BPD","few",0.032,FALSE,"INCONCLUSIVE"

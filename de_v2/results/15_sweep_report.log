@@ -1,0 +1,279 @@
+================= WHOLE BLOOD =================
+
+--- genes called DE at BH 0.05, by filter ---
+       fid               rule n_genes LI_raw pct_LI_raw LI_ilr BPD_raw BPD_ilr base
+  c50_p100      >50 in >=100%    2087    608      29.13    129       1       0     
+  c20_p100      >20 in >=100%    4469   1080      24.17    225       0       0     
+   c50_p99       >50 in >=99%    5068   1195      23.58    226       1       0     
+  c10_p100      >10 in >=100%    6560   1262      19.24    243       0       1     
+   c20_p99       >20 in >=99%    7901   1236      15.64    283       0       1     
+   c50_p90       >50 in >=90%    8267   1382      16.72    271       0       0     
+   c5_p100       >5 in >=100%    8347   1217      14.58    285       0       0     
+   c50_p75       >50 in >=75%    9272   1248      13.46    304       7       3     
+   c10_p99       >10 in >=99%    9708   1286      13.25    319       5       0     
+   c50_p50       >50 in >=50%   10209   1322      12.95    316       7       3     
+   c20_p90       >20 in >=90%   10742   1329      12.37    321       7       3     
+   c1_p100       >1 in >=100%   11049   1440      13.03    332       5       0     
+    c5_p99        >5 in >=99%   11215   1379      12.30    337       5       0     
+   c20_p75       >20 in >=75%   11696   1438      12.29    331       9       3     
+   c10_p90       >10 in >=90%   12368   1426      11.53    341       4       0   <<
+   c0_p100       >0 in >=100%   12483   1393      11.16    362       5       0     
+   c20_p50       >20 in >=50%   12678   1450      11.44    356      10       0     
+   c10_p75       >10 in >=75%   13336   1400      10.50    361       0       0     
+    c1_p99        >1 in >=99%   13636   1410      10.34    369       9       3     
+    c5_p90        >5 in >=90%   13812   1369       9.91    368      10       3     
+ edgeR_fbe edgeR filterByExpr   13925   1452      10.43    363       4       0     
+   c10_p50       >10 in >=50%   14522   1453      10.01    373       0       0     
+    c5_p75        >5 in >=75%   15053   1395       9.27    384       0       0     
+    c0_p99        >0 in >=99%   15057   1402       9.31    357      11       3     
+    c5_p50        >5 in >=50%   16563   1402       8.46    379      11       0     
+    c1_p90        >1 in >=90%   16771   1293       7.71    365      11       0     
+    c1_p75        >1 in >=75%   18572   1298       6.99    364       0       0     
+    c0_p90        >0 in >=90%   18645   1307       7.01    367       4       0     
+    c1_p50        >1 in >=50%   20855   1261       6.05    359       0       0     
+    c0_p75        >0 in >=75%   20885   1283       6.14    348       0       0     
+    c0_p50        >0 in >=50%   24084   1130       4.69    328       0       0     
+
+--- how the correction method interacts with the filter (LI_raw) ---
+       fid n_genes    pi0 BH_05 storey_05 BY_05 holm_05
+  c50_p100    2087 0.4248   608       886   147      55
+  c20_p100    4469 0.3729  1080      1854   266      98
+   c50_p99    5068 0.3601  1195      2145   275     100
+  c10_p100    6560 0.3883  1262      2408   277     106
+   c20_p99    7901 0.4627  1236      2115   315     119
+   c50_p90    8267 0.3976  1382      2715   284     112
+   c5_p100    8347 0.4840  1217      2086   290     117
+   c50_p75    9272 0.4670  1248      2238   295     122
+   c10_p99    9708 0.4927  1286      2245   286     123
+   c50_p50   10209 0.4848  1322      2317   287     123
+   c20_p90   10742 0.4797  1329      2370   292     127
+   c1_p100   11049 0.4614  1440      2645   305     125
+    c5_p99   11215 0.4836  1379      2446   302     128
+   c20_p75   11696 0.4644  1438      2721   299     123
+   c10_p90   12368 0.4871  1426      2568   303     125
+   c0_p100   12483 0.5000  1393      2462   305     127
+   c20_p50   12678 0.4914  1450      2586   314     126
+   c10_p75   13336 0.5160  1400      2453   309     126
+    c1_p99   13636 0.5085  1410      2472   311     129
+    c5_p90   13812 0.5387  1369      2310   322     132
+ edgeR_fbe   13925 0.5040  1452      2549   313     128
+   c10_p50   14522 0.5113  1453      2520   322     130
+    c5_p75   15053 0.5337  1395      2352   326     130
+    c0_p99   15057 0.5191  1402      2448   304     128
+    c5_p50   16563 0.5106  1402      2523   299     125
+    c1_p90   16771 0.5682  1293      2081   298     125
+    c1_p75   18572 0.6100  1298      1966   310     133
+    c0_p90   18645 0.5981  1307      2038   303     128
+    c1_p50   20855 0.6212  1261      1942   290     125
+    c0_p75   20885 0.6003  1283      2097   263     115
+    c0_p50   24084 0.6760  1130      1514   267     123
+
+--- range across all 31 filters ---
+  LI_raw    DEG 608 to 1453  |  %genes 4.69 to 29.13  |  pi0 0.360 to 0.676
+  LI_ilr    DEG 129 to 384  |  %genes 1.36 to 6.18  |  pi0 0.589 to 0.821
+  BPD_raw   DEG 0 to 11  |  %genes 0.00 to 0.08  |  pi0 0.605 to 0.770
+  BPD_ilr   DEG 0 to 3  |  %genes 0.00 to 0.03  |  pi0 0.770 to 0.897
+
+--- overlap of each filter's DEG set with the baseline (LI_raw) ---
+       fid n_genes n_deg n_shared_with_baseline jaccard
+  c50_p100    2087   608                    321  0.1874
+  c20_p100    4469  1080                    679  0.3716
+   c50_p99    5068  1195                    730  0.3860
+  c10_p100    6560  1262                    891  0.4958
+   c20_p99    7901  1236                   1056  0.6575
+   c50_p90    8267  1382                   1084  0.6288
+   c5_p100    8347  1217                   1077  0.6877
+   c50_p75    9272  1248                   1130  0.7319
+   c10_p99    9708  1286                   1201  0.7948
+   c50_p50   10209  1322                   1235  0.8163
+   c20_p90   10742  1329                   1257  0.8391
+   c1_p100   11049  1440                   1319  0.8526
+    c5_p99   11215  1379                   1315  0.8826
+   c20_p75   11696  1438                   1366  0.9119
+   c10_p90   12368  1426                   1426  1.0000
+   c0_p100   12483  1393                   1344  0.9112
+   c20_p50   12678  1450                   1404  0.9538
+   c10_p75   13336  1400                   1344  0.9069
+    c1_p99   13636  1410                   1337  0.8919
+    c5_p90   13812  1369                   1271  0.8340
+ edgeR_fbe   13925  1452                   1366  0.9034
+   c10_p50   14522  1453                   1337  0.8671
+    c5_p75   15053  1395                   1279  0.8294
+    c0_p99   15057  1402                   1278  0.8245
+    c5_p50   16563  1402                   1218  0.7565
+    c1_p90   16771  1293                   1137  0.7187
+    c1_p75   18572  1298                   1109  0.6867
+    c0_p90   18645  1307                   1121  0.6954
+    c1_p50   20855  1261                   1061  0.6525
+    c0_p75   20885  1283                   1071  0.6538
+    c0_p50   24084  1130                    930  0.5720
+
+  median Jaccard against baseline, LI_raw: 0.776
+
+--- per-gene stability ---
+  LI_raw     2594 genes significant under >=1 filter | 1092 under ALL (42.1%) |  311 under only one
+  LI_ilr      569 genes significant under >=1 filter |  309 under ALL (54.3%) |   67 under only one
+  BPD_raw      11 genes significant under >=1 filter |    0 under ALL (0.0%) |    0 under only one
+  BPD_ilr       3 genes significant under >=1 filter |    0 under ALL (0.0%) |    0 under only one
+
+--- the 25 most robust lithium genes (whole blood, unadjusted) ---
+       symbol n_filters_sig n_filters_tested frac_sig best_rank median_rank median_logFC   min_BH
+       TSPAN2            30               30        1         1         1.0       0.7935 7.96e-17
+         PIGB            29               29        1         2         2.0       0.6285 1.80e-15
+        ARMC2            26               26        1         3         3.0       0.4042 1.71e-11
+         RFX2            27               27        1         3         4.0       0.6667 1.91e-11
+ RP4-666F24.3            15               15        1         3         5.0       0.8698 2.07e-11
+    LINC00877            26               26        1         5         6.0       0.5842 2.98e-11
+         FAR2            30               30        1         2         7.0       0.5080 7.61e-12
+          MOK            14               14        1         6         7.5       0.9605 5.92e-11
+        MYADM            30               30        1         3         7.5       0.7072 1.45e-11
+      MIR24-2            28               28        1         5         8.0       0.6622 8.68e-11
+      SLC31A2            31               31        1         2        10.0       0.5281 1.24e-10
+       ADAM17            30               30        1         4        12.0       0.2770 4.22e-11
+       MIR23A            17               17        1         9        12.0       0.7427 5.51e-10
+       FLVCR1            28               28        1        11        13.0       0.3874 4.32e-09
+       CCDC19            21               21        1        12        14.0       0.7663 7.05e-09
+       MAN1A1            31               31        1         1        15.0       0.4550 1.82e-10
+      FAM126B            31               31        1         3        16.0       0.4963 1.82e-10
+       ZNF487            27               27        1        14        16.0       0.4116 1.31e-08
+       KBTBD7            31               31        1         6        18.0       0.4330 2.87e-09
+      VIM-AS1            30               30        1        13        18.0       0.3100 1.37e-08
+        PRRG4            29               29        1        12        20.0       0.6912 1.41e-08
+       TAGLN2            31               31        1         5        21.0       0.4625 2.20e-09
+     C12orf55            17               17        1        20        22.0       0.6560 4.39e-08
+        SPAG6             5                5        1        22        23.0       1.3161 7.40e-08
+      CNTNAP3            29               29        1        17        23.0       0.9109 8.51e-08
+
+--- genes that appear at only one filter (least trustworthy), LI_raw ---
+  311 such genes; median rank 2985, median |logFC| 0.080
+        symbol best_rank median_logFC  min_BH
+     RN7SL271P       165       0.9213 0.00152
+  RP11-348H3.5       329       0.6297 0.00715
+        DYX1C1       388       0.6543 0.01040
+   CTC-232P5.4       410       0.6712 0.01090
+  RP11-522L3.4       447       0.5762 0.01210
+    AC092299.8       532       0.5917 0.01530
+  RP11-10N16.3       654       0.5788 0.02130
+         MEF2B       677       0.5455 0.02370
+   RP1-313L4.3       756       0.5924 0.02810
+ RP11-296A18.5       891      -0.5241 0.03530
+
+--- bipolar, whole blood: every gene ever called, with its stability ---
+     symbol n_filters_sig n_filters_tested frac_sig best_rank median_rank median_logFC min_BH
+   C6orf163            17               24    0.708         1           1       0.2717 0.0237
+ AC104820.2            17               24    0.708         2           3       0.2880 0.0237
+      SMIM8            17               25    0.680         1           2       0.2022 0.0237
+       WDR1            18               31    0.581         1           4      -0.1890 0.0270
+       BBS9            14               28    0.500         1           5       0.1727 0.0237
+   TRAF3IP2             9               19    0.474         4           5       0.2505 0.0395
+     AKAP12             7               16    0.438         3           7      -1.0529 0.0361
+  LINC00662            10               28    0.357         3           7       0.2001 0.0382
+    RPL5P13             3                9    0.333         5           7       0.4719 0.0432
+     MBTPS2             8               24    0.333         7           9       0.1905 0.0407
+    PPFIBP1             6               19    0.316         7           9       0.3189 0.0432
+
+
+================= CELL TYPE =================
+
+--- LI_raw: genes DE per lineage (BH within lineage) ---
+      sid           kind                                  label gran mono  T NK  B n_gran  n_NK   n_B
+ c10_p100    gene_filter                          >10 in >=100%   35   12 17  1  0   6560  6560  6560
+  c10_p90    gene_filter                           >10 in >=90%  109   20 28  4  0  12368 12368 12368
+  c10_p99    gene_filter                           >10 in >=99%   82   18 25  3  0   9708  9708  9708
+ c20_p100    gene_filter                          >20 in >=100%    3    7 12  1  0   4469  4469  4469
+  c20_p90    gene_filter                           >20 in >=90%   92   19 25  4  0  10742 10742 10742
+  c20_p99    gene_filter                           >20 in >=99%   55   15 21  2  0   7901  7901  7901
+ c50_p100    gene_filter                          >50 in >=100%    6    3  3  0  0   2087  2087  2087
+  c50_p90    gene_filter                           >50 in >=90%   59   16 22  2  0   8267  8267  8267
+  c50_p99    gene_filter                           >50 in >=99%   26   10 14  1  0   5068  5068  5068
+    se100    se_quantile keep most precise 100% by posterior SE  109   20 28  4  0  12368 12368 12368
+     se50    se_quantile  keep most precise 50% by posterior SE   35    3  4  1  0   6184  6184  6184
+     se75    se_quantile  keep most precise 75% by posterior SE   78    5  6  1  0   9276  9276  9276
+     se90    se_quantile  keep most precise 90% by posterior SE   86   12 16  2  0  11131 11131 11131
+     var0 variance_floor             across-sample variance > 0  109   20 28  4  0  12368 12368 12368
+ var0.005 variance_floor         across-sample variance > 0.005  109   20 29  4  0  12368 12366  5521
+  var0.01 variance_floor          across-sample variance > 0.01  109   20 29  4  0  12368 12175   452
+  var0.05 variance_floor          across-sample variance > 0.05  109   20 28  2 NA  12367  1992     0
+   var0.1 variance_floor           across-sample variance > 0.1  109   19 27  1 NA  12339   310     0
+
+--- BPD_raw: genes DE per lineage (BH within lineage) ---
+      sid           kind                                  label gran mono T NK  B n_gran  n_NK   n_B
+ c10_p100    gene_filter                          >10 in >=100%    0    0 0  0  0   6560  6560  6560
+  c10_p90    gene_filter                           >10 in >=90%    0    0 0  0  0  12368 12368 12368
+  c10_p99    gene_filter                           >10 in >=99%    0    0 0  0  0   9708  9708  9708
+ c20_p100    gene_filter                          >20 in >=100%    0    0 3  0  0   4469  4469  4469
+  c20_p90    gene_filter                           >20 in >=90%    0    0 0  0  0  10742 10742 10742
+  c20_p99    gene_filter                           >20 in >=99%    0    0 0  0  0   7901  7901  7901
+ c50_p100    gene_filter                          >50 in >=100%    0    0 2  0  0   2087  2087  2087
+  c50_p90    gene_filter                           >50 in >=90%    0    0 0  0  0   8267  8267  8267
+  c50_p99    gene_filter                           >50 in >=99%    0    0 0  0  0   5068  5068  5068
+    se100    se_quantile keep most precise 100% by posterior SE    0    0 0  0  0  12368 12368 12368
+     se50    se_quantile  keep most precise 50% by posterior SE    0    0 0  0  0   6184  6184  6184
+     se75    se_quantile  keep most precise 75% by posterior SE    0    0 0  0  0   9276  9276  9276
+     se90    se_quantile  keep most precise 90% by posterior SE    0    0 0  0  0  11131 11131 11131
+     var0 variance_floor             across-sample variance > 0    0    0 0  0  0  12368 12368 12368
+ var0.005 variance_floor         across-sample variance > 0.005    0    0 0  0  0  12368 12366  5521
+  var0.01 variance_floor          across-sample variance > 0.01    0    0 0  0  0  12368 12175   452
+  var0.05 variance_floor          across-sample variance > 0.05    0    0 0  0 NA  12367  1992     0
+   var0.1 variance_floor           across-sample variance > 0.1    0    2 0  0 NA  12339   310     0
+
+--- pooled across lineages, unique genes ---
+      sid           kind                                  label LI_raw LI_ilr BPD_raw BPD_ilr
+ c10_p100    gene_filter                          >10 in >=100%     26     25       0       0
+  c10_p90    gene_filter                           >10 in >=90%     66     77       0       0
+  c10_p99    gene_filter                           >10 in >=99%     48     53       0       0
+ c20_p100    gene_filter                          >20 in >=100%     11      5       0       0
+  c20_p90    gene_filter                           >20 in >=90%     55     63       0       0
+  c20_p99    gene_filter                           >20 in >=99%     34     33       0       0
+ c50_p100    gene_filter                          >50 in >=100%      2      0       0       0
+  c50_p90    gene_filter                           >50 in >=90%     35     35       0       0
+  c50_p99    gene_filter                           >50 in >=99%     18     17       0       0
+    se100    se_quantile keep most precise 100% by posterior SE     66     77       0       0
+     se50    se_quantile  keep most precise 50% by posterior SE      6     11       0       0
+     se75    se_quantile  keep most precise 75% by posterior SE     33     40       0       0
+     se90    se_quantile  keep most precise 90% by posterior SE     42     50       0       0
+     var0 variance_floor             across-sample variance > 0     66     77       0       0
+ var0.005 variance_floor         across-sample variance > 0.005     68     82       0       0
+  var0.01 variance_floor          across-sample variance > 0.01     76     87       0       0
+  var0.05 variance_floor          across-sample variance > 0.05     84    105       0       0
+   var0.1 variance_floor           across-sample variance > 0.1     95    114       0       0
+
+--- per gene x lineage stability ---
+  LI_raw     163 gene x lineage pairs significant somewhere | 128 under every setting tested
+  LI_ilr     195 gene x lineage pairs significant somewhere | 142 under every setting tested
+  BPD_raw      5 gene x lineage pairs significant somewhere |   0 under every setting tested
+
+--- the 20 most robust cell-type lithium findings ---
+    symbol lineage n_settings_sig n_settings_tested frac_sig best_rank median_rank median_logFC   min_BH
+      RFX2      NK             12                12        1         1           1       0.0912 1.14e-03
+    TSPAN2    gran             14                14        1         1           1       0.7150 5.04e-06
+    TSPAN2    mono             14                14        1         1           1       0.3846 4.37e-07
+    TSPAN2       T             14                14        1         1           1       0.4650 6.78e-09
+       IL8    gran              9                 9        1         2           2      -0.8289 4.21e-05
+       IL8    mono              9                 9        1         2           2      -0.7007 9.32e-06
+    CCDC19      NK              7                 7        1         2           2       0.1196 3.18e-03
+   MIR24-2       T             13                13        1         1           2       0.4817 1.57e-07
+      PIGB    gran             15                15        1         1           3       0.5562 2.04e-04
+      RFX2    mono             13                13        1         1           3       0.1989 4.22e-05
+       IL8      NK              9                 9        1         1           3      -0.2696 4.05e-04
+     MYADM      NK             13                13        1         1           3       0.1226 4.92e-03
+ LINC00877       T             13                13        1         1           3       0.2615 3.07e-06
+      PIGB       T             14                14        1         2           4       0.3692 3.07e-06
+      RFX2    gran             14                14        1         1           4       0.4182 4.88e-04
+   MIR24-2    mono             14                14        1         2           4       0.3068 5.01e-05
+      PIGB    mono             14                14        1         2           5       0.2286 7.79e-05
+     PRRG4       T             13                13        1         3           5       0.3630 2.26e-04
+ C20orf197    gran             11                11        1         3           5      -0.3686 4.88e-04
+   CNTNAP3       T             13                13        1         4           6       0.4001 3.57e-04
+
+--- by lineage: how many robust findings each carries ---
+ lineage always_significant Freq
+    gran              FALSE   30
+    mono              FALSE    2
+      NK              FALSE    0
+       T              FALSE    3
+    gran               TRUE   79
+    mono               TRUE   18
+      NK               TRUE    4
+       T               TRUE   27
+

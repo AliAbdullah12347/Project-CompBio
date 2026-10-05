@@ -1,0 +1,25 @@
+== 02_hierarchical ==
+
+--- across the five lineages, within each cell-type contrast ---
+  CT_LI_raw      per-lineage BH: gran=109 mono=20 T=28 NK=4 B=0 | pooled BH 105 tests / 66 genes | BB selected 4/5 -> 140
+  CT_BPD_raw     per-lineage BH: gran=0 mono=0 T=0 NK=0 B=0 | pooled BH 0 tests / 0 genes | BB selected 0/5 -> 0
+  CT_LI_ilr      per-lineage BH: gran=123 mono=24 T=31 NK=7 B=0 | pooled BH 130 tests / 77 genes | BB selected 4/5 -> 152
+  CT_BPD_ilr     per-lineage BH: gran=0 mono=0 T=0 NK=0 B=0 | pooled BH 0 tests / 0 genes | BB selected 0/5 -> 0
+
+--- across the four comparisons ---
+  tests per family: WB_LI_raw=12368 WB_BPD_raw=12368 CT_LI_raw=61840 CT_BPD_raw=61840  (total 148416)
+     family n_tests within_family_BH_05 global_BH_05 BB_family_p BB_family_adj
+  WB_LI_raw   12368                1426          343    6.99e-16      2.80e-15
+ WB_BPD_raw   12368                   4           16    4.89e-02      6.52e-02
+  CT_LI_raw   61840                 105          132    1.49e-07      2.99e-07
+ CT_BPD_raw   61840                   0           22    3.98e-01      3.98e-01
+ BB_selected BB_05
+        TRUE   866
+       FALSE     0
+        TRUE    75
+       FALSE     0
+
+  BB selected 2 of 4 families, so the within-family level becomes 0.0250
+  (a family not selected reports nothing, which is the price of having looked at four)
+
+wrote results/celltype_*.csv and across_contrast_correction.csv

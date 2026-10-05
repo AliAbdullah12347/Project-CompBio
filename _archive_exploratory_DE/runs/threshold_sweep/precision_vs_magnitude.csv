@@ -1,0 +1,12 @@
+"metric","value"
+"residual df",213
+"median SE of logFC",0.0480112631685407
+"median SE among DEGs",0.052074604716852
+"median SE among non-DEGs",0.0475107052148795
+"median partial R^2 all genes",0.00816305221308353
+"median partial R^2 DEGs",0.0500078361954613
+"max partial R^2",0.325225380909645
+"90th pct partial R^2 DEGs",0.0919256999205409
+"smallest |logFC| called significant",0.0649005596592985
+"MDE at 80% power, BH-operative alpha, median SE",0.174657558716511
+"MDE as fold change",1.12869646312069

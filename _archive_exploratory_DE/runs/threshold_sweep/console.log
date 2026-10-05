@@ -1,0 +1,197 @@
+
+===== A  canonical lithium fit =====
+calcNormFactors has been renamed to normLibSizes
+genes 12173   samples 226   coef lithium   method voom/TMM
+DEG @ FDR 0.05            1382
+pi0 (Storey)              0.5161
+reproduction check        PASS (12173 genes / 226 samples / 1382 DEG)
+
+===== B  FDR x |logFC| grid =====
+          |lfc|>=0 |lfc|>=0.05 |lfc|>=0.1 |lfc|>=0.2 |lfc|>=0.3 |lfc|>=0.5
+FDR<0.001      156         156        156        137         94         19
+FDR<0.01       495         495        489        320        157         23
+FDR<0.05      1382        1382       1264        557        202         25
+FDR<0.1       2447        2447       1967        671        215         25
+FDR<0.2       3960        3930       2655        747        222         26
+          |lfc|>=1
+FDR<0.001        0
+FDR<0.01         0
+FDR<0.05         0
+FDR<0.1          0
+FDR<0.2          0
+
+===== C  Bonferroni / extremes / significance floor =====
+                             metric       value
+1                          n_tested 1.21730e+04
+2                         min_raw_p 5.08696e-20
+3                      min_adj_p_BH 6.19236e-16
+4              min_adj_p_bonferroni 6.19236e-16
+5                 n_bonferroni_0.05 1.27000e+02
+6                 n_bonferroni_0.01 9.80000e+01
+7                         n_BH_0.05 1.38200e+03
+8  operative_raw_p_cutoff_at_BH0.05 5.67178e-03
+9           min_absLFC_among_BH0.05 6.49006e-02
+10          max_absLFC_among_BH0.05 9.13674e-01
+11             max_absLFC_all_genes 9.13674e-01
+12             pi0_storey_lambda0.5 5.16060e-01
+
+implied non-null genes (1-pi0)*m = 5891 ; BH 0.05 returns 1382 (23% recovered)
+
+===== D  effect-size distribution, DEG vs non-DEG =====
+         set     n       q00      q05     q25     q50     q75    q95   q100
+1 DEG_BH0.05  1382 6.490e-02 0.090776 0.13091 0.18022 0.24884 0.4198 0.9137
+2     nonDEG 10791 2.641e-06 0.005112 0.02665 0.05425 0.08819 0.1593 0.5347
+3        all 12173 2.641e-06 0.005778 0.03010 0.06189 0.10440 0.2204 0.9137
+  mean_abs
+1  0.20530
+2  0.06387
+3  0.07993
+                      quantity    value
+1       median |logFC| of DEGs  0.18022
+2   median fold change of DEGs  1.13306
+3      median % change of DEGs 13.30571
+4     90th pct |logFC| of DEGs  0.33979
+5 90th pct fold change of DEGs  1.26557
+6   median |logFC| of non-DEGs  0.05425
+7          max |logFC| of DEGs  0.91367
+8      max fold change of DEGs  1.88384
+                         rule    lfc    n pct_of_1382
+1                 BH0.05 only 0.0000 1382     100.000
+2         BH0.05 & |lfc|>0.10 0.1000 1264      91.462
+3         BH0.05 & |lfc|>0.20 0.2000  557      40.304
+4 BH0.05 & |lfc|>0.32 (1.25x) 0.3219  161      11.650
+5         BH0.05 & |lfc|>0.50 0.5000   25       1.809
+6  BH0.05 & |lfc|>0.58 (1.5x) 0.5850   16       1.158
+7    BH0.05 & |lfc|>1.00 (2x) 1.0000    0       0.000
+
+Spearman rho( -log10 p , |logFC| ) all genes = 0.896 | DEGs only = 0.506
+overlap of top-100 by p and top-100 by |logFC| = 50 genes
+Spearman rho( AveExpr , |logFC| ) = -0.025  (all genes)
+     bin    n median_AveExpr median_absLFC n_DEG pct_DEG n_DEG_lfc0.5
+ expr_Q1 2435          2.229       0.07132   179   7.351            8
+ expr_Q2 2434          3.447       0.06358   212   8.710            2
+ expr_Q3 2435          4.512       0.05459   240   9.856            6
+ expr_Q4 2434          5.585       0.05394   304  12.490            6
+ expr_Q5 2435          7.115       0.07043   447  18.357            3
+
+===== E  sex coefficient from the SAME fit -- an effect-size yardstick =====
+calcNormFactors has been renamed to normLibSizes
+  coefficient n_BH0.05 n_BH0.05_lfc0.5 median_absLFC_of_sig max_absLFC
+1     lithium     1382              25               0.1802     0.9137
+2        sexM      906              26               0.1920     0.8633
+  min_adj_p
+1 6.192e-16
+2 8.301e-80
+
+===== F  precision vs magnitude =====
+                                            metric      value
+1                                      residual df 2.1300e+02
+2                               median SE of logFC 4.8011e-02
+3                             median SE among DEGs 5.2075e-02
+4                         median SE among non-DEGs 4.7511e-02
+5                     median partial R^2 all genes 8.1631e-03
+6                          median partial R^2 DEGs 5.0008e-02
+7                                  max partial R^2 3.2523e-01
+8                        90th pct partial R^2 DEGs 9.1926e-02
+9              smallest |logFC| called significant 6.4901e-02
+10 MDE at 80% power, BH-operative alpha, median SE 1.7466e-01
+11                              MDE as fold change 1.1287e+00
+
+===== G  TREAT vs naive post-hoc |logFC| filtering =====
+calcNormFactors has been renamed to normLibSizes
+local refit is byte-identical to de_fit canonical  PASS
+  tau n_treat_BH0.05 n_naive_BH0.05_then_lfc n_both n_treat_only n_naive_only
+1 0.1            113                    1264    113            0         1151
+2 0.2             19                     557     19            0          538
+3 0.5              0                      25      0            0           25
+  jaccard treat_min_absLFC naive_min_absLFC
+1 0.08940           0.2524           0.1000
+2 0.03411           0.4054           0.2003
+3 0.00000               NA           0.5108
+   tau   fdr n_treat n_naive
+1  0.1 0.001      32     156
+2  0.1 0.010      62     489
+3  0.1 0.050     113    1264
+4  0.1 0.100     127    1967
+5  0.1 0.200     171    2655
+6  0.2 0.001      11     137
+7  0.2 0.010      13     320
+8  0.2 0.050      19     557
+9  0.2 0.100      24     671
+10 0.2 0.200      35     747
+11 0.5 0.001       0      19
+12 0.5 0.010       0      23
+13 0.5 0.050       0      25
+14 0.5 0.100       0      25
+15 0.5 0.200       0      26
+
+===== H  permutation null through the identical grid =====
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+   fdr  lfc n_deg null_mean null_max null_median enrichment
+ 0.001 0.00   156      0.00        0           0     312.00
+ 0.001 0.05   156      0.00        0           0     312.00
+ 0.001 0.10   156      0.00        0           0     312.00
+ 0.001 0.20   137      0.00        0           0     274.00
+ 0.001 0.30    94      0.00        0           0     188.00
+ 0.001 0.50    19      0.00        0           0      38.00
+ 0.001 1.00     0      0.00        0           0       0.00
+ 0.010 0.00   495      0.00        0           0     990.00
+ 0.010 0.05   495      0.00        0           0     990.00
+ 0.010 0.10   489      0.00        0           0     978.00
+ 0.010 0.20   320      0.00        0           0     640.00
+ 0.010 0.30   157      0.00        0           0     314.00
+ 0.010 0.50    23      0.00        0           0      46.00
+ 0.010 1.00     0      0.00        0           0       0.00
+ 0.050 0.00  1382      0.00        0           0    2764.00
+ 0.050 0.05  1382      0.00        0           0    2764.00
+ 0.050 0.10  1264      0.00        0           0    2528.00
+ 0.050 0.20   557      0.00        0           0    1114.00
+ 0.050 0.30   202      0.00        0           0     404.00
+ 0.050 0.50    25      0.00        0           0      50.00
+ 0.050 1.00     0      0.00        0           0       0.00
+ 0.100 0.00  2447      0.00        0           0    4894.00
+ 0.100 0.05  2447      0.00        0           0    4894.00
+ 0.100 0.10  1967      0.00        0           0    3934.00
+ 0.100 0.20   671      0.00        0           0    1342.00
+ 0.100 0.30   215      0.00        0           0     430.00
+ 0.100 0.50    25      0.00        0           0      50.00
+ 0.100 1.00     0      0.00        0           0       0.00
+ 0.200 0.00  3960     87.85     1755           0      45.08
+ 0.200 0.05  3930     87.70     1752           0      44.81
+ 0.200 0.10  2655     66.40     1326           0      39.98
+ 0.200 0.20   747     13.10      261           0      57.02
+ 0.200 0.30   222      2.30       45           0      96.52
+ 0.200 0.50    26      0.00        0           0      52.00
+ 0.200 1.00     0      0.00        0           0       0.00
+
+null pi0: median 0.996 (range 0.567-1.000)   observed pi0 0.516
+null Bonferroni hits: median 0, max 0   observed 127
+
+===== summary =====
+
+[threshold_sweep] wrote runs/threshold_sweep/summary.csv  (35 rows)
+
+---- HEADLINE ----
+1382 DEGs at FDR 0.05; median |logFC| = 0.1802 (fold change 1.133, 13.3%)
+survivors at |logFC|>0.5: 25 (1.81% of the 1382)
+TREAT tau=0.1 at FDR 0.05: 113 genes; naive BH0.05 & |lfc|>0.1: 1264
+done.

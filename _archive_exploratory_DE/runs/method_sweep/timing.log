@@ -1,0 +1,15 @@
+full filtered matrix: 12173 genes x 226 samples
+calcNormFactors has been renamed to normLibSizes
+    500 genes  voom     cpu    0.59s
+    500 genes  voomWQW  cpu   42.33s
+    500 genes  trend    cpu    0.07s
+    500 genes  QLF      cpu   13.12s
+    500 genes  LRT      cpu   10.71s
+calcNormFactors has been renamed to normLibSizes
+   1000 genes  voom     cpu    1.12s
+   1000 genes  voomWQW  cpu   84.85s
+   1000 genes  trend    cpu    0.13s
+   1000 genes  QLF      cpu   26.79s
+   1000 genes  LRT      cpu   21.73s
+calcNormFactors has been renamed to normLibSizes
+   2000 genes  voom     cpu    1.88s

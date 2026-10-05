@@ -1,0 +1,13 @@
+"metric","value"
+"n_tested",12173
+"min_raw_p",5.08696136505723e-20
+"min_adj_p_BH",6.19235806968417e-16
+"min_adj_p_bonferroni",6.19235806968417e-16
+"n_bonferroni_0.05",127
+"n_bonferroni_0.01",98
+"n_BH_0.05",1382
+"operative_raw_p_cutoff_at_BH0.05",0.00567178202696296
+"min_absLFC_among_BH0.05",0.0649005596592985
+"max_absLFC_among_BH0.05",0.913674050895621
+"max_absLFC_all_genes",0.913674050895621
+"pi0_storey_lambda0.5",0.51606013308141

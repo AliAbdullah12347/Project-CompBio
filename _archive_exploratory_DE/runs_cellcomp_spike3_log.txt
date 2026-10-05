@@ -1,0 +1,25 @@
+== cellcomp_spike3 ==
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+12173 genes; sd(b1) = 0.5361; a1 = 0.1558; median residual sd = 0.3232
+  TRANS   x0.5   capped    0  inducedFC 0.101  canon  382 (0.32)  surv  285 (0.746)  shrink 0.971
+  TRANS   x1.0   capped   14  inducedFC 0.210  canon  932 (0.78)  surv  852 (0.914)  shrink 1.001
+  TRANS   x1.5   capped   85  inducedFC 0.310  canon 1085 (0.90)  surv 1034 (0.953)  shrink 1.019
+  TRANS   x2.0   capped  191  inducedFC 0.423  canon 1153 (0.96)  surv 1122 (0.973)  shrink 0.999
+  TRANS   x3.0   capped  432  inducedFC 0.625  canon 1194 (0.99)  surv 1188 (0.995)  shrink 0.997
+  COMPOS  x0.5   capped  548  inducedFC 0.112  canon    0 (0.00)  surv    0 (0.000)  shrink NA
+  COMPOS  x1.0   capped 1019  inducedFC 0.229  canon    0 (0.00)  surv    0 (0.000)  shrink NA
+  COMPOS  x1.5   capped 1147  inducedFC 0.346  canon    1 (0.00)  surv    0 (0.000)  shrink 0.168
+  COMPOS  x2.0   capped 1186  inducedFC 0.442  canon    0 (0.00)  surv    0 (0.000)  shrink NA
+  COMPOS  x3.0   capped 1197  inducedFC 0.686  canon    0 (0.00)  surv    0 (0.000)  shrink NA
+calcNormFactors has been renamed to normLibSizes
+
+--- pooled anchors (variance-preserving spike) ---
+    arm detected survivors survival_rate mean_shrinkage
+  TRANS     4746      4481        0.9442         0.9976
+ COMPOS        1         0        0.0000             NA
+
+COMPOS floor 0.000  |  REAL 0.218  |  TRANS ceiling 0.944
+=> the real lithium signature behaves as 77% composition-driven.
+
+done.

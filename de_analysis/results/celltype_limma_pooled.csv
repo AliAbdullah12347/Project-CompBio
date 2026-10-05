@@ -1,0 +1,5 @@
+"run","n_tests","n_na","deg_tests","deg_unique_genes","pct_of_genes"
+"LI_raw",61840,0,105,66,0.534
+"LI_ilr",61840,0,130,77,0.623
+"BPD_raw",61840,0,0,0,0
+"BPD_ilr",61840,0,0,0,0

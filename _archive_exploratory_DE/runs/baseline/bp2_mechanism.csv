@@ -1,0 +1,19 @@
+"quantity","value"
+"n genes",12353
+"n BP1 non-users",74
+"n BP1 users",152
+"n BP2",13
+"BP2 weight w",0.1494
+"sd(L)",0.116
+"sd(D)",0.2083
+"pearson r(L,D)",0.787
+"spearman rho(L,D)",0.7783
+"slope D~L (all genes)",1.4119
+"slope D~L (lithium DEGs)",1.207
+"median|L|",0.06872
+"median|b_2level| actual",0.05409
+"attenuation",0.213
+"variance-only predicted ratio",0.9484
+"observed ratio",0.787
+"r(predicted b_2level, actual)",0.999618
+"max|pred - actual|",0.03228

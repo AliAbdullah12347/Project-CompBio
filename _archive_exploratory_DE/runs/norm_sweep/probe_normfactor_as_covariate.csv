@@ -1,0 +1,4 @@
+"model","deg_fdr05","pi0","jaccard_vs_baseline"
+"baseline voom+TMM",1382,0.51606013308141,1
+"+ log2 TMM factor as covariate",158,0.931898463813357,0.104734576757532
+"+ 4 ILR balances as covariates",350,0.762671486075741,0.210342417889588

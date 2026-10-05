@@ -1,0 +1,273 @@
+== 13_filter_sweep_wb ==
+raw counts 57773 x 474
+Treating all samples as belonging to one group.
+31 filters, 2087 to 24084 genes | baseline c10_p90 = 12368
+
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c50_p100     2087 genes  [  0.3 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c20_p100     4469 genes  [  0.9 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c50_p99      5068 genes  [  1.6 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c10_p100     6560 genes  [  2.1 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c20_p99      7901 genes  [  2.5 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c50_p90      8267 genes  [  3.1 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c5_p100      8347 genes  [  3.6 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c50_p75      9272 genes  [  4.2 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c10_p99      9708 genes  [  4.7 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c50_p50     10209 genes  [  5.2 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c20_p90     10742 genes  [  5.7 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c1_p100     11049 genes  [  6.2 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c5_p99      11215 genes  [  7.7 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c20_p75     11696 genes  [  9.4 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c10_p90     12368 genes  [ 11.1 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c0_p100     12483 genes  [ 12.8 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c20_p50     12678 genes  [ 14.3 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c10_p75     13336 genes  [ 15.9 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c1_p99      13636 genes  [ 17.9 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c5_p90      13812 genes  [ 18.5 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  edgeR_fbe   13925 genes  [ 19.1 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c10_p50     14522 genes  [ 19.7 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c5_p75      15053 genes  [ 20.3 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c0_p99      15057 genes  [ 21.0 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c5_p50      16563 genes  [ 21.6 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c1_p90      16771 genes  [ 23.0 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c1_p75      18572 genes  [ 24.3 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c0_p90      18645 genes  [ 25.5 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c1_p50      20855 genes  [ 27.3 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c0_p75      20885 genes  [ 28.9 min]
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  c0_p50      24084 genes  [ 31.2 min]
+checkpointed raw sweep before any downstream analysis
+
+=== DEG counts by filter (BH 0.05) ===
+       fid n_genes LI_raw LI_ilr BPD_raw BPD_ilr
+  c50_p100    2087    608    129       1       0
+  c20_p100    4469   1080    225       0       0
+   c50_p99    5068   1195    226       1       0
+  c10_p100    6560   1262    243       0       1
+   c20_p99    7901   1236    283       0       1
+   c50_p90    8267   1382    271       0       0
+   c5_p100    8347   1217    285       0       0
+   c50_p75    9272   1248    304       7       3
+   c10_p99    9708   1286    319       5       0
+   c50_p50   10209   1322    316       7       3
+   c20_p90   10742   1329    321       7       3
+   c1_p100   11049   1440    332       5       0
+    c5_p99   11215   1379    337       5       0
+   c20_p75   11696   1438    331       9       3
+   c10_p90   12368   1426    341       4       0
+   c0_p100   12483   1393    362       5       0
+   c20_p50   12678   1450    356      10       0
+   c10_p75   13336   1400    361       0       0
+    c1_p99   13636   1410    369       9       3
+    c5_p90   13812   1369    368      10       3
+ edgeR_fbe   13925   1452    363       4       0
+   c10_p50   14522   1453    373       0       0
+    c5_p75   15053   1395    384       0       0
+    c0_p99   15057   1402    357      11       3
+    c5_p50   16563   1402    379      11       0
+    c1_p90   16771   1293    365      11       0
+    c1_p75   18572   1298    364       0       0
+    c0_p90   18645   1307    367       4       0
+    c1_p50   20855   1261    359       0       0
+    c0_p75   20885   1283    348       0       0
+    c0_p50   24084   1130    328       0       0
+
+=== per-gene stability ===
+  LI_raw      2594 genes significant somewhere | 1092 in EVERY filter they were tested in (42.1%)
+  LI_ilr       569 genes significant somewhere |  309 in EVERY filter they were tested in (54.3%)
+  BPD_raw       11 genes significant somewhere |    0 in EVERY filter they were tested in (0.0%)
+  BPD_ilr        3 genes significant somewhere |    0 in EVERY filter they were tested in (0.0%)
+
+=== Jaccard overlap of DEG sets against the baseline filter ===
+
+  LI_raw
+       fid n_genes n_deg n_shared_with_baseline jaccard
+  c50_p100    2087   608                    321  0.1874
+  c20_p100    4469  1080                    679  0.3716
+   c50_p99    5068  1195                    730  0.3860
+  c10_p100    6560  1262                    891  0.4958
+   c20_p99    7901  1236                   1056  0.6575
+   c50_p90    8267  1382                   1084  0.6288
+   c5_p100    8347  1217                   1077  0.6877
+   c50_p75    9272  1248                   1130  0.7319
+   c10_p99    9708  1286                   1201  0.7948
+   c50_p50   10209  1322                   1235  0.8163
+   c20_p90   10742  1329                   1257  0.8391
+   c1_p100   11049  1440                   1319  0.8526
+    c5_p99   11215  1379                   1315  0.8826
+   c20_p75   11696  1438                   1366  0.9119
+   c10_p90   12368  1426                   1426  1.0000
+   c0_p100   12483  1393                   1344  0.9112
+   c20_p50   12678  1450                   1404  0.9538
+   c10_p75   13336  1400                   1344  0.9069
+    c1_p99   13636  1410                   1337  0.8919
+    c5_p90   13812  1369                   1271  0.8340
+ edgeR_fbe   13925  1452                   1366  0.9034
+   c10_p50   14522  1453                   1337  0.8671
+    c5_p75   15053  1395                   1279  0.8294
+    c0_p99   15057  1402                   1278  0.8245
+    c5_p50   16563  1402                   1218  0.7565
+    c1_p90   16771  1293                   1137  0.7187
+    c1_p75   18572  1298                   1109  0.6867
+    c0_p90   18645  1307                   1121  0.6954
+    c1_p50   20855  1261                   1061  0.6525
+    c0_p75   20885  1283                   1071  0.6538
+    c0_p50   24084  1130                    930  0.5720
+
+  BPD_raw
+       fid n_genes n_deg n_shared_with_baseline jaccard
+  c50_p100    2087     1                      1  0.2500
+  c20_p100    4469     0                      0  0.0000
+   c50_p99    5068     1                      1  0.2500
+  c10_p100    6560     0                      0  0.0000
+   c20_p99    7901     0                      0  0.0000
+   c50_p90    8267     0                      0  0.0000
+   c5_p100    8347     0                      0  0.0000
+   c50_p75    9272     7                      4  0.5714
+   c10_p99    9708     5                      4  0.8000
+   c50_p50   10209     7                      4  0.5714
+   c20_p90   10742     7                      4  0.5714
+   c1_p100   11049     5                      4  0.8000
+    c5_p99   11215     5                      4  0.8000
+   c20_p75   11696     9                      4  0.4444
+   c10_p90   12368     4                      4  1.0000
+   c0_p100   12483     5                      4  0.8000
+   c20_p50   12678    10                      4  0.4000
+   c10_p75   13336     0                      0  0.0000
+    c1_p99   13636     9                      4  0.4444
+    c5_p90   13812    10                      4  0.4000
+ edgeR_fbe   13925     4                      4  1.0000
+   c10_p50   14522     0                      0  0.0000
+    c5_p75   15053     0                      0  0.0000
+    c0_p99   15057    11                      4  0.3636
+    c5_p50   16563    11                      4  0.3636
+    c1_p90   16771    11                      4  0.3636
+    c1_p75   18572     0                      0  0.0000
+    c0_p90   18645     4                      3  0.6000
+    c1_p50   20855     0                      0  0.0000
+    c0_p75   20885     0                      0  0.0000
+    c0_p50   24084     0                      0  0.0000
+
+wrote results/sweep/wb_* [32.2 min]

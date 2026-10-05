@@ -1,0 +1,66 @@
+calcNormFactors has been renamed to normLibSizes
+
+[loose] mc=0 mp=0.10  genes=37326  observed DEG=881  pi0=0.772  p<.05=15.7%
+calcNormFactors has been renamed to normLibSizes
+   perm  1: DEG=    0  pi0=0.989  p<.05=4.48%  |  hi: pi0=1.000 p<.05=3.02%  lo: pi0=0.965 p<.05=5.19
+calcNormFactors has been renamed to normLibSizes
+   perm  2: DEG=    0  pi0=0.858  p<.05=10.47%  |  hi: pi0=1.000 p<.05=2.38%  lo: pi0=0.700 p<.05=14.39
+calcNormFactors has been renamed to normLibSizes
+   perm  3: DEG=    0  pi0=1.000  p<.05=3.88%  |  hi: pi0=1.000 p<.05=1.05%  lo: pi0=0.945 p<.05=5.25
+calcNormFactors has been renamed to normLibSizes
+   perm  4: DEG=    0  pi0=0.836  p<.05=8.07%  |  hi: pi0=0.984 p<.05=3.71%  lo: pi0=0.764 p<.05=10.19
+calcNormFactors has been renamed to normLibSizes
+   perm  5: DEG=    0  pi0=1.000  p<.05=3.41%  |  hi: pi0=1.000 p<.05=0.90%  lo: pi0=0.995 p<.05=4.63
+calcNormFactors has been renamed to normLibSizes
+   perm  6: DEG=    0  pi0=1.000  p<.05=3.56%  |  hi: pi0=1.000 p<.05=2.53%  lo: pi0=1.000 p<.05=4.06
+calcNormFactors has been renamed to normLibSizes
+   perm  7: DEG=    0  pi0=0.949  p<.05=5.06%  |  hi: pi0=0.965 p<.05=3.68%  lo: pi0=0.942 p<.05=5.73
+calcNormFactors has been renamed to normLibSizes
+   perm  8: DEG=    0  pi0=0.968  p<.05=5.73%  |  hi: pi0=0.991 p<.05=6.07%  lo: pi0=0.956 p<.05=5.57
+calcNormFactors has been renamed to normLibSizes
+
+[canon] mc=10 mp=0.90  genes=12173  observed DEG=1382  pi0=0.516  p<.05=29.6%
+calcNormFactors has been renamed to normLibSizes
+   perm  1: DEG=    0  pi0=1.000  p<.05=2.83%  |  hi: pi0=1.000 p<.05=2.83%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  2: DEG=    0  pi0=1.000  p<.05=1.71%  |  hi: pi0=1.000 p<.05=1.71%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  3: DEG=    0  pi0=1.000  p<.05=1.39%  |  hi: pi0=1.000 p<.05=1.39%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  4: DEG=    0  pi0=1.000  p<.05=3.57%  |  hi: pi0=1.000 p<.05=3.57%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  5: DEG=    0  pi0=1.000  p<.05=1.06%  |  hi: pi0=1.000 p<.05=1.06%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  6: DEG=    0  pi0=1.000  p<.05=2.71%  |  hi: pi0=1.000 p<.05=2.71%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  7: DEG=    0  pi0=0.979  p<.05=3.72%  |  hi: pi0=0.979 p<.05=3.72%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  8: DEG=    0  pi0=0.955  p<.05=6.54%  |  hi: pi0=0.955 p<.05=6.54%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+
+[strict] mc=50 mp=0.90  genes=8002  observed DEG=1259  pi0=0.465  p<.05=33.9%
+calcNormFactors has been renamed to normLibSizes
+   perm  1: DEG=    0  pi0=1.000  p<.05=2.27%  |  hi: pi0=1.000 p<.05=2.27%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  2: DEG=    0  pi0=1.000  p<.05=0.80%  |  hi: pi0=1.000 p<.05=0.80%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  3: DEG=    0  pi0=1.000  p<.05=1.02%  |  hi: pi0=1.000 p<.05=1.02%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  4: DEG=    0  pi0=1.000  p<.05=3.26%  |  hi: pi0=1.000 p<.05=3.26%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  5: DEG=    0  pi0=1.000  p<.05=0.66%  |  hi: pi0=1.000 p<.05=0.66%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  6: DEG=    0  pi0=1.000  p<.05=2.26%  |  hi: pi0=1.000 p<.05=2.26%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  7: DEG=    0  pi0=1.000  p<.05=3.32%  |  hi: pi0=1.000 p<.05=3.32%  lo: pi0=  NA p<.05= NA
+calcNormFactors has been renamed to normLibSizes
+   perm  8: DEG=    1  pi0=0.922  p<.05=7.15%  |  hi: pi0=0.922 p<.05=7.15%  lo: pi0=  NA p<.05= NA
+
+== permutation summary ==
+loose   genes= 37326 | OBS DEG=  881 pi0=0.772 p<.05=15.66% | NULL DEG med=0 max=0  pi0 med=0.978  p<.05 med= 4.77%  empirical p=0.111
+        canonical-universe genes (n=12173): null pi0=1.000 p<.05= 2.78% p<.01= 0.29% | discarded genes (n=25153): null pi0=0.951 p<.05= 5.41% p<.01= 1.03%
+        observed for comparison        : hi pi0=0.508 p<.05=29.73%  DEG=679 | lo pi0=0.900 p<.05= 8.85%  DEG=202
+canon   genes= 12173 | OBS DEG= 1382 pi0=0.516 p<.05=29.57% | NULL DEG med=0 max=0  pi0 med=1.000  p<.05 med= 2.77%  empirical p=0.111
+strict  genes=  8002 | OBS DEG= 1259 pi0=0.465 p<.05=33.85% | NULL DEG med=0 max=1  pi0 med=1.000  p<.05 med= 2.27%  empirical p=0.111
+
+wrote runs/filter_sweep/null.csv (27 rows, seed 20261218)

@@ -1,0 +1,3 @@
+"contrast","n_perm","obs_deg","null_deg_median","null_deg_q95","null_deg_max","null_deg_nonzero","n_null_ge_obs_deg","p_deg","obs_pi0","null_pi0_median","null_pi0_q05","null_pi0_min","n_null_le_obs_pi0","p_pi0_onesided","boot_pi0_lo","boot_pi0_hi"
+"LI",200,1426,0,0,1683,"5/200",1,0.01,0.5084,1,0.6919,0.4712,2,0.0149,0.493,0.5226
+"BPD",200,4,0,0,889,"5/200",1,0.01,0.7091,1,0.747,0.5707,7,0.0398,0.6915,0.7266

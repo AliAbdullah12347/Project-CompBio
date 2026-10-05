@@ -1,0 +1,10 @@
+"quantity","value"
+"DEG under housekeeping normalisation",4274
+"DEG under TMM",1382
+"DEG under none",4013
+"Jaccard housekeeping vs TMM",0.120221826104179
+"Jaccard housekeeping vs none",0.702691596465995
+"corr log2(hk factor) vs log2(TMM factor)",-0.186889778315257
+"lithium coef on log2(hk factor)",0.0342509987448264
+"p for that coef (adjusted)",0.399171294194274
+"corr log2(hk factor) vs granulocyte fraction",-0.0233930277445111

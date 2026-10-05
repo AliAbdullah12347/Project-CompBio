@@ -1,0 +1,5 @@
+"analysis","pct_main","pct_rubin","pct_screened","band_main","band_rubin","band_screened","all_agree"
+"WB_LI_raw",11.53,11.53,8.692,"many","many","many",TRUE
+"WB_LI_ilr",2.757,2.757,2.264,"many","many","many",TRUE
+"WB_BPD_raw",0.032,0,0.024,"few","few","few",TRUE
+"WB_BPD_ilr",0,0,0,"few","few","few",TRUE

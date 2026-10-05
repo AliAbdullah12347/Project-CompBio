@@ -1,0 +1,24 @@
+== 08b_mde_spikeratio_check ==
+lineage gran | 200 spiked vs 600 controls (25% spiked)
+compare against 08, which spiked 600 of 800 (75%)
+
+  L=0.25  power 0.000  FP 0/600 (0.00%)  [5.2 min]
+  L=0.50  power 0.235  FP 19/600 (3.17%)  [5.0 min]
+  L=0.80  power 0.970  FP 82/600 (13.67%)  [5.1 min]
+  L=1.00  power 0.995  FP 82/600 (13.67%)  [5.1 min]
+
+=== granulocytes, 25% spiked ===
+ lineage log2FC n_spiked n_control detected power false_pos fp_rate
+    gran   0.25      200       600        0 0.000         0  0.0000
+    gran   0.50      200       600       47 0.235        19  0.0317
+    gran   0.80      200       600      194 0.970        82  0.1367
+    gran   1.00      200       600      199 0.995        82  0.1367
+
+  MDE80 at 25% spiked : 0.731 log2FC
+  MDE80 at 75% spiked : 0.832 log2FC   (08)
+  mean FP rate at 25% spiked: 7.63%   (08 at 75%: 13.00%)
+
+  abundance-only prediction: 0.51 log2FC
+  config meaningfulness floor: 0.5 log2FC -> granulocyte null NOT INTERPRETABLE (underpowered)
+
+wrote results/mde_spikeratio_check.csv

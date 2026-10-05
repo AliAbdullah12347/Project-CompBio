@@ -56,6 +56,13 @@ Boltz Paper/data/processed/
 cibersortx/data/mixture_TPM_hgnc_480.txt
 cibersortx/data/mixture_TPM_hgnc_analysis_431.txt
 
+# The full CIBERSORTx upload matrix is 102 MB, which GitHub rejects outright
+# (hard limit 100 MB per file). It is exactly reproducible:
+#     python data/make_mixture_full.py
+# from counts_474.tsv.gz, which IS tracked, and mixture_full_474.sha256 (also
+# tracked) verifies the rebuild byte for byte.
+data/cohort_474/mixture_TPM_hgnc_full_474.txt
+
 # === keep these despite the rules above ====================================
 !**/CHECKSUMS.sha256
 !**/data/**/README.md

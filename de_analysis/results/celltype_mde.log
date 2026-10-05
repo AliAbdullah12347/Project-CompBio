@@ -1,0 +1,65 @@
+== 08_celltype_mde ==
+n=226 | 200 genes per block | bulk MDE 0.203 | share run: TRUE
+
+lineage  mean_frac  predicted MDE = bulk_MDE / frac
+  gran    0.4008     0.51 log2FC
+  mono    0.2713     0.75 log2FC
+  T       0.2407     0.84 log2FC
+  NK      0.0729     2.79 log2FC
+  B       0.0144     14.10 log2FC
+  gran  power 0.035 / 0.425 / 0.990 at L = 0.25 / 0.50 / 1.00 | FP 26/200  [5.1 min]
+  mono  power 0.205 / 0.905 / 0.990 at L = 0.40 / 0.80 / 1.60 | FP 2/200  [5.0 min]
+  T     power 0.230 / 0.840 / 0.995 at L = 0.40 / 0.80 / 1.60 | FP 0/200  [5.2 min]
+  NK    power 0.020 / 0.495 / 0.980 at L = 1.00 / 2.50 / 5.00 | FP 2/200  [5.1 min]
+  B     power 0.000 / 0.300 / 0.975 at L = 5.00 / 15.00 / 30.00 | FP 0/200  [5.1 min]
+
+=== cell-type minimum detectable effect ===
+ lineage mean_frac log2FC bulk_equivalent detected n_spiked power false_pos
+    gran    0.4008   0.25          0.1002        7      200 0.035        26
+    gran    0.4008   0.50          0.2004       85      200 0.425        26
+    gran    0.4008   1.00          0.4008      198      200 0.990        26
+    mono    0.2713   0.40          0.1085       41      200 0.205         2
+    mono    0.2713   0.80          0.2170      181      200 0.905         2
+    mono    0.2713   1.60          0.4340      198      200 0.990         2
+       T    0.2407   0.40          0.0963       46      200 0.230         0
+       T    0.2407   0.80          0.1925      168      200 0.840         0
+       T    0.2407   1.60          0.3851      199      200 0.995         0
+      NK    0.0729   1.00          0.0729        4      200 0.020         2
+      NK    0.0729   2.50          0.1822       99      200 0.495         2
+      NK    0.0729   5.00          0.3644      196      200 0.980         2
+       B    0.0144   5.00          0.0720        0      200 0.000         0
+       B    0.0144  15.00          0.2160       60      200 0.300         0
+       B    0.0144  30.00          0.4320      195      200 0.975         0
+ n_control
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+       200
+
+  MDE at 80% power, by lineage:
+    gran  0.83 log2FC        (predicted 0.51 from abundance alone)
+    mono  0.74 log2FC        (predicted 0.75 from abundance alone)
+    T     0.77 log2FC        (predicted 0.84 from abundance alone)
+    NK    4.07 log2FC        (predicted 2.79 from abundance alone)
+    B     26.11 log2FC       (predicted 14.10 from abundance alone)
+
+  config meaningfulness floor = 0.5 log2FC
+  A lineage whose MDE exceeds that floor cannot support a null claim:
+    gran  NULL NOT INTERPRETABLE -- underpowered by construction
+    mono  NULL NOT INTERPRETABLE -- underpowered by construction
+    T     NULL NOT INTERPRETABLE -- underpowered by construction
+    NK    NULL NOT INTERPRETABLE -- underpowered by construction
+    B     NULL NOT INTERPRETABLE -- underpowered by construction
+
+wrote results/celltype_mde*.csv

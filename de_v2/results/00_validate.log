@@ -1,0 +1,37 @@
+== 00_validate_mtc ==
+
+PART 1: exact identities
+  [PASS] Storey q at pi0=1 equals BH exactly                        max diff 2.22e-16
+  [PASS] q-values monotone in p                                     
+  [PASS] q-values within [0,1]                                      
+  [PASS] Bonferroni >= Holm                                         
+  [PASS] Holm >= Hommel                                             
+  [PASS] Holm >= BH (FWER >= FDR)                                   
+  [PASS] BY >= BH                                                   
+  [PASS] Storey q <= BH (pi0<=1 so adaptive is never worse)         
+  [PASS] pi0 spline ~ 1 on pure null                                got 0.9974
+  [PASS] pi0 bootstrap ~ 1 on pure null                             got 0.9939
+  [PASS] pi0 spline recovers 0.70                                   got 0.6944
+  [PASS] pi0 bootstrap recovers 0.70                                got 0.7005
+  [PASS] Simes p uniform under the null                             rejection rate 0.048
+  [PASS] BB with K=1 reduces to BH                                  max diff 0
+  [PASS] permutation FDR matches BH under a uniform null            max diff 0.0055
+
+PART 2: operating characteristics on simulated data with known truth
+  150 datasets, 8,000 genes, 5% truly non-null, target FDR 0.05
+
+  mean realised false discovery proportion (target <= 0.05):
+    BH       0.0460
+    Storey   0.0487
+  mean power (of 400 true effects):
+    BH       0.4939
+    Storey   0.5020
+  mean estimated pi0: 0.9485   (true value 0.9500)
+  [PASS] BH controls FDR at 0.05 (reference)                        0.0460
+  [PASS] Storey controls FDR at 0.05                                0.0487
+  [PASS] Storey at least as powerful as BH                          0.5020 vs 0.4939
+  [PASS] pi0 estimator not biased downward                          0.9485 vs true 0.9500
+
+========================================================================
+ALL CHECKS PASSED -- the corrections in mtc.R behave as advertised.
+wrote results/mtc_validation.csv

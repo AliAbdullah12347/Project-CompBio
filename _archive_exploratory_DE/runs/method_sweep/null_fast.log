@@ -1,0 +1,54 @@
+[P] 10 permutations, exposure agreement with observed: 0.504-0.611 (chance 0.560)
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  1     0 DEG@05  p<.05 0.0283  lambda 0.906  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  2     0 DEG@05  p<.05 0.0171  lambda 0.580  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  3     0 DEG@05  p<.05 0.0139  lambda 0.666  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  4     0 DEG@05  p<.05 0.0357  lambda 0.989  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  5     0 DEG@05  p<.05 0.0106  lambda 0.511  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  6     0 DEG@05  p<.05 0.0271  lambda 0.823  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  7     0 DEG@05  p<.05 0.0372  lambda 1.053  pi0 0.979
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  8     0 DEG@05  p<.05 0.0654  lambda 1.119  pi0 0.955
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm  9     0 DEG@05  p<.05 0.0299  lambda 0.780  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] voom     perm 10     0 DEG@05  p<.05 0.1087  lambda 1.789  pi0 0.775
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  1     0 DEG@05  p<.05 0.0274  lambda 0.871  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  2     0 DEG@05  p<.05 0.0186  lambda 0.600  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  3     0 DEG@05  p<.05 0.0164  lambda 0.702  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  4     0 DEG@05  p<.05 0.0351  lambda 0.980  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  5     0 DEG@05  p<.05 0.0123  lambda 0.523  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  6     0 DEG@05  p<.05 0.0269  lambda 0.839  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  7     0 DEG@05  p<.05 0.0380  lambda 1.047  pi0 0.978
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  8     0 DEG@05  p<.05 0.0696  lambda 1.173  pi0 0.936
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm  9     0 DEG@05  p<.05 0.0259  lambda 0.737  pi0 1.000
+calcNormFactors has been renamed to normLibSizes
+[P] trend    perm 10     0 DEG@05  p<.05 0.1027  lambda 1.703  pi0 0.787
+
+== P: permutation null, averaged over 10 permutations ==
+ method  B deg05_mean deg05_max deg05_n_nonzero deg10_mean frac_p05_mean
+   voom 10          0         0               0        0.1       0.03739
+  trend 10          0         0               0        0.0       0.03730
+ frac_p01_mean frac_p001_mean lambda_mean pi0_mean ksD_mean cpu_mean
+       0.00620        0.00056      0.9216   0.9710  0.07311     19.5
+       0.00626        0.00050      0.9174   0.9702  0.07246      8.6
+ excess_type1_at_05 excess_type1_at_01
+              0.748              0.620
+              0.746              0.626
+
+[null] done

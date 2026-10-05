@@ -9,7 +9,7 @@ hand; re-run the scripts.
 
 | Task | File |
 |:--|:--|
-| Feeding CIBERSORT / CIBERSORTx | `mixture_TPM_hgnc_474.txt` |
+| Feeding CIBERSORT / CIBERSORTx | `mixture_TPM_hgnc_full_474.txt` |
 | Any gene-level analysis (filter, TMM, voom, WGCNA) | `counts_474.tsv.gz` |
 | Any model with covariates | `metadata_474_imputed.csv` |
 | Normalising some other file to this cohort | `sample_list.txt` |
@@ -24,8 +24,18 @@ title — which is why the column order is kept identical across all four.
 
 ## The files
 
-**`mixture_TPM_hgnc_474.txt`** — 50.7 MB, 20,628 genes × 474. TPM, HGNC
-symbols, first column header `GeneSymbol`. Exactly the layout CIBERSORT expects.
+**`mixture_TPM_hgnc_full_474.txt`** — 107 MB, 55,765 gene symbols × 474. TPM in
+linear space, every column summing to 1e6, HGNC symbols, `GeneSymbol` header.
+This is the CIBERSORTx upload. No gene was filtered out: 57,820 deposited rows
+minus 47 ENSGR duplicates minus 2,008 rows sharing a symbol (summed) = 55,765.
+
+**`mixture_TPM_hgnc_474.txt`** — 49.0 MB, 20,628 symbols × 474. Smaller
+fallback for when the portal rejects 107 MB, restricted to protein-coding plus
+IG/TR gene segments. Identical results for a run without batch correction,
+since the regression only touches the 547 LM22 genes.
+
+`CIBERSORTX.md` has the nine-step walkthrough, the reason for every setting,
+and the full verification table.
 
 Subset from the 480-sample mixture in `../../cibersortx/`. Subsetting after the
 fact is valid **only** because that run had quantile normalisation and batch

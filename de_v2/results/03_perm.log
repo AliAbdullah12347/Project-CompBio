@@ -1,0 +1,20 @@
+== 03_permutation_fdr ==
+B=100 permutations | 11 thresholds
+
+  WB_LI_raw    from checkpoint
+  WB_LI_raw    pi0 0.487 | at p<=0.001: obs 701, null measured 16.4, null if uniform 12.4 (x1.33)
+  WB_BPD_raw   from checkpoint
+  WB_BPD_raw   pi0 0.643 | at p<=0.001: obs 67, null measured 9.7, null if uniform 12.4 (x0.79)
+  CT_LI_raw    from checkpoint
+  CT_LI_raw    pi0 0.773 | at p<=0.001: obs 318, null measured 85.8, null if uniform 61.8 (x1.39)
+  CT_BPD_raw   from checkpoint
+  CT_BPD_raw   pi0 0.802 | at p<=0.001: obs 147, null measured 149.9, null if uniform 61.8 (x2.42)
+
+=== how many genes does each correction keep, at 0.05? ===
+   analysis n_tests   BH  BY storey holm permutation
+  WB_LI_raw   12368 1426 303   2568  125        2757
+ WB_BPD_raw   12368    4   0      5    0          32
+  CT_LI_raw   61840  105  33    120   22         215
+ CT_BPD_raw   61840    0   0      0    0           0
+
+wrote results/permutation_fdr.csv, correction_comparison.csv

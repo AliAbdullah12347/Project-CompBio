@@ -1,0 +1,181 @@
+controls 234 | BP1 off lithium 74 | BP1 on lithium 152
+
+== A. ON-LITHIUM subsampled to n=74, vs all 234 controls (40 draws) ==
+calcNormFactors has been renamed to normLibSizes
+  draw  1  DEG= 1467  genes=12422  pi0=0.598
+calcNormFactors has been renamed to normLibSizes
+  draw  2  DEG= 1552  genes=12425  pi0=0.584
+calcNormFactors has been renamed to normLibSizes
+  draw  3  DEG=  960  genes=12467  pi0=0.608
+calcNormFactors has been renamed to normLibSizes
+  draw  4  DEG= 2075  genes=12486  pi0=0.550
+calcNormFactors has been renamed to normLibSizes
+  draw  5  DEG= 1070  genes=12491  pi0=0.632
+calcNormFactors has been renamed to normLibSizes
+  draw  6  DEG= 1207  genes=12445  pi0=0.617
+calcNormFactors has been renamed to normLibSizes
+  draw  7  DEG= 2197  genes=12432  pi0=0.537
+calcNormFactors has been renamed to normLibSizes
+  draw  8  DEG= 1389  genes=12379  pi0=0.572
+calcNormFactors has been renamed to normLibSizes
+  draw  9  DEG= 1516  genes=12408  pi0=0.589
+calcNormFactors has been renamed to normLibSizes
+  draw 10  DEG= 1668  genes=12398  pi0=0.584
+calcNormFactors has been renamed to normLibSizes
+  draw 11  DEG= 1398  genes=12433  pi0=0.589
+calcNormFactors has been renamed to normLibSizes
+  draw 12  DEG= 1842  genes=12390  pi0=0.558
+calcNormFactors has been renamed to normLibSizes
+  draw 13  DEG= 1929  genes=12439  pi0=0.560
+calcNormFactors has been renamed to normLibSizes
+  draw 14  DEG= 1345  genes=12447  pi0=0.617
+calcNormFactors has been renamed to normLibSizes
+  draw 15  DEG=  505  genes=12418  pi0=0.694
+calcNormFactors has been renamed to normLibSizes
+  draw 16  DEG=  866  genes=12544  pi0=0.625
+calcNormFactors has been renamed to normLibSizes
+  draw 17  DEG=  657  genes=12433  pi0=0.668
+calcNormFactors has been renamed to normLibSizes
+  draw 18  DEG= 1478  genes=12397  pi0=0.605
+calcNormFactors has been renamed to normLibSizes
+  draw 19  DEG= 2522  genes=12410  pi0=0.522
+calcNormFactors has been renamed to normLibSizes
+  draw 20  DEG= 1461  genes=12422  pi0=0.594
+calcNormFactors has been renamed to normLibSizes
+  draw 21  DEG=  638  genes=12403  pi0=0.637
+calcNormFactors has been renamed to normLibSizes
+  draw 22  DEG= 1631  genes=12473  pi0=0.590
+calcNormFactors has been renamed to normLibSizes
+  draw 23  DEG=  843  genes=12452  pi0=0.648
+calcNormFactors has been renamed to normLibSizes
+  draw 24  DEG= 1582  genes=12452  pi0=0.587
+calcNormFactors has been renamed to normLibSizes
+  draw 25  DEG= 2609  genes=12411  pi0=0.496
+calcNormFactors has been renamed to normLibSizes
+  draw 26  DEG= 1620  genes=12455  pi0=0.582
+calcNormFactors has been renamed to normLibSizes
+  draw 27  DEG= 1654  genes=12412  pi0=0.573
+calcNormFactors has been renamed to normLibSizes
+  draw 28  DEG= 1121  genes=12399  pi0=0.634
+calcNormFactors has been renamed to normLibSizes
+  draw 29  DEG= 1949  genes=12467  pi0=0.543
+calcNormFactors has been renamed to normLibSizes
+  draw 30  DEG=  709  genes=12433  pi0=0.649
+calcNormFactors has been renamed to normLibSizes
+  draw 31  DEG=  621  genes=12442  pi0=0.648
+calcNormFactors has been renamed to normLibSizes
+  draw 32  DEG= 1257  genes=12412  pi0=0.599
+calcNormFactors has been renamed to normLibSizes
+  draw 33  DEG= 2440  genes=12437  pi0=0.515
+calcNormFactors has been renamed to normLibSizes
+  draw 34  DEG=  755  genes=12437  pi0=0.646
+calcNormFactors has been renamed to normLibSizes
+  draw 35  DEG= 2596  genes=12438  pi0=0.514
+calcNormFactors has been renamed to normLibSizes
+  draw 36  DEG= 2784  genes=12505  pi0=0.499
+calcNormFactors has been renamed to normLibSizes
+  draw 37  DEG= 1486  genes=12475  pi0=0.588
+calcNormFactors has been renamed to normLibSizes
+  draw 38  DEG= 1251  genes=12428  pi0=0.621
+calcNormFactors has been renamed to normLibSizes
+  draw 39  DEG=  755  genes=12362  pi0=0.644
+calcNormFactors has been renamed to normLibSizes
+  draw 40  DEG= 2178  genes=12360  pi0=0.530
+
+== B. CONTROL vs CONTROL null: 74 controls vs the other 160 (40 draws) ==
+calcNormFactors has been renamed to normLibSizes
+  draw  1  DEG=    0  pi0=0.828
+calcNormFactors has been renamed to normLibSizes
+  draw  2  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw  3  DEG=    0  pi0=0.804
+calcNormFactors has been renamed to normLibSizes
+  draw  4  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw  5  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw  6  DEG=    0  pi0=0.748
+calcNormFactors has been renamed to normLibSizes
+  draw  7  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw  8  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw  9  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 10  DEG=    0  pi0=0.940
+calcNormFactors has been renamed to normLibSizes
+  draw 11  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 12  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 13  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 14  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 15  DEG=    0  pi0=0.808
+calcNormFactors has been renamed to normLibSizes
+  draw 16  DEG=    0  pi0=0.903
+calcNormFactors has been renamed to normLibSizes
+  draw 17  DEG=    0  pi0=0.958
+calcNormFactors has been renamed to normLibSizes
+  draw 18  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 19  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 20  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 21  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 22  DEG=    0  pi0=0.943
+calcNormFactors has been renamed to normLibSizes
+  draw 23  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 24  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 25  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 26  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 27  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 28  DEG=    0  pi0=0.787
+calcNormFactors has been renamed to normLibSizes
+  draw 29  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 30  DEG=    0  pi0=0.970
+calcNormFactors has been renamed to normLibSizes
+  draw 31  DEG=    0  pi0=0.839
+calcNormFactors has been renamed to normLibSizes
+  draw 32  DEG=    0  pi0=0.824
+calcNormFactors has been renamed to normLibSizes
+  draw 33  DEG=    0  pi0=0.888
+calcNormFactors has been renamed to normLibSizes
+  draw 34  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 35  DEG=    0  pi0=0.962
+calcNormFactors has been renamed to normLibSizes
+  draw 36  DEG=    0  pi0=0.779
+calcNormFactors has been renamed to normLibSizes
+  draw 37  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+  draw 38  DEG=    0  pi0=0.776
+calcNormFactors has been renamed to normLibSizes
+  draw 39  DEG=    0  pi0=0.960
+calcNormFactors has been renamed to normLibSizes
+  draw 40  DEG=    0  pi0=1.000
+calcNormFactors has been renamed to normLibSizes
+
+== POWER-MATCHED COMPARISON ==
+                                  comparison n_case n_draws deg_median deg_min
+ BP1 off lithium (74) vs control  [OBSERVED]     74       1        4.0       4
+  BP1 on lithium subsampled to 74 vs control     74      40     1472.5     505
+       control (74) vs control (160)  [NULL]     74      40        0.0       0
+ deg_max pi0_median
+       4      0.706
+    2784      0.589
+       0      1.000
+
+Draws of the power-matched ON-lithium contrast giving <= 4 DEGs: 0/40 (p = 0.000)
+Control-vs-control null median 0 DEG -- pipeline is calibrated
+
+wrote runs/power_matched/

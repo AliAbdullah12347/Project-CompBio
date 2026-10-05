@@ -1,0 +1,31 @@
+== cellcomp_power ==
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+canonical rebuilt: 12173 genes x 226 samples (matches de_fit)
+
+--- collinearity between lithium and composition ---
+ resid_var_canonical resid_var_adjusted R2_lithium_on_ILR_given_covars
+             0.20289            0.19509                         0.0384
+ variance_inflation se_inflation df_canonical df_adjusted
+               1.04       1.0198          213         209
+=> every standard error grows by x1.020 before any gene is considered.
+
+effect pool: 1382 canonical DEGs, |logFC| median 0.180 IQR 0.131-0.249
+path a (lithium -> b1) = 0.1558
+
+--- spike-in calibration ---
+                   gene_class     n detected_canonical detected_adjusted
+ TRANS (true transcriptional)   800                583               556
+  COMPOS (composition-driven)   800                 14                 4
+          unspiked background 10573               1751               521
+ survival_rate median_absFC_canonical median_absFC_adjusted shrinkage
+        0.9537                 0.1779                0.1808    1.0163
+        0.2857                 0.2029                0.0272    0.1341
+        0.2975                 0.0713                0.0399    0.5596
+calcNormFactors has been renamed to normLibSizes
+
+survival:  TRANS 0.954 (ceiling)   REAL 0.218   COMPOS 0.286 (floor)
+real signature sits -10.2% of the way from 'pure composition' to 'pure transcription'
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes

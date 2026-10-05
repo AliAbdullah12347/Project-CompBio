@@ -1,0 +1,11 @@
+"metric","value"
+"krebs_deg_pre",3031
+"krebs_deg_post",233
+"krebs_pct_removed",92.3
+"our_deg_pre",1459
+"our_deg_post_ilr",328
+"our_pct_removed",77.5
+"logFC_cor_with_krebs",0.709
+"deg_overlap",887
+"off_lithium_deg",4
+"on_lithium_deg",2603

@@ -1,0 +1,5 @@
+"analysis","genes","deg_fdr05","pct_of_genes","deg_fdr10","deg_bonf","pi0","pi0_lo","pi0_hi","pi0_ci_includes_1","max_abs_logFC","min_fdr"
+"WB_LI_raw",12368,1426,11.53,2513,125,0.5084,0.493,0.5226,FALSE,0.911,6.99e-16
+"WB_LI_ilr",12368,341,2.757,537,90,0.762,0.745,0.7791,FALSE,0.803,6.23e-18
+"WB_BPD_raw",12368,4,0.032,9,0,0.7091,0.6915,0.7266,FALSE,0.917,0.0489
+"WB_BPD_ilr",12368,0,0,0,0,0.8627,0.8449,0.8807,FALSE,0.773,0.106

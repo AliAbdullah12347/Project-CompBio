@@ -1,0 +1,2 @@
+"statistic","n_bulk_null","n_subsample","n_perm","obs_pct","null_median","null_lo","null_hi","p_emp","threshold_pct","verdict"
+"pct bulk-null genes with opposite-sign lineage effects, nominal p<0.05",12364,800,200,0,0,0,0.125,1,10,"NOT SUPPORTED"

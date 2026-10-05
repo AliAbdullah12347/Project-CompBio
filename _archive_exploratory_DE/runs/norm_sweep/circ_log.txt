@@ -1,0 +1,101 @@
+=========================================================
+norm_sweep_circularity
+=========================================================
+calcNormFactors has been renamed to normLibSizes
+baseline: 1382 DEG over all 12173 genes
+
+### S1  split-gene control (10 random half-splits) ###
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  1  nfA~lithium p=3.94e-04 | DEG in held-out half B: base  706 -> +nfA  81 (11%), +pcA 272 (39%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  2  nfA~lithium p=1.68e-03 | DEG in held-out half B: base  688 -> +nfA 107 (16%), +pcA 266 (39%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  3  nfA~lithium p=1.23e-04 | DEG in held-out half B: base  702 -> +nfA  68 (10%), +pcA 237 (34%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  4  nfA~lithium p=1.47e-03 | DEG in held-out half B: base  689 -> +nfA  96 (14%), +pcA 257 (37%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  5  nfA~lithium p=1.16e-03 | DEG in held-out half B: base  686 -> +nfA  67 (10%), +pcA 257 (37%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  6  nfA~lithium p=6.77e-03 | DEG in held-out half B: base  668 -> +nfA 155 (23%), +pcA 251 (38%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  7  nfA~lithium p=1.86e-03 | DEG in held-out half B: base  684 -> +nfA 123 (18%), +pcA 229 (33%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  8  nfA~lithium p=1.33e-03 | DEG in held-out half B: base  729 -> +nfA 128 (18%), +pcA 259 (36%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split  9  nfA~lithium p=3.21e-04 | DEG in held-out half B: base  709 -> +nfA  87 (12%), +pcA 251 (35%)
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  split 10  nfA~lithium p=1.12e-03 | DEG in held-out half B: base  704 -> +nfA 105 (15%), +pcA 237 (34%)
+
+held-out half B, mean DEG retained: +nfA 14.6% (sd 4.2), +pcA 36.1%
+training half A, mean DEG retained: +nfA 13.9%
+if held-out and training retention are similar, the collapse is NOT circularity
+
+### S2  housekeeping-gene normalisation ###
+housekeeping genes present in filtered set: 18 of 18 panel members (ACTB,B2M,GAPDH,GUSB,HMBS,HPRT1,PGK1,POLR2A,PPIA,PSMB4,RPL13A,RPLP0,SDHA,TBP,TFRC,UBC,VPS29,YWHAZ)
+calcNormFactors has been renamed to normLibSizes
+                                     quantity      value
+         DEG under housekeeping normalisation 4274.00000
+                                DEG under TMM 1382.00000
+                               DEG under none 4013.00000
+                  Jaccard housekeeping vs TMM    0.12022
+                 Jaccard housekeeping vs none    0.70269
+     corr log2(hk factor) vs log2(TMM factor)   -0.18689
+              lithium coef on log2(hk factor)    0.03425
+                   p for that coef (adjusted)    0.39917
+ corr log2(hk factor) vs granulocyte fraction   -0.02339
+
+### S3  the defensible range ###
+                               pipeline deg_fdr05 fold_vs_baseline
+          voom + TMM (project baseline)      1382             1.00
+                             voom + RLE      1407             1.02
+                   voom + upperquartile      1672             1.21
+                  voom + TMM + quantile      1604             1.16
+  voom, no normalisation (log-CPM only)      4013             2.90
+ voom + housekeeping-gene normalisation      4274             3.09
+      voom + TMM + granulocyte fraction       234             0.17
+            voom + TMM + 4 ILR balances       350             0.25
+           voom + TMM + log2 TMM factor       158             0.11
+
+range across defensible pipelines: 158 to 4274 DEG (27.1-fold)
+
+done.

@@ -1,0 +1,73 @@
+
+================ BPD  (n=308) ================
+bulk-null genes 12364 of 12368 | subsample 800 | 200 permutations
+observed: pi0 gran=1.000 mono=1.000 T=0.522 NK=0.880 B=0.430 | disc 0.00%  [2 s per fit set, ETA 6 min]
+   25/200  elapsed   0.8 min  ETA   5.4 min
+   50/200  elapsed   1.5 min  ETA   4.5 min
+   75/200  elapsed   2.2 min  ETA   3.7 min
+  100/200  elapsed   3.0 min  ETA   3.0 min
+  125/200  elapsed   3.7 min  ETA   2.2 min
+  150/200  elapsed   4.4 min  ETA   1.5 min
+  175/200  elapsed   5.1 min  ETA   0.7 min
+  200/200  elapsed   5.9 min  ETA   0.0 min
+
+--- BPD: is pi0 calibrated? (null should sit near 1.0) ---
+ lineage mean_frac obs_pi0 null_pi0_median null_pi0_q05  p_pi0 obs_deg
+    gran    0.3874  1.0000          0.9863       0.2799 1.0000       0
+    mono    0.2724  1.0000          1.0000       0.3445 1.0000       0
+       T    0.2472  0.5225          1.0000       0.4230 0.0846       0
+      NK    0.0785  0.8800          1.0000       0.3924 0.3731       0
+       B    0.0145  0.4300          1.0000       0.0848 0.1692       0
+ null_deg_q95 p_deg
+         2.35     1
+         0.00     1
+         0.00     1
+         0.00     1
+         0.00     1
+
+--- BPD: pre-specified MECHANISM test (sign discordance) ---
+  observed      : 0.000% of bulk-null genes
+  null          : median 0.000%, 95% range [0.000%, 0.125%]
+  empirical p   : 1.0000 | pre-specified threshold >=10%
+  VERDICT       : NOT SUPPORTED
+
+================ LI  (n=226) ================
+bulk-null genes 10942 of 12368 | subsample 800 | 200 permutations
+observed: pi0 gran=0.335 mono=1.000 T=1.000 NK=1.000 B=0.425 | disc 0.00%  [1 s per fit set, ETA 5 min]
+   25/200  elapsed   0.6 min  ETA   4.0 min
+   50/200  elapsed   1.1 min  ETA   3.4 min
+   75/200  elapsed   1.7 min  ETA   2.8 min
+  100/200  elapsed   2.2 min  ETA   2.2 min
+  125/200  elapsed   2.8 min  ETA   1.7 min
+  150/200  elapsed   3.3 min  ETA   1.1 min
+  175/200  elapsed   3.9 min  ETA   0.6 min
+  200/200  elapsed   4.4 min  ETA   0.0 min
+
+--- LI: is pi0 calibrated? (null should sit near 1.0) ---
+ lineage mean_frac obs_pi0 null_pi0_median null_pi0_q05  p_pi0 obs_deg
+    gran    0.3874   0.335          0.9912       0.3175 0.0647       0
+    mono    0.2724   1.000          1.0000       0.4072 1.0000       0
+       T    0.2472   1.000          1.0000       0.2925 1.0000       0
+      NK    0.0785   1.000          1.0000       0.3865 1.0000       0
+       B    0.0145   0.425          1.0000       0.0725 0.2438       0
+ null_deg_q95 p_deg
+         0.05     1
+         0.00     1
+         1.00     1
+         0.00     1
+         0.00     1
+
+
+================== CALIBRATION VERDICT ==================
+  BPD  gran  obs pi0 1.000 | null median 0.986 -> calibrated, pi0 interpretable
+  BPD  mono  obs pi0 1.000 | null median 1.000 -> calibrated, pi0 interpretable
+  BPD  T     obs pi0 0.522 | null median 1.000 -> calibrated, pi0 interpretable
+  BPD  NK    obs pi0 0.880 | null median 1.000 -> calibrated, pi0 interpretable
+  BPD  B     obs pi0 0.430 | null median 1.000 -> calibrated, pi0 interpretable
+  LI   gran  obs pi0 0.335 | null median 0.991 -> calibrated, pi0 interpretable
+  LI   mono  obs pi0 1.000 | null median 1.000 -> calibrated, pi0 interpretable
+  LI   T     obs pi0 1.000 | null median 1.000 -> calibrated, pi0 interpretable
+  LI   NK    obs pi0 1.000 | null median 1.000 -> calibrated, pi0 interpretable
+  LI   B     obs pi0 0.425 | null median 1.000 -> calibrated, pi0 interpretable
+
+wrote results/celltype_permutation_calibration.csv and celltype_mechanism_*.csv

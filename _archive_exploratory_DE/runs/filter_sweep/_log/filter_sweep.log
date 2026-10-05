@@ -1,0 +1,197 @@
+lithium subset: 226 samples, 57773 genes before filtering
+
+-- genes retained by each grid cell --
+     mp0.1 mp0.25 mp0.5 mp0.75 mp0.9   mp1
+mc0  37326  28484 23843  20645 18367 12603
+mc1  28812  23586 20673  18351 16482 11111
+mc5  20132  18126 16411  14871 13588  8377
+mc10 17072  15726 14387  13203 12173  6578
+mc20 14541  13554 12566  11556 10532  4483
+mc50 11771  10988 10082   9137  8002  2091
+  mc0_mp010    genes= 37326  DEG=  881  62s
+  mc1_mp010    genes= 28812  DEG= 1029  49s
+  mc5_mp010    genes= 20132  DEG= 1242  37s
+  mc10_mp010   genes= 17072  DEG= 1399  33s
+  mc20_mp010   genes= 14541  DEG= 1455  32s
+  mc50_mp010   genes= 11771  DEG= 1420  33s
+  mc0_mp025    genes= 28484  DEG= 1053  79s
+  mc1_mp025    genes= 23586  DEG= 1136  62s
+  mc5_mp025    genes= 18126  DEG= 1374  64s
+  mc10_mp025   genes= 15726  DEG= 1398  34s
+  mc20_mp025   genes= 13554  DEG= 1417  25s
+  mc50_mp025   genes= 10988  DEG= 1466  28s
+  mc0_mp050    genes= 23843  DEG= 1155  49s
+  mc1_mp050    genes= 20673  DEG= 1237  53s
+  mc5_mp050    genes= 16411  DEG= 1374  46s
+  mc10_mp050   genes= 14387  DEG= 1432  46s
+  mc20_mp050   genes= 12566  DEG= 1459  40s
+  mc50_mp050   genes= 10082  DEG= 1316  37s
+  mc0_mp075    genes= 20645  DEG= 1247  69s
+  mc1_mp075    genes= 18351  DEG= 1290  40s
+  mc5_mp075    genes= 14871  DEG= 1423  50s
+  mc10_mp075   genes= 13203  DEG= 1435  45s
+  mc20_mp075   genes= 11556  DEG= 1393  41s
+  mc50_mp075   genes=  9137  DEG= 1309  26s
+  mc0_mp090    genes= 18367  DEG= 1269  86s
+  mc1_mp090    genes= 16482  DEG= 1369  45s
+  mc5_mp090    genes= 13588  DEG= 1431  39s
+  mc10_mp090   genes= 12173  DEG= 1382  30s
+  mc20_mp090   genes= 10532  DEG= 1323  26s
+  mc50_mp090   genes=  8002  DEG= 1259  35s
+  mc0_mp100    genes= 12603  DEG= 1420  48s
+  mc1_mp100    genes= 11111  DEG= 1367  38s
+  mc5_mp100    genes=  8377  DEG= 1379  28s
+  mc10_mp100   genes=  6578  DEG= 1261  21s
+  mc20_mp100   genes=  4483  DEG= 1059  37s
+  mc50_mp100   genes=  2091  DEG=  605  21s
+calcNormFactors has been renamed to normLibSizes
+Treating all samples as belonging to one group.
+  fbe_design   genes= 23246
+  fbe_group    genes= 15978
+  fbe_nogroup  genes= 13789
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells   615350  32.9    1170541  62.6   872929  46.7
+Vcells 26013034 198.5   51539901 393.3 51536925 393.2
+  nofilter     genes= 57773  DEG=12755
+
+canonical mc10_mp090: 12173 genes, 1382 DEG, pi0=0.516
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  TMM mc0_mp010    cor=0.947837 maxdiff=0.17956
+calcNormFactors has been renamed to normLibSizes
+  TMM mc5_mp025    cor=0.983031 maxdiff=0.10689
+calcNormFactors has been renamed to normLibSizes
+  TMM mc0_mp050    cor=0.949148 maxdiff=0.22121
+calcNormFactors has been renamed to normLibSizes
+  TMM mc20_mp050   cor=0.995142 maxdiff=0.04242
+calcNormFactors has been renamed to normLibSizes
+  TMM mc10_mp090   cor=1.000000 maxdiff=0.00000
+calcNormFactors has been renamed to normLibSizes
+  TMM mc50_mp090   cor=0.980053 maxdiff=0.07814
+calcNormFactors has been renamed to normLibSizes
+  TMM mc50_mp100   cor=0.835585 maxdiff=0.21826
+calcNormFactors has been renamed to normLibSizes
+  TMM fbe_design   cor=0.956862 maxdiff=0.18578
+calcNormFactors has been renamed to normLibSizes
+  TMM fbe_nogroup  cor=0.993201 maxdiff=0.04118
+
+== DEG count vs universe size (grid cells only) ==
+Spearman(n_genes, n_deg_05)   = -0.269
+Spearman(n_genes, pct_deg_05) = -0.998
+Spearman(n_genes, pi0)        = +0.996
+slope of log(DEG) on log(genes) = +0.073  (1.0 = pure bookkeeping)
+fixed-universe DEG across cells: min 605  median 1390  max 1487  (canonical reference on the same subsets: 521..1387)
+
+-- n_genes --
+             min_prop=0.1 min_prop=0.25 min_prop=0.5 min_prop=0.75 min_prop=0.9
+min_count=0         37326         28484        23843         20645        18367
+min_count=1         28812         23586        20673         18351        16482
+min_count=5         20132         18126        16411         14871        13588
+min_count=10        17072         15726        14387         13203        12173
+min_count=20        14541         13554        12566         11556        10532
+min_count=50        11771         10988        10082          9137         8002
+             min_prop=1
+min_count=0       12603
+min_count=1       11111
+min_count=5        8377
+min_count=10       6578
+min_count=20       4483
+min_count=50       2091
+
+-- n_deg_05 --
+             min_prop=0.1 min_prop=0.25 min_prop=0.5 min_prop=0.75 min_prop=0.9
+min_count=0           881          1053         1155          1247         1269
+min_count=1          1029          1136         1237          1290         1369
+min_count=5          1242          1374         1374          1423         1431
+min_count=10         1399          1398         1432          1435         1382
+min_count=20         1455          1417         1459          1393         1323
+min_count=50         1420          1466         1316          1309         1259
+             min_prop=1
+min_count=0        1420
+min_count=1        1367
+min_count=5        1379
+min_count=10       1261
+min_count=20       1059
+min_count=50        605
+
+-- pct_deg_05 --
+             min_prop=0.1 min_prop=0.25 min_prop=0.5 min_prop=0.75 min_prop=0.9
+min_count=0        2.3603        3.6968       4.8442        6.0402       6.9091
+min_count=1        3.5714        4.8164       5.9837        7.0296       8.3060
+min_count=5        6.1693        7.5803       8.3724        9.5690      10.5314
+min_count=10       8.1947        8.8897       9.9534       10.8687      11.3530
+min_count=20      10.0062       10.4545      11.6107       12.0543      12.5617
+min_count=50      12.0635       13.3418      13.0530       14.3264      15.7336
+             min_prop=1
+min_count=0     11.2672
+min_count=1     12.3031
+min_count=5     16.4617
+min_count=10    19.1700
+min_count=20    23.6226
+min_count=50    28.9335
+
+-- pi0 --
+             min_prop=0.1 min_prop=0.25 min_prop=0.5 min_prop=0.75 min_prop=0.9
+min_count=0        0.7721        0.7335       0.6786        0.6403       0.6115
+min_count=1        0.7559        0.6768       0.6450        0.6113       0.5740
+min_count=5        0.6480        0.5931       0.5691        0.5475       0.5299
+min_count=10       0.5752        0.5630       0.5459        0.5209       0.5161
+min_count=20       0.5445        0.5294       0.5158        0.5138       0.5040
+min_count=50       0.5106        0.4918       0.5017        0.4813       0.4651
+             min_prop=1
+min_count=0      0.5216
+min_count=1      0.5011
+min_count=5      0.4598
+min_count=10     0.4372
+min_count=20     0.4261
+min_count=50     0.4055
+
+-- jaccard_vs_canon --
+             min_prop=0.1 min_prop=0.25 min_prop=0.5 min_prop=0.75 min_prop=0.9
+min_count=0        0.4287        0.5510       0.5936        0.6535       0.6853
+min_count=1        0.5396        0.5846       0.6430        0.6997       0.7771
+min_count=5        0.6400        0.7129       0.7599        0.8132       0.9136
+min_count=10       0.7295        0.8017       0.8660        0.9008       1.0000
+min_count=20       0.8530        0.8938       0.9300        0.9231       0.8553
+min_count=50       0.8932        0.8256       0.8132        0.7372       0.6589
+             min_prop=1
+min_count=0      0.9022
+min_count=1      0.8790
+min_count=5      0.6015
+min_count=10     0.4882
+min_count=20     0.3768
+min_count=50     0.1884
+
+-- n_deg_fixedU --
+             min_prop=0.1 min_prop=0.25 min_prop=0.5 min_prop=0.75 min_prop=0.9
+min_count=0          1302          1453         1390          1335         1314
+min_count=1          1451          1324         1326          1342         1391
+min_count=5          1293          1457         1427          1436         1412
+min_count=10         1487          1409         1408          1423         1382
+min_count=20         1425          1398         1443          1393         1323
+min_count=50         1421          1472         1317          1309         1259
+             min_prop=1
+min_count=0        1422
+min_count=1        1371
+min_count=5        1379
+min_count=10       1261
+min_count=20       1059
+min_count=50        605
+
+-- spearman_t_common --
+             min_prop=0.1 min_prop=0.25 min_prop=0.5 min_prop=0.75 min_prop=0.9
+min_count=0        0.9983        0.9979       0.9984        0.9988       0.9989
+min_count=1        0.9979        0.9986       0.9988        0.9989       0.9991
+min_count=5        0.9983        0.9986       0.9989        0.9994       0.9998
+min_count=10       0.9985        0.9990       0.9993        0.9998       1.0000
+min_count=20       0.9988        0.9991       0.9997        0.9998       0.9996
+min_count=50       0.9989        0.9994       0.9997        0.9989       0.9985
+             min_prop=1
+min_count=0      0.9996
+min_count=1      0.9999
+min_count=5      0.9977
+min_count=10     0.9952
+min_count=20     0.9909
+min_count=50     0.9710
+
+wrote runs/filter_sweep/summary.csv (40 rows) and sweep.rds

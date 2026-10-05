@@ -1,0 +1,5 @@
+"analysis","m","deg_pooled","pct_pooled","pi0_pooled","median_fmi","max_fmi","median_se_inflation"
+"WB_LI_raw",20,1426,11.53,0.5084,0,0,1
+"WB_LI_ilr",20,341,2.757,0.762,0,0,1
+"WB_BPD_raw",20,0,0,0.705,0.003,0.0367,1.0015
+"WB_BPD_ilr",20,0,0,0.8676,0.0026,0.0313,1.0013

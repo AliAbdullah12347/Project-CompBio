@@ -1,0 +1,108 @@
+
+=== 1. case-control, lithium as a covariate ===
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  474 without lithium: 1816 DEG | 474 with lithium: 1 | 444 with lithium: 6
+  [HOLDS] casecon no-lithium DEG                         agent 1816      mine 1816     
+  [HOLDS] casecon +lithium, n=474                        agent 1         mine 1        
+  [HOLDS] casecon +lithium, n=444 (published spec)       agent 6         mine 6        
+
+=== 2. permutation null, lithium contrast (20 permutations, new seed) ===
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  null DEG: mean 0.00  max 0  nonzero in 0/20 | null pi0 mean 0.932
+  [HOLDS] permutation null mean DEG                      agent 0         mine 0        
+  [HOLDS] permutation null mean pi0                      agent 0.971     mine 0.9315   
+
+=== 3. normalisation ===
+calcNormFactors has been renamed to normLibSizes
+  [HOLDS] DEG with TMM                                   agent 1382      mine 1382     
+  [HOLDS] DEG with no normalisation                      agent 4013      mine 4013     
+  [HOLDS] Jaccard none-vs-TMM                            agent 0.212     mine 0.2121   
+
+=== 4. are TMM factors explained by cell composition? ===
+calcNormFactors has been renamed to normLibSizes
+  r2(normfactors ~ 4 ILR balances) = 0.264 | r2(~granulocyte%) = 0.245 | r = -0.495
+  [HOLDS] r2 normfactors ~ ILR balances                  agent 0.237     mine 0.2635   
+  [HOLDS] r normfactors vs granulocyte %                 agent -0.476    mine -0.4946  
+
+=== 5. spike-in: does the adjustment tell composition from transcription? ===
+calcNormFactors has been renamed to normLibSizes
+  TRANS   detected  949/1200 (79%) | survive adjustment  921 (97% of detected) | |logFC| ratio 0.988
+  COMPOS  detected   57/1200 (5%) | survive adjustment   25 (44% of detected) | |logFC| ratio 0.274
+  [HOLDS] TRANS survival rate                            agent 0.907     mine 0.9705   
+         transcriptional spike should SURVIVE composition adjustment
+  [HOLDS] TRANS logFC shrinkage                          agent 1.013     mine 0.988    
+         should be ~1, i.e. none
+  [FAILS] COMPOS survival rate                           agent 0         mine 0.4386   
+         compositional spike should be REMOVED by adjustment
+  [HOLDS] COMPOS logFC shrinkage                         agent 0.174     mine 0.2742   
+         should be far below 1
+
+=== 6. split-half DEG reproducibility (10 splits, new seed) ===
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  reproducibility mean 0.615 (SD 0.148) | sign agreement 0.993
+  [FAILS] split-half reproducibility                     agent 0.32      mine 0.6145   
+  [HOLDS] split-half sign agreement                      agent 0.967     mine 0.9932   
+
+=============================== VERDICT ===============================
+                                    claim    agent  verified holds
+                   casecon no-lithium DEG 1816.000 1816.0000  TRUE
+                  casecon +lithium, n=474    1.000    1.0000  TRUE
+ casecon +lithium, n=444 (published spec)    6.000    6.0000  TRUE
+                permutation null mean DEG    0.000    0.0000  TRUE
+                permutation null mean pi0    0.971    0.9315  TRUE
+                             DEG with TMM 1382.000 1382.0000  TRUE
+                DEG with no normalisation 4013.000 4013.0000  TRUE
+                      Jaccard none-vs-TMM    0.212    0.2121  TRUE
+            r2 normfactors ~ ILR balances    0.237    0.2635  TRUE
+           r normfactors vs granulocyte %   -0.476   -0.4946  TRUE
+                      TRANS survival rate    0.907    0.9705  TRUE
+                    TRANS logFC shrinkage    1.013    0.9880  TRUE
+                     COMPOS survival rate    0.000    0.4386 FALSE
+                   COMPOS logFC shrinkage    0.174    0.2742  TRUE
+               split-half reproducibility    0.320    0.6145 FALSE
+                split-half sign agreement    0.967    0.9932  TRUE
+
+  14 of 16 claims hold within tolerance
+  FAILED: COMPOS survival rate; split-half reproducibility
+
+wrote runs/VERIFY/verdict.csv

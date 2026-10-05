@@ -1,0 +1,11 @@
+"check","value"
+"group constant among all cases (474)",1
+"group constant among cases in Krebs 444",1
+"group B exists only among controls",1
+"lithium=1 exists only among BP1",1
+"n cases 474",240
+"n cases 444",239
+"n BP2 474",14
+"n BP2 444",13
+"BP1 lithium users",152
+"BP1 lithium non-users",74

@@ -1,0 +1,21 @@
+== 04_permutation ==  200 permutations per contrast
+
+calcNormFactors has been renamed to normLibSizes
+BPD  [70.1 min]
+  DEG : mean 4.47  median 0  max 889  nonzero in 5/200
+  pct : mean 0.0362%  95th pct 0.0000%
+  pi0 : mean 0.9380  2.5th 0.6901  97.5th 1.0000
+
+LI loaded from earlier run
+=== observed vs permutation null ===
+ contrast obs_deg null_mean_deg null_max_deg   p_emp_deg obs_pi0 null_pi0_lo
+      BPD       4          4.47          889 0.009950249  0.7091      0.6901
+       LI    1426         17.08         1683 0.009950249  0.5084      0.6057
+ null_pi0_hi pi0_inside_null
+           1            TRUE
+           1           FALSE
+
+  pi0_inside_null = TRUE means the observed pi0 is consistent with no signal.
+  FALSE means signal is present even if few or no genes clear FDR.
+
+wrote results/permnull_*.csv and permutation_vs_observed.csv

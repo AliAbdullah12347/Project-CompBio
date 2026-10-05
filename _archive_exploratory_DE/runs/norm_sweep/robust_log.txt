@@ -1,0 +1,48 @@
+baseline: beta -0.07183  p 3.086e-04  partial r -0.2438
+
+R1 leave-one-out over 226 samples:
+   beta range      -0.07680 to -0.06768 (baseline -0.07183)
+   p range         1.098e-04 to 6.752e-04
+   p < 0.05 in 226 of 226 single-sample deletions
+   five most influential samples (delta beta):
+     12R0163  lithium=0  log2nf=-0.214  delta=-0.00497
+     11R0853  lithium=0  log2nf=-0.691  delta=-0.00497
+     11R0849  lithium=0  log2nf=-0.655  delta=-0.00446
+     11R0809  lithium=1  log2nf=-0.694  delta=+0.00415
+     12R0472  lithium=0  log2nf=+0.341  delta=+0.00386
+
+R2 trimming the most extreme scaling factors:
+ trim_each_tail   n     beta         p partial_r
+          0.000 226 -0.07183 0.0003086   -0.2438
+          0.010 220 -0.06812 0.0004267   -0.2415
+          0.025 214 -0.06718 0.0003074   -0.2508
+          0.050 202 -0.04848 0.0047762   -0.2034
+          0.100 180 -0.04134 0.0101233   -0.1973
+
+R3 dropping one sequencing plate at a time:
+ plate_dropped n_removed   n     beta         p partial_r
+             1        43 183 -0.06255 2.057e-03   -0.2328
+             2        44 182 -0.08922 4.979e-05   -0.3042
+             3        47 179 -0.05809 8.005e-03   -0.2034
+             4        45 181 -0.06917 3.473e-03   -0.2223
+             5        47 179 -0.07253 1.931e-03   -0.2369
+   p < 0.05 with every plate dropped in turn: YES
+
+R4 bootstrap over subjects (2000 resamples):
+   beta -0.07183, bootstrap 95% CI [-0.10804, -0.03425], 2000/2000 resamples negative
+
+-- robustness summary --
+                 check                            detail     beta         p
+              baseline full sample, full covariate block -0.07183 0.0003086
+         leave-one-out            worst of 226 deletions -0.06797 0.0006752
+ trimmed 10% each tail                           n = 180 -0.04134 0.0101233
+        drop one plate                 worst of 5 plates -0.05809 0.0080051
+             bootstrap         95% CI [-0.1080, -0.0343] -0.07183        NA
+ partial_r
+   -0.2438
+   -0.2306
+   -0.1973
+   -0.2034
+   -0.2438
+
+done.

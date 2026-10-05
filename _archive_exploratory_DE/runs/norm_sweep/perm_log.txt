@@ -1,0 +1,266 @@
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  1/50  DEG=   0  pi0=1.000  p<.05=0.0283
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  2/50  DEG=   0  pi0=1.000  p<.05=0.0171
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  3/50  DEG=   0  pi0=1.000  p<.05=0.0139
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  4/50  DEG=   0  pi0=1.000  p<.05=0.0357
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  5/50  DEG=   0  pi0=1.000  p<.05=0.0106
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  6/50  DEG=   0  pi0=1.000  p<.05=0.0271
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  7/50  DEG=   0  pi0=0.979  p<.05=0.0372
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  8/50  DEG=   0  pi0=0.955  p<.05=0.0654
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm  9/50  DEG=   0  pi0=1.000  p<.05=0.0299
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 10/50  DEG=   0  pi0=0.775  p<.05=0.1087
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 11/50  DEG=   0  pi0=0.962  p<.05=0.0475
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 12/50  DEG=   3  pi0=0.894  p<.05=0.0819
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 13/50  DEG=   0  pi0=1.000  p<.05=0.0383
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 14/50  DEG=   0  pi0=1.000  p<.05=0.0334
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 15/50  DEG=   0  pi0=1.000  p<.05=0.0197
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 16/50  DEG=   0  pi0=1.000  p<.05=0.0198
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 17/50  DEG=   0  pi0=0.593  p<.05=0.2160
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 18/50  DEG=   0  pi0=1.000  p<.05=0.0219
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 19/50  DEG=   0  pi0=0.663  p<.05=0.1420
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 20/50  DEG=   0  pi0=1.000  p<.05=0.0262
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 21/50  DEG=   0  pi0=1.000  p<.05=0.0166
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 22/50  DEG=   0  pi0=1.000  p<.05=0.0329
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 23/50  DEG=   0  pi0=1.000  p<.05=0.0140
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 24/50  DEG=   0  pi0=0.911  p<.05=0.0466
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 25/50  DEG=   0  pi0=1.000  p<.05=0.0150
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 26/50  DEG=   0  pi0=1.000  p<.05=0.0234
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 27/50  DEG=   0  pi0=1.000  p<.05=0.0106
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 28/50  DEG=   0  pi0=1.000  p<.05=0.0112
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 29/50  DEG=   0  pi0=1.000  p<.05=0.0182
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 30/50  DEG=   0  pi0=0.934  p<.05=0.0374
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 31/50  DEG=   0  pi0=0.909  p<.05=0.0671
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 32/50  DEG=   0  pi0=1.000  p<.05=0.0388
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 33/50  DEG=   0  pi0=1.000  p<.05=0.0289
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 34/50  DEG=   0  pi0=0.903  p<.05=0.0464
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 35/50  DEG=   0  pi0=0.744  p<.05=0.0874
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 36/50  DEG=   0  pi0=0.663  p<.05=0.1461
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 37/50  DEG=   0  pi0=0.953  p<.05=0.0456
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 38/50  DEG=   0  pi0=0.974  p<.05=0.0324
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 39/50  DEG=   0  pi0=1.000  p<.05=0.0330
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 40/50  DEG=   0  pi0=1.000  p<.05=0.0246
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 41/50  DEG=   0  pi0=0.976  p<.05=0.0291
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 42/50  DEG=   0  pi0=1.000  p<.05=0.0265
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 43/50  DEG=   0  pi0=1.000  p<.05=0.0168
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 44/50  DEG=   0  pi0=1.000  p<.05=0.0167
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 45/50  DEG=   0  pi0=0.894  p<.05=0.0514
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 46/50  DEG=   0  pi0=0.783  p<.05=0.0908
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 47/50  DEG=   0  pi0=0.864  p<.05=0.0795
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 48/50  DEG=   0  pi0=1.000  p<.05=0.0349
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 49/50  DEG=   0  pi0=1.000  p<.05=0.0427
+calcNormFactors has been renamed to normLibSizes
+  voom_TMM             perm 50/50  DEG=   0  pi0=0.861  p<.05=0.0624
+  voom_none_CPM        perm  1/50  DEG=   0  pi0=1.000  p<.05=0.0163
+  voom_none_CPM        perm  2/50  DEG=   0  pi0=0.939  p<.05=0.0411
+  voom_none_CPM        perm  3/50  DEG=   0  pi0=0.985  p<.05=0.0269
+  voom_none_CPM        perm  4/50  DEG=   0  pi0=1.000  p<.05=0.0265
+  voom_none_CPM        perm  5/50  DEG=   0  pi0=1.000  p<.05=0.0068
+  voom_none_CPM        perm  6/50  DEG=   0  pi0=1.000  p<.05=0.0198
+  voom_none_CPM        perm  7/50  DEG=   0  pi0=1.000  p<.05=0.0283
+  voom_none_CPM        perm  8/50  DEG=   0  pi0=1.000  p<.05=0.0472
+  voom_none_CPM        perm  9/50  DEG=   0  pi0=1.000  p<.05=0.0246
+  voom_none_CPM        perm 10/50  DEG=   0  pi0=0.599  p<.05=0.1582
+  voom_none_CPM        perm 11/50  DEG=   0  pi0=0.959  p<.05=0.0358
+  voom_none_CPM        perm 12/50  DEG=   2  pi0=0.829  p<.05=0.0825
+  voom_none_CPM        perm 13/50  DEG=   0  pi0=1.000  p<.05=0.0283
+  voom_none_CPM        perm 14/50  DEG=   0  pi0=1.000  p<.05=0.0273
+  voom_none_CPM        perm 15/50  DEG=   0  pi0=1.000  p<.05=0.0168
+  voom_none_CPM        perm 16/50  DEG=   0  pi0=1.000  p<.05=0.0205
+  voom_none_CPM        perm 17/50  DEG=   0  pi0=0.560  p<.05=0.2561
+  voom_none_CPM        perm 18/50  DEG=   0  pi0=1.000  p<.05=0.0163
+  voom_none_CPM        perm 19/50  DEG=   0  pi0=0.562  p<.05=0.1768
+  voom_none_CPM        perm 20/50  DEG=   0  pi0=1.000  p<.05=0.0173
+  voom_none_CPM        perm 21/50  DEG=   0  pi0=1.000  p<.05=0.0131
+  voom_none_CPM        perm 22/50  DEG=   0  pi0=1.000  p<.05=0.0200
+  voom_none_CPM        perm 23/50  DEG=   0  pi0=1.000  p<.05=0.0094
+  voom_none_CPM        perm 24/50  DEG=   0  pi0=0.942  p<.05=0.0443
+  voom_none_CPM        perm 25/50  DEG=   0  pi0=1.000  p<.05=0.0140
+  voom_none_CPM        perm 26/50  DEG=   0  pi0=1.000  p<.05=0.0143
+  voom_none_CPM        perm 27/50  DEG=   0  pi0=1.000  p<.05=0.0094
+  voom_none_CPM        perm 28/50  DEG=   0  pi0=1.000  p<.05=0.0106
+  voom_none_CPM        perm 29/50  DEG=   0  pi0=1.000  p<.05=0.0134
+  voom_none_CPM        perm 30/50  DEG=   0  pi0=0.812  p<.05=0.0512
+  voom_none_CPM        perm 31/50  DEG=   0  pi0=0.898  p<.05=0.0610
+  voom_none_CPM        perm 32/50  DEG=   0  pi0=0.970  p<.05=0.0457
+  voom_none_CPM        perm 33/50  DEG=   0  pi0=0.787  p<.05=0.0518
+  voom_none_CPM        perm 34/50  DEG=   0  pi0=0.957  p<.05=0.0304
+  voom_none_CPM        perm 35/50  DEG=   0  pi0=0.804  p<.05=0.0820
+  voom_none_CPM        perm 36/50  DEG=   0  pi0=0.720  p<.05=0.1197
+  voom_none_CPM        perm 37/50  DEG=   0  pi0=0.896  p<.05=0.0599
+  voom_none_CPM        perm 38/50  DEG=   0  pi0=1.000  p<.05=0.0233
+  voom_none_CPM        perm 39/50  DEG=   0  pi0=1.000  p<.05=0.0240
+  voom_none_CPM        perm 40/50  DEG=   0  pi0=1.000  p<.05=0.0228
+  voom_none_CPM        perm 41/50  DEG=   0  pi0=1.000  p<.05=0.0246
+  voom_none_CPM        perm 42/50  DEG=   0  pi0=1.000  p<.05=0.0223
+  voom_none_CPM        perm 43/50  DEG=   0  pi0=1.000  p<.05=0.0157
+  voom_none_CPM        perm 44/50  DEG=   0  pi0=1.000  p<.05=0.0123
+  voom_none_CPM        perm 45/50  DEG=   0  pi0=0.956  p<.05=0.0474
+  voom_none_CPM        perm 46/50  DEG=   0  pi0=0.852  p<.05=0.0576
+  voom_none_CPM        perm 47/50  DEG=   0  pi0=0.913  p<.05=0.0638
+  voom_none_CPM        perm 48/50  DEG=   0  pi0=1.000  p<.05=0.0217
+  voom_none_CPM        perm 49/50  DEG=   0  pi0=0.998  p<.05=0.0473
+  voom_none_CPM        perm 50/50  DEG=   0  pi0=0.936  p<.05=0.0409
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  1/50  DEG=   0  pi0=1.000  p<.05=0.0281
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  2/50  DEG=   0  pi0=1.000  p<.05=0.0151
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  3/50  DEG=   0  pi0=1.000  p<.05=0.0117
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  4/50  DEG=   0  pi0=1.000  p<.05=0.0352
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  5/50  DEG=   0  pi0=1.000  p<.05=0.0102
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  6/50  DEG=   0  pi0=1.000  p<.05=0.0256
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  7/50  DEG=   0  pi0=0.969  p<.05=0.0379
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  8/50  DEG=   0  pi0=0.965  p<.05=0.0635
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm  9/50  DEG=   0  pi0=1.000  p<.05=0.0274
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 10/50  DEG=   0  pi0=0.748  p<.05=0.1118
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 11/50  DEG=   0  pi0=0.981  p<.05=0.0362
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 12/50  DEG=   1  pi0=0.897  p<.05=0.0817
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 13/50  DEG=   0  pi0=1.000  p<.05=0.0357
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 14/50  DEG=   0  pi0=1.000  p<.05=0.0317
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 15/50  DEG=   0  pi0=1.000  p<.05=0.0204
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 16/50  DEG=   0  pi0=1.000  p<.05=0.0193
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 17/50  DEG=   0  pi0=0.601  p<.05=0.2124
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 18/50  DEG=   0  pi0=1.000  p<.05=0.0209
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 19/50  DEG=   0  pi0=0.626  p<.05=0.1504
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 20/50  DEG=   0  pi0=1.000  p<.05=0.0276
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 21/50  DEG=   0  pi0=1.000  p<.05=0.0156
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 22/50  DEG=   0  pi0=1.000  p<.05=0.0313
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 23/50  DEG=   0  pi0=1.000  p<.05=0.0132
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 24/50  DEG=   0  pi0=0.919  p<.05=0.0444
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 25/50  DEG=   0  pi0=1.000  p<.05=0.0150
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 26/50  DEG=   0  pi0=1.000  p<.05=0.0207
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 27/50  DEG=   0  pi0=1.000  p<.05=0.0095
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 28/50  DEG=   0  pi0=1.000  p<.05=0.0100
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 29/50  DEG=   0  pi0=1.000  p<.05=0.0155
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 30/50  DEG=   0  pi0=0.883  p<.05=0.0435
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 31/50  DEG=   0  pi0=0.889  p<.05=0.0748
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 32/50  DEG=   0  pi0=1.000  p<.05=0.0403
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 33/50  DEG=   0  pi0=1.000  p<.05=0.0285
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 34/50  DEG=   0  pi0=0.898  p<.05=0.0471
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 35/50  DEG=   0  pi0=0.729  p<.05=0.0908
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 36/50  DEG=   0  pi0=0.664  p<.05=0.1449
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 37/50  DEG=   0  pi0=0.950  p<.05=0.0494
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 38/50  DEG=   0  pi0=0.970  p<.05=0.0315
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 39/50  DEG=   0  pi0=1.000  p<.05=0.0320
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 40/50  DEG=   0  pi0=1.000  p<.05=0.0216
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 41/50  DEG=   0  pi0=0.978  p<.05=0.0309
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 42/50  DEG=   0  pi0=1.000  p<.05=0.0255
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 43/50  DEG=   0  pi0=1.000  p<.05=0.0153
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 44/50  DEG=   0  pi0=1.000  p<.05=0.0168
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 45/50  DEG=   0  pi0=0.873  p<.05=0.0541
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 46/50  DEG=   0  pi0=0.785  p<.05=0.0886
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 47/50  DEG=   0  pi0=0.849  p<.05=0.0835
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 48/50  DEG=   0  pi0=1.000  p<.05=0.0305
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 49/50  DEG=   0  pi0=1.000  p<.05=0.0404
+calcNormFactors has been renamed to normLibSizes
+  voom_upperquartile   perm 50/50  DEG=   0  pi0=0.862  p<.05=0.0594
+
+-- permutation null summary --
+             config nperm deg_mean deg_median deg_max deg_p95
+      voom_none_CPM    50     0.04          0       2       0
+           voom_TMM    50     0.06          0       3       0
+ voom_upperquartile    50     0.02          0       1       0
+ frac_perms_with_any_deg pi0_mean p_lt_05_mean p_lt_01_mean median_abs_t_mean
+                    0.02   0.9375      0.04294     0.007952            0.6789
+                    0.02   0.9438      0.04495     0.008539            0.6786
+                    0.02   0.9407      0.04455     0.008394            0.6780
+ abs_median_lfc_mean
+            0.014690
+            0.002060
+            0.004804
+
+done.

@@ -1,0 +1,12 @@
+"metric","value"
+"case DEG, lithium NOT adjusted",1912
+"case DEG, lithium adjusted",6
+"of the unadjusted DEGs, still significant after adjustment",6
+"median |logFC| unadjusted (all genes)",0.0535
+"median |logFC| adjusted (all genes)",0.0479
+"attenuation of median |logFC|",0.1038
+"unadjusted case DEGs that are also BP1 lithium DEGs",469
+"as a percentage",24.5
+"lithium DEGs (BP1 only)",1382
+"pi0 unadjusted",0.5382
+"pi0 adjusted",0.7352

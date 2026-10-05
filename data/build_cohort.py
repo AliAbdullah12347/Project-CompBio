@@ -245,6 +245,32 @@ def main() -> int:
                   f"mixture file; skipping: {absent[:3]}")
         else:
             out = mix[titles]
+            # Re-close the TPM simplex. The source mixture had TPM computed over
+            # all 57,773 genes and was then cut to the 20,628 carrying an HGNC
+            # symbol, so each column retains a different share of its own
+            # transcriptome -- 55k to 522k, a 9.4x spread uncorrelated with
+            # library size or RIN. That is not a constant rescale, so samples
+            # are not on a common footing. Rescaling each column back to 1e6
+            # restores it. Harmless if CIBERSORT standardises internally, and
+            # necessary if it does not.
+            col_sums = out.sum(axis=0)
+            print(f"\n  mixture: retained TPM mass before re-closure "
+                  f"{col_sums.min():,.0f} to {col_sums.max():,.0f} "
+                  f"({col_sums.max() / col_sums.min():.1f}x spread)")
+            out = out.div(col_sums, axis=1) * 1e6
+            # Genes that are zero in every sample are KEPT, deliberately. They
+            # are not biologically absent: HLA-DPA1 is zero in all 480 deposited
+            # samples and HLA-DPB1 in 474 of 480, because HTSeq union mode
+            # discards reads that map ambiguously, and the MHC class II region
+            # is polymorphic enough for that to swallow nearly everything. LM22
+            # identifies B cells, dendritic cells and monocytes partly through
+            # class II genes, so this is a live reason the signature misfits
+            # this dataset. Dropping the rows would also make our run differ
+            # from the one that produced the deposited fractions, losing the
+            # free comparison against them.
+            n_zero = int((out.sum(axis=1) == 0).sum())
+            print(f"  keeping {n_zero} genes that are zero across all "
+                  f"{len(titles)} samples (see comment)")
             out.index.name = "GeneSymbol"
             out.to_csv(OUT / f"mixture_TPM_hgnc_{len(titles)}.txt", sep="\t",
                        float_format="%.4g")

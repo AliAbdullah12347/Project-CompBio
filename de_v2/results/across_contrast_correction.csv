@@ -1,0 +1,5 @@
+"family","n_tests","within_family_BH_05","global_BH_05","BB_family_p","BB_family_adj","BB_selected","BB_05"
+"WB_LI_raw",12368,1426,343,6.99e-16,2.8e-15,TRUE,866
+"WB_BPD_raw",12368,4,16,0.0489,0.0652,FALSE,0
+"CT_LI_raw",61840,105,132,1.49e-07,2.99e-07,TRUE,75
+"CT_BPD_raw",61840,0,22,0.398,0.398,FALSE,0

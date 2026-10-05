@@ -1,0 +1,4 @@
+"what","beta","se","t","p","partial_R2","mean_nonuser","mean_user"
+"CIBERSORTx_P-value",0,0,NA,NA,NA,0,0
+"CIBERSORTx_Correlation",0.006206,0.00225,2.759,0.00631,0.03449,0.9064,0.9121
+"CIBERSORTx_RMSE",-0.02424,0.006503,-3.728,0.000247,0.06125,0.5146,0.4888

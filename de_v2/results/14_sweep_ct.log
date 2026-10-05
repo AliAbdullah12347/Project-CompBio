@@ -1,0 +1,157 @@
+== 14_filter_sweep_ct ==
+bMIND output: 12368 genes x 5 lineages x 474 samples
+
+sweep A: 9 nested gene filters, 2087 to 12368 genes
+  (looser filters are unavailable: bMIND has no estimates outside the baseline 12,368)
+
+reliability of the estimates, by lineage:
+  gran  median across-sample variance 0.50262 | median posterior SE 0.7953
+  mono  median across-sample variance 0.10014 | median posterior SE 1.0130
+  T     median across-sample variance 0.19140 | median posterior SE 1.0017
+  NK    median across-sample variance 0.02638 | median posterior SE 1.1927
+  B     median across-sample variance 0.00476 | median posterior SE 1.2687
+
+--- sweep A: gene filter ---
+  c50_p100     2087 genes  [  0.6 min]
+  c20_p100     4469 genes  [  1.7 min]
+  c50_p99      5068 genes  [  3.2 min]
+  c10_p100     6560 genes  [  5.1 min]
+  c20_p99      7901 genes  [  6.5 min]
+  c50_p90      8267 genes  [  7.6 min]
+  c10_p99      9708 genes  [  8.8 min]
+  c20_p90     10742 genes  [ 10.8 min]
+  c10_p90     12368 genes  [ 13.6 min]
+Warning messages:
+1: Zero sample variances detected, have been offset away from zero 
+2: Zero sample variances detected, have been offset away from zero 
+3: Zero sample variances detected, have been offset away from zero 
+4: Zero sample variances detected, have been offset away from zero 
+
+--- sweep B: variance floor on the estimates ---
+  var>0      genes kept per lineage: gran=12368 mono=12368 T=12368 NK=12368 B=12368  [ 17.3 min]
+  var>0.005  genes kept per lineage: gran=12368 mono=12360 T=12366 NK=12366 B=5521  [ 19.6 min]
+  var>0.01   genes kept per lineage: gran=12368 mono=12338 T=12359 NK=12175 B=452  [ 22.0 min]
+  var>0.05   genes kept per lineage: gran=12367 mono=11799 T=12243 NK=1992 B=0  [ 24.3 min]
+  var>0.1    genes kept per lineage: gran=12339 mono=6207 T=11387 NK=310 B=0  [ 25.0 min]
+Warning messages:
+1: Zero sample variances detected, have been offset away from zero 
+2: Zero sample variances detected, have been offset away from zero 
+
+--- sweep C: posterior-SE quantile ---
+  se<=q1.00  genes kept per lineage: gran=12368 mono=12368 T=12368 NK=12368 B=12368  [ 27.7 min]
+  se<=q0.90  genes kept per lineage: gran=11131 mono=11131 T=11131 NK=11131 B=11131  [ 29.9 min]
+  se<=q0.75  genes kept per lineage: gran=9276 mono=9276 T=9276 NK=9276 B=9276  [ 30.8 min]
+  se<=q0.50  genes kept per lineage: gran=6184 mono=6184 T=6184 NK=6184 B=6184  [ 31.6 min]
+Warning messages:
+1: Zero sample variances detected, have been offset away from zero 
+2: Zero sample variances detected, have been offset away from zero 
+3: Zero sample variances detected, have been offset away from zero 
+4: Zero sample variances detected, have been offset away from zero 
+5: Zero sample variances detected, have been offset away from zero 
+6: Zero sample variances detected, have been offset away from zero 
+7: Zero sample variances detected, have been offset away from zero 
+8: Zero sample variances detected, have been offset away from zero 
+
+=== per-lineage DEG counts, lithium (unadjusted) ===
+      sid gran mono  T NK  B
+ c50_p100    6    3  3  0  0
+ c20_p100    3    7 12  1  0
+  c50_p99   26   10 14  1  0
+ c10_p100   35   12 17  1  0
+  c20_p99   55   15 21  2  0
+  c50_p90   59   16 22  2  0
+  c10_p99   82   18 25  3  0
+  c20_p90   92   19 25  4  0
+  c10_p90  109   20 28  4  0
+     var0  109   20 28  4  0
+ var0.005  109   20 29  4  0
+  var0.01  109   20 29  4  0
+  var0.05  109   20 28  2 NA
+   var0.1  109   19 27  1 NA
+    se100  109   20 28  4  0
+     se90   86   12 16  2  0
+     se75   78    5  6  1  0
+     se50   35    3  4  1  0
+
+=== pooled, all four analyses ===
+      sid analysis n_tests deg_tests deg_unique_genes
+ c50_p100   LI_raw   10435         2                2
+ c50_p100   LI_ilr   10435         0                0
+ c50_p100  BPD_raw   10435         0                0
+ c50_p100  BPD_ilr   10435         0                0
+ c20_p100   LI_raw   22345        21               11
+ c20_p100   LI_ilr   22345        10                5
+ c20_p100  BPD_raw   22345         0                0
+ c20_p100  BPD_ilr   22345         0                0
+  c50_p99   LI_raw   25340        34               18
+  c50_p99   LI_ilr   25340        27               17
+  c50_p99  BPD_raw   25340         0                0
+  c50_p99  BPD_ilr   25340         0                0
+ c10_p100   LI_raw   32800        46               26
+ c10_p100   LI_ilr   32800        40               25
+ c10_p100  BPD_raw   32800         0                0
+ c10_p100  BPD_ilr   32800         0                0
+  c20_p99   LI_raw   39505        61               34
+  c20_p99   LI_ilr   39505        56               33
+  c20_p99  BPD_raw   39505         0                0
+  c20_p99  BPD_ilr   39505         0                0
+  c50_p90   LI_raw   41335        64               35
+  c50_p90   LI_ilr   41335        59               35
+  c50_p90  BPD_raw   41335         0                0
+  c50_p90  BPD_ilr   41335         0                0
+  c10_p99   LI_raw   48540        84               48
+  c10_p99   LI_ilr   48540        95               53
+  c10_p99  BPD_raw   48540         0                0
+  c10_p99  BPD_ilr   48540         0                0
+  c20_p90   LI_raw   53710        94               55
+  c20_p90   LI_ilr   53710       111               63
+  c20_p90  BPD_raw   53710         0                0
+  c20_p90  BPD_ilr   53710         0                0
+  c10_p90   LI_raw   61840       105               66
+  c10_p90   LI_ilr   61840       130               77
+  c10_p90  BPD_raw   61840         0                0
+  c10_p90  BPD_ilr   61840         0                0
+     var0   LI_raw   61840       105               66
+     var0   LI_ilr   61840       130               77
+     var0  BPD_raw   61840         0                0
+     var0  BPD_ilr   61840         0                0
+ var0.005   LI_raw   54981       108               68
+ var0.005   LI_ilr   54981       137               82
+ var0.005  BPD_raw   54981         0                0
+ var0.005  BPD_ilr   54981         0                0
+  var0.01   LI_raw   49692       117               76
+  var0.01   LI_ilr   49692       139               87
+  var0.01  BPD_raw   49692         0                0
+  var0.01  BPD_ilr   49692         0                0
+  var0.05   LI_raw   38401       121               84
+  var0.05   LI_ilr   38401       157              105
+  var0.05  BPD_raw   38401         0                0
+  var0.05  BPD_ilr   38401         0                0
+   var0.1   LI_raw   30243       128               95
+   var0.1   LI_ilr   30243       162              114
+   var0.1  BPD_raw   30243         0                0
+   var0.1  BPD_ilr   30243         0                0
+    se100   LI_raw   61840       105               66
+    se100   LI_ilr   61840       130               77
+    se100  BPD_raw   61840         0                0
+    se100  BPD_ilr   61840         0                0
+     se90   LI_raw   55655        63               42
+     se90   LI_ilr   55655        75               50
+     se90  BPD_raw   55655         0                0
+     se90  BPD_ilr   55655         0                0
+     se75   LI_raw   46380        41               33
+     se75   LI_ilr   46380        57               40
+     se75  BPD_raw   46380         0                0
+     se75  BPD_ilr   46380         0                0
+     se50   LI_raw   30920         9                6
+     se50   LI_ilr   30920        15               11
+     se50  BPD_raw   30920         0                0
+     se50  BPD_ilr   30920         0                0
+
+=== per-gene stability (lithium, unadjusted) ===
+  LI_raw      163 gene x lineage pairs significant somewhere | 128 in every setting tested
+  LI_ilr      195 gene x lineage pairs significant somewhere | 142 in every setting tested
+  BPD_raw       5 gene x lineage pairs significant somewhere |   0 in every setting tested
+  BPD_ilr    nothing significant under any setting
+
+wrote results/sweep/ct_* [31.8 min]

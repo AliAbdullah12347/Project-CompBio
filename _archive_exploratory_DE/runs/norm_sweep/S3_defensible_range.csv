@@ -1,0 +1,10 @@
+"pipeline","deg_fdr05","fold_vs_baseline"
+"voom + TMM (project baseline)",1382,1
+"voom + RLE",1407,1.02
+"voom + upperquartile",1672,1.21
+"voom + TMM + quantile",1604,1.16
+"voom, no normalisation (log-CPM only)",4013,2.9
+"voom + housekeeping-gene normalisation",4274,3.09
+"voom + TMM + granulocyte fraction",234,0.17
+"voom + TMM + 4 ILR balances",350,0.25
+"voom + TMM + log2 TMM factor",158,0.11

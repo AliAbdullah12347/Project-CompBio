@@ -1,0 +1,6 @@
+"scope","k","all","none","unstable","pct_unstable"
+"4 real scaling methods (voom)",4,1195,10345,633,34.6
+"TMM/TMMwsp/RLE only",3,1294,10711,168,11.5
+"TMM vs upperquartile",2,1268,10387,518,29
+"TMM vs none",2,944,7722,3507,78.8
+"all 7 configs",7,804,7477,3892,82.9

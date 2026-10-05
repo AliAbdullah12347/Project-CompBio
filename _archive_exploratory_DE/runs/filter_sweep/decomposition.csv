@@ -1,0 +1,6 @@
+"scenario","n_genes","n_deg"
+"canonical as published",12173,1382
+"canonical p-values + uniform noise genes (median of 500 draws)",37326,715.5
+"canonical p-values + the real extra genes' p-values",37326,992
+"loose fit restricted to the canonical genes, BH inside them",12173,1302
+"loose fit as run (all 37k)",37326,881

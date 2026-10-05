@@ -1,0 +1,40 @@
+== 01_refit_and_mtc ==
+12368 genes | 474 samples | lineages gran,mono,T,NK,B
+
+calcNormFactors has been renamed to normLibSizes
+  WB_LI_raw       12368 tests  n=226  [0.2 min]
+calcNormFactors has been renamed to normLibSizes
+  WB_BPD_raw      12368 tests  n=308  [0.2 min]
+  CT_LI_raw       61840 tests  n=226  [0.2 min]
+  CT_BPD_raw      61840 tests  n=308  [0.3 min]
+calcNormFactors has been renamed to normLibSizes
+  WB_LI_ilr       12368 tests  n=226  [0.1 min]
+calcNormFactors has been renamed to normLibSizes
+  WB_BPD_ilr      12368 tests  n=308  [0.2 min]
+  CT_LI_ilr       61840 tests  n=226  [0.3 min]
+  CT_BPD_ilr      61840 tests  n=308  [0.4 min]
+Warning messages:
+1: Zero sample variances detected, have been offset away from zero 
+2: Zero sample variances detected, have been offset away from zero 
+
+applying the correction panel
+  WB_LI_raw      pi0 0.487/0.495 | BH05  1426 | BY05   303 | Storey05  2568 | Holm05  125
+  WB_BPD_raw     pi0 0.643/0.657 | BH05     4 | BY05     0 | Storey05     5 | Holm05    0
+  CT_LI_raw      pi0 0.773/0.778 | BH05   105 | BY05    33 | Storey05   120 | Holm05   22
+  CT_BPD_raw     pi0 0.802/0.811 | BH05     0 | BY05     0 | Storey05     0 | Holm05    0
+  WB_LI_ilr      pi0 0.734/0.750 | BH05   341 | BY05   146 | Storey05   409 | Holm05   90
+  WB_BPD_ilr     pi0 0.864/0.863 | BH05     0 | BY05     0 | Storey05     0 | Holm05    0
+  CT_LI_ilr      pi0 0.603/0.625 | BH05   130 | BY05    30 | Storey05   186 | Holm05   22
+  CT_BPD_ilr     pi0 0.814/0.831 | BH05     0 | BY05     0 | Storey05     0 | Holm05    0
+
+independent filtering (is further expression filtering worth it?)
+  WB_LI_raw      best filter quantile 0.00 -> 1426 rejections (unfiltered 1426)
+  WB_BPD_raw     best filter quantile 0.20 -> 5 rejections (unfiltered 4)
+  CT_LI_raw      best filter quantile 0.00 -> 105 rejections (unfiltered 105)
+  CT_BPD_raw     best filter quantile 0.00 -> 0 rejections (unfiltered 0)
+  WB_LI_ilr      best filter quantile 0.05 -> 343 rejections (unfiltered 341)
+  WB_BPD_ilr     best filter quantile 0.00 -> 0 rejections (unfiltered 0)
+  CT_LI_ilr      best filter quantile 0.00 -> 130 rejections (unfiltered 130)
+  CT_BPD_ilr     best filter quantile 0.00 -> 0 rejections (unfiltered 0)
+
+wrote results/summary_by_analysis.csv, tests_*.csv.gz, fits.rds, adjusted.rds

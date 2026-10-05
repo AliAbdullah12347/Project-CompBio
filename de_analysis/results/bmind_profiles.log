@@ -1,0 +1,39 @@
+== 06_bmind_profiles ==
+bulk 12368 x 474 | frac 474 x 5 | chunk 400 | ncore 6
+
+  chunk   1/31  elapsed   5.9 min  ETA 176.2 min
+  chunk   2/31  elapsed  11.2 min  ETA 162.4 min
+  chunk   3/31  elapsed  16.3 min  ETA 152.1 min
+  chunk   4/31  elapsed  21.4 min  ETA 144.7 min
+  chunk   5/31  elapsed  26.5 min  ETA 138.0 min
+  chunk   6/31  elapsed  31.7 min  ETA 131.9 min
+  chunk   7/31  elapsed  36.8 min  ETA 126.2 min
+  chunk   8/31  elapsed  42.1 min  ETA 121.0 min
+  chunk   9/31  elapsed  49.7 min  ETA 121.5 min
+  chunk  10/31  elapsed  56.7 min  ETA 119.1 min
+  chunk  11/31  elapsed  63.0 min  ETA 114.5 min
+  chunk  12/31  elapsed  69.0 min  ETA 109.3 min
+  chunk  13/31  elapsed  74.9 min  ETA 103.7 min
+  chunk  14/31  elapsed  80.6 min  ETA  97.8 min
+  chunk  15/31  elapsed  86.3 min  ETA  92.0 min
+  chunk  16/31  elapsed  91.9 min  ETA  86.1 min
+  chunk  17/31  elapsed  97.5 min  ETA  80.3 min
+  chunk  18/31  elapsed 103.1 min  ETA  74.5 min
+  chunk  19/31  elapsed 108.9 min  ETA  68.8 min
+  chunk  20/31  elapsed 114.6 min  ETA  63.1 min
+  chunk  21/31  elapsed 121.0 min  ETA  57.6 min
+  chunk  22/31  elapsed 126.9 min  ETA  51.9 min
+  chunk  23/31  elapsed 134.0 min  ETA  46.6 min
+  chunk  24/31  elapsed 140.4 min  ETA  40.9 min
+  chunk  25/31  elapsed 145.5 min  ETA  34.9 min
+  chunk  26/31  elapsed 152.6 min  ETA  29.3 min
+  chunk  27/31  elapsed 159.4 min  ETA  23.6 min
+  chunk  28/31  elapsed 167.2 min  ETA  17.9 min
+  chunk  29/31  elapsed 174.3 min  ETA  12.0 min
+  chunk  30/31  elapsed 181.0 min  ETA   6.0 min
+  chunk  31/31  elapsed 186.5 min  ETA   0.0 min
+
+assembling 31 chunks
+  A 12368 x 5 x 474 | SE 12368 x 5 x 474
+  any NA in A: FALSE | SE range 0.163 to 6.401
+wrote results/bmind_profiles.rds [187.3 min total]

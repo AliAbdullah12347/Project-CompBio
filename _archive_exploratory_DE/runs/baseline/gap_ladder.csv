@@ -1,0 +1,11 @@
+"step","n_DEG"
+"Krebs published (Results text)",976
+"Krebs published (MAGMA methods text)",897
+"deposited PRE sheet @ FDR .05",3031
+"deposited POST sheet @ FDR .05",233
+"our reproduction of the published spec",1023
+"  + 3-level diagnosis instead of 2-level",2652
+"  + drop BP2 entirely",2591
+"  + our 474 cohort instead of Krebs 444",2699
+"engine `lithium_krebs` (cases only, 474)",1459
+"engine `lithium` (BP1 only, 474)",1382

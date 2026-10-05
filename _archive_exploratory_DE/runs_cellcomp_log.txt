@@ -1,0 +1,166 @@
+== cellcomp ==
+fraction PCA: 18 non-zero types, PC1-5 explain 95.1% of variance
+  fitting a_canonical ...
+calcNormFactors has been renamed to normLibSizes
+  fitting b_ILR4 ...
+calcNormFactors has been renamed to normLibSizes
+  fitting c_lineage4 ...
+calcNormFactors has been renamed to normLibSizes
+  fitting d_fracPC5 ...
+calcNormFactors has been renamed to normLibSizes
+  fitting e_ILR1 ...
+calcNormFactors has been renamed to normLibSizes
+  fitting e2_logit_gran ...
+calcNormFactors has been renamed to normLibSizes
+all models: 12173 genes x 226 samples (identical sets)
+
+--- model comparison ---
+         model n_extra_covar n_genes n_deg    pi0 canon_survive canon_lost
+   a_canonical             0   12173  1382 0.5161          1382          0
+        b_ILR4             4   12173   350 0.7627           301       1081
+    c_lineage4             4   12173   323 0.7650           255       1127
+     d_fracPC5             5   12173   312 0.7538           243       1139
+        e_ILR1             1   12173   408 0.7157           399        983
+ e2_logit_gran             1   12173   260 0.8144           229       1153
+ prop_lost n_new r_logFC_all r_logFC_degs shrink_degs shrink_surv shrink_lost
+    0.0000     0      1.0000       1.0000      1.0000      1.0000          NA
+    0.7822    49      0.8014       0.9368      0.5322      0.6964      0.4915
+    0.8155    68      0.7584       0.9188      0.5018      0.6986      0.4618
+    0.8242    69      0.7428       0.9093      0.4911      0.7225      0.4501
+    0.7113     9      0.9356       0.9861      0.7137      0.7749      0.6939
+    0.8343    31      0.8021       0.9366      0.5303      0.7098      0.5057
+ slope_degs med_absFC_can med_absFC_adj n_signflip
+     1.0000        0.1802        0.1802          0
+     0.6226        0.1802        0.0959          0
+     0.5972        0.1802        0.0904          0
+     0.5933        0.1802        0.0885          2
+     0.7735        0.1802        0.1286          0
+     0.6210        0.1802        0.0956          0
+
+--- negative control: 50 permuted-ILR fits ---
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+                model n_deg_mean n_deg_sd n_deg_min n_deg_max surv_mean
+ f_ILR4_permuted_null       1379    188.8       884      1952    1279.9
+ prop_lost_mean r_mean shrink_mean
+         0.0738 0.9979      0.9998
+
+real ILR loses 1081 canonical DEGs; permuted ILR loses 102.1 (sd 108.3).
+excess loss attributable to genuine confounding: 979 genes (70.8% of canonical)
+permutation p for observed loss: 0.0196  (z = 9.0)
+
+--- mediation path a: lithium -> composition (n=226, same covariates) ---
+               mediator  beta_a     se       t       p partial_R2 sd_mediator
+ b1_myeloid_vs_lymphoid  0.1558 0.0780  1.9967 0.04710     0.0184      0.5361
+        b2_gran_vs_mono  0.1026 0.0403  2.5468 0.01160     0.0296      0.2849
+            b3_T_vs_NKB  0.0354 0.0635  0.5571 0.57800     0.0015      0.4324
+             b4_NK_vs_B  0.0629 0.1158  0.5431 0.58800     0.0014      0.7764
+              prop_gran  0.0407 0.0127  3.2083 0.00154     0.0461      0.0893
+              prop_mono -0.0105 0.0070 -1.4910 0.13700     0.0103      0.0499
+                 prop_T -0.0206 0.0088 -2.3423 0.02010     0.0251      0.0607
+                prop_NK -0.0077 0.0038 -2.0147 0.04520     0.0187      0.0279
+                 prop_B -0.0019 0.0016 -1.1892 0.23600     0.0066      0.0106
+             logit_gran  0.1720 0.0585  2.9426 0.00362     0.0391      0.4096
+         neutrophil_raw  0.0394 0.0125  3.1613 0.00180     0.0448      0.0877
+         lymphocyte_raw -0.0302 0.0106 -2.8470 0.00485     0.0367      0.0737
+           monocyte_raw -0.0100 0.0069 -1.4583 0.14600     0.0099      0.0486
+                NLR_log  0.1922 0.0664  2.8937 0.00420     0.0378      0.4618
+ beta_in_SD    fdr
+     0.2906 0.0733
+     0.3601 0.0270
+     0.0818 0.5880
+     0.0810 0.5880
+     0.4559 0.0126
+    -0.2104 0.1860
+    -0.3396 0.0402
+    -0.2773 0.0733
+    -0.1774 0.2750
+     0.4199 0.0136
+     0.4498 0.0126
+    -0.4099 0.0136
+    -0.2063 0.1860
+     0.4161 0.0136
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+
+consistency check  cor(indirect via a*b, logFC drop) = 0.9965  slope 1.0153
+
+--- canonical DEG loss by strength of association with the myeloid/lymphoid balance ---
+ b1_loading_quintile median_abs_b1 n_canon_deg n_lost pct_lost
+                  Q1        0.0500         121     84     69.4
+                  Q2        0.1516         193    148     76.7
+                  Q3        0.2604         231    194     84.0
+                  Q4        0.3864         313    254     81.2
+                  Q5        0.6217         524    401     76.5
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+
+--- genes associated with each balance, lithium held constant ---
+                       n_deg   pi0
+b1_myeloid_vs_lymphoid  8826 0.175
+b2_gran_vs_mono         4944 0.388
+b3_T_vs_NKB             8054 0.224
+b4_NK_vs_B              2621 0.471
+lithium in the same model: 350 DEG, pi0 0.763
+
+--- DEG count vs effect-size floor ---
+ lfc canonical ILR4 ILR1 logit_gran retained
+ 0.0      1382  350  408        260    0.253
+ 0.1      1264  314  385        245    0.248
+ 0.2       557  143  199        129    0.257
+ 0.3       202   61   94         58    0.302
+ 0.5        25   15   17         14    0.600
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes

@@ -1,0 +1,122 @@
+== 09_wholeblood_sensitivity ==
+genes 12368 | bands few <0.5%  many >=2.0%
+
+=== A. tobacco multiple imputation: 20 completed datasets, Rubin pooling ===
+    20 of 474 subjects imputed; smoker count ranges 115-121 across imputations
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  WB_LI_raw    pooled DEG  1426 (11.530%)  pi0 0.5084  median FMI 0.0000  median SE inflation 1.0000x
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  WB_LI_ilr    pooled DEG   341 ( 2.757%)  pi0 0.7620  median FMI 0.0000  median SE inflation 1.0000x
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  WB_BPD_raw   pooled DEG     0 ( 0.000%)  pi0 0.7050  median FMI 0.0030  median SE inflation 1.0015x
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+  WB_BPD_ilr   pooled DEG     0 ( 0.000%)  pi0 0.8676  median FMI 0.0026  median SE inflation 1.0013x
+
+  spread across the 20 single-imputation analyses (before pooling):
+    WB_LI_raw    DEG 1426-1426 | %genes 11.530-11.530 | pi0 0.5084-0.5084
+    WB_LI_ilr    DEG 341-341 | %genes 2.757-2.757 | pi0 0.7620-0.7620
+    WB_BPD_raw   DEG 0-5 | %genes 0.000-0.040 | pi0 0.6780-0.7238
+    WB_BPD_ilr   DEG 0-0 | %genes 0.000-0.000 | pi0 0.8535-0.8771
+
+=== B. depth/RIN screened subset: 461 of 474 samples pass both ===
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+calcNormFactors has been renamed to normLibSizes
+   analysis n_full n_screened  deg   pct    pi0 deg_main pct_main
+  WB_LI_raw    226        217 1075 8.692 0.5398     1426   11.530
+  WB_LI_ilr    226        217  280 2.264 0.8056      341    2.757
+ WB_BPD_raw    308        300    3 0.024 0.7227        4    0.032
+ WB_BPD_ilr    308        300    0 0.000 0.8698        0    0.000
+
+=== does any verdict change? ===
+   analysis pct_main pct_rubin pct_screened band_main band_rubin band_screened
+  WB_LI_raw   11.530    11.530        8.692      many       many          many
+  WB_LI_ilr    2.757     2.757        2.264      many       many          many
+ WB_BPD_raw    0.032     0.000        0.024       few        few           few
+ WB_BPD_ilr    0.000     0.000        0.000       few        few           few
+ all_agree
+      TRUE
+      TRUE
+      TRUE
+      TRUE
+
+  every band identical across main / Rubin-pooled / screened: TRUE
+
+wrote results/sens_*.csv

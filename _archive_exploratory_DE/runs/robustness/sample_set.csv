@@ -1,0 +1,3 @@
+"set","n","n_deg","jaccard"
+"all BP1",226,1382,1
+"depth>=3M & RIN>=5",217,1117,0.65

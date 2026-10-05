@@ -1,0 +1,4 @@
+"comparison","n_case","n_draws","deg_median","deg_min","deg_max","pi0_median"
+"BP1 off lithium (74) vs control  [OBSERVED]",74,1,4,4,4,0.706
+"BP1 on lithium subsampled to 74 vs control",74,40,1472.5,505,2784,0.589
+"control (74) vs control (160)  [NULL]",74,40,0,0,0,1

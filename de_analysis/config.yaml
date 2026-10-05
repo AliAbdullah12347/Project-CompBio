@@ -1,0 +1,260 @@
+# =====================================================================
+# Differential expression analysis — PRE-SPECIFICATION
+#
+# GSE124326. Ali Abdullah and Ava, BIOL/MATH 481, Colgate, Fall 2026.
+#
+# This file is committed to version control BEFORE any analysis in this
+# folder is run. The commit timestamp is the evidence that the hypotheses,
+# bands and decision rules below were fixed in advance. A threshold chosen
+# after seeing a result is not a test.
+#
+# HONEST DECLARATION OF PRIOR KNOWLEDGE
+# -------------------------------------
+# Exploratory work was done earlier and is archived in
+# ../_archive_exploratory_DE/. It is NOT read by anything here. But the
+# people who wrote this file had seen it, and pretending otherwise would be
+# the exact practice this project exists to criticise. So:
+#
+#   * WB-LI is declared a POSITIVE CONTROL, not a hypothesis. Its result is
+#     already known (~11% of genes). It is retained because if the pipeline
+#     cannot recover a known bulk effect, the null results below are
+#     uninterpretable — which is precisely why Boltz et al.'s null was not
+#     usable evidence.
+#   * WB-BPD is a hypothesis whose direction was informed by that
+#     exploratory work, and is labelled confirmatory-of-exploratory.
+#   * CT-LI and CT-BPD are genuinely novel. No cell-type-level analysis has
+#     been run on this dataset by us at any point. These are the only two
+#     tests in this file that are pre-specified in the strict sense.
+#
+# Readers should weight the four accordingly.
+# =====================================================================
+
+meta:
+  written: "2026-09-30"
+  prior_knowledge: "see the declaration above; exploratory work archived, not read"
+  seed: 481
+
+# ---------------------------------------------------------------------
+# Data
+# ---------------------------------------------------------------------
+data:
+  counts: ../data/cohort_474/counts_474.tsv.gz
+  metadata: ../data/cohort_474/metadata_474_imputed.csv
+  fractions: ../data/cohort_474/fractions_bmode_474_CIBERSORTx.csv
+  # Deconvolution ran with batch correction on (B-mode). That is cohort-level
+  # and therefore transductive, which disqualifies it from any cross-validated
+  # prediction arm — but this is differential expression with no train/test
+  # split, so transduction costs nothing here.
+  drop_ensgr: true
+  tobacco_column: tobacco_imp_01     # imputation sensitivity is a side check
+
+# ---------------------------------------------------------------------
+# Cell-type resolution
+# ---------------------------------------------------------------------
+# FIVE LINEAGES, not 22 LM22 types. This is an evidence-based choice, not a
+# convenience: at 22-type resolution the between-method intraclass
+# correlation of the deconvolution is 0.389 and the Aitchison distance
+# between two methods exceeds the spread between subjects. Aggregated to
+# lineage, median ICC is 0.693 and the myeloid/lymphoid balance reaches
+# 0.907. bMIND takes proportions as INPUT, so unreliable proportions
+# propagate into every cell-type expression estimate.
+cell_types:
+  resolution: lineage
+  lineages:
+    gran: [Neutrophils, Eosinophils, Mast cells resting, Mast cells activated]
+    mono: [Monocytes, Macrophages M0, Macrophages M1, Macrophages M2,
+           Dendritic cells resting, Dendritic cells activated]
+    T:    [T cells CD8, T cells CD4 naive, T cells CD4 memory resting,
+           T cells CD4 memory activated, T cells follicular helper,
+           T cells regulatory (Tregs), T cells gamma delta]
+    NK:   [NK cells resting, NK cells activated]
+    B:    [B cells naive, B cells memory, Plasma cells]
+
+# ---------------------------------------------------------------------
+# Preprocessing — identical for every contrast
+# ---------------------------------------------------------------------
+preprocess:
+  gene_filter:
+    min_count: 10
+    min_proportion_of_samples: 0.90
+  normalisation: TMM
+  # Recorded because it bears on interpretation: TMM's own scaling factors
+  # are partly determined by cell composition (r ~ -0.48 with granulocyte
+  # proportion), so the normalisation step removes some of the compositional
+  # effect being studied. Stated, not corrected for.
+  whole_blood_estimator: voom
+  cell_type_estimator: bmind_de
+  bmind:
+    package: MIND 0.3.3
+    frac_source: CIBERSORTx B-mode, lineage-aggregated
+    input_scale: log2(TPM+1)
+
+# ---------------------------------------------------------------------
+# Contrasts
+# ---------------------------------------------------------------------
+# Every contrast is run at BOTH levels and BOTH with and without adjustment
+# for the cell-composition balances. Contrasts share subjects (the same 234
+# controls appear in more than one, the same 226 bipolar I in more than one),
+# so their results are CORRELATED and must not be treated as independent
+# studies when reasoning about error rates.
+contrasts:
+  LI:
+    definition: lithium users vs non-users within bipolar I
+    n: "74 non-users vs 152 users"
+    covariates: [age, sex, tobacco, rin, plate, seqpc1, seqpc2, seqpc3]
+    note: assessment group is constant within bipolar I and must be dropped
+  BPD:
+    definition: bipolar I NOT on lithium vs healthy controls
+    n: "74 cases vs 234 controls"
+    covariates: [age, sex, tobacco, assessment_group, rin, plate, seqpc1, seqpc2, seqpc3]
+    # "Off lithium" is NOT "unmedicated". The deposit records lithium use and
+    # nothing else: no antipsychotics, anticonvulsants, antidepressants, dose
+    # or duration. Every claim from this contrast carries that limitation.
+    caveat: off-lithium is not unmedicated
+
+# ---------------------------------------------------------------------
+# Significance
+# ---------------------------------------------------------------------
+significance:
+  primary: BH
+  fdr: 0.05
+  also_reported: [fdr_0.10, bonferroni, raw_p]
+  effect_size_floor: none     # nothing in this data exceeds |logFC| 1, so any
+                              # floor would be arbitrary; TREAT reported instead
+  treat_thresholds: [0.1, 0.2]
+  pi0:
+    method: storey
+    lambda: 0.5
+    bootstrap_resamples: 1000
+    ci: 0.95
+  multiplicity:
+    within_contrast: BH over genes
+    cell_type_per_lineage: BH within each lineage
+    # For CT-BPD vs WB-BPD the cell-type side runs 5x as many tests, so a
+    # per-lineage BH would give it five chances at significance. The
+    # level-versus-level comparison therefore uses BH over the POOLED
+    # lineage x gene set.
+    cell_type_pooled_for_level_comparison: BH over pooled lineage x gene
+
+# ---------------------------------------------------------------------
+# HYPOTHESES AND DECISION RULES
+# ---------------------------------------------------------------------
+# Bands are expressed as a PERCENTAGE OF GENES TESTED, not as raw counts.
+# Raw DEG counts are unstable: resampling 200 of 226 subjects moved the count
+# across an 11-fold range in exploratory work. Percentages also make bulk
+# (~12,200 genes) comparable with per-lineage cell-type sets of other sizes.
+#
+# The bands are 0.5% and 2%. Justification: every null-like result on record
+# sits below 0.1% of genes tested (Krebs' lithium-adjusted case-control
+# 6/12,353; Boltz's cell-type lithium 0), and every clear-signal result sits
+# above 10%. The 0.5-2% window is empty space, so classification is robust to
+# where exactly in that window a threshold falls.
+#
+#   at ~12,200 genes:  0.5% = 61 genes    2% = 244 genes
+bands:
+  few_below_pct: 0.5
+  many_at_or_above_pct: 2.0
+
+hypotheses:
+
+  WB_LI:
+    status: POSITIVE CONTROL (result already known from exploratory work)
+    level: whole blood
+    contrast: LI
+    expectation: many DEGs
+    rationale: >
+      Lithium raises neutrophil proportion; whole blood is a mixture, so a
+      shift in the mixture changes bulk expression arithmetically. This is
+      not being discovered here — it is the check that the pipeline can
+      detect a known effect. If it fails, the nulls below mean nothing.
+    supported_if: "DEG >= 2.0% of genes tested"
+    refuted_if: "DEG < 0.5% -- treat as PIPELINE FAILURE and stop"
+
+  CT_LI:
+    status: PRE-SPECIFIED (genuinely novel)
+    level: cell type
+    contrast: LI
+    expectation: few DEGs
+    rationale: >
+      If lithium acts by changing the cell mixture rather than by changing
+      transcription inside any cell, then holding cell type fixed should
+      remove the effect. Finding many genes would refute the compositional
+      account.
+    supported_if: "DEG < 0.5% in EVERY lineage AND pi0 95% CI includes 1 in every lineage"
+    refuted_if: "DEG >= 2.0% in any lineage, on BH over the pooled lineage x gene set"
+    inconclusive_if: "between the bands, or pi0 CI excludes 1, or MDE above the meaningfulness floor"
+
+  WB_BPD:
+    status: CONFIRMATORY-OF-EXPLORATORY
+    level: whole blood
+    contrast: BPD
+    expectation: few DEGs
+    rationale: >
+      Bipolar disorder itself is expected to have minimal effect on whole
+      blood expression once medication is removed from the comparison.
+    supported_if: "DEG < 0.5% of genes tested AND pi0 95% CI includes 1"
+    refuted_if: "DEG >= 2.0%"
+    inconclusive_if: "between the bands, or pi0 CI excludes 1"
+
+  CT_BPD:
+    status: PRE-SPECIFIED (genuinely novel)
+    level: cell type
+    contrast: BPD
+    expectation: more DEGs than WB_BPD
+    rationale: >
+      A signal present in one cell type may be cancelled or diluted by an
+      opposing or absent signal in another, so a real cell-type effect can be
+      invisible in the bulk average. Separating cell types should recover it.
+    supported_if: "pooled cell-type DEG >= 0.5% WHILE WB_BPD < 0.5%"
+    refuted_if: "pooled cell-type DEG <= WB_BPD DEG"
+    inconclusive_if: "both fall in the same band"
+    # A count comparison alone cannot demonstrate the MECHANISM. Masking makes
+    # a sharper, directly checkable prediction: the same gene should move in
+    # OPPOSITE directions in different lineages. That is tested explicitly.
+    mechanism_test:
+      what: sign discordance across lineages among genes null in whole blood
+      supported_if: ">=10% of bulk-null genes show opposite-sign lineage effects at nominal p<0.05"
+      compared_against: permutation null
+
+# ---------------------------------------------------------------------
+# Minimum detectable effect
+# ---------------------------------------------------------------------
+# A null result is uninterpretable without knowing what size of effect could
+# have been seen -- the flaw that made Boltz et al.'s zero unusable. Computed
+# EMPIRICALLY by spike-in rather than from a power formula, because bMIND
+# shrinks its estimates toward a prior and the analytic variance is not
+# trustworthy. The same spike-in protocol is applied at BOTH levels, which is
+# also what puts the CT_BPD vs WB_BPD comparison on an honest footing.
+#
+# Legitimate to compute before results: it depends only on sample sizes and
+# noise, never on the exposure labels.
+mde:
+  method: spike_in
+  n_spiked_genes: 1200
+  effect_sizes_log2FC: [0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0]
+  power_target: 0.80
+  applied_to: [whole blood, each lineage]
+  meaningfulness_floor_log2FC: 0.5   # a null is only a null for effects above this
+
+# ---------------------------------------------------------------------
+# Composition adjustment
+# ---------------------------------------------------------------------
+# Every contrast is fitted twice at each level. For the cell-type level this
+# is also the circularity control: bMIND's posterior for a cell type depends
+# on that sample's proportion for that cell type, and lithium moves those
+# proportions, so some association is inherited by construction. Reporting
+# both is the only honest option.
+adjustment:
+  run_both: true
+  covariates: ILR balances on the 5 lineages (4 coordinates, orthonormal SBP)
+  zero_replacement: multiplicative simple, 65% of detection limit
+
+# ---------------------------------------------------------------------
+# Pre-declared sensitivity analyses
+# ---------------------------------------------------------------------
+# Declared here so that running them is not a post-hoc search.
+sensitivity:
+  - tobacco imputation: repeat across all 20 completed columns, pool by Rubin
+  - depth/RIN screen: repeat on the 461-sample screened subset
+  - estimator: repeat whole blood with limma-trend and edgeR-QLF
+  - permutation null: 200 label permutations per contrast per level

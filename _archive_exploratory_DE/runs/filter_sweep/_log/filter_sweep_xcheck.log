@@ -1,0 +1,48 @@
+calcNormFactors has been renamed to normLibSizes
+lith_voom_loose      genes= 37326 DEG=  881 31s
+calcNormFactors has been renamed to normLibSizes
+lith_voom_canon      genes= 12173 DEG= 1382 11s
+calcNormFactors has been renamed to normLibSizes
+lith_trend_loose     genes= 37326 DEG=  728 12s
+calcNormFactors has been renamed to normLibSizes
+lith_trend_canon     genes= 12173 DEG= 1306 6s
+calcNormFactors has been renamed to normLibSizes
+lith_QLF_loose       genes= 37326 DEG=  879 1852s
+calcNormFactors has been renamed to normLibSizes
+lith_QLF_canon       genes= 12173 DEG= 1371 226s
+calcNormFactors has been renamed to normLibSizes
+cc_voom_loose        genes= 39048 DEG= 1063 65s
+calcNormFactors has been renamed to normLibSizes
+cc_voom_mid          genes= 14522 DEG= 1855 35s
+calcNormFactors has been renamed to normLibSizes
+cc_voom_canon        genes= 12368 DEG= 1816 28s
+calcNormFactors has been renamed to normLibSizes
+cc_voom_strict       genes=  8267 DEG= 1537 14s
+
+== cross-checks ==
+                     block    key n_genes_canon deg_canon n_genes_loose
+ method x filter (lithium)   voom         12173      1382         37326
+ method x filter (lithium)  trend         12173      1306         37326
+ method x filter (lithium)    QLF         12173      1371         37326
+     filter (case-control)  loose         12368      1816         39048
+     filter (case-control)    mid         12368      1816         14522
+     filter (case-control)  canon         12368      1816         12368
+     filter (case-control) strict         12368      1816          8267
+ deg_loose ratio_deg pi0_canon pi0_loose deg_loose_fixedU deg_canon_fixedU
+       881    0.6375    0.5161    0.7721             1302             1382
+       728    0.5574    0.5248    0.8481             1201             1306
+       879    0.6411    0.5167    0.7307             1229             1371
+      1063    0.5854    0.5462    0.7925             1614             1816
+      1855    1.0215    0.5462    0.5677             1783             1816
+      1816    1.0000    0.5462    0.5462             1816             1816
+      1537    0.8464    0.5462    0.4979             1537             1655
+ spearman_p_common jaccard
+            0.9905  0.4287
+            0.9973  0.4334
+            0.9953  0.4286
+            0.9421  0.4120
+            0.9964  0.8419
+            1.0000  1.0000
+            0.9697  0.6883
+
+wrote runs/filter_sweep/xcheck.csv
