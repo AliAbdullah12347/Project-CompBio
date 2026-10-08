@@ -1,0 +1,3 @@
+"tree","n_balances","median_icc","PM_uncorrected","PM_corrected","raises"
+"lineage (4 balances)",4,0.6139,0.395742255049965,0.586989444344213,"YES"
+"proposal (5 balances)",5,0.4742,0.449024957014422,0.766677830130103,"YES"

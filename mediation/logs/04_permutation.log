@@ -1,0 +1,73 @@
+
+== permutation: lineage == observed: NIE 0, TE 1272, max|z| 2.87
+     50/1000 | 2.6 min elapsed | ~48.6 min left | null BH-sig so far: median 0, max 5462
+    100/1000 | 5.2 min elapsed | ~46.4 min left | null BH-sig so far: median 0, max 5462
+    150/1000 | 7.7 min elapsed | ~43.6 min left | null BH-sig so far: median 0, max 5462
+    200/1000 | 10.3 min elapsed | ~41.3 min left | null BH-sig so far: median 0, max 6933
+    250/1000 | 12.9 min elapsed | ~38.7 min left | null BH-sig so far: median 0, max 6933
+    300/1000 | 15.4 min elapsed | ~36.0 min left | null BH-sig so far: median 0, max 6933
+    350/1000 | 18.0 min elapsed | ~33.4 min left | null BH-sig so far: median 0, max 7150
+    400/1000 | 20.5 min elapsed | ~30.8 min left | null BH-sig so far: median 0, max 7150
+    450/1000 | 23.1 min elapsed | ~28.2 min left | null BH-sig so far: median 0, max 7150
+    500/1000 | 25.7 min elapsed | ~25.7 min left | null BH-sig so far: median 0, max 7150
+    550/1000 | 28.2 min elapsed | ~23.1 min left | null BH-sig so far: median 0, max 7150
+    600/1000 | 30.8 min elapsed | ~20.5 min left | null BH-sig so far: median 0, max 7150
+    650/1000 | 33.4 min elapsed | ~18.0 min left | null BH-sig so far: median 0, max 7150
+    700/1000 | 36.0 min elapsed | ~15.4 min left | null BH-sig so far: median 0, max 7150
+    750/1000 | 38.7 min elapsed | ~12.9 min left | null BH-sig so far: median 0, max 7150
+    800/1000 | 41.3 min elapsed | ~10.3 min left | null BH-sig so far: median 0, max 7150
+    850/1000 | 43.9 min elapsed | ~7.7 min left | null BH-sig so far: median 0, max 7150
+    900/1000 | 46.5 min elapsed | ~5.2 min left | null BH-sig so far: median 0, max 7150
+    950/1000 | 49.0 min elapsed | ~2.6 min left | null BH-sig so far: median 0, max 7150
+   1000/1000 | 51.6 min elapsed | ~0.0 min left | null BH-sig so far: median 0, max 7150
+   1000 of 1000 permutations usable
+                  statistic     observed null_median  null_p95     null_max      perm_p
+    genes with NIE at BH 5%    0.0000000   0.0000000 0.0000000 7150.0000000 1.000000000
+     genes with TE at BH 5% 1272.0000000   0.0000000 0.0000000 1266.0000000 0.000999001
+            max |z| for NIE    2.8740505   1.7488852 2.8006004    4.1697636 0.040959041
+ median proportion mediated    0.3957423   0.1729004 0.5846446    0.7939118 0.181818182
+   per-gene empirical p: min 0.0010 | genes at empirical BH 5%: 0
+   mediator b1 t-statistics under the null (|t| > 1.96 rate per balance):
+     b1     5.1%  (observed t = 2.00, perm p = 0.0490)
+     b2     4.7%  (observed t = 2.55, perm p = 0.0090)
+     b3     4.5%  (observed t = 0.56, perm p = 0.5465)
+     b4     5.1%  (observed t = 0.54, perm p = 0.5804)
+   wrote results/perm/lineage_perm.rds
+
+== permutation: proposal == observed: NIE 3647, TE 1075, max|z| 3.31
+     50/1000 | 2.7 min elapsed | ~51.8 min left | null BH-sig so far: median 0, max 0
+    100/1000 | 5.5 min elapsed | ~49.3 min left | null BH-sig so far: median 0, max 0
+    150/1000 | 8.1 min elapsed | ~46.1 min left | null BH-sig so far: median 0, max 0
+    200/1000 | 10.9 min elapsed | ~43.5 min left | null BH-sig so far: median 0, max 5438
+    250/1000 | 13.6 min elapsed | ~40.7 min left | null BH-sig so far: median 0, max 5438
+    300/1000 | 16.3 min elapsed | ~38.0 min left | null BH-sig so far: median 0, max 5438
+    350/1000 | 19.0 min elapsed | ~35.2 min left | null BH-sig so far: median 0, max 6717
+    400/1000 | 21.7 min elapsed | ~32.5 min left | null BH-sig so far: median 0, max 6717
+    450/1000 | 24.3 min elapsed | ~29.7 min left | null BH-sig so far: median 0, max 6717
+    500/1000 | 27.0 min elapsed | ~27.0 min left | null BH-sig so far: median 0, max 6717
+    550/1000 | 29.7 min elapsed | ~24.3 min left | null BH-sig so far: median 0, max 6717
+    600/1000 | 32.4 min elapsed | ~21.6 min left | null BH-sig so far: median 0, max 6717
+    650/1000 | 35.1 min elapsed | ~18.9 min left | null BH-sig so far: median 0, max 6717
+    700/1000 | 37.8 min elapsed | ~16.2 min left | null BH-sig so far: median 0, max 6717
+    750/1000 | 40.5 min elapsed | ~13.5 min left | null BH-sig so far: median 0, max 6717
+    800/1000 | 43.3 min elapsed | ~10.8 min left | null BH-sig so far: median 0, max 6717
+    850/1000 | 46.1 min elapsed | ~8.1 min left | null BH-sig so far: median 0, max 6717
+    900/1000 | 48.8 min elapsed | ~5.4 min left | null BH-sig so far: median 0, max 6717
+    950/1000 | 51.6 min elapsed | ~2.7 min left | null BH-sig so far: median 0, max 6717
+   1000/1000 | 54.4 min elapsed | ~0.0 min left | null BH-sig so far: median 0, max 6717
+   1000 of 1000 permutations usable
+                  statistic    observed null_median  null_p95     null_max      perm_p
+    genes with NIE at BH 5% 3647.000000   0.0000000 0.0000000 6717.0000000 0.005994006
+     genes with TE at BH 5% 1075.000000   0.0000000 0.0000000  993.0000000 0.000999001
+            max |z| for NIE    3.305333   1.9449012 2.9191032    3.9700643 0.012987013
+ median proportion mediated    0.449025   0.1410735 0.5310077    0.7057771 0.172413793
+   per-gene empirical p: min 0.0010 | genes at empirical BH 5%: 5888
+   mediator b1 t-statistics under the null (|t| > 1.96 rate per balance):
+     b1     5.5%  (observed t = 1.70, perm p = 0.0979)
+     b2     4.5%  (observed t = 2.38, perm p = 0.0150)
+     b3     5.2%  (observed t = 0.15, perm p = 0.8761)
+     b4     5.7%  (observed t = 0.03, perm p = 0.9800)
+     b5     5.4%  (observed t = 0.42, perm p = 0.6763)
+   wrote results/perm/proposal_perm.rds
+
+04_permutation complete.

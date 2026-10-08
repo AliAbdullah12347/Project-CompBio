@@ -140,3 +140,71 @@ de_v2/scripts/15_sweep_report.R	CODE	current		Assembles both sweeps into the sta
 de_v2/results/sweep/**	OUTPUT	current	de_v2/scripts/13-15	Filter sweep results: summaries, per-gene ranks under every filter, robustness and Jaccard overlap.
 START_HERE.md	DOC	current		Orientation for a new session: what to read first, how to navigate with INDEX.db, which folder is live, and five facts that prevent misreading the results.
 proposal/**	EXT	current		Written proposal drafts and hand-made flowchart figures.
+de_v2/scripts/16_candidate_genes.R	CODE	current		Joins significance, effect size, filter stability, composition behaviour and cell-type localisation into one evidence row per gene; assigns evidence tiers.
+de_v2/scripts/17_composition_gradient.R	CODE	current		Resolves why 20.5% and 100% composition-survival figures are both correct; measures the gradient by signal strength.
+de_v2/scripts/18_estimator_and_covariates.R	CODE	current		Gene-by-gene agreement between voom/limma-trend/edgeR-QLF, and proof that covariates are fitted by removing them.
+de_v2/results/candidate_genes_*.csv*	OUTPUT	current	16_candidate_genes.R	Per-gene evidence table and the tier-1 / residual / compositional subsets.
+de_v2/results/composition_*.csv	OUTPUT	current	17_composition_gradient.R	Composition-adjustment survival by decile and by correction stringency.
+de_v2/results/estimator_*.csv	OUTPUT	current	18_estimator_and_covariates.R	Cross-estimator correlations, DEG overlap and top-N concordance.
+de_v2/results/covariate_verification.csv	OUTPUT	current	18_estimator_and_covariates.R	Design rank, covariates fitted, and the removal test proving they enter the model.
+
+# ============================ de_final/  (REPORTED ANALYSIS) ================
+de_final/**	OUTPUT	current		THE REPORTED ANALYSIS. One branch only: voom, baseline filter, unadjusted, BH at FDR 0.05, CIBERSORTx. Start here.
+de_final/run_de.R	CODE	current		The whole reported pipeline in one script. Four comparisons, no variants.
+de_final/METHODS.md	DOC	current		What each step does and why each choice was made, written to be read without prior RNA-seq statistics. Includes the robustness evidence for every narrowing decision.
+de_final/results/DE_*.csv.gz	OUTPUT	current	de_final/run_de.R	Full per-gene results, one file per comparison: rank, logFC, p, BH q, significance.
+de_final/results/significant_genes.csv	OUTPUT	current	de_final/run_de.R	Every gene passing BH 0.05, all four comparisons in one table.
+de_final/results/summary.csv	OUTPUT	current	de_final/run_de.R	One row per comparison: n, tests, significant count, design rank, covariates.
+
+# de_v2 is demoted: it is the EVIDENCE for de_final's choices, not a parallel
+# set of results. Nothing in it is wrong; it is simply not what gets reported.
+de_v2/**	OUTPUT	superseded		EVIDENCE BASE for the choices made in de_final/, not reported results. Holds the 31-filter sweep, the seven correction methods, the three estimators and the composition-adjusted fits.
+de_v2/DECISIONS.md	DOC	current		18 sections of reasoning behind every choice. Still the reference; de_final/METHODS.md is the readable summary.
+de_v2/results/composition_gradient_by_decile.csv	OUTPUT	current	17_composition_gradient.R	The composition gradient. Still reported -- it answers the project's main question, unlike the parallel adjusted gene lists.
+de_v2/results/candidate_genes_tier1.csv	OUTPUT	current	16_candidate_genes.R	The 17 strongest lithium genes with full evidence per gene. Still reported.
+
+
+# ---- ARM 2: MEDIATION -------------------------------------------------------
+# Added 2026-10-08 when the mediation arm was run end to end.
+mediation/**	OUTPUT	current		ARM 2 (mediation). How much of lithium's effect on gene expression runs through the cell mixture rather than directly. Self-contained: protocol, methods, results, scripts, outputs.
+mediation/PRESPEC.md	DOC	current		THE PROTOCOL, fixed before any mediation estimate was computed. Primary model, thresholds, the full closed list of sensitivity and exploratory analyses, and three documented departures from the written proposal.
+mediation/METHODS.md	DOC	current		Everything this arm did and why, including the incidents section listing mistakes made and how they were caught. Start here to understand the estimator.
+mediation/RESULTS.md	DOC	current	scripts/08_report.R	THE FINDINGS, readable. Start here for what was learnt.
+mediation/scripts/med.R	CODE	current		THE ESTIMATOR. Natural direct/indirect effects for a vector mediator with exposure-mediator interaction, delta-method SEs. One implementation, used by every other script, so there is one place to be wrong and one place that gets tested.
+mediation/scripts/00_validate_med.R	CODE	current		25 correctness checks on med.R against Monte Carlo counterfactuals, independent lm() fits, a 4,000-replicate bootstrap and 500-dataset interval coverage. All pass. Run this first if med.R is ever edited.
+mediation/scripts/00_reliability.R	CODE	current		Per-balance ICCs from two independent deconvolutions (ours vs Krebs' deposited). Feeds the regression calibration.
+mediation/scripts/00b_ilr_trace.R	CODE	current		The ILR construction traced step by step, re-derived from the CIBERSORTx output and asserted identical to prep.rds.
+mediation/scripts/01_prep.R	CODE	current		Builds the LINEAGE mediator dataset: 5 lineages -> 4 balances, 226 bipolar I subjects, 12,018 non-LM22 genes.
+mediation/scripts/01b_prep_proposal.R	CODE	current		Builds the PROPOSAL mediator dataset: the 6-part / 5-balance tree the proposal text specifies. Run alongside, not instead.
+mediation/scripts/02_effects.R	CODE	current		The primary result on BOTH mediator trees: mediator models, per-gene outcome models, NDE/NIE/TE/PM, four-way decomposition, interaction test, multiple-testing panel.
+mediation/scripts/02b_diagnose.R	CODE	current		Why the two trees give similar estimates but wildly different significant-gene counts. Includes the delta-method-vs-bootstrap arbitration.
+mediation/scripts/02c_identity.R	CODE	current		Proof that the apparent failure of the total = direct + indirect identity is the deliberate weighted-outcome / unweighted-mediator choice, not a bug. Gap returns to 2.5e-16 when projections match.
+mediation/scripts/boot_common.R	CODE	current		The per-replicate engine shared by the bootstrap and the permutation. Refits TMM, voom, mediator models and centring inside every replicate.
+mediation/scripts/03_bootstrap.R	CODE	current		B=1000 subject bootstrap, both trees. Needed because the delta method is ~10% anticonservative here.
+mediation/scripts/04_permutation.R	CODE	current		B=1000 lithium-label permutation null, both trees. Calibrates the unstable significant-gene count.
+mediation/scripts/05_sensitivity.R	CODE	current		S1 circularity, S2 second deconvolution, S5 Rubin pooling, S6 zero-replacement sweep, S9 covariate adjustment, S12 unweighted outcome models.
+mediation/scripts/06_calibration.R	CODE	current		S3 regression calibration for the estimated mediator, S4 E-value, S10 power. Contains the power ceiling result -- the most consequential number in the arm.
+mediation/scripts/07_secondary.R	CODE	current		T1 age as exposure, T2 moderated mediation. EXPLORATORY, reported as such.
+mediation/scripts/08_report.R	CODE	current		Assembles RESULTS.md from saved objects only; never recomputes, so the report cannot drift from what ran.
+mediation/data/med_input.rds	CACHE	current	scripts/01_prep.R	Lineage mediator dataset: meta, lithium, 4 ILR balances, covariate design, voom objects for the 12,018 primary and 350 marker genes.
+mediation/data/med_input_proposal.rds	CACHE	current	scripts/01b_prep_proposal.R	Proposal mediator dataset: same, with the 6-part / 5-balance tree.
+mediation/results/primary/*_gene_effects.csv	OUTPUT	current	scripts/02_effects.R	PER-GENE EFFECTS, one file per tree, 49 columns: NDE, NIE, TE, PM, the four-way components, product-of-coefficients, SEs, z, p and five corrections. Sorted by NIE p-value.
+mediation/results/primary/*_mediator_models.csv	OUTPUT	current	scripts/02_effects.R	Lithium's effect on each ILR balance, with t, p and BH q. This is where the 'myeloid only' hypothesis is tested.
+mediation/results/boot/*_boot_ci.csv	OUTPUT	current	scripts/03_bootstrap.R	Per-gene bootstrap SEs, percentile and bias-corrected 95% intervals, bootstrap p-values.
+mediation/results/perm/*_perm_summary.csv	OUTPUT	current	scripts/04_permutation.R	Observed statistics against their permutation null, with one-sided permutation p-values.
+mediation/results/perm/*_perm_gene.csv	OUTPUT	current	scripts/04_permutation.R	Per-gene empirical p-values from the permutation null.
+mediation/results/sens/**	OUTPUT	current	scripts/05-07	Every sensitivity and exploratory analysis, one file each. See PRESPEC.md section 2 for what each code means.
+mediation/results/balance_reliability.csv	OUTPUT	current	scripts/00_reliability.R	ICC per ILR balance between two deconvolutions. Feeds S3.
+mediation/results/validation_med.txt	OUTPUT	current	scripts/00_validate_med.R	One line: how many correctness checks ran and how many failed.
+mediation/results/identity_check.txt	OUTPUT	current	scripts/02c_identity.R	One line recording the identity gap with and without matched projections.
+mediation/logs/**	OUTPUT	current		Run logs for the long resampling jobs.
+
+Proposal Feedback assignment/**	EXT	current		Course assignment folder: our full proposal (AliAva_Proposal.docx, the GOVERNING DOCUMENT for every arm) plus two peer proposals we were assigned to review.
+
+# added when the mediation arm was re-run after independent review
+mediation/scripts/02d_vs_de.R	CODE	current		EXTERNAL VALIDATION: the mediation total effect against the DE arm's lithium contrast. Different code, different model, months apart -- they agree at r = 0.9985 and recover 89% of the DE gene list. The strongest check that reuses none of this arm's own algebra.
+mediation/scripts/04b_perm_pm.R	CODE	current		Permutation null for the HEADLINE quantity, done properly: gene set held fixed so the statistic is defined in every replicate. Replaces 04's version, which was defined in only 3% of replicates.
+mediation/results/de_crosscheck.txt	OUTPUT	current	scripts/02d_vs_de.R	One line recording the agreement between the mediation total effect and the DE arm.
+mediation/results/perm/perm_pm_fixedset.csv	OUTPUT	current	scripts/04b_perm_pm.R	Observed vs null median proportion mediated on a fixed gene set, both trees.
+mediation/results/sens/S3_correction_sweep.csv	OUTPUT	current	scripts/06_calibration.R	The regression-calibration stability sweep: correction strength c against condition number and corrected PM. Shows why a single matrix-corrected figure is not reported.
+mediation/PRESPEC.md	DOC	current		THE PROTOCOL, fixed before any mediation estimate was computed. Primary model, thresholds, the closed list of sensitivity and exploratory analyses, and the documented departures from the written proposal.

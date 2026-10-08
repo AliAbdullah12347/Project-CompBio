@@ -622,3 +622,114 @@ repairs a power problem.
 The B-cell zero now has a mechanism attached to it rather than just a detection
 floor: a variance floor that costs granulocytes 29 genes costs B cells all
 12,368.
+
+---
+
+## 18. Narrowing to one estimator and one filter
+
+Reporting four parallel variants of everything is unreadable. This section fixes
+one of each and records what that choice costs.
+
+### Estimator: voom
+
+**Chosen because it was pre-specified**, in `config.yaml`
+(`whole_blood_estimator: voom`) before any analysis ran. That matters more than
+any property of the method, because voom also happens to return the *most* genes
+of the three (1,426 vs 1,305 and 1,341) and picking the winner after the fact
+would be exactly the selection this project criticises. It was not picked after
+the fact.
+
+The three estimators agree almost completely on the lithium contrast:
+
+| | log2FC Pearson | p-rank Spearman | DEG shared | % of smaller set |
+|:--|--:|--:|--:|--:|
+| voom vs limma-trend | **0.9936** | 0.9790 | 1,250 | 95.8% |
+| voom vs edgeR-QLF | **0.9845** | 0.9712 | 1,221 | 91.1% |
+| limma-trend vs edgeR-QLF | 0.9840 | 0.9682 | 1,186 | 90.9% |
+
+Of each method's own top 100 genes, **93 are shared by all three**; of the top
+50, 42; of the top 500, 430. The estimator choice moves the DEG count by ~9%
+and the gene identities barely at all.
+
+**The bipolar contrast behaves oppositely, and that is informative.** Effect
+estimates still correlate (0.96–0.99) and ranks still correlate (0.91–0.97), but
+the called sets barely overlap: voom 4, limma-trend 0, edgeR-QLF 10, with voom
+and QLF sharing 3 and only 51 of each top 100 shared by all three. When sets are
+this small and this close to the boundary, which genes land inside is decided by
+noise. Three methods disagreeing about a 4-gene list is what nothing looks like,
+not a discrepancy to reconcile.
+
+### Filter: >10 counts in ≥90% of samples (12,368 genes)
+
+Three independent reasons, none of which is "it gave the most genes":
+
+1. **Pre-specified** in `config.yaml` before any analysis.
+2. **Comparability with the source paper.** Krebs et al. report 12,344 genes
+   from the same rule; we get 12,368 on our 474-sample cohort. Using a different
+   filter would break the one external check available.
+3. **Independently corroborated.** `edgeR::filterByExpr` — an automatic,
+   design-aware filter we did not choose — keeps 13,925 genes and returns 1,452
+   DEGs, within 2% of our 1,426.
+
+Robustness across the 31-filter sweep (gene universes 2,087 to 24,084):
+
+| metric | value |
+|:--|:--|
+| DEG count range, all 31 filters | 608 – 1,453 |
+| DEG count, filters above ~8,000 genes | **1,217 – 1,453** (19% spread over a 3-fold change in universe) |
+| Baseline DEGs called under *every* filter that retained them | **894 of 1,426 (62.7%)** |
+| Median Jaccard of each filter's DEG set vs baseline | **0.776** |
+| TSPAN2 rank | **1 of 12,368 in 30 of 30 filters** |
+
+The count falls below ~1,200 only at the two harshest settings (>50 counts in
+100% of samples, 2,087 genes), where the filter has deleted genes that were
+genuinely differentially expressed. That is not instability.
+
+### Composition-adjusted results: a partial disagreement
+
+The request was to drop them. Half of that is right and half would remove the
+main finding.
+
+**Dropped:** the standalone ILR-adjusted DEG lists (WB_LI_ilr 341 genes,
+CT_LI_ilr 130, and the two bipolar zeros). As independent results they add
+nothing — they are the same hypotheses asked a second way, and reporting them in
+parallel doubles every table for no gain.
+
+**Kept:** the per-gene *comparison* between adjusted and unadjusted. That
+comparison is not a variant of the result, it is the answer to the question the
+project exists to ask — how much of lithium's apparent transcriptomic effect is
+the cell mixture moving. It produced §17's gradient: 20.5% of all 1,426 genes
+survive adjustment, rising monotonically to **100% of the 125 that pass
+family-wise error control**. Dropping the adjusted fits entirely would delete
+that.
+
+So: one DEG table (unadjusted), plus two derived columns per gene —
+`logFC_adjusted` and `% effect lost`.
+
+### Covariates: verified by removal, not by inspection
+
+Naming covariates in a formula is not evidence they were fitted. This already
+bit the project once: `bmind_de()` accepts a covariate argument and discards it
+(§9). So the check is not "are the columns present" but "does removing them
+change the answer".
+
+| | LI | BPD |
+|:--|:--|:--|
+| design | 226 × 13, **full rank** | 308 × 14, **full rank** |
+| covariates used | age, sex, tobacco, RIN, plate, seqPC1–3 | the above + assessment group |
+| dropped as constant | none | none |
+| `grpcase` is the tested coefficient | yes | yes |
+| adjusted vs unadjusted log2FC identical | **FALSE** | **FALSE** |
+| correlation between them | 0.960 | **0.654** |
+| median \|difference\| in log2FC | 0.016 | 0.038 |
+| DEG adjusted vs unadjusted | 1,426 vs 1,500 | **4 vs 54** |
+
+Both designs are full rank with every requested covariate present, and removing
+the covariates changes every coefficient — so they are genuinely fitted.
+
+**The bipolar row is worth reporting in its own right.** Without covariates the
+contrast returns **54 genes**; with them, **4**. The adjusted and unadjusted
+effect estimates correlate only 0.654. Most of the apparent bipolar signal in
+whole blood is confounding — age, sex, assessment group, plate and sequencing
+position — rather than illness. An uncorrected analysis of this contrast would
+have produced a publishable-looking 54-gene result that is mostly demographics.

@@ -75,3 +75,6 @@ Thumbs.db
 *.swp
 .venv/
 venv/
+
+# Network arm scratch cache (rebuilt by network/00_load.R in ~40 s)
+network/cache/

@@ -1,0 +1,83 @@
+
+== bootstrap: lineage == 12018 genes x 226 subjects, B = 1000 on 4 cores
+     50/1000 done | 2.6 min elapsed | ~48.9 min left
+    100/1000 done | 5.2 min elapsed | ~46.4 min left
+    150/1000 done | 7.7 min elapsed | ~43.4 min left
+    200/1000 done | 10.2 min elapsed | ~40.7 min left
+    250/1000 done | 12.7 min elapsed | ~38.0 min left
+    300/1000 done | 15.2 min elapsed | ~35.4 min left
+    350/1000 done | 17.7 min elapsed | ~32.9 min left
+    400/1000 done | 20.3 min elapsed | ~30.4 min left
+    450/1000 done | 22.8 min elapsed | ~27.8 min left
+    500/1000 done | 25.3 min elapsed | ~25.3 min left
+    550/1000 done | 27.8 min elapsed | ~22.7 min left
+    600/1000 done | 30.3 min elapsed | ~20.2 min left
+    650/1000 done | 32.8 min elapsed | ~17.7 min left
+    700/1000 done | 35.2 min elapsed | ~15.1 min left
+    750/1000 done | 37.7 min elapsed | ~12.6 min left
+    800/1000 done | 40.4 min elapsed | ~10.1 min left
+    850/1000 done | 42.9 min elapsed | ~7.6 min left
+    900/1000 done | 45.4 min elapsed | ~5.0 min left
+    950/1000 done | 48.0 min elapsed | ~2.5 min left
+   1000/1000 done | 50.5 min elapsed | ~0.0 min left
+   1000 of 1000 replicates usable
+
+   HEADLINE -- median proportion mediated over 1272 genes with significant TE
+     point estimate              : 0.3957
+     bootstrap percentile 95% CI : 0.1519 to 0.5665
+     bootstrap SE                : 0.1057
+     replicates above 0.50       : 14.6%  (pre-declared 'substantial')
+     replicates above 0          : 99.7%
+
+   delta SE / bootstrap SE: median 0.925 (IQR 0.860-0.975)
+   NIE excluding zero, uncorrected percentile CI: 4917 genes (40.9%)
+   NIE at BH 5% on bootstrap p: 0 genes
+   mediator b1 across replicates (mean, and share with t > 1.96):
+     b1     mean +0.1603  sd 0.0769
+     b2     mean +0.1043  sd 0.0404
+     b3     mean +0.0394  sd 0.0606
+     b4     mean +0.0621  sd 0.1136
+   wrote results/boot/lineage_boot.rds
+
+== bootstrap: proposal == 12018 genes x 226 subjects, B = 1000 on 4 cores
+     50/1000 done | 2.6 min elapsed | ~50.1 min left
+    100/1000 done | 5.3 min elapsed | ~47.4 min left
+    150/1000 done | 7.8 min elapsed | ~44.4 min left
+    200/1000 done | 10.5 min elapsed | ~42.0 min left
+    250/1000 done | 13.1 min elapsed | ~39.4 min left
+    300/1000 done | 15.8 min elapsed | ~36.9 min left
+    350/1000 done | 18.5 min elapsed | ~34.4 min left
+    400/1000 done | 21.2 min elapsed | ~31.8 min left
+    450/1000 done | 23.9 min elapsed | ~29.2 min left
+    500/1000 done | 26.5 min elapsed | ~26.5 min left
+    550/1000 done | 29.1 min elapsed | ~23.8 min left
+    600/1000 done | 31.7 min elapsed | ~21.2 min left
+    650/1000 done | 34.4 min elapsed | ~18.5 min left
+    700/1000 done | 37.0 min elapsed | ~15.9 min left
+    750/1000 done | 39.6 min elapsed | ~13.2 min left
+    800/1000 done | 42.3 min elapsed | ~10.6 min left
+    850/1000 done | 45.0 min elapsed | ~7.9 min left
+    900/1000 done | 47.7 min elapsed | ~5.3 min left
+    950/1000 done | 50.5 min elapsed | ~2.7 min left
+   1000/1000 done | 53.0 min elapsed | ~0.0 min left
+   1000 of 1000 replicates usable
+
+   HEADLINE -- median proportion mediated over 1075 genes with significant TE
+     point estimate              : 0.4490
+     bootstrap percentile 95% CI : 0.2357 to 0.6298
+     bootstrap SE                : 0.0976
+     replicates above 0.50       : 31.3%  (pre-declared 'substantial')
+     replicates above 0          : 100.0%
+
+   delta SE / bootstrap SE: median 0.912 (IQR 0.864-0.965)
+   NIE excluding zero, uncorrected percentile CI: 5855 genes (48.7%)
+   NIE at BH 5% on bootstrap p: 3883 genes
+   mediator b1 across replicates (mean, and share with t > 1.96):
+     b1     mean +0.1960  sd 0.1186
+     b2     mean +0.1037  sd 0.0429
+     b3     mean +0.0261  sd 0.1655
+     b4     mean +0.0001  sd 0.1183
+     b5     mean +0.0888  sd 0.2257
+   wrote results/boot/proposal_boot.rds
+
+03_bootstrap complete.

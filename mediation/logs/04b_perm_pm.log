@@ -1,0 +1,24 @@
+
+== lineage == fixed gene set: 1272 genes | observed median PM = 0.3957
+    50/300 | 2.5 min | ~12.4 min left
+   100/300 | 5.0 min | ~10.1 min left
+   150/300 | 7.6 min | ~7.6 min left
+   200/300 | 10.1 min | ~5.1 min left
+   250/300 | 12.7 min | ~2.5 min left
+   300/300 | 15.2 min | ~0.0 min left
+   null median PM: median 0.3834 | 2.5-97.5% -0.0835 to 0.8965 | max |.| 1.0570
+   observed 0.3957 -> two-sided permutation p = 0.4917  (300 usable replicates)
+   -> NOT distinguishable from a ratio of noise on this statistic
+
+== proposal == fixed gene set: 1075 genes | observed median PM = 0.4490
+    50/300 | 2.6 min | ~13.2 min left
+   100/300 | 5.2 min | ~10.5 min left
+   150/300 | 7.9 min | ~7.9 min left
+   200/300 | 10.5 min | ~5.2 min left
+   250/300 | 13.1 min | ~2.6 min left
+   300/300 | 15.8 min | ~0.0 min left
+   null median PM: median 0.3804 | 2.5-97.5% -0.2385 to 1.0514 | max |.| 1.2544
+   observed 0.4490 -> two-sided permutation p = 0.4086  (300 usable replicates)
+   -> NOT distinguishable from a ratio of noise on this statistic
+
+04b complete.

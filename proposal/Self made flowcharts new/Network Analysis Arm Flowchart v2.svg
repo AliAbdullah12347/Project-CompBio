@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1050" viewBox="0 0 1080 1050" font-family="Helvetica,Arial,sans-serif">
+<defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#000"/></marker></defs>
+<rect width="1080" height="1050" fill="#ffffff"/>
+<line x1="780" y1="99" x2="760" y2="99" stroke="#9A9A9A" stroke-width="1"/>
+<line x1="780" y1="194" x2="760" y2="194" stroke="#9A9A9A" stroke-width="1"/>
+<line x1="780" y1="309" x2="760" y2="312" stroke="#9A9A9A" stroke-width="1"/>
+<line x1="780" y1="435" x2="760" y2="430" stroke="#9A9A9A" stroke-width="1"/>
+<line x1="780" y1="556" x2="760" y2="574" stroke="#9A9A9A" stroke-width="1"/>
+<line x1="780" y1="721" x2="760" y2="718" stroke="#9A9A9A" stroke-width="1"/>
+<text x="540" y="43" font-size="19" font-weight="bold" text-anchor="middle">NETWORK ANALYSIS ARM</text>
+<rect x="300" y="76" width="460" height="46" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="530" y="96.0" font-size="12" text-anchor="middle">Define 3 groups: Healthy no lithium,</text>
+<text x="530" y="112.0" font-size="12" text-anchor="middle">BP no lithium, BP lithium</text>
+<rect x="780" y="80" width="290" height="38" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="788" y="96.0" font-size="10.5" fill="#000000">234 controls, 74 BP1 off lithium,</text>
+<text x="788" y="109.0" font-size="10.5" fill="#000000">152 BP1 on lithium.</text>
+<rect x="300" y="162" width="460" height="64" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="530" y="191.0" font-size="12" text-anchor="middle">Subsample the two larger groups down to n = 74 to match the</text>
+<text x="530" y="207.0" font-size="12" text-anchor="middle">smallest group, then do 100 draws</text>
+<rect x="780" y="158" width="290" height="86" fill="#ffffff" stroke="#C55A11" stroke-width="1.1"/>
+<text x="788" y="172.0" font-size="10.5" fill="#C55A11">BP1 off lithium is never subsampled — it</text>
+<text x="788" y="185.0" font-size="10.5" fill="#C55A11">already is 74. Draws equalise group size;</text>
+<text x="788" y="198.0" font-size="10.5" fill="#C55A11">they are not independent replicates: two</text>
+<text x="788" y="211.0" font-size="10.5" fill="#C55A11">draws from the 152 share ~36 people.</text>
+<text x="788" y="224.0" font-size="10.5" fill="#C55A11">100 draws here; D = 20 inside the</text>
+<text x="788" y="237.0" font-size="10.5" fill="#C55A11">permutation test below.</text>
+<rect x="300" y="272" width="460" height="80" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="530" y="293.0" font-size="12" text-anchor="middle">Define the modules ONCE, on the reference group, then measure</text>
+<text x="530" y="309.0" font-size="12" text-anchor="middle">those same modules in every draw.</text>
+<text x="530" y="341.0" font-size="12" text-anchor="middle">Gene-to-gene correlation → weighted network (WGCNA)</text>
+<rect x="780" y="276" width="290" height="66" fill="#ffffff" stroke="#C55A11" stroke-width="1.1"/>
+<text x="788" y="293.0" font-size="10.5" fill="#C55A11">If modules are re-detected in each draw,</text>
+<text x="788" y="306.0" font-size="10.5" fill="#C55A11">module 7 in draw 1 is not module 7 in</text>
+<text x="788" y="319.0" font-size="10.5" fill="#C55A11">draw 2, and there is nothing to pool</text>
+<text x="788" y="332.0" font-size="10.5" fill="#C55A11">across.</text>
+<rect x="300" y="398" width="460" height="64" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="530" y="427.0" font-size="12" text-anchor="middle">Check module preservation across groups and across draws.</text>
+<text x="530" y="443.0" font-size="12" text-anchor="middle">Zsummary and medianRank are DESCRIPTIVE scores only.</text>
+<rect x="780" y="392" width="290" height="86" fill="#ffffff" stroke="#C55A11" stroke-width="1.1"/>
+<text x="788" y="406.0" font-size="10.5" fill="#C55A11">Zsummary has no calibrated null — Langfelder</text>
+<text x="788" y="419.0" font-size="10.5" fill="#C55A11">(2011) gives rule-of-thumb cutoffs, not</text>
+<text x="788" y="432.0" font-size="10.5" fill="#C55A11">p-values — and medianRank is relative to</text>
+<text x="788" y="445.0" font-size="10.5" fill="#C55A11">one run. Neither can be corrected. This run</text>
+<text x="788" y="458.0" font-size="10.5" fill="#C55A11">needs WGCNA&#x27;s internal permutations and is</text>
+<text x="788" y="471.0" font-size="10.5" fill="#C55A11">the slow one; time a single draw first.</text>
+<rect x="300" y="508" width="460" height="132" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="530" y="531.0" font-size="12" text-anchor="middle" font-weight="bold">Permutation test — one p-value per module</text>
+<text x="530" y="563.0" font-size="12" text-anchor="middle">Statistic:  Δ(M) = preservation in BP-lithium − preservation</text>
+<text x="530" y="579.0" font-size="12" text-anchor="middle">in BP-no-lithium, averaged over D = 20 draws</text>
+<text x="530" y="595.0" font-size="12" text-anchor="middle">Null:  relabel the 226 BP1 subjects 152/74 at random, rerun</text>
+<text x="530" y="611.0" font-size="12" text-anchor="middle">the same D = 20 draws. K = 1,000 relabellings.</text>
+<text x="530" y="627.0" font-size="12" text-anchor="middle">p = (1 + #{ |Δnull| ≥ |Δobs| }) / (K + 1)</text>
+<rect x="780" y="506" width="290" height="100" fill="#ffffff" stroke="#C55A11" stroke-width="1.1"/>
+<text x="788" y="520.5" font-size="10.5" fill="#C55A11">Matching D on both sides is what makes</text>
+<text x="788" y="533.5" font-size="10.5" fill="#C55A11">pooling valid: draw-to-draw variance enters</text>
+<text x="788" y="546.5" font-size="10.5" fill="#C55A11">the null exactly as it enters the observation,</text>
+<text x="788" y="559.5" font-size="10.5" fill="#C55A11">so the draws never have to be independent.</text>
+<text x="788" y="572.5" font-size="10.5" fill="#C55A11">Run modulePreservation with nPermutations</text>
+<text x="788" y="585.5" font-size="10.5" fill="#C55A11">= 0 here — you supply your own null, so each</text>
+<text x="788" y="598.5" font-size="10.5" fill="#C55A11">evaluation takes seconds.</text>
+<rect x="300" y="686" width="460" height="64" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="530" y="715.0" font-size="12" text-anchor="middle">Benjamini–Hochberg across MODULES (the family is modules,</text>
+<text x="530" y="731.0" font-size="12" text-anchor="middle">not draws) → which modules differ between groups</text>
+<rect x="780" y="684" width="290" height="74" fill="#ffffff" stroke="#C55A11" stroke-width="1.1"/>
+<text x="788" y="698.5" font-size="10.5" fill="#C55A11">~20–40 modules, so BH needs p ≈ 0.002 to</text>
+<text x="788" y="711.5" font-size="10.5" fill="#C55A11">survive — hence K = 1,000, since the</text>
+<text x="788" y="724.5" font-size="10.5" fill="#C55A11">smallest possible p is 1/(K+1). Use</text>
+<text x="788" y="737.5" font-size="10.5" fill="#C55A11">Benjamini–Bogomolov to correct the lithium</text>
+<text x="788" y="750.5" font-size="10.5" fill="#C55A11">and diagnosis comparisons together.</text>
+<rect x="300" y="796" width="460" height="80" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="530" y="825.0" font-size="12" text-anchor="middle">Redo with the cell mix removed from the genes (computed using</text>
+<text x="530" y="841.0" font-size="12" text-anchor="middle">regression) to check whether any detected differences survive</text>
+<text x="530" y="857.0" font-size="12" text-anchor="middle">once composition is accounted for</text>
+<rect x="8" y="290" width="286" height="120" fill="#ffffff" stroke="#000000" stroke-width="1.1"/>
+<text x="16" y="308.0" font-size="10.5" fill="#000000">Note: This is just one possible avenue of</text>
+<text x="16" y="321.0" font-size="10.5" fill="#000000">network analysis, we aim to explore different</text>
+<text x="16" y="334.0" font-size="10.5" fill="#000000">avenues such as community detection to see</text>
+<text x="16" y="347.0" font-size="10.5" fill="#000000">if the samples separate neatly into clusters</text>
+<text x="16" y="360.0" font-size="10.5" fill="#000000">by diagnosis or by lithium usage or some</text>
+<text x="16" y="373.0" font-size="10.5" fill="#000000">other factor, we could also check differences</text>
+<text x="16" y="386.0" font-size="10.5" fill="#000000">in centrality for these networks and see if</text>
+<text x="16" y="399.0" font-size="10.5" fill="#000000">that tells us anything.</text>
+<rect x="10" y="916" width="1060" height="104" fill="#ffffff" stroke="#C55A11" stroke-width="1.1"/>
+<text x="18" y="952.0" font-size="10.5" fill="#C55A11" font-weight="bold">IF YOU PREFER TO KEEP ARM 3 PURELY EXPLORATORY</text>
+<text x="18" y="965.0" font-size="10.5" fill="#C55A11">Drop the permutation test and the Benjamini–Hochberg step. Report median Zsummary per module per group across the 100 draws with a 2.5–97.5 percentile</text>
+<text x="18" y="978.0" font-size="10.5" fill="#C55A11">interval, and call a module not preserved only when the whole interval falls below the pre-declared Zsummary &lt; 2 threshold (CLAUDE.md §4.4). No null and no</text>
+<text x="18" y="991.0" font-size="10.5" fill="#C55A11">correction are then needed — but you cannot say “differs significantly”, only “consistently below threshold in one group and not the other”. Pick one path.</text>
+<line x1="530" y1="122" x2="530" y2="160" stroke="#000000" stroke-width="1.3" marker-end="url(#a)"/>
+<line x1="530" y1="226" x2="530" y2="270" stroke="#000000" stroke-width="1.3" marker-end="url(#a)"/>
+<line x1="530" y1="352" x2="530" y2="396" stroke="#000000" stroke-width="1.3" marker-end="url(#a)"/>
+<line x1="530" y1="462" x2="530" y2="506" stroke="#000000" stroke-width="1.3" marker-end="url(#a)"/>
+<line x1="530" y1="640" x2="530" y2="684" stroke="#000000" stroke-width="1.3" marker-end="url(#a)"/>
+<line x1="530" y1="750" x2="530" y2="794" stroke="#000000" stroke-width="1.3" marker-end="url(#a)"/>
+</svg>

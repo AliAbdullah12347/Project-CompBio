@@ -1,0 +1,6 @@
+"balance","contrast","meaning","mean","sd"
+"b1","neut+mono vs cd4n+cd4m+NK+B","myeloid vs lymphoid",2.3623,0.7352
+"b2","neut vs mono","neutrophils vs monocytes",0.209,0.2713
+"b3","cd4n+cd4m vs NK+B","T vs NK+B",1.3582,1.0434
+"b4","cd4n vs cd4m","CD4 naive vs CD4 memory",-0.8552,0.7924
+"b5","NK vs B","NK vs B",1.8373,1.3481

@@ -1,0 +1,5 @@
+"comparison","level","contrast","n","n_group1","n_group2","n_tests","n_genes","significant_BH05","pooled_unique_genes","min_P","min_BH","max_abs_logFC","covariates","design_rank","design_cols"
+"WB_LI","WB","LI",226,74,152,12368,12368,1426,NA,5.65e-20,6.99e-16,0.911,"age;sex;tobacco;rin;plate;seqpc1;seqpc2;seqpc3",13,13
+"WB_BPD","WB","BPD",308,234,74,12368,12368,4,NA,6.51e-06,0.0489,0.917,"age;sex;tobacco;group;rin;plate;seqpc1;seqpc2;seqpc3",14,14
+"CT_LI","CT","LI",226,74,152,61840,12368,161,66,2.41e-12,2.99e-08,0.829,"age;sex;tobacco;rin;plate;seqpc1;seqpc2;seqpc3",13,13
+"CT_BPD","CT","BPD",308,234,74,61840,12368,0,0,1.45e-05,0.0911,0.714,"age;sex;tobacco;group;rin;plate;seqpc1;seqpc2;seqpc3",14,14
