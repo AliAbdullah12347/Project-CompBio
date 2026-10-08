@@ -7,6 +7,9 @@ is, what is deliberately missing, and what to do when you cannot find something.
 If you only read one line: **`source("network/00_load.R"); d <- load_project()`**
 gives you every matrix this arm needs, already checked against the verified facts.
 
+Your standing instructions are in **`network/MASTER_PROMPT.md`** — what to run, how
+to survive crashes and usage limits, and what the output must look like.
+
 ---
 
 ## 1. What this project is

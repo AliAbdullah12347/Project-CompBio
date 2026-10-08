@@ -110,9 +110,9 @@ Boltz Paper/src/06_preprint_prediction.R,Boltz Paper/src,CODE,current,,7.3K,2026
 Boltz Paper/src/07_validate.py,Boltz Paper/src,CODE,current,,13.8K,2026-09-28 10:50,Our code for the Boltz reproduction.
 DIRECTORY.txt,.,DOC,current,,29.3K,2026-10-02 05:26,"Hand-written tour of the project, written to be read start to finish. INDEX.db is the queryable counterpart."
 HANDOFF.md,.,DOC,current,,10.7K,2026-09-28 19:53,Session handoff notes from the September work.
-IMAC_README.md,.,DOC,current,,12.1K,2026-10-08 20:24,"Orientation for the unattended network-analysis run on a separate machine: data access, directory map, what is deliberately absent and how to regenerate it, verified facts, known traps, and the escalation procedure when something cannot be found."
-INDEX.csv,.,OUTPUT,current,index/build_index.py,211.2K,2026-10-08 20:25,The file table from INDEX.db as a spreadsheet.
-INDEX.db,.,OUTPUT,current,index/build_index.py,428.0K,2026-10-08 20:25,SQLite index of every file and folder here. Query it instead of guessing where something lives.
+IMAC_README.md,.,DOC,current,,12.3K,2026-10-08 20:29,"Orientation for the unattended network-analysis run on a separate machine: data access, directory map, what is deliberately absent and how to regenerate it, verified facts, known traps, and the escalation procedure when something cannot be found."
+INDEX.csv,.,OUTPUT,current,index/build_index.py,211.7K,2026-10-08 20:27,The file table from INDEX.db as a spreadsheet.
+INDEX.db,.,OUTPUT,current,index/build_index.py,428.0K,2026-10-08 20:27,SQLite index of every file and folder here. Query it instead of guessing where something lives.
 Krebs Paper/README.md,Krebs Paper,EXT,external,,5.3K,2026-09-27 21:44,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
 Krebs Paper/REPRODUCIBILITY.md,Krebs Paper,EXT,external,,7.9K,2026-09-28 04:10,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
 Krebs Paper/STATUS.md,Krebs Paper,EXT,external,,5.2K,2026-09-27 22:35,"Reproduction of Krebs et al., the source of GSE124326. Described at folder level."
@@ -829,7 +829,7 @@ env.ps1,.,CODE,current,,153B,2026-09-27 21:32,PowerShell version of env.sh.
 env.sh,.,CODE,current,,166B,2026-09-27 21:32,Puts R 4.6.1 on PATH. Source before running any R script.
 index/README.md,index,DOC,current,,3.7K,2026-10-02 05:25,"How to rebuild and query INDEX.db, the schema, and how to add a description."
 index/build_index.py,index,CODE,current,,9.7K,2026-10-02 05:21,"Walks the tree, joins it to descriptions.tsv, writes INDEX.db and INDEX.csv. Also runs queries: --query ""SQL""."
-index/descriptions.tsv,index,DOC,current,,25.6K,2026-10-08 20:27,This file. The curated meaning of every path.
+index/descriptions.tsv,index,DOC,current,,25.9K,2026-10-08 20:29,This file. The curated meaning of every path.
 mediation/METHODS.md,mediation,DOC,current,,21.1K,2026-10-08 09:23,"Everything this arm did and why, including the incidents section listing mistakes made and how they were caught. Start here to understand the estimator."
 mediation/PRESPEC.md,mediation,DOC,current,,15.5K,2026-10-08 04:41,"THE PROTOCOL, fixed before any mediation estimate was computed. Primary model, thresholds, the closed list of sensitivity and exploratory analyses, and the documented departures from the written proposal."
 mediation/RESULTS.md,mediation,DOC,current,scripts/08_report.R,22.4K,2026-10-08 18:49,"THE FINDINGS, readable. Start here for what was learnt."
@@ -911,6 +911,7 @@ mediation/scripts/09_ztest_pm.R,mediation/scripts,OUTPUT,current,,3.0K,2026-10-0
 mediation/scripts/boot_common.R,mediation/scripts,CODE,current,,3.6K,2026-10-08 04:53,"The per-replicate engine shared by the bootstrap and the permutation. Refits TMM, voom, mediator models and centring inside every replicate."
 mediation/scripts/med.R,mediation/scripts,CODE,current,,13.7K,2026-10-08 05:46,"THE ESTIMATOR. Natural direct/indirect effects for a vector mediator with exposure-mediator interaction, delta-method SEs. One implementation, used by every other script, so there is one place to be wrong and one place that gets tested."
 network/00_load.R,network,CODE,current,,7.7K,2026-10-08 20:22,"Canonical loader for the network arm. Rebuilds every matrix from the tracked CSVs in data/analysis_matrices/, so no clone depends on prep.rds. Stops rather than returning a wrong object if any shape or group count disagrees with the verified facts."
+network/MASTER_PROMPT.md,network,DOC,current,,12.2K,2026-10-08 20:29,"Standing instructions for the unattended multi-day network-analysis run: the phase-0 approval gate, the queue/driver/cron machinery that survives crashes and usage limits, the catalogue of analyses to work through, and the required output format."
 network/cache/project.rds,network/cache,CACHE,current,network/00_load.R,30.3M,2026-10-08 20:23,Gitignored scratch cache of load_project(). Rebuilt in ~40 s; never committed.
 "preproposal/Ali, Ava Project Preproposal (revised).docx",preproposal,EXT,external,,206.5K,2026-09-20 16:27,Course paperwork: the pre-proposal and weekly timesheets.
 preproposal/build.py,preproposal,EXT,external,,5.3K,2026-09-20 16:26,"Course deliverables: the pre-proposal, the feedback PDF, and the annotated bibliography."
