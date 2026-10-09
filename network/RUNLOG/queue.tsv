@@ -1,16 +1,28 @@
 id	family	status	attempts	started	finished	wall_sec	note	cap_sec	spec
-base-001	baseline	PENDING	0					7200	ref=control;corr=bicor;net=signed;genes=all;draws=100;stat=Zsummary+medianRank;DESCRIPTIVE ONLY
-ref-002	reference	PENDING	0					7200	ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100
-ref-003	reference	PENDING	0					7200	ref=bp_lith;corr=bicor;net=signed;genes=all;draws=100
-ref-004	reference	PENDING	0					9000	ref=consensus(all3);corr=bicor;net=signed;genes=all;draws=100
-corr-005	corr	PENDING	0					7200	ref=control;corr=pearson;net=signed;genes=all;draws=100
-corr-006	corr	PENDING	0					7200	ref=control;corr=spearman;net=signed;genes=all;draws=100
-net-007	nettype	PENDING	0					7200	ref=control;corr=bicor;net=unsigned;genes=all;draws=100
-net-008	nettype	PENDING	0					7200	ref=control;corr=bicor;net=signed_hybrid;genes=all;draws=100
+base-001	baseline	PENDING	0					10800	ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsummary+medianRank;DESCRIPTIVE ONLY
+inp-022	input	PENDING	0					10800	ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+inp-023	input	PENDING	0					10800	ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 pow-009	power	PENDING	0					3600	pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result)
-pow-010	power	PENDING	0					7200	ref=control;power=6 fixed;corr=bicor;net=signed;genes=all;draws=100
-pow-011	power	PENDING	0					7200	ref=control;power=8 fixed;corr=bicor;net=signed;genes=all;draws=100
-pow-012	power	PENDING	0					7200	ref=control;power=12 fixed;corr=bicor;net=signed;genes=all;draws=100
+gene-027	geneset	PENDING	0					7200	ref=control;genes=all_minus_547_LM22 ** CIRCULARITY CHECK **
+inp-021	input	PENDING	0					10800	ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+perm-031	perm	PENDING	0					14400	group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws
+trait-033	modtrait	PENDING	0					3600	eigengene ~ lithium, dx, age, sex, RIN, plate; BH across modules
+trait-034	modtrait	PENDING	0					3600	eigengene ~ 5 lineage fractions (gran mono T NK B)
+trait-035	modtrait	PENDING	0					3600	eigengene ~ ILR balances b1-b4
+pres-030	preserve	PENDING	0					5400	ref=control;report density and connectivity components SEPARATELY; disagreement is informative
+samp-043	samplestruct	PENDING	0					3600	eigengene-space separation by group; outlier detection; hclust; does any cluster track lithium?
+ann-041	annot	PENDING	0					3600	module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules
+ann-042	annot	PENDING	0					3600	module overlap with LM22 markers and cell-type DE results; Fisher exact, BH
+ref-002	reference	PENDING	0					10800	ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+ref-003	reference	PENDING	0					10800	ref=bp_lith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+ref-004	reference	PENDING	0					10800	ref=consensus(all3);corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+corr-005	corr	PENDING	0					10800	ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+corr-006	corr	PENDING	0					10800	ref=control;corr=spearman;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+net-007	nettype	PENDING	0					10800	ref=control;corr=bicor;net=unsigned;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+net-008	nettype	PENDING	0					10800	ref=control;corr=bicor;net=signed_hybrid;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+pow-010	power	PENDING	0					10800	ref=control;power=6 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+pow-011	power	PENDING	0					10800	ref=control;power=8 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+pow-012	power	PENDING	0					10800	ref=control;power=12 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 mod-013	moddetect	PENDING	0					5400	ref=control;deepSplit=0;minModuleSize=30;mergeCutHeight=0.25
 mod-014	moddetect	PENDING	0					5400	ref=control;deepSplit=2;minModuleSize=30;mergeCutHeight=0.25
 mod-015	moddetect	PENDING	0					5400	ref=control;deepSplit=4;minModuleSize=30;mergeCutHeight=0.25
@@ -19,29 +31,17 @@ mod-017	moddetect	PENDING	0					5400	ref=control;deepSplit=2;minModuleSize=50;me
 mod-018	moddetect	PENDING	0					5400	ref=control;deepSplit=2;minModuleSize=100;mergeCutHeight=0.25
 mod-019	moddetect	PENDING	0					5400	ref=control;deepSplit=2;minModuleSize=30;mergeCutHeight=0.15
 mod-020	moddetect	PENDING	0					5400	ref=control;deepSplit=2;minModuleSize=30;mergeCutHeight=0.35
-inp-021	input	PENDING	0					7200	ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3)
-inp-022	input	PENDING	0					7200	ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **
-inp-023	input	PENDING	0					7200	ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **
-inp-024	input	PENDING	0					7200	ref=control;input=voom_weighted_from_counts
+inp-024	input	PENDING	0					10800	ref=control;input=voom_weighted_from_counts;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 gene-025	geneset	PENDING	0					3600	ref=control;genes=top2000_most_variable
 gene-026	geneset	PENDING	0					5400	ref=control;genes=top5000_most_variable
-gene-027	geneset	PENDING	0					7200	ref=control;genes=all_minus_547_LM22 ** CIRCULARITY CHECK **
 gene-028	geneset	PENDING	0					3600	ref=control;genes=lithium_DEGs_only (de_final/results/)
 gene-029	geneset	PENDING	0					5400	ref=control;genes=explicit_non_DEGs
-pres-030	preserve	PENDING	0					5400	ref=control;report density and connectivity components SEPARATELY; disagreement is informative
-perm-031	perm	PENDING	0					14400	group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws
 perm-032	perm	PENDING	0					14400	group-label permutation null K=1000 if K=500 wall-clock allows
-trait-033	modtrait	PENDING	0					3600	eigengene ~ lithium, dx, age, sex, RIN, plate; BH across modules
-trait-034	modtrait	PENDING	0					3600	eigengene ~ 5 lineage fractions (gran mono T NK B)
-trait-035	modtrait	PENDING	0					3600	eigengene ~ ILR balances b1-b4
 hub-036	hub	PENDING	0					5400	kME hub identity; stability across 100 draws; do hubs change between groups?
 hub-037	hub	PENDING	0					7200	differential connectivity per gene between groups, same permutation null
 comm-038	community	PENDING	0					5400	Louvain on adjacency; compare to WGCNA modules (ARI, NMI)
 comm-039	community	PENDING	0					5400	Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI)
 cent-040	central	PENDING	0					5400	degree, betweenness, eigenvector centrality; between-group differences
-ann-041	annot	PENDING	0					3600	module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules
-ann-042	annot	PENDING	0					3600	module overlap with LM22 markers and cell-type DE results; Fisher exact, BH
-samp-043	samplestruct	PENDING	0					3600	eigengene-space separation by group; outlier detection; hclust; does any cluster track lithium?
 filt-044	filtsens	PENDING	0					10800	reuse 31 filters from de_v2/scripts/13_filter_sweep_wb.R; which modules survive all?
 tob-045	tobacco	PENDING	0					7200	repeat inp-022 across several of the 20 tobacco imputations; does any conclusion move?
 bmind-046	celltype	PENDING	0					14400	REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window.

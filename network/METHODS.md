@@ -155,3 +155,284 @@ This was found by running the real call rather than reading its signature - the 
 is not mentioned in MASTER_PROMPT.md or IMAC_README.md.
 
 ---
+
+## 2026-10-09T02:48:22Z  Machinery rebuilt after an adversarial pre-flight audit
+
+A six-dimension audit of the machinery, with every finding put to two independent
+refuters, returned ~50 findings. Several were verified by hand and were correct. The
+driver and `wake.sh` were rewritten rather than patched.
+
+### The failure that would have produced nothing in four days
+The queue held 48 PENDING rows and zero experiment scripts — the scripts were always
+meant to be written by the sessions. The driver marked a row `BLOCKED` when its script
+was missing, and no code path ever returned a row from `BLOCKED`. The first wake would
+have drained rows to terminal one per invocation, and every later wake would have found
+an empty queue. Logs would have looked entirely normal throughout.
+
+**Fix:** the script existence check now happens **before** the row is claimed. A missing
+script releases the row untouched and exits 2 — the session's cue to write it. Added
+`run_next.sh --peek` so a session can see the next row and its spec without claiming it.
+The contract is now: peek, write the script if absent, then run.
+
+### No status is absorbing except BLOCKED
+`PARTIAL` was terminal, so a transient OOM or segfault permanently retired a recoverable
+experiment. `requeue()` now returns `PARTIAL` rows to `PENDING` while attempts remain,
+and `BLOCKED` is reachable only after MAX_ATTEMPTS genuine execution failures.
+
+### Other defects fixed
+- `attempts` was incremented in both `reclaim()` and `claim()`, so rows were retired
+  after two real runs instead of three. It is now incremented in `claim()` only.
+- The secret scanner called `git reset`, which unstaged the very warning it had just
+  written — a credential incident would have been both silently unreported and
+  permanently wedging. It now unstages only the offending files and still commits the alert.
+- `awk` getline leaves its variable untouched on failure, so a row with an unparseable
+  `started` stamp kept the previous row's timestamp and was never reclaimed. The variable
+  is now reset before each read and an unparseable stamp is treated as stale.
+- Queue rewrites go through `rewrite()`, which refuses to install a file that is empty or
+  has lost its header, so a crash mid-write cannot truncate the queue.
+- The cap-kill signalled one PID; forked WGCNA workers survived and accumulated. It now
+  TERMs children first, then KILLs after a grace period.
+- The outside-`network/` filter used newline-delimited paths, which mangles anything
+  needing C-quoting. It now uses `-z`.
+- `git pull --rebase` failures were swallowed; an unattended conflict could leave markers
+  in `queue.tsv` for the next `git add` to commit as resolved. Conflicts now abort the
+  rebase, log to BLOCKED.md, and stop rather than publish.
+- `wake.sh` had no wall-clock bound; one hung session would hold the lock and every later
+  wake would log only "skipped". Sessions are now capped at 4 h, under the 5 h interval.
+- Both locks had PID-liveness checks only. PIDs are recycled, so a stale lock after a
+  reboot could wedge the run permanently. Both now have an age fallback.
+- `wake.sh`'s auth-failure path committed the whole index, bypassing the scope guard. It
+  now uses the same `network/`-only staging.
+- The auth grep matched the whole log and would self-trigger on text this script had
+  written earlier. It now matches only the session's own last 40 lines, and copies no log
+  lines into a file destined for a public repository.
+- `network/.gitignore` now excludes lock directories, partial queue rewrites and full
+  session transcripts, none of which belong in a public repo.
+- `RunAtLoad` is now true: after a reboot the run resumes at login rather than waiting
+  for the next 5 h tick.
+- Added a zero-throughput watchdog: if the DONE count is unchanged across three
+  consecutive wakes (~15 h), it writes to BLOCKED.md and pushes. Every silent failure in
+  this design presents identically — normal logs, nothing completing — and this is the
+  only check that distinguishes them.
+
+### Science corrections to RESUME_PROMPT.md
+The first draft omitted IMAC_README §6.5 (versioned Ensembl ids), §6.6
+(Benjamini–Bogomolov rather than one pooled BH across comparisons) and §6.8 (reuse
+`de_v2/scripts/mtc.R`; `qvalue`/`IHW` are deliberately absent). All are now stated.
+BH across modules *within* a comparison is correct and is what MASTER_PROMPT specifies;
+pooling *across* comparisons is what §6.6 forbids. The prompt now makes that distinction
+explicit rather than saying only "BH".
+
+It also banned `index/build_index.py` outright. `--query` is read-only and is the
+discovery path §7 prescribes first; only a bare run is out of scope. Corrected.
+
+### An error of my own, recorded because the repository is public
+While testing `wake.sh`'s token guards I ran the script directly, not accounting for its
+failure paths committing and pushing by design. Three commits reached public `origin/main`
+(bd7290d, fbc2ae2, 90a79e1): the legitimate machinery plus two junk BLOCKED.md entries
+from the tests. **No credential was exposed** — verified by searching every commit for the
+token value; the only matches were pattern definitions and documentation strings. The junk
+entries are removed in this commit. History was not rewritten: force-pushing a public
+branch to tidy two lines is a worse risk than the lines themselves.
+
+**Root cause fix:** `wake.sh --check` now runs every precondition and reports, without
+locking, committing, pushing or launching a session. The guards are testable in place.
+
+---
+
+## 2026-10-09T02:55:08Z  Time caps corrected, and long experiments made resumable
+
+### My earlier cap analysis was wrong
+I measured one `modulePreservation` run (perm-031, K=500 ≈ 1.1 h at the full gene set)
+and concluded "the caps are sound as written". That generalised from the wrong case.
+
+`base-001` is **100 separate preservation runs** — one per subsample draw — because
+Zsummary is itself permutation-based, so every draw needs its own null. At the measured
+7.8 s per permutation:
+
+| perms/draw | 100 draws | vs the old 7200 s cap |
+|:--|:--|:--|
+| 10 | 2.4 h | over |
+| 50 | 11.0 h | 6x over |
+| 100 | 21.9 h | 11x over |
+
+The old cap allowed ~830 permutations *in total*, i.e. 8 per draw — far too few for a
+stable Z. Eleven rows specifying `draws=100` had the same defect.
+
+**Fix:** those rows now carry a 10800 s (3 h) cap — under `wake.sh`'s 4 h session cap —
+and their specs state `perms_per_draw=50` and `CHECKPOINT PER DRAW (spans sessions)`
+explicitly. `base-001` completes over roughly six sessions rather than one.
+
+### Making progress must not count as failing
+That correction exposed a second defect. An experiment spanning sessions is marked
+`PARTIAL` every time it hits its cap, and `MAX_ATTEMPTS=3` would have retired it at the
+third session **while it was still completing draws**. The queue would have reported
+BLOCKED on an experiment that was working perfectly.
+
+**Fix:** the driver now counts checkpoint files (`*.rds`, `*.csv`) in the run directory
+before and after. If the count increased, the attempt is refunded — a run that advanced
+the experiment did not fail. `BLOCKED` now requires `MAX_ATTEMPTS` consecutive runs that
+produced **no new checkpoints**, which is the condition that actually means "stuck".
+
+This is why the per-draw checkpointing rule in RESUME_PROMPT.md is load-bearing rather
+than merely good practice: without checkpoints there is no progress signal, and a long
+experiment would be indistinguishable from a wedged one.
+
+### --peek made strictly read-only
+`--peek` previously called `requeue()`, which rewrites `queue.tsv`, while holding no
+lock. A peek racing a running driver would have silently discarded the driver's status
+update. It is now read-only and reports status counts instead; the driver requeues when
+it runs. Verified: the queue is byte-identical across a `--peek`.
+
+---
+
+## 2026-10-09T04:56:49Z  Adversarial audit: 36 findings, 3 confirmed, all fixed
+
+A six-dimension audit with two independent refuters per finding returned 36 findings;
+33 were refuted, 3 survived unanimously. All three were then reproduced by hand before
+being fixed — none was taken on the agents' word.
+
+### 1. (critical) No git identity: every result commit would have been orphaned
+This machine has **no git identity at all** — `git config user.name` and `user.email`
+both exit 1, there is no `~/.gitconfig`, and no `GIT_*`/`EMAIL` in the environment.
+`git var GIT_COMMITTER_IDENT` — the exact check `rebase` performs — fails with
+`unable to auto-detect email address (got 'aaylab@Olin213-98923M.(none)')`.
+
+The commits worked only because they carried `-c user.name -c user.email`. **The
+`pull --rebase` did not.** A rebase must stamp a committer on every commit it replays,
+so the first time `origin/main` advanced it would die **after** checking out the
+upstream.
+
+Reproduced end to end in a scratch clone with no identity:
+
+| | result |
+|:--|:--|
+| `git pull --rebase` | rc=128, "Committer identity unknown" |
+| the old guard's grep | **did not match** — no abort, no BLOCKED.md entry |
+| repo state | **DETACHED HEAD**, `.git/rebase-merge` present |
+| a later session's commit | **ORPHANED** — unreachable from main |
+
+The run would then have committed every result onto a detached HEAD while
+`git push origin main` kept pushing a branch that no longer moved, reporting only a
+routine-looking "push failed". The obvious human recovery, `git rebase --abort`,
+**discards all of it**.
+
+That the trigger would occur is not speculative: every pre-existing commit in this clone
+is authored `AliAbdullah12347 <...@users.noreply.github.com>`, so the operator pushes
+from a different checkout. Across ~19 unattended sessions, divergence is effectively
+certain.
+
+**Fixes:** (a) a repo-local identity in `.git/config` so nothing in the run can miss it —
+this writes repository metadata, never tracked content; (b) the identity also passed
+explicitly on the pull; (c) the guard now judges by **exit code**, not by grepping the
+message, because no fixed pattern list covers every way a rebase can fail; (d) a failed
+pull aborts the rebase and writes to BLOCKED.md; (e) the driver now **refuses to start**
+if the repo is mid-rebase or on a detached HEAD, since committing there produces results
+that `rebase --abort` would destroy. All verified: the previously fatal pull now returns
+rc=0, HEAD stays on main, and the result commit is reachable.
+
+### 2. (high) Rename detection hid deletions outside network/
+`diff.renames` defaults to true, and `git diff --cached --name-only` prints only the
+**destination** of a rename. A `git mv` from outside `network/` into it therefore listed
+nothing outside `network/`, so the scope filter saw a clean commit while the file outside
+was deleted. Reproduced: `git mv data/outside.csv network/moved.csv` → the filter counted
+**0** paths outside `network/`. All three scope filters now pass `--no-renames`, which
+lists both ends independently.
+
+### 3. (critical) The queue could never reach the arm's own question
+Measured at the real problem size: a reference network build is **786 s** (~23 modules at
+power 14) and `modulePreservation` costs **~7.8 s per permutation**, so one
+`draws=100;perms_per_draw=50` row is **~11 h**. Eleven such rows want **~122 h** against
+~19 sessions x 4 h x 80% ≈ **61 h** available — **2x oversubscribed**, with only ~5.6 of
+the eleven fitting.
+
+`inp-022`/`inp-023` — *"does any difference survive removing cell composition"*, which is
+the arm's stated question — sat at rows 22–23 behind eleven multi-session rows. **They
+would never have run.** Worse, their specs never stated a draw design, so they looked
+cheap.
+
+**Fixes:** the `inp-*` rows now state `draws=100;perms_per_draw=50;CHECKPOINT PER DRAW`
+explicitly, and the queue is reordered by scientific priority — `base-001`, then
+`inp-022`, `inp-023`, then `pow-009` (cheap, and the R² curves are themselves a result),
+`gene-027` (circularity check), `inp-021`. Because the driver claims the oldest PENDING
+row, **file order is priority**. RESUME_PROMPT.md now states the budget arithmetic, says
+the oversubscription is deliberate (the queue exists so a crashed session always has work,
+not as a promise that all 48 rows run), and tells sessions to cache the shared reference
+network on a key of (reference group, gene set, corFnc, networkType, power) — worth 786 s
+per row and the only way several variants fit at all.
+
+### On the audit itself
+The first audit used 78 agents and 4.3M tokens and exhausted the 5-hour window, which
+killed its own refutation stage and a follow-up re-audit. The re-run is deliberately much
+tighter. Thoroughness has a budget too, and on this account that budget is the same
+5-hour window the science competes for.
+
+---
+
+## 2026-10-09T18:56:43Z  Second audit: 6 more defects, all fixed and verified
+
+A tighter re-audit (22 agents, not 78) found six further defects in the rewritten
+machinery. Each was reproduced before being fixed.
+
+### Head-of-line starvation (critical)
+The progress refund counted **files**, not progress. An experiment emitting one
+uniquely-named zero-byte `.csv` per run — a timestamped error table, a placeholder
+written before the work — was credited with progress every time, so `attempts` oscillated
+0→1→0 and `BLOCKED` was unreachable. `next_pending()` always returns the first PENDING
+row, so one broken experiment at the head of the queue would have consumed all four days
+and the other 47 rows would never have run.
+
+Worse, the stray-file quarantine compounded it: strays were moved **into** the run
+directory before the checkpoint count, so the driver credited progress for the very
+contract violation it was simultaneously reporting.
+
+**Fix:** progress now means a file that is newer than a per-run mtime marker, **non-empty**
+(`-size +0`), and not a quarantined stray (`! -name 'stray-*'`), plus a cap of 20 refunds.
+Verified both ways: an experiment writing empty CSVs now retires at attempt 3 and the next
+row runs; one writing real checkpoints still refunds indefinitely and is never retired.
+
+### The cap watchdog hung its own caller (critical)
+`( sleep $CAP ... ) &` runs `sleep` as a grandchild. `kill $WPID` kills only the
+subshell, leaving `sleep` alive holding the script's inherited stdout. Through a pipe —
+which is how a headless session captures output — the caller blocked for the **full cap**
+however fast the experiment finished. With `base-001` at 10800 s, a 4 h session would
+complete one row; with the three 14400 s rows, the call could never return at all.
+**Fix:** poll in 5 s increments instead of one long sleep, and redirect the watchdog's
+output so it can never hold that fd.
+
+### Unstaging left a dirty worktree that stopped all pushes (critical)
+`git restore --staged` leaves the modification in the working tree, and `pull --rebase`
+then refuses with "You have unstaged changes" — reproduced with two consecutive
+`sync_up` calls both failing rc=128 **with no upstream divergence at all**, stacking
+unpushed commits. The condition never self-clears.
+
+**Fix:** stop staging-then-unstaging entirely. `git commit -- network/` commits by
+pathspec, ignoring the index, which removes three failure modes at once: rename blindness,
+the dirty-worktree residue, and anything a session happened to stage riding along. Added
+`--autostash` so dirty tracked files outside `network/` cannot block the rebase, and a
+post-commit assertion that fails loudly if any committed path is outside `network/`.
+
+### Other fixes
+- The stray-file snapshot filtered only `^?? network/`, so once run outputs became
+  tracked, ` M network/...` lines were reported as strays and BLOCKED.md filled with
+  false alarms — burying real blockers in the one file a human reads to triage the run.
+- `wake.sh`'s `commit_network` had no mid-rebase/detached-HEAD guard, so its own
+  `rebase --abort` could have destroyed orphaned work. Added, plus the pathspec commit.
+- `--check` was not side-effect free: `note_blocked` was not guarded and dirtied tracked
+  `BLOCKED.md`.
+- `wake.sh` wrote the operator's private token **path** into BLOCKED.md and pushed it to
+  a public repository. Now described without the path.
+- The zero-throughput watchdog silently disabled itself if `queue.tsv` was unreadable
+  (`DONE_N` empty rather than zero). It now reports that as a blocker.
+- `rewrite()` accepted a truncated queue because it validated only the header. It now
+  also refuses any rewrite that would reduce the row count.
+
+### Soft-power recommendation corrected (science)
+RESUME_PROMPT.md said "use power 14 (WGCNA's default for signed, n>40)". **That is the
+wrong row of the table.** WGCNA's FAQ gives, for signed networks: n<20→18, 20–30→16,
+30–40→14, >40→**12** (unsigned/hybrid: 9/8/7/6). With n=74 the correct fallback is **12**;
+14 is the 30–40 row. Corrected, with the full table recorded so the next session can check
+it rather than trust the prose. The 786 s build measurement was taken at power 14 and is
+left labelled as such, since that is what was actually measured.
+
+---

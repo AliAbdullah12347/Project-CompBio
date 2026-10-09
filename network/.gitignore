@@ -19,3 +19,7 @@ RUNLOG/cron.log
 cache/
 RUNLOG/.last_done_count
 RUNLOG/.stall_count
+
+# Per-row transients written by the driver (refund counters, mtime markers).
+RUNLOG/.refunds_*
+RUNLOG/.ckpt_mark_*

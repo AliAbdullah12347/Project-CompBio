@@ -46,24 +46,20 @@ re-break it. This is a user-level R config outside the repository; nothing in
 
 ---
 
-## 2026-10-09T02:12:50Z  SCOPE — index rebuild deliberately omitted
+## 2026-10-09T02:12:50Z  SCOPE — index rebuild restricted, not banned
 
-`MASTER_PROMPT.md` Phase 4 step 4 says to run `python index/build_index.py`.
-That rewrites `INDEX.db` and `INDEX.csv` **at the repository root**, outside the
-`network/` scope this run is restricted to. It is omitted from
-`RESUME_PROMPT.md`. The index will go stale for files added under `network/`;
-a human should rebuild it after the run.
+`MASTER_PROMPT.md` Phase 4 step 4 says to run `python index/build_index.py`. A bare run
+rewrites `INDEX.db` and `INDEX.csv` **at the repository root**, outside the `network/`
+scope, so it is not permitted.
+
+`build_index.py --query "..."` is read-only and IS permitted — `IMAC_README.md` §7 names
+it as the first discovery step, so banning it outright (as an earlier draft of
+`RESUME_PROMPT.md` did) would have broken the prescribed workflow. The distinction is now
+explicit in the prompt. The index will go stale for files added under `network/`; a human
+should rebuild it after the run.
 
 ---
-## 2026-10-09T02:46:23Z  NO AUTH TOKEN
-`/Users/Aaylab/.arm3_token` is missing or empty.
-A human must run `claude setup-token` and store the FULL token there (chmod 600).
-
-## 2026-10-09T02:46:26Z  MALFORMED AUTH TOKEN
+## 2026-10-09T02:47:51Z  MALFORMED AUTH TOKEN
 `/Users/Aaylab/.arm3_token` is 50 bytes; a real token is ~108 and starts sk-ant-.
-Most likely a paste truncated at a line break. Re-store the FULL token.
-
-## 2026-10-09T02:46:28Z  MALFORMED AUTH TOKEN
-`/Users/Aaylab/.arm3_token` is 89 bytes; a real token is ~108 and starts sk-ant-.
 Most likely a paste truncated at a line break. Re-store the FULL token.
 

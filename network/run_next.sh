@@ -45,7 +45,11 @@ beat() {
 rewrite() {
   local tmp="$QUEUE.tmp.$$"
   cat > "$tmp"
-  if [ ! -s "$tmp" ] || ! head -1 "$tmp" | grep -q '^id'; then
+  # A short write can still carry the header, so compare row counts: the queue may
+  # only ever grow (rows are appended), never shrink.
+  local oldn newn
+  oldn=$(wc -l < "$QUEUE" 2>/dev/null || echo 0); newn=$(wc -l < "$tmp" 2>/dev/null || echo 0)
+  if [ ! -s "$tmp" ] || ! head -1 "$tmp" | grep -q '^id' || [ "$newn" -lt "$oldn" ]; then
     echo "FATAL: refusing to install a malformed queue" >&2
     rm -f "$tmp"; return 1
   fi
@@ -67,7 +71,11 @@ requeue() {
       # is stuck RUNNING forever. getline leaves `started` untouched on failure,
       # which is why it is reset to "" above.
       if (started == "" || started+0 < cutoff) {
-        if ($4+0 >= maxa) { $3="BLOCKED"; $8="dead RUNNING after " $4 " attempts" }
+        # Judged on attempts alone a long, correctly-progressing experiment that is
+        # killed mid-session three times would be retired. The driver refunds attempts
+        # when a run produced real checkpoints, so by the time $4 reaches maxa here the
+        # row has genuinely failed that many times without producing anything.
+        if ($4+0 >= maxa) { $3="BLOCKED"; $8="dead RUNNING after " $4 " attempts, no progress" }
         else              { $3="PENDING"; $8="requeued from stale RUNNING" }
       }
     }
@@ -109,51 +117,62 @@ mark() {      # mark <id> <status> <wall> <note>
 # ------------------------------------------------------------------- git -----
 sync_up() {
   local msg="$1"
-  git add network/ 2>/dev/null
 
-  # Unstage anything outside network/. -z handles paths needing C-quoting,
-  # which a plain name-only listing would mangle and let slip through.
-  local outside=0
-  while IFS= read -r -d '' f; do
-    case "$f" in network/*) ;; *) git restore --staged -- "$f" 2>/dev/null; outside=1 ;; esac
-  done < <(git diff --cached -z --name-only 2>/dev/null)
-  [ $outside -eq 1 ] && echo "note: unstaged paths outside network/"
+  # Commit by PATHSPEC rather than staging and unstaging. `git commit -- network/`
+  # ignores the index entirely and commits only those paths, which removes three
+  # separate failure modes at once:
+  #   - rename detection could hide a deletion outside network/
+  #   - `git restore --staged` left the outside file as a DIRTY WORKTREE change,
+  #     which then made `git pull --rebase` refuse and stopped all pushes
+  #   - anything a session happened to stage could ride along
+  git add -- network/ 2>/dev/null
 
-  git diff --cached --quiet 2>/dev/null && { echo "nothing to commit"; return 0; }
-
-  # Public repo: refuse live credentials. Unstage ONLY the offending files so
-  # the alert itself can still be committed - a blanket reset would suppress
-  # the very warning it is trying to raise.
+  # Public repo: refuse live credentials. Check the files that would be committed.
   local SECRET_RE="sk-ant-[a-z0-9]+-[A-Za-z0-9_-]{30,}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{50,}|AKIA[0-9A-Z]{16}|BEGIN [A-Z ]*PRIVATE KEY"
   local dirty=""
-  while IFS= read -r -d '' f; do
-    [ -f "$f" ] || continue
-    if grep -qE "$SECRET_RE" "$f" 2>/dev/null; then dirty="$dirty $f"; fi
-  done < <(git diff --cached -z --name-only 2>/dev/null)
+  while IFS= read -r f; do
+    [ -n "$f" ] && [ -f "$f" ] || continue
+    grep -qE "$SECRET_RE" "$f" 2>/dev/null && dirty="$dirty $f"
+  done < <(git diff --cached --name-only --no-renames -- network/ 2>/dev/null; \
+           git ls-files -m -- network/ 2>/dev/null)
   if [ -n "$dirty" ]; then
     echo "SECRET DETECTED in:$dirty"
     for f in $dirty; do git restore --staged -- "$f" 2>/dev/null; done
     { echo "## $(ts)  SECRET BLOCKED FROM A PUBLIC REPO"
       echo "Refused to commit these files; they match a live-credential pattern:"
       for f in $dirty; do echo "  - $f"; done
-      echo "They remain on disk, unstaged. Remove the secret before re-running."
-      echo; } >> network/BLOCKED.md
-    git add network/BLOCKED.md 2>/dev/null
+      echo "They remain on disk. Remove the secret before re-running."; echo
+    } >> network/BLOCKED.md
   fi
 
-  git diff --cached --quiet 2>/dev/null && { echo "nothing left to commit"; return 1; }
-  git -c user.name="network-arm" -c user.email="aabdullah@colgate.edu" \
-      commit -q -m "$msg" || return 1
+  if git diff --quiet HEAD -- network/ 2>/dev/null && git diff --cached --quiet -- network/ 2>/dev/null; then
+    echo "nothing to commit"; return 0
+  fi
+  git commit -q -m "$msg" -- network/ || { echo "commit failed"; return 1; }
+
+  # Verify, do not assume: nothing outside network/ may be in that commit.
+  local leaked
+  leaked="$(git show --name-only --format= HEAD | grep -v '^network/' | grep . || true)"
+  if [ -n "$leaked" ]; then
+    echo "FATAL: commit contains paths outside network/:"; echo "$leaked"
+    { echo "## $(ts)  SCOPE VIOLATION IN COMMIT $(git rev-parse --short HEAD)"
+      echo "$leaked"; echo "Run halted. A human must reconcile."; echo; } >> network/BLOCKED.md
+    return 1
+  fi
 
   local n=0
   while [ $n -lt 3 ]; do
-    local err; err="$(git pull --rebase origin main 2>&1)"
-    if printf '%s' "$err" | grep -qiE "conflict|could not apply|unstaged changes"; then
-      echo "REBASE PROBLEM: $(printf '%s' "$err" | head -3)"
+    # --autostash: tracked files outside network/ may be dirty (a session or a human
+    # left them so), and without it rebase refuses and every push stops for the run.
+    local err rc
+    err="$(git -c user.name="network-arm" -c user.email="aabdullah@colgate.edu" \
+             pull --rebase --autostash origin main 2>&1)"; rc=$?
+    if [ $rc -ne 0 ]; then
+      echo "PULL --REBASE FAILED rc=$rc"
       git rebase --abort 2>/dev/null
-      { echo "## $(ts)  REBASE ABORTED"; echo '```'
-        printf '%s\n' "$err" | head -10; echo '```'
-        echo "Local commits are intact and unpushed. A human must reconcile."; echo
+      { echo "## $(ts)  PULL --REBASE FAILED (rc=$rc), ABORTED"
+        echo "Local commits are intact on main and unpushed. A human must reconcile."
+        echo '```'; printf '%s\n' "$err" | head -12; echo '```'; echo
       } >> network/BLOCKED.md
       return 1
     fi
@@ -166,12 +185,20 @@ sync_up() {
 
 # =============================== main ========================================
 if [ "${1:-}" = "--peek" ]; then
-  requeue
+  # READ-ONLY by design. It must never call requeue(): that rewrites queue.tsv,
+  # and --peek holds no lock, so a peek racing a running driver would silently
+  # discard the driver's status update. The driver requeues when it runs.
   id="$(next_pending)"
-  [ -z "$id" ] && { echo "QUEUE_EMPTY"; exit 3; }
+  if [ -z "$id" ]; then
+    echo "QUEUE_EMPTY_PENDING"
+    awk -F'\t' 'NR>1{c[$3]++} END{for(s in c) printf "%s\t%d\n", s, c[s]}' "$QUEUE"
+    echo "note: PARTIAL and stale RUNNING rows are returned to PENDING by the next run"
+    exit 3
+  fi
   printf 'id\t%s\nfamily\t%s\ncap_sec\t%s\nspec\t%s\nscript\tnetwork/experiments/%s.R\nexists\t%s\n' \
     "$id" "$(field "$id" 2)" "$(field "$id" 9)" "$(field "$id" 10)" "$id" \
     "$([ -f "network/experiments/$id.R" ] && echo yes || echo NO)"
+  awk -F'\t' 'NR>1{c[$3]++} END{printf "counts"; for(s in c) printf "\t%s=%d", s, c[s]; printf "\n"}' "$QUEUE"
   exit 0
 fi
 
@@ -193,6 +220,28 @@ echo $$ > "$LOCKDIR/pid"
 trap 'rm -rf "$LOCKDIR"' EXIT
 
 [ -f "$QUEUE" ] || { echo "no queue at $QUEUE"; exit 1; }
+
+# A wedged repository must stop the run, not be worked around. Committing onto a
+# detached HEAD produces results that `git rebase --abort` would silently destroy.
+if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+  echo "FATAL: repository is mid-rebase; refusing to run"
+  { echo "## $(ts)  REPOSITORY MID-REBASE"
+    echo "An earlier pull --rebase did not finish. Every commit made now would land on a"
+    echo "detached HEAD and be lost by \`git rebase --abort\`. A human must reconcile:"
+    echo "  git -C \"$ROOT\" rebase --abort   # or --continue, after inspecting"
+    echo; } >> network/BLOCKED.md
+  exit 1
+fi
+if ! git symbolic-ref -q HEAD >/dev/null 2>&1; then
+  echo "FATAL: detached HEAD; refusing to run"
+  { echo "## $(ts)  DETACHED HEAD"
+    echo "Commits made here are unreachable from main. A human must reconcile before"
+    echo "the run continues. Do NOT \`rebase --abort\` without first checking"
+    echo "\`git log HEAD --not main\` for orphaned results."
+    echo; } >> network/BLOCKED.md
+  exit 1
+fi
+
 requeue
 
 ID="$(next_pending)"
@@ -221,32 +270,45 @@ beat "$ID" "run" 5 "starting $SCRIPT cap=${CAP}s"
 
 # Snapshot the tree outside network/ so anything a library writes there can be
 # detected and cleaned: WGCNA's modulePreservation does exactly this by default.
-BEFORE="$(git status --porcelain | grep -v '^?? network/' | sort)"
+# Once network/runs/<id>/ files are tracked, ' M network/...' lines appear too;
+# filtering only '?? network/' would report them as strays outside the scope.
+BEFORE="$(git status --porcelain | grep -vE '^(\?\?|.[ MADRCU]) network/' | sort)"
+
+# Count checkpoints before the run. A long experiment (base-001 is 100 separate
+# preservation runs and cannot fit one cap) is expected to span several sessions,
+# marked PARTIAL each time. Burning an attempt on a run that MADE PROGRESS would
+# retire it at MAX_ATTEMPTS while it was still working, so progress is measured
+# rather than assumed.
+CKPT_MARK="network/RUNLOG/.ckpt_mark_${ID}"; : > "$CKPT_MARK"   # mtime reference
 
 START=$(now)
 Rscript "$SCRIPT" "$ID" > "$OUTDIR/log.txt" 2>&1 &
 RPID=$!
-( sleep "$CAP"
-  if kill -0 $RPID 2>/dev/null; then
+( # Poll in short sleeps. One long `sleep $CAP` survives `kill $WPID` as an
+  # orphan holding this script's stdout, which can hang the caller. Output is
+  # redirected so it can never hold that fd in the first place.
+  while kill -0 $RPID 2>/dev/null; do
+    [ $(( $(now) - START )) -ge "$CAP" ] || { sleep 5; continue; }
     echo "CAP EXCEEDED after ${CAP}s" >> "$OUTDIR/log.txt"
-    pkill -TERM -P $RPID 2>/dev/null     # forked WGCNA workers first
-    kill -TERM $RPID 2>/dev/null
+    pkill -TERM -P $RPID 2>/dev/null; kill -TERM $RPID 2>/dev/null
     sleep 10
-    pkill -KILL -P $RPID 2>/dev/null
-    kill -KILL $RPID 2>/dev/null
-  fi ) &
+    pkill -KILL -P $RPID 2>/dev/null; kill -KILL $RPID 2>/dev/null
+    break
+  done ) >/dev/null 2>&1 &
 WPID=$!
 wait $RPID; RC=$?
 kill $WPID 2>/dev/null; wait $WPID 2>/dev/null
 WALL=$(( $(now) - START ))
 
-AFTER="$(git status --porcelain | grep -v '^?? network/' | sort)"
+AFTER="$(git status --porcelain | grep -vE '^(\?\?|.[ MADRCU]) network/' | sort)"
 if [ "$BEFORE" != "$AFTER" ]; then
   STRAY="$(comm -13 <(printf '%s\n' "$BEFORE") <(printf '%s\n' "$AFTER") | sed 's/^?? //')"
   echo "STRAY FILES OUTSIDE network/:"; printf '%s\n' "$STRAY"
   while IFS= read -r f; do
-    [ -n "$f" ] && [ -f "$f" ] && git check-ignore -q "$f" 2>/dev/null || \
-      { [ -n "$f" ] && [ -f "$f" ] && mv "$f" "$OUTDIR/stray-$(basename "$f")" 2>/dev/null; }
+    [ -n "$f" ] || continue
+    [ -f "$f" ] || continue
+    if git check-ignore -q "$f" 2>/dev/null; then continue; fi   # already ignored: leave it
+    mv "$f" "$OUTDIR/stray-$(basename "$f")" 2>/dev/null
   done <<< "$STRAY"
   { echo "## $(ts)  $ID wrote outside network/"; printf '%s\n' "$STRAY"
     echo "Moved into $OUTDIR/. Set explicit output paths (e.g. permutedStatisticsFile)."
@@ -258,9 +320,37 @@ elif grep -q "CAP EXCEEDED" "$OUTDIR/log.txt" 2>/dev/null; then
      STATUS=PARTIAL; NOTE="hit ${CAP}s cap; partial results kept"
 else STATUS=PARTIAL; NOTE="exit $RC after ${WALL}s; see log.txt"
 fi
+# Real progress = a file this run actually produced: newer than the marker, NON-EMPTY,
+# and not a stray the driver itself quarantined here.
+NEW_CKPT=$(find "$OUTDIR" -type f \( -name '*.rds' -o -name '*.csv' \) \
+             ! -name 'stray-*' -size +0 -newer "$CKPT_MARK" 2>/dev/null | wc -l | tr -d ' ')
+rm -f "$CKPT_MARK"
+PROGRESS_MADE=0
+[ "${NEW_CKPT:-0}" -gt 0 ] && PROGRESS_MADE=1
+
+# Cap the refunds. An experiment that writes one junk .csv per run would otherwise
+# refund forever and could never reach BLOCKED. 20 refunds x 3 h exceeds the whole run.
+RF="network/RUNLOG/.refunds_${ID}"
+RFN=$(cat "$RF" 2>/dev/null || echo 0)
+if [ "$STATUS" = "PARTIAL" ] && [ "$PROGRESS_MADE" = "1" ] && [ "$RFN" -ge 20 ]; then
+  PROGRESS_MADE=0
+  NOTE="$NOTE; refund cap reached after $RFN refunds"
+fi
+if [ "$STATUS" = "PARTIAL" ] && [ "$PROGRESS_MADE" = "1" ]; then
+  echo $((RFN + 1)) > "$RF"
+  # Refund the attempt: this run advanced the experiment, it did not fail.
+  awk -F'\t' -v OFS='\t' -v id="$ID" '
+    NR==1 { print; next }
+    $1==id { $4 = ($4+0 > 0 ? $4-1 : 0) }
+    { print }
+  ' "$QUEUE" | rewrite
+  NOTE="$NOTE; +$NEW_CKPT new checkpoints (attempt refunded)"
+  beat "$ID" "progress" 50 "$NEW_CKPT new non-empty checkpoints"
+fi
+
 ATT="$(field "$ID" 4)"
-if [ "$STATUS" = "PARTIAL" ] && [ "${ATT:-0}" -ge "$MAX_ATTEMPTS" ]; then
-  STATUS=BLOCKED; NOTE="$NOTE (gave up after $ATT attempts)"
+if [ "$STATUS" = "PARTIAL" ] && [ "$PROGRESS_MADE" = "0" ] && [ "${ATT:-0}" -ge "$MAX_ATTEMPTS" ]; then
+  STATUS=BLOCKED; NOTE="$NOTE (no progress in $ATT attempts)"
 fi
 
 echo "=== $ID -> $STATUS (${WALL}s) ==="

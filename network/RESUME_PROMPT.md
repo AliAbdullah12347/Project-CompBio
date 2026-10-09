@@ -32,7 +32,12 @@ bash network/run_next.sh --peek     # next row: id, family, cap_sec, spec, scrip
 bash network/run_next.sh            # claims, runs under its cap, records, commits, pushes
 ```
 
-Exit codes: `0` ran, `2` needs a script (write it, then re-run), `3` queue empty.
+Exit codes: `0` ran, `2` needs a script (write it, then re-run), `3` nothing claimable.
+
+`--peek` is strictly read-only — it never changes the queue, so it is safe to call as
+often as you like. It therefore does NOT requeue: if it reports `QUEUE_EMPTY_PENDING`
+while showing `PARTIAL` or `RUNNING` counts, run `bash network/run_next.sh` once anyway —
+the driver requeues stale `RUNNING` and retryable `PARTIAL` rows before it claims.
 
 Repeat until roughly 80% of the usage window is spent. Write
 `network/config/<id>.json` — every parameter, the seed, the git SHA, package versions —
@@ -41,6 +46,34 @@ Repeat until roughly 80% of the usage window is spent. Write
 `bmind-047` needs `bmind-046` finished first. Its script must check for the bMIND
 profiles and stop with a clear message if they are absent; the row is then requeued
 automatically rather than producing a wrong result.
+
+## Budget reality — the queue is deliberately oversubscribed
+
+Measured on this machine at the real problem size: a reference network build (12,368
+genes, n=74, signed, bicor; measured at power 14) takes **786 s** and yields ~23 modules;
+`modulePreservation` costs **~7.8 s per permutation**. One `draws=100;perms_per_draw=50`
+row is therefore **~11 h** of compute.
+
+Against ~19 sessions x 4 h x 80% ≈ **61 h** of usable time, the eleven `draws=100` rows
+alone want ~122 h. The queue is **2x oversubscribed and that is intentional** — it exists
+so a crashed session always has work, not as a promise that all 48 rows will run.
+
+**Therefore: file order is priority, and it has been set deliberately.** `base-001` first
+because nothing is trusted without it, then `inp-022`/`inp-023` because those ARE the
+arm's question — "does any difference survive removing cell composition". Do not reorder
+to pick off cheap rows first, and do not let a breadth sweep push the key question past
+the end of the run.
+
+**Reuse the reference network.** Many rows share one reference (controls, all genes,
+bicor, signed, power 12). Building it once and caching the TOM/dendrogram/module
+assignment under `network/cache/` saves 786 s per row — roughly 2 h across the queue, and
+more importantly it is the ONLY way several variants fit at all. Cache on a key derived
+from (reference group, gene set, corFnc, networkType, power) and record in `config.json`
+which cache entry a run used, so a result can always be traced to the network it was
+measured against.
+
+If you add rows, add them at the END unless they are more important than what is already
+queued — and if they are, say why in `METHODS.md`.
 
 ## Non-negotiable design points (reasoning in IMAC_README.md §6)
 - Define modules ONCE on a fixed reference group; measure those same modules everywhere
@@ -73,9 +106,12 @@ automatically rather than producing a wrong result.
   R² is *negative* at low powers (control −0.97, −0.97, −0.93 at powers 1–3).
   `powerEstimate` returns **1** for control and bp_nolith, **2** for bp_lith — the
   function failing, not a threshold. A network at power 1 is an unthresholded correlation
-  matrix and collapses to ~2 modules. **Use power 14** (WGCNA's default for signed,
-  n>40) unless a spec fixes another on purpose. Guard in code: reject any chosen power
-  < 4, fall back to 14, and log that it happened. Record the full R² curve every time —
+  matrix and collapses to ~2 modules. **Use power 12**, the value WGCNA's FAQ recommends for a *signed*
+  network with n>40 when no power satisfies the scale-free criterion (the FAQ table is
+  signed: <20->18, 20-30->16, 30-40->14, >40->12; unsigned/hybrid: 9/8/7/6). An earlier
+  draft of this file said 14, which is the 30-40 row - wrong for n=74. Unless a spec fixes
+  another power on purpose, use 12. Guard in code: reject any chosen power < 4, fall back
+  to 12, and log that it happened. Record the full R² curve every time —
   per catalogue item 4 the curves are themselves a result, and the failure of scale-free
   topology in this data is a finding worth reporting.
 - Pre-specify every threshold in the config before computing the result.
