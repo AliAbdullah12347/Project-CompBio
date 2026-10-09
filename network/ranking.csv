@@ -1,5 +1,5 @@
 rank_evidence,score_evidence,rank_interest,score_interest,delta,run_id,headline,E,R,B,D,C,status,folder,notes
-1,19,1,8,0.6,base-001/gold,"Random gene set (WGCNA gold module) scores Zsummary 20.26; 3 of 4 real modules score below random",5,4,3,5,2,partial,network/runs/base-001,"Langfelder bands unusable here - quote every Zsummary against gold"
+1,20,1,9,1.0,base-001/gold,"Random gene set (WGCNA gold module) scores Zsummary 20.26; 3 of 4 real modules score below random",5,5,3,5,2,partial,network/runs/base-001,"Langfelder bands unusable here - quote every Zsummary against gold"
 2,18,2,8,0.8,base-001/modules,"18 modules found by cutreeDynamic then merged to 4 by mergeCutHeight=0.25; 95% of genes in two",5,4,3,4,2,partial,network/runs/base-001,"supersedes earlier reading: structure exists, merge threshold destroyed it"
 3,15,3,7,1.0,base-001/sft,"Scale-free fails at n=234 too: R2 never reaches 0.80, max 0.547@p20; at power 12 R2=0.162 and mean k=1031",4,2,3,4,2,partial,network/runs/base-001,"replicates phase0 at 3x sample size; not a small-sample artifact"
 4,11,4,6,1.6,phase0-power,"Scale-free scan n=74 all three groups: R2 never reaches 0.80; powerEstimate 1/1/2",3,2,2,4,0,measured,,"only scan covering all three groups"

@@ -895,3 +895,61 @@ anything. The estimate was documented in advance and acted on; it was wrong; the
 correction is documented and the reasoning that produced it is named so it is not repeated.
 That is the intended behaviour — the failure mode to avoid is not being wrong, it is being
 wrong silently or re-deriving the same wrong number next session.
+
+---
+
+## 2026-10-09  At 15 draws: no module reliably beats random. And a correction to my own 5-draw claim.
+
+| module | size | lith mean | sd | nolith | dZ | dZ/sd | vs gold | beats gold |
+|:--|--:|--:|--:|--:|--:|--:|--:|:--|
+| blue | 5,171 | 22.68 | 2.89 | 25.72 | −3.04 | −1.05 | +1.80 | **9 / 15** |
+| **gold** | random | 20.88 | 1.86 | 20.26 | +0.62 | +0.33 | — | — |
+| turquoise | 6,621 | 19.38 | 1.89 | 15.48 | +3.90 | +2.06 | −1.50 | **3 / 15** |
+| yellow | 255 | 8.47 | 2.02 | 11.01 | −2.54 | −1.26 | −12.41 | 0 / 15 |
+| brown | 262 | 5.30 | 3.36 | 6.41 | −1.11 | −0.33 | −15.58 | 0 / 15 |
+
+### Correction: gold is not as stable as I reported at 5 draws
+The entry above reported gold at **sd 0.93, range [20.62, 22.86]** and called the baseline
+"STABLE", raising the finding's robustness score on that basis. At 15 draws gold is
+**sd 1.86, range [15.86, 23.58]** — twice the spread, spanning nearly 8 Zsummary units.
+
+That is the same error this log had warned about one entry earlier, in the specific act of
+warning about it: five non-independent draws do not estimate a spread, and I treated a
+five-draw sd as if they did. The robustness score is corrected downward below.
+
+The *finding* (random genes score ~20, and modules fall below that) is unaffected and in
+fact strengthened by more draws. Only the sub-claim about gold's tightness was wrong.
+
+### The turquoise observation does not survive
+At 5 draws turquoise showed dZ +4.22 at 2.95 draw-SDs. At 15: dZ +3.90 at **2.06**. The
+pre-specified conditions for claiming it (recorded before these draws existed) were (a)
+the ratio holding above ~2 with a better-estimated spread, (b) turquoise exceeding gold
+rather than approaching from below, and (c) a calibrated p-value from `perm-031`.
+
+Condition (a) is marginally met. **Condition (b) fails decisively: turquoise exceeds gold
+in 3 of 15 draws.** In 80% of subsamples it is less preserved than an arbitrary set of
+genes. The +3.90 shift is a true description of a move from *far* below random to below
+random — not evidence of preservation.
+
+Recording this as the pre-specification working. The condition was written down before the
+data arrived, the data failed it, and the observation is being dropped rather than
+re-argued.
+
+### The actual finding at 15 draws: no module reliably carries information
+- **blue beats random in 9 of 15 draws (60%)** — the best module in the decomposition is
+  barely better than a coin flip against an arbitrary gene set.
+- **turquoise: 3 of 15. yellow and brown: 0 of 15.**
+
+In this decomposition — 4 modules, two holding 95% of the transcriptome, produced by a
+merge threshold that collapsed 18 modules — **no module is reliably more preserved between
+groups than a random sample of genes.**
+
+That is consistent with everything upstream: a network with mean connectivity at 8.3% of
+the genome, no scale-free fit at any power, and a module structure destroyed by merging.
+It is a coherent negative result about the *decomposition*, not yet about lithium.
+
+### What it does not say
+This says nothing about whether lithium affects co-expression. It says that **this
+particular module decomposition cannot answer the question**, because its modules do not
+behave differently from random gene sets. `mod-000-resolution` — already queued first —
+tests whether a different merge threshold yields modules that do.

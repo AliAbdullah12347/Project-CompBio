@@ -150,3 +150,39 @@ Vcells 19026684 145.2   63239189 482.5      16384 483684342 3690.3
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-09T17:39:12] draw 10/20 done: Zsummary range [2.62, 23.86]
+[2026-10-09T17:39:12] draw 11/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:43:40] draw 11/20 done: Zsummary range [0.75, 23.15]
+[2026-10-09T17:43:40] draw 12/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:48:02] draw 12/20 done: Zsummary range [9.29, 23.58]
+[2026-10-09T17:48:02] draw 13/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:52:23] draw 13/20 done: Zsummary range [10.99, 27.9]
+[2026-10-09T17:52:23] draw 14/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:56:44] draw 14/20 done: Zsummary range [1.68, 19.65]
+[2026-10-09T17:56:44] draw 15/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T18:01:12] draw 15/20 done: Zsummary range [3.49, 23.2]
+[2026-10-09T18:01:12] draw 16/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
