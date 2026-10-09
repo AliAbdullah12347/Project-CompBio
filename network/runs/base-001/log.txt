@@ -1,0 +1,43 @@
+[2026-10-09T15:16:23] === base-001 starting ===
+[2026-10-09T15:16:23] config written: network/config/base-001.json
+Allowing parallel execution with up to 3 working processes.
+[2026-10-09T15:16:29] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-09T15:16:29] pickSoftThreshold scan (powers 1:20) ...
+   Power SFT.R.sq   slope truncated.R.sq mean.k. median.k. max.k.
+1      1  0.91100  8.2300          0.940    9350      9490  10400
+2      2  0.95500  3.7000          0.965    7220      7390   8910
+3      3  0.94200  2.6100          0.925    5660      5820   7660
+4      4  0.87200  1.7600          0.854    4500      4640   6630
+5      5  0.74800  1.2600          0.793    3630      3730   5770
+6      6  0.52500  0.8540          0.688    2950      3030   5040
+7      7  0.28100  0.5330          0.596    2430      2480   4430
+8      8  0.10400  0.2900          0.570    2020      2040   3910
+9      9  0.00637  0.0694          0.568    1690      1690   3470
+10    10  0.01640 -0.1170          0.597    1420      1410   3090
+11    11  0.07830 -0.2680          0.643    1210      1190   2770
+12    12  0.16200 -0.4130          0.678    1030      1000   2490
+13    13  0.23900 -0.5360          0.708     885       848   2240
+14    14  0.30600 -0.6350          0.738     764       723   2020
+15    15  0.36500 -0.7120          0.770     663       617   1840
+16    16  0.41600 -0.7820          0.792     577       529   1670
+17    17  0.45500 -0.8540          0.802     505       455   1520
+18    18  0.48900 -0.9180          0.812     444       393   1390
+19    19  0.52500 -0.9690          0.828     391       340   1270
+20    20  0.54700 -1.0200          0.834     346       295   1160
+[2026-10-09T15:17:21] pickSoftThreshold powerEstimate = 1 (expected 1 or NA: function failing on this data, not a threshold)
+[2026-10-09T15:17:21] powerEstimate 1 < guard 4; using pre-specified POWER=12
+[2026-10-09T15:17:21] R2 curve saved (max signed-R2 = 0.955 at power 2)
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2400728 128.3    4385957 234.3         NA  3200192 171.0
+Vcells 15970897 121.9   33858188 258.4      16384 24844176 189.6
+[2026-10-09T15:17:21] building reference network (bicor, signed, power 12) ...
+ Calculating module eigengenes block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ..Working on block 1 .
+    TOM calculation: adjacency..
+    ..will use 3 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..

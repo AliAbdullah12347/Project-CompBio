@@ -10,10 +10,9 @@
 #   1. Build reference modules once on control (n=234, bicor, signed, power 12).
 #      Cache moduleColors to network/cache/ for reuse by later rows.
 #   2. bp_nolith (n=74, never subsampled): ONE modulePreservation run, 500 perms.
-#      This is equivalent to 100 draws × 50 perms on a fixed test set.
-#   3. bp_lith (n=152 → subsample 74): 20 draws × 50 perms, checkpoint per draw.
-#      Draws=20 matches the intended ~11 h budget given the actual ~1 962 s/draw
-#      cost (ref TOM + test TOM + 50 perms, all inside modulePreservation).
+#   3. bp_lith (n=152 -> subsample 74): 20 draws x 50 perms, checkpoint per draw.
+#      Draws=20 matches the intended ~11 h budget given actual ~1962 s/draw cost
+#      (ref TOM + test TOM + 50 perms, all inside modulePreservation).
 #   4. Results aggregated only after all draws complete; exits 0 then.
 #
 # Non-negotiable design points obeyed:
@@ -23,17 +22,18 @@
 #   - Zsummary and medianRank are DESCRIPTIVE ONLY: no p-values, no BH correction
 #   - Ensembl ids unversioned (handled by 00_load.R)
 #   - Config written before any computation
-#   - R2 curve recorded every time; failure to reach 0.80 is itself a result
+#   - R2 curve recorded (failure to reach R2>=0.80 is itself a result)
 # ===========================================================================
 
 id <- commandArgs(trailingOnly = TRUE)[1]
 if (is.na(id) || id == "") id <- "base-001"
 stopifnot(id == "base-001")
 
-ts_str <- function() format(Sys.time(), "%Y-%m-%dT%H:%M:%S")
-log    <- function(...) { cat(sprintf("[%s] %s\n", ts_str(), paste0(..., collapse = ""))); flush.stdout() }
+# Use message() so progress reaches the log immediately (stderr is line-buffered).
+now_ <- function() format(Sys.time(), "%Y-%m-%dT%H:%M:%S")
+msg  <- function(...) message(sprintf("[%s] %s", now_(), paste0(..., collapse = "")))
 
-log("=== ", id, " starting ===")
+msg("=== ", id, " starting ===")
 
 # ---------- 1. Directories ---------------------------------------------------
 run_dir   <- file.path("network/runs",   id)
@@ -44,16 +44,16 @@ for (d_ in c(run_dir, cfg_dir, cache_dir))
 
 # ---------- 2. Parameters — ALL pre-specified BEFORE any computation ---------
 POWER          <- 12L
-POWER_MIN      <-  4L       # guard: reject auto-selected power < 4
+POWER_MIN      <-  4L        # guard: reject auto-selected power < 4
 NET_TYPE       <- "signed"
 COR_FNC        <- "bicor"
 GENE_SET       <- "all"
 REF_GROUP      <- "control"
 MIN_MODULE     <- 30L
 MERGE_THRESH   <- 0.25
-DRAWS          <- 20L       # revised from spec 100 (see METHODS.md 2026-10-09)
+DRAWS          <- 20L        # revised from spec 100 (see METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
-NOLITH_PERMS   <- 500L      # bp_nolith: one run, many perms (no subsampling variance)
+NOLITH_PERMS   <- 500L       # bp_nolith: one run, many perms (no subsampling variance)
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L
 CACHE_KEY      <- paste(REF_GROUP, GENE_SET, COR_FNC, NET_TYPE,
@@ -62,6 +62,7 @@ CACHE_KEY      <- paste(REF_GROUP, GENE_SET, COR_FNC, NET_TYPE,
 # ---------- 3. Write config BEFORE any computation --------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))
 if (!file.exists(cfg_path)) {
+  # Dependency-free JSON serializer for a flat named list.
   scl <- function(v) {
     if (is.logical(v)) return(if (isTRUE(v)) "true" else "false")
     if (is.integer(v) || is.numeric(v)) return(as.character(v[1]))
@@ -79,7 +80,7 @@ if (!file.exists(cfg_path)) {
     spec_from_queue      = "ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsummary+medianRank;DESCRIPTIVE ONLY",
     draws_spec           = 100L,
     draws_implemented    = DRAWS,
-    draws_revision_note  = "100 draws x 1962 s/draw = 54 h; revised to 20 to fit budget (see METHODS.md 2026-10-09)",
+    draws_revision_note  = "100 draws x ~1962 s/draw = ~54 h; revised to 20 (~11 h) to fit budget (see METHODS.md 2026-10-09)",
     ref_group            = REF_GROUP,
     test_groups          = c("bp_nolith", "bp_lith"),
     corFnc               = COR_FNC,
@@ -107,7 +108,7 @@ if (!file.exists(cfg_path)) {
   )
   lines <- mapply(jsn, names(cfg_entries), cfg_entries, SIMPLIFY = TRUE)
   writeLines(c("{", paste(lines, collapse = ",\n"), "}"), cfg_path)
-  log("config written: ", cfg_path)
+  msg("config written: ", cfg_path)
 }
 
 # ---------- 4. Packages ------------------------------------------------------
@@ -117,60 +118,59 @@ suppressPackageStartupMessages({
 })
 enableWGCNAThreads()
 options(stringsAsFactors = FALSE)
-log("WGCNA ", as.character(packageVersion("WGCNA")), " loaded; threads enabled")
+msg("WGCNA ", as.character(packageVersion("WGCNA")), " loaded; threads enabled")
 
 # ---------- 5. Data ----------------------------------------------------------
 source("network/00_load.R")
-d <- load_project()   # stops if shape is wrong; verified facts are checked inside
+d <- load_project()   # stops loudly if shape is wrong; verified facts checked inside
 
 # ---------- 6. Scale-free topology scan (R2 curve is itself a result) --------
 r2_path <- file.path(run_dir, "sft_r2_curve.csv")
 if (!file.exists(r2_path)) {
-  log("pickSoftThreshold scan (powers 1:20) ...")
+  msg("pickSoftThreshold scan (powers 1:20) ...")
   set.seed(SEED_BASE)
-  refExpr_tmp <- expr_for(d, group = REF_GROUP)   # 234 x 12368
+  tmp_ref <- expr_for(d, group = REF_GROUP)   # 234 x 12368
   sft <- pickSoftThreshold(
-    refExpr_tmp,
+    tmp_ref,
     powerVector = 1:20,
     networkType = NET_TYPE,
     corFnc      = COR_FNC,
     verbose     = 0
   )
   est <- sft$powerEstimate
-  log("pickSoftThreshold powerEstimate = ",
+  msg("pickSoftThreshold powerEstimate = ",
       if (is.na(est)) "NA" else as.character(est),
-      " (expected to be 1 or NA — function failing on this data, not a threshold)")
+      " (expected 1 or NA: function failing on this data, not a threshold)")
   if (is.na(est) || est < POWER_MIN) {
-    log("powerEstimate ", if (is.na(est)) "NA" else est,
+    msg("powerEstimate ", if (is.na(est)) "NA" else est,
         " < guard ", POWER_MIN, "; using pre-specified POWER=", POWER)
   }
-  r2df <- sft$fitIndices
+  r2df               <- sft$fitIndices
   r2df$power_used    <- POWER
-  r2df$power_spec    <- POWER
   r2df$powerEstimate <- est
   write.csv(r2df, r2_path, row.names = FALSE)
-  log("R2 curve saved: ", r2_path, " (max signed-R2=",
+  msg("R2 curve saved (max signed-R2 = ",
       round(max(r2df$SFT.R.sq, na.rm = TRUE), 3), " at power ",
       r2df$Power[which.max(r2df$SFT.R.sq)], ")")
-  rm(refExpr_tmp, sft, r2df); gc()
+  rm(tmp_ref, sft, r2df); gc()
 } else {
-  log("R2 curve checkpoint exists, skipping scan")
+  msg("R2 curve checkpoint exists, skipping scan")
 }
 
 # ---------- 7. Reference network (module detection, cached) ------------------
 ref_cache <- file.path(cache_dir, paste0("ref_", CACHE_KEY, ".rds"))
 if (file.exists(ref_cache)) {
-  log("loading cached reference modules: ", ref_cache)
+  msg("loading cached reference modules: ", ref_cache)
   ref_net      <- readRDS(ref_cache)
   moduleColors <- ref_net$moduleColors
-  log(ref_net$n_modules, " modules loaded (",
+  msg(ref_net$n_modules, " modules loaded (",
       sum(moduleColors != "grey"), " genes in non-grey modules)")
 } else {
-  log("building reference network (bicor, signed, power ", POWER, ") ...")
-  refExpr <- expr_for(d, group = REF_GROUP)   # 234 x 12368
+  msg("building reference network (bicor, signed, power ", POWER, ") ...")
+  tmp_ref <- expr_for(d, group = REF_GROUP)   # 234 x 12368
   set.seed(SEED_BASE)
   bwm <- blockwiseModules(
-    refExpr,
+    tmp_ref,
     power          = POWER,
     networkType    = NET_TYPE,
     TOMType        = NET_TYPE,
@@ -183,8 +183,8 @@ if (file.exists(ref_cache)) {
     verbose        = 3
   )
   moduleColors <- bwm$colors
-  n_mods <- length(unique(moduleColors)) - 1L   # -1 for grey
-  log("reference network: ", n_mods, " modules (excl grey); ",
+  n_mods <- length(unique(moduleColors)) - 1L   # subtract 1 for grey
+  msg("reference network: ", n_mods, " modules detected (excluding grey); ",
       sum(moduleColors == "grey"), " unassigned genes")
   ref_net <- list(
     moduleColors = moduleColors,
@@ -198,220 +198,214 @@ if (file.exists(ref_cache)) {
     gene_set     = GENE_SET
   )
   saveRDS(ref_net, ref_cache)
-  log("reference modules cached: ", ref_cache)
-  # Save module size table as a tracked CSV
+  msg("reference modules cached: ", ref_cache)
+  # Module sizes as tracked CSV (small, useful for later rows)
   ms_path <- file.path(run_dir, "reference_module_sizes.csv")
   write.csv(as.data.frame(ref_net$module_sizes), ms_path, row.names = FALSE)
-  rm(bwm, refExpr); gc()
+  rm(bwm, tmp_ref); gc()
 }
 
-refExpr <- expr_for(d, group = REF_GROUP)   # 234 x 12368 (needed by modulePreservation)
+# refExpr is needed by every modulePreservation call — build once here.
+refExpr <- expr_for(d, group = REF_GROUP)   # 234 x 12368
 
-# Helper: extract Zsummary and medianRank from a modulePreservation result.
+# ---------- Helper: extract Zsummary + medianRank from modulePreservation ----
 # Returns a data.frame with columns: module, Zsummary, medianRank.
-# Grey module is excluded (it is the "background", not a real module).
+# The grey module (unassigned genes) is excluded from the result.
 extract_mp <- function(mp) {
   obs  <- mp$preservation$observed[["ref.Ref"]][["inColumnsAlsoPresentIn.Test"]]
   zsco <- mp$preservation$Z[["ref.Ref"]][["inColumnsAlsoPresentIn.Test"]]
-  if (is.null(obs) || is.null(zsco)) stop("modulePreservation return structure unexpected")
-  result <- data.frame(
+  if (is.null(obs) || is.null(zsco)) {
+    stop("modulePreservation return structure not as expected; ",
+         "preservation$observed and/or preservation$Z absent for ref.Ref -> Test")
+  }
+  res <- data.frame(
     module     = rownames(obs),
     Zsummary   = zsco[, "Zsummary.pres"],
-    medianRank = obs[, "medianRank.pres"],
+    medianRank = obs[,  "medianRank.pres"],
     stringsAsFactors = FALSE
   )
-  result[result$module != "grey", ]
+  res[res$module != "grey", ]
 }
 
 # ---------- 8. bp_nolith preservation (one run, 500 perms) ------------------
 nolith_ckpt <- file.path(run_dir, "nolith_preservation.rds")
 if (!file.exists(nolith_ckpt)) {
-  log("bp_nolith preservation (500 perms) ...")
+  msg("bp_nolith preservation: 500 perms (fixed test set, no subsampling) ...")
   nolithExpr <- expr_for(d, group = "bp_nolith")   # 74 x 12368
   perm_file  <- file.path(run_dir, "permStats_nolith.RData")
-  set.seed(SEED_BASE + 1000L)
-  mp_nolith <- modulePreservation(
+  mp_nolith  <- modulePreservation(
     multiData = list(
       Ref  = list(data = refExpr),
       Test = list(data = nolithExpr)
     ),
     multiColor = list(Ref = moduleColors),
-    dataIsExpr           = TRUE,
-    networkType          = NET_TYPE,
-    corFnc               = COR_FNC,
-    nPermutations        = NOLITH_PERMS,
-    randomSeed           = SEED_BASE + 1000L,
+    dataIsExpr             = TRUE,
+    networkType            = NET_TYPE,
+    corFnc                 = COR_FNC,
+    nPermutations          = NOLITH_PERMS,
+    randomSeed             = SEED_BASE + 1000L,
     savePermutedStatistics = TRUE,
     loadPermutedStatistics = FALSE,
     permutedStatisticsFile = perm_file,
-    verbose              = 1,
-    indent               = 2
+    verbose                = 1,
+    indent                 = 2
   )
-  nolith_res <- extract_mp(mp_nolith)
-  nolith_res$group      <- "bp_nolith"
-  nolith_res$draw       <- NA_integer_
-  nolith_res$nperms     <- NOLITH_PERMS
-  nolith_res$n_test     <- nrow(nolithExpr)
+  nolith_res          <- extract_mp(mp_nolith)
+  nolith_res$group    <- "bp_nolith"
+  nolith_res$draw     <- NA_integer_
+  nolith_res$nperms   <- NOLITH_PERMS
+  nolith_res$n_test   <- nrow(nolithExpr)
   saveRDS(nolith_res, nolith_ckpt)
-  log("bp_nolith done: ", nrow(nolith_res), " modules; Zsummary range [",
+  msg("bp_nolith done: ", nrow(nolith_res), " modules; Zsummary range [",
       round(min(nolith_res$Zsummary), 2), ", ",
       round(max(nolith_res$Zsummary), 2), "]")
   rm(nolithExpr, mp_nolith); gc()
 } else {
-  log("bp_nolith checkpoint exists, skipping")
+  msg("bp_nolith checkpoint exists, skipping")
 }
 
-# ---------- 9. bp_lith draws (20 draws × 50 perms, checkpoint per draw) ----
+# ---------- 9. bp_lith draws (20 draws x 50 perms, checkpoint per draw) -----
+# bp_lith has n=152; subsample to 74 each draw to match bp_nolith.
 lith_sids <- colnames(d$logtpm)[!is.na(d$groups) & d$groups == "bp_lith"]
 stopifnot(length(lith_sids) == 152L)
 
 for (draw in seq_len(DRAWS)) {
   ckpt <- file.path(run_dir, sprintf("lith_draw_%03d.rds", draw))
   if (file.exists(ckpt)) {
-    log("draw ", draw, "/", DRAWS, " checkpoint exists, skipping")
+    msg("draw ", draw, "/", DRAWS, " checkpoint exists, skipping")
     next
   }
-  log("draw ", draw, "/", DRAWS, ": subsampling bp_lith ...")
+  msg("draw ", draw, "/", DRAWS, ": subsampling bp_lith (n=", SUBSAMPLE_N, " from 152) ...")
   set.seed(SEED_BASE + draw)
-  sel_sids  <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
-  testExpr  <- t(d$logtpm[, sel_sids])    # 74 x 12368
+  sel_sids <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
+  testExpr <- t(d$logtpm[, sel_sids])   # 74 x 12368
+
   perm_file <- file.path(run_dir, sprintf("permStats_lith_draw_%03d.RData", draw))
 
   mp_draw <- tryCatch({
-    set.seed(SEED_BASE + draw)
     modulePreservation(
       multiData = list(
         Ref  = list(data = refExpr),
         Test = list(data = testExpr)
       ),
       multiColor = list(Ref = moduleColors),
-      dataIsExpr           = TRUE,
-      networkType          = NET_TYPE,
-      corFnc               = COR_FNC,
-      nPermutations        = PERMS_PER_DRAW,
-      randomSeed           = SEED_BASE + draw,
+      dataIsExpr             = TRUE,
+      networkType            = NET_TYPE,
+      corFnc                 = COR_FNC,
+      nPermutations          = PERMS_PER_DRAW,
+      randomSeed             = SEED_BASE + draw,
       savePermutedStatistics = TRUE,
       loadPermutedStatistics = FALSE,
       permutedStatisticsFile = perm_file,
-      verbose              = 1,
-      indent               = 2
+      verbose                = 1,
+      indent                 = 2
     )
   }, error = function(e) {
-    log("ERROR in draw ", draw, ": ", conditionMessage(e))
+    msg("ERROR in draw ", draw, ": ", conditionMessage(e))
     NULL
   })
 
   if (is.null(mp_draw)) {
-    log("draw ", draw, " failed; skipping (will retry in a later session if the row is requeued)")
+    msg("draw ", draw, " failed; will retry in a later session if row is requeued")
     rm(testExpr); gc()
     next
   }
 
-  draw_res <- extract_mp(mp_draw)
+  draw_res          <- extract_mp(mp_draw)
   draw_res$group    <- "bp_lith"
   draw_res$draw     <- draw
   draw_res$nperms   <- PERMS_PER_DRAW
   draw_res$n_test   <- SUBSAMPLE_N
-  draw_res$samples  <- paste(sel_sids, collapse = ",")   # reproducibility: exact IDs used
+  draw_res$samples  <- paste(sel_sids, collapse = ",")   # exact IDs for reproducibility
   saveRDS(draw_res, ckpt)
-  log("draw ", draw, "/", DRAWS, " done: Zsummary range [",
+  msg("draw ", draw, "/", DRAWS, " done: Zsummary range [",
       round(min(draw_res$Zsummary), 2), ", ",
       round(max(draw_res$Zsummary), 2), "]")
   rm(testExpr, mp_draw, draw_res); gc()
 }
 
 # ---------- 10. Aggregate (only after ALL draws complete) -------------------
-# Check whether all draws and nolith are done
-nolith_ckpt <- file.path(run_dir, "nolith_preservation.rds")
-done_draws  <- vapply(seq_len(DRAWS), function(i)
+nolith_done <- file.exists(nolith_ckpt)
+done_lith   <- vapply(seq_len(DRAWS), function(i)
   file.exists(file.path(run_dir, sprintf("lith_draw_%03d.rds", i))), logical(1))
-n_done      <- sum(done_draws)
+n_lith_done <- sum(done_lith)
 
-if (!file.exists(nolith_ckpt) || n_done < DRAWS) {
-  log("not all work complete: nolith=", file.exists(nolith_ckpt),
-      ", lith draws done=", n_done, "/", DRAWS,
+if (!nolith_done || n_lith_done < DRAWS) {
+  msg("not all work complete: nolith=", nolith_done,
+      ", lith draws done=", n_lith_done, "/", DRAWS,
       "; exiting for resume in a later session")
-  quit(status = 1)   # PARTIAL; driver will requeue if progress was made
+  # Exit non-zero so the driver marks this PARTIAL, checks checkpoint progress,
+  # refunds the attempt if new .rds files appeared, and requeues.
+  quit(save = "no", status = 1L)
 }
 
-log("all draws complete; aggregating results ...")
+msg("all draws complete; aggregating results ...")
 
-# bp_nolith
-nolith_res  <- readRDS(nolith_ckpt)
-nolith_res$samples <- NA_character_
-nolith_out  <- nolith_res[, c("group", "module", "Zsummary", "medianRank",
-                               "draw", "nperms", "n_test")]
-write.csv(nolith_out,
-          file.path(run_dir, "results_nolith.csv"), row.names = FALSE)
+# bp_nolith — straightforward single-run result
+nolith_res <- readRDS(nolith_ckpt)
+nolith_out <- nolith_res[, c("group", "module", "Zsummary", "medianRank",
+                              "draw", "nperms", "n_test")]
+write.csv(nolith_out, file.path(run_dir, "results_nolith.csv"), row.names = FALSE)
 
-# bp_lith: per-draw data and summary across draws
+# bp_lith — per-draw data and per-module summary across draws
 lith_all <- do.call(rbind, lapply(seq_len(DRAWS), function(i) {
   x <- readRDS(file.path(run_dir, sprintf("lith_draw_%03d.rds", i)))
   x[, c("group", "module", "Zsummary", "medianRank", "draw", "nperms", "n_test")]
 }))
-write.csv(lith_all,
-          file.path(run_dir, "results_lith_alldraws.csv"), row.names = FALSE)
+write.csv(lith_all, file.path(run_dir, "results_lith_alldraws.csv"), row.names = FALSE)
 
-# Per-module summary: mean, median, sd of Zsummary and medianRank across 20 draws
-modules <- unique(lith_all$module)
+modules      <- unique(lith_all$module)
 lith_summary <- do.call(rbind, lapply(modules, function(m) {
-  sub <- lith_all[lith_all$module == m, ]
+  s <- lith_all[lith_all$module == m, ]
   data.frame(
     group             = "bp_lith",
     module            = m,
-    n_draws           = nrow(sub),
-    Zsummary_mean     = mean(sub$Zsummary,   na.rm = TRUE),
-    Zsummary_median   = median(sub$Zsummary, na.rm = TRUE),
-    Zsummary_sd       = sd(sub$Zsummary,     na.rm = TRUE),
-    Zsummary_min      = min(sub$Zsummary,    na.rm = TRUE),
-    Zsummary_max      = max(sub$Zsummary,    na.rm = TRUE),
-    medianRank_mean   = mean(sub$medianRank,   na.rm = TRUE),
-    medianRank_median = median(sub$medianRank, na.rm = TRUE),
-    medianRank_sd     = sd(sub$medianRank,     na.rm = TRUE),
+    n_draws           = nrow(s),
+    Zsummary_mean     = mean(s$Zsummary,   na.rm = TRUE),
+    Zsummary_median   = median(s$Zsummary, na.rm = TRUE),
+    Zsummary_sd       = sd(s$Zsummary,     na.rm = TRUE),
+    Zsummary_min      = min(s$Zsummary,    na.rm = TRUE),
+    Zsummary_max      = max(s$Zsummary,    na.rm = TRUE),
+    medianRank_mean   = mean(s$medianRank,   na.rm = TRUE),
+    medianRank_median = median(s$medianRank, na.rm = TRUE),
+    medianRank_sd     = sd(s$medianRank,     na.rm = TRUE),
     stringsAsFactors  = FALSE
   )
 }))
-write.csv(lith_summary,
-          file.path(run_dir, "results_lith_summary.csv"), row.names = FALSE)
+write.csv(lith_summary, file.path(run_dir, "results_lith_summary.csv"), row.names = FALSE)
 
-# Combined table for RESULTS.md: one row per module per group
-nolith_sum <- nolith_out[, c("group", "module", "Zsummary", "medianRank")]
-names(nolith_sum)[names(nolith_sum) == "Zsummary"]   <- "Zsummary_point"
-names(nolith_sum)[names(nolith_sum) == "medianRank"] <- "medianRank_point"
-nolith_sum$Zsummary_mean <- nolith_sum$Zsummary_point
-nolith_sum$note <- paste0("single run, ", NOLITH_PERMS, " perms")
-
-lith_comb <- data.frame(
-  group              = lith_summary$group,
-  module             = lith_summary$module,
-  Zsummary_point     = lith_summary$Zsummary_median,
-  medianRank_point   = lith_summary$medianRank_median,
-  Zsummary_mean      = lith_summary$Zsummary_mean,
-  note               = paste0(DRAWS, " draws x ", PERMS_PER_DRAW, " perms"),
-  stringsAsFactors   = FALSE
+# Combined result: one row per module per group
+nolith_tidy <- data.frame(
+  group            = nolith_out$group,
+  module           = nolith_out$module,
+  Zsummary_point   = nolith_out$Zsummary,    # single estimate (500 perms)
+  medianRank_point = nolith_out$medianRank,
+  Zsummary_mean    = nolith_out$Zsummary,
+  note             = paste0("single run, ", NOLITH_PERMS, " perms"),
+  stringsAsFactors = FALSE
 )
-
-combined <- rbind(
-  nolith_sum[, intersect(names(nolith_sum), names(lith_comb))],
-  lith_comb[, intersect(names(nolith_sum), names(lith_comb))]
+lith_tidy <- data.frame(
+  group            = lith_summary$group,
+  module           = lith_summary$module,
+  Zsummary_point   = lith_summary$Zsummary_median,   # median across 20 draws
+  medianRank_point = lith_summary$medianRank_median,
+  Zsummary_mean    = lith_summary$Zsummary_mean,
+  note             = paste0(DRAWS, " draws x ", PERMS_PER_DRAW, " perms; point=median"),
+  stringsAsFactors = FALSE
 )
-write.csv(combined,
-          file.path(run_dir, "results_combined.csv"), row.names = FALSE)
+combined <- rbind(nolith_tidy, lith_tidy)
+write.csv(combined, file.path(run_dir, "results_combined.csv"), row.names = FALSE)
 
-log("results written:")
-log("  ", file.path(run_dir, "results_nolith.csv"))
-log("  ", file.path(run_dir, "results_lith_alldraws.csv"))
-log("  ", file.path(run_dir, "results_lith_summary.csv"))
-log("  ", file.path(run_dir, "results_combined.csv"))
+# Print tables for the log
+msg("\n--- bp_nolith Zsummary (", NOLITH_PERMS, " perms, descriptive only) ---")
+show_n <- nolith_tidy[order(-nolith_tidy$Zsummary_point),
+                      c("module", "Zsummary_point", "medianRank_point")]
+print(head(show_n, 10), row.names = FALSE)
 
-# Print a brief table of Zsummary statistics for the log
-log("\n--- bp_nolith Zsummary (500 perms) ---")
-nolith_show <- nolith_out[order(-nolith_out$Zsummary), c("module","Zsummary","medianRank")]
-print(head(nolith_show, 10), row.names = FALSE)
+msg("\n--- bp_lith Zsummary_mean across ", DRAWS, " draws (top 10, descriptive only) ---")
+show_l <- lith_summary[order(-lith_summary$Zsummary_mean),
+                       c("module", "Zsummary_mean", "Zsummary_sd", "medianRank_mean")]
+print(head(show_l, 10), row.names = FALSE)
 
-log("\n--- bp_lith Zsummary_mean across ", DRAWS, " draws (top 10) ---")
-lith_show <- lith_summary[order(-lith_summary$Zsummary_mean),
-                           c("module","Zsummary_mean","Zsummary_sd","medianRank_mean")]
-print(head(lith_show, 10), row.names = FALSE)
-
-log("=== ", id, " COMPLETE ===")
+msg("=== ", id, " COMPLETE ===")
+# Exit 0: driver marks the row DONE.
