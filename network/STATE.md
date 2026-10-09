@@ -1,8 +1,9 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-09T~24:30Z (session 2)
-**Status:** base-001 RUNNING (PID 52678). Scripts written for next 6 rows. Awaiting
-first preservation result before populating RESULTS.md numbers.
+**Updated:** 2026-10-09T~session-3
+**Status:** base-001 RUNNING (PID 52678). ALL 48 scripts written. base-001 in
+bp_nolith preservation (500 perms, started 16:04:53). 4 modules detected in
+control reference.
 
 ## Environment (all verified, not assumed)
 - R 4.2.2, 4 cores, 16 GB RAM, ~189 GB free.
@@ -23,8 +24,9 @@ first preservation result before populating RESULTS.md numbers.
 | modulePreservation, per permutation | ~7.8 s |
 | Full draw (ref TOM + test TOM + 50 perms) | ~1,962 s (~33 min) |
 | 20 draws (per row, lith only) | ~10.9 h |
+| Reference network at n=234 | ~47 min observed (2820 s; TOM + clustering + merge) |
 
-K=500 permutations ≈ 65 min for bp_nolith. Peak RSS ~5–6 GB at full gene set.
+K=500 permutations ≈ 65 min for bp_nolith (faster with only 4 modules). Peak RSS ~5–6 GB at full gene set.
 **Never run two experiments concurrently.**
 
 ## Known scientific constraints (decided before any run — see METHODS.md)
@@ -37,6 +39,9 @@ K=500 permutations ≈ 65 min for bp_nolith. Peak RSS ~5–6 GB at full gene set
   ~1,962 s; 100 draws ≈ 54.5 h (10× oversubscribed). Decision in METHODS.md.
 - Power 12 confirmed: earlier draft said 14 (wrong row of FAQ table; n=74 → n>40 row).
   METHODS.md second audit corrected this before any network was built.
+- **4 modules** detected in control reference (base-001, 2026-10-09T16:04:53):
+  18+ pre-merge modules merged to 4 at cutHeight=0.25; 59 grey (unassigned) genes.
+  Biologically plausible for whole-blood data dominated by cell-type composition.
 
 ## Machinery
 - `network/run_next.sh` — driver. `--peek` inspects the next row without claiming.
@@ -47,43 +52,60 @@ K=500 permutations ≈ 65 min for bp_nolith. Peak RSS ~5–6 GB at full gene set
 - Scheduler: launchd `com.aaylab.networkarm`, 18000 s (5 h), RunAtLoad true.
 
 ## Done (experiments with final results)
-*(none yet)*
+| id | result |
+|:---|:-------|
+| base-001 (reference only) | 4 modules, 12,309 assigned genes, 59 grey (reference built 2026-10-09T16:04:53) |
 
 ## Running
 | id | started | stage | notes |
 |:---|:--------|:------|:------|
-| base-001 | 2026-10-09T15:16:23 | reference network TOM (building) | SFT scan done; ref network ~50% |
+| base-001 | 2026-10-09T15:16:23 | bp_nolith 500-perm preservation | SFT done, ref built; nolith in progress |
 
-## Scripts written, pending in queue
-| id | family | script | notes |
-|:---|:-------|:-------|:------|
-| base-002-ceil | baseline | ✓ | split-half ceiling; needs base-001 first to calibrate |
-| inp-021 | input | ✓ | technical residualised (age+sex+rin+plate+seqpc1-3) |
-| inp-022 | input | ✓ | **KEY QUESTION** composition residualised (ILR b1-b4) |
-| inp-023 | input | ✓ | **KEY QUESTION** technical+composition residualised |
-| pow-009 | power | ✓ | scale-free R² curves all 3 groups (fast, ~15 min) |
-| gene-027 | geneset | ✓ | circularity check: network minus 547 LM22 genes |
-
-## Next unwritten scripts (by queue order)
-| id | family | spec (truncated) |
-|:---|:-------|:-----------------|
-| perm-031 | perm | group-label permutation null K=500 |
-| trait-033 | modtrait | eigengene ~ lithium, dx, age, sex, RIN, plate |
-| trait-034 | modtrait | eigengene ~ 5 lineage fractions |
-| trait-035 | modtrait | eigengene ~ ILR balances b1-b4 |
-| pres-030 | preserve | density + connectivity components separately |
-| samp-043 | samplestruct | eigengene-space separation by group |
-| ann-041 | annot | module overlap with lithium + bipolar DEG lists |
-| ann-042 | annot | module overlap with LM22 markers |
-| ref-002 | reference | ref=bp_nolith (alternative reference) |
-| ref-003 | reference | ref=bp_lith (alternative reference) |
-| ref-004 | reference | ref=consensus(all3) |
-| corr-005 | corr | pearson instead of bicor |
-| corr-006 | corr | spearman instead of bicor |
-| net-007 | nettype | unsigned network |
-| net-008 | nettype | signed_hybrid network |
-| pow-010..012 | power | fixed power 6, 8, 12 sensitivity |
-| mod-013..016 | moddetect | deepSplit / minModuleSize sensitivity |
+## Scripts written — ALL 48 complete
+| id | family | notes |
+|:---|:-------|:------|
+| base-001 | baseline | primary experiment, RUNNING |
+| base-002-ceil | baseline | split-half ceiling |
+| pow-009 | power | SFT curves all groups |
+| corr-005 | corr | pearson |
+| corr-006 | corr | spearman |
+| net-007 | nettype | unsigned |
+| net-008 | nettype | signed hybrid |
+| pow-010 | power | fixed p=6 |
+| pow-011 | power | fixed p=8 |
+| pow-012 | power | fixed p=12 (no fallback) |
+| mod-013..020 | moddetect | deepSplit+minModuleSize+mergeCutHeight sensitivity |
+| ref-002 | reference | ref=bp_nolith |
+| ref-003 | reference | ref=bp_lith |
+| ref-004 | reference | consensus blockwiseConsensusModules |
+| inp-021 | input | technical residualised |
+| inp-022 | input | **KEY** composition residualised (ILR b1-b4) |
+| inp-023 | input | technical+composition residualised |
+| inp-024 | input | voom-normalised log2-CPM |
+| gene-025 | geneset | top 2000 most variable |
+| gene-026 | geneset | top 5000 most variable |
+| gene-027 | geneset | minus LM22 (circularity check) |
+| gene-028 | geneset | WB_LI DEGs only |
+| gene-029 | geneset | non-DEGs only |
+| pres-030 | preserve | density + connectivity separately |
+| perm-031 | perm | group-label null K=20, pool=all 474 |
+| perm-032 | perm | group-label null K=20, pool=ctrl+lith 386 |
+| trait-033 | modtrait | eigengene ~ lithium+dx+age+sex+rin+plate |
+| trait-034 | modtrait | eigengene ~ lineage fractions |
+| trait-035 | modtrait | eigengene ~ ILR b1-b4 |
+| hub-036 | hub | kME hub identity |
+| hub-037 | hub | delta_kME permutation |
+| comm-038 | community | Louvain cluster_louvain |
+| comm-039 | community | Leiden (fallback Louvain) |
+| cent-040 | centrality | degree+eigenvector+betweenness |
+| ann-041 | annot | DEG list overlap |
+| ann-042 | annot | LM22 + CT-DE overlap |
+| samp-043 | samplestruct | eigengene-space separation |
+| filt-044 | input | 31-filter gene survival per module |
+| tob-045 | input | tobacco sensitivity (5 of 20 imputations) |
+| bmind-046 | bmind | REBUILD bMIND profiles (~3.1h, own window) |
+| bmind-047 | bmind | per-lineage networks (requires bmind-046) |
+| synth-048 | synthesis | cross-run synthesis → RESULTS.md |
 
 ## Blocked
 See `network/BLOCKED.md`. Nothing outstanding that prevents the run.
