@@ -96,3 +96,33 @@ Vcells 19026684 145.2   63239189 482.5      16384 483684342 3690.3
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-09T16:59:47] draw 1/20 done: Zsummary range [6.19, 22.52]
+[2026-10-09T16:59:47] draw 2/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:04:09] draw 2/20 done: Zsummary range [6.03, 26.21]
+[2026-10-09T17:04:09] draw 3/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:08:30] draw 3/20 done: Zsummary range [4.71, 22.86]
+[2026-10-09T17:08:30] draw 4/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:12:51] draw 4/20 done: Zsummary range [2.4, 21.84]
+[2026-10-09T17:12:51] draw 5/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T17:17:20] draw 5/20 done: Zsummary range [5.25, 24.1]
+[2026-10-09T17:17:20] draw 6/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

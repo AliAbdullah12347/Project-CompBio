@@ -803,3 +803,50 @@ high in the residualised networks (`inp-022`/`inp-023`) or at other merge thresh
 unknown, and the inflation is plausibly a consequence of this network's density — mean
 connectivity at 8.3% of the genome — rather than a general property of Zsummary. Untested
 either way.
+
+---
+
+## 2026-10-09  Gold is a stable baseline (5 draws); turquoise shift noted but NOT claimed
+
+With 5 of 20 lithium draws complete in `base-001`:
+
+| module | size | lith mean | lith sd | nolith | dZ | dZ / sd |
+|:--|--:|--:|--:|--:|--:|--:|
+| blue | 5,171 | 22.91 | 2.66 | 25.72 | −2.81 | −1.06 |
+| **gold** | random | **21.42** | **0.93** | 20.26 | +1.16 | +1.25 |
+| turquoise | 6,621 | 19.70 | 1.43 | 15.48 | +4.22 | +2.95 |
+| yellow | 255 | 9.40 | 1.32 | 11.01 | −1.61 | −1.22 |
+| brown | 262 | 4.92 | 1.53 | 6.41 | −1.49 | −0.97 |
+
+### The baseline holds (this is the rankable part)
+Gold's Zsummary across five independent subsamples of bp_lith spans **[20.62, 22.86],
+sd 0.93** — the tightest spread of any module, and close to its bp_nolith value of 20.26.
+The random baseline is therefore stable across both groups and across subsampling, which
+is precisely what it needs to be to serve as a denominator. Had gold swung as widely as
+blue (sd 2.66), it would not be a baseline, merely another noisy number.
+
+This raises the robustness of the gold finding from one comparison to two groups x five
+draws.
+
+### The turquoise shift is NOT being claimed
+turquoise is the only module whose change exceeds the draw-to-draw spread (+4.22, ~2.95
+draw-SDs). Three reasons it is recorded and not claimed:
+
+1. **Gold moved too.** The random baseline shifted +1.16 in the same direction, so roughly
+   a quarter of turquoise's movement is a general upward shift in the lithium comparison
+   rather than anything specific to that module.
+2. **It is still below random.** At 19.70 against a gold of 21.42, turquoise moved from
+   *well below* the random baseline to *slightly below* it. A change inside the
+   sub-random regime is not evidence of biological preservation.
+3. **The SD is poorly estimated and the draws are not independent.** Five draws of 74 from
+   152 share roughly 36 subjects pairwise (`IMAC_README.md` §6.4), so `sd` understates the
+   true spread and `dZ/sd` must not be read as a z-statistic. It is a descriptive ratio
+   only. No p-value is computed or implied here; a calibrated statement requires the
+   group-label permutation null in `perm-031`.
+
+### What would make it claimable
+- the remaining 15 draws leaving the ratio above ~2 with a better-estimated spread,
+- turquoise exceeding gold rather than approaching it from below,
+- and the group-label permutation null in `perm-031` giving it a calibrated p-value.
+
+Until then this is an observation in the log, not a result in `RESULTS.md`.
