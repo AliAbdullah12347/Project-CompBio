@@ -1,3 +1,5 @@
 {"ts":"2026-10-09T02:12:50Z","run_id":"setup","phase":"setup","pct":100,"msg":"machinery built and verified; queue seeded with 48 experiments; awaiting claude login"}
 {"ts":"2026-10-09T02:43:57Z","run_id":"base-001","phase":"needs_script","pct":0,"msg":"no script at network/experiments/base-001.R"}
 {"ts":"2026-10-09T19:16:23Z","run_id":"base-001","phase":"run","pct":5,"msg":"starting network/experiments/base-001.R cap=10800s"}
+{"ts":"2026-10-09T22:16:26Z","run_id":"base-001","phase":"progress","pct":50,"msg":"21 new non-empty checkpoints"}
+{"ts":"2026-10-09T22:16:26Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 PARTIAL 10803s"}

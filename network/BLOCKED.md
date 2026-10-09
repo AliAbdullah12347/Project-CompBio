@@ -63,3 +63,27 @@ should rebuild it after the run.
 `/Users/Aaylab/.arm3_token` is 50 bytes; a real token is ~108 and starts sk-ant-.
 Most likely a paste truncated at a line break. Re-store the FULL token.
 
+## 2026-10-09T22:16:26Z  base-001  hit 10800s cap; partial results kept; +21 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-09T18:05:38] draw 16/20 done: Zsummary range [4.57, 20.3]
+[2026-10-09T18:05:38] draw 17/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T18:10:01] draw 17/20 done: Zsummary range [5.58, 24.37]
+[2026-10-09T18:10:01] draw 18/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-09T18:14:22] draw 18/20 done: Zsummary range [3.53, 21.6]
+[2026-10-09T18:14:22] draw 19/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
