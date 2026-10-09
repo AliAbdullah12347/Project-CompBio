@@ -1,0 +1,21 @@
+# Lock directories hold live PID files; committing them to a public repo would
+# both leak process state and let a stale lock travel between machines.
+.driver.lock/
+.wake.lock/
+RUNLOG/.driver.lock/
+RUNLOG/.wake.lock/
+
+# Partial queue rewrites - transient by construction.
+RUNLOG/queue.tsv.tmp*
+
+# Full headless session transcripts. These capture everything a session printed,
+# which on a PUBLIC repository is both noisy and a disclosure risk.
+RUNLOG/last_session.out
+RUNLOG/launchd.out
+RUNLOG/launchd.err
+RUNLOG/cron.log
+
+# Regenerable caches.
+cache/
+RUNLOG/.last_done_count
+RUNLOG/.stall_count
