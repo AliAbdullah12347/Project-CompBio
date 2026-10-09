@@ -63,3 +63,7 @@ A human must run `claude setup-token` and store the FULL token there (chmod 600)
 `/Users/Aaylab/.arm3_token` is 50 bytes; a real token is ~108 and starts sk-ant-.
 Most likely a paste truncated at a line break. Re-store the FULL token.
 
+## 2026-10-09T02:46:28Z  MALFORMED AUTH TOKEN
+`/Users/Aaylab/.arm3_token` is 89 bytes; a real token is ~108 and starts sk-ant-.
+Most likely a paste truncated at a line break. Re-store the FULL token.
+
