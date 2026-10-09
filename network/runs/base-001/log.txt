@@ -87,3 +87,12 @@ Vcells 16068012 122.6   63239189 482.5      16384 483684342 3690.3
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-09T16:55:19] bp_nolith done: 5 modules; Zsummary range [6.41, 25.72]
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2455440 131.2    4385957 234.3         NA   4385957  234.3
+Vcells 19026684 145.2   63239189 482.5      16384 483684342 3690.3
+[2026-10-09T16:55:19] draw 1/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

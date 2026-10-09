@@ -741,3 +741,65 @@ mine from the summary line, session 3's from the detail above it. The lesson for
 of the run: **read the pre-merge counts, not just the final module count.** A WGCNA module
 count is the output of three successive decisions (power, deepSplit, merge), and only the
 last of those is cheap to vary.
+
+---
+
+## 2026-10-09  The gold module calibrates Zsummary — and 3 of 4 modules fall below random
+
+`base-001`'s first completed comparison (control modules measured in `bp_nolith`, n=74,
+500 permutations) returned:
+
+| module | size | Zsummary | medianRank |
+|:--|--:|--:|--:|
+| blue | 5,171 | 25.72 | 1 |
+| **gold** | **random sample** | **20.26** | 4 |
+| turquoise | 6,621 | 15.48 | 3 |
+| yellow | 255 | 11.01 | 2 |
+| brown | 262 | 6.41 | 5 |
+
+`gold` is not a biological module. WGCNA's documentation defines `maxGoldModuleSize` as
+"maximum size of the *gold* module, i.e., **the random sample of all network genes**" — it
+exists precisely to calibrate the preservation statistics.
+
+### What this establishes
+**A random sample of genes scores Zsummary = 20.26 in this data.** Langfelder et al.'s
+rule-of-thumb bands (<2 not preserved, 2–10 weak, >10 strong) therefore do not apply here:
+random noise lands in "strongly preserved", and so does everything else.
+
+Read against the internal random baseline instead of the published bands:
+
+- **blue (25.72)** — the only module preserved *better than random*.
+- **turquoise (15.48), yellow (11.01)** — below random.
+- **brown (6.41)** — far below random.
+
+Three of the four modules are less preserved between controls and bipolar-off-lithium
+than an arbitrary set of genes of comparable size.
+
+### Why this matters for the whole arm
+`IMAC_README.md` §6.3 states that Zsummary has no calibrated null and must not be pushed
+through a normal CDF. This run now **demonstrates that empirically in this dataset**
+rather than inheriting it as a caution: the statistic is inflated enough that noise clears
+the "strong preservation" threshold by a factor of two.
+
+**Every Zsummary this arm reports must be quoted against gold, never against the published
+bands.** A result stated as "Zsummary = 14, strongly preserved" would be actively
+misleading here — it is below this data's random baseline.
+
+### Relationship to `base-002-ceil`
+The gold module does not make the split-half ceiling redundant; they calibrate different
+things:
+
+- **gold** — is this module preserved better than *random genes* in the same comparison?
+  It isolates whether module membership carries information at all.
+- **`base-002-ceil`** — is this module as preserved in patients as in *held-out controls*?
+  It isolates the group effect from n=74 sampling noise.
+
+A module can beat gold while still being less preserved in patients than in controls, and
+that difference is the arm's actual question. Both remain queued.
+
+### Caveat
+One comparison, one group, from a run still PARTIAL. Whether the gold baseline sits this
+high in the residualised networks (`inp-022`/`inp-023`) or at other merge thresholds is
+unknown, and the inflation is plausibly a consequence of this network's density — mean
+connectivity at 8.3% of the genome — rather than a general property of Zsummary. Untested
+either way.
