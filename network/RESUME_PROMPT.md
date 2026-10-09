@@ -49,9 +49,12 @@ automatically rather than producing a wrong result.
 
 ## Budget reality — the queue is deliberately oversubscribed
 
-Measured on this machine at the real problem size: a reference network build (12,368
-genes, n=74, signed, bicor; measured at power 14) takes **786 s** and yields ~23 modules;
-`modulePreservation` costs **~7.8 s per permutation**. One `draws=100;perms_per_draw=50`
+Measured on this machine at the real problem size: a reference network build on 12,368
+genes, signed, bicor, costs **786 s at n=74** and **~2,360 s (39 min) at n=234** —
+observed directly in `base-001`, whose control reference is all 234 samples. Correlation
+cost scales with the sample count, so **multiply 786 s by n/74** when sizing a row. A row
+with an n=234 reference pays ~3x what the headline figure suggests, and `base-002-ceil`
+(n=160) pays ~2x. `modulePreservation` costs **~7.8 s per permutation**. One `draws=100;perms_per_draw=50`
 row is therefore **~11 h** of compute.
 
 Against ~19 sessions x 4 h x 80% ≈ **61 h** of usable time, the eleven `draws=100` rows

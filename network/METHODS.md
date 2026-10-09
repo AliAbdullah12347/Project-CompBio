@@ -548,3 +548,33 @@ different question would have cost a session and thrown away work already specif
 arm's key question is itself a preservation comparison — answering it before the ceiling
 exists would produce a number nobody could interpret either.
 
+
+## 2026-10-09  Reference build cost scales with sample size — caps were sized at the wrong n
+
+`base-001`'s reference network took **39 minutes** to build, against the **786 s** figure
+that sized every cap in the queue. The estimate was not wrong; it was measured at the
+wrong sample size.
+
+The 786 s benchmark was taken at **n=74**, the subsample size. `base-001`'s reference is
+the **full control group, n=234**. Correlation cost scales with the sample count, so
+786 × (234/74) ≈ 2,360 s ≈ 39 min — which is what was observed, to within a minute.
+
+**Rule for sizing any row: multiply 786 s by n_reference/74.**
+
+| row | reference n | predicted build |
+|:--|:--|:--|
+| `base-001`, `inp-021`–`inp-024` | 234 | ~39 min |
+| `base-002-ceil` | 160 | ~27 min |
+| anything with an n=74 reference | 74 | ~13 min |
+
+This does not break the run — the build is paid **once per cache key**, and
+`RESUME_PROMPT.md` already requires caching the reference on (group, gene set, corFnc,
+networkType, power, residualisation). But it means the first session touching a new
+reference spends roughly 40 minutes before any preservation work starts, which is worth
+knowing when deciding what still fits in a window.
+
+Observed rather than inferred: the log went quiet for 38 minutes because WGCNA emits
+nothing during the single-threaded BLAS matrix multiply, while parent CPU time kept
+climbing and memory held at 2.67 GB. A quiet log here is not a stalled run, and the
+zero-throughput watchdog is correctly scoped to sessions rather than to log activity.
+
