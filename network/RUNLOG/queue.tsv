@@ -1,5 +1,6 @@
 id	family	status	attempts	started	finished	wall_sec	note	cap_sec	spec
 base-001	baseline	PENDING	0					10800	ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsummary+medianRank;DESCRIPTIVE ONLY
+base-002-ceil	baseline	PENDING	0					10800	SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp_lith(20 draws of 74) against the SAME reference. corr=bicor;net=signed;genes=all;power=12;perms_per_draw=50;CHECKPOINT PER DRAW. Gives the n=74 preservation CEILING: without it a Zsummary in bp_lith cannot be distinguished from ordinary 74-sample noise, and base-001's 234-sample reference vs 74-sample tests inflates differences through precision alone. Control test set MUST be disjoint from the reference or the ceiling is circular.
 inp-022	input	PENDING	0					10800	ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 inp-023	input	PENDING	0					10800	ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 pow-009	power	PENDING	0					3600	pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result)

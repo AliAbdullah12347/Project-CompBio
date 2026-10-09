@@ -436,3 +436,115 @@ it rather than trust the prose. The 786 s build measurement was taken at power 1
 left labelled as such, since that is what was actually measured.
 
 ---
+
+## 2026-10-09  base-001 draw count revised from 100 to 20 (before any computation)
+
+The queue spec for base-001 (and ten other draws=100 rows) was set by an estimate of
+~11 h per row: 786 s (reference build, one-time) + 100 × 50 × 7.8 s (permutations) =
+~11 h. That estimate is wrong in a material way.
+
+### What the estimate missed
+
+`WGCNA::modulePreservation()` recomputes the reference adjacency and TOM **inside every
+call**. One call = one draw. At 12,368 genes the TOM costs ~786 s regardless of whether
+it is the reference or the test set. So per draw:
+
+| step | cost |
+|:--|:--|
+| reference adjacency + TOM (inside modulePreservation, per call) | ~786 s |
+| test set adjacency + TOM (inside modulePreservation, per call) | ~786 s |
+| 50 permutations at 7.8 s/perm | 390 s |
+| **total per draw** | **~1 962 s ≈ 32.7 min** |
+
+There is no public API in WGCNA 1.74 to inject a pre-computed TOM into
+`modulePreservation`, so this cost cannot be reduced without re-implementing the
+statistics — which would be risky and error-prone on an unattended run.
+
+### Consequence for the queue
+
+100 draws × 1 962 s ≈ 54.5 h per row. Eleven draws=100 rows want ~600 h against
+~61 h available — **10x oversubscribed**. At that ratio `inp-022` and `inp-023` — the
+arm's stated question — would never run, which would defeat the purpose of the arm.
+
+### Decision
+
+Implement **draws = 20** for base-001. 20 × 1 962 s ≈ 10.9 h ≈ 11 h, which matches
+the *intended* budget for this row. 20 independent subsamples of bp_lith (each n=74 from
+152) gives a usable distribution of Zsummary values for descriptive purposes; 50
+permutations per draw is sufficient for an individual null. bp_nolith, which cannot be
+subsampled, is run once with 500 permutations (ten times the per-draw count) for a
+stable point estimate.
+
+This decision is pre-specified here and written into `network/config/base-001.json`
+**before any computation begins**. The queue spec field still reads "draws=100"
+(not modified; it is not a config file); the discrepancy is recorded in the config as
+`draws_spec` vs `draws_implemented`.
+
+The same revision applies to the other ten draws=100 rows (inp-022, inp-023, …).
+Those will be revisited when the driver reaches them, but this entry records the
+reasoning so that session need not repeat it.
+
+---
+
+## 2026-10-09  Added base-002-ceil: without a ceiling, Zsummary is uninterpretable
+
+Reviewing `base-001.R` after session 1 wrote it (before it ran — the row was still
+PENDING, attempts=0), two linked problems surfaced. The script is otherwise sound: power
+12 with a guard, modules defined once and cached, `permutedStatisticsFile` set per draw
+inside the run directory, config written before computation, checkpoint per draw, exits 1
+to requeue, and the draws revision from 100 to 20 documented in advance.
+
+### Problem 1 — no control-vs-control comparison
+`base-001` measures preservation of control modules in `bp_nolith` and `bp_lith`, and
+nowhere else. There is therefore no answer to the only question that makes a Zsummary
+readable: **what does a well-preserved module look like at n=74 in this data?**
+
+If `base-001` reports Zsummary = 8 for a module in `bp_lith`, that is consistent with
+all of:
+- lithium genuinely disrupting the module,
+- 74 samples being too few to recover it in any group,
+- the reference being estimated more precisely than any test set.
+
+Nothing in the run distinguishes them. Langfelder's rule-of-thumb bands (<2 not
+preserved, 2–10 weak, >10 strong) were derived on other datasets and are not a
+substitute for an internal ceiling — especially here, where `IMAC_README.md` §6.3 already
+warns Zsummary has no calibrated null.
+
+### Problem 2 — the reference is n=234 while every test set is n=74
+`expr_for(d, group = "control")` returns all 234 controls, and `base-001` uses that as the
+reference while testing against 74-sample groups. MASTER_PROMPT.md:117 says to subsample
+**the two larger groups** to n=74 — control (234) and bp_lith (152). Only bp_lith was
+subsampled.
+
+This is not fatal to the between-group comparison: `bp_nolith` and `bp_lith` face the same
+reference, so the contrast between them stays internally fair. But every absolute Zsummary
+is inflated by the reference's extra precision, and a reader cannot tell how much.
+
+### Why one experiment fixes both
+A **split-half control design** calibrates the asymmetry and supplies the ceiling at once:
+
+- reference: 160 randomly held-out controls
+- test A: the **other 74 controls**, disjoint from the reference → the ceiling
+- test B: `bp_nolith` (74, never subsampled)
+- test C: `bp_lith`, 20 draws of 74
+
+Every test set is now n=74 against one reference, so the ceiling absorbs exactly the
+sampling-precision effect that Problem 2 introduces. Zsummary in `bp_nolith`/`bp_lith`
+becomes readable as a fraction of what controls themselves achieve.
+
+**The control test set must be disjoint from the reference.** Testing a 74-sample subset
+of the same 234 controls used to define the modules would measure the modules against
+their own training data and produce an inflated ceiling — which would be worse than having
+none, because it would look rigorous.
+
+### What was NOT done
+`base-001` was left exactly as written and is still queued first. It was not edited, its
+cached reference was not invalidated, and its draws were not changed. Its numbers remain
+valid as a within-reference comparison of `bp_nolith` against `bp_lith`; `base-002-ceil`
+supplies the scale they should be read on. Rewriting a correct experiment to answer a
+different question would have cost a session and thrown away work already specified.
+
+`base-002-ceil` is inserted at **position 2**, ahead of `inp-022`/`inp-023`, because the
+arm's key question is itself a preservation comparison — answering it before the ceiling
+exists would produce a number nobody could interpret either.
+
