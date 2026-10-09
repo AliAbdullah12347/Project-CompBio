@@ -39,6 +39,11 @@ bp_nolith) or 2 (bp_lith) — the function failing, not a threshold.
 - Scheduler: launchd `com.aaylab.networkarm`, 18000 s (5 h), RunAtLoad true.
   **NOT LOADED.** Loading it starts the run.
 
+## Live ranking
+`network/RANKING.md` (human) and `network/ranking.csv` (parsable) hold a running
+ranking of every result, rebuilt after each experiment. The rubric rewards evidential
+strength, not how striking a finding looks — a well-powered null can score top.
+
 ## Done
 (no experiment has run)
 

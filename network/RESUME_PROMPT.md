@@ -121,6 +121,23 @@ Anything over ~15 minutes writes partial results as it goes — one `.rds` or `.
 draw, per permutation block, per group — and skips work whose checkpoint already exists.
 A resumed experiment must not restart from zero.
 
+## Rank every result, every time — this is not optional
+
+After **each** experiment, update `network/RANKING.md` and `network/ranking.csv`. The
+rubric is in RANKING.md: five components (Evidence, Relevance, Robustness, Decisiveness,
+Completeness), 0–5 each, 25 total. Re-rank the new result **against everything already
+there**, so the table is always a live ranking of the whole run rather than a log.
+
+Read the rubric before scoring. It is built so that a well-powered **null scores high**
+and a striking result resting on one draw scores low — because this arm is exploratory and
+`IMAC_README.md` forbids making something look significant. If you ever find yourself
+wanting to score a result highly because it is *interesting*, score it on the rubric
+instead and put the interest in the Notes column.
+
+Rules: score what the run demonstrated, not what it suggests; never quietly re-score an
+old result to make a new one look consistent — if a score changes, say so in Notes and in
+`METHODS.md`; cap `PARTIAL` rows at C=2 and rank them on what they actually produced.
+
 ## Spend the last slice writing
 Update `network/RESULTS.md`, `network/results_index.csv`, `network/STATE.md`, and append
 to `network/METHODS.md`. Commit and push. Then top the queue back up so it never empties;
