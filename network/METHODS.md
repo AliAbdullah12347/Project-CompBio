@@ -682,3 +682,62 @@ As of session 3 (2026-10-09), all experiment scripts are on disk and committed:
 - No script generates p-values from Zsummary or medianRank
 - All scripts pre-specify parameters in config JSON before any computation
 - All scripts checkpoint per draw; sessions can be safely interrupted and resumed
+
+---
+
+## 2026-10-09  Correction: the structure exists; the MERGE THRESHOLD destroyed it
+
+The entry above ("Power 12 produces a degenerate module structure") drew the wrong
+conclusion from the right observation. Session 3 read further into the log than I had and
+found the decisive line.
+
+### What the log actually shows
+```
+..reassigning 483 genes from module 1 to modules with higher KME.
+..reassigning 243 genes from module 2 ...
+   ... through ...
+..reassigning   6 genes from module 18 to modules with higher KME.
+   mergeCloseModules: Merging modules whose distance is less than 0.25
+reference network: 4 modules detected (excluding grey); 59 unassigned genes
+```
+
+`cutreeDynamic` found **18 modules**. `mergeCloseModules` at `mergeCutHeight = 0.25`
+collapsed them to **4**.
+
+### Why that inverts the diagnosis
+`mergeCutHeight = 0.25` merges any pair of modules whose eigengenes correlate above 0.75.
+In a network with mean connectivity at 8.3% of the genome, nearly every pair of module
+eigengenes clears that bar, so the merge cascades until almost everything is one of two
+blocks.
+
+So the earlier claim — that the network is too dense to *have* structure — is **refuted by
+this run's own output**. The structure is there. A post-hoc merge step removed it.
+
+### Consequence for the diagnostic I had queued
+`mod-000-resolution` as originally written scanned power {12, 16, 20} x deepSplit {2, 4}
+with `mergeCutHeight` **fixed at 0.25**. Every cell would have merged down to roughly 4
+modules, and the diagnostic would have reported that no parameter set decomposes this
+data — a confident, well-documented, **wrong** negative. It would have been reported as a
+finding about the biology when it was an artifact of a constant held fixed.
+
+Respecified: `mergeCutHeight` in {0.00, 0.05, 0.10, 0.15, 0.25} is now the primary axis,
+`deepSplit` secondary, power fixed at 12. The power-12 TOM is already cached, so every
+cell is a cheap re-cluster of the existing dendrogram rather than a 47-minute rebuild —
+the revised diagnostic is both more informative and roughly an order of magnitude cheaper.
+Cap reduced 10800 s -> 7200 s accordingly.
+
+### On the biological interpretation offered for 4 modules
+Session 3 suggested 4 modules is "consistent with whole blood dominated by 4 major lineage
+signals (granulocyte, monocyte, T/NK, B)". That is plausible on its face, but it was
+offered for a number produced by a merge threshold, not by the data. 18 pre-merge modules
+is the harder evidence, and a story that fits the post-merge count would have made an
+artifact look like biology. Recorded here because this is exactly the failure mode
+`IMAC_README.md` warns against: the number to explain is 18, and only then what merging at
+various thresholds does to it.
+
+### What this says about the method
+Two sessions independently read the same log and reached opposite conclusions from it —
+mine from the summary line, session 3's from the detail above it. The lesson for the rest
+of the run: **read the pre-merge counts, not just the final module count.** A WGCNA module
+count is the output of three successive decisions (power, deepSplit, merge), and only the
+last of those is cheap to vary.
