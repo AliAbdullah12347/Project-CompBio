@@ -43,9 +43,9 @@ score changes, say so in Notes and in `METHODS.md`. `PARTIAL` rows cap at C=2.
 
 | Rank | Score | id | What it showed | E | R | B | D | C | Notes |
 |:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
-| 1 | 15/25 | `base-001/sft` | **Scale-free topology fails at n=234 too — not a small-sample artifact.** Signed R² never reaches 0.80 at any power 1–20 on the full control group and all 12,368 genes; max 0.547 at power 20; `powerEstimate` returns 1. At the power actually used (12) signed R² = **0.162**, slope −0.41, and **mean connectivity = 1,031** — each gene tied to ~8% of the genome. Replicates the n=74 Phase 0 scan in all three groups. | 4 | 2 | 3 | 4 | 2 | From `base-001`'s tracked `sft_r2_curve.csv`, config written before computation. Two sample sizes (74, 234) and two gene sets now agree. C=2: the parent run is still PARTIAL and has no README yet. Promote when `pow-009` adds the other two groups at n=234. |
-| 2 | 11/25 | `phase0-power` | Scale-free scan at n=74 per group: R² never reaches 0.80, negative at low powers (control −0.97/−0.97/−0.93 at p1–3); `powerEstimate` 1 / 1 / 2. | 3 | 2 | 2 | 4 | 0 | Superseded in scope by `base-001/sft` but retained: it is the only scan covering **all three groups**, which base-001 does not. |
-| 3 | 6/25 | `phase0-cost` | Reference build 786 s (~23 modules); preservation ~7.8 s/perm; TOM scales n^2.88, preservation n^0.80. | 4 | 0 | 1 | 1 | 0 | Infrastructure, not science. Listed because it set every cap in the queue. |
+| 2 | 15/25 | `base-001/sft` | **Scale-free topology fails at n=234 too — not a small-sample artifact.** Signed R² never reaches 0.80 at any power 1–20 on the full control group and all 12,368 genes; max 0.547 at power 20; `powerEstimate` returns 1. At the power actually used (12) signed R² = **0.162**, slope −0.41, and **mean connectivity = 1,031** — each gene tied to ~8% of the genome. Replicates the n=74 Phase 0 scan in all three groups. | 4 | 2 | 3 | 4 | 2 | From `base-001`'s tracked `sft_r2_curve.csv`, config written before computation. Two sample sizes (74, 234) and two gene sets now agree. C=2: the parent run is still PARTIAL and has no README yet. Promote when `pow-009` adds the other two groups at n=234. |
+| 3 | 11/25 | `phase0-power` | Scale-free scan at n=74 per group: R² never reaches 0.80, negative at low powers (control −0.97/−0.97/−0.93 at p1–3); `powerEstimate` 1 / 1 / 2. | 3 | 2 | 2 | 4 | 0 | Superseded in scope by `base-001/sft` but retained: it is the only scan covering **all three groups**, which base-001 does not. |
+| 4 | 6/25 | `phase0-cost` | Reference build 786 s (~23 modules); preservation ~7.8 s/perm; TOM scales n^2.88, preservation n^0.80. | 4 | 0 | 1 | 1 | 0 | Infrastructure, not science. Listed because it set every cap in the queue. |
 
 ---
 
@@ -63,9 +63,10 @@ Single 0–10 score. Anchors:
 
 | Rank | Interest | Evidence | Δ | id | Why it is interesting |
 |:--|:--|:--|:--|:--|:--|
-| 1 | 7/10 | 15/25 | **+1.0** | `base-001/sft` | WGCNA's central modelling assumption does not hold in this blood data at **any** sample size or power — and the function reports `powerEstimate = 1`, a plausible-looking number, rather than failing. Anyone running a stock pipeline here builds a degenerate network and never learns. The mean-connectivity figure sharpens it: at the working power each gene is tied to ~8% of the genome, which is not what a co-expression module structure is supposed to look like. |
-| 2 | 6/10 | 11/25 | +1.6 | `phase0-power` | Same finding at n=74, across all three groups. |
-| 3 | 1/10 | 6/25 | −1.4 | `phase0-cost` | Timing numbers. Interesting only in that they are why the run is survivable at all. |
+| 1 | 8/10 | 17/25 | **+1.2** | `base-001/modules` | A standard WGCNA pipeline on this data returns two modules covering 95% of the genome and reports nothing wrong. Everything downstream — preservation, hub genes, module–trait correlation — would have been computed on a structure that is effectively "half the transcriptome vs the other half". It is the concrete, downstream cost of the scale-free failure, and it was invisible until the module table was actually read. |
+| 2 | 7/10 | 15/25 | +1.0 | `base-001/sft` | WGCNA's central modelling assumption does not hold in this blood data at **any** sample size or power — and the function reports `powerEstimate = 1`, a plausible-looking number, rather than failing. Anyone running a stock pipeline here builds a degenerate network and never learns. The mean-connectivity figure sharpens it: at the working power each gene is tied to ~8% of the genome, which is not what a co-expression module structure is supposed to look like. |
+| 3 | 6/10 | 11/25 | +1.6 | `phase0-power` | Same finding at n=74, across all three groups. |
+| 4 | 1/10 | 6/25 | −1.4 | `phase0-cost` | Timing numbers. Interesting only in that they are why the run is survivable at all. |
 
 _Δ = (Interest/10 − Evidence/25) × 10. Positive means the story is ahead of the proof._
 

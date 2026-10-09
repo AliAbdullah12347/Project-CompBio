@@ -41,3 +41,49 @@ Vcells 15970897 121.9   33858188 258.4      16384 24844176 189.6
      Fraction of slow calculations: 0.000000
     ..connectivity..
     ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....clustering..
+ ....detecting modules..
+ ....calculating module eigengenes..
+ ....checking kME in modules..
+     ..removing 4 genes from module 1 because their KME is too low.
+     ..removing 5 genes from module 2 because their KME is too low.
+     ..removing 10 genes from module 3 because their KME is too low.
+     ..removing 4 genes from module 4 because their KME is too low.
+     ..removing 12 genes from module 5 because their KME is too low.
+     ..removing 6 genes from module 6 because their KME is too low.
+     ..removing 12 genes from module 7 because their KME is too low.
+     ..removing 1 genes from module 9 because their KME is too low.
+     ..removing 2 genes from module 14 because their KME is too low.
+     ..removing 3 genes from module 17 because their KME is too low.
+  ..reassigning 483 genes from module 1 to modules with higher KME.
+  ..reassigning 243 genes from module 2 to modules with higher KME.
+  ..reassigning 142 genes from module 3 to modules with higher KME.
+  ..reassigning 319 genes from module 4 to modules with higher KME.
+  ..reassigning 268 genes from module 5 to modules with higher KME.
+  ..reassigning 275 genes from module 6 to modules with higher KME.
+  ..reassigning 162 genes from module 7 to modules with higher KME.
+  ..reassigning 180 genes from module 8 to modules with higher KME.
+  ..reassigning 173 genes from module 9 to modules with higher KME.
+  ..reassigning 150 genes from module 10 to modules with higher KME.
+  ..reassigning 27 genes from module 11 to modules with higher KME.
+  ..reassigning 62 genes from module 12 to modules with higher KME.
+  ..reassigning 16 genes from module 13 to modules with higher KME.
+  ..reassigning 33 genes from module 15 to modules with higher KME.
+  ..reassigning 21 genes from module 16 to modules with higher KME.
+  ..reassigning 11 genes from module 17 to modules with higher KME.
+  ..reassigning 6 genes from module 18 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0.25
+       Calculating new MEs...
+[2026-10-09T16:04:53] reference network: 4 modules detected (excluding grey); 59 unassigned genes
+[2026-10-09T16:04:53] reference modules cached: network/cache/ref_control_all_bicor_signed_p12.rds
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2431622 129.9    4385957 234.3         NA   4385957  234.3
+Vcells 16068012 122.6   63239189 482.5      16384 483684342 3690.3
+[2026-10-09T16:04:53] bp_nolith preservation: 500 perms (fixed test set, no subsampling) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

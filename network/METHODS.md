@@ -578,3 +578,68 @@ nothing during the single-threaded BLAS matrix multiply, while parent CPU time k
 climbing and memory held at 2.67 GB. A quiet log here is not a stalled run, and the
 zero-throughput watchdog is correctly scoped to sessions rather than to log activity.
 
+
+## 2026-10-09  Power 12 produces a degenerate module structure — diagnostic queued ahead of everything
+
+`base-001` built its reference network on 234 controls at power 12 and resolved
+**4 modules**:
+
+| module | genes | % of all |
+|:--|--:|--:|
+| turquoise | 6,621 | 53.5% |
+| blue | 5,171 | 41.8% |
+| brown | 262 | 2.1% |
+| yellow | 255 | 2.1% |
+| grey (unassigned) | 59 | 0.5% |
+
+Two modules hold **95.3%** of the transcriptome. That is a bipartition, not a
+decomposition.
+
+### Why this follows from the scale-free failure
+The R² curve already showed the network is extraordinarily dense. Mean connectivity by
+power, as a fraction of the genome:
+
+| power | mean k | % of genome | signed R² |
+|--:|--:|--:|--:|
+| 12 | 1,031 | 8.3% | 0.162 |
+| 14 | 764 | 6.2% | 0.306 |
+| 16 | 577 | 4.7% | 0.416 |
+| 20 | 346 | 2.8% | 0.547 |
+
+A usable WGCNA structure wants mean k in the tens — well under 1% of the genome. At the
+power actually used, every gene is tied to 8.3% of the transcriptome, so hierarchical
+clustering has almost no structure to separate and collapses into two giant blocks.
+
+### Why this blocks the arm, not just this row
+`modulePreservation` of a 6,621-gene module is close to uninformative. The density and
+connectivity of half the transcriptome are preserved between any two samples of the same
+tissue, because they are dominated by global expression structure rather than
+module-specific biology. Zsummary will be large and will say nothing about lithium.
+
+`base-002-ceil` and `inp-022`/`inp-023` all measure preservation **of these modules**.
+Run against this decomposition they would consume the run's most valuable sessions and
+produce numbers nobody could interpret — the arm's key question answered against a
+structure that does not decompose anything.
+
+### What was done
+`mod-000-resolution` inserted at **queue position 1**, ahead of `base-001`'s remaining
+draws. It scans power {12, 16, 20} x deepSplit {2, 4} at n=234 on all 12,368 genes,
+module detection only, no permutations, and reports n_modules, largest module as a
+percentage, grey percentage, median size and mean k for every cell. Target: ≥10 non-grey
+modules with the largest under 25% of genes.
+
+**If no cell meets the target, that is itself the result** and the arm must report that
+this data does not admit a usable co-expression decomposition at any tested parameter set
+— which would be a legitimate and publishable negative finding, not a failure of the run.
+
+### What was NOT done
+`base-001` was left running. It is ~70 minutes in, and its results remain a valid record
+of what the FAQ-default power yields on this data — a documented negative, which this arm
+explicitly counts as a complete deliverable. It will hit its 3 h cap, return PARTIAL with
+its attempt refunded, and the next session will claim `mod-000-resolution` first because
+the driver always takes the oldest PENDING row.
+
+### Caveat on the comparison
+The audit measured ~23 modules at power 14, but at **n=74**, not n=234. Power and sample
+size both differ, so power alone is not established as the cause. The diagnostic holds
+n=234 fixed and varies only power and deepSplit, which is what makes it diagnostic.
