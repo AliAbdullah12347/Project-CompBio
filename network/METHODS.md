@@ -953,3 +953,34 @@ This says nothing about whether lithium affects co-expression. It says that **th
 particular module decomposition cannot answer the question**, because its modules do not
 behave differently from random gene sets. `mod-000-resolution` — already queued first —
 tests whether a different merge threshold yields modules that do.
+
+---
+
+## 2026-10-09  Machinery validated on a real 3-hour job
+
+`base-001` hit its cap at 22:16:26Z. Every mechanism that had only been tested against
+fake experiments in a scratch harness now holds on a real WGCNA run with forked workers:
+
+| mechanism | expected | observed |
+|:--|:--|:--|
+| wall-clock cap | kill at 10800 s | **10803 s** — 3 s overshoot, the 5 s watchdog poll interval |
+| worker cleanup | `pkill -P` then `kill` | no R processes left; forked WGCNA workers died with the parent |
+| classification | PARTIAL on cap hit | `PARTIAL`, `CAP EXCEEDED after 10800s` in the log |
+| **attempt refund** | refund when checkpoints grew | **attempts=0** after +21 new checkpoints |
+| checkpoint survival | per-draw `.rds` kept | 19 files, 1.3 MB, 18 of 20 draws |
+| driver cleanup | lock released, commit, push | all three; 0 unpushed |
+| queue priority | diagnostic still first | `--peek` returns `mod-000-resolution`, not the 90%-complete row |
+
+The refund is the one that mattered most. Without it an 18-draw experiment would have
+burned an attempt for the crime of being long, and three caps would have retired a row
+that was working correctly. `attempts=0` after a full 3-hour run is the mechanism doing
+exactly what it was built for.
+
+The priority result is the second: a row at 18/20 draws did **not** jump ahead of a
+diagnostic queued later. Completion percentage does not confer priority — file order does
+— which is what keeps the run pointed at the most informative next experiment rather than
+the most nearly finished one.
+
+Note the overshoot is bounded by the poll interval, not by the cap: switching from one
+long `sleep $CAP` to a 5 s polling loop (to stop an orphaned sleep holding the caller's
+stdout) also made the cap accurate to within one poll.
