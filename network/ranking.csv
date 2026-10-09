@@ -1,3 +1,4 @@
 rank_evidence,score_evidence,rank_interest,score_interest,delta,run_id,headline,E,R,B,D,C,status,folder,notes
-1,11,1,6,1.6,phase0-power,"Scale-free topology fails: R2 never reaches 0.80 at any power 1-20 in any group",3,2,2,4,0,measured,,"powerEstimate returns 1/1/2 - the function failing, not a threshold"
-2,6,2,1,-1.4,phase0-cost,"Reference build 786s; preservation 7.8s/perm; TOM n^2.88, preservation n^0.80",4,0,1,1,0,measured,,"infrastructure - set every cap in the queue"
+1,15,1,7,1.0,base-001/sft,"Scale-free fails at n=234 too: R2 never reaches 0.80, max 0.547@p20; at power 12 R2=0.162 and mean k=1031",4,2,3,4,2,partial,network/runs/base-001,"replicates phase0 at 3x sample size; not a small-sample artifact"
+2,11,2,6,1.6,phase0-power,"Scale-free scan n=74 all three groups: R2 never reaches 0.80; powerEstimate 1/1/2",3,2,2,4,0,measured,,"only scan covering all three groups"
+3,6,3,1,-1.4,phase0-cost,"Reference build 786s; preservation 7.8s/perm; TOM n^2.88",4,0,1,1,0,measured,,"infrastructure - set every cap in the queue"
