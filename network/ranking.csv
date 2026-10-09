@@ -1,3 +1,3 @@
-rank,score,run_id,headline,E,R,B,D,C,status,folder,notes
-1,11,phase0-power,"Scale-free topology fails: R2 never reaches 0.80 at any power 1-20 in any group",3,2,2,4,0,measured,,"powerEstimate returns 1/1/2 - the function failing, not a threshold"
-2,6,phase0-cost,"Reference build 786s; preservation 7.8s/perm; TOM scales n^2.88, preservation n^0.80",4,0,1,1,0,measured,,"infrastructure - set every cap in the queue"
+rank_evidence,score_evidence,rank_interest,score_interest,delta,run_id,headline,E,R,B,D,C,status,folder,notes
+1,11,1,6,1.6,phase0-power,"Scale-free topology fails: R2 never reaches 0.80 at any power 1-20 in any group",3,2,2,4,0,measured,,"powerEstimate returns 1/1/2 - the function failing, not a threshold"
+2,6,2,1,-1.4,phase0-cost,"Reference build 786s; preservation 7.8s/perm; TOM n^2.88, preservation n^0.80",4,0,1,1,0,measured,,"infrastructure - set every cap in the queue"

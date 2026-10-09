@@ -123,19 +123,30 @@ A resumed experiment must not restart from zero.
 
 ## Rank every result, every time — this is not optional
 
-After **each** experiment, update `network/RANKING.md` and `network/ranking.csv`. The
-rubric is in RANKING.md: five components (Evidence, Relevance, Robustness, Decisiveness,
-Completeness), 0–5 each, 25 total. Re-rank the new result **against everything already
-there**, so the table is always a live ranking of the whole run rather than a log.
+After **each** experiment, update `network/RANKING.md` and `network/ranking.csv`. There
+are **two** rankings and you maintain both:
 
-Read the rubric before scoring. It is built so that a well-powered **null scores high**
-and a striking result resting on one draw scores low — because this arm is exploratory and
-`IMAC_README.md` forbids making something look significant. If you ever find yourself
-wanting to score a result highly because it is *interesting*, score it on the rubric
-instead and put the interest in the Notes column.
+**Table A — Evidence (0–25).** Five components 0–5: Evidence, Relevance, Robustness,
+Decisiveness, Completeness. The rubric is in RANKING.md — read it before scoring. It is
+built so a well-powered **null scores high** and a striking result resting on one draw
+scores low, because this arm is exploratory and `IMAC_README.md` forbids making something
+look significant.
 
-Rules: score what the run demonstrated, not what it suggests; never quietly re-score an
-old result to make a new one look consistent — if a score changes, say so in Notes and in
+**Table B — Interest (0–10).** How striking, surprising or quotable the finding is. This
+is the honest answer to "did we find anything cool" and it is worth recording.
+
+Also record **Δ = (Interest/10 − Evidence/25) × 10**. The gap is the point: Interest well
+above Evidence means *be suspicious and go get more evidence before anyone quotes it*;
+Evidence well above Interest means *solid, unexciting, still worth reporting*.
+
+**Interest never decides what runs next.** Queue order is scientific priority, set above.
+Do not reorder the queue, extend an analysis, or choose a variant because it scored high
+on Interest. Rank it, note it, move on. If a high-Interest result tempts you to chase it,
+that is precisely the moment to write the Δ down and continue with the queue.
+
+Rules for both tables: score what the run demonstrated, not what it suggests; re-rank
+against everything already there so the tables stay live; never quietly re-score an old
+result to make a new one look consistent — if a score changes, say so in Notes and in
 `METHODS.md`; cap `PARTIAL` rows at C=2 and rank them on what they actually produced.
 
 ## Spend the last slice writing
