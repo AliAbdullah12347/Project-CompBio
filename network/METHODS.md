@@ -850,3 +850,48 @@ draw-SDs). Three reasons it is recorded and not claimed:
 - and the group-label permutation null in `perm-031` giving it a calibrated p-value.
 
 Until then this is an observation in the log, not a result in `RESULTS.md`.
+
+---
+
+## 2026-10-09  Per-draw cost measured: 262 s, not 1962 s — the 100->20 reduction was over-conservative
+
+`base-001`'s nine completed draws give a tight, directly measured cost:
+
+```
+median 262 s per draw (4.4 min), range 261-269 s across 9 draws
+```
+
+Session 3 had estimated **1962 s/draw** and reduced `base-001` from the catalogue's 100
+draws to 20 on that basis, documenting the reduction in advance — correct process, wrong
+input. The estimate was **7.5x too high**.
+
+**The error:** it assumed each draw rebuilds the reference network. It does not.
+`modulePreservation` receives the reference data once; only the n=74 test network is built
+per draw. Backing the real figure out: 262 s / 50 permutations = **5.2 s per permutation**,
+close to the 7.8 s measured in Phase 0. The per-draw reference rebuild was a phantom.
+
+### Corrected cost model
+`one row = 2360 s (reference build at n=234, paid once per cache key) + 2620 s (nolith,
+500 perms) + D x 262 s`
+
+| draws | per row | all 11 draws=100 rows | vs ~61 h available |
+|--:|--:|--:|:--|
+| 20 | ~2.8 h | ~31 h | fits comfortably |
+| 100 | ~8.7 h | ~89 h | ~1.5x oversubscribed |
+
+### What this changes
+The constraint is no longer "the queue cannot fit"; it is **breadth vs. precision of the
+across-draw spread**, which is a scientific choice rather than a budget one. 20 draws
+already separated turquoise from draw noise at n=5; 100 would estimate that spread far
+better but let roughly five rows consume the run.
+
+`base-001` was **left at 20 draws** — it is 9 draws in and changing the design mid-run
+would discard completed work and break comparability with checkpoints already written.
+Future rows should make the choice deliberately and record it.
+
+### Process note
+Both the original estimate and this correction were written down before they affected
+anything. The estimate was documented in advance and acted on; it was wrong; the
+correction is documented and the reasoning that produced it is named so it is not repeated.
+That is the intended behaviour — the failure mode to avoid is not being wrong, it is being
+wrong silently or re-deriving the same wrong number next session.

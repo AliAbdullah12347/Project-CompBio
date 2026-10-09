@@ -47,36 +47,41 @@ Repeat until roughly 80% of the usage window is spent. Write
 profiles and stop with a clear message if they are absent; the row is then requeued
 automatically rather than producing a wrong result.
 
-## Budget reality — the queue is deliberately oversubscribed
+## Budget reality — measured, not estimated
 
-Measured on this machine at the real problem size: a reference network build on 12,368
-genes, signed, bicor, costs **786 s at n=74** and **~2,360 s (39 min) at n=234** —
-observed directly in `base-001`, whose control reference is all 234 samples. Correlation
-cost scales with the sample count, so **multiply 786 s by n/74** when sizing a row. A row
-with an n=234 reference pays ~3x what the headline figure suggests, and `base-002-ceil`
-(n=160) pays ~2x. `modulePreservation` costs **~7.8 s per permutation**. One `draws=100;perms_per_draw=50`
-row is therefore **~11 h** of compute.
+All figures below are **observed on this machine**, not extrapolated:
 
-Against ~19 sessions x 4 h x 80% ≈ **61 h** of usable time, the eleven `draws=100` rows
-alone want ~122 h. The queue is **2x oversubscribed and that is intentional** — it exists
-so a crashed session always has work, not as a promise that all 48 rows will run.
+| quantity | measured | source |
+|:--|:--|:--|
+| reference network build | 786 s x (n_ref / 74) | base-001: 47 min at n=234 |
+| `modulePreservation` | **5.2 s per permutation** | base-001: 262 s per 50-perm draw |
+| one subsample draw (50 perms) | **262 s (4.4 min)**, sd ~3 s | base-001, 9 draws, range 261–269 s |
 
-**Therefore: file order is priority, and it has been set deliberately.** `base-001` first
-because nothing is trusted without it, then `inp-022`/`inp-023` because those ARE the
-arm's question — "does any difference survive removing cell composition". Do not reorder
-to pick off cheap rows first, and do not let a breadth sweep push the key question past
-the end of the run.
+**There is NO per-draw reference rebuild.** `modulePreservation` takes the reference data
+once; only the n=74 test network is built per draw. An earlier estimate of 1962 s/draw
+assumed otherwise and was **7.5x too high** — it is what drove `base-001` down from 100
+draws to 20. Do not repeat that reasoning.
 
-**Reuse the reference network.** Many rows share one reference (controls, all genes,
-bicor, signed, power 12). Building it once and caching the TOM/dendrogram/module
-assignment under `network/cache/` saves 786 s per row — roughly 2 h across the queue, and
-more importantly it is the ONLY way several variants fit at all. Cache on a key derived
-from (reference group, gene set, corFnc, networkType, power) and record in `config.json`
-which cache entry a run used, so a result can always be traced to the network it was
-measured against.
+Cost of one `draws=D;perms_per_draw=50` row with an n=234 reference:
+`2360 s (build, paid once per cache key) + 2620 s (nolith, 500 perms) + D x 262 s`
 
-If you add rows, add them at the END unless they are more important than what is already
-queued — and if they are, say why in `METHODS.md`.
+- D=20 -> **~2.8 h**  (all 11 such rows: ~31 h, comfortably inside the ~61 h available)
+- D=100 -> **~8.7 h** (all 11: ~89 h, roughly 1.5x oversubscribed)
+
+So the real tradeoff is **breadth vs. precision of the across-draw spread**, and it is a
+scientific choice, not a budget constraint:
+
+- **20 draws** fits every row, and gives a spread good enough to see whether a shift
+  exceeds draw-to-draw noise (base-001 at 5 draws already separated turquoise from the rest).
+- **100 draws** is the catalogue spec and estimates the spread far better, but roughly
+  five rows then consume the run.
+
+Reuse of the cached reference across rows sharing a cache key saves the 2360 s build each
+time and is what makes either option viable. Record in `config.json` which cache entry a
+run used.
+
+If you change a row's draw count, say why in `METHODS.md` **before** computing, and state
+which of breadth or precision you traded away.
 
 ## Non-negotiable design points (reasoning in IMAC_README.md §6)
 - Define modules ONCE on a fixed reference group; measure those same modules everywhere
