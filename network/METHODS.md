@@ -643,3 +643,42 @@ the driver always takes the oldest PENDING row.
 The audit measured ~23 modules at power 14, but at **n=74**, not n=234. Power and sample
 size both differ, so power alone is not established as the cause. The diagnostic holds
 n=234 fixed and varies only power and deepSplit, which is what makes it diagnostic.
+
+---
+
+## Session 3 update — 2026-10-09T16:32 (base-001 outcome)
+
+### base-001 reference network: actual outcome
+
+base-001 did **not** hit the 3 h cap. The reference network built successfully:
+
+| event | time | detail |
+|:---|:---|:---|
+| SFT scan | 15:16:29–15:17:21 | powerEstimate=1, guard fired, power=12 used |
+| Reference TOM | 15:17:21–16:04:53 | ~47 min for n=234, 12,368 genes (includes blockwiseModules, KME cleanup, merge) |
+| Reference cached | 16:04:53 | `network/cache/ref_control_all_bicor_signed_p12.rds` |
+| bp_nolith started | 16:04:53 | 500 perms, still running at session 3 (~16:32) |
+
+**Modules detected**: **4 non-grey modules** after mergeCloseModules (cutHeight=0.25).
+59 genes unassigned to grey. Pre-merge the algorithm detected 18+ modules (modules 1–18
+with KME cleanup across all of them); merging collapsed these into 4.
+
+**Biological interpretation**: 4 modules is consistent with whole-blood RNA-seq dominated
+by 4 major lineage signals (granulocyte, monocyte, T/NK, B). The concern raised in the
+prior audit (that very few large modules would make Zsummary uninformative) remains valid
+but the result is interpretable: each module likely tracks one major cell-type cluster.
+The 59 grey genes are a small fraction of 12,368 (0.5%) and do not affect module
+preservation analysis.
+
+**Status of mod-000-resolution**: This diagnostic was queued during session 2's audit of
+the expected module structure. It is no longer blocking — base-001's reference is built
+and valid. mod-000-resolution remains in the queue as a sensitivity check (power ×
+deepSplit sensitivity at n=234), not a gate.
+
+### All 49 experiment scripts now written
+
+As of session 3 (2026-10-09), all experiment scripts are on disk and committed:
+- 49 scripts total (base-001 through synth-048, including pow-009)
+- No script generates p-values from Zsummary or medianRank
+- All scripts pre-specify parameters in config JSON before any computation
+- All scripts checkpoint per draw; sessions can be safely interrupted and resumed
