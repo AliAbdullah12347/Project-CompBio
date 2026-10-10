@@ -1,0 +1,20 @@
+{
+  "id": "mod-000-resolution",
+  "family": "moddetect",
+  "spec_from_queue": "BLOCKING DIAGNOSTIC: mergeCutHeight primary axis {0.00,0.05,0.10,0.15,0.25}; deepSplit secondary {2,4}; power fixed at 12",
+  "power": 12,
+  "power_fallback": 16,
+  "networkType": "signed",
+  "corFnc": "bicor",
+  "gene_set": "all",
+  "ref_group": "control",
+  "minModuleSize": 30,
+  "mergeCutHeights": [0, 0.05, 0.1, 0.15, 0.25],
+  "deepSplits": [2, 4],
+  "target_n_mods_min": 10,
+  "target_largest_max": 25,
+  "seed": 20261009,
+  "git_sha": "83ced75",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}
