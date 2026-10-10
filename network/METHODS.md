@@ -984,3 +984,59 @@ the most nearly finished one.
 Note the overshoot is bounded by the poll interval, not by the cap: switching from one
 long `sleep $CAP` to a 5 s polling loop (to stop an orphaned sleep holding the caller's
 stdout) also made the cap accurate to within one poll.
+
+---
+
+## 2026-10-10  The scheduler silently stopped firing. Root cause, fix, and a watchdog.
+
+The run sat idle for **4 hours** after `base-001` finished. The 23:56Z firing never
+happened and nothing anywhere recorded a problem.
+
+```
+state = not running   runs = 1   run interval = 18000 seconds
+spawn type = background (5)
+```
+
+### Two compounding causes, both mine
+**1. `ProcessType = Background`.** This yields `spawn type = background (5)`, which
+subjects the job to launchd's timer coalescing. Background jobs may be deferred
+indefinitely to save power. It was set thinking low priority was polite for a long
+compute job; for a timer that must fire 18 more times it is simply wrong.
+
+**2. `StartInterval` is documented as unreliable.** Apple's own `launchd.plist(5)`:
+*"If the system is asleep during the time of the next scheduled interval firing, that
+interval will be missed due to shortcomings in kqueue(3)."* System sleep is disabled here,
+but display sleep and dark wake can still reach this.
+
+### Fix
+`StartCalendarInterval` at local hours **0, 5, 10, 15, 20 (minute 5)**, and `ProcessType`
+removed entirely (`spawn type = daemon (3)` now). Calendar firings are honoured and are
+run on wake if missed, which is exactly the property `StartInterval` lacks. The
+20:00->00:00 gap is 4 h rather than 5; harmless, since `wake.sh` holds a lock and an early
+firing into a spent usage window simply does less work.
+
+### The deeper problem: nothing could detect this
+`wake.sh` has a zero-throughput watchdog, but **it only runs when a session runs**. A
+scheduler that never fires produces no session, no log line, no blocker, and no signal of
+any kind. Four hours passed with every component individually healthy and the run dead.
+It was caught only because a wake was being watched for by hand.
+
+That is the worst failure class for an unattended run, and the design had no answer to it.
+
+### `network/watchdog.sh` + `com.aaylab.networkarm.watchdog`
+A second, independent LaunchAgent, hourly at :35. If no wake has been recorded for 6 hours
+**and** nothing is running, it kickstarts the main agent, appends to `BLOCKED.md` and
+pushes. It exits silently when anything is running, so it is a no-op in the normal case.
+
+Deliberately independent: a watchdog sharing the mechanism it guards is not a watchdog.
+It is a separate agent, a separate plist, a separate schedule, and it reads `cron.log`
+rather than any in-process state. It also carries no `ProcessType`, for the reason above.
+
+If the recovery entry appears repeatedly in `BLOCKED.md`, the scheduler is not firing on
+its own and a human should look at the launchd configuration rather than trust the
+kickstarts.
+
+### Cost of the lesson
+Four idle hours out of four days, recovered by kickstart. Had it gone unnoticed overnight
+the run would have produced one session of work in 96 hours, with every status file
+reporting healthy.

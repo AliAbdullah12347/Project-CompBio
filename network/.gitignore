@@ -27,3 +27,6 @@ RUNLOG/.ckpt_mark_*
 # modulePreservation permuted-statistics files — large binary, regenerable from
 # the checkpointed draw results. WGCNA writes these as .RData.
 runs/*/permStats*.RData
+RUNLOG/watchdog.log
+RUNLOG/watchdog.out
+RUNLOG/watchdog.err
