@@ -44,7 +44,7 @@ dir.create(cfg_dir, showWarnings = FALSE, recursive = TRUE)
 SEED_BASE    <- 20261009L + 36000L
 DRAWS        <- 20L        # spec = 100; revised for budget (see METHODS.md 2026-10-09)
 SUBSAMPLE_N  <- 74L
-REF_CACHE    <- "network/cache/ref_control_all_bicor_signed_p12.rds"
+REF_CACHE    <- "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds"
 
 # ---------- 3. Dependency check ----------------------------------------------
 if (!file.exists(REF_CACHE)) {

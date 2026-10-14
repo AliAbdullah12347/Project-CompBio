@@ -60,14 +60,19 @@ COR_FNC        <- "bicor"
 GENE_SET       <- "all"
 REF_GROUP      <- "control"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L        # revised from spec 100 (see METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L       # bp_nolith: one run, many perms (no subsampling variance)
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 12000L   # offset from base-001 for independence
-CACHE_KEY      <- "control_all_bicor_signed_p12_fixed"
-# Note: "_fixed" suffix distinguishes from base-001's "control_all_bicor_signed_p12"
+CACHE_KEY      <- paste("control_all_bicor_signed", paste0("p", POWER),
+                        paste0("ds", DEEP_SPLIT),
+                        paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
+                        "fixed",
+                        sep = "_")
+# Note: "fixed" suffix distinguishes from base-001's "control_all_bicor_signed_p12_ds4_mch00"
 # so pow-012 builds its OWN reference; comparison is then clean.
 
 # ---------- 3. Write config BEFORE any computation --------------------------
@@ -100,6 +105,7 @@ if (!file.exists(cfg_path)) {
     power                = POWER,
     power_source         = "fixed_sensitivity",
     power_faq_note       = "FAQ recommended power for signed n>40 is 12. pow-012 explicitly fixes at 12 and builds an independent network; compare vs base-001 to confirm reproducibility",
+    deepSplit            = DEEP_SPLIT,
     minModuleSize        = MIN_MODULE,
     mergeCutHeight       = MERGE_THRESH,
     draws_lith           = DRAWS,
@@ -185,6 +191,7 @@ if (file.exists(ref_cache)) {
     networkType    = NET_TYPE,
     TOMType        = NET_TYPE,
     corType        = COR_FNC,
+    deepSplit      = DEEP_SPLIT,
     minModuleSize  = MIN_MODULE,
     mergeCutHeight = MERGE_THRESH,
     maxBlockSize   = 15000L,   # keep all 12368 genes in one block

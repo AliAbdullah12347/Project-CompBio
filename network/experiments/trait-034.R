@@ -25,7 +25,7 @@ cfg_dir <- "network/config"
 dir.create(run_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(cfg_dir, showWarnings = FALSE, recursive = TRUE)
 
-REF_CACHE_KEY <- "control_all_bicor_signed_p12"
+REF_CACHE_KEY <- "control_all_bicor_signed_p12_ds4_mch00"
 REF_CACHE     <- file.path("network/cache", paste0("ref_", REF_CACHE_KEY, ".rds"))
 SEED          <- 20261009L
 # gran dropped to avoid multicollinearity (5 fracs sum to 1)

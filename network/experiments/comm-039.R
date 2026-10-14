@@ -67,7 +67,7 @@ ADJ_THRESHOLD      <- 0.1
 RESOLUTIONS        <- c(0.5, 1, 2)
 SUBSAMPLE_N        <- 74L
 LITH_SINGLE_SEED   <- SEED_BASE + 1L
-REF_CACHE          <- "network/cache/ref_control_all_bicor_signed_p12.rds"
+REF_CACHE          <- "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds"
 COMM038_DIR        <- "network/runs/comm-038"
 
 # ---- config ----------------------------------------------------------------

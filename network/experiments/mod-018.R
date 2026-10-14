@@ -3,7 +3,7 @@
 # mod-018  Module detection sensitivity — deepSplit=2, minModuleSize=100
 #
 # Spec (from queue):
-#   ref=control;deepSplit=2;minModuleSize=100;mergeCutHeight=0.25
+#   ref=control;deepSplit=2;minModuleSize=100;mergeCutHeight=0
 #
 # Design:
 #   1. Build reference modules once on control (bicor, signed, power 12,
@@ -49,13 +49,13 @@ COR_FNC        <- "bicor"
 REF_GROUP      <- "control"
 DEEP_SPLIT     <- 2L
 MIN_MODULE     <- 100L
-MERGE_THRESH   <- 0.25
+MERGE_THRESH   <- 0.0       # collapse to 0.0; 0.25 can cascade (mod-000-resolution)
 DRAWS          <- 20L
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 18000L
-CACHE_KEY      <- "control_all_bicor_signed_p12_ds2_mm100"
+CACHE_KEY      <- "control_all_bicor_signed_p12_ds2_mm100_mch00"
 
 # ---------- 3. Write config BEFORE any computation --------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))
@@ -75,7 +75,7 @@ if (!file.exists(cfg_path)) {
   cfg_entries <- list(
     id                   = id,
     family               = "moddetect",
-    spec                 = "ref=control;deepSplit=2;minModuleSize=100;mergeCutHeight=0.25",
+    spec                 = "ref=control;deepSplit=2;minModuleSize=100;mergeCutHeight=0",
     deep_split           = DEEP_SPLIT,
     min_module_size      = MIN_MODULE,
     merge_cut_height     = MERGE_THRESH,

@@ -47,13 +47,18 @@ COR_FNC        <- "bicor"
 GENE_SET       <- "all"
 REF_GROUP      <- "control"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L        # revised from spec 100 (METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 24000L
-CACHE_KEY      <- "control_all_voom_bicor_signed_p12"
+CACHE_KEY      <- paste("control_all_voom_bicor_signed",
+                        paste0("p", POWER),
+                        paste0("ds", DEEP_SPLIT),
+                        paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
+                        sep = "_")
 
 # ---- config ----------------------------------------------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))
@@ -84,6 +89,7 @@ if (!file.exists(cfg_path)) {
     gene_set            = GENE_SET,
     power               = POWER,
     power_source        = "WGCNA_FAQ_signed_n_gt_40",
+    deepSplit           = DEEP_SPLIT,
     minModuleSize       = MIN_MODULE,
     mergeCutHeight      = MERGE_THRESH,
     draws_lith          = DRAWS,
@@ -171,6 +177,7 @@ if (file.exists(ref_cache)) {
   set.seed(SEED_BASE)
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
+    deepSplit = DEEP_SPLIT,
     minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
     maxBlockSize = 15000L, numericLabels = FALSE, saveTOMs = FALSE, verbose = 3)
   moduleColors <- bwm$colors

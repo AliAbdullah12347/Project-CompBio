@@ -38,7 +38,8 @@ POWER_MIN      <-  4L
 NET_TYPE       <- "signed"
 COR_FNC        <- "bicor"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L
@@ -46,7 +47,10 @@ SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 26000L
 REF_GROUP      <- "control"
 N_TOP_GENES    <- 5000L
-CACHE_KEY      <- "control_top5000var_bicor_signed_p12"
+CACHE_KEY      <- paste("control_top5000var", COR_FNC, NET_TYPE,
+                        paste0("p", POWER), paste0("ds", DEEP_SPLIT),
+                        paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
+                        sep = "_")
 
 suppressPackageStartupMessages({ library(WGCNA); library(fastcluster) })
 enableWGCNAThreads()
@@ -83,7 +87,7 @@ if (!file.exists(cfg_path)) {
     variance_computed="apply(d$logtpm, 1, var) across all 474 samples",
     corFnc=COR_FNC, networkType=NET_TYPE, power=POWER,
     power_source="WGCNA_FAQ_signed_n_gt_40",
-    minModuleSize=MIN_MODULE, mergeCutHeight=MERGE_THRESH,
+    minModuleSize=MIN_MODULE, deepSplit=DEEP_SPLIT, mergeCutHeight=MERGE_THRESH,
     maxBlockSize=15000L,
     draws_lith=DRAWS, perms_per_lith_draw=PERMS_PER_DRAW,
     nolith_perms=NOLITH_PERMS, subsample_n=SUBSAMPLE_N,
@@ -130,7 +134,7 @@ if (file.exists(ref_cache)) {
   set.seed(SEED_BASE)
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
-    minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
+    deepSplit = DEEP_SPLIT, minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
     maxBlockSize = 15000L, numericLabels = FALSE, saveTOMs = FALSE, verbose = 3)
   moduleColors <- bwm$colors
   n_mods <- length(unique(moduleColors)) - 1L

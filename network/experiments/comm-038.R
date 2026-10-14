@@ -46,7 +46,7 @@ LOUVAIN_RESOLUTIONS <- c(0.5, 1, 2)  # robustness check
 SUBSAMPLE_N        <- 74L
 # bp_lith: ONE fixed subsample for speed
 LITH_SINGLE_SEED   <- SEED_BASE + 1L
-REF_CACHE          <- "network/cache/ref_control_all_bicor_signed_p12.rds"
+REF_CACHE          <- "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds"
 
 # ---- config ----------------------------------------------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))

@@ -39,7 +39,8 @@ POWER_MIN      <-  4L
 NET_TYPE       <- "signed"
 COR_FNC        <- "bicor"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L
@@ -65,7 +66,7 @@ if (!file.exists(cfg_path)) {
     lm22_exclusion="LM22 genes matched by HGNC symbol via d$sym; count determined at runtime",
     corFnc=COR_FNC, networkType=NET_TYPE, power=POWER,
     power_source="WGCNA_FAQ_signed_n_gt_40",
-    minModuleSize=MIN_MODULE, mergeCutHeight=MERGE_THRESH,
+    minModuleSize=MIN_MODULE, deepSplit=DEEP_SPLIT, mergeCutHeight=MERGE_THRESH,
     draws_lith=DRAWS, perms_per_lith_draw=PERMS_PER_DRAW,
     nolith_perms=NOLITH_PERMS, subsample_n=SUBSAMPLE_N,
     seed_base=SEED_BASE, git_sha=if(length(sha)&&!is.na(sha))sha else "unknown",
@@ -96,7 +97,9 @@ msg("LM22 genes: ", length(lm22_sym), " symbols | matched to ",
 stopifnot(n_kept > 10000)   # sanity: should still have most genes
 
 CACHE_KEY <- paste(REF_GROUP, paste0("noLM22_", n_kept), COR_FNC, NET_TYPE,
-                   paste0("p", POWER), sep = "_")
+                   paste0("p", POWER), paste0("ds", DEEP_SPLIT),
+                   paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
+                   sep = "_")
 
 # ---- helper to subset expression -------------------------------------------
 expr_subset <- function(d, group, ens_keep, residualise = NULL) {
@@ -133,7 +136,7 @@ if (file.exists(ref_cache)) {
   set.seed(SEED_BASE)
   bwm <- blockwiseModules(tmp_ref, power=POWER,
     networkType=NET_TYPE, TOMType=NET_TYPE, corType=COR_FNC,
-    minModuleSize=MIN_MODULE, mergeCutHeight=MERGE_THRESH,
+    deepSplit=DEEP_SPLIT, minModuleSize=MIN_MODULE, mergeCutHeight=MERGE_THRESH,
     maxBlockSize=15000L, numericLabels=FALSE, saveTOMs=FALSE, verbose=3)
   moduleColors <- bwm$colors
   n_mods <- length(unique(moduleColors)) - 1L

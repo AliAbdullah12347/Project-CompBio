@@ -45,7 +45,8 @@ POWER_MIN       <-  4L
 NET_TYPE        <- "signed"
 COR_FNC         <- "bicor"
 MIN_MODULE      <- 30L
-MERGE_THRESH    <- 0.25
+DEEP_SPLIT      <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH    <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS           <- 20L
 PERMS_PER_DRAW  <- 50L
 NOLITH_PERMS    <- 200L   # fewer perms for lineage networks (4 modules → fast)
@@ -73,6 +74,7 @@ if (!file.exists(cfg_path)) {
     spec="per-lineage networks from bMIND profiles (requires bmind-046 DONE)",
     lineages=paste(LINEAGES, collapse=";"),
     power=POWER, net_type=NET_TYPE, cor_fnc=COR_FNC,
+    deepSplit=DEEP_SPLIT, min_module=MIN_MODULE, mergeCutHeight=MERGE_THRESH,
     draws_lith=DRAWS, perms_per_draw=PERMS_PER_DRAW,
     nolith_perms=NOLITH_PERMS, subsample_n=SUBSAMPLE_N,
     seed_base=SEED_BASE,
@@ -182,7 +184,7 @@ for (lin in available_lineages) {
     msg("  building ref network for ", lin, " (n=", nrow(refExpr), ") ...")
     bw <- tryCatch(
       blockwiseModules(refExpr, power=POWER, networkType=NET_TYPE, corType=COR_FNC,
-                       TOMType="signed", minModuleSize=MIN_MODULE,
+                       TOMType="signed", deepSplit=DEEP_SPLIT, minModuleSize=MIN_MODULE,
                        mergeCutHeight=MERGE_THRESH, numericLabels=FALSE,
                        saveTOMs=FALSE, verbose=0, nThreads=3L),
       error=function(e){msg("ERROR building modules for ",lin,": ",conditionMessage(e));NULL})

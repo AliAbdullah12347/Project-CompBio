@@ -1,0 +1,9 @@
+{
+  "analysis": "004-decomposition-robustness",
+  "grid": "deepSplit {2,4} x mergeCutHeight {0, 0.05, 0.10, 0.15, 0.25} = 10 decompositions",
+  "modules_defined_on": "control reference n=234 (IMAC_README 6.2)",
+  "eigengenes_computed_on": "BP1 n=226 (lithium contrast, IMAC_README 5)",
+  "dimension_rule": "Li & Ji effective number per decomposition; BH across those dimensions; fixed before testing",
+  "pc_selection": "smallest BH among the tested dimensions - same rule every cell, no post-hoc picking",
+  "power": "12", "corFnc": "bicor", "networkType": "signed", "seed": "20261014"
+}

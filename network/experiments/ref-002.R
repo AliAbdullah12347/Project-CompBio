@@ -49,13 +49,17 @@ COR_FNC        <- "bicor"
 GENE_SET       <- "all"
 REF_GROUP      <- "bp_nolith"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L        # revised from spec 100 (see METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L       # kept for reference; not used here (ref IS nolith)
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 2000L   # offset to avoid seed collision with base-001
-CACHE_KEY      <- "bp_nolith_all_bicor_signed_p12"
+CACHE_KEY      <- paste("bp_nolith_all_bicor_signed_p12",
+                        paste0("ds", DEEP_SPLIT),
+                        paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
+                        sep = "_")
 
 # ---------- 3. Write config BEFORE any computation --------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))
@@ -85,6 +89,7 @@ if (!file.exists(cfg_path)) {
     networkType          = NET_TYPE,
     power                = POWER,
     power_source         = "WGCNA_FAQ_signed_n_gt_40",
+    deepSplit            = DEEP_SPLIT,
     minModuleSize        = MIN_MODULE,
     mergeCutHeight       = MERGE_THRESH,
     draws_lith           = DRAWS,
@@ -168,6 +173,7 @@ if (file.exists(ref_cache)) {
     networkType    = NET_TYPE,
     TOMType        = NET_TYPE,
     corType        = COR_FNC,
+    deepSplit      = DEEP_SPLIT,
     minModuleSize  = MIN_MODULE,
     mergeCutHeight = MERGE_THRESH,
     maxBlockSize   = 15000L,   # keep all 12368 genes in one block

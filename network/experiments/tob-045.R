@@ -44,7 +44,8 @@ POWER_MIN      <-  4L
 NET_TYPE       <- "signed"
 COR_FNC        <- "bicor"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 PERMS_PER_DRAW <- 50L
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 45000L
@@ -52,7 +53,7 @@ IMPUTATIONS    <- c("tobacco_imp_01", "tobacco_imp_05", "tobacco_imp_10",
                     "tobacco_imp_15", "tobacco_imp_20")
 N_LITH_DRAWS   <- 1L   # 1 draw per imputation (sensitivity, not primary result)
 
-REF_CACHE_BASE <- file.path("network/cache", "ref_control_all_bicor_signed_p12.rds")
+REF_CACHE_BASE <- file.path("network/cache", "ref_control_all_bicor_signed_p12_ds4_mch00.rds")
 if (!file.exists(REF_CACHE_BASE)) {
   msg("DEPENDENCY MISSING: base-001 cache. Exiting status=1 to requeue.")
   quit(save = "no", status = 1L)
@@ -76,7 +77,8 @@ if (!file.exists(cfg_path)) {
     n_lith_draws=N_LITH_DRAWS,
     lith_draws_note="1 draw per imputation (sensitivity analysis, not primary result)",
     comparison="vs inp-022 (composition-only: ~b1+b2+b3+b4); does tobacco adjustment shift Zsummary?",
-    power=POWER, net_type=NET_TYPE, cor_fnc=COR_FNC,
+    power=POWER, deep_split=DEEP_SPLIT, merge_cut_height=MERGE_THRESH,
+    net_type=NET_TYPE, cor_fnc=COR_FNC,
     seed_base=SEED_BASE,
     git_sha=if(length(sha)&&!is.na(sha))sha else "unknown",
     r_version=paste(R.version$major,R.version$minor,sep="."),
@@ -141,7 +143,7 @@ for (tob_col in IMPUTATIONS) {
   stopifnot(nrow(lithAll) == 152L)
 
   # Build reference network with tobacco-residualized controls
-  cache_key_tob <- paste0("control_all_bicor_signed_p12_tobacco_", tob_col)
+  cache_key_tob <- paste0("control_all_bicor_signed_p12_tobacco_", tob_col, "_ds4_mch00")
   ref_cache_tob <- file.path(cache_dir, paste0("ref_", cache_key_tob, ".rds"))
   if (!file.exists(ref_cache_tob)) {
     msg("  building reference network for ", tob_col, " ...")
@@ -154,7 +156,8 @@ for (tob_col in IMPUTATIONS) {
     }
     msg("  power=", power_used)
     bw <- blockwiseModules(refExpr, power=power_used, networkType=NET_TYPE, corType=COR_FNC,
-                           TOMType="signed", minModuleSize=MIN_MODULE,
+                           TOMType="signed", deepSplit=DEEP_SPLIT,
+                           minModuleSize=MIN_MODULE,
                            mergeCutHeight=MERGE_THRESH, numericLabels=FALSE,
                            saveTOMs=FALSE, verbose=0, nThreads=3L)
     moduleColors_tob <- bw$colors

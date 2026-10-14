@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-14
 **Analysis:** `network/analyses/002-effective-dimensionality`
-**Evidence:** 22/25 · **Interest:** 9/10 · **Δ:** +0.2
+**Evidence:** 24/25 · **Interest:** 9/10 · **Δ:** -0.6
 
 ## Claim
 The 33 module eigengenes span ~**6** effective dimensions (Li & Ji); two PCs carry 80% of
@@ -24,12 +24,14 @@ signature acting through cell proportion rather than through any cell changing b
 ## Scoring
 E=5 (permutation null, nested models, dimension count fixed a priori by Li & Ji, PCA
 deterministic and computed without reference to lithium so there is no selection
-circularity). R=5 (the arm's question, directly). B=3 (**raised from 2**: survives the LM22 circularity check in analysis 003 with the
-association and composition share both intact; still one decomposition). D=5 (clear answer with a quantified
+circularity). R=5 (the arm's question, directly). B=5 (**raised from 2**: survives the LM22 circularity check (003) with association and
+composition share intact, and replicates across the decomposition grid (004) in 4 of 4
+usable cells, never surviving composition adjustment in any of the 10). D=5 (clear answer with a quantified
 mechanism). C=4 (config, CSVs, README, permutation null; no cross-decomposition replicate).
 
 Interest 9: the central hypothesis of the project, confirmed crisply with the mechanism
-quantified. Δ +0.2 — the evidence has caught up with the story after the circularity check.
+quantified. Δ −0.6 — the evidence now exceeds the story, after the circularity check (003) and the
+ten-decomposition replication (004).
 
 ## Caveats that belong with any quotation of this
 1. **Attenuated, not abolished.** p = 0.081 after full adjustment; a residual effect
@@ -38,4 +40,6 @@ quantified. Δ +0.2 — the evidence has caught up with the story after the circ
    so adjusting for composition removes part of lithium's own causal path. This analysis
    cannot distinguish a compositional mediator from a compositional confounder — that is
    Arm 2's question, and this should be read against `mediation/results/`.
-3. One decomposition at one parameter set.
+3. ~~One decomposition at one parameter set.~~ **Superseded by 004**: replicates in 4 of 4
+   usable decompositions and 6 of 10 overall. Remaining limit is one cohort, one
+   composition estimator.

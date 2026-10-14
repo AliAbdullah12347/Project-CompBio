@@ -46,7 +46,7 @@ dir.create(cfg_dir, showWarnings = FALSE, recursive = TRUE)
 SEED_BASE      <- 20261009L + 37000L
 K              <- 20L        # spec = 500; revised for budget (see METHODS.md 2026-10-09)
 SUBSAMPLE_N    <- 74L
-REF_CACHE      <- "network/cache/ref_control_all_bicor_signed_p12.rds"
+REF_CACHE      <- "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds"
 HUB036_CTRL    <- "network/runs/hub-036/kme_control.csv"
 HUB036_NOLITH  <- "network/runs/hub-036/kme_nolith.csv"
 HUB036_LITH    <- "network/runs/hub-036/kme_lith_mean.csv"
