@@ -1,0 +1,13 @@
+{
+  "analysis": "010-full-pca-all-samples",
+  "question": "What is the principal structure of the 33-module eigengene space across all 474 samples? Analysis 009 showed a consistent downward shift in BP. Does PC1 of all-sample ME PCA capture the BP disease effect?",
+  "rationale": "Analyses 001-004 ran PCA on 226 BP-only samples; PC2 captured the lithium-composition signal. This analysis runs PCA on all 460 samples with complete ILR data, asking if the PC structure differs when controls are included.",
+  "samples": "all 460 with complete ILR data",
+  "pre_specified_tests": [
+    "PCA of 33-module ME matrix (460 x 33), scaled",
+    "Variance explained by PC1-PC5",
+    "Pearson r of PC1-PC5 with group (ctrl=0, nolith=1, lith=1 for disease; ctrl=0, nolith=0, lith=1 for lithium), ILR b1-b4",
+    "Permutation test: K=1000 label shuffles for PC1-group association"
+  ],
+  "dependency": "analysis 009"
+}

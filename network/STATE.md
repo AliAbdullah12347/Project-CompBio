@@ -19,7 +19,7 @@ The next question is whether module structure is preserved across groups at all 
 data (`base-001` v2 / `base-003-remerge`), and whether residualising for composition changes
 that (`inp-022`, `inp-023`).
 
-**Read `RANKING.md` first.** Rebuilt from `findings/`; 13 findings as of 2026-10-14.
+**Read `RANKING.md` first.** Rebuilt from `findings/`; 14 findings as of 2026-10-14.
 
 ## Infrastructure
 
@@ -71,6 +71,9 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - **007-darkturquoise-across-groups**: Extended to 460 samples (all groups). Control-lith
   contrast survives composition adjustment (p_bonf=0.001); nolith-lith does NOT (p_bonf=0.339).
   Composition-darkturquoise correlation weaker in controls (r_b2=−0.13) than BP (r_b2=−0.44).
+- **010-full-pca-all-samples**: PC1=77.5% across 460 samples; all 33 modules load uniformly
+  negative; r(PC1,disease)=0.289, perm p<0.001. PC2 (10%)=composition/lithium. Global
+  network factor captures BP disease effect (ctrl mean PC1=-1.43, BP mean ≈+1.3).
 - **009-all-modules-across-groups**: 31/33 ctrl-nolith sig; 32/33 ctrl-lith sig; 0/33
   nolith-lith sig (after additive composition adjustment, 460 samples). BP disease per se
   drives network change. Darkturquoise uniquely ctrl-lith (not ctrl-nolith) — composition.

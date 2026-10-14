@@ -47,6 +47,25 @@ likely composition-driven — analyses 007–008 showed the b2 slope is steeper 
 than controls. In contrast, the 31 ctrl-nolith significant modules have R²_comp 3–25%,
 suggesting their group differences are NOT primarily explained by composition.
 
+## Direction of the effect
+
+All 31 ctrl-nolith significant modules show BP (nolith) **lower** than controls
+(unidirectional, consistent across the full set):
+
+| Module | ctrl ME | nolith ME | lith ME | Δ(nolith−ctrl) |
+|:--|--:|--:|--:|--:|
+| darkgrey | +0.0114 | −0.0116 | −0.0117 | −0.023 |
+| darkolivegreen | +0.0101 | −0.0126 | −0.0092 | −0.023 |
+| magenta | +0.0115 | −0.0109 | −0.0117 | −0.022 |
+| midnightblue | +0.0142 | −0.0082 | −0.0167 | −0.022 |
+| ... | | | | |
+| yellow | +0.0138 | −0.0020 | −0.0176 | −0.016 |
+
+Positive delta: 0 of 31. Negative delta: 31 of 31.
+
+This is a consistent, global decrease in module eigengene values in BP patients relative
+to controls — not a reshuffling of network structure but a monotone depression.
+
 ## Biological interpretation
 
 **BP disease** (not lithium treatment) is associated with a broad restructuring of

@@ -204,6 +204,20 @@ dependency (R²_comp=32.6%) and the steeper b2 slope in bp_lith.
 
 Evidence 19/25 · Interest 9/10 · Δ +1.4.
 
+### 010 — PC1 of all-sample ME matrix: BP disease as a global network factor
+
+`network/analyses/010-full-pca-all-samples/` · Finding:
+[2026-10-14-pc1-captures-bp-disease.md](findings/2026-10-14-pc1-captures-bp-disease.md)
+
+PCA of 33-module ME across 460 samples: PC1=77.5% variance (all 33 modules load similarly;
+negative loadings −0.181 to −0.191). Control mean PC1=−1.43, bp_nolith=+0.98, bp_lith=+1.73.
+r(PC1, disease)=0.289, permutation p<0.001 (0/1000 permutations as extreme).
+
+PC2 (10%) = composition/lithium signal (r_b1=−0.434, r_b2=−0.447) — the same dimension
+as analysis 002 PC2 but demoted by the dominant disease PC1 when controls are included.
+
+Evidence 18/25 · Interest 7/10 · Δ −0.2.
+
 ---
 
 ## Headline chain (updated)
@@ -236,6 +250,9 @@ Evidence 19/25 · Interest 9/10 · Δ +1.4.
     beyond composition (0/33 nolith-lith). Darkturquoise is the only module showing
     specifically ctrl-lith (not ctrl-nolith) significance — explained by its high composition
     dependency (R²_comp=33%).
+14. **A global network factor (PC1=77.5%)** captures the disease effect: controls are
+    systematically higher across all 33 modules (mean PC1=−1.43 vs BP: +1.0 to +1.7).
+    r(PC1, disease)=0.289, permutation p<0.001. PC2 (10%) = composition/lithium signal.
 
 ---
 

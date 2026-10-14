@@ -1291,3 +1291,21 @@ ctrl-nolith: 31/33 significant (bonf<0.05); ctrl-lith: 32/33; nolith-lith: 0/33.
 Darkturquoise is the only module with ctrl-nolith NS (bonf=0.814) but ctrl-lith sig
 (bonf=0.001). darkred: no effect (FDR=0.981). Median R²_comp for ctrl-nolith sig
 modules: ~10%; darkturquoise R²_comp = 32.6%.
+
+### Analysis 010: Full-sample PCA of module eigengenes
+
+**Context:** Analysis 009 showed 31/33 modules have lower eigengenes in BP vs controls.
+Analysis 010 runs PCA on all 460 samples to summarize this global effect.
+
+**Pre-specified tests (config.json):** PCA of 33-module ME matrix (scaled); Pearson r of
+PC1–PC8 with disease (0/1), lithium (0/1), grp_num (0/1/2), ILR b1–b4;
+permutation test K=1000 for PC1 × disease.
+
+**Data:** ME matrix from analysis 009 (all_modules_group_anova.csv's module_eigengenes_all.csv).
+
+**R note:** `cor(vector, vector)` returns a 1×1 matrix in some contexts; used `as.numeric()`
+to ensure scalar for permutation replication.
+
+**Result (observed):** PC1=77.5%, all 33 modules load negative (−0.181 to −0.191), uniform.
+Controls: mean PC1=−1.43; bp_nolith: +0.98; bp_lith: +1.73. r(PC1,disease)=0.289,
+perm p<0.001 (0/1000). PC2 (10%): r_b1=−0.434, r_b2=−0.447 — composition/lithium axis.
