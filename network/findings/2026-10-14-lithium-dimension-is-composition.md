@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-14
 **Analysis:** `network/analyses/002-effective-dimensionality`
-**Evidence:** 21/25 · **Interest:** 9/10 · **Δ:** +0.6
+**Evidence:** 22/25 · **Interest:** 9/10 · **Δ:** +0.2
 
 ## Claim
 The 33 module eigengenes span ~**6** effective dimensions (Li & Ji); two PCs carry 80% of
@@ -24,12 +24,12 @@ signature acting through cell proportion rather than through any cell changing b
 ## Scoring
 E=5 (permutation null, nested models, dimension count fixed a priori by Li & Ji, PCA
 deterministic and computed without reference to lithium so there is no selection
-circularity). R=5 (the arm's question, directly). B=2 (one decomposition, one sample,
-not yet replicated at another merge threshold). D=5 (clear answer with a quantified
+circularity). R=5 (the arm's question, directly). B=3 (**raised from 2**: survives the LM22 circularity check in analysis 003 with the
+association and composition share both intact; still one decomposition). D=5 (clear answer with a quantified
 mechanism). C=4 (config, CSVs, README, permutation null; no cross-decomposition replicate).
 
 Interest 9: the central hypothesis of the project, confirmed crisply with the mechanism
-quantified. Δ +0.6 — the story is slightly ahead of the evidence, which B=2 reflects.
+quantified. Δ +0.2 — the evidence has caught up with the story after the circularity check.
 
 ## Caveats that belong with any quotation of this
 1. **Attenuated, not abolished.** p = 0.081 after full adjustment; a residual effect

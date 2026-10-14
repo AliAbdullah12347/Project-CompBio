@@ -1,0 +1,9 @@
+{
+  "analysis": "003-lm22-circularity",
+  "module_source": "network/runs/mod-000-resolution/labels_p12_ds4.rds",
+  "power": "12", "deepSplit": "4", "mergeCutHeight": "0",
+  "samples": "BP1 only, n=226",
+  "excluded": "350 LM22 marker genes of 12,368 (2.83%)",
+  "dimension_rule": "Li & Ji effective number, BH across those dimensions - fixed before testing",
+  "seed": "20261014"
+}

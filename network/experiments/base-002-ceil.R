@@ -46,7 +46,8 @@ NET_TYPE       <- "signed"
 COR_FNC        <- "bicor"
 GENE_SET       <- "all"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L       # revised from spec 100 (METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L
@@ -55,7 +56,10 @@ N_REF_CTRL     <- 160L      # controls used to build reference (must be > SUBSAM
 SEED_BASE      <- 20261009L
 SEED_CTRL_SPLIT <- SEED_BASE + 2000L   # separate seed for control partition
 CACHE_KEY      <- paste("ctrl160", GENE_SET, COR_FNC, NET_TYPE,
-                        paste0("p", POWER), sep = "_")
+                        paste0("p", POWER),
+                        paste0("ds", DEEP_SPLIT),
+                        paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
+                        sep = "_")
 
 # ---- config ----------------------------------------------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))
@@ -79,7 +83,7 @@ if (!file.exists(cfg_path)) {
     seed_ctrl_split   = SEED_CTRL_SPLIT,
     corFnc = COR_FNC, networkType = NET_TYPE, gene_set = GENE_SET,
     power = POWER, power_source = "WGCNA_FAQ_signed_n_gt_40",
-    minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
+    deepSplit = DEEP_SPLIT, minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
     draws_lith = DRAWS, perms_per_lith_draw = PERMS_PER_DRAW,
     nolith_perms = NOLITH_PERMS,
     subsample_n = SUBSAMPLE_N,
@@ -155,7 +159,7 @@ if (file.exists(ref_cache)) {
   set.seed(SEED_BASE)
   bwm <- blockwiseModules(refExpr_tmp, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
-    minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
+    deepSplit = DEEP_SPLIT, minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
     maxBlockSize = 15000L, numericLabels = FALSE, saveTOMs = FALSE, verbose = 3)
   moduleColors <- bwm$colors
   n_mods <- length(unique(moduleColors)) - 1L
