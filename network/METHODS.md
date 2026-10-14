@@ -1144,3 +1144,44 @@ documented record of what `mergeCutHeight=0.25` does to this data. They are pres
 - Total: ~130 min (2.2 h), comfortably under the 10800 s cap in one session
 - With 33 modules the per-permutation cost may be slightly higher; checkpoints ensure
   safe resumption if the cap is hit.
+
+---
+
+## 2026-10-14  Session 5 analyses (003 and 004) — design decisions
+
+### Analysis 003: LM22 circularity check
+
+**Context:** Finding 002 reports that 73.3% of PC2 (the lithium-associated dimension) is
+explained by ILR balances. The ILR balances are estimated from LM22 marker genes in the
+same expression matrix used to build the co-expression network. This raises a potential
+circularity: the markers that estimate composition are also defining the modules that
+produce the eigengenes.
+
+**Pre-specified test:** Before seeing the result, remove ALL 350 LM22 genes from the
+12,368-gene set, re-run the effective-dimensionality analysis (same rule: Li & Ji effective
+number, BH across dimensions, smallest-BH dimension selected), and compare β, BH p-value,
+and composition share against the all-genes result.
+
+**Justification:** Dropping all 350 is deliberately conservative — some of the removed
+genes were also DE in the condition (independent evidence), so we are slightly
+over-correcting. If the result survives this aggressive removal, the circularity concern
+is resolved. If it did not, we would report that as a genuine concern.
+
+**Result (observed):** β −0.9081 → −0.8996, BH 0.0029 → 0.0030, share 73.3% → 72.2%.
+PC1–PC4 of the two gene sets correlate at 1.000. The circularity concern is resolved.
+
+### Analysis 004: Decomposition robustness
+
+**Context:** All prior analyses used the deepSplit=4, mergeCutHeight=0 decomposition
+specifically. We wanted to know if the lithium-composition finding is specific to this one
+decomposition or generalises across the full parameter grid explored in mod-000-resolution.
+
+**Pre-specified test:** Rebuild eigengenes for each of the 10 cells of the
+deepSplit × mergeCutHeight grid (deepSplit ∈ {2, 4}, mergeCutHeight ∈ {0, 0.05, 0.10,
+0.15, 0.25}). Apply the same a-priori rule (Li & Ji effective number, BH across dimensions)
+in each cell, no post-hoc picking. Test lithium association and composition adjustment.
+A cell is "usable" if it has ≥ 10 non-grey modules AND largest module < 25%.
+
+**Result (observed):** 6/10 cells show a BH-significant lithium dimension; 4/4 usable
+cells are among them. 0/6 survive composition adjustment (BH across the 6 = 0.166).
+r(n_modules, composition share) = +0.879. The finding is robust and monotone.
