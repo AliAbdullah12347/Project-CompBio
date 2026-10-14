@@ -19,7 +19,7 @@ The next question is whether module structure is preserved across groups at all 
 data (`base-001` v2 / `base-003-remerge`), and whether residualising for composition changes
 that (`inp-022`, `inp-023`).
 
-**Read `RANKING.md` first.** Rebuilt from `findings/`; 14 findings as of 2026-10-14.
+**Read `RANKING.md` first.** Rebuilt from `findings/`; 16 findings as of 2026-10-14.
 
 ## Infrastructure
 
@@ -67,6 +67,10 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   adjustment. r(n_modules, composition share)=+0.879.
 - **005-pc2-module-loadings**: Darkturquoise (140 genes, loading=0.455, r_pc2=0.843) is
   the only module with |loading|>0.3. PC2 is dominated by one module.
+- **011-darkred-annotation**: Darkred (164 genes) is an erythrocyte module (hub gene ANK1,
+  ankyrin-1). LM22 has no erythrocyte cell type, so darkred has near-zero composition
+  correlations (r_b2=−0.097 vs darkturquoise r_b2=−0.316). This mechanistically explains
+  why darkred alone shows no group effect (FDR=0.981). E=20/25, I=8/10, Δ=+0.4.
 - **006-darkturquoise-annotation**: Darkturquoise is a ribosomal/translation module (E=22/25,
 - **007-darkturquoise-across-groups**: Extended to 460 samples (all groups). Control-lith
   contrast survives composition adjustment (p_bonf=0.001); nolith-lith does NOT (p_bonf=0.339).

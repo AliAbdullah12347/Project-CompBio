@@ -1,0 +1,99 @@
+Allowing parallel execution with up to 3 working processes.
+[16:23:40] Loading project data ...
+[16:23:41] 12368 genes in network
+[16:23:41] Loading module labels ...
+[16:23:41] Darkred: 164 genes; darkturquoise: 140 genes
+[16:23:41] org.Hs.eg.db available: TRUE
+[16:23:59] 10509 genes with GO annotation
+[16:23:59] GO BP enrichment ...
+[16:24:24]   52 terms FDR < 0.05 / 5299 tested
+
+======= GO BP (FDR<0.05, top 15) =======
+      go_id                                          term_name n_mod n_all
+ GO:0048821                            erythrocyte development     9    34
+ GO:0030218                        erythrocyte differentiation    13   110
+ GO:0006778    porphyrin-containing compound metabolic process     9    41
+ GO:0034101                            erythrocyte homeostasis    13   115
+ GO:0020027                       hemoglobin metabolic process     6    13
+ GO:0033013                     tetrapyrrole metabolic process     9    49
+ GO:0061515                           myeloid cell development    10    69
+ GO:0002262                           myeloid cell homeostasis    13   142
+ GO:0030099                       myeloid cell differentiation    18   296
+ GO:0006779 porphyrin-containing compound biosynthetic process     7    32
+ GO:0033014                  tetrapyrrole biosynthetic process     7    32
+ GO:0042168                             heme metabolic process     7    37
+ GO:0042592                                homeostatic process    32   955
+ GO:0006783                          heme biosynthetic process     6    29
+ GO:0048872                     homeostasis of number of cells    14   230
+     p_fisher          fdr
+ 4.015256e-10 2.127684e-06
+ 2.119172e-09 4.375813e-06
+ 2.477342e-09 4.375813e-06
+ 3.688008e-09 4.885689e-06
+ 7.882511e-09 8.353885e-06
+ 1.326827e-08 1.171809e-05
+ 2.214546e-08 1.676411e-05
+ 4.824363e-08 3.195538e-05
+ 7.428954e-08 4.374003e-05
+ 1.614746e-07 7.778672e-05
+ 1.614746e-07 7.778672e-05
+ 4.671547e-07 2.062877e-04
+ 8.501499e-07 3.465342e-04
+ 1.830197e-06 6.927294e-04
+ 2.229146e-06 7.874828e-04
+[16:24:24] GO CC enrichment ...
+[16:24:28]   6 terms FDR < 0.05 / 724 tested
+
+======= GO CC (FDR<0.05, top 15) =======
+      go_id                   term_name n_mod n_all     p_fisher          fdr
+ GO:0030863       cortical cytoskeleton    11    64 6.452285e-10 4.671454e-07
+ GO:0005938                 cell cortex    12   185 6.357623e-06 2.301459e-03
+ GO:0005829                     cytosol    74  3916 1.917057e-04 3.138792e-02
+ GO:0009925       basal plasma membrane     8   121 2.037022e-04 3.138792e-02
+ GO:0001917 photoreceptor inner segment     4    23 2.167674e-04 3.138792e-02
+ GO:0045178          basal part of cell     8   131 3.502570e-04 4.226435e-02
+[16:24:28] GO MF enrichment ...
+[16:24:32]   1 terms FDR < 0.05 / 940 tested
+
+======= GO MF (FDR<0.05, top 15) =======
+      go_id       term_name n_mod n_all     p_fisher         fdr
+ GO:0030506 ankyrin binding     4    11 9.147401e-06 0.008598557
+[16:24:32] Computing kME for darkred genes in control samples ...
+
+======= Top 20 hub genes (kME) in darkred (control samples) =======
+      ensembl_id kME_darkred
+ ENSG00000159346      0.9604
+ ENSG00000198876      0.9522
+ ENSG00000168785      0.9511
+ ENSG00000060138      0.9416
+ ENSG00000100225      0.9392
+ ENSG00000029534      0.9371
+ ENSG00000162722      0.9361
+ ENSG00000130830      0.9344
+ ENSG00000138867      0.9339
+ ENSG00000137198      0.9338
+ ENSG00000143321      0.9311
+ ENSG00000124098      0.9307
+ ENSG00000165406      0.9306
+ ENSG00000022840      0.9303
+ ENSG00000100325      0.9288
+ ENSG00000171552      0.9278
+ ENSG00000099804      0.9272
+ ENSG00000133606      0.9257
+ ENSG00000167671      0.9251
+ ENSG00000102145      0.9237
+[16:24:35] Checking darkred ME vs composition (all 460 samples) ...
+
+======= Module ME correlations with ILR balances (460 samples) =======
+Module		r_b1		r_b2		r_b3		r_b4
+darkred        	0.057		-0.097		-0.024		0.122
+darkturquoise  	-0.304		-0.316		0.118		-0.183
+[16:24:36] Darkred ME by group ...
+
+======= Darkred ME by group =======
+     group   n      mean     sd
+   bp_lith 152 -0.000958 0.0483
+ bp_nolith  74 -0.000736 0.0459
+   control 234  0.000242 0.0445
+
+ANALYSIS_011_DONE

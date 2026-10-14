@@ -1309,3 +1309,23 @@ to ensure scalar for permutation replication.
 **Result (observed):** PC1=77.5%, all 33 modules load negative (−0.181 to −0.191), uniform.
 Controls: mean PC1=−1.43; bp_nolith: +0.98; bp_lith: +1.73. r(PC1,disease)=0.289,
 perm p<0.001 (0/1000). PC2 (10%): r_b1=−0.434, r_b2=−0.447 — composition/lithium axis.
+
+---
+
+### Analysis 011 — Darkred annotation (2026-10-14)
+
+**Question:** Why does darkred (164 genes) show no group effect (analysis 009 FDR=0.981)?
+
+**Method:** Same GO enrichment protocol as analysis 006 (Fisher exact, one-sided; min 10
+annotated genes; BH FDR within namespace; universe = 12,368 network genes; org.Hs.eg.db).
+kME computed in control samples (n=234) using `moduleEigengenes()` on control expression
+matrix. Composition correlations compared via Pearson r of darkred ME vs ILR b1–b4 across
+all 460 samples using the module_eigengenes_all.csv from analysis 009.
+
+**Results:** Darkred = erythrocyte module. Top GO BP: erythrocyte development (FDR=2.1e-6),
+erythrocyte differentiation, hemoglobin metabolic process, heme biosynthesis. Top GO CC:
+cortical cytoskeleton (FDR=4.7e-7). Top GO MF: ankyrin binding (FDR=0.009). Hub gene rank 6:
+ANK1 (kME=0.937, ankyrin-1, the defining red blood cell membrane scaffold protein).
+
+Darkred ME vs composition: r_b2=−0.097 (near-zero); darkturquoise comparison r_b2=−0.316.
+LM22 has no erythrocyte cell type → composition proxy invisible to darkred → FDR=0.981.

@@ -218,6 +218,25 @@ as analysis 002 PC2 but demoted by the dominant disease PC1 when controls are in
 
 Evidence 18/25 · Interest 7/10 · Δ −0.2.
 
+### 011 — Darkred annotation: erythrocyte module explains the lone exception
+
+`network/analyses/011-darkred-annotation/` · Finding:
+[2026-10-14-darkred-is-erythrocyte-module.md](findings/2026-10-14-darkred-is-erythrocyte-module.md)
+
+Darkred (164 genes, the only module with group ANOVA FDR=0.981 in analysis 009) is annotated
+as an **erythrocyte / red blood cell module**. Top GO terms: erythrocyte development
+(BP, FDR=2.1e-6), cortical cytoskeleton (CC, FDR=4.7e-7), ankyrin binding (MF, FDR=0.009).
+Hub gene (rank 6): ANK1 (ankyrin-1, kME=0.937) — the defining structural protein of the
+red blood cell membrane.
+
+The mechanistic explanation is closed: LM22 (which generates the ILR composition proxies)
+contains no erythrocyte cell type. Darkred therefore has near-zero composition correlations
+(r_b2=−0.097 vs darkturquoise r_b2=−0.316), is invisible to the composition proxy, and
+shows no group effect. The 31/33 modules that DO differ across groups all measure immune
+cell biology, which is what LM22 captures.
+
+Evidence 20/25 · Interest 8/10 · Δ +0.4.
+
 ---
 
 ## Headline chain (updated)
@@ -253,6 +272,11 @@ Evidence 18/25 · Interest 7/10 · Δ −0.2.
 14. **A global network factor (PC1=77.5%)** captures the disease effect: controls are
     systematically higher across all 33 modules (mean PC1=−1.43 vs BP: +1.0 to +1.7).
     r(PC1, disease)=0.289, permutation p<0.001. PC2 (10%) = composition/lithium signal.
+15. **The lone exception (darkred) is the erythrocyte module**: hub gene ANK1 (ankyrin-1,
+    kME=0.937), top GO erythrocyte development (FDR=2.1e-6). LM22 has no erythrocyte cell type
+    → darkred has near-zero composition correlations (r_b2=−0.097) → invisible to the
+    composition proxy → no group effect. The 31 modules that DO change in BP are all
+    measuring immune cell biology, which is exactly what LM22 captures.
 
 ---
 
