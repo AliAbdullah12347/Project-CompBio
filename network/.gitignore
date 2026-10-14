@@ -30,3 +30,5 @@ runs/*/permStats*.RData
 RUNLOG/watchdog.log
 RUNLOG/watchdog.out
 RUNLOG/watchdog.err
+RUNLOG/daemon.out
+RUNLOG/daemon.err
