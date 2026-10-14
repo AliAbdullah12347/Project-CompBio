@@ -1040,3 +1040,62 @@ kickstarts.
 Four idle hours out of four days, recovered by kickstart. Had it gone unnoticed overnight
 the run would have produced one session of work in 96 hours, with every status file
 reporting healthy.
+
+---
+
+## 2026-10-14  mod-000-resolution: the arm is unblocked. The merge threshold was the whole story.
+
+The diagnostic ran on 2026-10-09 (2938 s) and completed, but the session was cut off
+before the write-up. Recording it now.
+
+| deepSplit | mergeCutHeight | pre-merge | modules | largest % | median size | meets target |
+|--:|--:|--:|--:|--:|--:|:--|
+| 2 | 0.00 | 18 | **18** | 18.64 | 564 | ✅ |
+| 2 | 0.05 | 18 | **14** | 18.64 | 984 | ✅ |
+| 2 | 0.10 | 18 | 8 | 38.82 | 1331 | ✗ |
+| 2 | 0.15 | 18 | 4 | 60.34 | 2380 | ✗ |
+| 2 | 0.25 | 18 | 3 | 97.50 | 163 | ✗ ← `base-001` used this |
+| 4 | 0.00 | 33 | **33** | **11.68** | 248 | ✅ |
+| 4 | 0.05 | 33 | **14** | 18.70 | 656 | ✅ |
+| 4 | 0.10 | 33 | 8 | 28.28 | 1726 | ✗ |
+| 4 | 0.15 | 33 | 4 | 63.93 | 2158 | ✗ |
+| 4 | 0.25 | 33 | 3 | 97.51 | 164 | ✗ |
+
+### The mechanism, not just the effect
+The grid also recorded the eigengene correlation distribution, which explains *why*
+`mergeCutHeight = 0.25` is catastrophic here:
+
+```
+eigengene correlation:  p25 0.521 | p50 0.739 | p75 0.872 | max 0.967   (deepSplit 2)
+                        p25 0.605 | p50 0.765 | p75 0.872 | max 0.989   (deepSplit 4)
+```
+
+`mergeCutHeight = 0.25` merges any pair correlating above **0.75**. The *median* pair
+correlates 0.739–0.765 — essentially at the threshold. So more than half of all module
+pairs qualify for merging on the first pass, each merge raises the correlation of the
+result with its neighbours, and the process cascades until almost everything is one block.
+33 modules become 3, with the largest holding 97.5% of the genome.
+
+This is not a WGCNA bug. It is the documented behaviour of a default meeting a network
+whose mean connectivity is 8.3% of the genome. The default assumes module eigengenes are
+mostly uncorrelated; here they are mostly correlated.
+
+### Recommended parameters for every downstream row
+**`deepSplit = 4, mergeCutHeight = 0`** — 33 modules, largest 11.68% of genes, median size
+248, grey 0.03%. `mergeCutHeight = 0.05` is the fallback if 33 modules prove unwieldy
+(14 modules, largest 18.7%).
+
+Power 12 was held fixed and no power-16 TOM was needed: four of ten cells met the target
+at power 12, so the optional second power in the spec was correctly skipped.
+
+### What this retrospectively says about base-001
+`base-001`'s entire preservation analysis — the gold finding, the 18 draws, the turquoise
+observation — was computed on the `mergeCutHeight = 0.25` cell: 3–4 modules with one
+holding 95–97% of the transcriptome. The finding that *no module reliably beats a random
+gene set* is therefore a finding about **that degenerate decomposition**, exactly as
+recorded at the time, and not about this data's co-expression structure. It must be
+re-run at `deepSplit = 4, mergeCutHeight = 0` before anything is concluded.
+
+That re-run is the single most valuable next experiment: it tests whether the gold result
+survives a usable decomposition, which is the difference between "WGCNA preservation is
+uninformative here" and "this particular parameter set was".

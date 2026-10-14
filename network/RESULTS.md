@@ -1,132 +1,59 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-09 session 2
-**Runs completed:** 0 of 48 queued (base-001 RUNNING)
+**Updated:** 2026-10-14
+**Runs completed:** 1 of 50 queued — the run was halted by a logout, not by a failure.
+
+## Status
+
+The run executed two sessions on 2026-10-09/10 and then stopped for 4 days 18 hours
+because the Mac was logged out. GUI LaunchAgents do not run at the login window, so both
+the scheduler and its watchdog were dead. See `METHODS.md` 2026-10-14. Nothing was lost:
+all checkpoints, logs and results are intact and committed.
+
+## Completed
+
+| id | wall | verdict | folder |
+|:--|--:|:--|:--|
+| `mod-000-resolution` | 2938 s | **Arm unblocked.** Merge threshold is decisive; `deepSplit=4, mergeCutHeight=0` gives 33 modules, largest 11.68% | [network/runs/mod-000-resolution](runs/mod-000-resolution) |
+
+## Partial
+
+| id | progress | note |
+|:--|:--|:--|
+| `base-001` | 18/20 draws, nolith complete (500 perms) | Computed on the **degenerate** `mergeCutHeight=0.25` decomposition (3–4 modules, largest 95–97%). Valid as a record of that parameter set; **must be re-run** at the recommended parameters before anything is concluded. |
+
+## Headline findings so far
+
+All five findings to date are about **method, not biology**, and they form one chain:
+
+1. **Scale-free topology fails** at every power 1–20, in all three groups, at both n=74 and
+   n=234. `pickSoftThreshold` returns `powerEstimate = 1` — the function failing, not a
+   threshold. Max signed R² is 0.547 at power 20.
+2. **The network is extraordinarily dense**: mean connectivity 1,031 at power 12 — each
+   gene tied to 8.3% of the genome.
+3. **Module eigengenes are therefore mostly correlated** (median pair 0.739–0.765), so
+   WGCNA's default `mergeCutHeight = 0.25` (merge above 0.75) cascades and collapses
+   33 modules into 3, the largest holding 97.5% of genes.
+4. On that degenerate decomposition, **no module reliably beats a random gene set**:
+   WGCNA's own `gold` control scores Zsummary 20.26, and the best real module beats it in
+   only 9 of 15 subsamples.
+5. **A usable decomposition exists**: `deepSplit=4, mergeCutHeight=0` gives 33 modules,
+   largest 11.68%, median size 248.
+
+**Nothing here yet speaks to lithium.** Finding 4 is a property of the parameter set in
+finding 3, and finding 5 is the fix. The next experiment is the one that matters.
+
+## Next
+
+1. **Re-run `base-001` at `deepSplit=4, mergeCutHeight=0`.** This tests whether the gold
+   result survives a usable decomposition — the difference between "WGCNA preservation is
+   uninformative on this data" and "that parameter set was".
+2. `base-002-ceil` — the split-half control ceiling.
+3. `inp-022` / `inp-023` — the arm's actual question, composition-residualised.
 
 ## The question
 
 Do gene co-expression networks differ across healthy / bipolar-off-lithium /
 bipolar-on-lithium, and does any difference survive removing cell composition?
 
-Exploratory. A well-documented negative or inconclusive result is a complete
-deliverable.
-
----
-
-## Scale-free topology
-
-*Confirmed before any network was built.*
-Scale-free fit fails at all powers 1:20 in the control group (n=234).
-Max signed-R² = 0.955 at power 2 (positive slope — not scale-free at any power).
-WGCNA FAQ for signed networks, n>40: use power 12 when no power satisfies criterion.
-The failure of scale-free topology in this data is itself a result.
-
-Source: `runs/base-001/sft_r2_curve.csv`
-
-| group | n | powerEstimate | max signed-R² | power used |
-|:------|--:|:-------------|:-------------|:----------|
-| control | 234 | 1 (function failing) | 0.955 | **12** |
-| bp_nolith | 74 | TBD (pow-009) | TBD | **12** |
-| bp_lith (74 subsample) | 74 | TBD (pow-009) | TBD | **12** |
-
----
-
-## Reference network — base-001
-
-| parameter | value |
-|:----------|:------|
-| genes | 12,368 |
-| samples | 234 controls |
-| power | 12 (signed, bicor) |
-| minModuleSize | 30 |
-| mergeCutHeight | 0.25 |
-| n_modules | **building** |
-
----
-
-## Module preservation — base-001 (raw expression)
-
-Status: **RUNNING** — reference TOM building.
-
-### bp_nolith (74 samples, 500 permutations)
-
-*(pending)*
-
-### bp_lith (20 draws of 74 from 152, 50 perms/draw)
-
-*(pending)*
-
----
-
-## Module preservation — base-002-ceil (split-half ceiling)
-
-*(pending — script written, awaiting base-001 completion)*
-
-160-control reference vs 74 held-out controls. Gives the n=74 Zsummary ceiling:
-without this, we cannot distinguish low bp_lith Zsummary from ordinary small-n noise.
-
----
-
-## KEY QUESTION: composition residualised (inp-022)
-
-*(pending — script written)*
-
-Reference and test expression regressed for ILR b1-b4 (cell composition proxies).
-If base-001 finds reduced Zsummary in bp_lith and it persists here: disruption is
-not explained by composition. If Zsummary recovers: composition was the driver.
-
----
-
-## KEY QUESTION: technical+composition residualised (inp-023)
-
-*(pending — script written)*
-
-Most conservative: age + sex + rin + ILR b1-b4. Any remaining preservation after
-doubly residualised expression cannot be attributed to technical or compositional
-confounding.
-
----
-
-## Circularity check — minus LM22 genes (gene-027)
-
-*(pending — script written)*
-
-547 LM22 signature genes excluded before network construction. CIBERSORTx used
-LM22 to estimate fractions. If preservation results are similar with and without
-these genes, the findings do not depend on the fraction-estimation method.
-
----
-
-## Technical residualised (inp-021)
-
-*(pending — script written)*
-
-Full technical set: age + sex + rin + plate + seqpc1-3. Contrasts with inp-023
-(age + sex + rin + ILR, no plate/seqPCs).
-
----
-
-## Summary table (to be populated)
-
-| id | family | comparison | Zsummary bp_nolith | Zsummary bp_lith (mean±sd) | verdict |
-|:---|:-------|:-----------|:-------------------|:---------------------------|:--------|
-| base-001 | baseline | raw | — | — | running |
-| base-002-ceil | baseline | ctrl ceiling | — | — | pending |
-| inp-022 | input | ILR residualised | — | — | pending |
-| inp-023 | input | tech+ILR residualised | — | — | pending |
-| inp-021 | input | full-technical residualised | — | — | pending |
-| gene-027 | geneset | minus LM22 | — | — | pending |
-
----
-
-## Results file index
-
-| file | experiment | content |
-|:-----|:-----------|:--------|
-| `runs/base-001/sft_r2_curve.csv` | base-001 | Scale-free R² by power, n=234 controls |
-| `cache/ref_control_all_bicor_signed_p12.rds` | base-001 | Reference modules (building) |
-| `runs/base-001/nolith_preservation.rds` | base-001 | Pending |
-| `runs/base-001/results_nolith.csv` | base-001 | Pending |
-| `runs/base-001/results_lith_alldraws.csv` | base-001 | Pending |
-| `runs/base-001/results_lith_summary.csv` | base-001 | Pending |
-| `runs/base-001/results_combined.csv` | base-001 | Pending |
+Exploratory. A well-documented negative or inconclusive result is a complete deliverable.

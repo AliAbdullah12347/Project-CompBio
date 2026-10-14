@@ -1,1 +1,3 @@
 run_id,family,status,key_parameters,headline,verdict,folder
+mod-000-resolution,moddetect,DONE,"power=12;deepSplit={2,4};mergeCutHeight={0,0.05,0.10,0.15,0.25};n_ref=234","33 modules at mergeCut=0 (largest 11.68%) vs 3 at 0.25 (largest 97.5%); median eigengene cor 0.739 vs threshold 0.75","ARM UNBLOCKED - use deepSplit=4 mergeCutHeight=0",network/runs/mod-000-resolution
+base-001,baseline,PARTIAL,"ref=control n=234;power=12;mergeCutHeight=0.25;18/20 draws","no module beats the random gold baseline (best 9/15 draws)","valid for the DEGENERATE decomposition only - re-run required",network/runs/base-001
