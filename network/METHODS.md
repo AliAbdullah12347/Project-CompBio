@@ -1253,3 +1253,21 @@ Unadjusted ANOVA F(2,457)=10.6, p=3.3e-5. After composition adjustment:
 
 Composition-darkturquoise correlation: controls r_b2=−0.130, bp_nolith r_b2=−0.390,
 bp_lith r_b2=−0.444. ILR explains 32.6% of dt_ME variance across all samples.
+
+### Analysis 008: Darkturquoise group × b2 interaction test
+
+**Context:** Analysis 007 used an additive composition model (dt_ME ~ group + b1+b2+b3+b4).
+The b2-darkturquoise correlation differed markedly across groups (r=-0.13 controls, r=-0.44
+bp_lith), raising the concern that an additive adjustment is misspecified.
+
+**Pre-specified tests (config.json):**
+1. Per-group OLS slopes of dt_ME ~ b2
+2. LRT: additive model vs interaction model (dt_ME ~ group*b2 + b1+b3+b4)
+3. Pairwise contrasts via vcov() at mean composition (Bonferroni n=3)
+
+**Method:** Contrast vectors constructed to evaluate group differences at mean b1-b4.
+SE computed as sqrt(c' vcov c) where c is the contrast vector and vcov is the model's
+variance-covariance matrix. Residual df from the interaction model used for t-statistics.
+
+**Result (observed):** LRT F(2,451)=3.53, p=0.030. `groupbp_lith:b2` = -0.041, p=0.008.
+Pairwise contrasts: control vs lith p_bonf=0.002 (survives); nolith vs lith p_bonf=0.509 (NS).

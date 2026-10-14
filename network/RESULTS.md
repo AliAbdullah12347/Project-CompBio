@@ -163,6 +163,28 @@ ILR b1–b4 alone explain 32.6% of darkturquoise variance across 460 samples.
 Evidence 17/25 · Interest 8/10 · Δ +0.8. Caution: unmeasured composition may explain the
 adjusted control-lith difference.
 
+### 008 — Group×composition interaction: control-lith contrast robust
+
+`network/analyses/008-darkturquoise-interaction/` · Finding:
+[2026-10-14-darkturquoise-interaction.md](findings/2026-10-14-darkturquoise-interaction.md)
+
+Analysis 007 used an additive composition adjustment. Analysis 008 tests the group×b2
+interaction — the b2 slope on darkturquoise ME differs significantly between groups
+(LRT F(2,451)=3.53, p=0.030). The bp_lith vs control slope difference = −0.041 (p=0.008).
+
+Pairwise contrasts via vcov (proper SE), at mean composition, Bonferroni n=3:
+
+| Contrast | Δ | p_bonf |
+|:--|--:|--:|
+| control vs bp_nolith | −0.006 | 0.670 (NS) |
+| **control vs bp_lith** | **−0.014** | **0.002** |
+| bp_nolith vs bp_lith | −0.008 | 0.509 (NS) |
+
+The control-lith contrast survives even the group-specific slope model. The nolith-lith
+contrast is NS under all model specifications (additive, interaction).
+
+Evidence 18/25 · Interest 7/10 · Δ −0.2.
+
 ---
 
 ## Headline chain (updated)
@@ -186,9 +208,10 @@ adjusted control-lith difference.
     hub genes RPL30, RPL35, RPL6). B cells need high translational capacity — the composition
     effect has a mechanistically coherent biological substrate.
 12. The control-lith darkturquoise contrast **survives composition adjustment** (p_bonf=0.001
-    across 460 samples), but the nolith-lith contrast does NOT (p_bonf=0.339). The BP-only
-    result from finding 002 is intact; adding controls reveals an additional signal whose
-    biological origin (true lithium effect vs unmeasured composition) remains open.
+    additive; p_bonf=0.002 with group×b2 interaction; across 460 samples), but the nolith-lith
+    contrast does NOT (p_bonf=0.339 / 0.509). The BP-only result from finding 002 is intact;
+    adding controls reveals a robust residual signal whose biological origin (genuine lithium
+    effect vs unmeasured composition) remains open.
 
 ---
 

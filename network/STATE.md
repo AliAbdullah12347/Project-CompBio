@@ -19,7 +19,7 @@ The next question is whether module structure is preserved across groups at all 
 data (`base-001` v2 / `base-003-remerge`), and whether residualising for composition changes
 that (`inp-022`, `inp-023`).
 
-**Read `RANKING.md` first.** Rebuilt from `findings/`; 11 findings as of 2026-10-14.
+**Read `RANKING.md` first.** Rebuilt from `findings/`; 12 findings as of 2026-10-14.
 
 ## Infrastructure
 
@@ -71,6 +71,9 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - **007-darkturquoise-across-groups**: Extended to 460 samples (all groups). Control-lith
   contrast survives composition adjustment (p_bonf=0.001); nolith-lith does NOT (p_bonf=0.339).
   Composition-darkturquoise correlation weaker in controls (r_b2=−0.13) than BP (r_b2=−0.44).
+- **008-darkturquoise-interaction**: b2 slope differs between groups (F(2,451)=3.53, p=0.030);
+  bp_lith vs control interaction = −0.041 (p=0.008). Control-lith contrast survives proper
+  group-specific slope model (p_bonf=0.002). nolith-lith NS under all specs (p_bonf=0.509).
   I=9/10). 35 BP / 47 CC / 12 MF GO terms FDR<0.05. Top CC: cytosolic ribosome (29/92 genes,
   FDR=4.9e-32). Hub genes: RPL30, RPL35, RPL6, RPL27, RPS3A. Also contains Complex III/IV
   subunits. Story complete: high B-cell fraction → elevated ribosomal gene expression →

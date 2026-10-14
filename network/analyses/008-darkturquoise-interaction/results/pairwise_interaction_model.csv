@@ -1,0 +1,4 @@
+"contrast","diff","se","t","p_raw","p_bonf"
+"control vs bp_nolith",-0.00621,0.00509,-1.219,0.22342,0.67025
+"control vs bp_lith",-0.01371,0.00406,-3.379,0.00079,0.00237
+"bp_nolith vs bp_lith",-0.0075,0.00545,-1.375,0.16975,0.50925

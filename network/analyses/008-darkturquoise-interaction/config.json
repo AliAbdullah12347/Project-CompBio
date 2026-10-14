@@ -1,0 +1,12 @@
+{
+  "analysis": "008-darkturquoise-interaction",
+  "question": "Does the relationship between cell composition (b2) and the darkturquoise module eigengene differ between groups? Does the control-lith composition-adjusted difference survive a model with group × composition interactions?",
+  "rationale": "Analysis 007 showed: r(dt_ME, b2) = -0.13 in controls, -0.39 in bp_nolith, -0.44 in bp_lith. The weaker coupling in controls could mean the linear composition adjustment over-corrects for BP vs under-corrects for controls, explaining the surviving control-lith difference. A group × b2 interaction term tests this directly.",
+  "samples": "all 460 with complete ILR data",
+  "pre_specified_tests": [
+    "LM: dt_ME ~ group * b2 + b1 + b3 + b4 (group×b2 interaction)",
+    "LRT: compare group*b2 model to additive group+b1+b2+b3+b4",
+    "If interaction significant: re-test control-lith pairwise within interaction model"
+  ],
+  "dependency": "analysis 007"
+}
