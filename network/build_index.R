@@ -22,14 +22,18 @@ F <- do.call(rbind, lapply(fs, function(f) {
   title <- sub("^#\\s*", "", tx[grep("^# ", tx)[1]])
   ev <- grab(hd, "Evidence:\\*\\*\\s*[0-9]+"); iv <- grab(hd, "Interest:\\*\\*\\s*[0-9]+")
   dl <- grab(hd, "\u0394:\\*\\*\\s*[\u2212+-]?[0-9.]+")
-  comp <- regmatches(hd, regexpr("E=[0-9] R=[0-9] B=[0-9] D=[0-9] C=[0-9]", hd))
+  # Components may be written compactly ("E=5 R=5 B=3 D=5 C=4") or in prose
+  # ("E=5 (direct...)  R=4 (validates...)"). Pull each letter independently.
+  one <- function(k) { m <- regmatches(hd, regexpr(paste0(k,"=[0-9]"), hd))
+                       if (length(m)) substr(m[1], 3, 3) else "?" }
+  comp <- paste0("E=",one("E")," R=",one("R")," B=",one("B")," D=",one("D")," C=",one("C"))
   an <- regmatches(hd, regexpr("\\*\\*Analysis:\\*\\*[^\n]*", hd))
   dt <- regmatches(hd, regexpr("\\*\\*Date:\\*\\*\\s*[0-9-]+", hd))
   data.frame(file=basename(f), title=title,
              date=if(length(dt)) gsub("[^0-9-]","",dt) else "",
              analysis=if(length(an)) trimws(gsub("\\*\\*Analysis:\\*\\*|`","",an)) else "",
              evidence=ev, interest=iv, delta=dl,
-             components=if(length(comp)) comp else "", stringsAsFactors=FALSE)
+             components=comp, stringsAsFactors=FALSE)
 }))
 miss <- is.na(F$delta)
 if (any(miss)) F$delta[miss] <- round((F$interest[miss]/10 - F$evidence[miss]/25)*10, 1)
