@@ -185,6 +185,25 @@ contrast is NS under all model specifications (additive, interaction).
 
 Evidence 18/25 · Interest 7/10 · Δ −0.2.
 
+### 009 — All 33 modules across groups: BP disease drives network-wide differences
+
+`network/analyses/009-all-modules-across-groups/` · Finding:
+[2026-10-14-bp-disease-drives-network-globally.md](findings/2026-10-14-bp-disease-drives-network-globally.md)
+
+| Contrast | Sig modules (bonf<0.05, additive comp adj) |
+|:--|--:|
+| control vs bp_nolith | **31 / 33** |
+| control vs bp_lith | **32 / 33** |
+| bp_nolith vs bp_lith | **0 / 33** |
+
+BP disease per se (not lithium) is associated with a network-wide restructuring of peripheral
+blood co-expression (31/33 modules, R²_comp for these modules 3–25%). Lithium adds nothing
+within BP (0/33 nolith-lith). Darkturquoise is the **only** module where ctrl-nolith is NS
+(bonf=0.814) but ctrl-lith is significant (bonf=0.001) — attributable to its high composition
+dependency (R²_comp=32.6%) and the steeper b2 slope in bp_lith.
+
+Evidence 19/25 · Interest 9/10 · Δ +1.4.
+
 ---
 
 ## Headline chain (updated)
@@ -212,6 +231,11 @@ Evidence 18/25 · Interest 7/10 · Δ −0.2.
     contrast does NOT (p_bonf=0.339 / 0.509). The BP-only result from finding 002 is intact;
     adding controls reveals a robust residual signal whose biological origin (genuine lithium
     effect vs unmeasured composition) remains open.
+13. **BP disease (not lithium) drives a network-wide co-expression change** (31/33 modules,
+    ctrl-nolith significant; R²_comp 3-25% ≫ composition). Within BP, lithium adds nothing
+    beyond composition (0/33 nolith-lith). Darkturquoise is the only module showing
+    specifically ctrl-lith (not ctrl-nolith) significance — explained by its high composition
+    dependency (R²_comp=33%).
 
 ---
 

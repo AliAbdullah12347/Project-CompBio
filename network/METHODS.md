@@ -1271,3 +1271,23 @@ variance-covariance matrix. Residual df from the interaction model used for t-st
 
 **Result (observed):** LRT F(2,451)=3.53, p=0.030. `groupbp_lith:b2` = -0.041, p=0.008.
 Pairwise contrasts: control vs lith p_bonf=0.002 (survives); nolith vs lith p_bonf=0.509 (NS).
+
+### Analysis 009: All 33 modules across groups
+
+**Context:** Analyses 007–008 showed darkturquoise survives composition adjustment for the
+ctrl-lith contrast. Analysis 009 extends to all 33 modules.
+
+**Pre-specified tests (config.json):**
+1. Per-module ANOVA: ME ~ group + b1+b2+b3+b4; F-test with 2 df; BH across 33 modules
+2. Per-module pairwise contrasts: 3 comparisons (ctrl-nolith, ctrl-lith, nolith-lith);
+   Bonferroni n=3 within each module; SE via vcov (same method as analysis 008)
+3. Per-module R² of composition-only model: lm(ME ~ b1+b2+b3+b4)
+
+**R note:** `pmin(1, named_vector)` drops vector names in R 4.2; fixed using
+`pmin(named_vector, 1)` (named vector first).
+
+**Result (observed):** 32/33 modules: group ANOVA FDR<0.05. Pairwise:
+ctrl-nolith: 31/33 significant (bonf<0.05); ctrl-lith: 32/33; nolith-lith: 0/33.
+Darkturquoise is the only module with ctrl-nolith NS (bonf=0.814) but ctrl-lith sig
+(bonf=0.001). darkred: no effect (FDR=0.981). Median R²_comp for ctrl-nolith sig
+modules: ~10%; darkturquoise R²_comp = 32.6%.

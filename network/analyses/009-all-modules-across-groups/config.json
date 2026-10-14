@@ -1,0 +1,14 @@
+{
+  "analysis": "009-all-modules-across-groups",
+  "question": "Which of the 33 modules show group differences in module eigengene across ctrl/bp_nolith/bp_lith after composition adjustment, extending the darkturquoise analysis (007) to all modules?",
+  "rationale": "Analyses 007-008 showed darkturquoise survives composition adjustment when comparing controls vs bp_lith. We don't know if this is unique to darkturquoise or common across modules. This analysis tests all 33 modules with the same model used in 007.",
+  "samples": "all 460 with complete ILR data (ctrl=234, bp_nolith=74, bp_lith=152)",
+  "model": "ME ~ group + b1 + b2 + b3 + b4 (additive, same as analysis 007)",
+  "pre_specified_tests": [
+    "ANOVA F-test for group across all 33 modules (BH correction)",
+    "For each module: pairwise t-tests control vs lith and nolith vs lith (Bonferroni n=3 within module)",
+    "Report composition R2 per module"
+  ],
+  "correction": "BH across 33 modules for group ANOVA; Bonferroni n=3 within each module for pairwise",
+  "dependency": "analyses 007, 008"
+}
