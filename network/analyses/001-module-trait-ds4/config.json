@@ -1,0 +1,15 @@
+{
+  "analysis": "001-module-trait-ds4",
+  "module_source": "network/runs/mod-000-resolution/labels_p12_ds4.rds",
+  "power": "12",
+  "deepSplit": "4",
+  "mergeCutHeight": "0",
+  "corFnc": "bicor",
+  "networkType": "signed",
+  "reference": "control (n=234) - modules defined here",
+  "measured_in": "BP1 only (n=226) - lithium contrast per IMAC_README 5",
+  "traits": "lithium, age, sex, rin, plate, seqpc1-3, gran/mono/T/NK/B, b1-b4",
+  "mtc": "de_v2/scripts/mtc.R (IMAC_README 6.8); BH within trait, BB across traits",
+  "seed": "20261014",
+  "git_sha": "f8b602b"
+}
