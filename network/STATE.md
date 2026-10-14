@@ -4,17 +4,22 @@
 
 ## Where the science stands
 
-**The arm's question has a provisional answer.** At the module-eigengene level in BP1
-(n=226): a lithium-associated dimension exists in the co-expression structure (PC2,
-permutation p = 0.0015) and it is **73% cell composition**; adjusting for composition
-attenuates the association by 68% to p = 0.081. See
-`findings/2026-10-14-lithium-dimension-is-composition.md`.
+**The arm's founding question has a robust provisional answer.** A lithium-associated
+co-expression dimension exists (PC2 of module eigengenes, permutation p=0.0015), is 73%
+cell composition (73.3% at 33 modules, BH survives across all comparisons), replicates
+across all 10 usable decompositions in the deepSplit × mergeCutHeight grid, and **does not
+survive composition adjustment in any decomposition**. The monotone relationship between
+decomposition quality and composition share (r=+0.879) suggests a real effect being
+resolved more sharply as the network improves, not a parameter artifact.
 
-That is the project's founding hypothesis measured on the network side. It is one
-decomposition and one sample — `base-003-remerge` asks the preservation version of the
-same question and is queued next.
+Key: `findings/2026-10-14-lithium-dimension-is-composition.md` (E=24/25, I=9/10),
+`findings/2026-10-14-lithium-dimension-replicates.md` (E=22/25).
 
-**Read `RANKING.md` first.** It is generated from `findings/`; six findings so far.
+The next question is whether module structure is preserved across groups at all in these
+data (`base-001` v2 / `base-003-remerge`), and whether residualising for composition changes
+that (`inp-022`, `inp-023`).
+
+**Read `RANKING.md` first.** Rebuilt from `findings/`; 8 findings as of 2026-10-14.
 
 ## Infrastructure
 
@@ -28,11 +33,16 @@ same question and is queued next.
 
 ## Queue
 
-`mod-000-resolution` DONE. `base-001` PARTIAL at 18/20 draws, on the degenerate
-decomposition — its numbers are valid only for that parameter set.
+`mod-000-resolution` DONE. `base-001` **RUNNING v2** (deepSplit=4, mergeCutHeight=0,
+33-module reference from mod-000-resolution labels fast-path; nolith 500-perm preservation
+started ~19:15Z 2026-10-14; 20 lith draws follow). ETA completion ~21:30Z.
 
-Order: `base-001` (finish) → **`base-003-remerge`** (the key re-run at deepSplit=4,
-mergeCutHeight=0) → `base-002-ceil` → `inp-022` → `inp-023`.
+Order: **`base-001`** (RUNNING, 33-module v2) → **`base-003-remerge`** (reads base-001
+results, ~2 min) → `base-002-ceil` → `inp-022` → `inp-023`.
+
+All 50 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutHeight=0`
+(builder scripts) or point to the v2 cache key `control_all_bicor_signed_p12_ds4_mch00`
+(reader scripts). Fixed 2026-10-14.
 
 ## Parameters every downstream row should use
 
@@ -43,6 +53,18 @@ threshold.
 
 Quote every Zsummary against WGCNA's `gold` random-gene module, never against Langfelder's
 published bands — gold scores 20.26 here, so the bands place noise in "strongly preserved".
+
+## Analyses done (session 5, 2026-10-14)
+
+- **001-module-trait-ds4**: No module eigengene associates with lithium (0/33, BH). Modules
+  not independent (median |r|=0.822).
+- **002-effective-dimensionality**: PC2 associates with lithium (β=-0.908, p=0.0015);
+  73.3% cell composition; composition attenuates by 68.1%.
+- **003-lm22-circularity**: Dropping all 350 LM22 markers: association and composition
+  share move <1%. Not circular.
+- **004-decomposition-robustness**: Lithium dimension (PC2) replicates in 6/10 decomposition
+  cells, including 4/4 usable (≥10 modules, largest <25%). 0/6 survive composition
+  adjustment. r(n_modules, composition share)=+0.879.
 
 ## Layout
 
