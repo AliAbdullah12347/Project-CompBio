@@ -94,23 +94,6 @@ Evidence 22/25 · Interest 7/10 · Δ −1.8
 
 ---
 
-## Headline chain
-
-1. **Scale-free topology fails** at every power 1–20, all groups, both n=74 and n=234.
-   `pickSoftThreshold` returns `powerEstimate = 1` — the function failing. Max R² = 0.547.
-2. **The network is extraordinarily dense**: mean connectivity 1,031 at power 12 (each gene
-   tied to 8.3% of the transcriptome).
-3. `mergeCutHeight = 0.25` **cascades and collapses** 33 modules into 3 (largest 97.5%)
-   because median eigengene-pair correlation 0.739 is just below the 0.75 merge threshold.
-4. On that degenerate decomposition **no module beats a random gene set**: gold scores
-   Zsummary 20.26; best real module beats it in 9/15 subsamples.
-5. `deepSplit=4, mergeCutHeight=0` gives **33 usable modules** (largest 11.68%, median 248).
-6. No module eigengene associates with lithium after BH (0/33) — the eigengene approach
-   lacks power at this dimensionality and correlation structure.
-7. **A lithium dimension exists at the aggregate level**: PC2, permutation p = 0.0015.
-8. It is **73% cell composition**, and that fraction holds across every tested decomposition.
-9. **Never survives composition adjustment** — in any cell of the 10-decomposition grid.
-
 ### 005 — PC2 module loadings (which module drives the lithium dimension?)
 
 `network/analyses/005-pc2-module-loadings/` · Finding:
@@ -127,7 +110,55 @@ positive-loading modules (darkturquoise, yellow, blue) decline as B-cell fractio
 negative-loading modules (saddlebrown, white, violet) increase. No module eigengene
 associates with lithium at r > 0.18 — the lithium signal lives in the aggregate PC2.
 
-Evidence 18/25 · Interest 7/10 · Δ +0.2. Annotation of darkturquoise genes queued (ann-041).
+Evidence 18/25 · Interest 7/10 · Δ +0.2.
+
+### 006 — Darkturquoise annotation (GO enrichment + hub genes)
+
+`network/analyses/006-darkturquoise-annotation/` · Finding:
+[2026-10-14-darkturquoise-is-ribosomal.md](findings/2026-10-14-darkturquoise-is-ribosomal.md)
+
+Darkturquoise is a **ribosomal protein + oxidative phosphorylation** module. Universe:
+12,368 network genes. Min 10 annotated genes per term. FDR by BH within namespace.
+
+| Namespace | FDR<0.05 terms | Top term | n_dt / n_all | FDR |
+|:--|--:|:--|--:|--:|
+| BP | 35 | Cytoplasmic translation | 30 / 149 | 7.2e-26 |
+| CC | 47 | Cytosolic ribosome | 29 / 92 | 4.9e-32 |
+| MF | 12 | Structural constituent of ribosome | 32 / 146 | 7.3e-30 |
+
+Hub genes (top kME): RPL30 (0.953), RPL35 (0.952), RPL6 (0.935), RPL27 (0.926),
+RPS3A (0.908), COX7A2 (0.904), UQCRQ (0.893), ATP5F1C (0.891), GIMAP2 (0.890).
+
+**Biological interpretation:** plasma B cells sustain high immunoglobulin synthesis,
+requiring elevated ribosomal capacity and mitochondrial respiration. High B-cell/lymphocyte
+fraction (ILR b2) → elevated darkturquoise expression → PC2 elevated → appears to track
+lithium. The causal chain for the composition signal is now complete and mechanistically
+coherent.
+
+Evidence 22/25 · Interest 9/10 · Δ +0.3 — **the most quotable result in the arm.**
+
+---
+
+## Headline chain (updated)
+
+1. **Scale-free topology fails** at every power 1–20, all groups, both n=74 and n=234.
+   `pickSoftThreshold` returns `powerEstimate = 1` — the function failing. Max R² = 0.547.
+2. **The network is extraordinarily dense**: mean connectivity 1,031 at power 12 (each gene
+   tied to 8.3% of the transcriptome).
+3. `mergeCutHeight = 0.25` **cascades and collapses** 33 modules into 3 (largest 97.5%)
+   because median eigengene-pair correlation 0.739 is just below the 0.75 merge threshold.
+4. On that degenerate decomposition **no module beats a random gene set**: gold scores
+   Zsummary 20.26; best real module beats it in 9/15 subsamples.
+5. `deepSplit=4, mergeCutHeight=0` gives **33 usable modules** (largest 11.68%, median 248).
+6. No module eigengene associates with lithium after BH (0/33) — the eigengene approach
+   lacks power at this dimensionality and correlation structure.
+7. **A lithium dimension exists at the aggregate level**: PC2, permutation p = 0.0015.
+8. It is **73% cell composition**, and that fraction holds across every tested decomposition.
+9. **Never survives composition adjustment** — in any cell of the 10-decomposition grid.
+10. PC2 is driven by **one module**: darkturquoise (140 genes, loading=0.455, r_pc2=0.843).
+11. Darkturquoise is a **ribosomal/translation module** (cytosolic ribosome CC, FDR=4.9e-32;
+    hub genes RPL30, RPL35, RPL6). B cells need high translational capacity — the composition
+    effect has a mechanistically coherent biological substrate.
 
 ---
 

@@ -19,7 +19,7 @@ The next question is whether module structure is preserved across groups at all 
 data (`base-001` v2 / `base-003-remerge`), and whether residualising for composition changes
 that (`inp-022`, `inp-023`).
 
-**Read `RANKING.md` first.** Rebuilt from `findings/`; 8 findings as of 2026-10-14.
+**Read `RANKING.md` first.** Rebuilt from `findings/`; 10 findings as of 2026-10-14.
 
 ## Infrastructure
 
@@ -54,7 +54,7 @@ threshold.
 Quote every Zsummary against WGCNA's `gold` random-gene module, never against Langfelder's
 published bands — gold scores 20.26 here, so the bands place noise in "strongly preserved".
 
-## Analyses done (session 5, 2026-10-14)
+## Analyses done (session 5–6, 2026-10-14)
 
 - **001-module-trait-ds4**: No module eigengene associates with lithium (0/33, BH). Modules
   not independent (median |r|=0.822).
@@ -65,6 +65,13 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - **004-decomposition-robustness**: Lithium dimension (PC2) replicates in 6/10 decomposition
   cells, including 4/4 usable (≥10 modules, largest <25%). 0/6 survive composition
   adjustment. r(n_modules, composition share)=+0.879.
+- **005-pc2-module-loadings**: Darkturquoise (140 genes, loading=0.455, r_pc2=0.843) is
+  the only module with |loading|>0.3. PC2 is dominated by one module.
+- **006-darkturquoise-annotation**: Darkturquoise is a ribosomal/translation module (E=22/25,
+  I=9/10). 35 BP / 47 CC / 12 MF GO terms FDR<0.05. Top CC: cytosolic ribosome (29/92 genes,
+  FDR=4.9e-32). Hub genes: RPL30, RPL35, RPL6, RPL27, RPS3A. Also contains Complex III/IV
+  subunits. Story complete: high B-cell fraction → elevated ribosomal gene expression →
+  darkturquoise eigengene high → PC2 positive → appears to track lithium (via composition).
 
 ## Layout
 

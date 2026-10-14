@@ -1,0 +1,13 @@
+{
+  "analysis": "006-darkturquoise-annotation",
+  "question": "What biological processes do the 140 darkturquoise genes represent?",
+  "module": "darkturquoise",
+  "n_genes": 140,
+  "rationale": "analysis 005 showed darkturquoise dominates PC2 (loading=0.455, r_pc2=0.843). Annotating its genes gives the biological basis of the lithium-composition dimension.",
+  "gene_universe": "all 12368 genes in the co-expression network",
+  "go_test": "Fisher exact, one-sided (over-representation), FDR < 0.05",
+  "go_ontologies": ["BP", "CC", "MF"],
+  "min_go_genes": 10,
+  "note_go_pkg": "GO.db and AnnotationDbi from the approved package list",
+  "dependency": "analysis 005 (identifies darkturquoise as the key module)"
+}

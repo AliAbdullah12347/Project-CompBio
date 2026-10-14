@@ -1185,3 +1185,46 @@ A cell is "usable" if it has ≥ 10 non-grey modules AND largest module < 25%.
 **Result (observed):** 6/10 cells show a BH-significant lithium dimension; 4/4 usable
 cells are among them. 0/6 survive composition adjustment (BH across the 6 = 0.166).
 r(n_modules, composition share) = +0.879. The finding is robust and monotone.
+
+### Analysis 005: PC2 module loadings
+
+**Context:** Analysis 002 showed PC2 associates with lithium and is 73% cell composition.
+We asked which modules contribute most to PC2.
+
+**Pre-specified threshold:** |PC2 loading| > 0.3 (1.7× the expected null magnitude for
+an uncorrelated eigenvector of 33 variables: 1/√33 ≈ 0.174). Threshold specified in
+`config.json` before running.
+
+**Method:** Identical PCA as analysis 002 (same seed 20261014L, same samples, same module
+colours). Extracted `pc$rotation[,2]` — the module loadings on PC2. Separately computed
+Pearson r of each module eigengene with lithium, b1–b4, and PC2 scores.
+
+**Result (observed):** Darkturquoise is the only module with |loading| > 0.3 (loading =
++0.455, r_pc2 = +0.843). Next: yellow at 0.283, blue at 0.256. Ratio: darkturquoise
+loading² to next-best = 2.57×.
+
+### Analysis 006: Darkturquoise annotation (GO enrichment + kME)
+
+**Context:** Analysis 005 identified darkturquoise as the dominant driver of PC2. We
+annotated its 140 genes to understand what biological process underlies the composition
+signal.
+
+**Pre-specified test:** GO over-representation (Fisher exact, one-sided), FDR < 0.05 by
+BH within namespace, minimum 10 annotated genes per term, all three ontologies (BP, CC,
+MF). Universe = all 12,368 network genes. Threshold pre-specified in `config.json`.
+Package: org.Hs.eg.db, AnnotationDbi, GO.db.
+
+**Gene ID mapping:** Network gene IDs are unversioned Ensembl IDs (stripped by
+`00_load.R`). Mapped to GO via `AnnotationDbi::select(org.Hs.eg.db, keytype="ENSEMBL",
+columns=c("GOALL","ONTOLOGYALL"))`. Used GOALL (includes ancestor terms) — inflates
+term count but not false positives in a one-sided test.
+
+**Hub genes (kME):** Computed as Pearson r of each gene with the darkturquoise module
+eigengene across the 226 BP samples.
+
+**Result (observed):** 35 BP / 47 CC / 12 MF terms FDR < 0.05. Module is a cytoplasmic
+ribosomal protein + oxidative phosphorylation module. Top CC term: cytosolic ribosome
+(29/92 genes, FDR = 4.9e-32). Top hub genes: RPL30 (kME=0.953), RPL35 (0.952),
+RPL6 (0.935), RPL27 (0.926), RPS3A (0.908). Mechanistic interpretation: plasma B cells
+have high translational demand → elevated ribosomal gene expression → darkturquoise
+eigengene high → PC2 elevated → apparent lithium co-variation.

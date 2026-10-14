@@ -1,0 +1,135 @@
+Allowing parallel execution with up to 3 working processes.
+[15:51:04] Loading project data ...
+[15:51:05] 12368 genes in network
+[15:51:05] Loading module labels ...
+[15:51:05] Darkturquoise: 140 genes
+[15:51:05] org.Hs.eg.db available: TRUE
+[15:51:24] 10509 genes with GO annotation
+[15:51:24] GO BP enrichment ...
+[15:51:50]   35 terms FDR < 0.05 / 5299 tested
+
+======= GO BP (FDR<0.05, top 15) =======
+      go_id                                                term_name n_dt n_all
+ GO:0002181                                  cytoplasmic translation   30   149
+ GO:0006412                                              translation   36   583
+ GO:0043043                             peptide biosynthetic process   36   598
+ GO:0043604                               amide biosynthetic process   36   687
+ GO:0006518                                peptide metabolic process   36   701
+ GO:1901566             organonitrogen compound biosynthetic process   45  1283
+ GO:0034645              cellular macromolecule biosynthetic process   37   891
+ GO:0043603                         cellular amide metabolic process   36   880
+ GO:0006119                                oxidative phosphorylation   14   123
+ GO:0019646                         aerobic electron transport chain   12    82
+ GO:0042773                 ATP synthesis coupled electron transport   12    89
+ GO:0042775   mitochondrial ATP synthesis coupled electron transport   12    89
+ GO:0022904                     respiratory electron transport chain   12   106
+ GO:0009060                                      aerobic respiration   14   163
+ GO:0006123 mitochondrial electron transport, cytochrome c to oxygen    6    18
+     p_fisher          fdr
+ 1.366917e-29 7.243295e-26
+ 2.152696e-17 5.703569e-14
+ 4.858673e-17 8.582036e-14
+ 3.839713e-15 5.086660e-12
+ 7.167421e-15 7.596033e-12
+ 1.505122e-12 1.329273e-09
+ 1.962168e-12 1.485361e-09
+ 6.542447e-12 4.333553e-09
+ 9.906920e-11 5.832974e-08
+ 1.157966e-10 6.136064e-08
+ 3.101773e-10 1.369691e-07
+ 3.101773e-10 1.369691e-07
+ 2.441875e-09 9.953459e-07
+ 4.221009e-09 1.597652e-06
+ 3.136195e-08 1.107913e-05
+[15:51:50] GO CC enrichment ...
+[15:51:54]   47 terms FDR < 0.05 / 724 tested
+
+======= GO CC (FDR<0.05, top 15) =======
+      go_id                                    term_name n_dt n_all
+ GO:0022626                           cytosolic ribosome   29    92
+ GO:0044391                            ribosomal subunit   33   169
+ GO:0005840                                     ribosome   33   193
+ GO:0022625            cytosolic large ribosomal subunit   19    53
+ GO:0015934                      large ribosomal subunit   22   105
+ GO:1990904                    ribonucleoprotein complex   39   633
+ GO:0098798     mitochondrial protein-containing complex   23   260
+ GO:0098800 inner mitochondrial membrane protein complex   17   135
+ GO:0022627            cytosolic small ribosomal subunit   10    39
+ GO:0042788                           polysomal ribosome    9    29
+ GO:0005844                                     polysome   11    58
+ GO:0098803                    respiratory chain complex   12    75
+ GO:0005746                    mitochondrial respirasome   12    79
+ GO:0005743                 mitochondrial inner membrane   23   408
+ GO:0070469                                  respirasome   12    85
+     p_fisher          fdr
+ 6.791441e-35 4.917004e-32
+ 4.360906e-32 1.578648e-29
+ 4.424582e-30 1.067799e-27
+ 2.574535e-24 4.659909e-22
+ 3.098916e-22 4.487230e-20
+ 7.796764e-19 9.408095e-17
+ 1.468681e-14 1.519036e-12
+ 1.595342e-13 1.443784e-11
+ 1.200260e-11 9.655421e-10
+ 1.945933e-11 1.408855e-09
+ 3.802331e-11 2.356382e-09
+ 3.905606e-11 2.356382e-09
+ 7.367066e-11 4.102889e-09
+ 1.702748e-10 8.623311e-09
+ 1.786598e-10 8.623311e-09
+[15:51:54] GO MF enrichment ...
+[15:52:04]   12 terms FDR < 0.05 / 940 tested
+
+======= GO MF (FDR<0.05, top 15) =======
+      go_id                                                       term_name
+ GO:0003735                              structural constituent of ribosome
+ GO:0005198                                    structural molecule activity
+ GO:0003723                                                     RNA binding
+ GO:0015453 oxidoreduction-driven active transmembrane transporter activity
+ GO:0019843                                                    rRNA binding
+ GO:0015399               primary active transmembrane transporter activity
+ GO:0009055                                      electron transfer activity
+ GO:0048027                                             mRNA 5'-UTR binding
+ GO:0008097                                                 5S rRNA binding
+ GO:0004129                                   cytochrome-c oxidase activity
+ GO:0015078                       proton transmembrane transporter activity
+ GO:0016675       oxidoreductase activity, acting on a heme group of donors
+ n_dt n_all     p_fisher          fdr
+   32   146 7.788860e-33 7.321528e-30
+   34   372 9.085432e-22 4.270153e-19
+   42  1398 1.458158e-09 4.568896e-07
+    7    63 6.680073e-06 1.569817e-03
+    6    59 5.199859e-05 9.775736e-03
+    8   120 6.383492e-05 1.000080e-02
+    7    97 1.126840e-04 1.384366e-02
+    4    23 1.178184e-04 1.384366e-02
+    3    10 1.607238e-04 1.678671e-02
+    3    14 4.715919e-04 4.432964e-02
+    6    90 5.394678e-04 4.579510e-02
+    3    15 5.846183e-04 4.579510e-02
+[15:52:04] Computing kME for darkturquoise genes ...
+
+======= Top 20 hub genes (kME) in darkturquoise =======
+      ensembl_id kME_darkturquoise
+ ENSG00000156482            0.9530
+ ENSG00000136942            0.9515
+ ENSG00000169567            0.9450
+ ENSG00000089009            0.9351
+ ENSG00000125743            0.9341
+ ENSG00000175061            0.9340
+ ENSG00000235552            0.9296
+ ENSG00000131469            0.9256
+ ENSG00000100632            0.9208
+ ENSG00000243199            0.9201
+ ENSG00000244313            0.9144
+ ENSG00000085231            0.9090
+ ENSG00000145425            0.9084
+ ENSG00000112695            0.9083
+ ENSG00000106560            0.9042
+ ENSG00000133112            0.8982
+ ENSG00000164405            0.8928
+ ENSG00000165629            0.8910
+ ENSG00000136888            0.8903
+ ENSG00000008324            0.8881
+
+ANALYSIS_006_DONE
