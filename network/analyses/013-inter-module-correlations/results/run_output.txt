@@ -1,0 +1,36 @@
+Allowing parallel execution with up to 3 working processes.
+[16:30:34] Loading data ...
+[16:30:35] n: ctrl=234 nolith=74 lith=152
+
+======= Inter-module correlation summary =======
+     group n_pairs mean_abs_r median_abs_r frac_r_gt05 frac_r_gt08 mean_r
+   control     528     0.7023       0.7632      0.8258      0.4167 0.7006
+ bp_nolith     528     0.7379       0.7897      0.8674      0.4773 0.7332
+   bp_lith     528     0.7931       0.8447      0.9299      0.6231 0.7916
+   all_460     528     0.7506       0.8058      0.8826      0.5284 0.7493
+
+======= Mantel-like r (upper triangle correlation) =======
+ctrl vs nolith:   r = 0.9342
+ctrl vs lith:     r = 0.9328
+nolith vs lith:   r = 0.9841
+[16:30:35] Permutation test (K=1000): ctrl vs nolith structure ...
+
+Permutation p (one-sided, r_obs < random): 0.02400
+Permutation p (two-sided):                  0.02400
+Null mean: 0.9720; SD: 0.0150; obs: 0.9342
+[16:30:36] Per-module changes in inter-module correlations ...
+
+======= Per-module change in mean |r| with other modules (top 10) =======
+        module mean_abs_r_ctrl mean_abs_r_nolith delta_nolith_ctrl
+        salmon          0.6222            0.7575            0.1353
+        yellow          0.5692            0.6857            0.1165
+       darkred          0.3097            0.4243            0.1146
+           tan          0.7061            0.7902            0.0841
+        grey60          0.7153            0.7903            0.0750
+ paleturquoise          0.7230            0.7900            0.0670
+         black          0.7569            0.8109            0.0539
+          pink          0.7024            0.7546            0.0521
+  midnightblue          0.7655            0.8095            0.0440
+          blue          0.6920            0.7350            0.0430
+
+ANALYSIS_013_DONE

@@ -218,6 +218,29 @@ as analysis 002 PC2 but demoted by the dominant disease PC1 when controls are in
 
 Evidence 18/25 · Interest 7/10 · Δ −0.2.
 
+### 013 — Inter-module correlation structure: BP tightens module coupling
+
+`network/analyses/013-inter-module-correlations/` · Finding:
+[2026-10-14-inter-module-correlations-tighten-in-bp.md](findings/2026-10-14-inter-module-correlations-tighten-in-bp.md)
+
+The 33-module correlation structure is largely preserved (ctrl vs nolith Mantel r=0.934),
+but BP patients show significantly tighter inter-module coupling than controls:
+
+| Group | Median inter-module |r| | Fraction |r|>0.8 |
+|:--|--:|--:|
+| control | 0.763 | 41.7% |
+| bp_nolith | 0.790 | 47.7% |
+| bp_lith | 0.845 | 62.3% |
+
+Permutation test (K=1000): null Mantel r=0.972 (random subsamples); observed=0.934; p=0.024.
+The structure changes significantly more than random sampling would predict. This structurally
+explains PC1=77.5% variance (analysis 010): when modules become tightly coupled, one PC
+dominates. Darkred shows the largest change in mean |r| with other modules (Δ=+0.115)
+despite no ME level change.
+
+Evidence 16/25 · Interest 8/10 · Δ +1.6. Caution: Mantel test is a proxy; formal graph
+comparison (base-001 preservation) is the definitive test.
+
 ### 011 — Darkred annotation: erythrocyte module explains the lone exception
 
 `network/analyses/011-darkred-annotation/` · Finding:
@@ -277,6 +300,10 @@ Evidence 20/25 · Interest 8/10 · Δ +0.4.
     → darkred has near-zero composition correlations (r_b2=−0.097) → invisible to the
     composition proxy → no group effect. The 31 modules that DO change in BP are all
     measuring immune cell biology, which is exactly what LM22 captures.
+16. **BP disease tightens module coupling**: inter-module median |r| increases from 0.763
+    (ctrl) to 0.790 (nolith) to 0.845 (lith). Mantel structure similarity ctrl vs nolith
+    r=0.934 is significantly lower than the null (0.972; p=0.024). This tighter coupling is
+    the structural explanation for PC1=77.5%: tightly correlated modules collapse onto one PC.
 
 ---
 

@@ -13,5 +13,6 @@
 12,18,7,-0.2,"PC1 of the full-sample ME matrix captures BP disease: a global network factor","E=4 R=4 B=2 D=4 C=4","network/analyses/010-full-pca-all-samples","2026-10-14-pc1-captures-bp-disease.md","2026-10-14"
 13,18,6,-1.2,"No module eigengene associates with lithium — and the modules are not independent","E=4 R=5 B=2 D=4 C=3","network/analyses/001-module-trait-ds4","2026-10-14-module-trait-no-lithium-association.md","2026-10-14"
 14,17,8,1.2,"Darkturquoise: control-lith contrast survives composition adjustment; nolith-lith does not","E=4 R=4 B=2 D=3 C=4","network/analyses/007-darkturquoise-across-groups","2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md","2026-10-14"
-15,15,7,1,"Scale-free topology fails at every power and both sample sizes","E=4 R=2 B=3 D=4 C=2","network/runs/base-001 (sft curve) + Phase 0 probes","2026-10-09-scale-free-fails.md","2026-10-09"
-16,6,1,-1.4,"Cost scaling, measured","E=4 R=0 B=1 D=1 C=0","Phase 0 probes + base-001 draw timings","2026-10-09-cost-scaling.md","2026-10-09"
+15,16,8,1.6,"BP disease tightens inter-module correlations: modules move more in lockstep","E=3 R=4 B=2 D=0 C=4","network/analyses/013-inter-module-correlations","2026-10-14-inter-module-correlations-tighten-in-bp.md","2026-10-14"
+16,15,7,1,"Scale-free topology fails at every power and both sample sizes","E=4 R=2 B=3 D=4 C=2","network/runs/base-001 (sft curve) + Phase 0 probes","2026-10-09-scale-free-fails.md","2026-10-09"
+17,6,1,-1.4,"Cost scaling, measured","E=4 R=0 B=1 D=1 C=0","Phase 0 probes + base-001 draw timings","2026-10-09-cost-scaling.md","2026-10-09"

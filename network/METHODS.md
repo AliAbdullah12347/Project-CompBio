@@ -1329,3 +1329,22 @@ ANK1 (kME=0.937, ankyrin-1, the defining red blood cell membrane scaffold protei
 
 Darkred ME vs composition: r_b2=−0.097 (near-zero); darkturquoise comparison r_b2=−0.316.
 LM22 has no erythrocyte cell type → composition proxy invisible to darkred → FDR=0.981.
+
+---
+
+### Analysis 013 — Inter-module correlation structure (2026-10-14)
+
+**Question:** Does the correlation structure between the 33 module eigengenes change across
+groups, or does only the level change?
+
+**Method:** Per-group (ctrl n=234, nolith n=74, lith n=152) Pearson correlation matrices of
+the 33 module eigengenes (MEs from analysis 009). Mantel-like test: Pearson r between
+corresponding upper triangles of two per-group correlation matrices (528 pairs). Permutation
+test (K=1000): shuffle all 460 sample group labels, recompute ctrl-nolith Mantel r under
+null. Per-module change: mean |r| of each module vs all other modules, compared across groups.
+
+**Results:** Structure largely preserved (Mantel r ctrl vs nolith=0.934; nolith vs lith=0.984).
+Significant departure from null (null mean=0.972; p_two-sided=0.024). Inter-module coupling
+increases monotonically: median |r| ctrl=0.763 → nolith=0.790 → lith=0.845. Fraction of
+pairs with |r|>0.8 doubles from 42% (ctrl) to 62% (lith). Darkred largest per-module delta
+(+0.115) despite no ME level change.

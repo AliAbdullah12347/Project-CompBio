@@ -67,6 +67,10 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   adjustment. r(n_modules, composition share)=+0.879.
 - **005-pc2-module-loadings**: Darkturquoise (140 genes, loading=0.455, r_pc2=0.843) is
   the only module with |loading|>0.3. PC2 is dominated by one module.
+- **013-inter-module-correlations**: Inter-module correlation structure is largely preserved
+  across groups (Mantel r=0.934, ctrl vs nolith), but BP disease TIGHTENS module coupling:
+  median |r| ctrl=0.763 → nolith=0.790 → lith=0.845. Permutation p=0.024 shows this is
+  more than random subsampling. Mechanistically explains PC1=77.5% variance. E=16/25, I=8/10.
 - **011-darkred-annotation**: Darkred (164 genes) is an erythrocyte module (hub gene ANK1,
   ankyrin-1). LM22 has no erythrocyte cell type, so darkred has near-zero composition
   correlations (r_b2=−0.097 vs darkturquoise r_b2=−0.316). This mechanistically explains
