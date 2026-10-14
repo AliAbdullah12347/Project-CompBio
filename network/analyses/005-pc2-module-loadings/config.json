@@ -1,0 +1,11 @@
+{
+  "analysis": "005-pc2-module-loadings",
+  "question": "Which of the 33 modules drive PC2, the lithium-associated dimension?",
+  "input": "BP1 n=226, same expression matrix and group as analyses 001-004",
+  "modules": "network/runs/mod-000-resolution/labels_p12_ds4.rds (deepSplit=4, mch=0, 33 modules)",
+  "pca": "prcomp(ME_33, scale.=TRUE) — same call as analysis 002, seed 20261014",
+  "threshold_loading": 0.3,
+  "threshold_note": "Pre-specified: |loading| > 0.3 highlights modules contributing above the typical null magnitude (1/sqrt(33) = 0.174). No adjustment for number of modules tested — these are descriptive loadings, not hypothesis tests.",
+  "output": ["pc2_loadings.csv", "module_trait_correlations.csv"],
+  "dependency": "analyses 002 (shows PC2 is the lithium dimension); no preservation results needed"
+}

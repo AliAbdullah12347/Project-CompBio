@@ -111,6 +111,24 @@ Evidence 22/25 · Interest 7/10 · Δ −1.8
 8. It is **73% cell composition**, and that fraction holds across every tested decomposition.
 9. **Never survives composition adjustment** — in any cell of the 10-decomposition grid.
 
+### 005 — PC2 module loadings (which module drives the lithium dimension?)
+
+`network/analyses/005-pc2-module-loadings/` · Finding:
+[2026-10-14-darkturquoise-drives-pc2.md](findings/2026-10-14-darkturquoise-drives-pc2.md)
+
+PC2 is not diffuse — it is dominated by one module. **Darkturquoise** (140 genes, 1.1% of
+the transcriptome) is the only module with |PC2 loading| > 0.3 (loading = 0.455;
+r_pc2 = 0.843; next best: yellow at 0.283). Darkturquoise also has the strongest
+composition correlations among all modules (r_b2 = −0.449; the b2 balance tracks the
+B-cell/lymphocyte ratio).
+
+PC2 is a contrast between modules that move oppositely with cell composition:
+positive-loading modules (darkturquoise, yellow, blue) decline as B-cell fraction rises;
+negative-loading modules (saddlebrown, white, violet) increase. No module eigengene
+associates with lithium at r > 0.18 — the lithium signal lives in the aggregate PC2.
+
+Evidence 18/25 · Interest 7/10 · Δ +0.2. Annotation of darkturquoise genes queued (ann-041).
+
 ---
 
 ## Next
