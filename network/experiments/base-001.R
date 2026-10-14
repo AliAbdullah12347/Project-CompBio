@@ -50,14 +50,18 @@ COR_FNC        <- "bicor"
 GENE_SET       <- "all"
 REF_GROUP      <- "control"
 MIN_MODULE     <- 30L
-MERGE_THRESH   <- 0.25
+DEEP_SPLIT     <- 4L         # deepSplit=4 recommended by mod-000-resolution (2026-10-14)
+MERGE_THRESH   <- 0.0        # no merge: 33 modules vs 3 at default 0.25 (mod-000-resolution)
 DRAWS          <- 20L        # revised from spec 100 (see METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L       # bp_nolith: one run, many perms (no subsampling variance)
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L
 CACHE_KEY      <- paste(REF_GROUP, GENE_SET, COR_FNC, NET_TYPE,
-                        paste0("p", POWER), sep = "_")
+                        paste0("p", POWER),
+                        paste0("ds", DEEP_SPLIT),
+                        paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
+                        sep = "_")
 
 # ---------- 3. Write config BEFORE any computation --------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))
@@ -90,7 +94,10 @@ if (!file.exists(cfg_path)) {
     power_source         = "WGCNA_FAQ_signed_n_gt_40",
     power_guard          = paste0("reject_lt_", POWER_MIN, "_fallback_", POWER),
     minModuleSize        = MIN_MODULE,
+    deepSplit            = DEEP_SPLIT,
     mergeCutHeight       = MERGE_THRESH,
+    params_version       = "v2",
+    params_note          = "deepSplit=4 mergeCutHeight=0 per mod-000-resolution (2026-10-14); v1 (mch=0.25, 4 modules) archived to v1_degenerate/",
     draws_lith           = DRAWS,
     perms_per_lith_draw  = PERMS_PER_DRAW,
     nolith_perms         = NOLITH_PERMS,
@@ -123,6 +130,37 @@ msg("WGCNA ", as.character(packageVersion("WGCNA")), " loaded; threads enabled")
 # ---------- 5. Data ----------------------------------------------------------
 source("network/00_load.R")
 d <- load_project()   # stops loudly if shape is wrong; verified facts checked inside
+
+# ---------- 5a. Archive v1 (degenerate mergeCutHeight=0.25) checkpoints ------
+# On first v2 invocation, move checkpoints produced with the old parameters to
+# v1_degenerate/ so they are preserved as documented results without confusing
+# the checkpoint-progress logic for this run.
+v2_marker <- file.path(run_dir, "v2_params.marker")
+if (!file.exists(v2_marker)) {
+  v1_to_mv <- c(
+    list.files(run_dir, pattern = "^lith_draw_",        full.names = TRUE),
+    list.files(run_dir, pattern = "^permStats_",         full.names = TRUE),
+    file.path(run_dir, "nolith_preservation.rds"),
+    file.path(run_dir, "reference_module_sizes.csv")
+  )
+  v1_to_mv <- v1_to_mv[file.exists(v1_to_mv)]
+  if (length(v1_to_mv) > 0) {
+    v1_dir <- file.path(run_dir, "v1_degenerate")
+    dir.create(v1_dir, showWarnings = FALSE)
+    for (f_ in v1_to_mv)
+      if (!file.rename(f_, file.path(v1_dir, basename(f_))))
+        msg("WARNING: could not archive ", f_)
+    msg("Archived ", length(v1_to_mv),
+        " v1 checkpoints (mergeCutHeight=0.25, 4 modules) to v1_degenerate/")
+  } else {
+    msg("No v1 checkpoints to archive (clean slate)")
+  }
+  writeLines(c("deepSplit=4", "mergeCutHeight=0.0", "power=12", "params_version=2"),
+             v2_marker)
+  msg("v2 parameter marker written: ", v2_marker)
+} else {
+  msg("v2 marker present; no v1 migration needed")
+}
 
 # ---------- 6. Scale-free topology scan (R2 curve is itself a result) --------
 r2_path <- file.path(run_dir, "sft_r2_curve.csv")
@@ -158,6 +196,11 @@ if (!file.exists(r2_path)) {
 }
 
 # ---------- 7. Reference network (module detection, cached) ------------------
+# v2 parameters: deepSplit=4, mergeCutHeight=0.0 (33 modules, largest 11.68%).
+# Fast path: mod-000-resolution saved cutreeDynamic labels at deepSplit=4 on
+# the same TOM (power 12, bicor, signed, n=234). Using those labels directly
+# avoids the 47-min TOM rebuild and is scientifically identical — the module
+# assignments are the same. Fall back to blockwiseModules if absent.
 ref_cache <- file.path(cache_dir, paste0("ref_", CACHE_KEY, ".rds"))
 if (file.exists(ref_cache)) {
   msg("loading cached reference modules: ", ref_cache)
@@ -166,43 +209,61 @@ if (file.exists(ref_cache)) {
   msg(ref_net$n_modules, " modules loaded (",
       sum(moduleColors != "grey"), " genes in non-grey modules)")
 } else {
-  msg("building reference network (bicor, signed, power ", POWER, ") ...")
-  tmp_ref <- expr_for(d, group = REF_GROUP)   # 234 x 12368
-  set.seed(SEED_BASE)
-  bwm <- blockwiseModules(
-    tmp_ref,
-    power          = POWER,
-    networkType    = NET_TYPE,
-    TOMType        = NET_TYPE,
-    corType        = COR_FNC,
-    minModuleSize  = MIN_MODULE,
-    mergeCutHeight = MERGE_THRESH,
-    maxBlockSize   = 15000L,   # keep all 12368 genes in one block
-    numericLabels  = FALSE,
-    saveTOMs       = FALSE,
-    verbose        = 3
-  )
-  moduleColors <- bwm$colors
-  n_mods <- length(unique(moduleColors)) - 1L   # subtract 1 for grey
-  msg("reference network: ", n_mods, " modules detected (excluding grey); ",
-      sum(moduleColors == "grey"), " unassigned genes")
+  precomp_labels <- "network/runs/mod-000-resolution/labels_p12_ds4.rds"
+  if (file.exists(precomp_labels)) {
+    msg("Using pre-computed labels from mod-000-resolution (deepSplit=", DEEP_SPLIT,
+        "); saves ~47 min reference TOM rebuild ...")
+    raw_labels   <- readRDS(precomp_labels)
+    stopifnot(length(raw_labels) == 12368L)
+    moduleColors <- labels2colors(raw_labels)
+    mod_src      <- "mod-000-resolution/labels_p12_ds4.rds"
+    rm(raw_labels); gc()
+  } else {
+    msg("Pre-computed labels absent; building reference network from scratch ",
+        "(power=", POWER, ", deepSplit=", DEEP_SPLIT,
+        ", mergeCutHeight=", MERGE_THRESH, ") ...")
+    tmp_ref <- expr_for(d, group = REF_GROUP)   # 234 x 12368
+    set.seed(SEED_BASE)
+    bwm <- blockwiseModules(
+      tmp_ref,
+      power          = POWER,
+      networkType    = NET_TYPE,
+      TOMType        = NET_TYPE,
+      corType        = COR_FNC,
+      deepSplit      = DEEP_SPLIT,
+      minModuleSize  = MIN_MODULE,
+      mergeCutHeight = MERGE_THRESH,
+      maxBlockSize   = 15000L,
+      numericLabels  = FALSE,
+      saveTOMs       = FALSE,
+      verbose        = 3
+    )
+    moduleColors <- bwm$colors
+    mod_src      <- "blockwiseModules"
+    rm(bwm, tmp_ref); gc()
+  }
+  n_mods <- sum(names(table(moduleColors)) != "grey")
+  msg("reference modules: ", n_mods, " non-grey; ",
+      sum(moduleColors == "grey"), " grey genes")
   ref_net <- list(
-    moduleColors = moduleColors,
-    n_modules    = n_mods,
-    module_sizes = table(moduleColors),
-    power        = POWER,
-    cache_key    = CACHE_KEY,
-    corFnc       = COR_FNC,
-    networkType  = NET_TYPE,
-    ref_group    = REF_GROUP,
-    gene_set     = GENE_SET
+    moduleColors     = moduleColors,
+    n_modules        = n_mods,
+    module_sizes     = table(moduleColors),
+    power            = POWER,
+    deep_split       = DEEP_SPLIT,
+    merge_cut_height = MERGE_THRESH,
+    cache_key        = CACHE_KEY,
+    corFnc           = COR_FNC,
+    networkType      = NET_TYPE,
+    ref_group        = REF_GROUP,
+    gene_set         = GENE_SET,
+    source           = mod_src
   )
   saveRDS(ref_net, ref_cache)
   msg("reference modules cached: ", ref_cache)
-  # Module sizes as tracked CSV (small, useful for later rows)
   ms_path <- file.path(run_dir, "reference_module_sizes.csv")
   write.csv(as.data.frame(ref_net$module_sizes), ms_path, row.names = FALSE)
-  rm(bwm, tmp_ref); gc()
+  gc()
 }
 
 # refExpr is needed by every modulePreservation call — build once here.

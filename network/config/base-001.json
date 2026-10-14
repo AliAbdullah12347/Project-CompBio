@@ -14,7 +14,10 @@
   "power_source": "WGCNA_FAQ_signed_n_gt_40",
   "power_guard": "reject_lt_4_fallback_12",
   "minModuleSize": 30,
-  "mergeCutHeight": 0.25,
+  "deepSplit": 4,
+  "mergeCutHeight": 0,
+  "params_version": "v2",
+  "params_note": "deepSplit=4 mergeCutHeight=0 per mod-000-resolution (2026-10-14); v1 (mch=0.25, 4 modules) archived to v1_degenerate/",
   "draws_lith": 20,
   "perms_per_lith_draw": 50,
   "nolith_perms": 500,
@@ -25,8 +28,8 @@
   "stat": ["Zsummary", "medianRank"],
   "descriptive_only": true,
   "seed_base": 20261009,
-  "cache_key": "control_all_bicor_signed_p12",
-  "git_sha": "1857944",
+  "cache_key": "control_all_bicor_signed_p12_ds4_mch00",
+  "git_sha": "2bfcee3",
   "r_version": "4.2.2",
   "wgcna_version": "1.74"
 }

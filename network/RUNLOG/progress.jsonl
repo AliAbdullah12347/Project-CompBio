@@ -5,3 +5,4 @@
 {"ts":"2026-10-09T22:16:26Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 PARTIAL 10803s"}
 {"ts":"2026-10-10T00:47:02Z","run_id":"mod-000-resolution","phase":"run","pct":5,"msg":"starting network/experiments/mod-000-resolution.R cap=7200s"}
 {"ts":"2026-10-10T01:36:00Z","run_id":"mod-000-resolution","phase":"done","pct":100,"msg":"mod-000-resolution DONE 2938s"}
+{"ts":"2026-10-14T19:14:57Z","run_id":"base-001","phase":"run","pct":5,"msg":"starting network/experiments/base-001.R cap=10800s"}

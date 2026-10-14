@@ -1099,3 +1099,48 @@ re-run at `deepSplit = 4, mergeCutHeight = 0` before anything is concluded.
 That re-run is the single most valuable next experiment: it tests whether the gold result
 survives a usable decomposition, which is the difference between "WGCNA preservation is
 uninformative here" and "this particular parameter set was".
+
+---
+
+## 2026-10-14  base-001 v2: re-run with deepSplit=4, mergeCutHeight=0
+
+### Decision (pre-specified before any computation)
+
+`base-001.R` updated to use `deepSplit=4, mergeCutHeight=0` per `mod-000-resolution`'s
+recommendation. The old v1 run (mergeCutHeight=0.25, 4 modules) is archived to
+`network/runs/base-001/v1_degenerate/` and `network/config/base-001_v1_degenerate.json`.
+
+**New parameters:**
+- `deepSplit = 4` (was 2)
+- `mergeCutHeight = 0.0` (was 0.25)
+- `CACHE_KEY = control_all_bicor_signed_p12_ds4_mch00` (new, distinct from v1 key)
+- All other parameters unchanged: power=12, bicor, signed, 20 draws, 50 perms/draw
+
+**Fast-path reference build:**
+`mod-000-resolution` already computed and saved `labels_p12_ds4.rds` — the
+cutreeDynamic(deepSplit=4) labels on the same TOM (power 12, bicor, signed, n=234 controls).
+`base-001.R` now loads these labels directly and converts with `labels2colors()` instead of
+rebuilding the 47-min reference TOM. This saves ~47 min per session and is scientifically
+equivalent: the module assignments are identical to what `blockwiseModules` would produce
+at the same parameters. No KME reassignment is applied (the full `blockwiseModules`
+pipeline includes a KME step that reassigns boundary genes; the pre-computed labels do not).
+This difference is small (~few hundred genes of 12,368) and does not affect the scientific
+question. Documented here; falls back to full `blockwiseModules` if the pre-computed
+labels are absent.
+
+**Expected module structure (confirmed by mod-000-resolution):**
+33 non-grey modules, largest 11.68% of genes (~1,445 genes), median size 248, grey 0.03%.
+This is a usable co-expression decomposition; v1's 3–4 modules (largest 97%) was not.
+
+**What v1 results say:**
+The v1 results (18 lith draws + nolith, with 4 degenerate modules) remain valid as a
+documented record of what `mergeCutHeight=0.25` does to this data. They are preserved in
+`v1_degenerate/` and summarised in RESULTS.md. They do not speak to lithium.
+
+### Cost estimate
+- Reference build: ~1-2 min (load labels + labels2colors, no TOM computation)
+- nolith preservation (500 perms): ~2620 s (43 min)
+- 20 lith draws (50 perms each): ~20 × 262 s = 5240 s (87 min)
+- Total: ~130 min (2.2 h), comfortably under the 10800 s cap in one session
+- With 33 modules the per-permutation cost may be slightly higher; checkpoints ensure
+  safe resumption if the cap is hit.
