@@ -137,6 +137,32 @@ coherent.
 
 Evidence 22/25 · Interest 9/10 · Δ +0.3 — **the most quotable result in the arm.**
 
+### 007 — Darkturquoise across all 474 samples: asymmetric adjustment result
+
+`network/analyses/007-darkturquoise-across-groups/` · Finding:
+[2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md](findings/2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md)
+
+Extending to all 460 samples (control=234, bp_nolith=74, bp_lith=152). Group means:
+control=+0.0083, bp_nolith=+0.0048, bp_lith=−0.0129. Group ANOVA p=3.3e-5.
+
+After adjusting for ILR b1–b4 (composition):
+
+| Contrast | p_bonf_unadjusted | p_bonf_adjusted |
+|:--|--:|--:|
+| control vs bp_nolith | 1.000 | 0.831 |
+| **control vs bp_lith** | **< 0.001** | **0.001** |
+| bp_nolith vs bp_lith | 0.015 | 0.339 |
+
+The nolith-lith difference (which drives PC2 in analysis 002) is entirely compositional.
+But the control-lith difference **survives** composition adjustment. Composition-darkturquoise
+correlation is much weaker in controls (r_b2=−0.13) than BP patients (r_b2=−0.44), suggesting
+the ribosomal module's cell-composition dependency changes in the disease state.
+
+ILR b1–b4 alone explain 32.6% of darkturquoise variance across 460 samples.
+
+Evidence 17/25 · Interest 8/10 · Δ +0.8. Caution: unmeasured composition may explain the
+adjusted control-lith difference.
+
 ---
 
 ## Headline chain (updated)
@@ -159,6 +185,10 @@ Evidence 22/25 · Interest 9/10 · Δ +0.3 — **the most quotable result in the
 11. Darkturquoise is a **ribosomal/translation module** (cytosolic ribosome CC, FDR=4.9e-32;
     hub genes RPL30, RPL35, RPL6). B cells need high translational capacity — the composition
     effect has a mechanistically coherent biological substrate.
+12. The control-lith darkturquoise contrast **survives composition adjustment** (p_bonf=0.001
+    across 460 samples), but the nolith-lith contrast does NOT (p_bonf=0.339). The BP-only
+    result from finding 002 is intact; adding controls reveals an additional signal whose
+    biological origin (true lithium effect vs unmeasured composition) remains open.
 
 ---
 

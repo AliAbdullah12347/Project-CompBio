@@ -1,0 +1,17 @@
+{
+  "analysis": "007-darkturquoise-across-groups",
+  "question": "Does the darkturquoise module eigengene differ across all three groups (ctrl, bp_nolith, bp_lith), and does any group difference survive composition adjustment?",
+  "rationale": "Analyses 001-006 used only 226 BP samples. Darkturquoise (140 genes, ribosomal, loading=0.455 on PC2) drives the lithium-composition signal in BP. We now extend to all 474 samples to ask: (1) Does darkturquoise also track cell composition in controls? (2) Is there a group difference in darkturquoise after adjusting for composition?",
+  "samples": "all 474 (ctrl=248, bp_nolith=74, bp_lith=152)",
+  "module": "darkturquoise",
+  "module_colors_source": "network/runs/mod-000-resolution/labels_p12_ds4.rds",
+  "ref_cache_key": "control_all_bicor_signed_p12_ds4_mch00",
+  "pre_specified_tests": [
+    "Pearson r(darkturquoise_ME, b2) in each group separately",
+    "ANOVA: darkturquoise_ME ~ group (F-test, 2 df)",
+    "LM: darkturquoise_ME ~ group + b1 + b2 + b3 + b4 (composition-adjusted ANOVA)",
+    "Pairwise: ctrl vs bp_nolith, ctrl vs bp_lith, bp_nolith vs bp_lith (t-test, Bonferroni 3 comparisons)"
+  ],
+  "composition_proxy": "ILR b1-b4",
+  "dependency": "analyses 005, 006 (darkturquoise identified and annotated)"
+}

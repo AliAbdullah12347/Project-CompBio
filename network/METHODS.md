@@ -1228,3 +1228,28 @@ ribosomal protein + oxidative phosphorylation module. Top CC term: cytosolic rib
 RPL6 (0.935), RPL27 (0.926), RPS3A (0.908). Mechanistic interpretation: plasma B cells
 have high translational demand → elevated ribosomal gene expression → darkturquoise
 eigengene high → PC2 elevated → apparent lithium co-variation.
+
+### Analysis 007: Darkturquoise eigengene across all three groups
+
+**Context:** Analyses 001–006 used only 226 BP samples. Analysis 006 showed darkturquoise
+is a ribosomal module whose eigengene tracks cell composition (especially ILR b2, the B-cell
+balance). We extended to all 460 samples with complete ILR data (control=234, bp_nolith=74,
+bp_lith=152).
+
+**Pre-specified tests (config.json):**
+1. Pearson r(darkturquoise ME, b2) within each group separately
+2. ANOVA: dt_ME ~ group (F-test, 2 df)
+3. LM: dt_ME ~ group + b1 + b2 + b3 + b4 (composition-adjusted ANOVA)
+4. Pairwise t-tests: 3 contrasts, Bonferroni correction (factor=3)
+
+**ME computation:** module eigengenes projected across all 474 samples using the 33-module
+colour assignment from mod-000-resolution (the reference group's decomposition).
+
+**Result (observed):** Group means: control=+0.0083, bp_nolith=+0.0048, bp_lith=−0.0129.
+Unadjusted ANOVA F(2,457)=10.6, p=3.3e-5. After composition adjustment:
+- control vs bp_nolith: p_bonf=0.831 (NS both ways)
+- control vs bp_lith: p_bonf_adjusted=0.001 (survives)
+- bp_nolith vs bp_lith: p_bonf_adjusted=0.339 (does not survive)
+
+Composition-darkturquoise correlation: controls r_b2=−0.130, bp_nolith r_b2=−0.390,
+bp_lith r_b2=−0.444. ILR explains 32.6% of dt_ME variance across all samples.
