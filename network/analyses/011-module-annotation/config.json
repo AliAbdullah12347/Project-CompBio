@@ -1,5 +1,5 @@
 {
-  "analysis": "005-module-annotation",
+  "analysis": "011-module-annotation",
   "covers": "catalogue 15 (module/DEG overlap), 16 (sample structure), 11 (hub genes)",
   "decomposition": "deepSplit=4, mergeCutHeight=0, 33 modules (mod-000-resolution)",
   "samples": "15 and 11 on control reference n=234; 16 on all 474 with a group label",

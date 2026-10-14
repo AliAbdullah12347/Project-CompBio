@@ -1,7 +1,7 @@
 # PC2 is a lithium axis in the full cohort too, and the lithium DE signal is module-specific
 
 **Date:** 2026-10-14
-**Analysis:** `network/analyses/005-module-annotation`
+**Analysis:** `network/analyses/011-module-annotation`
 **Evidence:** 19/25 · **Interest:** 7/10 · **Δ:** -0.6
 
 ## Claim

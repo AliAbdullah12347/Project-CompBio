@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # ===========================================================================
-# 005-module-annotation  — covers catalogue items 15, 16 and 11 at once
+# 011-module-annotation  — covers catalogue items 15, 16 and 11 at once
 #
 #  15. module overlap with the lithium / bipolar DEG lists and LM22 markers
 #      (Fisher exact, BH across modules)
@@ -12,7 +12,7 @@
 # ===========================================================================
 setwd("/Users/Aaylab/Project-CompBio")
 suppressPackageStartupMessages(library(WGCNA)); options(stringsAsFactors=FALSE); enableWGCNAThreads()
-OUT <- "network/analyses/005-module-annotation/results"; dir.create(OUT, recursive=TRUE, showWarnings=FALSE)
+OUT <- "network/analyses/011-module-annotation/results"; dir.create(OUT, recursive=TRUE, showWarnings=FALSE)
 msg <- function(...) cat(sprintf("[%s] %s\n", format(Sys.time(),"%H:%M:%S"), paste0(...,collapse="")))
 set.seed(20261014L)
 source("network/00_load.R"); d <- load_project(cache=TRUE, verbose=FALSE)

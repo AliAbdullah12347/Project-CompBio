@@ -43,3 +43,23 @@ ten-decomposition replication (004).
 3. ~~One decomposition at one parameter set.~~ **Superseded by 004**: replicates in 4 of 4
    usable decompositions and 6 of 10 overall. Remaining limit is one cohort, one
    composition estimator.
+
+## Read with analysis 009 — this is the within-BP special case
+
+`009-all-modules-across-groups` extends this to all 33 modules and all 460 samples and
+reaches a sharper conclusion that **supersedes this finding as the headline**:
+
+| contrast | modules differing after composition adjustment |
+|:--|--:|
+| control vs bp_nolith | **31 / 33** |
+| control vs bp_lith | 32 / 33 |
+| **bp_nolith vs bp_lith** | **0 / 33** |
+
+Untreated BP already differs from controls in 31 of 33 modules *after* composition
+adjustment; lithium adds nothing on top. So this finding — that the within-BP lithium
+dimension is compositional — is the special case of a broader result: **the network
+difference is disease, not medication, and it is not compositional.**
+
+That inverts the project's founding worry at the network level. The concern was that a
+bipolar signature might be a lithium signature; 009 shows the signature is present in
+patients who never took lithium.
