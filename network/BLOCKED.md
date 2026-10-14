@@ -93,3 +93,27 @@ Local commits are intact on main and unpushed. A human must reconcile.
 fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git/': Could not resolve host: github.com
 ```
 
+## 2026-10-14T22:14:58Z  base-001  hit 10800s cap; partial results kept; +5 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-14T17:38:20] draw 1/20 done: Zsummary range [5.43, 34.07]
+[2026-10-14T17:38:20] draw 2/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-14T17:50:31] draw 2/20 done: Zsummary range [5.48, 30.02]
+[2026-10-14T17:50:31] draw 3/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-14T18:02:43] draw 3/20 done: Zsummary range [4.76, 31.38]
+[2026-10-14T18:02:44] draw 4/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+

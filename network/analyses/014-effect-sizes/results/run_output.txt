@@ -1,0 +1,7 @@
+Allowing parallel execution with up to 3 working processes.
+[16:34:14] Loading data ...
+[16:34:14] Computing effect sizes for 33 modules ...
+Error in round(a09$p_bonf_ctrl_nolith[1], 4) : 
+  non-numeric argument to mathematical function
+Calls: do.call -> lapply -> FUN -> data.frame
+Execution halted

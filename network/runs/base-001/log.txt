@@ -17,3 +17,31 @@ Vcells 15927526 121.6   30002890 229.0      16384 16220588 123.8
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-14T17:25:41] bp_nolith done: 34 modules; Zsummary range [4.95, 34.18]
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2410478 128.8    4385997 234.3         NA  3613716 193.0
+Vcells 18914735 144.4   63190129 482.2      16384 63190129 482.2
+[2026-10-14T17:25:41] draw 1/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-14T17:38:20] draw 1/20 done: Zsummary range [5.43, 34.07]
+[2026-10-14T17:38:20] draw 2/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-14T17:50:31] draw 2/20 done: Zsummary range [5.48, 30.02]
+[2026-10-14T17:50:31] draw 3/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-14T18:02:43] draw 3/20 done: Zsummary range [4.76, 31.38]
+[2026-10-14T18:02:44] draw 4/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
