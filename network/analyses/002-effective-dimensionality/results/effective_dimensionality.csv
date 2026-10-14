@@ -1,0 +1,3 @@
+"decomposition","n_modules","median_abs_r","mean_r","Meff_LiJi","PCs_for_80pct","PCs_for_90pct","PC1_var_pct"
+"deepSplit=4, mergeCutHeight=0 (33 modules)",33,0.822,0.769,6,2,3,79.3
+"mergeCutHeight=0.25 (base-001, 4 modules)",4,0.569,0.486,3,2,2,64.2
