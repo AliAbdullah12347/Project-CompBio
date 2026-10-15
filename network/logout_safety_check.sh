@@ -22,10 +22,15 @@ defaults read .GlobalPreferences com.apple.autologout.AutoLogOutDelay >/dev/null
   || ok "no auto-logout timer (macOS will not log you out by itself)"
 
 echo; echo "=== SURVIVES LOGOUT / REBOOT ==="
+# launchctl cannot query the system domain without root, so: try sudo if it is
+# cached, else fall back to the verification marker written when it was loaded.
+# A daemon under /Library/LaunchDaemons is re-loaded by launchd at every boot,
+# so "loaded once" is durable - it does not need re-bootstrapping.
 if sudo -n launchctl print system/com.aaylab.networkarm.daemon >/dev/null 2>&1; then
-  ok "LaunchDaemon loaded in system domain"
-elif [ -s network/RUNLOG/daemon.out ] || [ -s network/RUNLOG/daemon.err ]; then
-  ok "LaunchDaemon has produced output (it is firing)"
+  ok "LaunchDaemon loaded in system domain (confirmed live via launchctl)"
+elif [ -f network/RUNLOG/.daemon_verified ]; then
+  ok "LaunchDaemon loaded $(awk -F= '/^verified_utc/{print $2}' network/RUNLOG/.daemon_verified) \
+(marker; re-confirm: sudo launchctl print system/com.aaylab.networkarm.daemon)"
 else
   bad "LaunchDaemon NOT loaded - run the sudo bootstrap command"
 fi

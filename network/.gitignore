@@ -32,3 +32,4 @@ RUNLOG/watchdog.out
 RUNLOG/watchdog.err
 RUNLOG/daemon.out
 RUNLOG/daemon.err
+RUNLOG/.daemon_verified
