@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-14
+**Updated:** 2026-10-15
 
 ## Where the science stands
 
@@ -15,11 +15,20 @@ resolved more sharply as the network improves, not a parameter artifact.
 Key: `findings/2026-10-14-lithium-dimension-is-composition.md` (E=24/25, I=9/10),
 `findings/2026-10-14-lithium-dimension-replicates.md` (E=22/25).
 
+**New session-6 finding (partial):** base-001 v2 (33 modules, 4/20 lith draws done) already
+reverses the v1 gold-baseline finding: 9 of 33 modules beat gold in bp_nolith (nolith gold
+Z=20.01); yellow, black, blue, red beat gold in all 4 lith draws. The v1 "no module beats
+random" result was specific to the degenerate 4-module decomposition. Full result pending
+(16 more draws across 2 sessions).
+
+**Important timing correction:** Per-draw cost at 33 modules is ~859 s, not the 262 s
+measured at 4 modules. See METHODS.md 2026-10-15 entry.
+
 The next question is whether module structure is preserved across groups at all in these
 data (`base-001` v2 / `base-003-remerge`), and whether residualising for composition changes
 that (`inp-022`, `inp-023`).
 
-**Read `RANKING.md` first.** Rebuilt from `findings/`; 16 findings as of 2026-10-14.
+**Read `RANKING.md` first.** Rebuilt from `findings/`; 17 findings as of 2026-10-14.
 
 ## Infrastructure
 
@@ -34,8 +43,10 @@ that (`inp-022`, `inp-023`).
 ## Queue
 
 `mod-000-resolution` DONE. `base-001` **RUNNING v2** (deepSplit=4, mergeCutHeight=0,
-33-module reference from mod-000-resolution labels fast-path; nolith 500-perm preservation
-started ~19:15Z 2026-10-14; 20 lith draws follow). ETA completion ~21:30Z.
+33-module reference; nolith 500-perm preservation done; lith draws 1–4 done as of 2026-10-15T20:37Z;
+draws 5–15 in progress this session; draws 16–20 will need one more session). Per-draw cost
+859 s (3.3× slower than v1's 4-module draws — see METHODS.md 2026-10-15). ETA all 20 draws:
+~23:23Z cap today + 1 more session.
 
 Order: **`base-001`** (RUNNING, 33-module v2) → **`base-003-remerge`** (reads base-001
 results, ~2 min) → `base-002-ceil` → `inp-022` → `inp-023`.
@@ -93,6 +104,25 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   FDR=4.9e-32). Hub genes: RPL30, RPL35, RPL6, RPL27, RPS3A. Also contains Complex III/IV
   subunits. Story complete: high B-cell fraction → elevated ribosomal gene expression →
   darkturquoise eigengene high → PC2 positive → appears to track lithium (via composition).
+
+## Pending task for next session start (2026-10-15 post-cap)
+
+After base-001 hits its 10800s cap (~23:23Z UTC) and the driver marks it PARTIAL:
+
+1. **Pull** (`git pull --rebase`) to get the driver's auto-commit.
+2. **Write finding** `network/findings/2026-10-15-v2-33modules-reverses-gold-finding.md`
+   using the data from `network/runs/base-001/nolith_preservation.rds` and all
+   `lith_draw_*.rds` files. Key numbers (from 5/20 draws already done):
+   - nolith gold Z = 20.01; **9/33 modules beat gold**
+   - nolith top: yellow(34.18), black(28.67), blue(27.46), red(25.66), turquoise(22.53)
+   - lith top (5 draws): yellow(30.25,1.0), black(29.45,1.0), blue(25.20,1.0), red(25.18,1.0)
+   - turquoise: lith frac=0.6 at 5 draws (marginal)
+   - darkturquoise: nolith Z=6.49, lith mean=7.08 — well BELOW gold (poorly preserved)
+   - v1 claim "no module beats random" is WRONG at 33-module decomposition
+   - Score: E=5 R=5 B=3 D=4 C=2 → 19/25; Interest=8/10; Δ=+0.4
+3. **Rebuild** `Rscript network/build_index.R`
+4. **Commit/push**: `git commit -- network/` then `git push`
+5. **Run driver**: `bash network/run_next.sh`  (picks up base-001 draws 16–20)
 
 ## Layout
 
