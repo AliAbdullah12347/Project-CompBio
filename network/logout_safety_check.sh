@@ -31,8 +31,14 @@ if sudo -n launchctl print system/com.aaylab.networkarm.daemon >/dev/null 2>&1; 
 elif [ -f network/RUNLOG/.daemon_verified ]; then
   ok "LaunchDaemon loaded $(awk -F= '/^verified_utc/{print $2}' network/RUNLOG/.daemon_verified) \
 (marker; re-confirm: sudo launchctl print system/com.aaylab.networkarm.daemon)"
+elif grep -q "skipped: a session is still running\|=== wake " network/RUNLOG/cron.log 2>/dev/null \
+     && [ -f /Library/LaunchDaemons/com.aaylab.networkarm.daemon.plist ]; then
+  note "LaunchDaemon state UNVERIFIED without sudo (plist is present and wake.sh
+        has been firing). Confirm with:
+        sudo launchctl print system/com.aaylab.networkarm.daemon"
 else
-  bad "LaunchDaemon NOT loaded - run the sudo bootstrap command"
+  bad "LaunchDaemon not loaded, and no evidence it ever fired. Run:
+        sudo launchctl bootstrap system /Library/LaunchDaemons/com.aaylab.networkarm.daemon.plist"
 fi
 [ -f /Library/LaunchDaemons/com.aaylab.networkarm.daemon.plist ] \
   && ok "daemon plist present and root-owned" \
