@@ -1348,3 +1348,44 @@ Significant departure from null (null mean=0.972; p_two-sided=0.024). Inter-modu
 increases monotonically: median |r| ctrl=0.763 → nolith=0.790 → lith=0.845. Fraction of
 pairs with |r|>0.8 doubles from 42% (ctrl) to 62% (lith). Darkred largest per-module delta
 (+0.115) despite no ME level change.
+
+---
+
+## 2026-10-15  Per-draw cost re-measured at 33 modules: 859 s/draw, not 262 s
+
+The earlier measurement of 262 s/draw (METHODS.md 2026-10-09, "Per-draw cost measured:
+262 s, not 1962 s") was taken on the v1 run with **4 modules** (mergeCutHeight=0.25
+degenerate decomposition). The v2 run at **33 modules** (deepSplit=4, mergeCutHeight=0)
+produces a directly measured cost of **859 s per draw** (draw 4, session 6).
+
+Ratio: 859/262 = 3.28×. Consistent with modulePreservation computing statistics for each
+of 33 modules per permutation vs 4 in v1. The TOM computation (dominant step) is
+unchanged, but per-permutation statistics scale with n_modules.
+
+### Revised budget for all 33-module rows
+
+One `draws=20;perms_per_draw=50` row at n=234 reference:
+- `2360 s` reference build (paid once per cache key, from checkpoint if reused)
+- `2620 s` nolith (500 perms, based on 5.2 s/perm unchanged)
+- `20 × 859 s = 17180 s` lith draws
+
+**Total: ~22 160 s (~6.2 h), spanning 3 sessions** (cap=10800 s):
+- Session 1: nolith (2620 s) + 9 draws (7731 s) = 10351 s → 9 draws done, cap hit
+- Session 2: 11 draws (9449 s) → completes all; pushes DONE
+
+For the 11 such rows in the queue: 11 × 2 sessions = 22 sessions ≈ 110 h at the 5-h
+interval. Against ~61 h remaining. **~1.8× oversubscribed at 20 draws each.**
+
+### Decision: keep 20 draws for base-001 (mid-run, no change allowed)
+
+base-001 is mid-run (4/20 draws done as of 2026-10-15). Changing draw count mid-run
+would discard completed work and break comparability between draws. No change.
+
+For future rows: 15 draws would fit (15 × 2 = 30 sessions ≈ 75 h — still tight), and
+10 draws would fit all rows comfortably (10 × 2 = 20 sessions ≈ 50 h). The scientific
+tradeoff remains breadth vs. spread estimation, per METHODS.md 2026-10-09. The operator
+must specify this before the first future draws=100 row is claimed.
+
+**What is NOT changed:** The per-permutation rate of 5.2 s/perm still holds. The
+nolith (500-perm) cost is unchanged at ~2620 s. The reference build cost (786 s × n_ref/74)
+is unchanged. Only the number of permutations per lith draw that fits in a session differs.

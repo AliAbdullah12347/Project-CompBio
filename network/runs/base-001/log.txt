@@ -1,47 +1,29 @@
-[2026-10-14T15:14:57] === base-001 starting ===
-[2026-10-14T15:14:58] config written: network/config/base-001.json
+[2026-10-15T16:23:30] === base-001 starting ===
 Allowing parallel execution with up to 3 working processes.
-[2026-10-14T15:15:00] WGCNA 1.74 loaded; threads enabled
+[2026-10-15T16:23:36] WGCNA 1.74 loaded; threads enabled
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-10-14T15:15:00] Archived 39 v1 checkpoints (mergeCutHeight=0.25, 4 modules) to v1_degenerate/
-[2026-10-14T15:15:00] v2 parameter marker written: network/runs/base-001/v2_params.marker
-[2026-10-14T15:15:00] R2 curve checkpoint exists, skipping scan
-[2026-10-14T15:15:00] Using pre-computed labels from mod-000-resolution (deepSplit=4); saves ~47 min reference TOM rebuild ...
-[2026-10-14T15:15:01] reference modules: 33 non-grey; 4 grey genes
-[2026-10-14T15:15:01] reference modules cached: network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds
-           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-Ncells  2375184 126.9    4385997 234.3         NA  3200321 171.0
-Vcells 15927526 121.6   30002890 229.0      16384 16220588 123.8
-[2026-10-14T15:15:01] bp_nolith preservation: 500 perms (fixed test set, no subsampling) ...
+[2026-10-15T16:23:37] v2 marker present; no v1 migration needed
+[2026-10-15T16:23:37] R2 curve checkpoint exists, skipping scan
+[2026-10-15T16:23:37] loading cached reference modules: network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds
+[2026-10-15T16:23:37] 33 modules loaded (12364 genes in non-grey modules)
+[2026-10-15T16:23:37] bp_nolith checkpoint exists, skipping
+[2026-10-15T16:23:37] draw 1/20 checkpoint exists, skipping
+[2026-10-15T16:23:37] draw 2/20 checkpoint exists, skipping
+[2026-10-15T16:23:37] draw 3/20 checkpoint exists, skipping
+[2026-10-15T16:23:37] draw 4/20: subsampling bp_lith (n=74 from 152) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-10-14T17:25:41] bp_nolith done: 34 modules; Zsummary range [4.95, 34.18]
-           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-Ncells  2410478 128.8    4385997 234.3         NA  3613716 193.0
-Vcells 18914735 144.4   63190129 482.2      16384 63190129 482.2
-[2026-10-14T17:25:41] draw 1/20: subsampling bp_lith (n=74 from 152) ...
+[2026-10-15T16:37:56] draw 4/20 done: Zsummary range [5.05, 31.06]
+[2026-10-15T16:37:56] draw 5/20: subsampling bp_lith (n=74 from 152) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-10-14T17:38:20] draw 1/20 done: Zsummary range [5.43, 34.07]
-[2026-10-14T17:38:20] draw 2/20: subsampling bp_lith (n=74 from 152) ...
+[2026-10-15T16:51:27] draw 5/20 done: Zsummary range [4.25, 32.54]
+[2026-10-15T16:51:27] draw 6/20: subsampling bp_lith (n=74 from 152) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-10-14T17:50:31] draw 2/20 done: Zsummary range [5.48, 30.02]
-[2026-10-14T17:50:31] draw 3/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-14T18:02:43] draw 3/20 done: Zsummary range [4.76, 31.38]
-[2026-10-14T18:02:44] draw 4/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-CAP EXCEEDED after 10800s

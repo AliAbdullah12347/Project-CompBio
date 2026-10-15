@@ -138,3 +138,29 @@ DONE count has been stuck at 1 across 5 wake-ups (~25 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-10-15T20:40Z  ROOT CAUSE IDENTIFIED AND RESOLVED (session 6)
+
+The "no progress" entries above were caused by two compounding failures:
+
+1. **2026-10-14T22:15Z**: `git push` failed (`Could not resolve host: github.com`) after
+   base-001 hit its cap and the driver tried to sync. The pull --rebase also failed.
+   The queue was left with base-001=PARTIAL and 3 lith draws saved, but unpushed.
+
+2. **2026-10-15T14:05Z and 19:05Z**: Daemon sessions started but the Claude CLI
+   immediately exited with `API Error: Unable to connect to API (FailedToOpenSocket)`.
+   Both sessions hit the same connectivity failure (~5-min window each time), so no
+   work was done and no progress.jsonl entries were written.
+
+3. **2026-10-15T09:08Z**: A session ran but hit the pull --rebase failure again
+   (github.com still unreachable).
+
+**Current status (20:40Z):** Network restored. Session 6 is running. base-001 is now
+actively computing lith draws (draw 4 done at 20:37:56Z; draws 5–15 in progress).
+Queue is RUNNING. The missing ~25 hours was a network outage, not a science or
+infrastructure failure.
+
+## 2026-10-15T20:57:34Z  NO PROGRESS IN 6 CONSECUTIVE SESSIONS
+DONE count has been stuck at 1 across 6 wake-ups (~30 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+
