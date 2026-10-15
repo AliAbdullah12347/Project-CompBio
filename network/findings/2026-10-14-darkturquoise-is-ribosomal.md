@@ -1,5 +1,15 @@
 # Darkturquoise is a ribosomal/translation module: the composition signal has a biological substrate
 
+> **CORRECTION 2026-10-15 — `b2` was mislabelled.** The sequential binary partition in
+> `mediation/scripts/00b_ilr_trace.R:96-99` defines **b2 = gran vs mono**, not a B-cell or
+> lymphocyte balance (b1 = myeloid vs lymphoid, b3 = T vs NK+B, b4 = NK vs B). Labels below
+> have been corrected in place. Two directional claims built on the wrong label were also
+> wrong and are flagged inline: b2 by group is bp_lith 0.3079 > control 0.2122 > bp_nolith
+> 0.1816 (lithium is **highest**, not lowest), and r(darkturquoise, b2) is **negative** in
+> every group (-0.130 ctrl, -0.390 nolith, -0.444 lith). The corrected reading — lithium
+> raises granulocytes, granulocytes dilute the lymphocyte ribosomal program, darkturquoise
+> falls — fits the arm's own r(darkturquoise, gran) = -0.510 (p = 2.3e-16).
+
 **Date:** 2026-10-14
 **Analysis:** `network/analyses/006-darkturquoise-annotation`
 **Evidence:** 22/25 · **Interest:** 9/10 · **Δ:** +0.3
@@ -44,13 +54,13 @@ further supporting that the module is driven by ribosomal biogenesis.
 
 Lymphocytes — particularly plasma B cells — are among the most translationally active
 cells in peripheral blood. They sustain large-scale immunoglobulin synthesis, requiring
-high ribosomal capacity and mitochondrial respiration. Samples with a high B-cell/lymphocyte
+high ribosomal capacity and mitochondrial respiration. Samples with a high granulocyte/monocyte
 fraction (ILR b2) express more ribosomal protein genes, and that co-expression coalesces
 into the darkturquoise module.
 
 **The causal chain for the PC2 / composition signal is now complete:**
 
-> High B-cell fraction (b2 balance) → higher ribosomal gene expression →
+> High granulocyte fraction (b2 balance) → higher ribosomal gene expression → **[SIGN REVERSED: r(dt,b2) < 0 in every group]**
 > darkturquoise module eigengene elevated → PC2 positive → PC2 observed to
 > co-vary with lithium status only because lithium-treated patients differ in
 > cell composition.

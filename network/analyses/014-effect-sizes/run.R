@@ -90,8 +90,8 @@ results <- do.call(rbind, lapply(me_cols, function(me_col) {
     mean_nolith = round(mean(nolith_me), 6),
     mean_lith   = round(mean(lith_me),   6),
     sd_ctrl     = round(sd(ctrl_me),     6),
-    p_bonf_ctrl_nolith = if (nrow(a09) > 0) round(a09$p_bonf_ctrl_nolith[1], 4) else NA,
-    p_bonf_ctrl_lith   = if (nrow(a09) > 0) round(a09$p_bonf_ctrl_lith[1], 4) else NA,
+    p_bonf_ctrl_nolith = if (nrow(a09) > 0) round(a09$bonf_ctrl_nolith[1], 4) else NA,
+    p_bonf_ctrl_lith   = if (nrow(a09) > 0) round(a09$bonf_ctrl_lith[1], 4) else NA,
     stringsAsFactors = FALSE
   )
 }))

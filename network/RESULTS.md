@@ -41,9 +41,19 @@ composition restores preservation.
 `network/analyses/001-module-trait-ds4/` · Finding:
 [2026-10-14-module-trait-no-lithium-association.md](findings/2026-10-14-module-trait-no-lithium-association.md)
 
-No module eigengene associates with lithium status after BH correction (0 of 33; best
-uncorrected p=0.061). Modules are not independent: median |r| = 0.822 between pairs, so
-Bonferroni would be anti-conservative and BH is the appropriate correction.
+No module eigengene associates with lithium status after BH correction (0 of 33). The
+actual minima in `analyses/001-module-trait-ds4/results/lithium_composition_adjusted.csv`
+are p_marginal = 0.00547, p_compadj = 0.1507, p_fulladj = 0.1537; after BH, 0.1383,
+0.8348 and 0.9708. Modules are not independent (median |r| = 0.822 between pairs), so
+Bonferroni is **conservative** here, not anti-conservative, and BH is preferred because
+it is less strict under positive dependence — not because Bonferroni fails to control.
+
+> **CORRECTED 2026-10-15.** This paragraph previously read "best uncorrected p=0.061";
+> that number appears nowhere in the analysis it cites, which is exactly the
+> carried-forward-unchecked figure IMAC_README §8 forbids. It also stated that Bonferroni
+> "would be anti-conservative" — the reverse of the truth, and the reverse of what
+> `analyses/001-module-trait-ds4/README.md` correctly says ("mis-specified here, in the
+> conservative direction").
 
 Evidence 18/25 · Interest 6/10 · Δ −1.2
 
@@ -103,7 +113,7 @@ PC2 is not diffuse — it is dominated by one module. **Darkturquoise** (140 gen
 the transcriptome) is the only module with |PC2 loading| > 0.3 (loading = 0.455;
 r_pc2 = 0.843; next best: yellow at 0.283). Darkturquoise also has the strongest
 composition correlations among all modules (r_b2 = −0.449; the b2 balance tracks the
-B-cell/lymphocyte ratio).
+granulocyte/monocyte ratio).
 
 PC2 is a contrast between modules that move oppositely with cell composition:
 positive-loading modules (darkturquoise, yellow, blue) decline as B-cell fraction rises;
@@ -130,7 +140,7 @@ Hub genes (top kME): RPL30 (0.953), RPL35 (0.952), RPL6 (0.935), RPL27 (0.926),
 RPS3A (0.908), COX7A2 (0.904), UQCRQ (0.893), ATP5F1C (0.891), GIMAP2 (0.890).
 
 **Biological interpretation:** plasma B cells sustain high immunoglobulin synthesis,
-requiring elevated ribosomal capacity and mitochondrial respiration. High B-cell/lymphocyte
+requiring elevated ribosomal capacity and mitochondrial respiration. High granulocyte/monocyte
 fraction (ILR b2) → elevated darkturquoise expression → PC2 elevated → appears to track
 lithium. The causal chain for the composition signal is now complete and mechanistically
 coherent.

@@ -1,12 +1,22 @@
 # Darkturquoise group×composition interaction: the control-lith contrast survives proper slope correction
 
+> **CORRECTION 2026-10-15 — `b2` was mislabelled.** The sequential binary partition in
+> `mediation/scripts/00b_ilr_trace.R:96-99` defines **b2 = gran vs mono**, not a B-cell or
+> lymphocyte balance (b1 = myeloid vs lymphoid, b3 = T vs NK+B, b4 = NK vs B). Labels below
+> have been corrected in place. Two directional claims built on the wrong label were also
+> wrong and are flagged inline: b2 by group is bp_lith 0.3079 > control 0.2122 > bp_nolith
+> 0.1816 (lithium is **highest**, not lowest), and r(darkturquoise, b2) is **negative** in
+> every group (-0.130 ctrl, -0.390 nolith, -0.444 lith). The corrected reading — lithium
+> raises granulocytes, granulocytes dilute the lymphocyte ribosomal program, darkturquoise
+> falls — fits the arm's own r(darkturquoise, gran) = -0.510 (p = 2.3e-16).
+
 **Date:** 2026-10-14
 **Analysis:** `network/analyses/008-darkturquoise-interaction`
 **Evidence:** 18/25 · **Interest:** 7/10 · **Δ:** −0.2
 
 ## Claim
 
-Analysis 007 used an additive composition adjustment, but the b2 (B-cell/lymphocyte)
+Analysis 007 used an additive composition adjustment, but the b2 (granulocyte/monocyte)
 slope on darkturquoise ME differs significantly between groups. This analysis tests
 whether the surviving control-lith contrast (analysis 007) is an artefact of incorrect
 slope assumptions.

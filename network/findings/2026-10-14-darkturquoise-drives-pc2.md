@@ -1,5 +1,15 @@
 # Darkturquoise drives PC2: the lithium-associated dimension is localised to one module
 
+> **CORRECTION 2026-10-15 — `b2` was mislabelled.** The sequential binary partition in
+> `mediation/scripts/00b_ilr_trace.R:96-99` defines **b2 = gran vs mono**, not a B-cell or
+> lymphocyte balance (b1 = myeloid vs lymphoid, b3 = T vs NK+B, b4 = NK vs B). Labels below
+> have been corrected in place. Two directional claims built on the wrong label were also
+> wrong and are flagged inline: b2 by group is bp_lith 0.3079 > control 0.2122 > bp_nolith
+> 0.1816 (lithium is **highest**, not lowest), and r(darkturquoise, b2) is **negative** in
+> every group (-0.130 ctrl, -0.390 nolith, -0.444 lith). The corrected reading — lithium
+> raises granulocytes, granulocytes dilute the lymphocyte ribosomal program, darkturquoise
+> falls — fits the arm's own r(darkturquoise, gran) = -0.510 (p = 2.3e-16).
+
 **Date:** 2026-10-14
 **Analysis:** `network/analyses/005-pc2-module-loadings`
 **Evidence:** 18/25 · **Interest:** 7/10 · **Δ:** +0.2
@@ -23,7 +33,7 @@ Threshold: |loading| > 0.3 (pre-specified; 1.7× expected null magnitude 1/√33
 
 Modules with positive PC2 loading (darkturquoise, yellow, blue, orange, skyblue) all show
 *negative* correlation with ILR b1 and b2 — their eigengenes decline when the
-B-cell/lymphocyte balance (b2) is high. Negative-loading modules (saddlebrown, white,
+granulocyte/monocyte balance (b2) is high. Negative-loading modules (saddlebrown, white,
 violet, etc.) all show *positive* correlation with b1 and b2.
 
 PC2 is a contrast between two sets of modules that move oppositely with cell composition.

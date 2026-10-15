@@ -1,7 +1,101 @@
 Allowing parallel execution with up to 3 working processes.
-[16:34:14] Loading data ...
-[16:34:14] Computing effect sizes for 33 modules ...
-Error in round(a09$p_bonf_ctrl_nolith[1], 4) : 
-  non-numeric argument to mathematical function
-Calls: do.call -> lapply -> FUN -> data.frame
-Execution halted
+[16:59:13] Loading data ...
+[16:59:13] Computing effect sizes for 33 modules ...
+
+======= All 33 modules: composition-adjusted Cohen's d (ctrl-nolith) =======
+Positive d = nolith HIGHER than ctrl; negative = nolith LOWER
+
+         module n_genes cohens_d_ctrl_nolith raw_d_ctrl_nolith partial_eta2
+  paleturquoise      44              -0.5142           -0.5331       0.1187
+ darkolivegreen      37              -0.5083           -0.5296       0.0566
+        magenta     460              -0.5060           -0.5242       0.0687
+       darkgrey     103              -0.5055           -0.5413       0.0676
+   midnightblue     277              -0.5006           -0.5324       0.1021
+          white      83              -0.4942           -0.5175       0.0491
+      turquoise    1445              -0.4888           -0.5128       0.1131
+      darkgreen     155              -0.4857           -0.4927       0.0519
+     darkorange      90              -0.4702           -0.4884       0.0474
+     lightgreen     227              -0.4700           -0.4885       0.1077
+    lightyellow     201              -0.4684           -0.4801       0.1151
+           pink     512              -0.4638           -0.4899       0.0806
+    saddlebrown      64              -0.4619           -0.4467       0.0359
+         orange     100              -0.4617           -0.4484       0.1319
+         violet      37              -0.4578           -0.5003       0.0489
+          black     609              -0.4502           -0.4844       0.0596
+          green     835              -0.4488           -0.4636       0.0967
+      lightcyan     266              -0.4486           -0.4820       0.0509
+      steelblue      48              -0.4469           -0.4560       0.1079
+           cyan     316              -0.4392           -0.4824       0.0459
+          brown    1032              -0.4372           -0.4546       0.1082
+           blue    1392              -0.4307           -0.4127       0.1210
+         grey60     248              -0.4273           -0.4368       0.0860
+            tan     407              -0.4199           -0.4434       0.0579
+        skyblue      70              -0.4194           -0.4074       0.1220
+            red     650              -0.4143           -0.4304       0.1071
+         salmon     349              -0.4091           -0.4133       0.0645
+         yellow     921              -0.3994           -0.3672       0.1075
+    greenyellow     438              -0.3929           -0.4442       0.0644
+      royalblue     200              -0.3852           -0.4131       0.0870
+         purple     444              -0.3826           -0.4229       0.0629
+  darkturquoise     140              -0.1474           -0.0777       0.0631
+        darkred     164              -0.0232           -0.0218       0.0002
+ p_bonf_ctrl_nolith
+             0.0004
+             0.0005
+             0.0005
+             0.0005
+             0.0006
+             0.0007
+             0.0009
+             0.0010
+             0.0015
+             0.0015
+             0.0015
+             0.0017
+             0.0018
+             0.0018
+             0.0020
+             0.0025
+             0.0026
+             0.0026
+             0.0027
+             0.0033
+             0.0035
+             0.0041
+             0.0045
+             0.0054
+             0.0055
+             0.0062
+             0.0071
+             0.0090
+             0.0105
+             0.0126
+             0.0133
+             0.8137
+             1.0000
+
+31 / 33 modules: ctrl-nolith sig (bonf<0.05)
+Median |d| (sig modules): 0.450
+Range |d| (sig modules): 0.383 – 0.514
+Median partial η²: 0.0806
+
+ANALYSIS_014_DONE
+
+--------------------------------------------------------------------------
+NOTE ADDED 2026-10-15 (after the referee verification)
+
+This script crashed on a column-name mismatch (`p_bonf_ctrl_nolith` vs 009's
+actual `bonf_ctrl_nolith`) and was left crashed. Fixed and re-run.
+
+Its "31/33 modules: ctrl-nolith sig" line inherits analysis 009's model, which
+omits both the project's technical covariate set and the per-sample library
+offset. Under either adjustment that count is 0/33 — see
+network/findings/2026-10-15-library-offset-artifact.md. The ctrl-nolith effect
+sizes below should NOT be quoted as evidence of a disease effect.
+
+The effect-size magnitudes themselves remain useful as a scale reference:
+median |d| = 0.450 across modules. For comparison, the referee panel reports
+size-matched RANDOM gene sets reaching median |d| = 0.46 on the same contrast —
+i.e. indistinguishable from the modules, which is what the dense-graph artifact
+predicts.
+--------------------------------------------------------------------------

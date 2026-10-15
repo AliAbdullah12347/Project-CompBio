@@ -1,8 +1,27 @@
 # BP disease drives network-wide module differences; lithium adds nothing beyond composition
 
+> **RETRACTED 2026-10-15.** 31/33 modules collapses to 0/33 once the per-sample library offset or the project's own technical covariate set is restored. The control-vs-bp_lith half also fails under the offset (2/33 Bonferroni, 0/33 BH), so no part of the finding is salvageable as written. The closing claim that the signature is 'present in patients who never took lithium' additionally violates IMAC_README §6.7: bp_nolith is currently-off-lithium, and the deposit records lithium status only.
+>
+> Verified independently by re-running this finding's own saved eigengenes against
+> `data/analysis_matrices/covariates_474.csv` and `TMM_normalisation_factors.csv`.
+> See `network/findings/2026-10-15-library-offset-artifact.md` and
+> `network/analyses/015-referee-verification/`.
+>
+> Text below is left unaltered as the record of what was claimed.
+
+> **CORRECTION 2026-10-15 — `b2` was mislabelled.** The sequential binary partition in
+> `mediation/scripts/00b_ilr_trace.R:96-99` defines **b2 = gran vs mono**, not a B-cell or
+> lymphocyte balance (b1 = myeloid vs lymphoid, b3 = T vs NK+B, b4 = NK vs B). Labels below
+> have been corrected in place. Two directional claims built on the wrong label were also
+> wrong and are flagged inline: b2 by group is bp_lith 0.3079 > control 0.2122 > bp_nolith
+> 0.1816 (lithium is **highest**, not lowest), and r(darkturquoise, b2) is **negative** in
+> every group (-0.130 ctrl, -0.390 nolith, -0.444 lith). The corrected reading — lithium
+> raises granulocytes, granulocytes dilute the lymphocyte ribosomal program, darkturquoise
+> falls — fits the arm's own r(darkturquoise, gran) = -0.510 (p = 2.3e-16).
+
 **Date:** 2026-10-14
 **Analysis:** `network/analyses/009-all-modules-across-groups`
-**Evidence:** 19/25 · **Interest:** 9/10 · **Δ:** +1.4
+**Evidence:** 0/25 · **Interest:** 0/10  _(retracted; was 19/25 and 9/10)_ · **Δ:** +1.4
 
 ## Claim
 
@@ -78,7 +97,7 @@ significant). The nolith-lith signal seen in analysis 002 (PC2, p=0.0015) is com
 mediated.
 
 Darkturquoise's unique ctrl-nolith NS / ctrl-lith significant profile is mechanistically
-explained by its strong composition dependency: lith patients have lower b2 (B-cell/
+explained by its strong composition dependency: lith patients have lower b2 **[WRONG: lith b2 = 0.3079 is the HIGHEST of the three groups]** (granulocyte/
 lymphocyte balance), and darkturquoise tracks b2 more steeply in lith patients, pushing
 the module down and creating a ctrl-lith gap.
 

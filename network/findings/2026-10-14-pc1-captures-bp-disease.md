@@ -1,8 +1,17 @@
 # PC1 of the full-sample ME matrix captures BP disease: a global network factor
 
+> **RETRACTED 2026-10-15.** PC1 is a global scaling axis, not a biological factor: all 33 loadings share one sign, r(PC1, TMM normalisation factor) = -0.828 (R2 = 0.685) against r(PC1, disease) = +0.289, and partialling the TMM factor out collapses disease to +0.056. analysis 010's pc_correlations.csv tests disease, lithium and b1-b4 and no technical covariate at all -- the one class that explains it is the one not tested.
+>
+> Verified independently by re-running this finding's own saved eigengenes against
+> `data/analysis_matrices/covariates_474.csv` and `TMM_normalisation_factors.csv`.
+> See `network/findings/2026-10-15-library-offset-artifact.md` and
+> `network/analyses/015-referee-verification/`.
+>
+> Text below is left unaltered as the record of what was claimed.
+
 **Date:** 2026-10-14
 **Analysis:** `network/analyses/010-full-pca-all-samples`
-**Evidence:** 18/25 · **Interest:** 7/10 · **Δ:** −0.2
+**Evidence:** 0/25 · **Interest:** 0/10  _(retracted; was 18/25 and 7/10)_ · **Δ:** −0.2
 
 ## Claim
 
