@@ -117,3 +117,14 @@ fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-14T22:15:00Z  PULL --REBASE FAILED (rc=1), ABORTED
+Local commits are intact on main and unpushed. A human must reconcile.
+```
+fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git/': Could not resolve host: github.com
+```
+
+## 2026-10-15T09:08:10Z  NO PROGRESS IN 3 CONSECUTIVE SESSIONS
+DONE count has been stuck at 1 across 3 wake-ups (~15 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+
