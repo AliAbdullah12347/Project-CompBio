@@ -194,3 +194,8 @@ DONE count has been stuck at 1 across 12 wake-ups (~60 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-10-17T04:08:06Z  NO PROGRESS IN 13 CONSECUTIVE SESSIONS
+DONE count has been stuck at 1 across 13 wake-ups (~65 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+
