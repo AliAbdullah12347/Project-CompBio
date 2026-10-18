@@ -101,9 +101,37 @@ if [ $DRY -eq 1 ]; then
   echo "  [check] claude:  $CLAUDE"
   echo "  [check] token:   $TOKLEN bytes, prefix $(cut -c1-12 "$TOKEN_FILE")…"
   echo "  [check] cap:     ${SESSION_CAP}s"
+  if curl -s -o /dev/null --max-time 8 https://api.anthropic.com/v1/messages 2>/dev/null; then
+    echo "  [check] network: api.anthropic.com reachable"
+  else
+    echo "  [check] network: API UNREACHABLE - a real wake would wait, not burn the slot"
+  fi
   echo "  [check] would now launch a session; stopping here"
   exit 0
 fi
+
+# --- connectivity gate ------------------------------------------------------
+# 21 of 24 sessions over 2026-10-15..18 died ~3 min in with
+# "FailedToOpenSocket", and the git pull in the same session failed too: the
+# campus Wi-Fi (en1) was simply down at :05. Each of those burned a wake slot
+# and, worse, looked like a working scheduler to every watchdog we had, because
+# a session DID start. Wait for the network instead of launching into a void.
+net_up() {
+  curl -s -o /dev/null --max-time 8 https://api.anthropic.com/v1/messages 2>/dev/null &&   curl -s -o /dev/null --max-time 8 https://github.com 2>/dev/null
+}
+NET_WAIT_MAX=${NET_WAIT_MAX:-1800}      # keep trying for 30 min
+NET_WAIT_STEP=${NET_WAIT_STEP:-60}
+waited=0
+until net_up; do
+  if [ "$waited" -ge "$NET_WAIT_MAX" ]; then
+    echo "=== $(stamp) NETWORK DOWN after ${waited}s - not launching a session ===" >> "$LOG"
+    echo "=== $(stamp) (no wake slot consumed; next scheduled fire will retry) ===" >> "$LOG"
+    exit 0
+  fi
+  [ "$waited" -eq 0 ] && echo "=== $(stamp) network down; waiting up to ${NET_WAIT_MAX}s ===" >> "$LOG"
+  sleep "$NET_WAIT_STEP"; waited=$((waited + NET_WAIT_STEP))
+done
+[ "$waited" -gt 0 ] && echo "=== $(stamp) network returned after ${waited}s ===" >> "$LOG"
 
 { echo; echo "============================================================"
   echo "=== wake $(stamp) ==="; echo "============================================================"
