@@ -1,0 +1,54 @@
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+genes=4000 samples=234 
+  Power SFT.R.sq   slope truncated.R.sq mean.k. median.k. max.k.
+1     4  0.75100  1.1800          0.831    1250    1280.0   1960
+2     6  0.28500  0.4350          0.722     794     800.0   1460
+3     8  0.00743 -0.0613          0.640     535     527.0   1140
+4    10  0.22000 -0.3860          0.684     378     359.0    903
+5    12  0.41200 -0.6030          0.734     276     251.0    731
+6    14  0.52900 -0.7410          0.784     207     182.0    601
+7    16  0.59700 -0.8490          0.812     160     133.0    501
+8    18  0.65200 -0.9220          0.837     125      99.6    422
+9    20  0.67000 -0.9770          0.844     100      75.5    359
+ 
+### RAW log2(TPM+1) -- what the arm used 
+  mean gene-gene r            +0.912 
+  % random pairs r>0.5        100.0% 
+  best scale-free R2          0.670  (at power 20) 
+  modules detected            25 
+  % genes grey                0.9% 
+  largest module share        8.3% 
+  median |r| between MEs      0.616 
+  effective dimensions        2.33 of 25 
+Warning message:
+executing %dopar% sequentially: no parallel backend registered 
+  Power SFT.R.sq slope truncated.R.sq mean.k. median.k. max.k.
+1     4    0.214 -1.07          0.882   456.0    450.00  781.0
+2     6    0.387 -1.08          0.877   217.0    209.00  475.0
+3     8    0.508 -1.11          0.897   118.0    108.00  318.0
+4    10    0.585 -1.15          0.909    71.2     62.10  224.0
+5    12    0.652 -1.19          0.929    45.9     37.80  165.0
+6    14    0.709 -1.23          0.944    31.1     23.70  126.0
+7    16    0.757 -1.27          0.954    21.9     15.20   98.7
+8    18    0.769 -1.33          0.950    15.9     10.10   79.3
+9    20    0.743 -1.49          0.932    11.8      6.89   67.4
+ 
+### PER-SAMPLE OFFSET REMOVED 
+  mean gene-gene r            +0.905 
+  % random pairs r>0.5        100.0% 
+  best scale-free R2          0.769  (at power 18) 
+  modules detected            35 
+  % genes grey                5.3% 
+  largest module share        6.7% 
+  median |r| between MEs      0.286 
+  effective dimensions        5.06 of 35 
+ 
+=== VERDICT INPUTS === 
+                                  set    mean_r pct_gt_half    sft_r2 sft_power
+ RAW log2(TPM+1) -- what the arm used 0.9118469           1 0.6696766        20
+            PER-SAMPLE OFFSET REMOVED 0.9047161           1 0.7687930        18
+ n_modules pct_grey largest_share median_me_r     meff
+        25  0.00925    0.08327025   0.6163185 2.326495
+        35  0.05350    0.06682515   0.2857313 5.064545
+ 
+ANALYSIS_016_DONE 

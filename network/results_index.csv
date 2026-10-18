@@ -1,6 +1,6 @@
 "run_id","family","status","wall_sec","note"
 "mod-000-resolution","moddetect","DONE",2938,"completed in 2938s"
-"base-001","baseline","RUNNING",10800,"requeued from PARTIAL (attempt 0)"
+"base-001","baseline","RUNNING",10800,"requeued from stale RUNNING"
 "base-003-remerge","baseline","PENDING",NA,""
 "base-002-ceil","baseline","PENDING",NA,""
 "inp-022","input","PENDING",NA,""
