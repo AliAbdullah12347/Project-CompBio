@@ -1,59 +1,89 @@
-[2026-10-18T17:16:52] === mod-000-resolution starting ===
-[2026-10-18T17:16:52] config exists: network/config/mod-000-resolution.json
+[2026-10-18T17:18:02] === mod-000-resolution starting ===
+[2026-10-18T17:18:02] config exists: network/config/mod-000-resolution.json
 Allowing parallel execution with up to 3 working processes.
-[2026-10-18T17:16:54] WGCNA 1.74 loaded; threads enabled
+[2026-10-18T17:18:04] WGCNA 1.74 loaded; threads enabled
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-10-18T17:16:55] refExpr: 234 samples x 12368 genes
-[2026-10-18T17:16:55] Loading power-12 TOM from checkpoint ...
-[2026-10-18T17:16:57] Running resolution grid at power 12 (mean k=1030.84) ...
-[2026-10-18T17:16:57] Building dendrogram (12368 genes) ...
-[2026-10-18T17:17:06] deepSplit=2 checkpoint loaded: 18 modules (pre-merge)
-[2026-10-18T17:17:09] Pre-merge ME correlations (|r|): median=-0.047 p75=0.346 max=0.934
-[2026-10-18T17:17:09] Cell p12_ds2_mch0.00 loaded from checkpoint: 18 modules, meets_target=1
-[2026-10-18T17:17:09] Cell p12_ds2_mch0.05 loaded from checkpoint: 14 modules, meets_target=1
-[2026-10-18T17:17:09] Cell p12_ds2_mch0.10 loaded from checkpoint: 8 modules, meets_target=0
-[2026-10-18T17:17:09] Cell p12_ds2_mch0.15 loaded from checkpoint: 4 modules, meets_target=0
-[2026-10-18T17:17:09] Cell p12_ds2_mch0.25 loaded from checkpoint: 3 modules, meets_target=0
-[2026-10-18T17:17:09] deepSplit=4 checkpoint loaded: 33 modules (pre-merge)
-[2026-10-18T17:17:12] Pre-merge ME correlations (|r|): median=-0.018 p75=0.439 max=0.973
-[2026-10-18T17:17:12] Cell p12_ds4_mch0.00 loaded from checkpoint: 33 modules, meets_target=1
-[2026-10-18T17:17:12] Cell p12_ds4_mch0.05 loaded from checkpoint: 14 modules, meets_target=1
-[2026-10-18T17:17:12] Cell p12_ds4_mch0.10 loaded from checkpoint: 8 modules, meets_target=0
-[2026-10-18T17:17:12] Cell p12_ds4_mch0.15 loaded from checkpoint: 4 modules, meets_target=0
-[2026-10-18T17:17:12] Cell p12_ds4_mch0.25 loaded from checkpoint: 3 modules, meets_target=0
-[2026-10-18T17:17:13] Power-12: 4 of 10 cells meet target (n_modules>=10 AND largest_pct<25%)
-[2026-10-18T17:17:13] Power-12 has meeting cells; skipping power-16 fallback
-[2026-10-18T17:17:13] Results written: network/runs/mod-000-resolution/resolution_grid.csv
-[2026-10-18T17:17:13] 
+[2026-10-18T17:18:05] refExpr: 234 samples x 12368 genes
+[2026-10-18T17:18:05] Building power-12 TOM (~47 min for n=234) ...
+[2026-10-18T17:18:05] Computing adjacency (power=12, corFnc=bicor, type=signed) ...
+[2026-10-18T17:18:32] mean k = 80.96 (0.65% of genome)
+[2026-10-18T17:18:32] Computing TOM (~10-15 min) ...
+..connectivity..
+..matrix multiplication (system BLAS)..
+..normalization..
+..done.
+[2026-10-18T17:31:37] Power-12 TOM checkpoint saved: network/runs/mod-000-resolution/dissTOM_p12.rds
+[2026-10-18T17:31:37] Running resolution grid at power 12 (mean k=80.96) ...
+[2026-10-18T17:31:37] Building dendrogram (12368 genes) ...
+[2026-10-18T17:31:48] cutreeDynamic deepSplit=2 power=12 ...
+ ..cutHeight not given, setting it to 0.995  ===>  99% of the (truncated) height range in dendro.
+ ..done.
+[2026-10-18T17:32:07] deepSplit=2: 53 modules detected (pre-merge)
+[2026-10-18T17:32:17] Pre-merge ME correlations (|r|): median=0.033 p75=0.361 max=0.955
+[2026-10-18T17:32:17] Cell power=12 deepSplit=2 mergeCutHeight=0 ...
+[2026-10-18T17:32:17]   -> 53 modules; largest=9.69%; grey=0.38%; meets_target=1
+[2026-10-18T17:32:17] Cell power=12 deepSplit=2 mergeCutHeight=0.05 ...
+[2026-10-18T17:32:37]   -> 53 modules; largest=9.69%; grey=0.38%; meets_target=1
+[2026-10-18T17:32:37] Cell power=12 deepSplit=2 mergeCutHeight=0.1 ...
+[2026-10-18T17:33:02]   -> 47 modules; largest=10.45%; grey=0.38%; meets_target=1
+[2026-10-18T17:33:02] Cell power=12 deepSplit=2 mergeCutHeight=0.15 ...
+[2026-10-18T17:33:23]   -> 37 modules; largest=12.06%; grey=0.38%; meets_target=1
+[2026-10-18T17:33:23] Cell power=12 deepSplit=2 mergeCutHeight=0.25 ...
+[2026-10-18T17:33:44]   -> 22 modules; largest=18.3%; grey=0.38%; meets_target=1
+[2026-10-18T17:33:44] cutreeDynamic deepSplit=4 power=12 ...
+ ..cutHeight not given, setting it to 0.995  ===>  99% of the (truncated) height range in dendro.
+ ..done.
+[2026-10-18T17:33:59] deepSplit=4: 71 modules detected (pre-merge)
+[2026-10-18T17:34:03] Pre-merge ME correlations (|r|): median=0.011 p75=0.328 max=0.952
+[2026-10-18T17:34:03] Cell power=12 deepSplit=4 mergeCutHeight=0 ...
+[2026-10-18T17:34:03]   -> 71 modules; largest=9.26%; grey=0.06%; meets_target=1
+[2026-10-18T17:34:03] Cell power=12 deepSplit=4 mergeCutHeight=0.05 ...
+[2026-10-18T17:34:15]   -> 71 modules; largest=9.26%; grey=0.06%; meets_target=1
+[2026-10-18T17:34:15] Cell power=12 deepSplit=4 mergeCutHeight=0.1 ...
+[2026-10-18T17:34:31]   -> 61 modules; largest=9.57%; grey=0.06%; meets_target=1
+[2026-10-18T17:34:31] Cell power=12 deepSplit=4 mergeCutHeight=0.15 ...
+[2026-10-18T17:35:01]   -> 45 modules; largest=12.39%; grey=0.06%; meets_target=1
+[2026-10-18T17:35:01] Cell power=12 deepSplit=4 mergeCutHeight=0.25 ...
+[2026-10-18T17:35:15]   -> 30 modules; largest=13.01%; grey=0.06%; meets_target=1
+[2026-10-18T17:35:15] Power-12: 10 of 10 cells meet target (n_modules>=10 AND largest_pct<25%)
+[2026-10-18T17:35:15] Power-12 has meeting cells; skipping power-16 fallback
+[2026-10-18T17:35:15] Results written: network/runs/mod-000-resolution/resolution_grid.csv
+[2026-10-18T17:35:15] 
 === RESOLUTION GRID (power x deepSplit x mergeCutHeight) ===
  power deepSplit mergeCutHeight n_modules_premerge n_modules largest_pct
-    12         2           0.00                 18        18       18.64
-    12         2           0.05                 18        14       18.64
-    12         2           0.10                 18         8       38.82
-    12         2           0.15                 18         4       60.34
-    12         2           0.25                 18         3       97.50
-    12         4           0.00                 33        33       11.68
-    12         4           0.05                 33        14       18.70
-    12         4           0.10                 33         8       28.28
-    12         4           0.15                 33         4       63.93
-    12         4           0.25                 33         3       97.51
+    12         2           0.00                 53        53        9.69
+    12         2           0.05                 53        53        9.69
+    12         2           0.10                 53        47       10.45
+    12         2           0.15                 53        37       12.06
+    12         2           0.25                 53        22       18.30
+    12         4           0.00                 71        71        9.26
+    12         4           0.05                 71        71        9.26
+    12         4           0.10                 71        61        9.57
+    12         4           0.15                 71        45       12.39
+    12         4           0.25                 71        30       13.01
  grey_pct median_size eigene_cor_p75 eigene_cor_max meets_target
-     0.03         564          0.873          0.967            1
-     0.03         984          0.873          0.967            1
-     0.03        1331          0.873          0.967            0
-     0.03        2380          0.873          0.967            0
-     0.03         163          0.873          0.967            0
-     0.03         248          0.872          0.989            1
-     0.03         656          0.872          0.989            1
-     0.03        1726          0.872          0.989            0
-     0.03        2158          0.872          0.989            0
-     0.03         164          0.872          0.989            0
-[2026-10-18T17:17:13] 
+     0.38         136          0.361          0.955            1
+     0.38         136          0.361          0.955            1
+     0.38         142          0.361          0.955            1
+     0.38         203          0.361          0.955            1
+     0.38         360          0.361          0.955            1
+     0.06         109          0.328          0.952            1
+     0.06         109          0.328          0.952            1
+     0.06         109          0.328          0.952            1
+     0.06         117          0.328          0.952            1
+     0.06         231          0.328          0.952            1
+[2026-10-18T17:35:15] 
 === CELLS MEETING TARGET (n_modules>=10 AND largest_pct<25%) ===
  power deepSplit mergeCutHeight n_modules largest_pct grey_pct median_size
-    12         4           0.00        33       11.68     0.03         248
-    12         2           0.00        18       18.64     0.03         564
-    12         2           0.05        14       18.64     0.03         984
-    12         4           0.05        14       18.70     0.03         656
-[2026-10-18T17:17:13] RECOMMENDED: power=12 deepSplit=4 mergeCutHeight=0 -> 33 modules, largest=11.68%
-[2026-10-18T17:17:13] === mod-000-resolution COMPLETE ===
+    12         4           0.00        71        9.26     0.06         109
+    12         4           0.05        71        9.26     0.06         109
+    12         4           0.10        61        9.57     0.06         109
+    12         2           0.00        53        9.69     0.38         136
+    12         2           0.05        53        9.69     0.38         136
+    12         2           0.10        47       10.45     0.38         142
+    12         4           0.15        45       12.39     0.06         117
+    12         2           0.15        37       12.06     0.38         203
+    12         4           0.25        30       13.01     0.06         231
+    12         2           0.25        22       18.30     0.38         360
+[2026-10-18T17:35:15] RECOMMENDED: power=12 deepSplit=4 mergeCutHeight=0 -> 71 modules, largest=9.26%
+[2026-10-18T17:35:15] === mod-000-resolution COMPLETE ===

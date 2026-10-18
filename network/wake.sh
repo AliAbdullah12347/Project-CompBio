@@ -66,7 +66,7 @@ commit_network() {
     return 0
   fi
   git commit -q -m "$1" -- network/ || return 1
-  if ! git -c user.name="network-arm" -c user.email="aabdullah@colgate.edu" \
+  if ! git -c user.name="network-arm" -c user.email="113260319+AliAbdullah12347@users.noreply.github.com" \
          pull --rebase --autostash -q origin main 2>/dev/null; then
     git rebase --abort 2>/dev/null
     echo "=== $(stamp) pull --rebase failed; aborted, commit kept locally ===" >> "$LOG"

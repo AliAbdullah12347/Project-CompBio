@@ -165,7 +165,7 @@ sync_up() {
     # --autostash: tracked files outside network/ may be dirty (a session or a human
     # left them so), and without it rebase refuses and every push stops for the run.
     local err rc
-    err="$(git -c user.name="network-arm" -c user.email="aabdullah@colgate.edu" \
+    err="$(git -c user.name="network-arm" -c user.email="113260319+AliAbdullah12347@users.noreply.github.com" \
              pull --rebase --autostash origin main 2>&1)"; rc=$?
     if [ $rc -ne 0 ]; then
       echo "PULL --REBASE FAILED rc=$rc"

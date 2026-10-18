@@ -42,7 +42,7 @@ if [ "$age_h" -ge "$STALE_H" ]; then
     echo
   } >> network/BLOCKED.md
   git add -- network/BLOCKED.md network/RUNLOG/watchdog.log 2>/dev/null
-  git -c user.name="network-arm" -c user.email="aabdullah@colgate.edu" \
+  git -c user.name="network-arm" -c user.email="113260319+AliAbdullah12347@users.noreply.github.com" \
       commit -q -m "network: watchdog recovered a scheduler stall (${age_h}h idle)" -- network/ 2>/dev/null
   git push -q origin main 2>/dev/null
 fi
