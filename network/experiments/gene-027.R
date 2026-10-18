@@ -100,6 +100,7 @@ CACHE_KEY <- paste(REF_GROUP, paste0("noLM22_", n_kept), COR_FNC, NET_TYPE,
                    paste0("p", POWER), paste0("ds", DEEP_SPLIT),
                    paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
                    sep = "_")
+if (!exists("EXPR_TAG")) source("network/00_exprmode.R")
 CACHE_KEY <- paste0(CACHE_KEY, EXPR_TAG)   # normalisation mode must be in the key
 
 # ---- helper to subset expression -------------------------------------------

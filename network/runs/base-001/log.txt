@@ -1,3 +1,42 @@
-[2026-10-18T17:38:31] === base-001 starting ===
-Error in paste0(CACHE_KEY, EXPR_TAG) : object 'EXPR_TAG' not found
-Execution halted
+[2026-10-18T17:39:43] === base-001 starting ===
+Allowing parallel execution with up to 3 working processes.
+[2026-10-18T17:39:49] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-18T17:39:49] v2 marker present; no v1 migration needed
+[2026-10-18T17:39:49] pickSoftThreshold scan (powers 1:20) ...
+   Power SFT.R.sq slope truncated.R.sq mean.k. median.k. max.k.
+1      1  0.00346  3.90          0.942  6200.0   6200.00   6410
+2      2  0.07960 -3.96          0.917  3370.0   3360.00   3780
+3      3  0.28600 -3.38          0.933  1960.0   1940.00   2570
+4      4  0.44900 -2.84          0.945  1200.0   1170.00   1890
+5      5  0.49900 -2.36          0.941   771.0    738.00   1460
+6      6  0.55000 -2.15          0.936   515.0    481.00   1160
+7      7  0.60500 -2.03          0.945   356.0    322.00    950
+8      8  0.65600 -1.97          0.949   254.0    221.00    790
+9      9  0.67800 -2.00          0.937   185.0    154.00    667
+10    10  0.69800 -2.02          0.933   138.0    110.00    570
+11    11  0.68300 -2.10          0.912   105.0     79.60    492
+12    12  0.67900 -2.19          0.909    81.0     58.50    428
+13    13  0.70200 -2.17          0.921    63.4     43.40    375
+14    14  0.72300 -2.15          0.931    50.4     32.50    330
+15    15  0.74100 -2.15          0.942    40.4     24.60    292
+16    16  0.75500 -2.14          0.950    32.8     18.70    260
+17    17  0.76800 -2.14          0.957    26.9     14.40    233
+18    18  0.75200 -2.20          0.956    22.2     11.10    209
+19    19  0.76100 -2.20          0.961    18.5      8.62    188
+20    20  0.77000 -2.20          0.964    15.5      6.72    170
+[2026-10-18T17:40:32] pickSoftThreshold powerEstimate = NA (expected 1 or NA: function failing on this data, not a threshold)
+[2026-10-18T17:40:32] powerEstimate NA < guard 4; using pre-specified POWER=12
+[2026-10-18T17:40:32] R2 curve saved (max signed-R2 = 0.77 at power 20)
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2400674 128.3    4383702 234.2         NA  3198834 170.9
+Vcells 15970662 121.9   33858270 258.4      16384 28086205 214.3
+[2026-10-18T17:40:32] Using pre-computed labels from mod-000-resolution (deepSplit=4); saves ~47 min reference TOM rebuild ...
+[2026-10-18T17:40:32] reference modules: 71 non-grey; 8 grey genes
+[2026-10-18T17:40:32] reference modules cached: network/cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2401727 128.3    4383702 234.2         NA  3198834 170.9
+Vcells 15985610 122.0   33858270 258.4      16384 28086205 214.3
+[2026-10-18T17:40:33] bp_nolith preservation: 500 perms (fixed test set, no subsampling) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values

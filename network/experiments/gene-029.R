@@ -50,6 +50,7 @@ CACHE_KEY      <- paste("control_nonDEGs", COR_FNC, NET_TYPE,
                         paste0("p", POWER), paste0("ds", DEEP_SPLIT),
                         paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
                         sep = "_")
+if (!exists("EXPR_TAG")) source("network/00_exprmode.R")
 CACHE_KEY <- paste0(CACHE_KEY, EXPR_TAG)   # normalisation mode must be in the key
 
 # ---- load DEG file (before config so counts are known) ----------------------
