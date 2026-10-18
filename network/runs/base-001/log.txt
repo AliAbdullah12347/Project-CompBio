@@ -40,3 +40,14 @@ Vcells 15985610 122.0   33858270 258.4      16384 28086205 214.3
 [2026-10-18T17:40:33] bp_nolith preservation: 500 perms (fixed test set, no subsampling) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-18T19:41:06] bp_nolith done: 72 modules; Zsummary range [8.34, 75.31]
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2432800 130.0    4383702 234.2         NA  3881922 207.4
+Vcells 18961852 144.7   59254443 452.1      16384 74068053 565.1
+[2026-10-18T19:41:06] draw 1/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
