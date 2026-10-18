@@ -14,3 +14,5 @@
 {"ts":"2026-10-18T21:17:13Z","run_id":"mod-000-resolution","phase":"done","pct":100,"msg":"mod-000-resolution DONE 21s"}
 {"ts":"2026-10-18T21:18:02Z","run_id":"mod-000-resolution","phase":"run","pct":5,"msg":"starting network/experiments/mod-000-resolution.R cap=7200s"}
 {"ts":"2026-10-18T21:35:15Z","run_id":"mod-000-resolution","phase":"done","pct":100,"msg":"mod-000-resolution DONE 1033s"}
+{"ts":"2026-10-18T21:38:31Z","run_id":"base-001","phase":"run","pct":5,"msg":"starting network/experiments/base-001.R cap=10800s"}
+{"ts":"2026-10-18T21:38:31Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 PARTIAL 0s"}

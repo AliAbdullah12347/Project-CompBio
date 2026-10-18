@@ -239,3 +239,10 @@ DONE count has been stuck at 1 across 21 wake-ups (~105 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-10-18T21:38:32Z  base-001  exit 1 after 0s; see log.txt
+```
+[2026-10-18T17:38:31] === base-001 starting ===
+Error in paste0(CACHE_KEY, EXPR_TAG) : object 'EXPR_TAG' not found
+Execution halted
+```
+

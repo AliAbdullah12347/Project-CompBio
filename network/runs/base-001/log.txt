@@ -1,0 +1,3 @@
+[2026-10-18T17:38:31] === base-001 starting ===
+Error in paste0(CACHE_KEY, EXPR_TAG) : object 'EXPR_TAG' not found
+Execution halted
