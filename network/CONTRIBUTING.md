@@ -23,12 +23,26 @@ work and `git pull --rebase` merges cleanly.
 | `network/RUNLOG/queue.tsv` | rewritten by the driver constantly | **take the iMac's version** (`git checkout --theirs`). It is the live run state; a laptop copy is stale by definition. |
 | `network/RANKING.md`, `network/ranking.csv` | generated | **regenerate**: `Rscript network/build_index.R` |
 | `network/RESULTS.md`, `network/results_index.csv` | generated | **regenerate** (same command) |
+| `network/INDEX.md`, `network/catalog.csv` | generated | **regenerate**: `Rscript network/build_catalog.R` |
 | `network/METHODS.md` | append-only log | keep **both** sides — the entries are independent and dated. |
 | `network/BLOCKED.md` | append-only log | keep **both** sides. |
 | `network/STATE.md` | overwritten each session | take the iMac's version. |
 
-`RANKING.md`, `ranking.csv`, `RESULTS.md` and `results_index.csv` are **derived files**.
-Never hand-edit them; edit the per-finding files in `network/findings/` and regenerate.
+`RANKING.md`, `ranking.csv`, `RESULTS.md`, `results_index.csv`, `INDEX.md` and
+`catalog.csv` are **derived files**. Never hand-edit them; edit the per-finding files
+in `network/findings/` and regenerate.
+
+## Finding anything
+
+Start at `network/INDEX.md`. To search:
+
+```bash
+bash network/find.sh darkturquoise        # catalog + text + result files
+bash network/find.sh --type finding composition
+bash network/find.sh --files lithium      # just the file list
+grep ',"finding",' network/catalog.csv
+awk -F'","' '$4=="RETRACTED"' network/catalog.csv
+```
 That way a conflict in any of them is resolved by running one command rather than by
 merging prose.
 

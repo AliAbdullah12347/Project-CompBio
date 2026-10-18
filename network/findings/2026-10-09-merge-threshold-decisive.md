@@ -1,8 +1,16 @@
 # The merge threshold is decisive: 33 modules vs 3
 
+> **RETRACTED 2026-10-18.** The 33-vs-3 collapse was the library offset, not the data. Rebuilt on offset-removed expression with identical parameters, the same mergeCutHeight sweep gives 71 -> 30 modules with the largest still only 13.0%, against 33 -> 3 with the largest at 97.5% on raw data. The cascade happened because every eigengene pair already correlated at ~0.77 (25th percentile +0.605), so merging chained through all of them; corrected, median eigengene correlation is +0.011.
+>
+> See `network/findings/2026-10-18-rebuilt-network-71-modules.md` and
+> `network/analyses/016-normalisation-decision/`.
+>
+> Text below is left unaltered as the record of what was claimed.
+
+
 **Date:** 2026-10-09
 **Analysis:** `network/runs/mod-000-resolution`
-**Evidence:** 22/25 · **Interest:** 7/10 · **Δ:** -1.8
+**Evidence:** 0/25 · **Interest:** 0/10  _(retracted; was 22/25 and 7/10)_ · **Δ:** -1.8
 
 ## Claim
 A 2x5 grid at n=234 shows `cutreeDynamic` finds 18 modules at deepSplit 2 and 33 at

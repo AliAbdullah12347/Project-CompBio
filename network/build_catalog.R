@@ -23,8 +23,9 @@ for (f in ff) {
   tx    <- readLines(f, warn = FALSE)
   title <- sub("^#\\s*", "", tx[grep("^#\\s", tx)[1]])
   ev <- it <- NA_real_
+  # NOT gsub("\\D",""): that strips digits out of the "/25" too and yields 2425.
   m <- regmatches(tx, regexpr("\\*\\*Evidence:\\*\\*\\s*([0-9]+)/25", tx))
-  if (length(m)) ev <- as.numeric(gsub("\\D", "", m[1]))
+  if (length(m)) ev <- as.numeric(sub(".*?([0-9]+)/25.*", "\\1", m[1]))
   m <- regmatches(tx, regexpr("\\*\\*Interest:\\*\\*\\s*([0-9]+)/10", tx))
   if (length(m)) it <- as.numeric(sub(".*?([0-9]+)/10.*", "\\1", m[1]))
   dt  <- sub(".*?(\\d{4}-\\d{2}-\\d{2}).*", "\\1", basename(f))
@@ -84,7 +85,12 @@ for (d in sort(c(Sys.glob("network/runs/*/"), Sys.glob("network/runs/_raw_matrix
 C <- do.call(rbind, rows)
 C <- C[order(factor(C$type, levels = c("finding","analysis","experiment","run","note")),
              -ifelse(is.na(C$evidence), -1, C$evidence), C$id), ]
-write.csv(C, "network/catalog.csv", row.names = FALSE)
+# Every column is written as character so EVERY field is quoted. Numeric columns
+# would be written bare, which breaks any consumer that splits on '","' - that is
+# exactly how find.sh lost the path column.
+Cc <- C
+for (nm in names(Cc)) Cc[[nm]] <- ifelse(is.na(Cc[[nm]]), "", as.character(Cc[[nm]]))
+write.csv(Cc, "network/catalog.csv", row.names = FALSE, quote = TRUE)
 
 ## ---- INDEX.md --------------------------------------------------------------
 o <- c("# Arm 3 — Master Index",
