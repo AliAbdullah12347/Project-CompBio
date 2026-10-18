@@ -60,7 +60,7 @@ PERMS_PER_DRAW <- 50L
 NOLITH_PERMS   <- 500L       # bp_nolith: one run, many perms (no subsampling variance)
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L
-CACHE_KEY      <- "control_all_spearman_signed_p12_ds4_mch00"
+CACHE_KEY      <- "control_all_spearman_signed_p12_ds4_mch00_offsetrm"
 
 # ---------- 3. Write config BEFORE any computation --------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))

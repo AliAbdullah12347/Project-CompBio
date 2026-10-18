@@ -53,7 +53,7 @@ POWER            <- 12L
 NET_TYPE         <- "signed"
 COR_FNC          <- "bicor"
 ADJ_THRESH       <- 0.05     # betweenness: zero out edges with A <= 0.05
-REF_CACHE        <- "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds"
+REF_CACHE        <- "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds"
 
 # ---------- 3. Dependency check ----------------------------------------------
 if (!file.exists(REF_CACHE)) {

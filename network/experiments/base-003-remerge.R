@@ -35,7 +35,7 @@ dir.create(cfg_dir, showWarnings = FALSE, recursive = TRUE)
 # ---------- 2. Parameters (pre-specified) ------------------------------------
 DRAWS       <- 20L
 REF_N       <- 234L
-CACHE_KEY   <- "control_all_bicor_signed_p12_ds4_mch00"
+CACHE_KEY   <- "control_all_bicor_signed_p12_ds4_mch00_offsetrm"
 
 # The source: base-001 v2 run at deepSplit=4, mergeCutHeight=0
 SRC_DIR   <- "network/runs/base-001"
@@ -154,9 +154,14 @@ write.csv(beats_gold, file.path(run_dir, "results_beats_gold.csv"), row.names = 
 
 # Gold baseline stats for bp_nolith
 nolith_gold_Z <- nolith_out$Zsummary[nolith_out$module == "gold"]
-gold_nolith_note <- if (length(nolith_gold_Z) == 1)
+# Braces are required here: at top level R closes the `if` at the end of its
+# true branch, so a bare `else` on the next line is a parse error and the whole
+# script dies before a single line runs.
+gold_nolith_note <- if (length(nolith_gold_Z) == 1) {
   sprintf("gold Zsummary in bp_nolith = %.2f (random gene set)", nolith_gold_Z)
-else "gold not found in nolith results"
+} else {
+  "gold not found in nolith results"
+}
 
 # Combined (same format as base-001)
 nolith_tidy <- data.frame(

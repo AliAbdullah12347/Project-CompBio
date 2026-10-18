@@ -149,10 +149,31 @@ load_project <- function(cache = TRUE, verbose = TRUE) {
 
 # Expression matrix as samples x genes, which is the orientation WGCNA wants.
 # Optionally restricted to one group and/or residualised for covariates.
-expr_for <- function(d, group = NULL, transpose = TRUE, residualise = NULL) {
+# --- normalisation mode -----------------------------------------------------
+# log2(TPM+1) keeps a per-sample global offset: TPM fixes each library's SUM,
+# but the MEAN OF THE LOG still moves with how top-heavy the library is. On this
+# data that offset put 62% of RANDOM gene pairs above r = 0.5 and differed by
+# group (control 3.4637, bp_nolith 3.2688, bp_lith 3.1811; Welch p = 1.14e-09),
+# so it was both a dense-graph artifact and a confounder.
+# Removing it (analysis 016): mean gene-gene r 0.425 -> 0.042, scale-free fit
+# slope at power 12 -0.603 -> -1.19, effective dimensions 2.33 -> 5.06.
+#
+# EXPR_MODE and EXPR_TAG must move together: the tag goes into every reference
+# cache key so a reference built one way can never be silently reused the other.
+EXPR_MODE <- "offset_removed"          # "offset_removed" (default) | "raw"
+EXPR_TAG  <- if (identical(EXPR_MODE, "raw")) "" else "_offsetrm"
+
+expr_for <- function(d, group = NULL, transpose = TRUE, residualise = NULL,
+                     mode = EXPR_MODE) {
   keep <- if (is.null(group)) rep(TRUE, ncol(d$logtpm)) else
     !is.na(d$groups) & d$groups %in% group
   M <- d$logtpm[, keep, drop = FALSE]
+  # The offset is computed over ALL 12,368 genes and the FULL sample set, then
+  # subset - so every experiment removes the identical quantity regardless of
+  # which genes or which group it happens to be looking at.
+  if (!identical(mode, "raw")) {
+    M <- sweep(M, 2, colMeans(d$logtpm)[keep], "-")
+  }
   if (!is.null(residualise)) {
     md <- d$meta[keep, , drop = FALSE]
     if (!is.null(d$ilr)) md <- cbind(md, d$ilr[keep, -1, drop = FALSE])

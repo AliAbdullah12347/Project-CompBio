@@ -51,6 +51,7 @@ CACHE_KEY      <- paste("control_top2000var", COR_FNC, NET_TYPE,
                         paste0("p", POWER), paste0("ds", DEEP_SPLIT),
                         paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
                         sep = "_")
+CACHE_KEY <- paste0(CACHE_KEY, EXPR_TAG)   # normalisation mode must be in the key
 
 suppressPackageStartupMessages({ library(WGCNA); library(fastcluster) })
 enableWGCNAThreads()

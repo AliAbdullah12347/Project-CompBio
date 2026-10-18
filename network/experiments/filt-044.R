@@ -34,7 +34,7 @@ cfg_dir <- "network/config"
 dir.create(run_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(cfg_dir, showWarnings = FALSE, recursive = TRUE)
 
-REF_CACHE_KEY <- "control_all_bicor_signed_p12_ds4_mch00"
+REF_CACHE_KEY <- "control_all_bicor_signed_p12_ds4_mch00_offsetrm"
 REF_CACHE     <- file.path("network/cache", paste0("ref_", REF_CACHE_KEY, ".rds"))
 COUNTS_FILE   <- "data/cohort_474/counts_474.tsv.gz"
 

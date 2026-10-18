@@ -53,7 +53,7 @@ IMPUTATIONS    <- c("tobacco_imp_01", "tobacco_imp_05", "tobacco_imp_10",
                     "tobacco_imp_15", "tobacco_imp_20")
 N_LITH_DRAWS   <- 1L   # 1 draw per imputation (sensitivity, not primary result)
 
-REF_CACHE_BASE <- file.path("network/cache", "ref_control_all_bicor_signed_p12_ds4_mch00.rds")
+REF_CACHE_BASE <- file.path("network/cache", "ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds")
 if (!file.exists(REF_CACHE_BASE)) {
   msg("DEPENDENCY MISSING: base-001 cache. Exiting status=1 to requeue.")
   quit(save = "no", status = 1L)
@@ -143,7 +143,7 @@ for (tob_col in IMPUTATIONS) {
   stopifnot(nrow(lithAll) == 152L)
 
   # Build reference network with tobacco-residualized controls
-  cache_key_tob <- paste0("control_all_bicor_signed_p12_tobacco_", tob_col, "_ds4_mch00")
+  cache_key_tob <- paste0("control_all_bicor_signed_p12_tobacco_", tob_col, "_ds4_mch00_offsetrm")
   ref_cache_tob <- file.path(cache_dir, paste0("ref_", cache_key_tob, ".rds"))
   if (!file.exists(ref_cache_tob)) {
     msg("  building reference network for ", tob_col, " ...")

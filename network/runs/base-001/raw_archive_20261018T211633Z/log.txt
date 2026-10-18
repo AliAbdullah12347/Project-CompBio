@@ -1,0 +1,31 @@
+[2026-10-18T16:33:48] === base-001 starting ===
+Allowing parallel execution with up to 3 working processes.
+[2026-10-18T16:33:56] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-18T16:33:57] v2 marker present; no v1 migration needed
+[2026-10-18T16:33:57] R2 curve checkpoint exists, skipping scan
+[2026-10-18T16:33:57] loading cached reference modules: network/cache/ref_control_all_bicor_signed_p12_ds4_mch00.rds
+[2026-10-18T16:33:57] 33 modules loaded (12364 genes in non-grey modules)
+[2026-10-18T16:33:57] bp_nolith checkpoint exists, skipping
+[2026-10-18T16:33:57] draw 1/20 checkpoint exists, skipping
+[2026-10-18T16:33:57] draw 2/20 checkpoint exists, skipping
+[2026-10-18T16:33:57] draw 3/20 checkpoint exists, skipping
+[2026-10-18T16:33:57] draw 4/20 checkpoint exists, skipping
+[2026-10-18T16:33:57] draw 5/20 checkpoint exists, skipping
+[2026-10-18T16:33:57] draw 6/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-18T16:49:03] draw 6/20 done: Zsummary range [5.31, 33.28]
+[2026-10-18T16:49:03] draw 7/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-18T17:02:19] draw 7/20 done: Zsummary range [3.46, 30.47]
+[2026-10-18T17:02:19] draw 8/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

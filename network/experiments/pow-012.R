@@ -72,7 +72,8 @@ CACHE_KEY      <- paste("control_all_bicor_signed", paste0("p", POWER),
                         paste0("mch", gsub("\\.", "", sprintf("%.1f", MERGE_THRESH))),
                         "fixed",
                         sep = "_")
-# Note: "fixed" suffix distinguishes from base-001's "control_all_bicor_signed_p12_ds4_mch00"
+CACHE_KEY <- paste0(CACHE_KEY, EXPR_TAG)   # normalisation mode must be in the key
+# Note: "fixed" suffix distinguishes from base-001's "control_all_bicor_signed_p12_ds4_mch00_offsetrm"
 # so pow-012 builds its OWN reference; comparison is then clean.
 
 # ---------- 3. Write config BEFORE any computation --------------------------
