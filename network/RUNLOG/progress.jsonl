@@ -17,3 +17,5 @@
 {"ts":"2026-10-18T21:38:31Z","run_id":"base-001","phase":"run","pct":5,"msg":"starting network/experiments/base-001.R cap=10800s"}
 {"ts":"2026-10-18T21:38:31Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 PARTIAL 0s"}
 {"ts":"2026-10-18T21:39:42Z","run_id":"base-001","phase":"run","pct":5,"msg":"starting network/experiments/base-001.R cap=10800s"}
+{"ts":"2026-10-19T00:39:43Z","run_id":"base-001","phase":"progress","pct":50,"msg":"7 new non-empty checkpoints"}
+{"ts":"2026-10-19T00:39:43Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 PARTIAL 10801s"}

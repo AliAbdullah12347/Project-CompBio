@@ -251,3 +251,27 @@ DONE count has been stuck at 1 across 22 wake-ups (~110 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-10-19T00:39:44Z  base-001  hit 10800s cap; partial results kept; +7 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-18T20:09:30] draw 2/20 done: Zsummary range [-0.69, 30.35]
+[2026-10-18T20:09:30] draw 3/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-18T20:21:55] draw 3/20 done: Zsummary range [-0.55, 30.24]
+[2026-10-18T20:21:55] draw 4/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-18T20:36:34] draw 4/20 done: Zsummary range [-1.14, 25.89]
+[2026-10-18T20:36:34] draw 5/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
