@@ -246,3 +246,8 @@ Error in paste0(CACHE_KEY, EXPR_TAG) : object 'EXPR_TAG' not found
 Execution halted
 ```
 
+## 2026-10-19T00:16:58Z  NO PROGRESS IN 22 CONSECUTIVE SESSIONS
+DONE count has been stuck at 1 across 22 wake-ups (~110 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+

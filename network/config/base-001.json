@@ -28,7 +28,10 @@
   "stat": ["Zsummary", "medianRank"],
   "descriptive_only": true,
   "seed_base": 20261009,
-  "cache_key": "control_all_bicor_signed_p12_ds4_mch00",
+  "cache_key": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "expr_mode": "offset_removed",
+  "expr_tag": "_offsetrm",
+  "cache_key_note": "field was initially written without _offsetrm (stale); corrected 2026-10-18 after 00_exprmode.R set EXPR_TAG=_offsetrm",
   "git_sha": "2bfcee3",
   "r_version": "4.2.2",
   "wgcna_version": "1.74"

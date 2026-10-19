@@ -1389,3 +1389,86 @@ must specify this before the first future draws=100 row is claimed.
 **What is NOT changed:** The per-permutation rate of 5.2 s/perm still holds. The
 nolith (500-perm) cost is unchanged at ~2620 s. The reference build cost (786 s × n_ref/74)
 is unchanged. Only the number of permutations per lith draw that fits in a session differs.
+
+---
+
+## 2026-10-18  The library offset is removed from all networks — all prior preservation results retracted
+
+### Background decision (analysis 016 / finding 016-normalisation-rebuild)
+
+Session on 2026-10-18 completed analysis 016 (network/analyses/016-normalisation-decision),
+which established that `expr_for()` returns raw `log2(TPM+1)` — i.e., `d$logtpm` directly,
+without removing the per-sample mean. This mean differs by group (control 3.4637, bp_nolith
+3.2688, bp_lith 3.1811; Welch p = 1.14e-09) and inflates gene-gene correlations (61.9% of
+random pairs r > 0.5 on raw vs 5.4% after removal). Findings using the raw network (#5,
+#8, #10, #12, #16, #18, #19, #20, #21 in RANKING.md) were retracted.
+
+### Infrastructure: 00_exprmode.R and EXPR_TAG
+
+A new file `network/00_exprmode.R` was created to centralize the normalisation mode:
+
+```r
+EXPR_MODE <- "offset_removed"   # "offset_removed" (default) | "raw"
+EXPR_TAG  <- if (identical(EXPR_MODE, "raw")) "" else "_offsetrm"
+```
+
+Every experiment script that builds a WGCNA reference now sources this file and appends
+`EXPR_TAG` to its `CACHE_KEY` before building or loading a cached reference. This ensures
+a reference built on raw expression cannot be silently reused for an offset-removed run.
+
+Experiments already updated (source 00_exprmode.R): base-001, base-002-ceil, base-003-remerge,
+inp-021, inp-022, inp-023, corr-005, corr-006, gene-025 through gene-029, hub-036, hub-037,
+comm-038, comm-039, cent-040, ann-041, ann-042, filt-044, tob-045, samp-043, ref-002 through
+ref-004, net-007, net-008, perm-030 through perm-032, trait-033 through trait-035.
+
+Experiments not yet updated (do NOT source 00_exprmode.R): mod-013 through mod-020, pow-009,
+synth-048, bmind-046, bmind-047. The mod-* and pow-009 scripts build WGCNA networks from
+expr_for() and will produce wrong results without the fix. They are rows 25–35 in the queue,
+unlikely to run for several sessions. Fix required before they are claimed.
+
+### mod-000-resolution rebuild (offset-removed, 2026-10-18)
+
+mod-000-resolution was re-run on offset-removed expression to verify the decomposition:
+
+| deepSplit | mergeCutHeight=0 | largest % | mean k |
+|--:|--:|--:|--:|
+| 4 | **71 modules** | 9.26% | 80.96 |
+
+This replaces the 33-module result on raw expression. Eigengene correlation distribution
+changed from symmetric-at-0.77 (causing the merge cascade) to near-orthogonal (median
+0.011, 25th percentile −0.272).
+
+**Result: every downstream row now targets the 71-module offset-removed reference.**
+Cache key: `control_all_bicor_signed_p12_ds4_mch00_offsetrm`. Cached at
+`network/cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds`.
+
+### Archive of old raw-matrix runs
+
+All run directories from base-001 that used the raw-matrix network were archived:
+- `network/runs/base-001/raw_archive_20261018T211633Z/` — base-001 draws 1–7 (33 modules, raw)
+- `network/runs/_raw_matrix_archive_20261018T211754Z/` — other raw-matrix run directories
+
+These are retained but their preservation statistics are invalid for the arm's scientific
+question.
+
+### base-001 v3: restart with offset-removed expression (2026-10-18)
+
+base-001 restarted from scratch using `EXPR_TAG = "_offsetrm"`. The session budget:
+- nolith (500 perms): 7262 s (measured 2026-10-18 session) — consistent with ~2620 s expected
+  for 500 × 5.2 s/perm = 2600 s; the extra ~4.6 min was the pre-cached reference load
+- draw 1: 777 s (measured)
+- draw 2: 927 s (measured)
+
+Average draw cost at 71 modules: ~850–900 s, consistent with the per-permutation scaling
+(262 s × 71/33 ≈ 563 s for perms alone; the remainder is test-set TOM construction).
+
+**Revised session budget for base-001 (71 modules, 20 draws):**
+- Session 1 (2026-10-18): nolith (7262 s) + draws 1–4 expected (~900 s each → 3600 s) = ~10862 s → cap hit with 4 draws
+- Session 2: 16 draws × ~900 s = 14400 s → spans 2 sessions
+- Sessions needed to complete: ~3 total (this session + 2 more)
+
+### base-001.json config corrected
+
+The config file was written before EXPR_TAG was established, so its `cache_key` field
+lacked `_offsetrm`. Corrected to `control_all_bicor_signed_p12_ds4_mch00_offsetrm` and
+`expr_mode` / `expr_tag` fields added on 2026-10-18 in this session.

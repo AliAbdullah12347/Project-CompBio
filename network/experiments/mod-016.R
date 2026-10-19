@@ -56,6 +56,8 @@ NOLITH_PERMS   <- 500L
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 16000L
 CACHE_KEY      <- "control_all_bicor_signed_p12_ds2_mm20_mch00"
+if (!exists("EXPR_TAG")) source("network/00_exprmode.R")
+CACHE_KEY <- paste0(CACHE_KEY, EXPR_TAG)   # normalisation mode must be in the key
 
 # ---------- 3. Write config BEFORE any computation --------------------------
 cfg_path <- file.path(cfg_dir, paste0(id, ".json"))
