@@ -275,3 +275,27 @@ Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-19T04:33:20Z  base-001  hit 10800s cap; partial results kept; +15 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-19T00:06:42] draw 17/20 done: Zsummary range [-1.2, 26.59]
+[2026-10-19T00:06:43] draw 18/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-19T00:18:27] draw 18/20 done: Zsummary range [-1.69, 27.1]
+[2026-10-19T00:18:27] draw 19/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-19T00:30:12] draw 19/20 done: Zsummary range [-1.91, 22.72]
+[2026-10-19T00:30:12] draw 20/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
