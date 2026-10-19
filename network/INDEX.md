@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-10-18 · **Catalogued:** 95 items
+**Updated:** 2026-10-18 · **Catalogued:** 96 items
 
 ## How to search
 
@@ -71,11 +71,12 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 015-referee-verification | has results | 5 result files | 015-referee-verification |
 | 016-normalisation-decision | has results | 2 result files | 016-normalisation-decision |
 
-## Notes — infrastructure and defects (2)
+## Notes — infrastructure and defects (3)
 
 | date | file | what happened |
 |:--|:--|:--|
 | 2026-10-15 | 2026-10-15-session-cap-starvation.md | Defect: rows whose cap equals SESSION_CAP can be BLOCKED while making progress |
+| 2026-10-18 | 2026-10-18-logout-kills-eduroam.md | The real cause of the 3-day outage: logging out disconnects eduroam |
 | 2026-10-18 | 2026-10-18-three-days-lost-to-wifi.md | Three days lost: every wake started a session into a dead network |
 
 ## Run directories (4)
@@ -84,7 +85,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 |:--|:--|:--|
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
-| base-001 | live | 62 files |
+| base-001 | live | 70 files |
 | mod-000-resolution | live | 15 files |
 
 ## Queue experiments (51)

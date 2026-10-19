@@ -56,6 +56,36 @@ fdesetup status 2>/dev/null | grep -q "FileVault is Off" \
   && ok "auth token readable at ~/.arm3_token ($(wc -c < "$HOME/.arm3_token" | tr -d ' ') bytes)" \
   || bad "auth token missing or empty"
 
+echo; echo "=== NETWORK SURVIVES LOGOUT? ==="
+# The 2026-10-15..18 outage was NOT flaky Wi-Fi. The machine is on eduroam, whose
+# 802.1X credential is stored as a USER-scope keychain item
+# (com.apple.network.eap.user.item.wlan.ssid.<ssid>). Logging out locks the login
+# keychain, so macOS cannot authenticate at the login window and the box has no
+# network at all - the LaunchDaemon still fires, every session still dies.
+eth_active=0
+for i in $(networksetup -listallhardwareports 2>/dev/null | awk '/Hardware Port: Ethernet/{getline; print $2}'); do
+  ifconfig "$i" 2>/dev/null | grep -q "status: active" && eth_active=1
+done
+wifi_if=$(route -n get default 2>/dev/null | awk '/interface/{print $2}')
+ssid=$(networksetup -getairportnetwork "$wifi_if" 2>/dev/null | sed 's/.*: //')
+if [ "$eth_active" = "1" ]; then
+  ok "wired Ethernet is active - network does NOT depend on being logged in"
+else
+  user_eap=$(security find-generic-password -D "802.1X Password" 2>/dev/null | grep -c "eap.user.item")
+  if [ "${user_eap:-0}" -gt 0 ]; then
+    bad "network is Wi-Fi (${ssid:-unknown}) with a USER-scope 802.1X credential.
+        LOGGING OUT KILLS THE NETWORK and every scheduled session with it.
+        Stay logged in, or plug in Ethernet (en0 is free and is already
+        service-order #1, so a cable takes over automatically)."
+  else
+    note "network is Wi-Fi (${ssid:-unknown}); no wired fallback. Staying logged in is safer."
+  fi
+fi
+console_user=$(stat -f%Su /dev/console 2>/dev/null)
+[ "$console_user" = "$(id -un)" ] \
+  && ok "console session belongs to $console_user (logged in)" \
+  || bad "console user is '$console_user' - nobody is logged in; Wi-Fi will be down"
+
 echo; echo "=== RUN HEALTH RIGHT NOW ==="
 code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://api.anthropic.com/v1/messages 2>/dev/null)
 [ -n "$code" ] && [ "$code" != "000" ] \
