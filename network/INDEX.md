@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-10-22 · **Catalogued:** 96 items
+**Updated:** 2026-10-22 · **Catalogued:** 97 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (21 — 17 live, 4 retracted)
+## Findings (22 — 18 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -33,6 +33,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 22/25 · 9/10 | CORRECTED | [Darkturquoise is a ribosomal/translation module: the composition signal has a biological substrate](findings/2026-10-14-darkturquoise-is-ribosomal.md) | 2026-10-14 |
 | 22/25 · 7/10 | live | [The lithium dimension replicates across decompositions, and never survives composition](findings/2026-10-14-lithium-dimension-replicates.md) | 2026-10-14 |
 | 22/25 · 9/10 | live | [Removing the library offset rebuilds the network into a well-behaved one](findings/2026-10-18-normalisation-rebuild-required.md) | 2026-10-18 |
+| 22/25 · 8/10 | live | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | 2026-10-22 |
 | 21/25 · 9/10 | live | [Real modules do beat the random gene set — once the decomposition is real](findings/2026-10-18-modules-do-beat-gold.md) | 2026-10-18 |
 | 20/25 · 8/10 | live | [Darkred is an erythrocyte module: stable because RBC genes are absent from immune composition](findings/2026-10-14-darkred-is-erythrocyte-module.md) | 2026-10-14 |
 | 20/25 · 5/10 | live | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) | 2026-10-14 |
@@ -85,12 +86,12 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 |:--|:--|:--|
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
-| base-001 | live | 100 files |
+| base-001 | live | 106 files |
 | mod-000-resolution | live | 15 files |
 
 ## Queue experiments (51)
 
-Status: DONE=1  PENDING=49  RUNNING=1
+Status: DONE=2  PENDING=49
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -98,7 +99,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 |:--|:--|:--|:--|
 | ann-041 | annot | PENDING | module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules |
 | ann-042 | annot | PENDING | module overlap with LM22 markers and cell-type DE results; Fisher exact, BH |
-| base-001 | baseline | RUNNING | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
+| base-001 | baseline | DONE | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
 | base-002-ceil | baseline | PENDING | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
 | base-003-remerge | baseline | PENDING | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
 | bmind-046 | celltype | PENDING | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
