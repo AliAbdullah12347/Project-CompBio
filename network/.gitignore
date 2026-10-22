@@ -1,35 +1,32 @@
-# Lock directories hold live PID files; committing them to a public repo would
-# both leak process state and let a stale lock travel between machines.
-.driver.lock/
-.wake.lock/
-RUNLOG/.driver.lock/
-RUNLOG/.wake.lock/
-
-# Partial queue rewrites - transient by construction.
-RUNLOG/queue.tsv.tmp*
 
 # Full headless session transcripts. These capture everything a session printed,
-# which on a PUBLIC repository is both noisy and a disclosure risk.
-RUNLOG/last_session.out
-RUNLOG/launchd.out
-RUNLOG/launchd.err
-RUNLOG/cron.log
-
-# Regenerable caches.
-cache/
-RUNLOG/.last_done_count
-RUNLOG/.stall_count
-
+# Lock directories hold live PID files; committing them to a public repo would
+# Partial queue rewrites - transient by construction.
 # Per-row transients written by the driver (refund counters, mtime markers).
-RUNLOG/.refunds_*
-RUNLOG/.ckpt_mark_*
-
+# Regenerable caches.
+# both leak process state and let a stale lock travel between machines.
 # modulePreservation permuted-statistics files — large binary, regenerable from
 # the checkpointed draw results. WGCNA writes these as .RData.
-runs/*/permStats*.RData
+# which on a PUBLIC repository is both noisy and a disclosure risk.
+.driver.lock/
+.wake.lock/
+RUNLOG/.ckpt_mark_*
+RUNLOG/.daemon_verified
+RUNLOG/.driver.lock/
+RUNLOG/.last_done_count
+RUNLOG/.refunds_*
+RUNLOG/.stall_count
+RUNLOG/.wake.lock/
+RUNLOG/chain.log
+RUNLOG/cron.log
+RUNLOG/daemon.err
+RUNLOG/daemon.out
+RUNLOG/last_session.out
+RUNLOG/launchd.err
+RUNLOG/launchd.out
+RUNLOG/queue.tsv.tmp*
+RUNLOG/watchdog.err
 RUNLOG/watchdog.log
 RUNLOG/watchdog.out
-RUNLOG/watchdog.err
-RUNLOG/daemon.out
-RUNLOG/daemon.err
-RUNLOG/.daemon_verified
+cache/
+runs/*/permStats*.RData
