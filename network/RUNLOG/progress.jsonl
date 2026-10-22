@@ -26,3 +26,6 @@
 {"ts":"2026-10-22T20:04:25Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 DONE 754s"}
 {"ts":"2026-10-22T20:06:11Z","run_id":"base-003-remerge","phase":"run","pct":5,"msg":"starting network/experiments/base-003-remerge.R cap=10800s"}
 {"ts":"2026-10-22T20:06:12Z","run_id":"base-003-remerge","phase":"done","pct":100,"msg":"base-003-remerge DONE 1s"}
+{"ts":"2026-10-22T20:06:14Z","run_id":"base-002-ceil","phase":"run","pct":5,"msg":"starting network/experiments/base-002-ceil.R cap=10800s"}
+{"ts":"2026-10-22T23:06:19Z","run_id":"base-002-ceil","phase":"progress","pct":50,"msg":"4 new non-empty checkpoints"}
+{"ts":"2026-10-22T23:06:19Z","run_id":"base-002-ceil","phase":"done","pct":100,"msg":"base-002-ceil PARTIAL 10804s"}

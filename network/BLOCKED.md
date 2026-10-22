@@ -305,3 +305,27 @@ Local commits are intact on main and unpushed. A human must reconcile.
 fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git/': Could not resolve host: github.com
 ```
 
+## 2026-10-22T23:06:19Z  base-002-ceil  hit 10800s cap; partial results kept; +4 new checkpoints (attempt refunded)
+```
+       Calculating new MEs...
+[2026-10-22T16:49:03] reference: 36 modules
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2431991 129.9    4380007 234.0         NA   4380007  234.0
+Vcells 16068794 122.6   62814927 479.3      16384 480940418 3669.3
+[2026-10-22T16:49:03] CEILING: 74 control preservation (500 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T18:21:19] ceiling done: Zsummary range [9.44, 35.46]
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2455443 131.2    4380007 234.0         NA   4380007  234.0
+Vcells 18111401 138.2   62814927 479.3      16384 480940418 3669.3
+[2026-10-22T18:21:19] bp_nolith preservation (500 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
