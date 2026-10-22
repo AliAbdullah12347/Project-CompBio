@@ -1,0 +1,17 @@
+{
+  "id": "base-003-remerge",
+  "family": "baseline",
+  "spec_note": "THE KEY RE-RUN at deepSplit=4, mergeCutHeight=0 (33 modules). base-001 v2 (session 4) performs the actual modulePreservation; this script reads its completed results.",
+  "source_experiment": "base-001_v2",
+  "source_dir": "network/runs/base-001",
+  "cache_key": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "power": 12,
+  "deepSplit": 4,
+  "mergeCutHeight": 0.0,
+  "draws": 20,
+  "perms_per_draw": 50,
+  "nolith_perms": 500,
+  "git_sha": "7b13eab",
+  "r_version": "4.2.2"
+}
+
