@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-10-18 · **Catalogued:** 96 items
+**Updated:** 2026-10-22 · **Catalogued:** 96 items
 
 ## How to search
 
@@ -85,7 +85,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 |:--|:--|:--|
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
-| base-001 | live | 70 files |
+| base-001 | live | 100 files |
 | mod-000-resolution | live | 15 files |
 
 ## Queue experiments (51)
