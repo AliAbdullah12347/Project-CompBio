@@ -1,116 +1,74 @@
-[2026-10-22T16:06:15] === base-002-ceil starting ===
-[2026-10-22T16:06:15] config written: network/config/base-002-ceil.json
+[2026-10-22T19:06:22] === base-002-ceil starting ===
 Allowing parallel execution with up to 3 working processes.
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-10-22T16:06:21] Control split: 160 reference, 74 ceiling test
-[2026-10-22T16:06:21] pickSoftThreshold scan for 160-control reference ...
-   Power SFT.R.sq   slope truncated.R.sq mean.k. median.k. max.k.
-1      1 0.910000  8.2500          0.943    9330      9470  10400
-2      2 0.956000  3.7100          0.967    7180      7350   8870
-3      3 0.952000  2.6400          0.940    5620      5780   7610
-4      4 0.882000  1.7700          0.874    4460      4600   6590
-5      5 0.753000  1.2500          0.817    3590      3700   5740
-6      6 0.510000  0.8240          0.711    2920      3000   5040
-7      7 0.233000  0.4790          0.603    2400      2450   4440
-8      8 0.047000  0.2020          0.548    1990      2010   3930
-9      9 0.000252 -0.0148          0.566    1660      1660   3500
-10    10 0.044800 -0.2110          0.597    1400      1390   3130
-11    11 0.121000 -0.3700          0.638    1190      1160   2810
-12    12 0.201000 -0.5190          0.670    1020       979   2520
-13    13 0.266000 -0.6370          0.698     871       829   2280
-14    14 0.327000 -0.7310          0.730     752       704   2060
-15    15 0.378000 -0.8180          0.753     652       599   1880
-16    16 0.428000 -0.9040          0.769     568       513   1710
-17    17 0.466000 -0.9630          0.789     497       440   1560
-18    18 0.493000 -1.0400          0.794     437       379   1430
-19    19 0.515000 -1.0900          0.800     385       328   1310
-20    20 0.531000 -1.1500          0.804     341       284   1200
-[2026-10-22T16:07:03] powerEstimate = 1 (expected 1 or NA: function failing)
-[2026-10-22T16:07:03] R2 curve saved (max R2=0.956)
-           used  (Mb) gc trigger (Mb) limit (Mb) max used  (Mb)
-Ncells  2401583 128.3    4380007  234         NA  3208582 171.4
-Vcells 15972830 121.9   30002451  229      16384 23934317 182.7
-[2026-10-22T16:07:03] building reference network (160 controls, bicor, signed, power 12) ...
- Calculating module eigengenes block-wise from all genes
-   Flagging genes and samples with too many missing values...
-    ..step 1
- ..Working on block 1 .
-    TOM calculation: adjacency..
-    ..will use 3 parallel threads.
-     Fraction of slow calculations: 0.000000
-    ..connectivity..
-    ..matrix multiplication (system BLAS)..
-    ..normalization..
-    ..done.
- ....clustering..
- ....detecting modules..
- ....calculating module eigengenes..
- ....checking kME in modules..
-     ..removing 9 genes from module 1 because their KME is too low.
-     ..removing 5 genes from module 2 because their KME is too low.
-     ..removing 12 genes from module 3 because their KME is too low.
-     ..removing 10 genes from module 5 because their KME is too low.
-     ..removing 7 genes from module 8 because their KME is too low.
-     ..removing 2 genes from module 9 because their KME is too low.
-     ..removing 1 genes from module 10 because their KME is too low.
-     ..removing 1 genes from module 12 because their KME is too low.
-     ..removing 1 genes from module 13 because their KME is too low.
-     ..removing 3 genes from module 14 because their KME is too low.
-     ..removing 1 genes from module 15 because their KME is too low.
-     ..removing 1 genes from module 19 because their KME is too low.
-     ..removing 1 genes from module 21 because their KME is too low.
-  ..reassigning 261 genes from module 1 to modules with higher KME.
-  ..reassigning 222 genes from module 2 to modules with higher KME.
-  ..reassigning 304 genes from module 3 to modules with higher KME.
-  ..reassigning 245 genes from module 4 to modules with higher KME.
-  ..reassigning 156 genes from module 5 to modules with higher KME.
-  ..reassigning 73 genes from module 6 to modules with higher KME.
-  ..reassigning 141 genes from module 7 to modules with higher KME.
-  ..reassigning 211 genes from module 8 to modules with higher KME.
-  ..reassigning 154 genes from module 9 to modules with higher KME.
-  ..reassigning 87 genes from module 10 to modules with higher KME.
-  ..reassigning 123 genes from module 11 to modules with higher KME.
-  ..reassigning 92 genes from module 12 to modules with higher KME.
-  ..reassigning 88 genes from module 13 to modules with higher KME.
-  ..reassigning 103 genes from module 14 to modules with higher KME.
-  ..reassigning 92 genes from module 15 to modules with higher KME.
-  ..reassigning 10 genes from module 16 to modules with higher KME.
-  ..reassigning 47 genes from module 17 to modules with higher KME.
-  ..reassigning 32 genes from module 18 to modules with higher KME.
-  ..reassigning 33 genes from module 20 to modules with higher KME.
-  ..reassigning 25 genes from module 21 to modules with higher KME.
-  ..reassigning 30 genes from module 22 to modules with higher KME.
-  ..reassigning 28 genes from module 23 to modules with higher KME.
-  ..reassigning 44 genes from module 24 to modules with higher KME.
-  ..reassigning 12 genes from module 25 to modules with higher KME.
-  ..reassigning 11 genes from module 26 to modules with higher KME.
-  ..reassigning 17 genes from module 27 to modules with higher KME.
-  ..reassigning 18 genes from module 28 to modules with higher KME.
-  ..reassigning 13 genes from module 29 to modules with higher KME.
-  ..reassigning 3 genes from module 30 to modules with higher KME.
-  ..reassigning 5 genes from module 31 to modules with higher KME.
-  ..reassigning 9 genes from module 32 to modules with higher KME.
-  ..reassigning 1 genes from module 33 to modules with higher KME.
-  ..reassigning 3 genes from module 34 to modules with higher KME.
-  ..reassigning 4 genes from module 35 to modules with higher KME.
-  ..reassigning 4 genes from module 36 to modules with higher KME.
- ..merging modules that are too close..
-     mergeCloseModules: Merging modules whose distance is less than 0
-       Calculating new MEs...
-[2026-10-22T16:49:03] reference: 36 modules
-           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
-Ncells  2431991 129.9    4380007 234.0         NA   4380007  234.0
-Vcells 16068794 122.6   62814927 479.3      16384 480940418 3669.3
-[2026-10-22T16:49:03] CEILING: 74 control preservation (500 perms) ...
+[2026-10-22T19:06:28] Control split: 160 reference, 74 ceiling test
+[2026-10-22T19:06:28] loading cached reference (160 controls): network/cache/ref_ctrl160_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
+[2026-10-22T19:06:28] 36 modules (12314 in non-grey)
+[2026-10-22T19:06:28] ceiling checkpoint exists, skipping
+[2026-10-22T19:06:28] bp_nolith preservation (500 perms) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-10-22T18:21:19] ceiling done: Zsummary range [9.44, 35.46]
-           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
-Ncells  2455443 131.2    4380007 234.0         NA   4380007  234.0
-Vcells 18111401 138.2   62814927 479.3      16384 480940418 3669.3
-[2026-10-22T18:21:19] bp_nolith preservation (500 perms) ...
+[2026-10-22T20:35:55] bp_nolith done: Zsummary range [4.64, 79.24]
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2408096 128.7    4383531 234.2         NA  3491968 186.5
+Vcells 18005972 137.4   54062880 412.5      16384 67578599 515.6
+[2026-10-22T20:35:55] draw 1/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T20:45:00] draw 1 done: Zsummary range [7.45, 34.52]
+[2026-10-22T20:45:00] draw 2/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T20:54:05] draw 2 done: Zsummary range [7.32, 29.58]
+[2026-10-22T20:54:06] draw 3/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:03:09] draw 3 done: Zsummary range [6.14, 30.53]
+[2026-10-22T21:03:09] draw 4/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:12:13] draw 4 done: Zsummary range [6.41, 26.04]
+[2026-10-22T21:12:13] draw 5/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:21:18] draw 5 done: Zsummary range [6.1, 35.41]
+[2026-10-22T21:21:18] draw 6/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:30:23] draw 6 done: Zsummary range [9.01, 33.36]
+[2026-10-22T21:30:23] draw 7/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:39:27] draw 7 done: Zsummary range [2.92, 32.02]
+[2026-10-22T21:39:28] draw 8/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:48:32] draw 8 done: Zsummary range [5.05, 29.64]
+[2026-10-22T21:48:32] draw 9/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:57:38] draw 9 done: Zsummary range [6.64, 34.22]
+[2026-10-22T21:57:38] draw 10/20: subsampling bp_lith ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores

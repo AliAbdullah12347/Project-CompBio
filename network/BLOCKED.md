@@ -329,3 +329,33 @@ Vcells 18111401 138.2   62814927 479.3      16384 480940418 3669.3
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-22T23:06:21Z  PULL --REBASE FAILED (rc=1), ABORTED
+Local commits are intact on main and unpushed. A human must reconcile.
+```
+fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git/': Could not resolve host: github.com
+```
+
+## 2026-10-23T02:06:24Z  base-002-ceil  hit 10800s cap; partial results kept; +10 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-22T21:39:27] draw 7 done: Zsummary range [2.92, 32.02]
+[2026-10-22T21:39:28] draw 8/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:48:32] draw 8 done: Zsummary range [5.05, 29.64]
+[2026-10-22T21:48:32] draw 9/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-22T21:57:38] draw 9 done: Zsummary range [6.64, 34.22]
+[2026-10-22T21:57:38] draw 10/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
