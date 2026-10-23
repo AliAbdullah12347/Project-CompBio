@@ -395,3 +395,33 @@ fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-23T06:46:51Z  PULL --REBASE FAILED (rc=1), ABORTED
+Local commits are intact on main and unpushed. A human must reconcile.
+```
+fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git/': Could not resolve host: github.com
+```
+
+## 2026-10-23T09:46:54Z  inp-022  hit 10800s cap; partial results kept; +15 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-23T05:14:53] draw 17 done: Zsummary [12.91, 61.2]
+[2026-10-23T05:14:53] draw 18/20: subsampling residualised bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-23T05:26:07] draw 18 done: Zsummary [7.8, 73.02]
+[2026-10-23T05:26:08] draw 19/20: subsampling residualised bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-23T05:37:23] draw 19 done: Zsummary [10.4, 71.38]
+[2026-10-23T05:37:23] draw 20/20: subsampling residualised bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
