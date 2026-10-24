@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-24
 **Analysis:** `network/runs/inp-022` (ILR b1–b4 residualized, 45-module reference on 234 controls, 20 lith draws)
-**Evidence:** 23/25 · **Interest:** 9/10 · **Δ:** -0.8
+**Evidence:** 23/25 · **Interest:** 9/10 · **Δ:** -0.2
 
 ## Design
 
