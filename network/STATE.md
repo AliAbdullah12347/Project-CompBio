@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-24
+**Updated:** 2026-10-24T04:20Z
 
 ## Where the science stands
 
@@ -37,7 +37,8 @@
 ## Queue
 
 DONE (5): mod-000-resolution, base-001, base-003-remerge, base-002-ceil, inp-022.
-RUNNING (1): **inp-023** (technical + ILR residualisation, claimed 2026-10-24T00:40Z).
+RUNNING (1): **inp-023** (technical + ILR residualisation, claimed 2026-10-24T04:08Z,
+  attempt 2; R PID 21692 computing TOM matrix as of 04:20Z; cap expires 07:08Z).
 PENDING: 45 rows.
 
 Order after inp-023: pow-009 (SFT curves, fast), gene-027 (LM22 circularity check), inp-021
@@ -103,10 +104,25 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. Check inp-023 DONE status — it mirrors inp-022's design (technical+ILR vs ILR-only)
-2. Write finding for inp-023 comparing to inp-022 numbers
+1. Check inp-023 DONE/PARTIAL status — driver (PID 21638) finalizes when R (PID 21692) finishes
+   - If DONE: all 20 lith draws + nolith complete, results in network/runs/inp-023/
+   - If PARTIAL: check how many draws (lith_draw_NNN.rds) exist; resume automatically
+2. Write finding for inp-023:
+   - Read results_nolith.csv, results_lith_summary.csv, reference_module_sizes.csv
+   - Key comparison: base-001 (raw, Z=4.06) vs inp-022 (ILR-only, Z=15.55) vs inp-023 (ILR+technical)
+   - SFT curve: documented in METHODS.md (2026-10-24T04:08Z entry) — powerEst=NA, max R²=0.836
+   - If inp-023 replicates rescue: update inp-022 finding B score from 4→5 (E: 23→24)
 3. Rebuild `Rscript network/build_index.R`, commit, push
-4. Run driver for next row (`bash network/run_next.sh`)
+4. Run driver for next row (`bash network/run_next.sh`) → pow-009 (SFT fast, 15 min)
+5. Continue with gene-027 (LM22 circularity), inp-021 (full technical residualisation)
+
+## inp-023 SFT comparison (pre-computed, for finding reference)
+
+| arm | residualisation | first power R²≥0.80 | max R² | powerEstimate |
+|:--|:--|--:|--:|--:|
+| base-001 | none (raw) | never | 0.770 | NA |
+| inp-022 | ILR b1–b4 | power 9 (R²=0.802) | 0.880 | 16 |
+| inp-023 | age+sex+rin + ILR b1–b4 | power 13 (R²=0.806) | 0.836 | NA |
 
 ## Layout
 
