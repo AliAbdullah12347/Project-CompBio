@@ -1,0 +1,18 @@
+Class: data.frame 
+Names: module Zsummary medianRank group draw nperms n_test samples 
+
+$module: class=character
+
+$Zsummary: class=numeric
+
+$medianRank: class=numeric
+
+$group: class=character
+
+$draw: class=integer
+
+$nperms: class=integer
+
+$n_test: class=integer
+
+$samples: class=character

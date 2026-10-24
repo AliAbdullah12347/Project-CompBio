@@ -1,106 +1,34 @@
-[2026-10-23T02:46:51] === inp-022 starting ===
+[2026-10-23T20:18:09] === inp-022 starting ===
 Allowing parallel execution with up to 3 working processes.
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-10-23T02:46:54] loading cached reference modules: network/cache/ref_control_all_bicor_signed_p12_composition_ilr_b1b4_ds4_mch00_offsetrm.rds
-[2026-10-23T02:46:54] 44 modules loaded
-[2026-10-23T02:46:54] bp_nolith checkpoint exists, skipping
-[2026-10-23T02:46:54] draw 1 exists, skipping
-[2026-10-23T02:46:54] draw 2 exists, skipping
-[2026-10-23T02:46:54] draw 3 exists, skipping
-[2026-10-23T02:46:54] draw 4 exists, skipping
-[2026-10-23T02:46:54] draw 5/20: subsampling residualised bp_lith ...
+[2026-10-23T20:18:16] loading cached reference modules: network/cache/ref_control_all_bicor_signed_p12_composition_ilr_b1b4_ds4_mch00_offsetrm.rds
+[2026-10-23T20:18:16] 44 modules loaded
+[2026-10-23T20:18:17] bp_nolith checkpoint exists, skipping
+[2026-10-23T20:18:17] draw 1 exists, skipping
+[2026-10-23T20:18:17] draw 2 exists, skipping
+[2026-10-23T20:18:17] draw 3 exists, skipping
+[2026-10-23T20:18:17] draw 4 exists, skipping
+[2026-10-23T20:18:17] draw 5 exists, skipping
+[2026-10-23T20:18:17] draw 6 exists, skipping
+[2026-10-23T20:18:17] draw 7 exists, skipping
+[2026-10-23T20:18:17] draw 8 exists, skipping
+[2026-10-23T20:18:17] draw 9 exists, skipping
+[2026-10-23T20:18:17] draw 10 exists, skipping
+[2026-10-23T20:18:17] draw 11 exists, skipping
+[2026-10-23T20:18:17] draw 12 exists, skipping
+[2026-10-23T20:18:17] draw 13 exists, skipping
+[2026-10-23T20:18:17] draw 14 exists, skipping
+[2026-10-23T20:18:17] draw 15 exists, skipping
+[2026-10-23T20:18:17] draw 16 exists, skipping
+[2026-10-23T20:18:17] draw 17 exists, skipping
+[2026-10-23T20:18:17] draw 18 exists, skipping
+[2026-10-23T20:18:17] draw 19 exists, skipping
+[2026-10-23T20:18:17] draw 20/20: subsampling residualised bp_lith ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-10-23T02:58:14] draw 5 done: Zsummary [10.72, 69.22]
-[2026-10-23T02:58:14] draw 6/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T03:09:30] draw 6 done: Zsummary [10.48, 72.29]
-[2026-10-23T03:09:30] draw 7/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T03:20:45] draw 7 done: Zsummary [10.06, 58.82]
-[2026-10-23T03:20:45] draw 8/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T03:32:01] draw 8 done: Zsummary [8.82, 68.08]
-[2026-10-23T03:32:01] draw 9/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T03:43:16] draw 9 done: Zsummary [12.6, 91.8]
-[2026-10-23T03:43:16] draw 10/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T03:54:31] draw 10 done: Zsummary [7.56, 69.72]
-[2026-10-23T03:54:31] draw 11/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T04:05:48] draw 11 done: Zsummary [10.53, 68.31]
-[2026-10-23T04:05:48] draw 12/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T04:17:04] draw 12 done: Zsummary [11.47, 82.14]
-[2026-10-23T04:17:04] draw 13/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T04:28:37] draw 13 done: Zsummary [11.86, 70.46]
-[2026-10-23T04:28:37] draw 14/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T04:40:25] draw 14 done: Zsummary [8.69, 69.71]
-[2026-10-23T04:40:25] draw 15/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T04:52:09] draw 15 done: Zsummary [10.99, 68.41]
-[2026-10-23T04:52:09] draw 16/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T05:03:37] draw 16 done: Zsummary [12.74, 88.3]
-[2026-10-23T05:03:37] draw 17/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T05:14:53] draw 17 done: Zsummary [12.91, 61.2]
-[2026-10-23T05:14:53] draw 18/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T05:26:07] draw 18 done: Zsummary [7.8, 73.02]
-[2026-10-23T05:26:08] draw 19/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-10-23T05:37:23] draw 19 done: Zsummary [10.4, 71.38]
-[2026-10-23T05:37:23] draw 20/20: subsampling residualised bp_lith ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-CAP EXCEEDED after 10800s
+[2026-10-23T20:31:27] draw 20 done: Zsummary [10.71, 69.16]
+[2026-10-23T20:31:27] aggregating results ...
+[2026-10-23T20:31:27] Results written to network/runs/inp-022
+[2026-10-23T20:31:27] === inp-022 COMPLETE ===

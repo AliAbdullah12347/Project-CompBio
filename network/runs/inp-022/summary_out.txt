@@ -1,0 +1,104 @@
+=== inp-022 lith draws 1-19 summary ===
+           module Zsummary_mean Zsummary_sd Zsummary_min Zsummary_max
+32            red      67.60481    9.206435     50.06199     88.30364
+14          green      66.28689    9.637569     49.92941     85.58105
+44         yellow      66.20345   12.596430     44.63779     91.79782
+10        darkred      58.35611    5.545119     49.32868     69.44596
+29           pink      51.75687    6.223470     39.25139     67.49706
+40            tan      50.27151    5.761980     41.22215     63.34408
+23        magenta      48.29681    7.108271     37.39405     62.29759
+4            cyan      47.33061    5.754190     38.37735     58.76124
+42         violet      44.82911    5.197385     37.29580     56.06402
+2            blue      44.51837    6.949857     33.10210     59.70004
+1           black      43.73495    4.148057     33.44816     50.87243
+41      turquoise      42.97190    6.686839     33.44772     63.03744
+20     lightgreen      42.20520    5.757505     30.73175     54.28023
+8  darkolivegreen      41.44766    4.357667     31.59281     48.71424
+31         purple      38.13880    5.505104     26.86758     46.30092
+   medianRank_mean
+32       10.526316
+14       15.894737
+44       22.210526
+10        1.736842
+29       17.421053
+40       14.263158
+23       23.105263
+4        11.578947
+42        2.368421
+2        40.052632
+1        28.894737
+41       41.894737
+20       11.052632
+8         3.473684
+31       30.315789
+
+Gold mean Z: 15.80199 
+Modules beating gold (lith, draws 1-19): 41 
+All modules with mean Z > 10:
+            module Zsummary_mean Zsummary_sd
+32             red      67.60481    9.206435
+14           green      66.28689    9.637569
+44          yellow      66.20345   12.596430
+10         darkred      58.35611    5.545119
+29            pink      51.75687    6.223470
+40             tan      50.27151    5.761980
+23         magenta      48.29681    7.108271
+4             cyan      47.33061    5.754190
+42          violet      44.82911    5.197385
+2             blue      44.51837    6.949857
+1            black      43.73495    4.148057
+41       turquoise      42.97190    6.686839
+20      lightgreen      42.20520    5.757505
+8   darkolivegreen      41.44766    4.357667
+31          purple      38.13880    5.505104
+16          grey60      36.65789    4.655757
+6         darkgrey      35.85646    5.283030
+5        darkgreen      33.06367    3.823987
+9       darkorange      32.43827    4.833222
+33       royalblue      31.95544    4.308391
+11   darkturquoise      29.14737    3.836252
+3            brown      28.90380    4.130586
+26          orange      28.50078    4.298632
+25    midnightblue      28.13493    3.722764
+43           white      27.69142    3.341615
+24   mediumpurple3      27.51598    3.798772
+36         sienna3      25.78555    4.095140
+18       lightcyan      25.64066    3.389234
+34     saddlebrown      24.80386    3.770117
+38        skyblue3      24.35419    3.877455
+15     greenyellow      23.97568    3.718764
+30           plum1      23.95451    3.127308
+7      darkmagenta      23.42083    4.825574
+35          salmon      22.10523    3.061448
+28   paleturquoise      21.70254    3.379735
+22     lightyellow      19.77849    3.418016
+27      orangered4      19.03986    3.925393
+37         skyblue      17.54003    2.582470
+39       steelblue      16.86006    2.342437
+17           ivory      16.40985    2.631952
+21 lightsteelblue1      16.33261    3.228148
+13            gold      15.80199    8.266256
+45     yellowgreen      15.28006    2.155074
+19      lightcyan1      13.96005    2.181944
+12     floralwhite      13.14438    1.161000
+
+=== inp-022 nolith summary (top 15) ===
+           module Zsummary medianRank     group draw nperms n_test
+45         yellow 63.32932         19 bp_nolith   NA    500     74
+10        darkred 61.89652          2 bp_nolith   NA    500     74
+30           pink 61.11543          7 bp_nolith   NA    500     74
+4            cyan 56.65870          6 bp_nolith   NA    500     74
+33            red 56.15649         13 bp_nolith   NA    500     74
+1           black 49.86245         15 bp_nolith   NA    500     74
+42      turquoise 48.63866         38 bp_nolith   NA    500     74
+6        darkgrey 46.54073          5 bp_nolith   NA    500     74
+14          green 46.04041         25 bp_nolith   NA    500     74
+24        magenta 45.99242         19 bp_nolith   NA    500     74
+43         violet 44.46589          4 bp_nolith   NA    500     74
+2            blue 43.21780         39 bp_nolith   NA    500     74
+8  darkolivegreen 41.09611          4 bp_nolith   NA    500     74
+41            tan 37.87130         24 bp_nolith   NA    500     74
+21     lightgreen 37.77378         12 bp_nolith   NA    500     74
+
+nolith gold Z: 30.45831 
+Modules beating gold (nolith): 22 
