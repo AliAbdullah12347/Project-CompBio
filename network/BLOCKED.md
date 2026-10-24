@@ -471,3 +471,8 @@ No wake recorded for 18h (last: 2026-10-24T04:05:00Z) and no session, driver or 
 The watchdog kickstarted `com.aaylab.networkarm`. If this entry repeats, the scheduler is not
 firing on its own and the launchd configuration needs a human.
 
+## 2026-10-24T23:35:00Z  SCHEDULER STALL DETECTED AND RECOVERED
+No wake recorded for 19h (last: 2026-10-24T04:05:00Z) and no session, driver or experiment running.
+The watchdog kickstarted `com.aaylab.networkarm`. If this entry repeats, the scheduler is not
+firing on its own and the launchd configuration needs a human.
+
