@@ -1527,3 +1527,39 @@ Same design as inp-022 but residualising for both technical covariates (age, sex
 plate, seqpc1–3) AND ILR b1–b4. Pre-specified as a robustness check for inp-022. If
 inp-023 replicates the rescue (gold Z rise, 41+ modules beating gold), the composition
 interpretation is robust to residualisation variant choice and Robustness scores rise.
+
+**Correction recorded before results arrive:** the prose above says "plate, seqpc1–3"
+but the actual `inp-023.R` script uses `~ age + sex + rin + b1 + b2 + b3 + b4` only —
+no plate, no seqPCs. The config (`network/config/inp-023.json`) pre-specifies the omission:
+"Plate and seqPCs omitted to avoid over-fitting." So inp-023 tests the **core** technical
+covariate set (the same as the de_v2 primary model) plus ILR composition. The **full**
+technical set (with plate and seqPCs) is inp-021. This distinction is load-bearing for
+interpreting any difference between inp-021 and inp-023.
+
+---
+
+## 2026-10-24T04:08Z  inp-023 SFT curve (observed before preservation results)
+
+The scale-free topology scan was computed in inp-023's first attempt and saved before that
+attempt was killed. The values are pre-result and describe the doubly-residualised
+(age+sex+rin+ILR b1–b4) control expression at n=234:
+
+| arm | residualisation | first power R²≥0.80 | max R² | powerEstimate |
+|:--|:--|--:|--:|--:|
+| base-001 | none (raw) | never | 0.770 | NA |
+| inp-022 | ILR b1–b4 | power 9 (R²=0.802) | 0.880 | 16 |
+| inp-023 | age+sex+rin + ILR b1–b4 | power 13 (R²=0.806) | 0.836 | NA |
+
+Adding age+sex+rin on top of ILR gives an intermediate SFT quality: better than raw but
+worse than ILR-only. This is counter-intuitive — removing more sources of variation
+yields a less scale-free network — but is consistent with age, sex, and RIN capturing
+genuine co-expression signal (real gene regulatory patterns correlated with these
+covariates) whose removal reduces the signed correlation structure that WGCNA exploits.
+ILR residualisation removes compositional variation, which inflates correlations between
+all genes in the same cell type without representing coordinated regulation; removing it
+therefore helps the SFT criterion. Technical covariate residualisation is different in
+character.
+
+Power 12 is used in all three arms (pre-specified, WGCNA FAQ signed n>40). The SFT
+criterion is met at power 13 in inp-023, so power 12 is one step below the
+data-driven recommendation — still within the FAQ range and acceptable.
