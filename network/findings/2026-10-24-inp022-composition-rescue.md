@@ -89,6 +89,27 @@ completes the picture:
 This is the arm's central question answered: **Yes, the module structure disruption in
 bp_lith is substantially, and likely predominantly, due to cell composition.**
 
+## Additional finding: ILR residualisation makes the network scale-free
+
+The R² curve for the scale-free topology fit differs dramatically:
+
+| arm | expression | first power with R²≥0.80 | max R² at power 20 | powerEstimate |
+|:--|:--|--:|--:|--:|
+| base-001 | raw | never | 0.770 | NA (function failing) |
+| inp-022 | ILR residualised | power 9 (R²=0.802) | 0.880 | 16 |
+
+Raw expression (n=234 controls) never achieves the scale-free criterion at any power
+1–20, requiring the WGCNA FAQ fallback to power 12. After removing ILR b1–b4, the same
+expression data does satisfy the criterion (R²≥0.80, negative slope ≈ −1.72). Cell
+composition variance was the obstacle to scale-free topology; removing it resolves the
+failure documented in finding #20.
+
+We use power=12 regardless (pre-specified, following the WGCNA FAQ for signed networks
+n>40), so the network is valid under both the FAQ recommendation and the data-driven
+criterion. The ILR-residualised network with power=12 is slightly below the
+powerEstimate=16 from pickSoftThreshold, but the FAQ guideline is conservative and both
+are acceptable.
+
 ## Caveat: cross-arm Zsummary comparison
 
 The two reference networks differ (71 vs. 45 modules, different module boundaries).
