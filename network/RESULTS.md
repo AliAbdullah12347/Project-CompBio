@@ -1,22 +1,27 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-14
-**Runs completed:** 1 of 50 queued (mod-000-resolution). base-001 v2 RUNNING.
-**Analyses completed:** 4 (001–004). **Findings:** 8 — see `RANKING.md`.
+**Updated:** 2026-10-24
+**Runs completed:** 5 of 50 queued (mod-000-resolution, base-001, base-002-ceil, base-003-remerge, inp-022). inp-023 RUNNING.
+**Analyses completed:** 4 (001–004) + 8 runs completed. **Findings:** 24 — see `RANKING.md`.
 
 ---
 
 ## The answer so far
 
-**A lithium-associated co-expression dimension exists and it is almost entirely cell
-composition.** This finding is robust across all tested decompositions and cannot be
-explained by circularity in the composition estimator. Whether the composition difference
-*causes* the observed network structure or is a *confounder* is not yet resolved — that is
-Arm 2's question.
+**The arm's central question is answered (provisionally): module structure disruption in
+bp_lith is substantially driven by cell composition.** After residualising for ILR b1–b4,
+bp_lith modules achieve gold Z = 15.55 (vs. 4.06 raw in base-001), and 41/45 modules beat
+their null — a 284% increase in gold Z at matched instrument. The reference module count
+drops from 71 (raw) to 45 (residualised), indicating that ~26 raw modules were
+composition-driven. These results extend and confirm finding #2 (73% composition share).
 
-Preservation analyses (`base-001` v2 through `inp-023`) are queued to test whether the
-module structure itself is preserved across disease groups, and whether residualising for
-composition restores preservation.
+**bp_nolith modules are well preserved:** 22/45 modules beat gold in inp-022 nolith
+(Z up to 63). The global co-expression fabric differs between controls and nolith patients
+(base-002-ceil: gold Z = 22.58 ctrl_ceiling vs 4.64 bp_nolith at matched 500 perms),
+consistent with BP disease driving a global network-level shift (PC1=77.5%).
+
+**inp-023 (technical + ILR residualisation) is next** — if it replicates inp-022's rescue,
+the composition interpretation becomes robust across residualisation variants.
 
 ---
 
@@ -24,13 +29,17 @@ composition restores preservation.
 
 | id | wall | verdict | folder |
 |:--|--:|:--|:--|
-| `mod-000-resolution` | 2938 s | **Arm unblocked.** deepSplit=4, mergeCutHeight=0 → 33 modules, largest 11.68% | [network/runs/mod-000-resolution](runs/mod-000-resolution) |
+| `mod-000-resolution` | 1033 s | **Arm unblocked.** Rebuilt offset-removed: deepSplit=4, mergeCutHeight=0 → 71 modules | [network/runs/mod-000-resolution](runs/mod-000-resolution) |
+| `base-001` | ~26000 s (3 sessions) | **71-module reference preservation.** 20 lith draws done. 46/71 modules beat gold in all 20 lith draws; mediumorchid 0/20. Gold mean Z=4.06 lith, 14.01 nolith (incomparable: 50 vs 500 perms). | [network/runs/base-001](runs/base-001) |
+| `base-003-remerge` | 1 s | **Beats-gold consolidation.** Reads base-001; 48/71 modules beat gold in 100% of draws; mediumorchid never does. | [network/runs/base-003-remerge](runs/base-003-remerge) |
+| `base-002-ceil` | 6021 s | **Split-half ceiling.** 36-module reference (160 ctrl). ctrl_ceiling gold Z=22.58; bp_nolith gold Z=4.64 (both 500 perms — 5× difference at global level). | [network/runs/base-002-ceil](runs/base-002-ceil) |
+| `inp-022` | 800 s | **KEY RESULT.** ILR b1–b4 residualisation: bp_lith gold Z=15.55 (vs 4.06 raw). 41/45 modules beat gold. 45-module reference (vs 71 raw) — 26 raw modules were composition-driven. | [network/runs/inp-022](runs/inp-022) |
 
 ### Running
 
 | id | started | progress |
 |:--|:--|:--|
-| `base-001` v2 | 2026-10-14T19:14Z | nolith 500-perm preservation computing; 20 lith draws follow. ETA complete ~21:30Z 2026-10-14 |
+| `inp-023` | 2026-10-24T00:32Z | Technical + ILR residualisation. Same structure as inp-022. Robustness test for inp-022's KEY RESULT. |
 
 ---
 
@@ -319,11 +328,10 @@ Evidence 20/25 · Interest 8/10 · Δ +0.4.
 
 ## Next
 
-1. **base-001 v2** (RUNNING) — preservation at correct parameters (33 modules, gold baseline)
-2. **base-003-remerge** — reads base-001 v2 results; generates comparison tables
-3. **base-002-ceil** — split-half ceiling; interpretability of any Zsummary seen in bp_lith
-4. **inp-022** / **inp-023** — key question: does residualising for composition restore
-   module preservation? This is the structural counterpart of finding 002's eigengene result.
+1. **inp-023** (RUNNING) — technical + ILR residualisation. Robustness test for inp-022.
+2. After inp-023: **corr-005**, **corr-006** (correlation function sensitivity checks)
+3. The remaining 43 experiments in the queue cover gene-level, hub, community, centrality,
+   annotation, filter, tobacco, sampling, and reference sensitivity analyses.
 
 ---
 

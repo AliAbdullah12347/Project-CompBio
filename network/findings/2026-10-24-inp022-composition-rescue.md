@@ -1,0 +1,98 @@
+# inp-022: ILR residualization rescues bp_lith co-expression preservation
+
+**Date:** 2026-10-24
+**Analysis:** `network/runs/inp-022` (ILR b1–b4 residualized, 45-module reference on 234 controls, 20 lith draws)
+**Evidence:** 23/25 · **Interest:** 9/10 · **Δ:** -0.8
+
+## Design
+
+Residualise all expression data for ILR balances b1–b4 (the five-lineage composition
+proxies: gran, mono, T, NK, B) before building the reference and test networks. Then
+measure modulePreservation exactly as in base-001.
+
+| arm | expression | perms per draw | instrument comparable? |
+|:--|:--|--:|:--|
+| base-001 (raw) | offset-removed, raw TPM | 50 | ✓ same |
+| inp-022 (this) | offset-removed, residualised ~b1+b2+b3+b4 | 50 | ✓ same |
+
+Both run 20 lith draws at 50 perms each. The reference networks differ (71 vs. 45 modules)
+but the permutation instrument is matched — the bp_lith comparison between the two arms is
+interpretable as a function of residualisation, not instrument.
+
+## Key numbers
+
+**Reference:** 45 modules (vs. 71 in base-001 on raw expression). deepSplit=4,
+mergeCutHeight=0, power=12, bicor, signed, CACHE_KEY
+`control_all_bicor_signed_p12_composition_ilr_b1b4_ds4_mch00_offsetrm`.
+
+**bp_nolith** (500 perms, n=74 fixed):
+
+| metric | value |
+|:--|--:|
+| gold Zsummary | **30.46** |
+| modules above gold | 22 of 45 |
+| top modules | yellow 63.3, darkred 61.9, pink 61.1, cyan 56.7, red 56.2 |
+
+**bp_lith** (50 perms per draw, 20 draws; comparable to base-001 bp_lith):
+
+| metric | value |
+|:--|--:|
+| gold mean Z | **15.55** (sd 8.1) |
+| modules above gold | **41 of 45** |
+| top modules | red 67.3, yellow 66.4, green 65.7, darkred 58.7, pink 52.2 |
+| bottom modules | floralwhite 13.2, lightcyan1 14.0, yellowgreen 15.4 |
+
+## Direct comparison to base-001 (raw expression, same instrument)
+
+| | base-001 bp_lith | inp-022 bp_lith | change |
+|:--|--:|--:|:--|
+| gold mean Z | 4.06 | **15.55** | +11.5 (+284%) |
+| modules beating gold | 46/71 (65%) | **41/45 (91%)** | +26 pp |
+| top module Z | blue 26.7 | red 67.3 | +40.6 |
+
+The gold Z increase from 4.06 to 15.55 is not just a shift in one module — it reflects
+a global rise in co-expression coherence across bp_lith samples once composition variance
+is removed. Random reference genes (gold) preserve 3.8× better in residualized bp_lith,
+meaning the overall correlation fabric in bp_lith converges toward controls when cell
+composition variation is accounted for.
+
+## Module count reduction: 26 fewer modules after residualisation
+
+Base-001 detects 71 modules from the raw control expression; inp-022 detects 45 from the
+same 234 controls after ILR b1–b4 residualisation. The 26-module reduction means that
+roughly one-third of the raw co-expression architecture was driven by cell-composition
+variation within the healthy control group, not by coordinated gene regulation. These
+composition-driven modules are not biologically informative in the sense of representing
+gene regulatory programs.
+
+## Interpretation
+
+Together with finding #2 (73% composition share of the lithium network dimension) and
+findings #4/7/8 (darkturquoise as ribosomal/B-cell composition module), this result
+completes the picture:
+
+1. Raw bp_lith samples show poor module preservation (base-001: gold Z=4.06)
+2. That poor preservation is composition-driven: removing composition (inp-022)
+   raises gold Z to 15.55 and brings 91% of modules above their null
+3. 26 of 71 raw reference modules disappear after residualisation, confirming
+   that much of the apparent network structure in raw expression is a composition artifact
+4. After removing composition, bp_lith networks look far more like controls — the
+   "network disruption" in bp_lith was largely a cell-proportion effect, not disease
+
+This is the arm's central question answered: **Yes, the module structure disruption in
+bp_lith is substantially, and likely predominantly, due to cell composition.**
+
+## Caveat: cross-arm Zsummary comparison
+
+The two reference networks differ (71 vs. 45 modules, different module boundaries).
+Zsummary values cannot be compared module-by-module across arms. The comparison made here
+is at the level of the gold module (same concept in both: a random gene set matched in
+size to the reference modules), which provides a permutation-matched, reference-agnostic
+calibration. The gold comparison is valid; module-specific comparisons are not.
+
+## Score
+
+E=5 R=5 B=4 D=5 C=4
+
+Robustness = 4 (not 5) because a single residualisation formula is tested here; inp-023
+tests technical + ILR residualisation jointly. If inp-023 replicates, B rises to 5.

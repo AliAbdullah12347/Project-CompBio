@@ -1472,3 +1472,54 @@ Average draw cost at 71 modules: ~850–900 s, consistent with the per-permutati
 The config file was written before EXPR_TAG was established, so its `cache_key` field
 lacked `_offsetrm`. Corrected to `control_all_bicor_signed_p12_ds4_mch00_offsetrm` and
 `expr_mode` / `expr_tag` fields added on 2026-10-18 in this session.
+
+---
+
+## 2026-10-24T00:32Z  Results: base-002-ceil, inp-022 complete
+
+### base-002-ceil (split-half ceiling, DONE 6021 s)
+
+Reference: 160 randomly held-out controls (seed=SEED_BASE+2000=20271009); 36 modules at
+deepSplit=4, mergeCutHeight=0, power=12, bicor, signed, offset-removed.
+
+Key results:
+- ctrl_ceiling (74 disjoint controls, 500 perms): gold Z=22.58; module Z range 9.44–35.46
+- bp_nolith (74 patients, 500 perms): gold Z=4.64; 35/36 modules beat gold
+- bp_lith (20 draws of 74 from 152, 50 perms): gold mean Z=20.98; top modules blue(31.65), green(26.04)
+
+**The critical finding:** at matched 500-perm instrument, ctrl_ceiling gold Z (22.58) is
+4.9× higher than bp_nolith gold Z (4.64). Random genes preserve much better in a disjoint
+control set than in bp_nolith patients. This reflects a global difference in co-expression
+fabric between healthy controls and BP-off-lithium patients, not a module-specific effect.
+
+bp_lith vs ctrl_ceiling comparison is NOT valid (50 vs 500 perms; established in base-001
+finding). Finding written: `findings/2026-10-24-base-002-ceil-ceiling.md`.
+
+### inp-022 (ILR b1–b4 residualisation, DONE 800 s)
+
+Reference: all 234 controls, residualised for ~b1+b2+b3+b4 (ILR cell-composition
+balances); 45 modules at same deepSplit/mergeCutHeight/power/bicor/signed.
+
+Key comparison with base-001 (same 50 perms/draw, same 20 draws, raw vs residualised):
+
+| metric | base-001 (raw) | inp-022 (residualised) | change |
+|:--|--:|--:|:--|
+| gold mean Z (bp_lith) | 4.06 | **15.55** | +284% |
+| % modules beating gold (bp_lith) | ~65% (46/71 all-20 draws) | **91% (41/45)** | +26 pp |
+| reference module count | 71 | **45** | −26 modules |
+
+**Decision: no method change from this result.** The finding is that ILR residualisation
+rescues bp_lith preservation, confirming composition as the driver. This does not require
+adjusting any threshold — the pre-specified design of inp-022 already tested this question.
+
+Module count reduction (71→45): residualising for ILR b1–b4 before network construction
+removes composition-driven co-expression structure. The ~26 lost modules were apparently
+tracking cell composition variation within controls rather than coordinated gene regulation.
+This is an additional finding recorded in `findings/2026-10-24-inp022-composition-rescue.md`.
+
+### Pending: inp-023 (technical + ILR residualisation)
+
+Same design as inp-022 but residualising for both technical covariates (age, sex, RIN,
+plate, seqpc1–3) AND ILR b1–b4. Pre-specified as a robustness check for inp-022. If
+inp-023 replicates the rescue (gold Z rise, 41+ modules beating gold), the composition
+interpretation is robust to residualisation variant choice and Robustness scores rise.
