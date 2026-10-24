@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-24T04:20Z
+**Updated:** 2026-10-24T04:29Z
 
 ## Where the science stands
 
@@ -38,7 +38,9 @@
 
 DONE (5): mod-000-resolution, base-001, base-003-remerge, base-002-ceil, inp-022.
 RUNNING (1): **inp-023** (technical + ILR residualisation, claimed 2026-10-24T04:08Z,
-  attempt 2; R PID 21692 computing TOM matrix as of 04:20Z; cap expires 07:08Z).
+  attempt 2; R PID 21692 running bp_nolith 500-perm as of 04:29Z; TOM took 18 min
+  (cache loaded from attempt 1); **42 modules** in doubly-residualised reference;
+  cap expires 07:08Z; expected DONE ~06:10Z).
 PENDING: 45 rows.
 
 Order after inp-023: pow-009 (SFT curves, fast), gene-027 (LM22 circularity check), inp-021
@@ -105,19 +107,34 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 ## Pending task for next session
 
 1. Check inp-023 DONE/PARTIAL status — driver (PID 21638) finalizes when R (PID 21692) finishes
-   - If DONE: all 20 lith draws + nolith complete, results in network/runs/inp-023/
-   - If PARTIAL: check how many draws (lith_draw_NNN.rds) exist; resume automatically
-2. Write finding for inp-023:
-   - Read results_nolith.csv, results_lith_summary.csv, reference_module_sizes.csv
-   - Key comparison: base-001 (raw, Z=4.06) vs inp-022 (ILR-only, Z=15.55) vs inp-023 (ILR+technical)
-   - SFT curve: documented in METHODS.md (2026-10-24T04:08Z entry) — powerEst=NA, max R²=0.836
+   - If DONE: results in network/runs/inp-023/ (results_nolith.csv, results_lith_summary.csv)
+   - If PARTIAL: check how many lith_draw_NNN.rds exist; driver auto-resumes next session
+2. Write finding for inp-023 at network/findings/2026-10-24-inp023-technical-ilr-replication.md:
+   - Already known: 42 modules, powerEst=NA, max R²=0.836, power 12 used (R²=0.795)
+   - Read results_nolith.csv: get gold Zsummary + medianRank for bp_nolith
+   - Read results_lith_summary.csv: get gold Zsummary_mean + medianRank_mean for bp_lith
+   - Key comparison: base-001 (raw, Z=4.06) → inp-022 (ILR, Z=15.55) → inp-023 (ILR+tech, Z=?)
+   - Count modules with mean Z > gold mean Z across all draws
+   - Check if gold medianRank = N+1 (last) in all 20 draws
    - If inp-023 replicates rescue: update inp-022 finding B score from 4→5 (E: 23→24)
 3. Rebuild `Rscript network/build_index.R`, commit, push
 4. Run driver for next row (`bash network/run_next.sh`) → pow-009 (SFT fast, 15 min)
 5. Continue with gene-027 (LM22 circularity), inp-021 (full technical residualisation)
 
-## inp-023 SFT comparison (pre-computed, for finding reference)
+## inp-023 reference network (pre-computed, for finding reference)
 
+**42 modules** in doubly-residualised reference (age+sex+rin + ILR b1–b4; deepSplit=4,
+mergeCutHeight=0, power=12, bicor, signed). TOM cache written by attempt 1 and reused
+by attempt 2 (TOM took 18 min in attempt 2 = loading cache + clustering).
+
+Module count progression:
+| arm | residualisation | modules | reduction vs raw |
+|:--|:--|--:|:--|
+| base-001 | none (raw) | 71 | — |
+| inp-022 | ILR b1–b4 | 44 | −27 (38%) |
+| inp-023 | age+sex+rin + ILR b1–b4 | **42** | −29 (41%) |
+
+SFT curve comparison:
 | arm | residualisation | first power R²≥0.80 | max R² | powerEstimate |
 |:--|:--|--:|--:|--:|
 | base-001 | none (raw) | never | 0.770 | NA |
