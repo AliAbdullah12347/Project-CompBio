@@ -15,7 +15,7 @@ measure modulePreservation exactly as in base-001.
 | base-001 (raw) | offset-removed, raw TPM | 50 | ✓ same |
 | inp-022 (this) | offset-removed, residualised ~b1+b2+b3+b4 | 50 | ✓ same |
 
-Both run 20 lith draws at 50 perms each. The reference networks differ (71 vs. 45 modules)
+Both run 20 lith draws at 50 perms each. The reference networks differ (71 vs. 44 modules)
 but the permutation instrument is matched — the bp_lith comparison between the two arms is
 interpretable as a function of residualisation, not instrument.
 
@@ -122,7 +122,7 @@ are acceptable.
 
 ## Caveat: cross-arm Zsummary comparison
 
-The two reference networks differ (71 vs. 45 modules, different module boundaries).
+The two reference networks differ (71 vs. 44 modules, different module boundaries).
 Zsummary values cannot be compared module-by-module across arms. The comparison made here
 is at the level of the gold module (same concept in both: a random gene set matched in
 size to the reference modules), which provides a permutation-matched, reference-agnostic
