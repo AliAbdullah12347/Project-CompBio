@@ -1498,22 +1498,26 @@ finding). Finding written: `findings/2026-10-24-base-002-ceil-ceiling.md`.
 ### inp-022 (ILR b1–b4 residualisation, DONE 800 s)
 
 Reference: all 234 controls, residualised for ~b1+b2+b3+b4 (ILR cell-composition
-balances); 45 modules at same deepSplit/mergeCutHeight/power/bicor/signed.
+balances); 44 modules at same deepSplit/mergeCutHeight/power/bicor/signed.
 
 Key comparison with base-001 (same 50 perms/draw, same 20 draws, raw vs residualised):
 
 | metric | base-001 (raw) | inp-022 (residualised) | change |
 |:--|--:|--:|:--|
 | gold mean Z (bp_lith) | 4.06 | **15.55** | +284% |
-| % modules beating gold (bp_lith) | ~65% (46/71 all-20 draws) | **91% (41/45)** | +26 pp |
-| reference module count | 71 | **45** | −26 modules |
+| modules with mean Z > gold (bp_lith) | 63/71 (89%) | **41/44 (93%)** | +4 pp |
+| gold always ranked last (medianRank) | No (mean rank 68.5/72) | **Yes (45/45 draws)** | ↑ |
+| reference module count | 71 | **44** | −27 modules |
+
+NOTE: an earlier draft used mixed metrics (46/71 "all-draw" for base-001, 41/45 "mean Z"
+for inp-022) and wrong denominator (45 vs actual 44). Corrected 2026-10-24.
 
 **Decision: no method change from this result.** The finding is that ILR residualisation
 rescues bp_lith preservation, confirming composition as the driver. This does not require
 adjusting any threshold — the pre-specified design of inp-022 already tested this question.
 
-Module count reduction (71→45): residualising for ILR b1–b4 before network construction
-removes composition-driven co-expression structure. The ~26 lost modules were apparently
+Module count reduction (71→44): residualising for ILR b1–b4 before network construction
+removes composition-driven co-expression structure. The ~27 lost modules were apparently
 tracking cell composition variation within controls rather than coordinated gene regulation.
 This is an additional finding recorded in `findings/2026-10-24-inp022-composition-rescue.md`.
 

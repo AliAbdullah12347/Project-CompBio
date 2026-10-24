@@ -12,9 +12,10 @@
 
 2. **inp-022 (DONE 2026-10-24): ILR residualisation rescues bp_lith module preservation.**
    At matched instrument (50 perms/draw, 20 draws), gold Z rises from 4.06 (base-001 raw)
-   to 15.55 after removing ILR b1–b4 (+284%). 41/45 modules beat their null vs. 46/71 (65%)
-   raw. The reference module count drops from 71 to 45 — ~26 raw modules were composition
-   artifacts. Finding: `findings/2026-10-24-inp022-composition-rescue.md` (E=23/25, I=9/10).
+   to 15.55 after removing ILR b1–b4 (+284%). 41/44 (93%) modules beat gold mean Z; gold
+   ranked last by medianRank in all 20 draws. The reference module count drops from 71 to
+   44 — ~27 raw modules were composition artifacts. Finding:
+   `findings/2026-10-24-inp022-composition-rescue.md` (E=23/25, I=9/10).
 
 3. **base-002-ceil (DONE 2026-10-23): global co-expression differs between controls and
    nolith even at random-gene level.** At matched 500-perm instrument, gold Z=22.58 in
@@ -36,16 +37,17 @@
 ## Queue
 
 DONE (5): mod-000-resolution, base-001, base-003-remerge, base-002-ceil, inp-022.
-RUNNING (1): **inp-023** (technical + ILR residualisation, claimed 2026-10-24T00:32Z).
-PENDING: 46 rows.
+RUNNING (1): **inp-023** (technical + ILR residualisation, claimed 2026-10-24T00:40Z).
+PENDING: 45 rows.
 
-Order after inp-023: corr-005, corr-006, gene-025, gene-026, gene-027, gene-028, gene-029,
-hub-036, hub-037, comm-038, comm-039, cent-040, ann-041, ann-042, filt-044, tob-045,
-samp-043, ref-002, ref-003, ref-004, net-007, net-008, perm-030, perm-031, perm-032,
-trait-033, trait-034, trait-035, and bmind-046/047 (require bMIND profiles, ~3.1 h to
-compute).
+Order after inp-023: pow-009 (SFT curves, fast), gene-027 (LM22 circularity check), inp-021
+(technical-only residualisation), perm-031, trait-033/034/035, pres-030, samp-043, ann-041,
+ann-042, ref-002/003/004, corr-005/006, net-007/008, pow-010/011/012, mod-013 through
+mod-020, inp-024, gene-025/026/028/029, perm-032, hub-036/037, comm-038/039, cent-040,
+filt-044, tob-045, samp-043, bmind-046/047 (require bMIND profiles, ~3.1 h to compute),
+synth-048. Full order in `RUNLOG/queue.tsv`.
 
-All 50 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutHeight=0`
+All 45 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutHeight=0`
 (builder scripts) or point to the v2 cache key `control_all_bicor_signed_p12_ds4_mch00`
 (reader scripts). Fixed 2026-10-14.
 
