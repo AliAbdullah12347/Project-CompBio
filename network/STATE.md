@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-25T20:25Z
+**Updated:** 2026-10-25T20:40Z
 
 ## Where the science stands
 
@@ -19,9 +19,9 @@
    cross-arm Zsummary comparison is invalid due to different reference networks; within-arm
    gold comparison stands; see correction note in the finding file).
 
-3. **inp-023 (PARTIAL, 2026-10-25 session 7): technical + ILR residualisation, 6/20 draws**
-   done. Gold ranks 43/43 (last) in all 6 draws; mean 91.7% of modules beat gold (sd Z=7.05).
-   Consistent with inp-022 within-arm pattern. Draw 7 running; cap expires ~22:16 UTC.
+3. **inp-023 (PARTIAL, 2026-10-25 session 7): technical + ILR residualisation, 7/20 draws**
+   done. Gold ranks 43/43 (last) in all 7 draws; mean 92.5% of modules beat gold (sd Z=6.84).
+   Consistent with inp-022 within-arm pattern. Draw 8 running; cap expires ~22:16 UTC.
 
 4. **base-002-ceil anomaly (2026-10-25 — EXPLAINED, NOT BIOLOGY):** the anomaly was
    caused by a code bug: `base-002-ceil.R` used raw expression matrices for both reference
@@ -150,8 +150,8 @@ completes; do not run pres-030 against the archived contaminated results.
 
 - Driver claimed at 19:16Z UTC (15:16 EDT), cap expires 22:16Z (18:16 EDT)
 - TOM cache loaded in ~18 min; nolith and draws 1-3 skipped (checkpointed)
-- Draw 4 done 15:29 EDT, draw 5 done 15:42 EDT, draw 6 done 15:55 EDT (~13 min each); draw 7 running
-- 6-draw stats: gold Z mean=15.45 (sd=7.05), always last (6/6), 91.7% modules above gold
+- Draw 4 done 15:29 EDT, draw 5 done 15:42 EDT, draw 6 done 15:55 EDT, draw 7 done 16:08 EDT (~13 min each); draw 8 running
+- 7-draw stats: gold Z mean=14.58 (sd=6.84), always last (7/7), 92.5% modules above gold
 - Finding file: `findings/2026-10-25-inp023-technical-ilr-replication.md` (PARTIAL)
 - **base-002-ceil anomaly corrected:** initial investigation found extraction code correct
   (both true). Concurrent commit 1177d8c found the real cause: raw expression matrices.
