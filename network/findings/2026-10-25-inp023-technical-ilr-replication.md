@@ -1,8 +1,8 @@
 # inp-023: technical + ILR residualisation replicates inp-022's rescue
 
-> **PARTIAL — 5 of 20 lith draws complete as of 2026-10-25T20:10Z.** The nolith comparison
-> and draws 1–5 are done; draws 6–20 are in progress (draw 6 running; cap at 22:16 UTC;
-> draws 17–20 need next session). Final scores will be computed from all 20 draws.
+> **PARTIAL — 6 of 20 lith draws complete as of 2026-10-25T20:25Z.** The nolith comparison
+> and draws 1–6 are done; draws 7–20 are in progress (draw 7 running; cap at 22:16 UTC;
+> draws 17–20 expected to need next session). Final scores will be computed from all 20 draws.
 > Numbers below are provisional and will be revised. Do not quote them.
 
 **Date:** 2026-10-25
@@ -55,18 +55,18 @@ capturing some genuine regulatory variation whose removal reduces the scale-free
 | gold medianRank | 43/43 (last) | 45/45 (last) |
 | modules above gold (Zsummary) | 25 of 42 (60%) | 22 of 44 (50%) |
 
-**bp_lith** (50 perms per draw, 5 of 20 draws):
+**bp_lith** (50 perms per draw, 6 of 20 draws):
 
 | metric | inp-023 provisional | inp-022 final |
 |:--|--:|--:|
-| gold mean Z | 15.08 (sd 7.82, 5 draws) | 15.55 (sd 8.13, 20 draws) |
-| gold medianRank | **43/43 in all 5 draws** | 45/45 in all 20 draws |
-| modules above gold (per-draw mean) | 38.2/42 (91.0%) | 41/44 (93%) |
-| draw-by-draw gold Z | 29.0, 11.7, 10.9, 12.4, 11.4 | — |
+| gold mean Z | 15.45 (sd 7.05, 6 draws) | 15.55 (sd 8.13, 20 draws) |
+| gold medianRank | **43/43 in all 6 draws** | 45/45 in all 20 draws |
+| modules above gold (per-draw mean) | 38.5/42 (91.7%) | 41/44 (93%) |
+| draw-by-draw gold Z | 29.0, 11.7, 10.9, 12.4, 11.4, 17.3 | — |
 
 Gold ranks **last** in every draw so far, matching the inp-022 pattern. The high draw-to-draw
-variance in gold Z (sd 7.82, range [10.89, 29.04]) matches inp-022 (sd 8.13). The fraction
-of real modules beating gold (~91% at 5 draws) is consistent with inp-022 (93% final).
+variance in gold Z (sd 7.05, range [10.89, 29.04]) matches inp-022 (sd 8.13). The fraction
+of real modules beating gold (~92% at 6 draws) is consistent with inp-022 (93% final).
 
 ## Interpretation (provisional)
 
