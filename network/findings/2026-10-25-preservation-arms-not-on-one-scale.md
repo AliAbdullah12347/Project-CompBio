@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-25
 **Analysis:** `network/analyses/017-preservation-synthesis`
-**Evidence:** 20/25 · **Interest:** 7/10 · **Δ:** new
+**Evidence:** 14/25 · **Interest:** 5/10 · **Δ:** -1.0
 
 ## What is settled
 
@@ -73,4 +73,25 @@ test B because it scores against the 234-control network, not ctrl160.
 This is a single ~3 h row and it is the only thing standing between this arm and its
 stated question.
 
-E=5 R=5 B=3 D=5 C=2
+## CORRECTION 2026-10-25 — two of three cited arms used raw expression matrices
+
+Commit 1177d8c found that base-001's 20 lith draws and all of base-002-ceil used raw
+`t(d$logtpm[...])` rather than `expr_for()` for test matrices. This affects the synthesis
+table above:
+
+| arm | status |
+|:--|:--|
+| ceiling — ctrl160 ref, test=74 controls | **INVALID** (reference also raw; both arms raw) |
+| observed — ctrl234, test=74 bp_lith, 20 draws | **INVALID** (lith draws had raw test matrices) |
+| comp-adj (inp-022) | **clean** — uses expr_for() throughout |
+
+The claim "The decomposition is real" still holds, supported by:
+- inp-022 (ILR-residualised): gold Z mean=15.55, always last in all 20 draws
+- inp-023 (technical+ILR): gold always last in 6/6 draws so far (replicating)
+- base-001 nolith arm: gold Z=14.01, ranked last (this arm was clean)
+
+The ceiling arm gold Z=20.98 and base-001 lith gold Z=4.06 are from invalid runs and
+cannot be quoted. base-002-ceil and base-001 reset to PENDING; will re-run with corrected
+scripts.
+
+E=3 R=3 B=3 D=3 C=2

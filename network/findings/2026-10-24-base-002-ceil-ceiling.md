@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-24
 **Analysis:** `network/runs/base-002-ceil` (offset-removed, 36-module reference on 160 controls, split-half ceiling)
-**Evidence:** 18/25 · **Interest:** 5/10 · **Δ:** -1.2
+**Evidence:** 8/25 · **Interest:** 3/10 · **Δ:** -1.0
 
 ## Design
 
@@ -79,4 +79,20 @@ the same population: they are not coherent enough to test in patients.
 - 36-module reference (160 controls) differs from base-001's 71-module reference (234
   controls); these results are not directly comparable to base-001
 
-E=4 R=4 B=3 D=3 C=4
+## CORRECTION 2026-10-25 — all results from raw expression matrices (INVALID)
+
+Commit 1177d8c (2026-10-25, 15:40 EDT) found that `base-002-ceil.R` line 160 built the
+reference from raw `t(d$logtpm[, sids])` rather than `expr_for()`. All test matrices were
+also raw. The cache key `ctrl160_all_bicor_signed_p12_ds4_mch00_offsetrm` recorded the
+INTENDED mode, not the ACTUAL data.
+
+All numbers in this finding — gold Z, module Z ranges, modules above gold, and all
+comparisons between ctrl_ceiling and bp_nolith — are from the invalid raw computation.
+The biological interpretation ("global network fabric differs between controls and nolith
+patients") is wrong; that difference was a raw-graph artifact (see the anomaly finding).
+
+The split-half ceiling DESIGN is correct and the experiment will re-run. Results archived
+to `network/runs/_raw_test_contaminated_20261025T193947Z/`. This finding will be updated
+when base-002-ceil completes with offset-removed expression.
+
+E=2 R=2 B=1 D=2 C=1
