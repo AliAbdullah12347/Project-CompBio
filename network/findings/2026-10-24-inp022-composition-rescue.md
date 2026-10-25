@@ -91,11 +91,11 @@ vs 41/44 (93%) — a modest Zsummary improvement. The stronger evidence is in go
 medianRank: base-001 gold is NOT always last (3-4 modules typically rank worse than gold),
 while inp-022 gold is ranked last in every single draw.
 
-The gold Z increase from 4.06 to 15.55 is not just a shift in one module — it reflects
+~~The gold Z increase from 4.06 to 15.55 is not just a shift in one module — it reflects
 a global rise in co-expression coherence across bp_lith samples once composition variance
-is removed. Random reference genes (gold) preserve 3.8× better in residualized bp_lith,
-meaning the overall correlation fabric in bp_lith converges toward controls when cell
-composition variation is accounted for.
+is removed. Random reference genes (gold) preserve 3.8× better in residualized bp_lith.~~
+**INVALID** (see correction above): base-001 lith gold Z=4.06 is from raw test matrices;
+the cross-arm comparison requires different references (71 vs 44 modules).
 
 ## Module count reduction: 27 fewer modules after residualisation
 
@@ -112,11 +112,13 @@ Together with finding #2 (73% composition share of the lithium network dimension
 findings #4/7/8 (darkturquoise as ribosomal/B-cell composition module), this result
 completes the picture:
 
-1. Raw bp_lith samples show poor module preservation (base-001: gold Z=4.06)
-2. That poor preservation is composition-driven: removing composition (inp-022)
-   raises gold Z to 15.55; 93% of modules (41/44) have higher mean Z than gold
-3. 27 of 71 raw reference modules disappear after residualisation, confirming
-   that much of the apparent network structure in raw expression is a composition artifact
+1. ~~Raw bp_lith samples show poor module preservation (base-001: gold Z=4.06)~~
+   **INVALID**: base-001 lith draws used raw test matrices — do not quote gold Z=4.06
+2. ~~That poor preservation is composition-driven: removing composition (inp-022) raises
+   gold Z to 15.55~~ The within-arm evidence (gold always last in all 20 draws, 93% above
+   gold) IS valid; the cross-arm +284% claim is not
+3. 27 of 71 raw reference modules disappear after residualisation (**VALID** — this is about
+   the reference network structure, independent of the test matrices)
 4. After removing composition, bp_lith networks look far more like controls — the
    "network disruption" in bp_lith was largely a cell-proportion effect, not disease
 
