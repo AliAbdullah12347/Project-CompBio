@@ -4,7 +4,7 @@
 "base-003-remerge","baseline","DONE",1,"completed in 1s"
 "base-002-ceil","baseline","DONE",6021,"completed in 6021s"
 "inp-022","input","DONE",800,"completed in 800s"
-"inp-023","input","RUNNING",0,"reset for offsetrm rebuild 20261018T211633Z"
+"inp-023","input","RUNNING",10802,"requeued from PARTIAL (attempt 1)"
 "pow-009","power","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "gene-027","geneset","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "inp-021","input","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"

@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-10-22 · **Catalogued:** 97 items
+**Updated:** 2026-10-25 · **Catalogued:** 105 items
 
 ## How to search
 
@@ -23,13 +23,14 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (22 — 18 live, 4 retracted)
+## Findings (25 — 21 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
 | 24/25 · 9/10 | live | [A lithium-associated co-expression dimension exists — and it is 73% cell composition](findings/2026-10-14-lithium-dimension-is-composition.md) | 2026-10-14 |
 | 24/25 · 10/10 | live | [The reference network is built on an un-removed per-sample library offset](findings/2026-10-15-library-offset-artifact.md) | 2026-10-15 |
 | 23/25 · 10/10 | live | [The corrected network has 71 modules, and its eigengenes are near-orthogonal](findings/2026-10-18-rebuilt-network-71-modules.md) | 2026-10-18 |
+| 23/25 · 9/10 | live | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | 2026-10-24 |
 | 22/25 · 9/10 | CORRECTED | [Darkturquoise is a ribosomal/translation module: the composition signal has a biological substrate](findings/2026-10-14-darkturquoise-is-ribosomal.md) | 2026-10-14 |
 | 22/25 · 7/10 | live | [The lithium dimension replicates across decompositions, and never survives composition](findings/2026-10-14-lithium-dimension-replicates.md) | 2026-10-14 |
 | 22/25 · 9/10 | live | [Removing the library offset rebuilds the network into a well-behaved one](findings/2026-10-18-normalisation-rebuild-required.md) | 2026-10-18 |
@@ -37,10 +38,12 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 21/25 · 9/10 | live | [Real modules do beat the random gene set — once the decomposition is real](findings/2026-10-18-modules-do-beat-gold.md) | 2026-10-18 |
 | 20/25 · 8/10 | live | [Darkred is an erythrocyte module: stable because RBC genes are absent from immune composition](findings/2026-10-14-darkred-is-erythrocyte-module.md) | 2026-10-14 |
 | 20/25 · 5/10 | live | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) | 2026-10-14 |
+| 20/25 · 7/10 | live | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | 2026-10-25 |
 | 19/25 · 7/10 | live | [PC2 is a lithium axis in the full cohort too, and the lithium DE signal is module-specific](findings/2026-10-14-pc2-lithium-axis-replicates-full-cohort.md) | 2026-10-14 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise drives PC2: the lithium-associated dimension is localised to one module](findings/2026-10-14-darkturquoise-drives-pc2.md) | 2026-10-14 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise group×composition interaction: the control-lith contrast survives proper slope correction](findings/2026-10-14-darkturquoise-interaction.md) | 2026-10-14 |
 | 18/25 · 6/10 | live | [No module eigengene associates with lithium — and the modules are not independent](findings/2026-10-14-module-trait-no-lithium-association.md) | 2026-10-14 |
+| 18/25 · 5/10 | live | [base-002-ceil: split-half ceiling calibrates n=74 noise floor](findings/2026-10-24-base-002-ceil-ceiling.md) | 2026-10-24 |
 | 17/25 · 8/10 | live | [Darkturquoise: control-lith contrast survives composition adjustment; nolith-lith does not](findings/2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md) | 2026-10-14 |
 | 16/25 · 8/10 | live | [BP disease tightens inter-module correlations: modules move more in lockstep](findings/2026-10-14-inter-module-correlations-tighten-in-bp.md) | 2026-10-14 |
 | 6/25 · 1/10 | live | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) | 2026-10-09 |
@@ -50,7 +53,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 0/25 · 0/10 | RETRACTED | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) | 2026-10-14 |
 | 0/25 · 0/10 | RETRACTED | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) | 2026-10-14 |
 
-## Analyses (17)
+## Analyses (18)
 
 | id | status | output | title |
 |:--|:--|:--|:--|
@@ -71,6 +74,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 014-effect-sizes | has results | 3 result files | 014-effect-sizes |
 | 015-referee-verification | has results | 5 result files | 015-referee-verification |
 | 016-normalisation-decision | has results | 2 result files | 016-normalisation-decision |
+| 017-preservation-synthesis | has results | 2 result files | 017-preservation-synthesis |
 
 ## Notes — infrastructure and defects (3)
 
@@ -80,18 +84,22 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-18 | 2026-10-18-logout-kills-eduroam.md | The real cause of the 3-day outage: logging out disconnects eduroam |
 | 2026-10-18 | 2026-10-18-three-days-lost-to-wifi.md | Three days lost: every wake started a session into a dead network |
 
-## Run directories (4)
+## Run directories (8)
 
 | run | status | size |
 |:--|:--|:--|
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | base-001 | live | 106 files |
+| base-002-ceil | live | 50 files |
+| base-003-remerge | live | 6 files |
+| inp-022 | live | 57 files |
+| inp-023 | live | 11 files |
 | mod-000-resolution | live | 15 files |
 
 ## Queue experiments (51)
 
-Status: DONE=2  PENDING=49
+Status: DONE=5  PENDING=45  RUNNING=1
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -100,8 +108,8 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | ann-041 | annot | PENDING | module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules |
 | ann-042 | annot | PENDING | module overlap with LM22 markers and cell-type DE results; Fisher exact, BH |
 | base-001 | baseline | DONE | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
-| base-002-ceil | baseline | PENDING | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
-| base-003-remerge | baseline | PENDING | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
+| base-002-ceil | baseline | DONE | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
+| base-003-remerge | baseline | DONE | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
 | bmind-046 | celltype | PENDING | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
 | bmind-047 | celltype | PENDING | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
 | cent-040 | central | PENDING | degree, betweenness, eigenvector centrality; between-group differences |
@@ -118,8 +126,8 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | hub-036 | hub | PENDING | kME hub identity; stability across 100 draws; do hubs change between groups? |
 | hub-037 | hub | PENDING | differential connectivity per gene between groups, same permutation null |
 | inp-021 | input | PENDING | ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (sp |
-| inp-022 | input | PENDING | ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW |
-| inp-023 | input | PENDING | ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (s |
+| inp-022 | input | DONE | ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW |
+| inp-023 | input | RUNNING | ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (s |
 | inp-024 | input | PENDING | ref=control;input=voom_weighted_from_counts;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | mod-000-resolution | moddetect | DONE | BLOCKING DIAGNOSTIC - revised. base-001's log shows cutreeDynamic found 18 MODULES, which mergeCloseModules at mergeCutH |
 | mod-013 | moddetect | PENDING | ref=control;deepSplit=0;minModuleSize=30;mergeCutHeight=0.25 |

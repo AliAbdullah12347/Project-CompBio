@@ -1,0 +1,4 @@
+"arm","n_modules","draws","gold_Z","gold_Z_sd","gold_rank_pct","beats_all","beats_most","beats_few"
+"ceiling (ctrl160 ref, test=74 held-out CONTROLS)",36,20,20.9757792748376,1.66415920525679,94.8648648648649,3,5,29
+"observed (ctrl234 ref, test=74 bp_lith)",71,20,4.05790416048943,0.926666448881444,95.1388888888889,48,57,7
+"comp-adj (composition-residualised ref)",44,20,15.547437012817,8.12591952796948,100,16,23,0
