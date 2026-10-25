@@ -1,8 +1,9 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-24
-**Runs completed:** 5 of 50 queued (mod-000-resolution, base-001, base-002-ceil, base-003-remerge, inp-022). inp-023 RUNNING.
-**Analyses completed:** 4 (001–004) + 8 runs completed. **Findings:** 24 — see `RANKING.md`.
+**Updated:** 2026-10-25
+**Runs completed:** 2 of 51 queued (mod-000-resolution, inp-022). inp-023 RUNNING (7/20 draws).
+**Reset to PENDING:** base-001, base-002-ceil, base-003-remerge (raw test matrices — see below).
+**Analyses completed:** 4 (001–004) + runs done. **Findings:** 28 — see `RANKING.md`.
 
 ---
 
@@ -10,18 +11,20 @@
 
 **The arm's central question is answered (provisionally): module structure disruption in
 bp_lith is substantially driven by cell composition.** After residualising for ILR b1–b4,
-bp_lith modules achieve gold Z = 15.55 (vs. 4.06 raw in base-001), with 41/44 modules
-(93%) above gold by mean Z — a 284% increase in gold Z at matched instrument. The reference
-module count drops from 71 (raw) to 44 (residualised), indicating ~27 raw modules were
-composition-driven. These results extend and confirm finding #2 (73% composition share).
+bp_lith modules achieve gold Z = 15.55 (vs. 14.01 bp_nolith — same reference, matched
+instrument), with 41/44 modules (93%) above gold by mean Z. Gold ranked last by medianRank
+in all 20 draws. The reference module count drops from 71 (raw) to 44 (residualised),
+indicating ~27 raw modules were composition-driven. See inp-022 finding.
 
-**bp_nolith modules are well preserved:** 22/44 modules beat gold in inp-022 nolith
-(Z up to 63). The global co-expression fabric differs between controls and nolith patients
-(base-002-ceil: gold Z = 22.58 ctrl_ceiling vs 4.64 bp_nolith at matched 500 perms),
-consistent with BP disease driving a global network-level shift (PC1=77.5%).
+**inp-023 (technical + ILR, 7/20 draws done):** Gold ranks last in all 7 draws; 92.5%
+of modules above gold. Replicates inp-022 pattern under stricter residualisation.
 
-**inp-023 (technical + ILR residualisation) is next** — if it replicates inp-022's rescue,
-the composition interpretation becomes robust across residualisation variants.
+**NOTE 2026-10-25 — raw matrix bug found:** base-001 lith draws, all of base-002-ceil,
+and base-003-remerge used raw expression (`t(d$logtpm)`) for test matrices, bypassing
+`expr_for()`. These results are invalid. The claim "bp_nolith gold Z=4.64" (base-002-ceil)
+and "base-001 lith gold Z=4.06" are from contaminated runs; do not quote. Scripts fixed
+in commit 1177d8c; those three experiments reset to PENDING. See
+`findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md`.
 
 ---
 
@@ -30,16 +33,21 @@ the composition interpretation becomes robust across residualisation variants.
 | id | wall | verdict | folder |
 |:--|--:|:--|:--|
 | `mod-000-resolution` | 1033 s | **Arm unblocked.** Rebuilt offset-removed: deepSplit=4, mergeCutHeight=0 → 71 modules | [network/runs/mod-000-resolution](runs/mod-000-resolution) |
-| `base-001` | ~26000 s (3 sessions) | **71-module reference preservation.** 20 lith draws done. 46/71 modules beat gold in all 20 lith draws; mediumorchid 0/20. Gold mean Z=4.06 lith, 14.01 nolith (incomparable: 50 vs 500 perms). | [network/runs/base-001](runs/base-001) |
-| `base-003-remerge` | 1 s | **Beats-gold consolidation.** Reads base-001; 48/71 modules beat gold in 100% of draws; mediumorchid never does. | [network/runs/base-003-remerge](runs/base-003-remerge) |
-| `base-002-ceil` | 6021 s | **Split-half ceiling.** 36-module reference (160 ctrl). ctrl_ceiling gold Z=22.58; bp_nolith gold Z=4.64 (both 500 perms — 5× difference at global level). | [network/runs/base-002-ceil](runs/base-002-ceil) |
-| `inp-022` | 800 s | **KEY RESULT.** ILR b1–b4 residualisation: bp_lith gold Z=15.55 (vs 4.06 raw). 41/44 (93%) modules above gold by mean Z; gold ranked last by medianRank in all 20 draws. 44-module reference (vs 71 raw) — 27 raw modules were composition-driven. | [network/runs/inp-022](runs/inp-022) |
+| `inp-022` | 800 s | **KEY RESULT.** ILR b1–b4 residualisation: bp_lith gold Z=15.55. 41/44 (93%) modules above gold by mean Z; gold ranked last in all 20 draws. 44-module reference — 27 raw modules were composition-driven. E=12/25. | [network/runs/inp-022](runs/inp-022) |
+
+### Reset to PENDING — raw matrix bug (2026-10-25)
+
+| id | reason | archived results |
+|:--|:--|:--|
+| `base-001` | lith draws used raw test matrices (nolith arm stands) | `_raw_test_contaminated_20261025T193947Z/` |
+| `base-002-ceil` | reference AND test matrices both raw; anomaly was artifact | `_raw_test_contaminated_20261025T193947Z/` |
+| `base-003-remerge` | reads from base-001 lith (invalid) | `_raw_test_contaminated_20261025T193947Z/` |
 
 ### Running
 
 | id | started | progress |
 |:--|:--|:--|
-| `inp-023` | 2026-10-24T00:32Z | Technical + ILR residualisation. Same structure as inp-022. Robustness test for inp-022's KEY RESULT. |
+| `inp-023` | 2026-10-25T19:16Z | Technical + ILR residualisation. 7/20 lith draws done (as of 16:08 EDT). Gold always last (7/7); 92.5% modules above gold. Replicates inp-022 pattern. |
 
 ---
 
