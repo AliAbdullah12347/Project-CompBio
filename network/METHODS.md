@@ -1506,17 +1506,23 @@ bp_lith vs ctrl_ceiling comparison is NOT valid (50 vs 500 perms). Finding:
 Reference: all 234 controls, residualised for ~b1+b2+b3+b4 (ILR cell-composition
 balances); 44 modules at same deepSplit/mergeCutHeight/power/bicor/signed.
 
-Key comparison with base-001 (same 50 perms/draw, same 20 draws, raw vs residualised):
+Key comparison with base-001 (**CORRECTION 2026-10-25: this cross-arm comparison is invalid
+— references differ: 71 vs 44 modules, different gene sets. The 284% increase in gold Z is
+an artifact of different reference networks, not a result of residualisation. See correction
+note in the finding file. The within-arm statistics (gold always last in inp-022, 93% above
+gold) remain valid.**):
 
 | metric | base-001 (raw) | inp-022 (residualised) | change |
 |:--|--:|--:|:--|
-| gold mean Z (bp_lith) | 4.06 | **15.55** | +284% |
-| modules with mean Z > gold (bp_lith) | 63/71 (89%) | **41/44 (93%)** | +4 pp |
-| gold always ranked last (medianRank) | No (mean rank 68.5/72) | **Yes (45/45 draws)** | ↑ |
+| gold mean Z (bp_lith) | 4.06 *(base-001 lith draws also INVALID — raw test matrices)* | **15.55** | ~~+284%~~ (invalid) |
+| modules with mean Z > gold (bp_lith) | 63/71 *(invalid)* | **41/44 (93%)** | — |
+| gold always ranked last (medianRank) | No *(invalid)* | **Yes (45/45 draws)** | — |
 | reference module count | 71 | **44** | −27 modules |
 
 NOTE: an earlier draft used mixed metrics (46/71 "all-draw" for base-001, 41/45 "mean Z"
-for inp-022) and wrong denominator (45 vs actual 44). Corrected 2026-10-24.
+for inp-022) and wrong denominator (45 vs actual 44). Corrected 2026-10-24. The cross-arm
+comparison row was further corrected 2026-10-25 (invalid due to different references AND
+invalid base-001 test matrices).
 
 **Decision: no method change from this result.** The finding is that ILR residualisation
 rescues bp_lith preservation, confirming composition as the driver. This does not require
