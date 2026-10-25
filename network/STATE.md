@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-24T04:29Z
+**Updated:** 2026-10-25T20:10Z
 
 ## Where the science stands
 
@@ -15,14 +15,22 @@
    to 15.55 after removing ILR b1–b4 (+284%). 41/44 (93%) modules beat gold mean Z; gold
    ranked last by medianRank in all 20 draws. The reference module count drops from 71 to
    44 — ~27 raw modules were composition artifacts. Finding:
-   `findings/2026-10-24-inp022-composition-rescue.md` (E=23/25, I=9/10).
+   `findings/2026-10-24-inp022-composition-rescue.md` (**E=12/25 after correction** — the
+   cross-arm Zsummary comparison is invalid due to different reference networks; within-arm
+   gold comparison stands; see correction note in the finding file).
 
-3. **base-002-ceil (DONE 2026-10-23): global co-expression differs between controls and
-   nolith even at random-gene level.** At matched 500-perm instrument, gold Z=22.58 in
-   disjoint controls vs 4.64 in bp_nolith — 5× difference. This is consistent with BP
-   disease driving a global network shift (PC1=77.5%, finding #22).
+3. **inp-023 (PARTIAL, 2026-10-25 session 7): technical + ILR residualisation, 5/20 draws**
+   done. Gold ranks 43/43 (last) in all 5 draws; mean 91% of modules beat gold (sd=7.8% Z).
+   Consistent with inp-022 within-arm pattern. Draw 6 running; cap expires ~22:16 UTC.
 
-**Read `RANKING.md` first.** Rebuilt from `findings/`; 24 findings as of 2026-10-24.
+4. **base-002-ceil anomaly (2026-10-25 — EXPLAINED, NOT BIOLOGY):** the anomaly was
+   caused by a code bug: `base-002-ceil.R` used raw expression matrices for both reference
+   and test, bypassing `expr_for()`. The "dense raw-graph signature" at n=160 vs n=74
+   explains cor(size,Z) flipping from +0.911 to -0.036. Script fixed in commit 1177d8c;
+   experiment reset to PENDING. See finding file and METHODS.md for full correction.
+
+**Read `RANKING.md` first.** Rebuilt from `findings/`; 27 findings as of 2026-10-25 (including
+partial inp-023 finding and corrected ceiling anomaly finding).
 
 ## Infrastructure
 
@@ -36,19 +44,31 @@
 
 ## Queue
 
-DONE (5): mod-000-resolution, base-001, base-003-remerge, base-002-ceil, inp-022.
-RUNNING (1): **inp-023** (technical + ILR residualisation, claimed 2026-10-24T04:08Z,
-  attempt 2; R PID 21692 running bp_nolith 500-perm as of 04:29Z; TOM took 18 min
-  (cache loaded from attempt 1); **42 modules** in doubly-residualised reference;
-  cap expires 07:08Z; expected DONE ~06:10Z).
-PENDING: 45 rows.
+DONE (2): mod-000-resolution, inp-022.
+PARTIAL (1): **inp-023** (technical + ILR residualisation, 2 prior attempts, 5/20 lith
+  draws done; claimed session 7 at 2026-10-25T19:16Z; **42 modules** in doubly-residualised
+  reference; draw 6 running; cap expires 22:16Z; draws 17-20 need next session).
+PENDING: 48 rows (includes base-001, base-002-ceil, base-003-remerge — reset by commit
+  1177d8c after raw test matrix bug found).
 
-Order after inp-023: pow-009 (SFT curves, fast), gene-027 (LM22 circularity check), inp-021
-(technical-only residualisation), perm-031, trait-033/034/035, pres-030, samp-043, ann-041,
-ann-042, ref-002/003/004, corr-005/006, net-007/008, pow-010/011/012, mod-013 through
-mod-020, inp-024, gene-025/026/028/029, perm-032, hub-036/037, comm-038/039, cent-040,
-filt-044, tob-045, samp-043, bmind-046/047 (require bMIND profiles, ~3.1 h to compute),
-synth-048. Full order in `RUNLOG/queue.tsv`.
+Order after inp-023: **base-001** (reset to PENDING — raw matrix bug fix, needs re-run
+  with correct expr_for() test matrices; ~2.8h for 20 draws), then base-002-ceil (reset,
+  ~6h), base-003-remerge (reads from base-001, fast ~1s), pow-009 (SFT curves, ~15 min),
+  gene-027 (LM22 circularity, ~2.8h), inp-021, perm-031, trait-033/034/035, pres-030
+  (**KEY** for base-002-ceil re-run diagnosis), samp-043, ann-041, ann-042, ref-002/003/004,
+  corr-005/006, net-007/008, pow-010/011/012, mod-013 through mod-020, inp-024,
+  gene-025/026/028/029, perm-032, hub-036/037, comm-038/039, cent-040, filt-044, tob-045,
+  bmind-046/047 (require bMIND profiles, ~3.1 h to compute), synth-048. Full order in
+  `RUNLOG/queue.tsv`.
+
+Key caches available:
+- `ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm` (base-001) — EXISTS ✓
+- `ref_control_all_bicor_signed_p12_composition_ilr_b1b4_ds4_mch00_offsetrm` (inp-022) — EXISTS ✓
+- `ref_control_all_bicor_signed_p12_technical_ilr_age_sex_rin_b1b4_ds4_mch00_offsetrm` (inp-023) — EXISTS ✓
+- ctrl160 reference (base-002-ceil) — gitignored (will rebuild in ~27 min when needed)
+- bp_nolith reference (ref-002) — NOT YET BUILT
+- bp_lith reference (ref-003) — NOT YET BUILT
+- technical-only (inp-021): needs age+sex+rin+plate+seqpc1-3 residualisation — NOT YET BUILT
 
 All 45 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutHeight=0`
 (builder scripts) or point to the v2 cache key `control_all_bicor_signed_p12_ds4_mch00`
@@ -106,20 +126,36 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. Check inp-023 DONE/PARTIAL status — driver (PID 21638) finalizes when R (PID 21692) finishes
-   - If DONE: results in network/runs/inp-023/ (results_nolith.csv, results_lith_summary.csv)
-   - If PARTIAL: check how many lith_draw_NNN.rds exist; driver auto-resumes next session
-2. Write finding for inp-023 at network/findings/2026-10-24-inp023-technical-ilr-replication.md:
-   - Already known: 42 modules, powerEst=NA, max R²=0.836, power 12 used (R²=0.795)
-   - Read results_nolith.csv: get gold Zsummary + medianRank for bp_nolith
-   - Read results_lith_summary.csv: get gold Zsummary_mean + medianRank_mean for bp_lith
-   - Key comparison: base-001 (raw, Z=4.06) → inp-022 (ILR, Z=15.55) → inp-023 (ILR+tech, Z=?)
-   - Count modules with mean Z > gold mean Z across all draws
-   - Check if gold medianRank = N+1 (last) in all 20 draws
-   - If inp-023 replicates rescue: update inp-022 finding B score from 4→5 (E: 23→24)
-3. Rebuild `Rscript network/build_index.R`, commit, push
-4. Run driver for next row (`bash network/run_next.sh`) → pow-009 (SFT fast, 15 min)
-5. Continue with gene-027 (LM22 circularity), inp-021 (full technical residualisation)
+After inp-023 PARTIAL (driver auto-commits after cap):
+1. **Update finding** at `network/findings/2026-10-25-inp023-technical-ilr-replication.md`
+   with stats from all draws done at session start (expected 5–16):
+   - Run `Rscript network/cache/compute_inp023_stats.R` for current counts
+   - Compare to inp-022: gold rank always last? ≥89% modules above gold?
+2. **If 20/20 draws complete** (next session should finish 17-20, ~52 min):
+   - Score fully: expected E=5 R=5 B=5 D=5 C=4 = 24/25
+   - Update inp-022 finding: B score 4→5, total 12→13/25 (robustness confirmed)
+     IMPORTANT: inp-022 total is 12/25 (cross-arm comparison invalid). B rising 4→5
+     brings it to 13/25. Update carefully; do NOT conflate with pre-correction 23/25.
+3. **Rebuild RANKING.md** via `Rscript network/build_index.R`
+4. **Update RESULTS.md** with inp-023 completed run summary
+5. **Commit + push**
+6. **Run driver** `bash network/run_next.sh` → base-001 (reset, ~2.8h) → base-002-ceil
+   (~6h) → base-003-remerge (~1s) → pow-009 (15 min) → gene-027 → inp-021
+
+NOTE: base-002-ceil anomaly is EXPLAINED (code bug, not biology). The pres-030 follow-up
+(density vs connectivity) is still valid for the re-run results when base-002-ceil
+completes; do not run pres-030 against the archived contaminated results.
+
+## inp-023 session 7 progress notes (2026-10-25)
+
+- Driver claimed at 19:16Z UTC (15:16 EDT), cap expires 22:16Z (18:16 EDT)
+- TOM cache loaded in ~18 min; nolith and draws 1-3 skipped (checkpointed)
+- Draw 4 done at 15:29 EDT, draw 5 done ~15:42 EDT (~13 min each); draw 6 running
+- 5-draw stats: gold Z mean=15.08 (sd=7.82), always last (5/5), 91% modules above gold
+- Finding file: `findings/2026-10-25-inp023-technical-ilr-replication.md` (PARTIAL)
+- **base-002-ceil anomaly corrected:** initial investigation found extraction code correct
+  (both true). Concurrent commit 1177d8c found the real cause: raw expression matrices.
+  METHODS.md entry and ceiling anomaly finding both corrected this session.
 
 ## inp-023 reference network (pre-computed, for finding reference)
 

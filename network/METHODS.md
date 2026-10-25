@@ -1610,6 +1610,16 @@ finding's statement "no preservation comparison should be quoted" was over-broad
 to: the base-002-ceil cross-group comparison should not be quoted until the anomaly is
 explained; within-arm comparisons in other experiments are unaffected.
 
+**CORRECTION 2026-10-25T~20:00Z (commit 1177d8c):** The conclusion above ("code correct,
+anomaly genuine") was wrong. A concurrent session found that `base-002-ceil.R` line 160
+built the reference from raw expression (`t(d$logtpm[, sids])`), bypassing `expr_for()`.
+All test matrices were also raw. The cache key (`_offsetrm`) recorded intended mode, not
+actual data. `cor(log10 size, Zsummary) = +0.911` is the "dense raw-graph signature" from
+raw expression inflating inter-gene correlations. The anomaly is an artifact of n=160
+raw-reference vs n=74 raw-test at different sizes — not biology. Scripts corrected in
+commit 1177d8c; results archived; experiment reset to PENDING. The finding file at
+`findings/2026-10-25-ceiling-vs-nolith-anomaly.md` has been updated with this correction.
+
 ---
 
 ## 2026-10-25T19:16Z  inp-023 session 6 — resumed, 4 of 20 lith draws done

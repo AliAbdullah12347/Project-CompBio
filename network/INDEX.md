@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-10-25 · **Catalogued:** 107 items
+**Updated:** 2026-10-25 · **Catalogued:** 108 items
 
 ## How to search
 
@@ -39,13 +39,13 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 20/25 · 5/10 | live | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) | 2026-10-14 |
 | 20/25 · 7/10 | live | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | 2026-10-25 |
 | 19/25 · 7/10 | live | [PC2 is a lithium axis in the full cohort too, and the lithium DE signal is module-specific](findings/2026-10-14-pc2-lithium-axis-replicates-full-cohort.md) | 2026-10-14 |
-| 19/25 · 8/10 | live | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) | 2026-10-25 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise drives PC2: the lithium-associated dimension is localised to one module](findings/2026-10-14-darkturquoise-drives-pc2.md) | 2026-10-14 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise group×composition interaction: the control-lith contrast survives proper slope correction](findings/2026-10-14-darkturquoise-interaction.md) | 2026-10-14 |
 | 18/25 · 6/10 | live | [No module eigengene associates with lithium — and the modules are not independent](findings/2026-10-14-module-trait-no-lithium-association.md) | 2026-10-14 |
 | 18/25 · 5/10 | live | [base-002-ceil: split-half ceiling calibrates n=74 noise floor](findings/2026-10-24-base-002-ceil-ceiling.md) | 2026-10-24 |
 | 17/25 · 8/10 | live | [Darkturquoise: control-lith contrast survives composition adjustment; nolith-lith does not](findings/2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md) | 2026-10-14 |
 | 16/25 · 8/10 | live | [BP disease tightens inter-module correlations: modules move more in lockstep](findings/2026-10-14-inter-module-correlations-tighten-in-bp.md) | 2026-10-14 |
+| 15/25 · 5/10 | live | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) | 2026-10-25 |
 | 12/25 · 5/10 | CORRECTED | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | 2026-10-24 |
 | 10/25 · 5/10 | CORRECTED | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | 2026-10-22 |
 | 6/25 · 1/10 | live | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) | 2026-10-09 |
@@ -79,13 +79,14 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 016-normalisation-decision | has results | 2 result files | 016-normalisation-decision |
 | 017-preservation-synthesis | has results | 2 result files | 017-preservation-synthesis |
 
-## Notes — infrastructure and defects (3)
+## Notes — infrastructure and defects (4)
 
 | date | file | what happened |
 |:--|:--|:--|
 | 2026-10-15 | 2026-10-15-session-cap-starvation.md | Defect: rows whose cap equals SESSION_CAP can be BLOCKED while making progress |
 | 2026-10-18 | 2026-10-18-logout-kills-eduroam.md | The real cause of the 3-day outage: logging out disconnects eduroam |
 | 2026-10-18 | 2026-10-18-three-days-lost-to-wifi.md | Three days lost: every wake started a session into a dead network |
+| 2026-10-25 | 2026-10-25-reference-build-verification.md | Reference builds now verify the matrix, not the label |
 
 ## Run directories (7)
 
@@ -96,7 +97,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | _raw_test_contaminated_20261025T193947Z | live | 102 files |
 | base-001 | live | 62 files |
 | inp-022 | live | 57 files |
-| inp-023 | live | 13 files |
+| inp-023 | live | 17 files |
 | mod-000-resolution | live | 15 files |
 
 ## Queue experiments (51)

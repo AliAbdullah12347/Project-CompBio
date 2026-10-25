@@ -180,6 +180,10 @@ for (lin in available_lineages) {
 
   # Reference network (per lineage)
   ref_cache_lin <- file.path(cache_dir, paste0("ref_", lin, "_bicor_signed_p12.rds"))
+  # NOTE: no assert_expr_mode() here. This script's refExpr is a bMIND
+  # per-lineage deconvolved profile, not a slice of d$logtpm, so the
+  # project-level offset check does not apply to it. Its normalisation is
+  # whatever bmind-046 produced.
   if (!file.exists(ref_cache_lin)) {
     msg("  building ref network for ", lin, " (n=", nrow(refExpr), ") ...")
     bw <- tryCatch(

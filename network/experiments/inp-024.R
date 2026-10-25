@@ -168,7 +168,7 @@ if (!file.exists(r2_path)) {
 
 # ---- reference network (voom-normalised control, cached) -------------------
 ref_cache <- file.path(cache_dir, paste0("ref_", CACHE_KEY, ".rds"))
-if (file.exists(ref_cache)) {
+if (ref_cache_ok(ref_cache)) {
   msg("loading cached reference modules: ", ref_cache)
   ref_net      <- readRDS(ref_cache)
   moduleColors <- ref_net$moduleColors
@@ -177,6 +177,8 @@ if (file.exists(ref_cache)) {
   msg("building reference network (voom-normalised, bicor, signed, power ", POWER, ") ...")
   tmp_ref <- voom_for(d, group = REF_GROUP)
   set.seed(SEED_BASE)
+  # Read the matrix, not its label: a cache key records intent only.
+  assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-024 reference")
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
     deepSplit = DEEP_SPLIT,
@@ -186,7 +188,8 @@ if (file.exists(ref_cache)) {
   n_mods       <- length(unique(moduleColors)) - 1L
   msg(n_mods, " modules detected (excluding grey); ",
       sum(moduleColors == "grey"), " unassigned genes")
-  ref_net <- list(moduleColors = moduleColors, n_modules = n_mods,
+  ref_net <- list(expr_mode = EXPR_MODE,   # verified by assert_expr_mode(), not inferred from the key
+    moduleColors = moduleColors, n_modules = n_mods,
                   module_sizes = table(moduleColors), power = POWER,
                   cache_key = CACHE_KEY, input_type = "voom_log2cpm")
   saveRDS(ref_net, ref_cache)

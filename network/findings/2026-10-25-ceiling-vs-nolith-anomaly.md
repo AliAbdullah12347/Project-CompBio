@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-25
 **Analysis:** `network/runs/base-002-ceil`
-**Evidence:** 19/25 · **Interest:** 8/10 · **Δ:** new
+**Evidence:** 15/25 · **Interest:** 5/10 · **Δ:** -1.0
 
 ## The comparison finally exists
 
@@ -49,16 +49,17 @@ of 37 (worst in both), and across real modules the paired Wilcoxon on `medianRan
 But Spearman between the two arms' rankings is only +0.312, so even the orderings
 disagree more than they should.
 
-## Extraction verified — the anomaly is real
+## Extraction code correct — but expression inputs were raw (corrected 2026-10-25)
 
-**2026-10-25 verification (current session):** The extraction code at base-002-ceil.R:182–192
+**2026-10-25 verification (this session):** The extraction code at base-002-ceil.R:182–192
 was read end-to-end. Both the ceiling and nolith calls to `modulePreservation` pass
 `multiData = list(Ref = ..., Test = ...)` — exact list names `"Ref"` and `"Test"` —
 and `extract_mp()` uses the default `ref_name = "Ref"`, `test_name = "Test"`, producing
 `"ref.Ref"` and `"inColumnsAlsoPresentIn.Test"`. The names match. Each call is separate
 (no multi-test combined call), so there is no slot-swapping between ceiling and nolith.
+The Z-block extraction was not the problem.
 
-The correlation figures were re-computed from the checkpoint files:
+The correlation figures were re-computed from the checkpoint files and match:
 
 ```r
 cor(log10(module_sizes), Zsummary)
@@ -66,19 +67,23 @@ cor(log10(module_sizes), Zsummary)
 # bp_nolith:    -0.036   ✓ matches finding
 ```
 
-**The code is correct; the anomaly is genuine.** The reversal (gold drops 79%, real modules
-rise 97%, size-correlation flips from +0.911 to -0.036) is a property of the data, not
-a mis-extraction. Until a biological or methodological mechanism is identified, the
-within-arm gold-anchored statistics remain valid (gold was extracted from the same slot
-that real modules were), but the cross-group comparison (ceiling vs. nolith) should be
-described as anomalous rather than interpreted.
+**CORRECTION (commit 1177d8c, 15:40 EDT same date):** The initial conclusion "code correct,
+anomaly genuine" was wrong. A concurrent session identified the real cause: `base-002-ceil.R`
+line 160 built the reference network from raw expression (`t(d$logtpm[, sids])`) rather
+than `expr_for()`, bypassing the per-sample library offset removal introduced 2026-10-18.
+All test matrices were also raw. The cache key ending in `_offsetrm` recorded the INTENDED
+mode, not the ACTUAL data.
 
-Plausible mechanism: BP disease tightens within-module gene-gene correlations for
-specific regulatory modules while disrupting the global co-expression fabric (gold),
-producing the split between real-module and gold Zsummary. This aligns with finding #19
-(BP disease tightens inter-module coupling) but should not be quoted until pres-030
-(density vs. connectivity components reported separately) illuminates which statistic
-drives the split.
+`cor(log10 size, Zsummary) = +0.911` in the ceiling arm is the expected "dense raw-graph
+signature": raw expression inflates inter-gene correlations, producing size-dependent
+Zsummary. The anomaly (ceiling 2× better preserved than nolith; gold drops 79% while modules
+rise 97%) is an artifact of different sample sizes (n=160 reference, n=74 test) interacting
+with raw-graph density differences — not biology. The biological mechanism proposed in the
+initial draft of this section was wrong and has been removed.
+
+Results archived to `network/runs/_raw_test_contaminated_20261025T193947Z/`. Script
+corrected in commit 1177d8c. base-002-ceil reset to PENDING for re-run with correct
+offset-removed expression.
 
 ## Status of the claims this displaces
 
@@ -87,4 +92,4 @@ drives the split.
 - The 2026-10-24 inp-022 "rescue" finding is separately corrected: its cross-arm
   comparison used two different reference networks.
 
-E=4 R=5 B=3 D=5 C=2
+E=4 R=2 B=3 D=3 C=3

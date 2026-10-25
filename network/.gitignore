@@ -29,4 +29,5 @@ RUNLOG/watchdog.err
 RUNLOG/watchdog.log
 RUNLOG/watchdog.out
 cache/
+cache/quarantine/
 runs/*/permStats*.RData

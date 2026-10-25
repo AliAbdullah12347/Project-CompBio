@@ -18,3 +18,15 @@ load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-25T15:42:42] draw 5 done: Zsummary [7.52, 68.95]
+[2026-10-25T15:42:42] draw 6/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T15:55:05] draw 6 done: Zsummary [9.69, 62.4]
+[2026-10-25T15:55:05] draw 7/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

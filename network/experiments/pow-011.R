@@ -172,7 +172,7 @@ if (!file.exists(r2_path)) {
 
 # ---------- 7. Reference network (module detection, cached) ------------------
 ref_cache <- file.path(cache_dir, paste0("ref_", CACHE_KEY, ".rds"))
-if (file.exists(ref_cache)) {
+if (ref_cache_ok(ref_cache)) {
   msg("loading cached reference modules: ", ref_cache)
   ref_net      <- readRDS(ref_cache)
   moduleColors <- ref_net$moduleColors
@@ -182,6 +182,8 @@ if (file.exists(ref_cache)) {
   msg("building reference network (bicor, signed, power ", POWER, " fixed) ...")
   tmp_ref <- expr_for(d, group = REF_GROUP)   # 234 x 12368
   set.seed(SEED_BASE)
+  # Read the matrix, not its label: a cache key records intent only.
+  assert_expr_mode(tmp_ref, d, EXPR_MODE, "pow-011 reference")
   bwm <- blockwiseModules(
     tmp_ref,
     power          = POWER,
@@ -201,6 +203,9 @@ if (file.exists(ref_cache)) {
   msg("reference network: ", n_mods, " modules detected (excluding grey); ",
       sum(moduleColors == "grey"), " unassigned genes")
   ref_net <- list(
+    # Verified, not merely intended: assert_expr_mode() ran on the matrix
+    # that built this network, immediately before blockwiseModules().
+    expr_mode        = EXPR_MODE,
     moduleColors = moduleColors,
     n_modules    = n_mods,
     module_sizes = table(moduleColors),

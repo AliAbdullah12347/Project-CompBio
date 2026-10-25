@@ -128,7 +128,7 @@ if (!file.exists(r2_path)) {
 
 # ---- reference network -----------------------------------------------------
 ref_cache <- file.path(cache_dir, paste0("ref_", CACHE_KEY, ".rds"))
-if (file.exists(ref_cache)) {
+if (ref_cache_ok(ref_cache)) {
   msg("loading cached reference modules: ", ref_cache)
   ref_net      <- readRDS(ref_cache)
   moduleColors <- ref_net$moduleColors
@@ -137,6 +137,8 @@ if (file.exists(ref_cache)) {
   msg("building reference network (doubly residualised, power ", POWER, ") ...")
   tmp_ref <- expr_for(d, group = REF_GROUP, residualise = RESID_FORMULA)
   set.seed(SEED_BASE)
+  # Read the matrix, not its label: a cache key records intent only.
+  assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-023 reference")
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
     deepSplit = DEEP_SPLIT, minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
@@ -144,7 +146,8 @@ if (file.exists(ref_cache)) {
   moduleColors <- bwm$colors
   n_mods <- length(unique(moduleColors)) - 1L
   msg(n_mods, " modules detected (excluding grey)")
-  ref_net <- list(moduleColors = moduleColors, n_modules = n_mods,
+  ref_net <- list(expr_mode = EXPR_MODE,   # verified by assert_expr_mode(), not inferred from the key
+    moduleColors = moduleColors, n_modules = n_mods,
                   module_sizes = table(moduleColors), power = POWER,
                   cache_key = CACHE_KEY, residualise = deparse(RESID_FORMULA))
   saveRDS(ref_net, ref_cache)

@@ -150,7 +150,7 @@ if (!file.exists(r2_path)) {
 
 # ---- reference network (160-control, cached separately from base-001) ------
 ref_cache <- file.path(cache_dir, paste0("ref_", CACHE_KEY, ".rds"))
-if (file.exists(ref_cache)) {
+if (ref_cache_ok(ref_cache)) {
   msg("loading cached reference (160 controls): ", ref_cache)
   ref_net      <- readRDS(ref_cache)
   moduleColors <- ref_net$moduleColors
@@ -159,6 +159,8 @@ if (file.exists(ref_cache)) {
   msg("building reference network (160 controls, bicor, signed, power ", POWER, ") ...")
   refExpr_tmp <- expr_samples(d, ref_ctrl)   # 160 x 12368
   set.seed(SEED_BASE)
+  # Read the matrix, not its label: a cache key records intent only.
+  assert_expr_mode(refExpr_tmp, d, EXPR_MODE, "base-002-ceil reference")
   bwm <- blockwiseModules(refExpr_tmp, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
     deepSplit = DEEP_SPLIT, minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
@@ -166,7 +168,8 @@ if (file.exists(ref_cache)) {
   moduleColors <- bwm$colors
   n_mods <- length(unique(moduleColors)) - 1L
   msg("reference: ", n_mods, " modules")
-  ref_net <- list(moduleColors = moduleColors, n_modules = n_mods,
+  ref_net <- list(expr_mode = EXPR_MODE,   # verified by assert_expr_mode(), not inferred from the key
+    moduleColors = moduleColors, n_modules = n_mods,
                   module_sizes = table(moduleColors), power = POWER,
                   cache_key = CACHE_KEY, ref_ctrl_n = N_REF_CTRL)
   saveRDS(ref_net, ref_cache)

@@ -155,6 +155,8 @@ for (tob_col in IMPUTATIONS) {
       power_used <- sft$powerEstimate
     }
     msg("  power=", power_used)
+    # Read the matrix, not its label: a cache key records intent only.
+    assert_expr_mode(refExpr, d, EXPR_MODE, "tob-045 reference")
     bw <- blockwiseModules(refExpr, power=power_used, networkType=NET_TYPE, corType=COR_FNC,
                            TOMType="signed", deepSplit=DEEP_SPLIT,
                            minModuleSize=MIN_MODULE,

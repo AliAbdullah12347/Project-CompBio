@@ -159,6 +159,80 @@ source("network/00_exprmode.R")
 # directly to build a test set, which silently bypassed offset removal and
 # scored a raw test matrix against an offset-removed reference. Always use this
 # (or expr_for) - never d$logtpm - for anything that becomes expression input.
+# Verify a matrix REALLY carries the normalisation it is claimed to.
+#
+# A cache key records intent, not content. On 2026-10-25 a reference network
+# built from raw log2(TPM+1) sat for a week in a file whose key ended
+# "_offsetrm", because the key names the mode the script meant to use, not the
+# data it read. This reads the artifact instead of trusting its label.
+#
+# It reconstructs a random sample of the matrix via expr_samples() under the
+# declared mode and compares. A gene-subsetted matrix cannot be checked by
+# "per-sample mean is 0" - the offset is removed over all 12,368 genes, so any
+# subset has a non-zero mean - which is why this compares values, not means.
+# Gate a reference cache on the way IN. assert_expr_mode() stops a bad reference
+# being built; this stops an already-bad one being reused.
+#
+# It returns FALSE rather than raising, and moves the offending file aside, so
+# the caller's existing "if the cache is not usable, build it" branch simply
+# rebuilds. Raising here would wedge the row instead: it would fail every
+# attempt and reach BLOCKED without ever regenerating the thing it objected to.
+#
+# A cache with no expr_mode stamp predates 2026-10-25 and cannot be verified
+# from its contents, so it is refused rather than trusted - that is precisely
+# the window in which a raw network sat under an "_offsetrm" key.
+ref_cache_ok <- function(path, mode = EXPR_MODE, quiet = FALSE) {
+  if (!file.exists(path)) return(FALSE)
+  r <- tryCatch(readRDS(path), error = function(e) NULL)
+  bad <- if (is.null(r)) "unreadable"
+         else if (is.null(r$expr_mode)) "no expr_mode stamp (pre-2026-10-25, unverifiable)"
+         else if (!identical(r$expr_mode, mode)) paste0("built with expr_mode='", r$expr_mode,
+                                                        "', this run uses '", mode, "'")
+         else NA_character_
+  if (is.na(bad)) return(TRUE)
+  q <- file.path(dirname(path), "quarantine")
+  dir.create(q, showWarnings = FALSE, recursive = TRUE)
+  dest <- file.path(q, paste0(basename(path), ".", format(Sys.time(), "%Y%m%dT%H%M%SZ"), ".rds"))
+  file.rename(path, dest)
+  if (!quiet) message("ref_cache_ok: QUARANTINED ", basename(path), " - ", bad,
+                      "\n  moved to ", dest, "; it will be rebuilt.")
+  FALSE
+}
+
+assert_expr_mode <- function(M, d, mode = EXPR_MODE, what = "expression matrix",
+                             n_probe = 400, tol = 1e-8) {
+  if (is.null(dim(M))) stop("assert_expr_mode: ", what, " is not a matrix")
+  # Orientation: these matrices are samples x genes (expr_for default) or
+  # genes x samples. Decide by which margin's names match the project's samples.
+  sids_all <- colnames(d$logtpm)
+  by_row <- sum(rownames(M) %in% sids_all); by_col <- sum(colnames(M) %in% sids_all)
+  if (max(by_row, by_col) == 0)
+    stop("assert_expr_mode: ", what, " has no dimnames matching project samples")
+  samples_in_rows <- by_row >= by_col
+  sids <- if (samples_in_rows) rownames(M) else colnames(M)
+  gids <- if (samples_in_rows) colnames(M) else rownames(M)
+  gids <- intersect(gids, rownames(d$logtpm))
+  if (!length(gids)) stop("assert_expr_mode: ", what, " shares no genes with the project")
+  probe <- if (length(gids) > n_probe) sample(gids, n_probe) else gids
+
+  expect <- expr_samples(d, sids, transpose = FALSE, mode = mode)[probe, , drop = FALSE]
+  got <- if (samples_in_rows) t(M[, probe, drop = FALSE]) else M[probe, , drop = FALSE]
+  worst <- max(abs(got - expect))
+
+  if (!is.finite(worst) || worst > tol) {
+    alt <- if (identical(mode, "raw")) "offset_removed" else "raw"
+    expect2 <- expr_samples(d, sids, transpose = FALSE, mode = alt)[probe, , drop = FALSE]
+    looks_like <- if (max(abs(got - expect2)) <= tol) alt else "neither"
+    stop(sprintf(
+      "assert_expr_mode: %s does NOT match mode '%s' (max abs deviation %.3g). It looks like: %s.\n  This is the 2026-10-25 failure mode - see network/lint_expr.sh and\n  findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md",
+      what, mode, worst, looks_like))
+  }
+  invisible(list(mode = mode, n_samples = length(sids), n_genes = length(gids),
+                 probe = length(probe), max_dev = worst,
+                 per_sample_offset_sd = stats::sd(colMeans(
+                   expr_samples(d, sids, transpose = FALSE, mode = mode)))))
+}
+
 expr_samples <- function(d, sids, transpose = TRUE, mode = EXPR_MODE) {
   miss <- setdiff(sids, colnames(d$logtpm))
   if (length(miss)) stop("expr_samples: unknown sample ids: ", paste(head(miss, 3), collapse = ", "))
