@@ -1,62 +1,109 @@
-[2026-10-22T15:51:51] === base-001 starting ===
+[2026-10-25T16:17:03] === base-001 starting ===
 Allowing parallel execution with up to 3 working processes.
-[2026-10-22T15:51:54] WGCNA 1.74 loaded; threads enabled
+[2026-10-25T16:17:06] WGCNA 1.74 loaded; threads enabled
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-10-22T15:51:55] v2 marker present; no v1 migration needed
-[2026-10-22T15:51:55] R2 curve checkpoint exists, skipping scan
-[2026-10-22T15:51:55] loading cached reference modules: network/cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
-[2026-10-22T15:51:55] 71 modules loaded (12360 genes in non-grey modules)
-[2026-10-22T15:51:55] bp_nolith checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 1/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 2/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 3/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 4/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 5/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 6/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 7/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 8/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 9/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 10/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 11/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 12/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 13/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 14/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 15/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 16/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 17/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 18/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 19/20 checkpoint exists, skipping
-[2026-10-22T15:51:55] draw 20/20: subsampling bp_lith (n=74 from 152) ...
+[2026-10-25T16:17:07] v2 marker present; no v1 migration needed
+[2026-10-25T16:17:07] R2 curve checkpoint exists, skipping scan
+[2026-10-25T16:17:07] Using pre-computed labels from mod-000-resolution (deepSplit=4); saves ~47 min reference TOM rebuild ...
+[2026-10-25T16:17:07] reference modules: 71 non-grey; 8 grey genes
+[2026-10-25T16:17:07] reference modules cached: network/cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2375383 126.9    4385385 234.3         NA  3198990 170.9
+Vcells 15926664 121.6   30000108 228.9      16384 16249021 124.0
+[2026-10-25T16:17:07] bp_nolith checkpoint exists, skipping
+[2026-10-25T16:17:07] draw 1/20: subsampling bp_lith (n=74 from 152) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-10-22T16:04:24] draw 20/20 done: Zsummary range [-1.09, 26.65]
-[2026-10-22T16:04:24] all draws complete; aggregating results ...
-[2026-10-22T16:04:24] 
---- bp_nolith Zsummary (500 perms, descriptive only) ---
-       module Zsummary_point medianRank_point
-         cyan       75.31008               11
- midnightblue       59.77560               21
-       yellow       58.63452               42
-       purple       58.59783               31
-        white       57.58942                3
-    turquoise       53.64123               62
-    lightcyan       53.39711               19
-          red       48.90077               50
-      darkred       48.54354               20
-         blue       48.08783               65
-[2026-10-22T16:04:24] 
---- bp_lith Zsummary_mean across 20 draws (top 10, descriptive only) ---
-       module Zsummary_mean Zsummary_sd medianRank_mean
-         blue      26.73126    2.419243           40.60
-        brown      19.72250    1.851940           41.90
-       yellow      19.23266    1.760302           45.00
-       purple      19.02198    2.276893           17.05
-        green      17.11297    2.259826           43.40
- midnightblue      16.85780    1.874629            8.00
-  greenyellow      15.39721    1.104683           44.75
-    turquoise      15.34619    2.447870           62.30
-     darkgrey      14.44504    1.362247            8.40
-       salmon      13.97087    1.209917           36.65
-[2026-10-22T16:04:24] === base-001 COMPLETE ===
+[2026-10-25T16:29:05] draw 1/20 done: Zsummary range [8.35, 64.04]
+[2026-10-25T16:29:05] draw 2/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T16:41:01] draw 2/20 done: Zsummary range [10.09, 100.14]
+[2026-10-25T16:41:01] draw 3/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T16:52:57] draw 3/20 done: Zsummary range [9.34, 99.68]
+[2026-10-25T16:52:57] draw 4/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T17:04:52] draw 4/20 done: Zsummary range [8.91, 74.23]
+[2026-10-25T17:04:52] draw 5/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T17:16:48] draw 5/20 done: Zsummary range [9.38, 80.79]
+[2026-10-25T17:16:48] draw 6/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T17:28:44] draw 6/20 done: Zsummary range [8.6, 73.72]
+[2026-10-25T17:28:45] draw 7/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T17:40:39] draw 7/20 done: Zsummary range [7.65, 67.25]
+[2026-10-25T17:40:39] draw 8/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T17:52:39] draw 8/20 done: Zsummary range [7.9, 78.46]
+[2026-10-25T17:52:39] draw 9/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T18:04:40] draw 9/20 done: Zsummary range [8.35, 99.12]
+[2026-10-25T18:04:40] draw 10/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T18:16:57] draw 10/20 done: Zsummary range [5.96, 73.91]
+[2026-10-25T18:16:57] draw 11/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T18:28:53] draw 11/20 done: Zsummary range [8.53, 65.38]
+[2026-10-25T18:28:53] draw 12/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T18:40:48] draw 12/20 done: Zsummary range [10.01, 89.95]
+[2026-10-25T18:40:48] draw 13/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T18:52:44] draw 13/20 done: Zsummary range [8.72, 84.78]
+[2026-10-25T18:52:44] draw 14/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T19:04:41] draw 14/20 done: Zsummary range [7.78, 67.55]
+[2026-10-25T19:04:41] draw 15/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T19:16:36] draw 15/20 done: Zsummary range [10.31, 81.41]
+[2026-10-25T19:16:36] draw 16/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s

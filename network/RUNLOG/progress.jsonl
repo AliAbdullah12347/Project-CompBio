@@ -47,3 +47,6 @@
 {"ts":"2026-10-24T07:08:58Z","run_id":"inp-023","phase":"progress","pct":50,"msg":"5 new non-empty checkpoints"}
 {"ts":"2026-10-24T07:08:58Z","run_id":"inp-023","phase":"done","pct":100,"msg":"inp-023 PARTIAL 10802s"}
 {"ts":"2026-10-25T19:16:40Z","run_id":"inp-023","phase":"run","pct":5,"msg":"starting network/experiments/inp-023.R cap=10800s"}
+{"ts":"2026-10-25T20:17:02Z","run_id":"base-001","phase":"run","pct":5,"msg":"starting network/experiments/base-001.R cap=10800s"}
+{"ts":"2026-10-25T23:17:02Z","run_id":"base-001","phase":"progress","pct":50,"msg":"16 new non-empty checkpoints"}
+{"ts":"2026-10-25T23:17:03Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 PARTIAL 10800s"}

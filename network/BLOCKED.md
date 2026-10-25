@@ -481,3 +481,27 @@ No wake recorded for 20h (last: 2026-10-24T04:05:00Z) and no session, driver or 
 The watchdog kickstarted `com.aaylab.networkarm`. If this entry repeats, the scheduler is not
 firing on its own and the launchd configuration needs a human.
 
+## 2026-10-25T23:17:03Z  base-001  hit 10800s cap; partial results kept; +16 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-25T18:52:44] draw 13/20 done: Zsummary range [8.72, 84.78]
+[2026-10-25T18:52:44] draw 14/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T19:04:41] draw 14/20 done: Zsummary range [7.78, 67.55]
+[2026-10-25T19:04:41] draw 15/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T19:16:36] draw 15/20 done: Zsummary range [10.31, 81.41]
+[2026-10-25T19:16:36] draw 16/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
