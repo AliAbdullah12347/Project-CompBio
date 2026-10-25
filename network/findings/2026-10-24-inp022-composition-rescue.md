@@ -152,9 +152,15 @@ is at the level of the gold module (same concept in both: a random gene set matc
 size to the reference modules), which provides a permutation-matched, reference-agnostic
 calibration. The gold comparison is valid; module-specific comparisons are not.
 
-## Score
+## Score (corrected)
 
-E=5 R=5 B=4 D=5 C=4
+E=3 R=4 B=2 D=2 C=1
+
+_Corrected from E=5 R=5 B=4 D=5 C=4 (was 23/25) to 12/25. The cross-arm comparison
+(inp-022 gold Z=15.55 vs base-001 gold Z=4.06) is invalid because the reference networks
+differ (44 vs 71 modules, different gene sets). What remains: within-arm gold always last
+in all 20 draws (E=3), 20-draw robustness (R=4), plausible composition mechanism (B=2),
+directional within-arm (D=2), weak cross-arm causality (C=1). See correction note above._
 
 Robustness = 4 (not 5) because a single residualisation formula is tested here; inp-023
 tests technical + ILR residualisation jointly. If inp-023 replicates, B rises to 5.
