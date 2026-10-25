@@ -1563,3 +1563,75 @@ character.
 Power 12 is used in all three arms (pre-specified, WGCNA FAQ signed n>40). The SFT
 criterion is met at power 13 in inp-023, so power 12 is one step below the
 data-driven recommendation — still within the FAQ range and acceptable.
+
+---
+
+## 2026-10-25  base-002-ceil anomaly investigated — code correct, anomaly genuine
+
+**Context:** the 2026-10-25 synthesis finding flagged an anomaly in `base-002-ceil`:
+real modules preserve better in bp_nolith than in held-out controls (median Z 36.81 vs
+18.69), while gold moves the opposite direction (4.64 vs 22.58), and cor(log10 module
+size, Zsummary) flips from +0.911 to −0.036. The finding recommended diagnosing the
+Z block extraction before interpreting any comparison.
+
+**Extraction code reviewed** (`base-002-ceil.R:182–215`):
+- Each of the three test sets (ctrl_ceiling, bp_nolith, bp_lith draws) uses a **separate**
+  `modulePreservation()` call with `multiData = list(Ref = ..., Test = ...)`.
+- `extract_mp()` uses default arguments `ref_name = "Ref"`, `test_name = "Test"`, producing
+  keys `"ref.Ref"` and `"inColumnsAlsoPresentIn.Test"` — which match the list names WGCNA
+  builds from those exact inputs.
+- The same pattern is used in inp-023.R (hardcoded) and produces the same keys.
+
+**Decision: no multi-test-set combined call.** The concern about slot-swapping between
+ceiling and nolith does not apply — they are never in the same `multiData` object.
+
+**Verification** (from checkpoint files):
+```r
+cor(log10(module_sizes), Zsummary)
+# ctrl_ceiling:  0.911   [matches finding #12 numbers exactly]
+# bp_nolith:    -0.036   [matches finding #12 numbers exactly]
+```
+
+**Conclusion:** The extraction is correct; the anomaly is a property of the data. The
+finding on 2026-10-25-ceiling-vs-nolith-anomaly.md is updated to reflect this.
+
+**Plausible mechanism:** BP disease tightens inter-module correlations (finding #19).
+If tighter within-module co-expression in patients is driven by specific regulatory
+modules rather than all modules uniformly, this would raise specific-module Zsummary
+while leaving the random gene set (gold) unaffected or diminished. `pres-030` (density vs.
+connectivity components reported separately) is the right next step: if the anomaly lives
+entirely in the density component (which tracks global co-expression) and not connectivity
+(which tracks module-specific patterns), it would be consistent with this explanation.
+
+**Scope of impact:** The anomaly does not affect within-arm gold-anchored comparisons
+(base-001, inp-022, inp-023) because each has its own reference and gold. It affects only
+the base-002-ceil cross-group comparison (ceiling vs. bp_nolith). The 2026-10-25 synthesis
+finding's statement "no preservation comparison should be quoted" was over-broad; updated
+to: the base-002-ceil cross-group comparison should not be quoted until the anomaly is
+explained; within-arm comparisons in other experiments are unaffected.
+
+---
+
+## 2026-10-25T19:16Z  inp-023 session 6 — resumed, 4 of 20 lith draws done
+
+inp-023 was PARTIAL after 2 prior sessions (5 checkpoints from the second attempt, 3 lith
+draws done). The driver requeued and claimed it at 19:16:40Z UTC (15:16 EDT), skipped
+existing checkpoints for nolith and draws 1–3, and began draw 4. Draw 4 completed at
+15:29 EDT (~13 min, consistent with 50 perms at 42 modules). Draw 5 is running.
+
+**Partial results from draws 1–4 (pre-cap):**
+
+bp_nolith (500 perms):
+- gold Zsummary = 28.08, rank 43/43, 25/42 (60%) modules above gold
+
+bp_lith draws 1–4:
+- gold always ranks 43/43 (last among 43 real + gold), matching inp-022 pattern
+- gold Z per draw: 29.04, 11.66, 10.89, 9.48 (high variance, same as inp-022 sd=8.1)
+- modules above gold: 27/42, 41/42, 41/42, ≥27/42 (consistent with inp-022's 41/44)
+
+These numbers are **pre-specified descriptive statistics** — the final finding will
+wait for all 20 draws. The pattern so far is consistent with inp-022: gold always ranks
+last, most modules beat gold, high draw-to-draw variance in gold Z.
+
+This session expects draws 4–16 to complete (cap hits ~22:16 UTC). Draws 17–20 would
+then run in the following session (~52 min total).

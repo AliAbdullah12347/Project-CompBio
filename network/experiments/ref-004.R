@@ -153,7 +153,7 @@ if (file.exists(consensus_cache)) {
   lith_all_sids <- colnames(d$logtpm)[!is.na(d$groups) & d$groups == "bp_lith"]
   stopifnot(length(lith_all_sids) == 152L)
   lith_sel_sids <- sample(lith_all_sids, SUBSAMPLE_N, replace = FALSE)
-  lith_subsample <- t(d$logtpm[, lith_sel_sids])   # 74 x 12368
+  lith_subsample <- expr_samples(d, lith_sel_sids)   # 74 x 12368
   msg("bp_lith subsample for consensus: ", length(lith_sel_sids), " of 152 samples")
 
   multiExpr <- list(
@@ -284,7 +284,7 @@ for (draw in seq_len(DRAWS)) {
   msg("lith draw ", draw, "/", DRAWS, ": subsampling bp_lith ...")
   set.seed(SEED_BASE + draw)   # same seed offsets as base-001 for matched comparison
   sel_sids  <- sample(lith_all_sids, SUBSAMPLE_N, replace = FALSE)
-  testExpr  <- t(d$logtpm[, sel_sids])   # 74 x 12368
+  testExpr  <- expr_samples(d, sel_sids)   # 74 x 12368
   perm_file <- file.path(run_dir, sprintf("permStats_lith_draw_%03d.RData", draw))
   mp_draw <- tryCatch(
     modulePreservation(

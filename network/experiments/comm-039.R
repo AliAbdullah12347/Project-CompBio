@@ -295,7 +295,7 @@ if (!file.exists(lith_ckpt)) {
   lith_all_sids <- colnames(d$logtpm)[!is.na(d$groups) & d$groups == "bp_lith"]
   stopifnot(length(lith_all_sids) == 152L)
   sel_sids <- sample(lith_all_sids, SUBSAMPLE_N, replace = FALSE)
-  E_lith   <- t(d$logtpm[, sel_sids])
+  E_lith   <- expr_samples(d, sel_sids)
   msg("bp_lith subsample: ", length(sel_sids), " of 152 (seed=", LITH_SINGLE_SEED, ")")
   louvain_lith_path <- file.path(COMM038_DIR, "louvain_membership_lith.csv")
   res_lith <- run_leiden_for_group("bp_lith", E_lith, wgcna_colors,

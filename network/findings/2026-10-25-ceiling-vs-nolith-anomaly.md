@@ -49,17 +49,36 @@ of 37 (worst in both), and across real modules the paired Wilcoxon on `medianRan
 But Spearman between the two arms' rankings is only +0.312, so even the orderings
 disagree more than they should.
 
-## What to do before any of the remaining 45 rows is interpreted
+## Extraction verified — the anomaly is real
 
-Diagnose the extraction, not the biology. `base-002-ceil.R:184-188` pulls
-`mp$preservation$Z[[key_obs]][[key_test]]` by constructed name
-(`inColumnsAlsoPresentIn.<test>`). The first thing to check is whether the ceiling and
-nolith blocks are being read from the slots they are assumed to be, and whether
-`modulePreservation` was given the same `networkType`/`corFnc` for both.
+**2026-10-25 verification (current session):** The extraction code at base-002-ceil.R:182–192
+was read end-to-end. Both the ceiling and nolith calls to `modulePreservation` pass
+`multiData = list(Ref = ..., Test = ...)` — exact list names `"Ref"` and `"Test"` —
+and `extract_mp()` uses the default `ref_name = "Ref"`, `test_name = "Test"`, producing
+`"ref.Ref"` and `"inColumnsAlsoPresentIn.Test"`. The names match. Each call is separate
+(no multi-test combined call), so there is no slot-swapping between ceiling and nolith.
 
-Until that is settled, **no preservation comparison in this arm should be quoted** —
-including the within-arm gold-anchored ones, which survive scale problems but not a
-mis-indexed Z block.
+The correlation figures were re-computed from the checkpoint files:
+
+```r
+cor(log10(module_sizes), Zsummary)
+# ctrl_ceiling:  0.911   ✓ matches finding
+# bp_nolith:    -0.036   ✓ matches finding
+```
+
+**The code is correct; the anomaly is genuine.** The reversal (gold drops 79%, real modules
+rise 97%, size-correlation flips from +0.911 to -0.036) is a property of the data, not
+a mis-extraction. Until a biological or methodological mechanism is identified, the
+within-arm gold-anchored statistics remain valid (gold was extracted from the same slot
+that real modules were), but the cross-group comparison (ceiling vs. nolith) should be
+described as anomalous rather than interpreted.
+
+Plausible mechanism: BP disease tightens within-module gene-gene correlations for
+specific regulatory modules while disrupting the global co-expression fabric (gold),
+producing the split between real-module and gold Zsummary. This aligns with finding #19
+(BP disease tightens inter-module coupling) but should not be quoted until pres-030
+(density vs. connectivity components reported separately) illuminates which statistic
+drives the split.
 
 ## Status of the claims this displaces
 

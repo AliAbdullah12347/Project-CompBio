@@ -63,7 +63,7 @@ d <- load_project()
 
 # ---- select top 2000 most variable genes ------------------------------------
 msg("computing per-gene variance across all ", ncol(d$logtpm), " samples ...")
-gene_vars <- apply(d$logtpm, 1, var)
+gene_vars <- apply(expr_for(d, transpose = FALSE), 1, var)
 keep_ens  <- names(sort(gene_vars, decreasing = TRUE)[seq_len(N_TOP_GENES)])
 n_genes   <- length(keep_ens)
 msg("selected top ", N_TOP_GENES, " variable genes (actual kept: ", n_genes, ")")
@@ -86,7 +86,7 @@ if (!file.exists(cfg_path)) {
     draws_spec=100L, draws_implemented=DRAWS,
     draws_revision_note="Same as base-001: revised to 20 (METHODS.md 2026-10-09)",
     n_genes=n_genes, n_top_genes_requested=N_TOP_GENES,
-    variance_computed="apply(d$logtpm, 1, var) across all 474 samples",
+    variance_computed="apply(expr_for(d, transpose = FALSE), 1, var) across all 474 samples",
     corFnc=COR_FNC, networkType=NET_TYPE, power=POWER,
     power_source="WGCNA_FAQ_signed_n_gt_40",
     minModuleSize=MIN_MODULE, deepSplit=DEEP_SPLIT, mergeCutHeight=MERGE_THRESH,

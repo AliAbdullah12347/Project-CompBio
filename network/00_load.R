@@ -154,6 +154,21 @@ load_project <- function(cache = TRUE, verbose = TRUE) {
 # they build CACHE_KEY. See network/00_exprmode.R for the rationale.
 source("network/00_exprmode.R")
 
+# Subset by explicit sample IDs with the SAME normalisation expr_for() applies.
+# Exists because 42 of 51 experiment scripts reached for `t(d$logtpm[, sids])`
+# directly to build a test set, which silently bypassed offset removal and
+# scored a raw test matrix against an offset-removed reference. Always use this
+# (or expr_for) - never d$logtpm - for anything that becomes expression input.
+expr_samples <- function(d, sids, transpose = TRUE, mode = EXPR_MODE) {
+  miss <- setdiff(sids, colnames(d$logtpm))
+  if (length(miss)) stop("expr_samples: unknown sample ids: ", paste(head(miss, 3), collapse = ", "))
+  M <- d$logtpm[, sids, drop = FALSE]
+  if (!identical(mode, "raw")) {
+    M <- sweep(M, 2, colMeans(d$logtpm)[sids], "-")
+  }
+  if (transpose) t(M) else M
+}
+
 expr_for <- function(d, group = NULL, transpose = TRUE, residualise = NULL,
                      mode = EXPR_MODE) {
   keep <- if (is.null(group)) rep(TRUE, ncol(d$logtpm)) else

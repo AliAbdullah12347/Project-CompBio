@@ -134,7 +134,7 @@ if (!file.exists(part_path)) {
 r2_path <- file.path(run_dir, "sft_r2_curve.csv")
 if (!file.exists(r2_path)) {
   msg("pickSoftThreshold scan for 160-control reference ...")
-  refExpr_tmp <- t(d$logtpm[, ref_ctrl])   # 160 x 12368
+  refExpr_tmp <- expr_samples(d, ref_ctrl)   # 160 x 12368
   set.seed(SEED_BASE)
   sft <- pickSoftThreshold(refExpr_tmp, powerVector = 1:20,
                            networkType = NET_TYPE, corFnc = COR_FNC, verbose = 0)
@@ -157,7 +157,7 @@ if (file.exists(ref_cache)) {
   msg(ref_net$n_modules, " modules (", sum(moduleColors != "grey"), " in non-grey)")
 } else {
   msg("building reference network (160 controls, bicor, signed, power ", POWER, ") ...")
-  refExpr_tmp <- t(d$logtpm[, ref_ctrl])   # 160 x 12368
+  refExpr_tmp <- expr_samples(d, ref_ctrl)   # 160 x 12368
   set.seed(SEED_BASE)
   bwm <- blockwiseModules(refExpr_tmp, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
@@ -176,7 +176,7 @@ if (file.exists(ref_cache)) {
 }
 
 # refExpr for preservation calls
-refExpr <- t(d$logtpm[, ref_ctrl])   # 160 x 12368
+refExpr <- expr_samples(d, ref_ctrl)   # 160 x 12368
 
 # ---- helper -----------------------------------------------------------------
 extract_mp <- function(mp, ref_name = "Ref", test_name = "Test") {
@@ -195,7 +195,7 @@ extract_mp <- function(mp, ref_name = "Ref", test_name = "Test") {
 ceil_ckpt <- file.path(run_dir, "ceiling_ctrl_preservation.rds")
 if (!file.exists(ceil_ckpt)) {
   msg("CEILING: 74 control preservation (", NOLITH_PERMS, " perms) ...")
-  ceilExpr  <- t(d$logtpm[, ceil_ctrl])   # 74 x 12368
+  ceilExpr  <- expr_samples(d, ceil_ctrl)   # 74 x 12368
   perm_file <- file.path(run_dir, "permStats_ceiling_ctrl.RData")
   mp_ceil   <- modulePreservation(
     multiData = list(Ref = list(data = refExpr), Test = list(data = ceilExpr)),
@@ -253,7 +253,7 @@ for (draw in seq_len(DRAWS)) {
   msg("draw ", draw, "/", DRAWS, ": subsampling bp_lith ...")
   set.seed(SEED_BASE + draw)   # same seeds as base-001 for comparability
   sel_sids  <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
-  testExpr  <- t(d$logtpm[, sel_sids])
+  testExpr  <- expr_samples(d, sel_sids)
   perm_file <- file.path(run_dir, sprintf("permStats_lith_draw_%03d.RData", draw))
   mp_draw <- tryCatch(
     modulePreservation(

@@ -168,7 +168,7 @@ for (draw in seq_len(DRAWS)) {
   msg("bp_lith draw ", draw, "/", DRAWS, ": subsampling 74 from 152 ...")
   set.seed(SEED_BASE + draw)
   sel_sids <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
-  E_draw   <- t(d$logtpm[, sel_sids, drop = FALSE])   # 74 x 12368
+  E_draw   <- expr_samples(d, sel_sids)   # 74 x 12368
   kme_draw <- tryCatch(
     compute_kme(E_draw),
     error = function(e) {

@@ -79,7 +79,7 @@ modules      <- sort(unique(moduleColors[moduleColors != "grey"]))
 msg(length(modules), " modules (excl grey)")
 
 # ---- module eigengenes for all 474 samples ---------------------------------
-E   <- t(d$logtpm)
+E   <- expr_for(d)
 MEs <- moduleEigengenes(E, colors = moduleColors, excludeGrey = TRUE)$eigengenes
 rownames(MEs) <- colnames(d$logtpm)
 msg("eigengenes: ", nrow(MEs), " x ", ncol(MEs))

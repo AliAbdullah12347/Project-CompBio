@@ -110,7 +110,7 @@ for (k in seq_len(K)) {
   msg("permuted draw ", k, "/", K, " (pool=ctrl+lith, 386 samples)")
   set.seed(SEED_BASE + k)
   sel_sids <- sample(pool_sids, SUBSAMPLE_N, replace=FALSE)
-  testExpr <- t(d$logtpm[, sel_sids, drop=FALSE])
+  testExpr <- expr_samples(d, sel_sids)
   perm_file <- file.path(run_dir, sprintf("permStats_perm_draw_%03d.RData", k))
   mp_draw <- tryCatch(
     modulePreservation(

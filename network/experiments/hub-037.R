@@ -206,7 +206,7 @@ for (k in seq_len(K)) {
   msg("permuted draw ", k, "/", K, ": sampling 74 from all 474 ...")
   set.seed(SEED_BASE + k)
   sel_sids <- sample(all_sids, SUBSAMPLE_N, replace = FALSE)
-  E_perm   <- t(d$logtpm[, sel_sids, drop = FALSE])   # 74 x 12368
+  E_perm   <- expr_samples(d, sel_sids)   # 74 x 12368
   kme_own_perm <- tryCatch(
     compute_own_kme_perm(E_perm),
     error = function(e) {

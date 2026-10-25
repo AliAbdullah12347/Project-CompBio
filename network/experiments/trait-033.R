@@ -77,7 +77,7 @@ modules      <- modules[modules != "grey"]
 msg(length(modules), " modules (excl grey)")
 
 # ---- compute module eigengenes for ALL 474 samples -------------------------
-E <- t(d$logtpm)   # 474 x 12368
+E <- expr_for(d)   # 474 x 12368
 MEs <- moduleEigengenes(E, colors = moduleColors, excludeGrey = TRUE)$eigengenes
 rownames(MEs) <- colnames(d$logtpm)   # sample ids
 msg("Module eigengenes computed: ", nrow(MEs), " samples x ", ncol(MEs), " modules")

@@ -248,7 +248,7 @@ if (!file.exists(lith_ckpt)) {
   lith_all_sids <- colnames(d$logtpm)[!is.na(d$groups) & d$groups == "bp_lith"]
   stopifnot(length(lith_all_sids) == 152L)
   sel_sids <- sample(lith_all_sids, SUBSAMPLE_N, replace = FALSE)
-  E_lith   <- t(d$logtpm[, sel_sids])   # 74 x 12368
+  E_lith   <- expr_samples(d, sel_sids)   # 74 x 12368
   msg("bp_lith subsample: ", length(sel_sids), " of 152 samples (seed=",
       LITH_SINGLE_SEED, ")")
   res_lith <- run_louvain_for_group("bp_lith", E_lith, wgcna_colors,

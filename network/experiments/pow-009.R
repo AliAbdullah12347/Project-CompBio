@@ -92,7 +92,7 @@ for (grp in GROUPS) {
     stopifnot(length(lith_sids) == 152L)
     set.seed(SEED_BASE + 9000L)   # distinct from draw seeds
     sel <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
-    E <- t(d$logtpm[, sel])   # 74 x 12368
+    E <- expr_samples(d, sel)   # 74 x 12368
   } else {
     E <- expr_for(d, group = grp)
   }

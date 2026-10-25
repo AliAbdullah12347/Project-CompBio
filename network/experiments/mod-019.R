@@ -265,7 +265,7 @@ for (draw in seq_len(DRAWS)) {
   msg("draw ", draw, "/", DRAWS, ": subsampling bp_lith (n=", SUBSAMPLE_N, " from 152) ...")
   set.seed(SEED_BASE + draw)
   sel_sids <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
-  testExpr <- t(d$logtpm[, sel_sids])   # 74 x 12368
+  testExpr <- expr_samples(d, sel_sids)   # 74 x 12368
 
   perm_file <- file.path(run_dir, sprintf("permStats_lith_draw_%03d.RData", draw))
 

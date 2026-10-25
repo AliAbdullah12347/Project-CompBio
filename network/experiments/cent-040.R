@@ -223,7 +223,7 @@ if (file.exists(lith_ckpt)) {
   set.seed(SEED_BASE)
   sel_sids  <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
   msg("bp_lith: using fixed subsample of ", length(sel_sids), " samples (seed=", SEED_BASE, ")")
-  E_lith    <- t(d$logtpm[, sel_sids, drop = FALSE])   # 74 x 12368
+  E_lith    <- expr_samples(d, sel_sids)   # 74 x 12368
   cent_lith <- compute_centrality(E_lith, "bp_lith")
   write.csv(cent_lith, lith_ckpt, row.names = FALSE)
   msg("centrality_lith.csv written: ", nrow(cent_lith), " genes")
