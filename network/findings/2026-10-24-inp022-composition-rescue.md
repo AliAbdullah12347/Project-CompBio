@@ -1,8 +1,32 @@
 # inp-022: ILR residualization rescues bp_lith co-expression preservation
 
+> **CORRECTION 2026-10-25 — the word "rescues" is not supported.** This finding states
+> that because the permutation instrument matches base-001, "the bp_lith comparison
+> between the two arms is interpretable as a function of residualisation, not
+> instrument." That inference does not hold, and this arm's own numbers disprove it:
+>
+> base-001 and inp-022 both ran **50 perms, n_test = 74, 20 draws** — the instrument is
+> fully matched — and gold still reads **4.06 vs 15.55**. Gold is by construction a
+> random sample of network genes, so a 3.8x gap under a matched instrument can only come
+> from the reference network (71 modules vs 44, different gene sets, WGCNA colours
+> assigned by size rank within each run). Zsummary from two different references is not
+> on one scale, so "residualisation rescues preservation" is not a comparison this
+> design can make.
+>
+> **What survives, and it is solid:** within inp-022, gold ranks **45 of 45 in all 20
+> draws** and 41 of 44 modules beat it. That is a within-arm statement against a gold
+> drawn from the same network under the same instrument, and it stands.
+>
+> Note also the gold sd of 8.13 here against 0.93 in base-001. The finding reads that as
+> biological heterogeneity; it is at least as consistent with residualisation
+> destabilising the network, and the two readings are not separated by this run.
+>
+> See `network/findings/2026-10-25-preservation-arms-not-on-one-scale.md`.
+
+
 **Date:** 2026-10-24
 **Analysis:** `network/runs/inp-022` (ILR b1–b4 residualized, 45-module reference on 234 controls, 20 lith draws)
-**Evidence:** 23/25 · **Interest:** 9/10 · **Δ:** -0.2
+**Evidence:** 12/25 · **Interest:** 5/10  _(corrected; was 23/25 and 9/10)_ · **Δ:** -0.2
 
 ## Design
 

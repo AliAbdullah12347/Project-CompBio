@@ -51,6 +51,13 @@ adjustment +21.22, p = 2.9e-11", and both are meaningless. The script now refuse
 cross-arm comparison and says why. The numbers are recorded here so they are not quoted
 from some later copy.
 
+> **CORRECTED same day.** The section below says the matched test does not exist.
+> It does: `base-002-ceil` already scores the ctrl160 reference against BOTH the 74
+> held-out controls and bp_nolith at 500 perms each, and against 20 bp_lith draws at
+> 50. I had read only its lith draws. The real problem is not a missing experiment
+> but that the matched comparison behaves incoherently - see
+> `2026-10-25-ceiling-vs-nolith-anomaly.md`.
+
 ## The experiment that would settle it
 
 One reference, two test sets, identical instrument:
