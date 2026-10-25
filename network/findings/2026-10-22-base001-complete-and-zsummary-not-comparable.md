@@ -1,8 +1,29 @@
 # base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms
 
+> **CORRECTION 2026-10-25 — Part 1 is invalid; Part 2 stands.**
+>
+> The 20 bp_lith draws were computed with RAW test matrices. `base-001.R:344` built
+> them as `t(d$logtpm[, sel_sids])`, bypassing `expr_for()` and so the per-sample
+> offset removal, while the reference came from the offset-removed cache. Every
+> bp_lith number below — gold 4.06, "46 of 69 beat gold in all 20 draws",
+> mediumorchid at -1.27 — is therefore reference-vs-raw-test and must not be quoted.
+>
+> **The bp_nolith half survives**: reference and bp_nolith test both went through
+> `expr_for`, so gold Zsummary 14.01 at medianRank 72 of 72, with 63 of 69 modules
+> above it, is a valid result.
+>
+> **Part 2 also survives and is strengthened.** Zsummary genuinely is not comparable
+> across these arms; the raw/offset-removed mismatch is a second, independent reason
+> on top of the 50-vs-500 permutation difference.
+>
+> Fixed in 36 places across 32 scripts; see
+> `2026-10-25-raw-test-matrices-bypassed-normalisation.md`. base-001's lith draws are
+> archived and the row is re-queued.
+
+
 **Date:** 2026-10-22
 **Analysis:** `network/runs/base-001` (offset-removed, 71-module reference, 20 draws)
-**Evidence:** 22/25 · **Interest:** 8/10 · **Δ:** new
+**Evidence:** 10/25 · **Interest:** 5/10  _(corrected; was 22/25 and 8/10)_ · **Δ:** new
 
 ## Part 1 — the gold reversal survives subsampling
 

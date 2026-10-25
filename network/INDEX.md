@@ -34,7 +34,6 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 22/25 · 9/10 | CORRECTED | [Darkturquoise is a ribosomal/translation module: the composition signal has a biological substrate](findings/2026-10-14-darkturquoise-is-ribosomal.md) | 2026-10-14 |
 | 22/25 · 7/10 | live | [The lithium dimension replicates across decompositions, and never survives composition](findings/2026-10-14-lithium-dimension-replicates.md) | 2026-10-14 |
 | 22/25 · 9/10 | live | [Removing the library offset rebuilds the network into a well-behaved one](findings/2026-10-18-normalisation-rebuild-required.md) | 2026-10-18 |
-| 22/25 · 8/10 | live | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | 2026-10-22 |
 | 21/25 · 9/10 | live | [Real modules do beat the random gene set — once the decomposition is real](findings/2026-10-18-modules-do-beat-gold.md) | 2026-10-18 |
 | 20/25 · 8/10 | live | [Darkred is an erythrocyte module: stable because RBC genes are absent from immune composition](findings/2026-10-14-darkred-is-erythrocyte-module.md) | 2026-10-14 |
 | 20/25 · 5/10 | live | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) | 2026-10-14 |
@@ -48,6 +47,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 17/25 · 8/10 | live | [Darkturquoise: control-lith contrast survives composition adjustment; nolith-lith does not](findings/2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md) | 2026-10-14 |
 | 16/25 · 8/10 | live | [BP disease tightens inter-module correlations: modules move more in lockstep](findings/2026-10-14-inter-module-correlations-tighten-in-bp.md) | 2026-10-14 |
 | 12/25 · 5/10 | CORRECTED | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | 2026-10-24 |
+| 10/25 · 5/10 | CORRECTED | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | 2026-10-22 |
 | 6/25 · 1/10 | live | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) | 2026-10-09 |
 | 6/25 · 4/10 | live | [No module reliably beats a random gene set (degenerate decomposition)](findings/2026-10-09-gold-baseline-no-module-beats-random.md) | 2026-10-09 |
 | 0/25 · 0/10 | RETRACTED | [The merge threshold is decisive: 33 modules vs 3](findings/2026-10-09-merge-threshold-decisive.md) | 2026-10-09 |
