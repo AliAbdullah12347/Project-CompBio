@@ -1482,18 +1482,24 @@ lacked `_offsetrm`. Corrected to `control_all_bicor_signed_p12_ds4_mch00_offsetr
 Reference: 160 randomly held-out controls (seed=SEED_BASE+2000=20271009); 36 modules at
 deepSplit=4, mergeCutHeight=0, power=12, bicor, signed, offset-removed.
 
-Key results:
+**CORRECTION 2026-10-25 (commit 1177d8c): the key results below are INVALID.** The reference
+network at line 160 of `base-002-ceil.R` was built from raw `t(d$logtpm[, sids])` rather
+than `expr_for()`. All test matrices were also raw. Results archived to
+`_raw_test_contaminated_20261025T193947Z/`; experiment reset to PENDING. Do not quote:
+
+Key results (INVALID — from raw expression run, do not quote):
 - ctrl_ceiling (74 disjoint controls, 500 perms): gold Z=22.58; module Z range 9.44–35.46
 - bp_nolith (74 patients, 500 perms): gold Z=4.64; 35/36 modules beat gold
 - bp_lith (20 draws of 74 from 152, 50 perms): gold mean Z=20.98; top modules blue(31.65), green(26.04)
 
-**The critical finding:** at matched 500-perm instrument, ctrl_ceiling gold Z (22.58) is
-4.9× higher than bp_nolith gold Z (4.64). Random genes preserve much better in a disjoint
-control set than in bp_nolith patients. This reflects a global difference in co-expression
-fabric between healthy controls and BP-off-lithium patients, not a module-specific effect.
+**The "critical finding" below is wrong — it is a code artifact, not biology:**
+~~At matched 500-perm instrument, ctrl_ceiling gold Z (22.58) is 4.9× higher than bp_nolith
+gold Z (4.64).~~ This reflected the dense-raw-graph signature (cor(log10 size, Zsummary) =
++0.911 in ceiling vs -0.036 in nolith), explained by raw vs raw comparison at different
+sample sizes (n=160 reference, n=74 test). See anomaly finding for full explanation.
 
-bp_lith vs ctrl_ceiling comparison is NOT valid (50 vs 500 perms; established in base-001
-finding). Finding written: `findings/2026-10-24-base-002-ceil-ceiling.md`.
+bp_lith vs ctrl_ceiling comparison is NOT valid (50 vs 500 perms). Finding:
+`findings/2026-10-24-base-002-ceil-ceiling.md` (scores revised to E=8/25 after correction).
 
 ### inp-022 (ILR b1–b4 residualisation, DONE 800 s)
 
