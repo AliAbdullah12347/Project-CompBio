@@ -33,12 +33,16 @@ not a substantive difference. medianRank is perm-independent and is the primary 
 
 ## lith draws result
 
-[FILL AFTER 20 DRAWS COMPLETE — expected ~23:34Z]
+**Preliminary (1/20 draws complete, as of 19:44Z):** gold Z=30.16, medianRank=66/66 (last).
+Modules beating gold: 33 of 65. Consistent with expected pattern.
+
+[FILL remaining statistics after all 20 draws complete — expected ~23:34Z.
+Run: `Rscript network/scripts/analyze_gene027.R` when `lith_draw_020.rds` exists.]
 
 | | gene-027 (non-LM22, 65 modules, 50 perms/draw) | base-001 (all genes, 71 modules, 50 perms/draw) |
 |:--|:--|:--|
-| gold Zsummary (mean, sd) | [FILL] | 21.74 (sd 7.05) |
-| gold medianRank | [FILL] of 66, all 20 draws | 72 of 72, all 20 draws |
+| gold Zsummary (mean, sd) | [FILL — 1 draw: 30.16] | 21.74 (sd 7.05) |
+| gold medianRank | [FILL: 1/1 draws = last of 66] | 72 of 72, all 20 draws |
 | modules beating gold in all 20 | [FILL] of 65 | 17 of 71 |
 | modules beating gold in 0 | [FILL] of 65 | 4 of 71 |
 
@@ -55,14 +59,44 @@ None of these are expected to happen because the earlier PCA-arm check (analysis
 share by <1%. The module preservation arm's analogous check confirms that result holds for
 the network-level analysis.
 
-## Module overlap
+## Module overlap and the 6 LM22-dependent modules
 
-LM22 exclusion reduces the module count (65 vs 71 in base-001 on the full set). This is
-expected: some modules at the periphery of the dendrogram contained LM22-adjacent genes
-whose removal changed the clustering. Shared colour names between gene-027 and base-001:
-[FILL from analyze_gene027.R output], correlation of nolith Zsummary for shared modules:
-[FILL]. A high correlation (>0.8 expected) means the relative preservation ordering is
-stable despite excluding 350 genes.
+LM22 exclusion reduces the module count from 71 (base-001) to 65 (gene-027). All 65
+gene-027 modules have the same WGCNA colour as a base-001 module — no new modules appeared.
+The 6 modules present in base-001 but absent in gene-027 are:
+
+| module | base-001 beat_gold (lith, 20 draws) | interpretation |
+|:--|--:|:--|
+| lightcoral | 0/20 | candidate disrupted |
+| mediumpurple2 | 1/20 | candidate disrupted |
+| skyblue1 | 1/20 | candidate disrupted |
+| plum | 5/20 | mildly disrupted |
+| lightsteelblue | 6/20 | mildly disrupted |
+| orangered3 | 7/20 | mildly disrupted |
+
+These 6 modules beat gold in a mean of 3.3/20 base-001 lith draws — versus 14.8/20 for
+the 65 non-LM22-dependent modules. The 6 modules that **depend on LM22 genes to form** are
+also the **most disrupted in bp_lith**.
+
+This is consistent with those modules capturing immune cell-type co-expression patterns:
+LM22 defines cell types through immune marker genes, and modules built on those genes would
+naturally reflect cell composition. Excluding LM22 genes removes these confounded modules
+and the remaining 65 show the preservation pattern (gold last, similar beat-gold
+distribution) that was seen in base-001 for the non-LM22 subset.
+
+Nolith Zsummary correlation between shared-name modules (gene-027 vs base-001): **0.359**
+(medianRank correlation: −0.013, essentially random). This was surprising but has a
+straightforward explanation: same-named modules do not contain the same genes. When 350
+LM22 genes are removed, the entire dendrogram reshuffles — genes previously in
+LM22-containing clusters get reassigned to other modules, changing the gene content of
+every same-named module. A correlation near zero means "the module named 'blue' in gene-027
+and the module named 'blue' in base-001 are measuring different gene sets and cannot be
+directly compared." Module SIZE changes do not explain the Zsummary shift (Δsize vs ΔZ
+correlation = −0.015). The reshuffling is structural, not compositional.
+
+This reinforces why the correct level of comparison is **population** (gold ranking), not
+**individual module** (same-name Zsummary): the latter compares apples and oranges because
+the modules themselves changed.
 
 ## Connection to prior findings
 

@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T19:35Z
+**Updated:** 2026-10-26T19:45Z
 
 ## Where the science stands
 
@@ -140,12 +140,31 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 ## Pending task for next session
 
 1. **When gene-027 completes (~19:32 EDT / ~23:32Z):**
-   - Run `Rscript network/scripts/analyze_gene027.R` to get gold comparison summary
-   - Write `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
+   - Run `Rscript network/scripts/analyze_gene027.R` — script exists; outputs gold comparison
+   - Fill [FILL] sections in `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
+     (template already written with nolith results and the 6-module cross-analysis)
    - Run `Rscript network/build_index.R` to rebuild RANKING.md
    - Update RESULTS.md, STATE.md; commit; then run `bash network/run_next.sh`
 2. **Driver continues:** inp-021 (full technical residualisation, cap 10800s; spans sessions via checkpoints)
 3. **pres-030** (density vs connectivity decomposition) is queued after inp-021
+
+## Session 12 notes (2026-10-26T19:45Z)
+
+- gene-027 nolith confirmed: gold Z=12.23, medianRank=66/66 (last). Same qualitative
+  pattern as base-001. Circularity check NEGATIVE at population level.
+- Key structural finding: nolith Zsummary correlation between same-named modules
+  (gene-027 vs base-001) = 0.359; medianRank correlation = −0.013. Explanation: removing
+  LM22 genes reshuffles the dendrogram — same-named modules have different gene content.
+  Individual module comparison across runs is invalid; only population-level (gold ranking) holds.
+- Cross-base-001 observation: the 6 LM22-dependent modules (absent in gene-027's reference)
+  are exactly the most disrupted in base-001 bp_lith: mean beat_gold=3.3/20 vs 14.8/20 for
+  non-LM22 modules. These modules likely capture immune cell composition patterns.
+- Draw 1 complete at 19:44Z: gold Z=30.16, rank=66/66 (LAST). 19 draws remaining.
+  All complete ~23:32Z, within 18000s cap (00:21 EDT).
+- Finding template updated: `findings/2026-10-26-gene027-lm22-circularity-preservation.md`
+  has nolith results, 6-module analysis, and draw 1 preliminary result.
+  Run `Rscript network/scripts/analyze_gene027.R` once all draws done.
+- cost-scaling finding: fixed n_test typo (was 234, correct is 74).
 
 ## Session 11 notes (2026-10-26T19:35Z)
 
