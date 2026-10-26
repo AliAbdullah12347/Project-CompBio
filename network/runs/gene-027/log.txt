@@ -12,3 +12,42 @@ Vcells 20610994 157.3   33910325 258.8      16384 28268592 215.7
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-26T15:32:27] bp_nolith done: Z[10.89, 74.91]
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2407901 128.6    4446264 237.5         NA  3927025 209.8
+Vcells 20688789 157.9   70813496 540.3      16384 70813496 540.3
+[2026-10-26T15:32:27] draw 1/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T15:43:42] draw 1 done: Z[10.47, 64.32]
+[2026-10-26T15:43:42] draw 2/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T15:54:55] draw 2 done: Z[13.44, 97.66]
+[2026-10-26T15:54:55] draw 3/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T16:06:06] draw 3 done: Z[13.92, 93.09]
+[2026-10-26T16:06:06] draw 4/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T16:17:17] draw 4 done: Z[11.92, 70.01]
+[2026-10-26T16:17:17] draw 5/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T16:28:27] draw 5 done: Z[11.61, 79.87]
+[2026-10-26T16:28:27] draw 6/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

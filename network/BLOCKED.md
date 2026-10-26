@@ -610,3 +610,8 @@ Vcells 20610994 157.3   33910325 258.8      16384 28268592 215.7
      ..Working with set 1 as reference set
 ```
 
+## 2026-10-26T20:29:18Z  NO PROGRESS IN 3 CONSECUTIVE SESSIONS
+DONE count has been stuck at 7 across 3 wake-ups (~15 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+
