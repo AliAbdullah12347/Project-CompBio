@@ -2,7 +2,7 @@
 
 **Updated:** 2026-10-26T19:35Z
 **Runs completed:** 7 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009).
-**Running:** gene-027 (attempt 2; 50 nolith perms, 18000s cap; started 19:20Z; expected DONE ~23:32Z).
+**Running:** gene-027 (attempt 3; nolith DONE 15:32 EDT Z=[10.89,74.91]; 20 lith draws in progress; expected DONE ~19:32 EDT).
 **Pending:** inp-021 (technical-only residualisation) next after gene-027.
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 31 — see `RANKING.md`.
 
@@ -76,14 +76,11 @@ Contaminated archived results remain in `_raw_test_contaminated_20261025T193947Z
 
 ### Running
 
-`gene-027` — started 2026-10-26T14:15Z. LM22 circularity check: build reference network
-on all genes MINUS 547 LM22 signature genes; measure bp_lith and bp_nolith preservation.
-Tests whether the composition-based findings depend on the exact genes used to estimate
-cell fractions. Cap 7200s (will be PARTIAL; draws resume next session).
-
-### Pending (checkpoints saved)
-
-None currently — gene-027 checkpoints per draw.
+`gene-027` — attempt 3, started 2026-10-26T19:20Z. LM22 circularity check: reference on
+12018 non-LM22 genes (65 modules), bp_nolith and bp_lith (20 draws, 50 perms each).
+NOLITH_PERMS reduced 500→50 (WGCNA 1.74 setup scales with nPerms; see METHODS.md 2026-10-26).
+Nolith DONE at 15:32:27 EDT: Z=[10.89, 74.91]. Lith draws in progress. Expected DONE ~23:32Z.
+Cap=18000s (fires ~20:21 EDT). Analysis script: `network/scripts/analyze_gene027.R`.
 
 ---
 
