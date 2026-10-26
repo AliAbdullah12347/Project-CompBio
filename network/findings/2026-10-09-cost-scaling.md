@@ -11,7 +11,7 @@ gene set and should not be used for budgeting.
 
 **Critical discovery (2026-10-26):** The `modulePreservation()` "calculating observed preservation
 values" step scales with `nPermutations` in WGCNA 1.74. Empirically: ~80 s at nPerm=50 vs
-~6460 s at nPerm=500 for a 65-module reference (12018 genes, n_ref=234, n_test=234). This is a
+~6460 s at nPerm=500 for a 65-module reference (12018 genes, n_ref=234, n_test=74). This is a
 pre-permutation setup step — it runs once per call at full cost regardless of draw count. 500
 nolith perms alone would require ~12900 s, exceeding any practical session cap. All PENDING
 experiments were revised from NOLITH_PERMS=500 to NOLITH_PERMS=50 on 2026-10-26 before any
