@@ -84,6 +84,22 @@ naturally reflect cell composition. Excluding LM22 genes removes these confounde
 and the remaining 65 show the preservation pattern (gold last, similar beat-gold
 distribution) that was seen in base-001 for the non-LM22 subset.
 
+**What dissolved and where did the genes go?**
+
+The grey (unassigned) category grew from 8 genes in base-001 to 612 in gene-027 (+604).
+Since LM22 genes are excluded entirely (not reassigned to grey), these 604 extra grey genes
+are non-LM22 genes that were previously in modules but lost their co-expression anchors
+when LM22 genes were removed. The 6 dissolved modules' genes (plus some from surviving
+modules' LM22 portions) became unassigned. In total, 350 LM22 genes + 604 non-LM22
+satellites = 954 genes (7.7% of 12368) were LM22-influenced in the reference network.
+The remaining 92.3% form the 65-module non-LM22 structure.
+
+The most LM22-rich modules were `blue` (lost 323 genes), `turquoise` (−296), and `yellow`
+(−172) — the three largest modules. Other modules that grew: `darkturquoise` (+23) and
+`darkgrey` (+22) absorbed displaced non-LM22 genes.
+
+**Module correlation:**
+
 Nolith Zsummary correlation between shared-name modules (gene-027 vs base-001): **0.359**
 (medianRank correlation: −0.013, essentially random). This was surprising but has a
 straightforward explanation: same-named modules do not contain the same genes. When 350
