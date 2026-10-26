@@ -33,8 +33,10 @@ not a substantive difference. medianRank is perm-independent and is the primary 
 
 ## lith draws result
 
-**Preliminary (1/20 draws complete, as of 19:44Z):** gold Z=30.16, medianRank=66/66 (last).
-Modules beating gold: 33 of 65. Consistent with expected pattern.
+**Preliminary (2/20 draws complete, as of 19:55Z):** gold Z mean=28.29 (sd=2.64, range
+[26.42, 30.16]), medianRank=66/66 (last) in BOTH draws. 32/65 modules beat gold in both
+draws, 22/65 in neither. Gold Z is higher than base-001 lith mean (21.74): this is expected
+with 65 modules (gold has fewer competitors), not a methodological issue.
 
 [FILL remaining statistics after all 20 draws complete — expected ~23:34Z.
 Run: `Rscript network/scripts/analyze_gene027.R` when `lith_draw_020.rds` exists.]
