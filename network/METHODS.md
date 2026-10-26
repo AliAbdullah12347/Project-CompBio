@@ -2018,3 +2018,27 @@ pres-030, ref-002, ref-003, ref-004.
 
 Scientific note: the nolith Zsummary (the point estimate) is unchanged by nPerm count. Only
 the variance around it changes. 50 perms matches the lith-draw precision throughout the arm.
+
+### Module colour names do not identify the same gene set across runs with different gene inputs (2026-10-26)
+
+**Observed in:** gene-027 (non-LM22 reference) vs base-001 (all-gene reference)
+
+When a reference network is built on a different gene set (e.g., LM22 genes excluded),
+WGCNA's hierarchical clustering produces a different dendrogram. Genes that were in the
+"black" module in base-001 may end up in "blue" or "brown" in gene-027, and vice versa.
+Even for modules that share the same colour label (a WGCNA convention for LABELS, not gene
+identity), the gene content differs.
+
+Empirically: nolith Zsummary correlation between same-named modules in gene-027 vs
+base-001 = 0.359; medianRank correlation = −0.013 (essentially random). These near-zero
+correlations are CORRECT BEHAVIOUR, not an error — same-named modules are comparing
+different gene sets.
+
+**Rule:** Do not compare individual module preservation statistics across runs that used
+different input gene sets (different exclusion criteria, different gene subsets, etc.).
+The valid comparison unit is the POPULATION-LEVEL statistic (gold ranking, fraction beating
+gold) where the question is "does the overall preservation pattern change?" not
+"does module X preserve at the same level?"
+
+This applies to all geneset-family experiments (gene-025, gene-026, gene-027, gene-028,
+gene-029): their module structures cannot be directly mapped onto base-001's modules.
