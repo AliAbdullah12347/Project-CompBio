@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T08:00Z
+**Updated:** 2026-10-26T09:15Z
 
 ## Where the science stands
 
@@ -52,8 +52,10 @@
 DONE (5): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s).
-RUNNING (0): —
-PENDING (46): **inp-023** first (7/20 lith draws checkpointed), then pow-009, gene-027,
+RUNNING (1): **inp-023** (started 2026-10-26T09:13Z; rebuilding TOM cache ~18 min, then
+  draws 8–20 ×~12 min = ~156 min; expected done ~12:30Z; cap 12:13Z — may be PARTIAL).
+  Bug fixed: assert_expr_mode incompatible with residualised matrices (commit 7bf5747).
+PENDING (45): pow-009, gene-027,
   inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
@@ -153,7 +155,8 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - KEY NEGATIVE: lith and nolith are nearly indistinguishable in module preservation
   (r=0.93, mean module Z: nolith=31.05 vs lith=32.28). Both well below ceiling (gold Z 23 vs 35.78).
 - finding file updated; base-002-ceil scored E=24/25 (raised from 20 to 24 with complete data)
-- inp-023 queued next (13 remaining draws, ~2.6 h)
+- inp-023 started at 09:13Z after assert_expr_mode bug fix (commit 7bf5747)
+  TOM rebuilding (~18 min), then draws 8–20 (~156 min); cap 12:13Z
 
 ## inp-023 reference network (pre-computed, for finding reference)
 
