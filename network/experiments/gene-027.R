@@ -43,7 +43,7 @@ DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
 MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L
 PERMS_PER_DRAW <- 50L
-NOLITH_PERMS   <- 500L
+NOLITH_PERMS   <- 50L       # reduced 500→50: observed-preservation-values step in WGCNA 1.74 scales with nPermutations (~6460s at 500 vs ~80s at 50); see METHODS.md 2026-10-26
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L
 REF_GROUP      <- "control"

@@ -1392,6 +1392,41 @@ is unchanged. Only the number of permutations per lith draw that fits in a sessi
 
 ---
 
+## 2026-10-26T19:30Z  Per-draw cost re-measured at 71 modules: 720 s/draw (offset-removed expression)
+
+The 859 s/draw measurement (2026-10-15) was taken on the offset-UN-removed run at 33 modules.
+The current base-001 (offset-removed expression, 71 modules, deepSplit=4, mergeCutHeight=0) was
+measured directly from the run log for draws 16–20:
+
+| draw | start (local EDT) | end | wall |
+|--:|:--|:--|--:|
+| 16 | 19:17:13 | 19:29:17 | 724 s |
+| 17 | 19:29:18 | 19:41:14 | 716 s |
+| 18 | 19:41:14 | 19:53:11 | 717 s |
+| 19 | 19:53:11 | 20:05:13 | 722 s |
+| 20 | 20:05:13 | 20:17:10 | 717 s |
+
+**Mean: 719 s/draw; range 716–724 s.** This is the authoritative figure for the current
+corrected-expression 71-module network. It is FASTER than the 33-module run (859 s), consistent
+with the module structure being simpler on offset-removed expression.
+
+### Revised budget (offset-removed, 71 modules, draws=20)
+
+- nolith (500 perms): 6480 s measured (gene-027, 65 modules; scale to 71: ~7064 s; use 7000 s).
+  The "2620 s" nolith figure from 2026-10-09 was measured at 4 modules and is wrong here.
+- Each lith draw (50 perms): **720 s** (measured)
+- Per-perm derived: 720 / 50 = 14.4 s/perm (vs 5.2 s/perm at 4 modules)
+
+Total per preservation row (draws=20, 10800s cap):
+- Session 1: setup(5s) + nolith(~6480s) + 6 draws(4320s) ≈ 10805s → cap. Produces: nolith + 5–6 draw checkpoints.
+- Session 2: setup(5s) + skip nolith + 14–15 draws(~10100–10800s) → DONE.
+- Wall clock: **~2 sessions × 10800s = ~6h per row** (vs the 2.8h→6.2h estimates earlier).
+
+This does not change the science or queue ordering. The checkpointing-per-draw design absorbs
+the longer timing with no script changes needed.
+
+---
+
 ## 2026-10-18  The library offset is removed from all networks — all prior preservation results retracted
 
 ### Background decision (analysis 016 / finding 016-normalisation-rebuild)
@@ -1927,3 +1962,45 @@ checkpoint + up to 13 lith draw checkpoints; second session completes the remain
 powerEstimate = NA (honest failure, same as full-gene-set control in pow-009: max R²=0.770).
 Removing 350 LM22 genes from 12368 does not change the scale-free topology failure.
 Power 12 remains the correct choice (WGCNA FAQ, signed network, n>40).
+
+---
+
+## 2026-10-26T19:15Z  gene-027 nolith_perms revised 500→50
+
+### Empirical finding: modulePreservation observed-preservation-values scales with nPermutations
+
+Observed in two consecutive gene-027 runs on this machine:
+
+| call | nPermutations | "observed preservation values" step | total |
+|:--|--:|--:|:--|
+| lith draw (base-001) | 50 | ~80s | ~720s (50 × 12.8s = 640s + 80s) |
+| nolith (gene-027 run 1) | 500 | ~6460s | never finished (cap at 7200s, 0 perms done) |
+
+WGCNA 1.74 `modulePreservation()` with `savePermutedStatistics=TRUE` scales the setup cost
+with `nPermutations`. The mechanism is not confirmed from source, but the observed scaling
+is approximately linear: ~6460s at 500 vs ~80s at 50 (ratio ≈ 81×, close to 500/50=10×
+suggesting the setup cost is dominated by memory pre-allocation or an inner loop indexed on
+nPermutations). This is NOT the permutation loop itself — the message "Working with set 1
+as reference set" (first perm starting) appeared in the log immediately before the cap, so
+all 6460s was in the "calculating observed preservation values" phase.
+
+**Consequence for gene-027:** 500 nolith perms require ≥6460s observed-values + 500×12.8s = 12860s
+for nolith alone, plus 20×720s = 14400s for lith draws = 27260s > STALE_SECS (21600s). Infeasible.
+
+**Decision:** reduce `NOLITH_PERMS` from 500 to 50. At 50 nolith perms: ~720s nolith + 14400s
+draws = 15120s < 18000s cap. Cap for gene-027 updated from 10800 to 18000s in queue.tsv.
+
+**Pre-specification integrity:** the nolith result had not been computed when this revision
+was made (no `nolith_preservation.rds` existed after 2 attempts). The change is operational
+(wrong wall-time estimate in the original spec), not data-driven. Recorded in config as
+`nolith_perms_original_spec: 500` and `nolith_perms: 50`.
+
+**Scientific impact:** gene-027 is a circularity check (does preserving lith/nolith patterns
+survive excluding LM22 genes?). The Zsummary estimate is what matters; 50 perms gives the
+same point estimate as 500, with somewhat wider uncertainty — acceptable for a binary
+"does circularity explain the pattern?" question. The lith draws also use 50 perms, so
+nolith is now on the same footing.
+
+**IMPORTANT for future rows using large nPermutations:** pre-test the wall cost with a
+1-perm dummy call before committing to 500+. On this hardware, 50 perms per call is the
+safe limit for a ≤3h step.
