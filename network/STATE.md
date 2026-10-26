@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T14:20Z
+**Updated:** 2026-10-26T19:15Z
 
 ## Where the science stands
 
@@ -62,7 +62,9 @@ DONE (7): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
   **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
   **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s).
-RUNNING (1): **gene-027** (started 2026-10-26T14:15Z; LM22 circularity check, cap 7200s — will be PARTIAL)
+RUNNING (1): **gene-027** (started 2026-10-26T19:10Z; LM22 circularity check, cap 10800s;
+  cap raised from 7200 — previous attempt showed modulePreservation() nolith 500 perms needs
+  ~6480s which filled the old cap; see METHODS.md 2026-10-26T16:30Z)
 PENDING (43): inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
@@ -135,14 +137,23 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **When gene-027 completes (RUNNING):**
+1. **When gene-027 completes (RUNNING, ~22:10Z expected):**
    - Score fully: inp-022-equivalent analysis but on non-LM22 genes; compare gold behavior
    - This IS the circularity check for module preservation, analogous to finding #10 for PCA
-   - Write finding file; rebuild RANKING.md
-2. **Driver continues:** inp-021 (technical-only residualisation, ~2.8h)
-3. **pres-030** (density vs connectivity decomposition) is queued; run against the
-   validated base-002-ceil results (attempt 4, corrected matrices). Do NOT use archived
-   contaminated results.
+   - If nolith done but lith draws still PARTIAL, restart driver immediately (draws checkpoint)
+   - Write finding file once all 20 lith draws are done; rebuild RANKING.md
+2. **Driver continues:** inp-021 (technical-only residualisation, cap 10800s)
+3. **pres-030** (density vs connectivity decomposition) is queued after inp-021
+
+## Session 10 notes (2026-10-26T19:10Z)
+
+- gene-027 cap raised 7200→10800: previous attempt showed modulePreservation() rebuilds both
+  TOMs internally (~3600s total), leaving no room for 500 perms in the old cap. cap_sec in
+  queue.tsv updated; documented in METHODS.md 2026-10-26T16:30Z.
+- gene-027 re-started at 19:10Z with cap=10800. Entered permutation phase within 5s (all
+  prior checkpoints exist: SFT curve, reference cache, gene exclusion summary).
+- Expected completion: ~22:10Z for nolith checkpoint, then lith draws. May be PARTIAL again
+  if 20 draws don't fit in remaining ~3600s (~13 expected; 7 would roll to next session).
 
 ## Session 9 notes (2026-10-26T14:15Z)
 
