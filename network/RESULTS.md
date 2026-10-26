@@ -370,19 +370,33 @@ Evidence 20/25 · Interest 8/10 · Δ +0.4.
 
 ---
 
+## Session 10 additions (2026-10-26T19:35Z)
+
+### Infrastructure fix: cap audit
+
+10 experiments had 5400s cap but run 500 nolith perms on the full ~12000-gene data set.
+Measured nolith timing: ~6480s (from gene-027 first attempt). All 10 raised to 10800s:
+pres-030, mod-013–mod-020, gene-029. Documented in METHODS.md 2026-10-26T19:20Z.
+
+### gene-027 design adjustment: NOLITH_PERMS 500→50
+
+A parallel session identified that 500 nolith perms at 65 modules takes ~6480s (exceeds old
+7200s cap). The nolith perms were reduced to 50 and cap raised to 18000s. At 50 perms:
+nolith takes ~720s (same as one lith draw). Circularity check still valid — we compare medianRank
+(perm-independent) and relative Z patterns, not absolute Z values. Documented in gene-027.R
+and METHODS.md 2026-10-26.
+
 ## Next
 
-1. **base-002-ceil** (RUNNING) — split-half ceiling, corrected matrices. Will calibrate
-   the n=74 noise floor needed to interpret lith vs nolith preservation in the same reference.
-   When complete: update finding `2026-10-24-base-002-ceil-ceiling.md` and rebuild RANKING.md.
-2. **inp-023** (PENDING, 7/20 draws) — technical + ILR residualisation. Robustness test.
-   If all 20 draws replicate: R in inp-022 finding rises from 4 to 5 (Evidence 12→13/25);
-   inp-023 scores E=5 R=5 B=5 D=5 C=4 = 24/25.
-3. After inp-023: **pow-009** (SFT curves all 3 groups, fast ~15 min),
-   then **gene-027** (LM22 circularity check), **inp-021** (technical-only residualisation).
-4. 44 more pending experiments cover power, correlation function, network type,
-   gene subset, hub, community, centrality, annotation, trait association, permutation null,
-   reference sensitivity, bMIND, and synthesis analyses.
+1. **gene-027** (RUNNING at 19:20Z, 18000s cap) — LM22 circularity check. When DONE:
+   - Write finding file; score Evidence (expect ~E=19–22/25, analogous to finding #15 but
+     for module preservation rather than PCA)
+   - Update RANKING.md, ranking.csv, results_index.csv
+2. **inp-021** — technical-only residualisation (~2 sessions: first builds ref + nolith + 5-6 draws; second completes remaining draws)
+3. **perm-031** — group-label permutation null (fast: 20 draws × 720s = 4h within 10800s cap)
+4. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast)
+5. 40 more pending experiments cover gene subsets, module detection sensitivity, correlation
+   function, network type, power, annotation, community, centrality, hub stability, bMIND.
 
 ---
 
