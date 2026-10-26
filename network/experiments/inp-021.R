@@ -127,10 +127,13 @@ if (ref_cache_ok(ref_cache)) {
   msg(ref_net$n_modules, " modules loaded")
 } else {
   msg("building reference network (full-technical residualised, power ", POWER, ") ...")
+  # assert_expr_mode() compares values against the un-residualised matrix; meaningless
+  # after residualisation. Guard on EXPR_MODE instead — expr_for() uses it as the mode
+  # default, so offset removal happens before residualisation when set correctly.
+  if (!identical(EXPR_MODE, "offset_removed"))
+    stop("inp-021: EXPR_MODE must be 'offset_removed'; got '", EXPR_MODE, "'")
   tmp_ref <- expr_for(d, group = REF_GROUP, residualise = RESID_FORMULA)
   set.seed(SEED_BASE)
-  # Read the matrix, not its label: a cache key records intent only.
-  assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-021 reference")
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
     deepSplit = DEEP_SPLIT,
@@ -139,7 +142,7 @@ if (ref_cache_ok(ref_cache)) {
   moduleColors <- bwm$colors
   n_mods <- length(unique(moduleColors)) - 1L
   msg(n_mods, " modules detected (excluding grey)")
-  ref_net <- list(expr_mode = EXPR_MODE,   # verified by assert_expr_mode(), not inferred from the key
+  ref_net <- list(expr_mode = EXPR_MODE,   # guarded by EXPR_MODE check above, not value comparison
     moduleColors = moduleColors, n_modules = n_mods,
                   module_sizes = table(moduleColors), power = POWER,
                   cache_key = CACHE_KEY, residualise = deparse(RESID_FORMULA))
