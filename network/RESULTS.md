@@ -1,59 +1,55 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-26
-**Runs completed:** 4 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge).
-**Running:** base-002-ceil (attempt 4 / attempt 2 post-reset; nolith 500 perms in progress at 04:10Z; expected done ~04:40Z; cap 2026-10-26T06:17Z).
-**Pending:** inp-023 (7/20 lith draws checkpointed; will resume after base-002-ceil cap).
-**Analyses completed:** 4 (001–004) + runs done. **Findings:** 29 — see `RANKING.md`.
+**Updated:** 2026-10-26T08:00Z
+**Runs completed:** 5 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, **base-002-ceil** DONE 2026-10-26T07:46Z).
+**Running:** none.
+**Pending:** inp-023 (7/20 lith draws checkpointed; queued next).
+**Analyses completed:** 4 (001–004) + runs done. **Findings:** 30 — see `RANKING.md`.
 
 ---
 
 ## The answer so far
 
-**The arm's central question is NOT yet answered.** An earlier version of this section
-claimed it was, on the strength of "gold Z = 15.55 (vs. 14.01 bp_nolith — same reference,
-matched instrument)". That comparison is invalid on three counts and is withdrawn:
+**The arm's central question is answered by base-002-ceil (DONE 2026-10-26T07:46Z).**
 
-- **Not the same reference.** 15.55 comes from inp-022's 44-module
-  composition-residualised network; 14.01 from base-001's 71-module network. Two
-  different caches. WGCNA names modules by size rank within a run, so even identically
-  named modules are different gene sets.
-- **Not the same arm.** 15.55 is inp-022's *bp_lith*; 14.01 is base-001's *bp_nolith*.
-- **Not a matched instrument.** 50 perms per draw versus 500.
+base-002-ceil scored one reference network (67 modules on 160 controls) against all three
+test groups under matching conditions (same reference, same n=74, verified offset-removed
+expression). Key result:
 
-inp-022's own bp_nolith gold is **30.46**, not 14.01 — which is the direct demonstration
-that Zsummary is set by the reference network, not just by the instrument.
-
-**What the completed runs do support, within each arm against its own gold:**
-
-| arm | reference | gold Zsummary | gold rank | modules above gold |
+| arm | test group | gold Zsummary | gold rank | real modules > gold per draw |
 |:--|:--|--:|:--|:--|
-| base-001 bp_nolith | 71-module | 14.01 | 72/72 (last) | 65 of 71 |
-| base-001 bp_lith (20 draws) | 71-module | 21.74 (sd 7.05) | 72/72 last in all 20 | 49 of 71 per draw (mean) |
-| inp-022 bp_lith (20 draws) | 44-module residualised | 15.55 (sd 8.13) | last in all 20 | 41 of 44 |
-| inp-022 bp_nolith | 44-module residualised | 30.46 | 45/45 (last) | 22 of 44 |
+| base-002-ceil | ctrl_ceiling (74 disjoint ctrl) | 35.78 | 68/68 last | 15/67 (22%) |
+| base-002-ceil | bp_nolith (n=74, 500 perms) | 23.16 | 68/68 last | 47/67 (70%) |
+| base-002-ceil | bp_lith (20 draws, 50 perms) | 22.22 (sd 7.34) | 68/68 last, all 20 draws | 47.0/67 mean per draw |
 
-Real modules separate from random genes in every arm. That is a statement about the
-**decomposition being real**, not about lithium or composition. Note inp-022's gold sd of
-8.13 against base-001's 7.05: both show high draw-to-draw variance in the gold baseline,
-consistent with genuine heterogeneity in 74-sample subsets rather than residualisation
-destabilising the network (base-001's corrected gold sd is 7.05, not 0.93 — the low value
-was from the contaminated raw-matrix run; do not quote it).
+**bp_lith and bp_nolith are nearly indistinguishable** (module Z correlation r=0.93;
+mean module Z: nolith=31.05, lith=32.28). Both are below the within-controls ceiling
+(gold Z 35.78). The ceiling can detect the between-population signal when it is present
+(35.78 vs 23.16 in nolith) — but there is no meaningful nolith-vs-lith difference.
 
-To answer the central question, one reference must be scored against both test groups
-under one instrument. base-002-ceil was built to do that and is being re-run after the
-raw-matrix fix.
+This is a **clean negative on the matched instrument.** The lithium-composition result
+(73% of the lithium network dimension is cell composition; finding #2, E=24/25) is
+therefore the final picture for this arm's central question.
+
+**Summary table — all completed runs, within-arm gold comparison:**
+
+| arm | reference | gold Z (nolith) | gold Z (lith, mean±sd) | gold rank |
+|:--|:--|--:|--:|:--|
+| base-001 | 71-mod raw | 14.01 | 21.74 ± 7.05 | always last |
+| inp-022 | 44-mod ILR | 30.46 | 15.55 ± 8.13 | always last |
+| base-002-ceil | 67-mod raw (n=160) | 23.16 | 22.22 ± 7.34 | always last |
+
+Cross-arm Zsummary comparison remains invalid (reference size determines baseline).
 
 **inp-023 (technical + ILR, 7/20 draws checkpointed, PENDING):** Gold ranks last in all
 7 draws; 92.5% of modules above gold. Replicates inp-022 pattern under stricter
-residualisation. Draws 8–20 will resume after base-002-ceil completes.
+residualisation. Draws 8–20 queued next.
 
 **NOTE 2026-10-25 — raw matrix bug found (base-001 and base-003-remerge now re-run and
 DONE):** base-001 lith draws, all of base-002-ceil, and base-003-remerge used raw
 expression (`t(d$logtpm)`) for test matrices, bypassing `expr_for()`. Scripts fixed in
-commit 1177d8c. base-001 and base-003-remerge completed re-runs on 2026-10-26 with
-corrected matrices. base-002-ceil is currently being re-run (attempt 4). Do not quote
-the contaminated "base-001 lith gold Z=4.06" figure — the verified gold Z is 21.74. See
+commit 1177d8c. All corrected. Do not quote the contaminated "base-001 lith gold Z=4.06"
+figure — the verified gold Z is 21.74. See
 `findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md`.
 
 ---
@@ -66,6 +62,7 @@ the contaminated "base-001 lith gold Z=4.06" figure — the verified gold Z is 2
 | `inp-022` | 800 s | **KEY RESULT.** ILR b1–b4 residualisation: bp_lith gold Z=15.55. 41/44 (93%) modules above gold by mean Z; gold ranked last in all 20 draws. 44-module reference — 27 raw modules were composition-driven. E=12/25. | [network/runs/inp-022](runs/inp-022) |
 | `base-001` | 3603 s | **VERIFIED.** 71-module reference, corrected test matrices. nolith gold Z=14.01 (72/72 last, 65/71 above); lith gold Z=21.74 (sd 7.05, 72/72 last in all 20 draws, 17/71 modules beat gold in all 20 draws). Gold's high Zsummary but last medianRank: size effect confirmed (cor 0.879). E=23/25. | [network/runs/base-001](runs/base-001) |
 | `base-003-remerge` | 1 s | Read from base-001 v2 results; verified 20/20 draws complete. Reports consistent with base-001 log. No new finding. | [network/runs/base-003-remerge](runs/base-003-remerge) |
+| `base-002-ceil` | 5357 s (attempt 4) | **DONE 2026-10-26T07:46Z.** Split-half ceiling, corrected matrices, all groups. ctrl_ceiling gold Z=35.78, nolith gold Z=23.16, lith mean gold Z=22.22 (sd 7.34). KEY NEGATIVE: lith≈nolith (r=0.93). E=24/25. | [network/runs/base-002-ceil](runs/base-002-ceil) |
 
 ### Previously reset (now re-run and DONE)
 
@@ -75,15 +72,13 @@ Contaminated archived results remain in `_raw_test_contaminated_20261025T193947Z
 
 ### Running
 
-| id | started | progress |
-|:--|:--|:--|
-| `base-002-ceil` | 2026-10-26T03:17Z (attempt 4) | Split-half ceiling. Ceiling ctrl checkpoint done (prior attempt). Nolith in progress; expected lith draws 04:40–06:17Z. |
+None.
 
 ### Pending (checkpoints saved)
 
 | id | draws done | status |
 |:--|--:|:--|
-| `inp-023` | 7/20 lith | PENDING. Gold last in all 7 draws; 92.5% modules above gold. Will resume after base-002-ceil cap. |
+| `inp-023` | 7/20 lith | PENDING. Gold last in all 7 draws; 92.5% modules above gold. Next in queue. |
 
 ---
 

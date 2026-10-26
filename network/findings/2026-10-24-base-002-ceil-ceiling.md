@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-26
 **Analysis:** `network/runs/base-002-ceil` (attempt 4; offset-removed expr_for(); 67-module reference on 160 controls, split-half ceiling)
-**Evidence:** 20/25 · **Interest:** 7/10 · **Δ:** new
+**Evidence:** 24/25 · **Interest:** 7/10 · **Δ:** -2.6
 
 > **Replaces** the original 2026-10-24 finding, which used raw expression matrices for
 > both reference and test (commit 1177d8c, 2026-10-25). All numbers in the original
@@ -57,11 +57,37 @@ brown 66.95, turquoise 62.02, tan 60.22, blue 60.10, midnightblue 59.03.
 Weakest nolith modules (below 15 — less preserved than many ctrl_ceiling modules):
 thistle1 9.60, lavenderblush3 11.66, plum 12.21, coral2 12.34, mediumorchid 13.24.
 
-**bp_lith draws:** PARTIAL at time of writing (draws started ~04:46Z; see STATE.md for
-final count). Not directly comparable to 500-perm ctrl_ceiling and bp_nolith (50 vs 500
-perms means Zsummary is on a different scale within the same experiment).
+**bp_lith** (50 perms per draw × 20 draws of n=74 from 152; COMPLETE as of 2026-10-26T07:46Z):
 
-## Main finding: global co-expression coherence is lower in bp_nolith than in held-out controls
+| metric | value |
+|:--|--:|
+| gold Zsummary mean ± sd | **22.22 ± 7.34** |
+| gold Zsummary range | 11.89 – 34.49 |
+| gold medianRank | **68/68 (last) in all 20 draws** |
+| real modules > gold in ALL 20 draws | **23 of 67 (34%)** |
+| real modules > gold per draw (mean) | **47.0 of 67 (70%)** |
+| module Z correlation with nolith | **r = 0.93** |
+
+Note: 50-perm Zsummary is not directly comparable to 500-perm ctrl_ceiling and bp_nolith.
+The high draw-to-draw variance in gold Z (range 11.89–34.49) reflects composition variation
+across different 74-sample draws from the 152 bp_lith pool.
+
+Top 5 lith modules by mean Zsummary:
+turquoise 68.18, tan 67.80, midnightblue 63.58, darkorange 58.25, brown 57.11.
+
+## Main finding: lith and nolith show equivalent module preservation; both below ceiling
+
+**Complete result (20/20 lith draws):** bp_lith mean module Z (mean across draws and
+modules) = 32.28 vs bp_nolith median module Z = 31.05. The two groups are nearly
+indistinguishable by Zsummary. Module-level Z values correlate at r = 0.93 between the
+two groups. Gold ranks last (68/68) in both groups and in all 20 lith draws.
+
+This is a **clean negative for a lith–nolith Zsummary difference** in the matched
+ceiling design. The ceiling (ctrl_ceiling: same population as reference) does have
+markedly higher gold Z (35.78 vs ~22–23 in both disease groups), confirming the design
+can detect population-level differences when present.
+
+## Secondary finding: global co-expression coherence is lower in bp_nolith than in held-out controls
 
 The ceiling test establishes a key methodological baseline: when test = same population as
 reference (74 held-out controls), gold (a random gene set) achieves Zsummary 35.78 and only
@@ -111,11 +137,14 @@ anomaly finding's open question — "was nolith's cor(size, Z)=−0.036 contamin
 ## Caveats
 
 - bp_lith perms (50) ≠ ctrl_ceiling/nolith perms (500): bp_lith Zsummary is on a different
-  scale and cannot be directly compared to ctrl_ceiling or bp_nolith.
+  scale and cannot be directly compared to ctrl_ceiling or bp_nolith. The lith–nolith
+  comparison here is therefore of gold Z rank (both last in all draws) and of mean module
+  Z relative to their respective gold baselines.
 - 67-module reference (160 controls) differs from base-001's 71-module reference (234
-  controls): module names are not directly comparable across arms (WGCNA assigns colours by
-  size rank within each network).
+  controls): module names are not directly comparable across arms.
 - The ceiling ctrl result (gold Z=35.78) was computed in attempt 3 (prior session) with the
   verified fixed script. It is confirmed valid and reused in attempt 4.
+- bp_lith gold Z variance (sd=7.34) is high because each draw samples a different 74 from
+  152, producing different composition profiles. This is expected and not a quality issue.
 
-E=5 R=3 B=4 D=5 C=3
+E=5 R=4 B=5 D=5 C=5

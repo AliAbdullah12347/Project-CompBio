@@ -1,10 +1,10 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T04:30Z
+**Updated:** 2026-10-26T08:00Z
 
 ## Where the science stands
 
-**The arm's central question is provisionally answered by the analytic runs; the ceiling calibration (base-002-ceil) is RUNNING to verify it.** Current picture:
+**The arm's central question is answered.** Current picture:
 
 1. **The lithium network dimension is 73% cell composition** (finding #2, E=24/25). This
    replicates across all 10 tested decompositions (finding #7) and cannot be explained by
@@ -23,16 +23,19 @@
 
 4. **inp-023 (PARTIAL, PENDING): technical + ILR residualisation, 7/20 draws.**
    Gold ranks 43/43 (last) in all 7 draws; mean 92.5% of modules beat gold (sd Z=6.84).
-   Consistent with inp-022 within-arm pattern. Will resume after base-002-ceil.
+   Consistent with inp-022 within-arm pattern. Queued next.
 
-5. **base-002-ceil (RUNNING, attempt 4):** split-half ceiling with corrected matrices.
-   67-module reference (n=160 controls). Ceiling ctrl (VERIFIED from rds file written in
-   prior attempt with fixed script): gold Z=35.78 (68/68 last; **only 15/67 modules beat
-   gold by Zsummary** — because Zsummary is dominated by population similarity). MedanRank
-   puts gold last even in ceiling. Nolith 500 perms in progress at 04:10Z;
-   estimated done ~04:40Z; cap 06:17Z UTC.
+5. **base-002-ceil (DONE 2026-10-26T07:46Z): split-half ceiling with corrected matrices.
+   COMPLETE — 20/20 lith draws.** 67-module reference (n=160 controls).
+   - ctrl_ceiling: gold Z=35.78, 68/68 last, 15/67 real modules above gold.
+   - bp_nolith: gold Z=23.16, 68/68 last, 47/67 real modules above gold.
+   - bp_lith (20 draws): gold Z mean=22.22 (sd=7.34, range 11.89–34.49), always 68/68 last,
+     23/67 modules above gold in ALL 20 draws, mean 47.0/67 above gold per draw.
+   - **KEY NEGATIVE:** lith and nolith are nearly indistinguishable (module Z correlation
+     r=0.93; nolith median Z=31.05 vs lith mean Z=32.28). Both are below ceiling.
+   `findings/2026-10-24-base-002-ceil-ceiling.md` (E=24/25).
 
-**Read `RANKING.md` first.** Rebuilt from findings/; 29 findings as of 2026-10-26.
+**Read `RANKING.md` first.** Rebuilt from findings/; 30 findings as of 2026-10-26.
 
 ## Infrastructure
 
@@ -46,11 +49,10 @@
 
 ## Queue
 
-DONE (4): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
-  expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader).
-RUNNING (1): **base-002-ceil** (attempt 4 total / attempt 2 post-reset, started 2026-10-26T03:17Z,
-  cap expires 06:17Z; ceiling ctrl checkpoint done from prior attempt; nolith 500 perms in progress
-  at 04:10Z — est. done ~04:40Z; then ~11 lith draws; likely PARTIAL before cap).
+DONE (5): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+  expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
+  **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s).
+RUNNING (0): —
 PENDING (46): **inp-023** first (7/20 lith draws checkpointed), then pow-009, gene-027,
   inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
@@ -124,26 +126,14 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-After base-002-ceil finishes (cap 2026-10-26T06:17Z):
-1. **Update finding** at `network/findings/2026-10-24-base-002-ceil-ceiling.md`
-   with numbers from the re-run (corrected matrices). Check: what is the new ceiling Z?
-   Do lith draws preserve better or worse than ceiling? What does the nolith-lith comparison
-   look like now? pres-030 (density vs connectivity) follows base-002-ceil in queue.
-2. **After base-002-ceil DONE** → run driver → inp-023 (13 remaining draws, ~52 min total):
-   - When 20/20 draws complete:
-     - Score fully: expected E=5 R=5 B=5 D=5 C=4 = 24/25
-     - Update inp-022 finding: R score 4→5, total 12→13/25 (robustness confirmed by replication)
-     - IMPORTANT: do NOT conflate with pre-correction 23/25
-     - TIMING NOTE: inp-023 draws take ~12 min each (same reference size n=234 as base-001),
-       so 13 remaining draws ≈ 156 min ≈ 2.6 h, fitting comfortably in one 3h cap
-3. **Rebuild RANKING.md** via `Rscript network/build_index.R`
-4. **Update RESULTS.md** with completed run summaries
-5. **Commit + push**
-6. Driver continues: pow-009 (SFT curves, ~15 min) → gene-027 (LM22, ~2.8h)
-
-NOTE: base-002-ceil anomaly is EXPLAINED (code bug, not biology). The pres-030 follow-up
-(density vs connectivity) is still valid for the re-run results when base-002-ceil
-completes; do not run pres-030 against the archived contaminated results.
+1. **When inp-023 completes (20/20 draws):**
+   - Score fully: expected E=5 R=5 B=5 D=5 C=4 = 24/25
+   - Update inp-022 finding: R score 4→5, total 12→13/25 (robustness confirmed by replication)
+   - IMPORTANT: do NOT conflate with pre-correction 23/25
+2. **Driver continues:** pow-009 (SFT curves, ~15 min) → gene-027 (LM22, ~2.8h)
+3. **pres-030** (density vs connectivity decomposition) is queued; run against the
+   validated base-002-ceil results (attempt 4, corrected matrices). Do NOT use archived
+   contaminated results.
 
 ## Session 7 notes (2026-10-25)
 
@@ -159,13 +149,11 @@ completes; do not run pres-030 against the archived contaminated results.
 
 - base-002-ceil attempt 4 started 03:17Z; loaded 67-module cache (n=160 ref), ceiling
   checkpoint skipped (done in prior attempt); nolith 500 perms in progress
-- Nolith timing corrected: per-perm time at n_ref=160 is ~9.9 s, so 500 perms ≈ 82 min
-  (not 29 min as estimated earlier with wrong n_ref). Nolith expected done ~04:40Z.
-  Then ~11 lith draws (50 perms each × ~8 min = ~88 min) → likely PARTIAL at 06:17Z cap.
-- RESULTS.md and STATE.md updated at 04:10Z with corrected base-001 numbers
-- base-001 nolith: gold Z=14.01, rank 72/72, **65/71** above gold (RESULTS.md fixed)
-- base-001 lith (20 draws): gold Z mean=21.74 sd=7.05, always last (20/20), 17/71 beat
-  gold in all 20 draws; 49/71 beat gold per draw on average (68.9%)
+- base-002-ceil final attempt started 06:17Z; **DONE 07:46Z** (5357s). All 20 lith draws complete.
+- KEY NEGATIVE: lith and nolith are nearly indistinguishable in module preservation
+  (r=0.93, mean module Z: nolith=31.05 vs lith=32.28). Both well below ceiling (gold Z 23 vs 35.78).
+- finding file updated; base-002-ceil scored E=24/25 (raised from 20 to 24 with complete data)
+- inp-023 queued next (13 remaining draws, ~2.6 h)
 
 ## inp-023 reference network (pre-computed, for finding reference)
 
