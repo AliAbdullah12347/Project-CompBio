@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T19:45Z
+**Updated:** 2026-10-26T20:05Z
 
 ## Where the science stands
 
@@ -159,11 +159,12 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - Cross-base-001 observation: the 6 LM22-dependent modules (absent in gene-027's reference)
   are exactly the most disrupted in base-001 bp_lith: mean beat_gold=3.3/20 vs 14.8/20 for
   non-LM22 modules. These modules likely capture immune cell composition patterns.
-- Draw 1 complete at 19:44Z: gold Z=30.16, rank=66/66 (LAST). 19 draws remaining.
-  All complete ~23:32Z, within 18000s cap (00:21 EDT).
+- Draw 1 complete at 19:44Z: gold Z=30.16, rank=66/66 (LAST).
+- Draw 2 complete at ~20:00Z: gold Z=26.42, rank=66/66 (LAST). Both gold last. Mean Z=28.29.
+- Draw 3 in progress since 19:55Z (expected ~20:07Z). All 20 expected ~23:31Z, within cap.
 - Finding template updated: `findings/2026-10-26-gene027-lm22-circularity-preservation.md`
-  has nolith results, 6-module analysis, and draw 1 preliminary result.
-  Run `Rscript network/scripts/analyze_gene027.R` once all draws done.
+  has nolith results, 6-module analysis, and 2-draw preliminary result (gold last in both).
+  Run `Rscript network/scripts/analyze_gene027.R` once lith_draw_020.rds exists.
 - cost-scaling finding: fixed n_test typo (was 234, correct is 74).
 
 ## Session 11 notes (2026-10-26T19:35Z)
