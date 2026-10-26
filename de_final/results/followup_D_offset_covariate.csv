@@ -1,0 +1,11 @@
+"contrast","lineage","cor_offset_group","raw","raw_up","raw_dn","posthoc","centred","covariate","covariate_up","covariate_dn","full_rank"
+"LI","gran",-0.0723,16,2,14,14,35,44,29,15,TRUE
+"LI","mono",-0.0207,1,1,0,5,23,29,23,6,TRUE
+"LI","T",-0.002,3,3,0,9,28,60,34,26,TRUE
+"LI","NK",0.0223,0,0,0,0,12,15,14,1,TRUE
+"LI","B",-0.0623,0,0,0,1,16,21,18,3,TRUE
+"BPD","gran",-0.1998,0,0,0,0,0,0,0,0,TRUE
+"BPD","mono",-0.1984,0,0,0,0,1,1,1,0,TRUE
+"BPD","T",-0.2189,0,0,0,6,36,4,3,1,TRUE
+"BPD","NK",-0.2252,0,0,0,0,0,0,0,0,TRUE
+"BPD","B",-0.1478,0,0,0,0,0,18,11,7,TRUE

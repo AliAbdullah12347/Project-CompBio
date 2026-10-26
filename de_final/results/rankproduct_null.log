@@ -1,0 +1,63 @@
+== rankproduct_null ==
+100 permutations | top-100 overlap | raw and recentred rankings
+
+=========================================================================================================================================================================================
+== LI (n = 226) ==
+=========================================================================================================================================================================================
+  observed  raw: mean rho +0.784 |  119 genes in top-100 of 2+ lineages | best rank product 4.22
+  observed  cen: mean rho +0.730 |  117 genes in top-100 of 2+ lineages | best rank product 1.82
+     20/100  28.8 min, ETA 115.3
+     40/100  62.3 min, ETA 93.4
+     60/100  163.4 min, ETA 108.9
+     80/100  184.8 min, ETA 46.2
+    100/100  208.2 min, ETA 0.0
+
+  --- RAW ranking, against 100 permutations ---
+   statistic                         observed | null median | null 95th pct |      p
+   mean_rho                            0.784 |       0.646 |         0.768 | 0.0495  <- above the null
+   top_2plus                         119.000 |     102.000 |       119.050 | 0.0693
+   top_3plus                          68.000 |      40.000 |        57.000 | 0.0198  <- above the null
+   best_rp                             4.224 |       6.215 |         2.214 | 0.2970   (smaller is better)
+
+  --- RECENTRED ranking, against 100 permutations ---
+   statistic                         observed | null median | null 95th pct |      p
+   mean_rho                            0.730 |       0.618 |         0.761 | 0.0891
+   top_2plus                         117.000 |      99.000 |       115.000 | 0.0396  <- above the null
+   top_3plus                          85.000 |      35.000 |        51.050 | 0.0099  <- above the null
+   best_rp                             1.821 |       6.701 |         2.709 | 0.0297  <- better than the null   (smaller is better)
+
+=========================================================================================================================================================================================
+== BPD (n = 308) ==
+=========================================================================================================================================================================================
+  observed  raw: mean rho +0.763 |   99 genes in top-100 of 2+ lineages | best rank product 6.46
+  observed  cen: mean rho +0.756 |  103 genes in top-100 of 2+ lineages | best rank product 3.04
+     20/100  18.3 min, ETA 73.3
+     40/100  29.8 min, ETA 44.7
+     60/100  40.1 min, ETA 26.7
+     80/100  51.6 min, ETA 12.9
+    100/100  66.2 min, ETA 0.0
+
+  --- RAW ranking, against 100 permutations ---
+   statistic                         observed | null median | null 95th pct |      p
+   mean_rho                            0.763 |       0.679 |         0.802 | 0.1881
+   top_2plus                          99.000 |     103.000 |       121.050 | 0.6832
+   top_3plus                          44.000 |      41.000 |        62.050 | 0.4158
+   best_rp                             6.461 |       6.969 |         1.837 | 0.4554   (smaller is better)
+
+  --- RECENTRED ranking, against 100 permutations ---
+   statistic                         observed | null median | null 95th pct |      p
+   mean_rho                            0.756 |       0.668 |         0.804 | 0.1584
+   top_2plus                         103.000 |     100.000 |       112.050 | 0.3960
+   top_3plus                          40.000 |      38.000 |        52.050 | 0.3861
+   best_rp                             3.041 |       6.624 |         1.781 | 0.1980   (smaller is better)
+There were 50 or more warnings (use warnings() to see the first 50)
+
+=========================================================================================================================================================================================
+VERDICT
+=========================================================================================================================================================================================
+  LI   raw  : 2 of 4 statistics exceed their null -> mixed; see the table
+  LI   cen  : 3 of 4 statistics exceed their null -> mixed; see the table
+  BPD  raw  : 0 of 4 statistics exceed their null -> the cross-lineage agreement is NOT above chance
+  BPD  cen  : 0 of 4 statistics exceed their null -> the cross-lineage agreement is NOT above chance
+
+wrote results/rankproduct_null.csv

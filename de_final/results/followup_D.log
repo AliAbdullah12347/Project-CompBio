@@ -1,0 +1,89 @@
+== followup_offset_covariate ==
+100 permutations | 2000-gene test subsample | BH 0.05
+
+======================================================================================================================
+== LI  (n = 226) ==
+======================================================================================================================
+
+--- the per-sample offset, and what adjusting for it will cost ---
+  lineage | cor(offset, group) | offset SD | shared variance with group
+  gran    |      -0.072        |  0.6549   |    0.5%  
+  mono    |      -0.021        |  0.2701   |    0.0%  
+  T       |      -0.002        |  0.3772   |    0.0%  
+  NK      |      +0.022        |  0.1287   |    0.0%  
+  B       |      -0.062        |  0.0654   |    0.4%  
+
+--- four treatments of the same data ---
+  gran  raw   16 (  2u/ 14d) | post-hoc   14 | centred   35 ( 25u/ 10d) | covariate   44 ( 29u/ 15d)
+  mono  raw    1 (  1u/  0d) | post-hoc    5 | centred   23 ( 21u/  2d) | covariate   29 ( 23u/  6d)
+  T     raw    3 (  3u/  0d) | post-hoc    9 | centred   28 ( 20u/  8d) | covariate   60 ( 34u/ 26d)
+  NK    raw    0 (  0u/  0d) | post-hoc    0 | centred   12 ( 11u/  1d) | covariate   15 ( 14u/  1d)
+  B     raw    0 (  0u/  0d) | post-hoc    1 | centred   16 ( 11u/  5d) | covariate   21 ( 18u/  3d)
+
+--- validating against 100 label permutations ---
+     25/100  2.7 min, ETA 8.0
+     50/100  5.3 min, ETA 5.3
+     75/100  12.7 min, ETA 4.2
+    100/100  19.4 min, ETA 0.0
+ contrast lineage obs_raw null_raw_q95 null_raw_max      p_raw obs_cov null_cov_q95 null_cov_max      p_cov
+       LI    gran      16         0.05         1354 0.02970297      44         7.05          165 0.01980198
+       LI    mono       1         0.05         1069 0.05940594      29         1.00          186 0.01980198
+       LI       T       3         0.00         1013 0.01980198      60         2.00          207 0.02970297
+       LI      NK       0         0.00            1 1.00000000      15         0.00          140 0.01980198
+       LI       B       0         0.00         1927 1.00000000      21         0.00            1 0.00990099
+
+  is the covariate model calibrated? (a well-behaved null has a small 95th pct and max)
+    gran  null q95   7.0 / max  165  ->  NOT CALIBRATED -- scrambled labels still yield genes
+    mono  null q95   1.0 / max  186  ->  NOT CALIBRATED -- scrambled labels still yield genes
+    T     null q95   2.0 / max  207  ->  NOT CALIBRATED -- scrambled labels still yield genes
+    NK    null q95   0.0 / max  140  ->  NOT CALIBRATED -- scrambled labels still yield genes
+    B     null q95   0.0 / max    1  ->  calibrated, and the observed result beats it
+
+======================================================================================================================
+== BPD  (n = 308) ==
+======================================================================================================================
+
+--- the per-sample offset, and what adjusting for it will cost ---
+  lineage | cor(offset, group) | offset SD | shared variance with group
+  gran    |      -0.200        |  0.5538   |    4.0%  
+  mono    |      -0.198        |  0.2651   |    3.9%  
+  T       |      -0.219        |  0.3788   |    4.8%  
+  NK      |      -0.225        |  0.1426   |    5.1%  
+  B       |      -0.148        |  0.0616   |    2.2%  
+
+--- four treatments of the same data ---
+  gran  raw    0 (  0u/  0d) | post-hoc    0 | centred    0 (  0u/  0d) | covariate    0 (  0u/  0d)
+  mono  raw    0 (  0u/  0d) | post-hoc    0 | centred    1 (  1u/  0d) | covariate    1 (  1u/  0d)
+  T     raw    0 (  0u/  0d) | post-hoc    6 | centred   36 ( 17u/ 19d) | covariate    4 (  3u/  1d)
+  NK    raw    0 (  0u/  0d) | post-hoc    0 | centred    0 (  0u/  0d) | covariate    0 (  0u/  0d)
+  B     raw    0 (  0u/  0d) | post-hoc    0 | centred    0 (  0u/  0d) | covariate   18 ( 11u/  7d)
+
+--- validating against 100 label permutations ---
+     25/100  9.5 min, ETA 28.6
+     50/100  15.8 min, ETA 15.8
+     75/100  21.5 min, ETA 7.2
+    100/100  34.2 min, ETA 0.0
+ contrast lineage obs_raw null_raw_q95 null_raw_max p_raw obs_cov null_cov_q95 null_cov_max      p_cov
+      BPD    gran       0            2          606     1       0        19.05          251 1.00000000
+      BPD    mono       0            0           37     1       1         1.00           19 0.10891089
+      BPD       T       0            0          228     1       4         1.00           56 0.01980198
+      BPD      NK       0            0            0     1       0         1.00            2 1.00000000
+      BPD       B       0            0          972     1      18         0.00            3 0.00990099
+
+  is the covariate model calibrated? (a well-behaved null has a small 95th pct and max)
+    gran  null q95  19.0 / max  251  ->  NOT CALIBRATED -- scrambled labels still yield genes
+    mono  null q95   1.0 / max   19  ->  calibrated, but observed does not beat the null
+    T     null q95   1.0 / max   56  ->  NOT CALIBRATED -- scrambled labels still yield genes
+    NK    null q95   1.0 / max    2  ->  calibrated; nothing found
+    B     null q95   0.0 / max    3  ->  calibrated, and the observed result beats it
+
+======================================================================================================================
+CALIBRATION COMPARISON -- worst-case genes from scrambled labels
+======================================================================================================================
+              method max_null
+ raw (no correction)     1927
+ offset as covariate      251
+ per-sample centring      298
+  (the centring figure is from followup_validate_centring.R, same 100-permutation design)
+
+wrote results/followup_D_*.csv

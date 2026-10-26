@@ -1,0 +1,3 @@
+"lineage","filter","n_kept","n_sig","lm22_frac","lm22_enrichment","n_down","n_survive","pct_survive","median_pct_lost"
+"T","SD",2000,154,0.207792207792208,7.34278293135436,154,0,0,38.7546246196539
+"B","MEAN",1000,86,0,0,0,83,96.5116279069768,-0.618826108013715

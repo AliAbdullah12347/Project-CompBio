@@ -1,0 +1,208 @@
+
+==============================================================================================================
+== CONTRAST: LI  (n = 226) ==
+==============================================================================================================
+
+---- PART A: recentre the fold changes ----
+Three versions of the same fit, differing only in how the lineage-wide offset is handled.
+  raw      : bMIND estimates as they are
+  post-hoc : t recomputed as (logFC - median logFC) / SE, same SEs  [diagnostic]
+  per-sample: each sample's median across genes removed BEFORE fitting  [principled]
+
+  gran  raw       median -0.1184 |  7.6% up |   109 at BH 0.05 (17 up, 92 down)
+        post-hoc  median +0.0000 | 50.0% up |    89 at BH 0.05 (85 up, 4 down)   (shift removed -0.1184)
+        per-samplemedian +0.0086 | 54.4% up |   284 at BH 0.05 (203 up, 81 down)
+
+  mono  raw       median -0.0163 | 31.1% up |    20 at BH 0.05 (19 up, 1 down)
+        post-hoc  median +0.0000 | 50.0% up |    24 at BH 0.05 (23 up, 1 down)   (shift removed -0.0163)
+        per-samplemedian +0.0011 | 51.4% up |   162 at BH 0.05 (136 up, 26 down)
+
+  T     raw       median -0.0124 | 38.4% up |    28 at BH 0.05 (26 up, 2 down)
+        post-hoc  median -0.0000 | 50.0% up |    45 at BH 0.05 (43 up, 2 down)   (shift removed -0.0124)
+        per-samplemedian -0.0034 | 46.7% up |   278 at BH 0.05 (206 up, 72 down)
+
+  NK    raw       median -0.0006 | 47.9% up |     4 at BH 0.05 (3 up, 1 down)
+        post-hoc  median -0.0000 | 50.0% up |     4 at BH 0.05 (3 up, 1 down)   (shift removed -0.0006)
+        per-samplemedian -0.0004 | 48.7% up |    96 at BH 0.05 (89 up, 7 down)
+
+  B     raw       median -0.0105 |  6.3% up |     0 at BH 0.05 (0 up, 0 down)
+        post-hoc  median +0.0000 | 50.0% up |     3 at BH 0.05 (3 up, 0 down)   (shift removed -0.0105)
+        per-samplemedian -0.0003 | 48.4% up |   158 at BH 0.05 (109 up, 49 down)
+
+  SUMMARY -- does removing the offset reveal genes?
+ lineage median_raw pct_up_raw deg_raw shift_removed deg_posthoc deg_centred pct_up_centred
+    gran   -0.11839        7.6     109      -0.11839          89         284           54.4
+    mono   -0.01631       31.1      20      -0.01631          24         162           51.4
+       T   -0.01236       38.4      28      -0.01236          45         278           46.7
+      NK   -0.00063       47.9       4      -0.00063           4          96           48.7
+       B   -0.01046        6.3       0      -0.01046           3         158           48.4
+
+---- PART B: rank genes instead of thresholding them ----
+Ranking by the recentred t-statistic, which is both offset-free and precision-weighted.
+A constant offset does not change the ORDER of logFC, but it does change the order of t,
+because t divides by a gene-specific SE. So the ranking is taken after recentring.
+
+  Spearman correlation of t between lineages (observed):
+      gran  mono     T    NK     B
+gran 1.000 0.645 0.698 0.556 0.827
+mono 0.645 1.000 0.792 0.871 0.702
+T    0.698 0.792 1.000 0.774 0.809
+NK   0.556 0.871 0.774 1.000 0.624
+B    0.827 0.702 0.809 0.624 1.000
+
+  genes in the top N of two or more lineages (|t|):
+ topN in_2plus in_3plus in_all5
+   50       62       48      14
+  100      117       85      39
+  500      589      362     134
+
+  top 15 genes by rank product across all five lineages:
+    symbol rank_product gran mono  T  NK  B
+      PIGB          1.8    2    2  1   5  1
+    TSPAN2          2.6    1    1  2  29  2
+   MIR24-2          5.1    5    5  3  16  3
+ LINC00877          5.4    6    3  4   9  7
+    CCDC19          6.5    8   12 15   1  8
+      FAR2          8.0   10    6  5  27  4
+      RFX2          9.3    4    4 67   2 32
+    FAM63A         11.6   18   19 17   4  9
+  ARHGEF40         12.1   28    7 27  10  5
+     ARMC2         12.4    3   17 31  13 14
+     PRRG4         14.0   15   16  6  25 15
+     RBM47         15.7   33   13 10   6 37
+    ADAM17         17.5   32   20 18  11 13
+   SLC31A2         17.8    9   14  9 158 10
+   FAM126B         18.6   20    9  7  65 27
+
+---- PART C: filter on across-sample standard deviation ----
+The filter statistic is each gene's SD across all samples within a lineage, computed
+IGNORING GROUP. That independence is what makes filtering legitimate (Bourgon 2010):
+it cannot bias the group test under the null. The check is printed below.
+
+  independence check -- Spearman(SD, p-value) among genes with p > 0.5:
+    gran  rho = -0.0016  (n = 4635)   independent
+    mono  rho = +0.0045  (n = 4927)   independent
+    T     rho = -0.0050  (n = 4808)   independent
+    NK    rho = -0.0388  (n = 5397)   independent
+    B     rho = +0.0024  (n = 4276)   independent
+
+  discoveries retained at each SD threshold (BH recomputed on survivors):
+ quantile_cut gran mono   T NK   B pooled
+          0.0  284  162 278 96 158    434
+          0.1  293  164 291 97 171    460
+          0.2  282  161 306 94 145    456
+          0.3  275  159 303 90 158    463
+          0.4  255  139 283 79 155    455
+          0.5  250  124 269 57 165    433
+          0.6  210  102 215 48 140    381
+          0.7  159   85 172 34 105    311
+          0.8   98   57 112 26  54    205
+          0.9   55   16  62  8  13    113
+
+  threshold maximising pooled unique genes: SD quantile 0.3 (463 genes, vs 434 unfiltered)
+
+==============================================================================================================
+== CONTRAST: BPD  (n = 308) ==
+==============================================================================================================
+
+---- PART A: recentre the fold changes ----
+Three versions of the same fit, differing only in how the lineage-wide offset is handled.
+  raw      : bMIND estimates as they are
+  post-hoc : t recomputed as (logFC - median logFC) / SE, same SEs  [diagnostic]
+  per-sample: each sample's median across genes removed BEFORE fitting  [principled]
+
+  gran  raw       median -0.0202 | 38.4% up |     0 at BH 0.05 (0 up, 0 down)
+        post-hoc  median +0.0000 | 50.0% up |     0 at BH 0.05 (0 up, 0 down)   (shift removed -0.0202)
+        per-samplemedian +0.0037 | 52.1% up |     0 at BH 0.05 (0 up, 0 down)
+
+  mono  raw       median -0.0039 | 45.7% up |     0 at BH 0.05 (0 up, 0 down)
+        post-hoc  median +0.0000 | 50.0% up |     0 at BH 0.05 (0 up, 0 down)   (shift removed -0.0039)
+        per-samplemedian -0.0007 | 49.2% up |     3 at BH 0.05 (2 up, 1 down)
+
+  T     raw       median -0.0665 | 14.8% up |     0 at BH 0.05 (0 up, 0 down)
+        post-hoc  median +0.0000 | 50.0% up |    12 at BH 0.05 (12 up, 0 down)   (shift removed -0.0665)
+        per-samplemedian +0.0111 | 57.0% up |   345 at BH 0.05 (177 up, 168 down)
+
+  NK    raw       median -0.0155 | 22.8% up |     0 at BH 0.05 (0 up, 0 down)
+        post-hoc  median +0.0000 | 50.0% up |     0 at BH 0.05 (0 up, 0 down)   (shift removed -0.0155)
+        per-samplemedian -0.0014 | 47.0% up |     0 at BH 0.05 (0 up, 0 down)
+
+  B     raw       median +0.0117 | 94.9% up |     0 at BH 0.05 (0 up, 0 down)
+        post-hoc  median +0.0000 | 50.0% up |     3 at BH 0.05 (0 up, 3 down)   (shift removed +0.0117)
+        per-samplemedian -0.0004 | 47.6% up |     0 at BH 0.05 (0 up, 0 down)
+
+  SUMMARY -- does removing the offset reveal genes?
+ lineage median_raw pct_up_raw deg_raw shift_removed deg_posthoc deg_centred pct_up_centred
+    gran   -0.02024       38.4       0      -0.02024           0           0           52.1
+    mono   -0.00392       45.7       0      -0.00392           0           3           49.2
+       T   -0.06645       14.8       0      -0.06645          12         345           57.0
+      NK   -0.01554       22.8       0      -0.01554           0           0           47.0
+       B    0.01168       94.9       0       0.01168           3           0           47.6
+
+---- PART B: rank genes instead of thresholding them ----
+Ranking by the recentred t-statistic, which is both offset-free and precision-weighted.
+A constant offset does not change the ORDER of logFC, but it does change the order of t,
+because t divides by a gene-specific SE. So the ranking is taken after recentring.
+
+  Spearman correlation of t between lineages (observed):
+      gran  mono     T    NK     B
+gran 1.000 0.766 0.787 0.823 0.559
+mono 0.766 1.000 0.874 0.880 0.705
+T    0.787 0.874 1.000 0.893 0.691
+NK   0.823 0.880 0.893 1.000 0.579
+B    0.559 0.705 0.691 0.579 1.000
+
+  genes in the top N of two or more lineages (|t|):
+ topN in_2plus in_3plus in_all5
+   50       45       18       3
+  100      103       40       7
+  500      576      304      39
+
+  top 15 genes by rank product across all five lineages:
+     symbol rank_product gran mono   T  NK   B
+   C6orf163          3.0    5    1  13   1   4
+       BBS9          5.5    1   38   1  12  11
+ AC104820.2          6.0    8    3   5   8   8
+     CD300A         10.0    4   28   2 149   3
+      SMIM8         12.6    7    4  18  91   7
+     TGFBR2         16.2  109   18   3  11  17
+       WDR1         19.7   19   64   7  10  35
+     ZBTB25         20.5   93   14  34  41   2
+       PVT1         26.0  150    6   8   3 553
+     MBTPS2         29.0  276   17   4   9 121
+  LINC00662         30.1   62   10  32  57  22
+       COG4         31.5   21    8  89 148  14
+       KAT8         32.7  195    9  20 119   9
+    SIGLEC7         44.5    6  172 123 230   6
+     ZNF185         45.1    9   27 300  31  83
+
+---- PART C: filter on across-sample standard deviation ----
+The filter statistic is each gene's SD across all samples within a lineage, computed
+IGNORING GROUP. That independence is what makes filtering legitimate (Bourgon 2010):
+it cannot bias the group test under the null. The check is printed below.
+
+  independence check -- Spearman(SD, p-value) among genes with p > 0.5:
+    gran  rho = -0.0146  (n = 5263)   independent
+    mono  rho = +0.0158  (n = 5432)   independent
+    T     rho = +0.0273  (n = 3840)   independent
+    NK    rho = -0.0047  (n = 5179)   independent
+    B     rho = -0.0397  (n = 4757)   independent
+
+  discoveries retained at each SD threshold (BH recomputed on survivors):
+ quantile_cut gran mono   T NK B pooled
+          0.0    0    3 345  0 0     17
+          0.1    0    3 324  0 0     16
+          0.2    0    3 292  0 0     17
+          0.3    0    3 268  0 0     22
+          0.4    0    4 237  0 0     21
+          0.5    0    4 298  0 0     27
+          0.6    0    4 316  0 0     26
+          0.7    0    3 350  0 0     31
+          0.8    0    3 345  0 0     44
+          0.9    0    1 231  0 0     78
+
+  threshold maximising pooled unique genes: SD quantile 0.9 (78 genes, vs 17 unfiltered)
+Warning message:
+Zero sample variances detected, have been offset away from zero 
+
+wrote results/followup_{A,B,C}_*.csv

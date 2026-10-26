@@ -1,0 +1,42 @@
+== followup_validate_centring ==
+100 permutations | testing on a fixed 2000-gene subsample
+  LI  25/100  4.0 min, ETA 11.9
+  LI  50/100  6.5 min, ETA 6.5
+  LI  75/100  9.0 min, ETA 3.0
+  LI 100/100  11.2 min, ETA 0.0
+
+=== LI: genes called on a 2000-gene subsample, BH 0.05 ===
+ lineage obs_raw null_raw_median null_raw_q95      p_raw obs_cen null_cen_median null_cen_q95 null_cen_max      p_cen
+    gran      16               0         0.05 0.02970297      35               0         2.05           47 0.02970297
+    mono       1               0         0.05 0.05940594      23               0         1.00          160 0.02970297
+       T       3               0         0.00 0.01980198      28               0         2.00          153 0.03960396
+      NK       0               0         0.00 1.00000000      12               0         1.00           59 0.01980198
+       B       0               0         0.00 1.00000000      16               0         0.00            0 0.00990099
+
+  verdict per lineage:
+    gran  obs   35 vs null median   0.0  ->  centred result exceeds its own null -- real
+    mono  obs   23 vs null median   0.0  ->  centred result exceeds its own null -- real
+    T     obs   28 vs null median   0.0  ->  centred result exceeds its own null -- real
+    NK    obs   12 vs null median   0.0  ->  centred result exceeds its own null -- real
+    B     obs   16 vs null median   0.0  ->  centred result exceeds its own null -- real
+  BPD  25/100  2.9 min, ETA 8.8
+  BPD  50/100  5.5 min, ETA 5.5
+  BPD  75/100  8.4 min, ETA 2.8
+  BPD 100/100  11.5 min, ETA 0.0
+
+=== BPD: genes called on a 2000-gene subsample, BH 0.05 ===
+ lineage obs_raw null_raw_median null_raw_q95 p_raw obs_cen null_cen_median null_cen_q95 null_cen_max      p_cen
+    gran       0               0            2     1       0               0        34.55          298 1.00000000
+    mono       0               0            0     1       1               0         1.05           19 0.10891089
+       T       0               0            0     1      36               0         1.00          105 0.01980198
+      NK       0               0            0     1       0               0         1.00            2 1.00000000
+       B       0               0            0     1       0               0         0.00            1 1.00000000
+
+  verdict per lineage:
+    gran  obs    0 vs null median   0.0  ->  nothing either way
+    mono  obs    1 vs null median   0.0  ->  centred result NOT above its null -- artifact
+    T     obs   36 vs null median   0.0  ->  centred result exceeds its own null -- real
+    NK    obs    0 vs null median   0.0  ->  nothing either way
+    B     obs    0 vs null median   0.0  ->  nothing either way
+
+wrote results/followup_A_validation.csv

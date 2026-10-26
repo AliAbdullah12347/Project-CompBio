@@ -1,0 +1,25 @@
+== diag_null_mechanism ==  150 permutations, 2000 genes
+
+--- gran ---
+  leading sample axis explains 71.4% of variance | mean pairwise gene r = 0.674
+  Spearman(alignment with that axis, genes returned) = +0.152
+  alignment median max pct_over_50
+  Q1 lowest      0   0    0.000000
+         Q2      0   2    0.000000
+         Q3      0  12    0.000000
+ Q4 highest      0 940    5.263158
+
+--- T ---
+  leading sample axis explains 66.9% of variance | mean pairwise gene r = 0.663
+  Spearman(alignment with that axis, genes returned) = +0.292
+  alignment median  max pct_over_50
+  Q1 lowest      0    0    0.000000
+         Q2      0    0    0.000000
+         Q3      0    1    0.000000
+ Q4 highest      0 1040    7.894737
+
+ lineage var_explained_pc1 mean_gene_r spearman_align_n max_n q95_n median_n pct_perm_over_50
+    gran            0.7137      0.6741           0.1521   940     0        0            1.333
+       T            0.6691      0.6635           0.2917  1040     0        0            2.000
+
+wrote results/diag_null_mechanism.csv

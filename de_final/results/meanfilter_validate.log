@@ -1,0 +1,43 @@
+== meanfilter_validate ==
+200 permutations | 9 cutoffs x 2 filters = 18 chances per analysis
+calcNormFactors has been renamed to normLibSizes
+  WB LI          unfiltered 1426 | SD best 1426 @12368 (p 0.0100) | MEAN best 1426 @12368 (p 0.0100) | 10.7 min
+calcNormFactors has been renamed to normLibSizes
+  WB BPD         unfiltered    4 | SD best    4 @12368 (p 0.0199) | MEAN best   30 @  200 (p 0.0050) | 11.8 min
+  CT LI mono     unfiltered   20 | SD best   21 @10000 (p 0.0249) | MEAN best   20 @12368 (p 0.0199) | 8.7 min
+  CT LI T        unfiltered   28 | SD best   32 @ 6000 (p 0.0746) | MEAN best   28 @12368 (p 0.0796) | 8.7 min
+  CT BPD mono    unfiltered    0 | SD best    2 @ 2000 (p 0.0697) | MEAN best    0 @  200 (p 1.0000) | 13.4 min
+  CT BPD T       unfiltered    0 | SD best  192 @ 2000 (p 0.0348) | MEAN best    0 @  200 (p 1.0000) | 111.1 min
+  CT BPD B       unfiltered    0 | SD best    1 @  200 (p 0.0199) | MEAN best   86 @ 1000 (p 0.0149) | 10.9 min
+There were 50 or more warnings (use warnings() to see the first 50)
+
+========================================================================================================================================================================================================
+SELECTION-AWARE RESULT (null = max over the same 9 cutoffs)
+========================================================================================================================================================================================================
+ level contrast lineage filter unfiltered best_cut observed_max null_q95 null_max p_max_over_grid                                                               verdict
+    WB       LI             SD       1426    12368         1426     2.00     1731     0.009950249                                     filtering does not beat no filter
+    WB       LI           MEAN       1426    12368         1426     1.00     1731     0.009950249                                     filtering does not beat no filter
+    WB      BPD             SD          4    12368            4     1.00       12     0.019900498                                     filtering does not beat no filter
+    WB      BPD           MEAN          4      200           30     0.00        6     0.004975124                                               SURVIVES -- a real gain
+    CT       LI    mono     SD         20    10000           21     2.00      275     0.024875622                                               SURVIVES -- a real gain
+    CT       LI    mono   MEAN         20    12368           20     1.00      245     0.019900498                                     filtering does not beat no filter
+    CT       LI       T     SD         28     6000           32    38.65     9106     0.074626866 does NOT survive: within the null once the cutoff choice is priced in
+    CT       LI       T   MEAN         28    12368           28   113.60     9106     0.079601990                                     filtering does not beat no filter
+    CT      BPD    mono     SD          0     2000            2     3.05     7645     0.069651741 does NOT survive: within the null once the cutoff choice is priced in
+    CT      BPD    mono   MEAN          0      200            0     1.00     7645     1.000000000                                     filtering does not beat no filter
+    CT      BPD       T     SD          0     2000          192    34.15     6266     0.034825871                                               SURVIVES -- a real gain
+    CT      BPD       T   MEAN          0      200            0     5.40     6266     1.000000000                                     filtering does not beat no filter
+    CT      BPD       B     SD          0      200            1     0.00     8380     0.019900498                                               SURVIVES -- a real gain
+    CT      BPD       B   MEAN          0     1000           86     0.00     8380     0.014925373                                               SURVIVES -- a real gain
+
+========================================================================================================================================================================================================
+INDEPENDENCE OF THE FILTER STATISTIC (mean over 50 permutations)
+========================================================================================================================================================================================================
+ level filter rho_null_mean rho_null_sd
+    CT   MEAN       0.01873      0.1554
+    WB   MEAN      -0.00218      0.0689
+    CT     SD       0.01673      0.1331
+    WB     SD       0.00892      0.0464
+  both statistics should sit at ~0; a non-zero value means the filter peeks at the answer
+
+wrote results/meanfilter_validation.csv

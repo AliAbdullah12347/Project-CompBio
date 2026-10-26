@@ -1,0 +1,43 @@
+== power_celltype_BPD ==
+n = 308 (234 controls vs 74 cases) | 200 genes per block | whole-blood floor 0.208
+
+lineage  mean_frac  predicted floor = bulk_floor / fraction
+  gran    0.3712     0.56 log2FC
+  mono    0.2751     0.76 log2FC
+  T       0.2550     0.82 log2FC
+  NK      0.0837     2.48 log2FC
+  B       0.0150     13.86 log2FC
+  gran  from checkpoint
+  mono  power 0.395 / 0.950 / 1.000 at L = 0.40 / 0.80 / 1.60 | FP 0/200  [27.6 min]
+  T     power 0.240 / 0.850 / 1.000 at L = 0.40 / 0.80 / 1.60 | FP 7/200  [24.7 min]
+  NK    power 0.445 / 0.960 / 1.000 at L = 1.00 / 2.50 / 5.00 | FP 1/200  [36.1 min]
+  B     power 0.015 / 0.770 / 1.000 at L = 5.00 / 15.00 / 30.00 | FP 0/200  [155.8 min]
+
+=== cell-type power, bipolar contrast ===
+ lineage mean_frac log2FC bulk_equivalent detected n_spiked power false_pos n_control
+    gran    0.3712   0.25          0.0928       39      200 0.195         2       200
+    gran    0.3712   0.50          0.1856      155      200 0.775         2       200
+    gran    0.3712   1.00          0.3712      199      200 0.995         2       200
+    mono    0.2751   0.40          0.1100       79      200 0.395         0       200
+    mono    0.2751   0.80          0.2201      190      200 0.950         0       200
+    mono    0.2751   1.60          0.4401      200      200 1.000         0       200
+       T    0.2550   0.40          0.1020       48      200 0.240         7       200
+       T    0.2550   0.80          0.2040      170      200 0.850         7       200
+       T    0.2550   1.60          0.4079      200      200 1.000         7       200
+      NK    0.0837   1.00          0.0837       89      200 0.445         1       200
+      NK    0.0837   2.50          0.2093      192      200 0.960         1       200
+      NK    0.0837   5.00          0.4186      200      200 1.000         1       200
+       B    0.0150   5.00          0.0750        3      200 0.015         0       200
+       B    0.0150  15.00          0.2250      154      200 0.770         0       200
+       B    0.0150  30.00          0.4501      200      200 1.000         0       200
+
+=== detection floor at 80% power, bipolar contrast ===
+  gran  0.56 log2FC          predicted   0.56 | bulk-equivalent 0.207 | NULL NOT INTERPRETABLE
+  mono  0.69 log2FC          predicted   0.76 | bulk-equivalent 0.190 | NULL NOT INTERPRETABLE
+  T     0.77 log2FC          predicted   0.82 | bulk-equivalent 0.196 | NULL NOT INTERPRETABLE
+  NK    2.03 log2FC          predicted   2.48 | bulk-equivalent 0.170 | NULL NOT INTERPRETABLE
+  B     16.96 log2FC         predicted  13.86 | bulk-equivalent 0.254 | NULL NOT INTERPRETABLE
+
+  whole blood, same contrast: 0.208 log2FC. Meaningfulness floor set in advance: 0.5.
+
+wrote results/power_celltype_BPD*.csv [244.2 min]

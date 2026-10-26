@@ -1,0 +1,218 @@
+== collect_gene_lists ==
+WB lithium  : 1426 at BH 0.05 | 125 also pass Holm
+
+--- WB lithium, top 40 by p-value ---
+ rank    symbol logFC fold dir       BH
+    1    TSPAN2 0.793 1.73  up 6.99e-16
+    2      PIGB 0.628 1.55  up 6.16e-15
+    3     ARMC2 0.403 1.32  up 2.76e-11
+    4      RFX2 0.666 1.59  up 2.76e-11
+    5 LINC00877 0.583 1.50  up 4.56e-11
+    6      FAR2 0.508 1.42  up 8.29e-11
+    7     MYADM 0.707 1.63  up 9.10e-11
+    8   MIR24-2 0.661 1.58  up 1.20e-10
+    9   SLC31A2 0.528 1.44  up 8.35e-10
+   10    ADAM17 0.277 1.21  up 4.12e-09
+   11    FLVCR1 0.387 1.31  up 7.76e-09
+   12    CCDC19 0.763 1.70  up 1.05e-08
+   13    MAN1A1 0.455 1.37  up 1.05e-08
+   14   FAM126B 0.496 1.41  up 1.66e-08
+   15    ZNF487 0.411 1.33  up 1.87e-08
+   16    KBTBD7 0.433 1.35  up 2.69e-08
+   17   VIM-AS1 0.310 1.24  up 2.82e-08
+   18     PRRG4 0.691 1.61  up 4.48e-08
+   19    TAGLN2 0.463 1.38  up 5.14e-08
+   20     DMXL2 0.362 1.29  up 1.21e-07
+   21   CNTNAP3 0.911 1.88  up 1.21e-07
+   22      ECT2 0.420 1.34  up 1.21e-07
+   23      MPP7 0.268 1.20  up 1.29e-07
+   24  C12orf55 0.645 1.56  up 1.40e-07
+   25    TIPARP 0.250 1.19  up 1.62e-07
+   26    FAM63A 0.460 1.38  up 2.29e-07
+   27  ARHGEF40 0.521 1.43  up 2.29e-07
+   28     EFHC1 0.328 1.26  up 2.97e-07
+   29     RBM47 0.454 1.37  up 5.83e-07
+   30       IDS 0.350 1.27  up 5.83e-07
+   31   CYSLTR2 0.426 1.34  up 5.83e-07
+   32      KLF6 0.286 1.22  up 1.17e-06
+   33     NHSL2 0.444 1.36  up 1.17e-06
+   34   LRRFIP1 0.251 1.19  up 1.18e-06
+   35    TATDN3 0.269 1.21  up 1.18e-06
+   36  TAGLN2P1 0.453 1.37  up 1.62e-06
+   37 RAB11FIP1 0.445 1.36  up 1.73e-06
+   38    CAMK1D 0.349 1.27  up 2.21e-06
+   39  C16orf54 0.320 1.25  up 2.83e-06
+   40     SPAG1 0.431 1.35  up 3.01e-06
+
+--- the 125 Holm-significant genes (high confidence) ---
+AC116366.5, ADAM17, ADAMTSL4-AS1, ANKRD13A, ANKRD28, ARHGAP19, ARHGAP9, ARHGEF40
+ARMC2, B4GALT5, BAZ1A, BCL2, C12orf55, C16orf54, C18orf25, C3orf62
+CAMK1D, CAMKK2, CASP8, CCDC19, CD97, CDK6, CELF1, CFLAR
+CKAP4, CNTNAP3, CPPED1, CPSF7, CYSLTR2, CYTH1, DMXL2, DNAJB5
+DNAJC3, DNAJC3-AS1, ECT2, EFHC1, EFHC2, F5, FAM126B, FAM212B
+FAM63A, FAR2, FGFR1OP, FKBP15, FLCN, FLVCR1, FOS, FUZ
+GAS7, GIMAP1, GPR157, HIPK3, HIVEP1, IDS, IL5RA, IL8
+KATNBL1, KBTBD7, KIAA0556, KLF6, KLHL11, LINC00877, LINC00963, LRRFIP1
+MAK, MAN1A1, MBOAT1, MED25, MIR24-2, MKL1, MPP7, MPZL1
+MPZL3, MSL1, MTMR12, MTX1, MYADM, NACC2, NFKB2, NHSL2
+NUDT5, OSGIN2, PBXIP1, PIGB, PLK3, POLD3, PPP1R15A, PRRG4
+RAB11FIP1, RAF1, RBM47, RC3H1, RELL1, RFX2, RN7SL473P, RN7SL600P
+RP11-179B15.2, RP11-73E17.2, RP3-354N19.3, RPGR, RRP12, SLC31A1, SLC31A2, SLC9A8
+SLCO3A1, SPAG1, SPEN, STX11, TAGAP, TAGLN2, TAGLN2P1, TATDN3
+TIPARP, TMEM216, TSC22D3, TSPAN2, TUBA1A, UBE2D1, USP4, VIM-AS1
+VPS37C, WDFY2, WSB2, ZBTB34, ZNF487 
+
+--- WB bipolar: all 4 significant genes ---
+ rank     symbol  logFC  dir        P      BH
+    1   C6orf163  0.266   up 6.51e-06 0.04887
+    2 AC104820.2  0.283   up 1.17e-05 0.04887
+    3      SMIM8  0.197   up 1.40e-05 0.04887
+    4       WDR1 -0.196 down 1.58e-05 0.04887
+
+--- cell type, lithium: 161 gene x lineage pairs, 120 distinct genes ---
+
+  gran  (109 genes)
+    AC093391.2, AC099522.2, ACN9, ACPP, ADAM22, AHCY, ALOX15, AMOTL1, APBB3
+ARMC2, ASB13, ASPH, C20orf197, CA4, CACNB4, CASP5, CATSPER1, CCDC19
+CCNDBP1, CDADC1, CEACAM21, CEACAM4, CLEC4D, CNTNAP3, CPEB3, CR1, CREM
+CXCL1, CYSLTR2, DDX10P1, DIRC2, EEF1A1P10, ERMN, F8, FAM134B, FAM19A2
+FAR2, FLVCR1, GALNT14, GPR157, H2AFJ, HIST1H2BC, HIST1H3H, HIST2H2AC, HIST3H2BB
+HS2ST1, HSPBAP1, IL5RA, IL8, KBTBD3, KIAA1958, LINC00877, LOXHD1, MAFF
+MAPK14, MEF2C, MEF2C-AS1, METTL9, MIR181A1HG, MIR223, MIR24-2, MRPL21, MS4A4A
+MYADM, NIPAL2, NLRP3, NSG1, PCTP, PDZD8, PIGB, PLB1, PRRG4
+PTGS2, PTP4A1, RFX2, RNF217, RP11-1220K2.2, RP11-196G18.22, RP11-196G18.24, RP11-33B1.1, RP11-443B7.3
+RP11-50E11.3, RP11-59D5__B.2, RP11-67L2.2, RP11-76E17.3, RP13-516M14.1, RP5-1043L13.1, SEC62, SLC16A6, SLC26A6
+SLC26A8, SLC31A2, SLC46A3, SLC9A7P1, SMARCD3, SNX18, SULT1B1, TBC1D15, TMEM14B
+TMEM91, TMTC2, TNFRSF18, TNFSF8, TRMT5, TSPAN2, TTC18, TUBE1, ZNF438
+ZNF608 
+
+  mono  (20 genes)
+    ARHGEF40, ARMC2, CCDC19, CNTNAP3, DNAJB5, FAM126B, FAR2, FLVCR1, IL5RA
+IL8, LINC00877, MAN1A1, MIR24-2, MYADM, PIGB, PRRG4, RFX2, SLC31A2
+TSPAN2, ZNF487 
+
+  T  (28 genes)
+    AC116366.5, ALOX15, ARHGEF40, ARMC2, C12orf55, CCDC19, CLC, CNTNAP3, CYSLTR2
+FAM126B, FAR2, FLVCR1, FOS, IDO1, IL5RA, IL8, LINC00877, MAN1A1
+MIR24-2, MYADM, NSG1, PIGB, PRRG4, RBM47, RFX2, SLC31A2, TSPAN2
+ZNF487 
+
+  NK  (4 genes)
+    CCDC19, IL8, MYADM, RFX2 
+
+  B  (0 genes)
+
+  genes significant in MORE THAN ONE lineage (22 of 120):
+    in 4 lineages: CCDC19, IL8, MYADM, RFX2
+    in 3 lineages: ARMC2, CNTNAP3, FAR2, FLVCR1, IL5RA, LINC00877, MIR24-2, PIGB, PRRG4, SLC31A2, TSPAN2
+    in 2 lineages: ALOX15, ARHGEF40, CYSLTR2, FAM126B, MAN1A1, NSG1, ZNF487
+
+--- cell type, bipolar: 0 significant ---
+  (the 10 closest to significance, for completeness)
+   symbol lineage  logFC        P     BH
+ C6orf163    mono  0.226 1.45e-05 0.0911
+     NFE4    mono -0.443 1.47e-05 0.0911
+    IL1R2       T -0.409 3.03e-05 0.1130
+   CD300A       T -0.318 3.08e-05 0.1130
+    PTGS2       T -0.405 3.64e-05 0.1130
+    PILRA       T -0.311 3.93e-05 0.1130
+     NFE4       T -0.432 4.58e-05 0.1130
+    TRPM6       T -0.319 6.91e-05 0.1430
+ C6orf163       B  0.037 8.08e-05 0.1650
+  SNORA53       B  0.071 9.88e-05 0.1650
+
+--- Tier 1: 17 genes passing every test ---
+    symbol  logFC         holm filters_sig filters_tested rho_granulocyte logFC_adj pct_effect_lost       lineages
+    TSPAN2 0.7935 6.989807e-16          30             30          0.4086    0.6303            20.6    gran/mono/T
+      PIGB 0.6285 1.230962e-14          29             29          0.3650    0.4900            22.0    gran/T/mono
+     ARMC2 0.4027 1.021639e-10          26             26          0.1242    0.3604            10.5    gran/mono/T
+      RFX2 0.6659 1.105546e-10          27             27          0.4096    0.5223            21.6 NK/mono/gran/T
+ LINC00877 0.5827 2.278913e-10          26             26          0.3477    0.4510            22.6    T/mono/gran
+      FAR2 0.5082 4.974112e-10          30             30          0.3042    0.3887            23.5    T/mono/gran
+     MYADM 0.7071 6.365835e-10          30             30          0.3278    0.5485            22.4 NK/mono/T/gran
+   MIR24-2 0.6613 9.591651e-10          28             28          0.4375    0.4992            24.5    T/mono/gran
+   SLC31A2 0.5282 7.507915e-09          31             31          0.3884    0.3762            28.8    T/mono/gran
+    CCDC19 0.7627 1.291043e-07          21             21          0.4286    0.5513            27.7 NK/mono/T/gran
+    MAN1A1 0.4547 1.368708e-07          31             31          0.2400    0.3584            21.2         mono/T
+   FAM126B 0.4962 2.327531e-07          31             31          0.5005    0.3325            33.0         T/mono
+     PRRG4 0.6912 8.057774e-07          29             29          0.4941    0.4602            33.4    T/mono/gran
+   CNTNAP3 0.9111 2.614710e-06          29             29          0.5208    0.6357            30.2    T/gran/mono
+  C12orf55 0.6450 3.361959e-06          17             17          0.3777    0.4907            23.9              T
+  ARHGEF40 0.5206 6.171381e-06          30             30          0.4066    0.3467            33.4         mono/T
+     IL5RA 0.7241 1.472588e-04          24             24         -0.1002    0.7456            -3.0    T/gran/mono
+
+--- rank product across the 5 lineages, LI: top 30 ---
+    symbol rank_product gran mono  T  NK    B
+      PIGB         1.82    2    2  1   5    1
+    TSPAN2         2.59    1    1  2  29    2
+   MIR24-2         5.14    5    5  3  16    3
+ LINC00877         5.39    6    3  4   9    7
+    CCDC19         6.49    8   12 15   1    8
+      FAR2         7.98   10    6  5  27    4
+      RFX2         9.27    4    4 67   2   32
+    FAM63A        11.59   18   19 17   4    9
+  ARHGEF40        12.15   28    7 27  10    5
+     ARMC2        12.35    3   17 31  13   14
+     PRRG4        14.01   15   16  6  25   15
+     RBM47        15.70   33   13 10   6   37
+    ADAM17        17.51   32   20 18  11   13
+   SLC31A2        17.81    9   14  9 158   10
+   FAM126B        18.58   20    9  7  65   27
+    FLVCR1        19.09   16   22 30  40    6
+    ZNF487        20.81   17   18 19  56   12
+    MAN1A1        22.50   39   11  8  24   70
+   C3orf62        23.85   51   27 34  15   11
+      USP4        24.33   58   25 35   8   21
+     NHSL2        24.75   35   39 20  17   20
+       IL8        26.70   31   10 41  12   89
+     MYADM        27.78    7    8 12   3 8212
+   CYSLTR2        28.48   24   63 11  49   23
+     CKAP4        28.59   91   24 25   7   50
+     DMXL2        30.80   13   30 16  60   74
+    TAGLN2        31.19   23   31 39  59   18
+    KBTBD7        31.31   26   41 14  72   28
+      RAF1        33.10   43   33 24  22   53
+  TAGLN2P1        36.45   21   36 59  37   39
+
+--- rank product across the 5 lineages, BPD: top 30 ---
+        symbol rank_product gran mono   T  NK    B
+      C6orf163         3.04    5    1  13   1    4
+          BBS9         5.50    1   38   1  12   11
+    AC104820.2         5.99    8    3   5   8    8
+        CD300A        10.00    4   28   2 149    3
+         SMIM8        12.63    7    4  18  91    7
+        TGFBR2        16.16  109   18   3  11   17
+          WDR1        19.72   19   64   7  10   35
+        ZBTB25        20.51   93   14  34  41    2
+          PVT1        26.03  150    6   8   3  553
+        MBTPS2        28.98  276   17   4   9  121
+     LINC00662        30.14   62   10  32  57   22
+          COG4        31.49   21    8  89 148   14
+          KAT8        32.74  195    9  20 119    9
+       SIGLEC7        44.53    6  172 123 230    6
+        ZNF185        45.15    9   27 300  31   83
+         TMTC4        49.17  111   23  46  48   51
+      TRAF3IP2        57.41  259   81  16   2  929
+ RP11-147L13.8        64.45   37  168 227 788    1
+          TLN1        66.82   11   79  71 183  118
+        TXNRD1        68.46  344    5 160   6  911
+           VCL        69.46   97   57  39  50  150
+       IL13RA1        72.67  129   36  21  39  533
+       CD300LB        72.90   15   93  72  56  366
+         MED27        72.93   27   11 382  18 1010
+         YIF1B        77.03   10   22 693 363   49
+        EEFSEC        81.87   79   26  87  83  248
+         ADRM1        85.00   22  576 198 136   13
+      KIAA1407        87.00  101   35  10 371  380
+        NT5C3B        87.12   49  286  55  22  296
+       TAS2R13        87.95   45   76 184  68  123
+
+--- filter-robust core: 1092 genes called under EVERY filter that retained them ---
+  top 40 by median rank:
+    ADAM17, ARHGEF40, ARMC2, C12orf55, CCDC19, CNTNAP3, CYSLTR2, DMXL2
+ECT2, EFHC1, FAM126B, FAM63A, FAR2, FLVCR1, IDS, KBTBD7
+KLF6, LINC00877, LRRFIP1, MAN1A1, MIR23A, MIR24-2, MIR27A, MOK
+MPP7, MYADM, NHSL2, PIGB, PRRG4, RBM47, RFX2, RP4-666F24.3
+SLC31A2, SPAG6, TAGLN2, TATDN3, TIPARP, TSPAN2, VIM-AS1, ZNF487 
+
+wrote 9 files to results/genelists/
