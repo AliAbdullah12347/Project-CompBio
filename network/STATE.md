@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T19:15Z
+**Updated:** 2026-10-26T19:35Z
 
 ## Where the science stands
 
@@ -62,9 +62,11 @@ DONE (7): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
   **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
   **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s).
-RUNNING (1): **gene-027** (started 2026-10-26T19:10Z; LM22 circularity check, cap 10800s;
-  cap raised from 7200 — previous attempt showed modulePreservation() nolith 500 perms needs
-  ~6480s which filled the old cap; see METHODS.md 2026-10-26T16:30Z)
+RUNNING (1): **gene-027** (started 2026-10-26T19:20Z; LM22 circularity check, 65-module
+  reference on 12018 non-LM22 genes; NOLITH_PERMS=50; cap=18000s;
+  nolith DONE 15:32:27 EDT: Z=[10.89, 74.91]; 20 lith draws in progress;
+  expected all draws DONE ~19:32 EDT / ~23:32Z; expected COMPLETE before cap ~20:21 EDT.
+  All 25 PENDING nolith experiments similarly fixed.)
 PENDING (43): inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
@@ -137,13 +139,24 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **When gene-027 completes (RUNNING, ~22:10Z expected):**
-   - Score fully: inp-022-equivalent analysis but on non-LM22 genes; compare gold behavior
-   - This IS the circularity check for module preservation, analogous to finding #10 for PCA
-   - If nolith done but lith draws still PARTIAL, restart driver immediately (draws checkpoint)
-   - Write finding file once all 20 lith draws are done; rebuild RANKING.md
-2. **Driver continues:** inp-021 (technical-only residualisation, cap 10800s)
+1. **When gene-027 completes (~19:32 EDT / ~23:32Z):**
+   - Run `Rscript network/scripts/analyze_gene027.R` to get gold comparison summary
+   - Write `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
+   - Run `Rscript network/build_index.R` to rebuild RANKING.md
+   - Update RESULTS.md, STATE.md; commit; then run `bash network/run_next.sh`
+2. **Driver continues:** inp-021 (full technical residualisation, cap 10800s; spans sessions via checkpoints)
 3. **pres-030** (density vs connectivity decomposition) is queued after inp-021
+
+## Session 11 notes (2026-10-26T19:35Z)
+
+- gene-027 nolith checkpoint completed at 15:32:27 EDT (713s; 50 perms, 65 modules, 12018 genes).
+  bp_nolith: Z=[10.89, 74.91]. Draw phase started immediately.
+- 20 lith draws in progress; expected completion ~19:32 EDT (~14400s at ~720s/draw).
+  Cap fires at ~20:21 EDT — all draws should complete before cap.
+- Updated `findings/2026-10-09-cost-scaling.md`: corrected per-draw time ~720s (was 262s),
+  per-perm ~12.8s (was 5.2s). Added critical note: nPermutations setup scaling in WGCNA 1.74.
+- `network/scripts/analyze_gene027.R` present for post-hoc comparison (written earlier session).
+- Monitor armed on gene-027 log (draw completions and COMPLETE/ERROR lines).
 
 ## Session 10 notes (2026-10-26T19:10Z)
 
