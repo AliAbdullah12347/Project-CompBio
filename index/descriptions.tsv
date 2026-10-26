@@ -155,6 +155,40 @@ de_final/METHODS.md	DOC	current		What each step does and why each choice was mad
 de_final/results/DE_*.csv.gz	OUTPUT	current	de_final/run_de.R	Full per-gene results, one file per comparison: rank, logFC, p, BH q, significance.
 de_final/results/significant_genes.csv	OUTPUT	current	de_final/run_de.R	Every gene passing BH 0.05, all four comparisons in one table.
 de_final/results/summary.csv	OUTPUT	current	de_final/run_de.R	One row per comparison: n, tests, significant count, design rank, covariates.
+de_final/meeting_followup.R	CODE	current		The three items raised at the 18 Oct check-in: recentring the bMIND fold changes, rank product across lineages, standard-deviation filter.
+de_final/followup_validate_centring.R	CODE	current		Permutation test of per-sample centring. Verdict: centring inflates the null (BPD granulocytes 95th pct 34.5 from scrambled labels). Do not report centred counts.
+de_final/followup_offset_covariate.R	CODE	current		The principled alternative to centring: the per-sample offset as a design-matrix column. Halves centring's inflation (34.5 -> 19.1) but does not remove it.
+de_final/diag_null_tail.R	CODE	current		Why an occasional permutation returns >1000 of 2000 genes. Rules out rank deficiency, variance-prior blowup and conditioning; isolates it to 44% of genes having p<0.01 at once.
+de_final/diag_null_mechanism.R	CODE	current		Proves the cause is gene-gene dependence: one sample axis explains 71.4% of variance in the bMIND granulocyte estimates and any two genes correlate at 0.674. THE key limitation of the cell-type arm.
+de_final/results/diag_null_mechanism.csv	OUTPUT	current	de_final/diag_null_mechanism.R	Variance explained by the leading sample axis, mean pairwise gene correlation, and null behaviour, per lineage.
+de_final/sdfilter_200.R	CODE	current		Variance filter cut to ~200 genes, all four analyses, with 1000-permutation nulls. Verdict: valid but destroys signal (WB lithium 1426 -> 10).
+de_final/sdfilter_bestcut.R	CODE	current		Selection-aware null (max over 7 cutoffs) for the best variance cutoff. The 5 bipolar whole-blood genes survive at p = 0.015.
+de_final/sdfilter_leakage.R	CODE	current		First composition test of the variance-filter hits, adjusting for the 5 lineage fractions. Too coarse -- superseded by sdfilter_leakage2.R.
+de_final/sdfilter_leakage2.R	CODE	current		The sharper test: all 22 fractions, plus formal LM22-marker enrichment. Top-200 SD sets are 2.3-4.6x enriched for signature genes.
+de_final/bestcut5_composition.R	CODE	current		TMTC1/HDC/ALOX15/CPA3/GATA2 against composition. Resting mast cells differ (2.36% vs 2.13%, p = 0.039); TMTC1 and ALOX15 are not explained by it.
+de_final/meanfilter.R	CODE	current		Mean-expression vs variance filtering across 9 cutoffs and 12 analyses. MEAN concentrates true positives (1.81x), SD does not (1.05x).
+de_final/meanfilter_validate.R	CODE	current		Selection-aware nulls across the whole 18-cell filter grid. Four cells survive; none is a transcriptional finding.
+de_final/meanfilter_bpd30.R	CODE	current		The 30 bipolar whole-blood genes from the mean filter. All 30 down, 0 of 30 survive composition adjustment -- one composition effect counted thirty times.
+de_final/ct_bpd_survivors.R	CODE	current		Composition test for the surviving cell-type results. T cells: 0 of 154 survive. B cells: 83 of 86 survive but are 79% snoRNA/ribosomal class.
+de_final/bcell86_technical.R	CODE	current		Are the 86 B-cell genes RNA quality? RIN is ruled out; the decisive objection is that the B-cell detection floor is 26.11 log2FC.
+de_final/results/sdfilter200_*	OUTPUT	current	de_final/sdfilter_200.R	Sweep, per-cell validation, axis-loading diagnostic, gene lists and leakage tests for the 200-gene variance filter.
+de_final/results/sdfilter_bestcut_*	OUTPUT	current	de_final/sdfilter_bestcut.R	Selection-aware null and the 5 bipolar genes with leave-one-out stability.
+de_final/results/meanfilter_*	OUTPUT	current	de_final/meanfilter.R	Discovery curves, independence diagnostics, selection-aware nulls and the 30-gene bipolar set.
+de_final/results/ct_bpd_survivors.csv	OUTPUT	current	de_final/ct_bpd_survivors.R	LM22 enrichment, direction and composition survival for the surviving cell-type results.
+de_final/results/bcell86_technical.csv	OUTPUT	current	de_final/bcell86_technical.R	Gene class, RIN correlation and RIN-spline survival for the 86 B-cell genes.
+de_final/results/followup_A_*	OUTPUT	current	de_final/meeting_followup.R	Recentring: medians, direction, counts under four treatments; plus the permutation validation of centring.
+de_final/results/followup_B_*	OUTPUT	current	de_final/meeting_followup.R	Rank product across the five lineages, per contrast. No permutation null yet -- descriptive only.
+de_final/results/followup_C_*	OUTPUT	current	de_final/meeting_followup.R	Standard-deviation filter sweep. Measured on centred data; recommendation is not to adopt it.
+de_final/results/followup_D_*	OUTPUT	current	de_final/followup_offset_covariate.R	Offset-as-covariate counts and the matching permutation null.
+de_final/collect_gene_lists.R	CODE	current		Pulls every significant gene from every analysis into results/genelists/, named and ordered.
+de_final/results/genelists/**	OUTPUT	current	de_final/collect_gene_lists.R	The named gene lists: all 1426 lithium whole-blood genes, the 125 Holm set, the 894 filter-robust set, the 161 cell-type pairs, rank-product top 200.
+de_final/build_master_doc.py	CODE	current		Generates master_DE_document.html from results/ at build time, so the write-up cannot drift from the analysis. Re-run after any analysis change.
+de_final/master_DE_document.html	DOC	current	de_final/build_master_doc.py	THE MASTER WRITE-UP. Everything done for the DE arm: overview, all gene lists, rankings, the meeting follow-ups, power, limitations. Also published as a Google Doc.
+de_final/power_analysis.R	CODE	current		Analytical power for the whole-blood bipolar contrast. Power to detect a lithium-sized effect = 0.90.
+de_final/power_celltype_BPD.R	CODE	current		Spike-in power for the bipolar cell-type contrast, all five lineages. Floors 0.56/0.69/0.77/2.03/16.96; bulk-equivalents all 0.17-0.25, i.e. the whole-blood floor divided by lineage fraction.
+de_final/results/power_celltype_BPD*.csv	OUTPUT	current	de_final/power_celltype_BPD.R	Per-lineage spike-in power curves and the 80%-power detection floors.
+de_final/rankproduct_null.R	CODE	current		Permutation null for the cross-lineage ranking. Scrambled labels give rho 0.62-0.68 vs observed 0.73-0.78: most of the agreement is shared structure.
+de_final/results/rankproduct_null.csv	OUTPUT	current	de_final/rankproduct_null.R	16 statistics (4 x 2 rankings x 2 contrasts) against 100 permutations. 5 nominally exceed, all lithium; none survives BH over the 16.
 
 # de_v2 is demoted: it is the EVIDENCE for de_final's choices, not a parallel
 # set of results. Nothing in it is wrong; it is simply not what gets reported.
@@ -212,3 +246,31 @@ network/00_load.R	CODE	current		Canonical loader for the network arm. Rebuilds e
 network/cache/project.rds	CACHE	current	network/00_load.R	Gitignored scratch cache of load_project(). Rebuilt in ~40 s; never committed.
 IMAC_README.md	DOC	current		Orientation for the unattended network-analysis run on a separate machine: data access, directory map, what is deliberately absent and how to regenerate it, verified facts, known traps, and the escalation procedure when something cannot be found.
 network/MASTER_PROMPT.md	DOC	current		Standing instructions for the unattended multi-day network-analysis run: the phase-0 approval gate, the queue/driver/cron machinery that survives crashes and usage limits, the catalogue of analyses to work through, and the required output format.
+
+# added 2026-10-18 after the weekly check-in
+mediation/DIVERSITY_RESEARCH.md	DOC	current		RESEARCH ONLY, nothing run. How to test whether lithium changes alpha and beta diversity of the blood transcriptome (and of pathways), and whether that is mediated by cell mix. Defines the exact tests, the dataset-specific pitfalls found by checking, the packages that would need approval, and open questions for Prof. Ay.
+
+# added 2026-10-18: circularity sensitivity, diversity analysis, master document
+mediation/MEDIATION_MASTER.md	DOC	current	scripts/15_master_doc.R	THE MASTER DOCUMENT for the whole mediation arm: brief overview of everything at the top, then every analysis in detail, then every flagged gene by name. Generated from saved results only, so it cannot drift from what ran.
+mediation/MEDIATION_MASTER.html	DOC	current	scripts/15_master_doc.R	The master document as plain HTML for Google Docs: open in a browser, select all, copy, paste. Headings, tables and bold survive; same source as the .md.
+mediation/scripts/06b_calibration_proposal.R	CODE	current		Regression calibration on the PROPOSAL tree, with reliability measured for its five balances. Closes a gap where the lineage-tree figure had been quoted for both.
+mediation/scripts/09_ztest_pm.R	CODE	current		z-test of the observed median proportion mediated against its permutation null. z = 0.03: PM is indistinguishable from noise.
+mediation/scripts/10_circularity.R	CODE	current		CIRCULARITY SENSITIVITY: mediation on the 350 expressed LM22 genes, the 12,018 others and all 12,368, from ONE common fit so only the gene set differs. Also the full accounting of all 547 signature genes.
+mediation/scripts/10b_circularity_resample.R	CODE	current		Bootstrap (B=1000) and permutation (B=300) for the circularity sets, with paired intervals for the differences between sets.
+mediation/scripts/11_diversity_prep.R	CODE	current		Builds every diversity quantity once: gene universes from GENCODE biotypes, Shannon/Hill numbers, CLR matrices, Hallmark/KEGG pathway abundances, cell-mix diversity, and the within/between-lineage Shannon decomposition.
+mediation/scripts/12_diversity_alpha.R	CODE	current		ALPHA DIVERSITY: does lithium change transcriptome diversity, and is it mediated by cell mix? Plus the decomposition, cell-mix diversity, and bipolar vs control (exploratory).
+mediation/scripts/13_diversity_beta.R	CODE	current		BETA DIVERSITY: PERMANOVA, PERMDISP, partial dbRDA, variation partitioning and joint significance on Aitchison, Jensen-Shannon, Bray-Curtis and pathway distances.
+mediation/scripts/14_gene_lists.R	CODE	current		Places every gene in a defined category (TOTAL, DIRECT, VIA_MIX, UNRESOLVED, OPPOSING, INTERACTION) with a plain-language meaning.
+mediation/scripts/15_master_doc.R	CODE	current		Generates MEDIATION_MASTER.md and .html from saved results.
+mediation/scripts/doc_render.R	CODE	current		A tiny document model rendered to Markdown and to Google-Docs-friendly HTML from one source.
+mediation/data/diversity_input.rds	CACHE	current	scripts/11_diversity_prep.R	All per-sample diversity values, CLR matrices and pathway CLR matrices for 474 subjects.
+mediation/data/genesets_msigdb_2026.1.Hs.rds	CACHE	current	scripts/11_diversity_prep.R	FROZEN copy of the MSigDB 2026.1.Hs Hallmark and KEGG-legacy gene sets used, so a future msigdbr update cannot change the analysis.
+mediation/data/gencode_v19_gene_biotypes.tsv	CACHE	current	scripts/11_diversity_prep.R	Gene biotype for all 57,820 GENCODE v19 genes, extracted from the annotation on disk. Used to restrict diversity to protein-coding genes.
+mediation/data/med_input_proposal.rds	CACHE	current	scripts/01b_prep_proposal.R	Proposal mediator dataset: the 6-part / 5-balance tree.
+mediation/results/circularity/**	OUTPUT	current	scripts/10_circularity.R	Circularity sensitivity results: per-set summaries, per-gene effects from the common fit, LM22 accounting, PM intervals and paired differences, normalisation-basis check.
+mediation/results/diversity/**	OUTPUT	current	scripts/11-13	Diversity results: per-sample values, alpha and beta tables, decomposition, cell-mix diversity, principal-axis mediation.
+mediation/results/genes/**	OUTPUT	current	scripts/14_gene_lists.R	Every gene with its category and statistics, both trees (CSV), category counts, and the LM22 marker table.
+mediation/results/balance_reliability_proposal.csv	OUTPUT	current	scripts/06b_calibration_proposal.R	ICC per balance for the proposal's five balances, vs Krebs' deposited fractions.
+mediation/DIVERSITY_RESEARCH.md	DOC	current		The diversity research with sources and verification marks; section 9 records how each open question was decided.
+mediation/RESULTS.md	DOC	current	scripts/08_report.R	The ORIGINAL primary-analysis report (still accurate). SUPERSEDED as the complete record by MEDIATION_MASTER.md, which adds the circularity and diversity analyses and every gene list.
+mediation/DIVERSITY_SUMMARY.html	DOC	current		One-page summary of the alpha and beta diversity analysis, formatted to paste into Google Docs (open in a browser, select all, copy, paste). Numbers match MEDIATION_MASTER.md section 12.
