@@ -51,7 +51,7 @@ DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
 MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L        # revised from spec 100 (METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
-NOLITH_PERMS   <- 500L
+NOLITH_PERMS   <- 50L        # reduced 500->50: setup cost scales with nPerms in WGCNA 1.74; see METHODS.md 2026-10-26
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 24000L
 CACHE_KEY      <- paste("control_all_voom_bicor_signed",

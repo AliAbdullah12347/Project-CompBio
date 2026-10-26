@@ -1,8 +1,8 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-26T14:30Z
+**Updated:** 2026-10-26T19:35Z
 **Runs completed:** 7 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009).
-**Running:** gene-027 (started 14:15Z, LM22 circularity check, cap 7200s; will be PARTIAL).
+**Running:** gene-027 (attempt 2; 50 nolith perms, 18000s cap; started 19:20Z; expected DONE ~23:32Z).
 **Pending:** inp-021 (technical-only residualisation) next after gene-027.
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 31 — see `RANKING.md`.
 

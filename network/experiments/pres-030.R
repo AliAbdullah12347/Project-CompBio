@@ -41,7 +41,7 @@ NET_TYPE       <- "signed"
 COR_FNC        <- "bicor"
 DRAWS          <- 20L
 PERMS_PER_DRAW <- 50L
-NOLITH_PERMS   <- 500L
+NOLITH_PERMS   <- 50L        # reduced 500->50: setup cost scales with nPerms in WGCNA 1.74; see METHODS.md 2026-10-26
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 30000L   # offset from base-001
 

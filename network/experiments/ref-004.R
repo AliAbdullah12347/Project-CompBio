@@ -58,7 +58,7 @@ MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L        # revised from spec 100 (METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
 CTRL_PERMS     <- 500L       # control: one fixed run, many perms
-NOLITH_PERMS   <- 500L       # bp_nolith: one fixed run, many perms
+NOLITH_PERMS   <- 50L        # reduced 500->50: setup cost scales with nPerms in WGCNA 1.74; see METHODS.md 2026-10-26       # bp_nolith: one fixed run, many perms
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 4000L
 # bp_lith fixed subsample seed for consensus modules input

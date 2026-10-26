@@ -55,7 +55,7 @@ DEEP_SPLIT     <- 4L        # deepSplit=4 per mod-000-resolution (2026-10-14)
 MERGE_THRESH   <- 0.0       # no merge; 0.25 cascades 33 modules to 3
 DRAWS          <- 20L        # revised from spec 100 (see METHODS.md 2026-10-09)
 PERMS_PER_DRAW <- 50L
-NOLITH_PERMS   <- 500L       # bp_nolith: one run, many perms (no subsampling variance)
+NOLITH_PERMS   <- 50L        # reduced 500->50: setup cost scales with nPerms in WGCNA 1.74; see METHODS.md 2026-10-26       # bp_nolith: one run, many perms (no subsampling variance)
 SUBSAMPLE_N    <- 74L
 SEED_BASE      <- 20261009L + 3000L   # offset to avoid seed collision with base-001/ref-002
 CACHE_KEY      <- paste("bp_lith152_all_bicor_signed_p12",

@@ -2004,3 +2004,17 @@ nolith is now on the same footing.
 **IMPORTANT for future rows using large nPermutations:** pre-test the wall cost with a
 1-perm dummy call before committing to 500+. On this hardware, 50 perms per call is the
 safe limit for a ≤3h step.
+
+### All pending nolith-using experiments updated simultaneously
+
+To prevent the same cap failure from occurring in subsequent experiments, NOLITH_PERMS was
+reduced 500→50 in all 25 PENDING experiment scripts at the same session (2026-10-26). The
+DONE experiments (base-001, base-002-ceil, inp-022, inp-023) are unchanged — their nolith
+checkpoints already exist.
+
+Experiments updated: corr-005, corr-006, gene-025, gene-026, gene-027 (already done above),
+gene-028, gene-029, inp-021, inp-024, mod-013–mod-020, net-007, net-008, pow-010–pow-012,
+pres-030, ref-002, ref-003, ref-004.
+
+Scientific note: the nolith Zsummary (the point estimate) is unchanged by nPerm count. Only
+the variance around it changes. 50 perms matches the lith-draw precision throughout the arm.
