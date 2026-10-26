@@ -1852,3 +1852,45 @@ scale-free criterion (n>40 → use 12).
 
 Finding #27 remains retracted (it was based on pre-offset-removal data). pow-009's finding
 is a new entry, not a reinstatement of #27.
+
+---
+
+## 2026-10-26T16:30Z  gene-027 cap raised 7200 → 10800s
+
+### Reason
+
+gene-027's 7200s cap was hit during the bp_nolith 500-perm `modulePreservation()` step. The
+observed preservation values calculation was not yet complete when the cap expired. Root cause:
+`modulePreservation()` always rebuilds both the reference and test TOMs internally from the
+expression matrices — it does not load the cached module assignments' TOM. Measured wall time
+for this step on non-LM22 genes (12018 genes, n=234 reference, n=74 test):
+
+- Cache load + refExpr / lithAll preparation: ~720s
+- Reference TOM inside `modulePreservation()` (n=234, 12018 genes): ~2800s
+- Test TOM inside `modulePreservation()` (n=74, 12018 genes): ~790s
+- Observed statistics computation: ~100s
+- 500 permutations at ~5.2s each: ~2600s
+- Total nolith step: ~6290–6480s (measured from run log: nolith started ~14:27Z, cap hit 16:15Z)
+
+Setup (720s) + nolith (~6480s) = 7200s — the old cap was exactly tight and the
+permutations were cut off mid-run. The nolith_preservation.rds checkpoint was never written.
+
+### Change
+
+cap_sec for gene-027 in `network/RUNLOG/queue.tsv` changed from 7200 to 10800. The SFT
+scan (sft_r2_curve.csv), gene exclusion summary, and reference module sizes are already
+checkpointed and will be skipped on resume. With 10800s: ~720s setup + ~6480s nolith +
+~3600s remaining for lith draws (~13 draws × 262s each). First session will write nolith
+checkpoint + up to 13 lith draw checkpoints; second session completes the remaining draws.
+
+### SFT curve for non-LM22 genes (already checkpointed)
+
+| power | R² | 
+|--:|--:|
+| 12 | 0.677 |
+| 17 (max) | 0.766 |
+| 20 | 0.770 |
+
+powerEstimate = NA (honest failure, same as full-gene-set control in pow-009: max R²=0.770).
+Removing 350 LM22 genes from 12368 does not change the scale-free topology failure.
+Power 12 remains the correct choice (WGCNA FAQ, signed network, n>40).
