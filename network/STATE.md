@@ -4,33 +4,32 @@
 
 ## Where the science stands
 
-**The arm's central question is answered provisionally.** Three reinforcing lines:
+**The arm's central question is provisionally answered by the analytic runs; the ceiling calibration (base-002-ceil) is RUNNING to verify it.** Current picture:
 
 1. **The lithium network dimension is 73% cell composition** (finding #2, E=24/25). This
    replicates across all 10 tested decompositions (finding #7) and cannot be explained by
    circularity in the composition estimator (finding #10). It never survives composition adjustment.
 
-2. **inp-022 (DONE 2026-10-24): ILR residualisation rescues bp_lith module preservation.**
-   At matched instrument (50 perms/draw, 20 draws), gold Z rises from 4.06 (base-001 raw)
-   to 15.55 after removing ILR b1–b4 (+284%). 41/44 (93%) modules beat gold mean Z; gold
-   ranked last by medianRank in all 20 draws. The reference module count drops from 71 to
-   44 — ~27 raw modules were composition artifacts. Finding:
-   `findings/2026-10-24-inp022-composition-rescue.md` (**E=12/25 after correction** — the
-   cross-arm Zsummary comparison is invalid due to different reference networks; within-arm
-   gold comparison stands; see correction note in the finding file).
+2. **base-001 (DONE 2026-10-26): 71-module reference, corrected test matrices.**
+   Gold Z nolith=14.01 (72/72 last, 65/71 above). Gold Z lith mean=21.74 (sd 7.05;
+   72/72 last in all 20 draws; 17/71 beat gold in all 20 draws). See
+   `findings/2026-10-26-base001-verified-clean.md` (E=23/25).
 
-3. **inp-023 (PARTIAL, 2026-10-25 session 7): technical + ILR residualisation, 7/20 draws**
-   done. Gold ranks 43/43 (last) in all 7 draws; mean 92.5% of modules beat gold (sd Z=6.84).
-   Consistent with inp-022 within-arm pattern. Draw 8 running; cap expires ~22:16 UTC.
+3. **inp-022 (DONE 2026-10-24): ILR residualisation within-arm gold always last.**
+   Gold Z lith=15.55 (sd 8.13); 41/44 (93%) modules above gold; gold ranked last in
+   all 20 draws. 44-module reference (27 raw modules were composition artifacts).
+   `findings/2026-10-24-inp022-composition-rescue.md` (E=12/25 — cross-arm comparison
+   invalid; within-arm gold comparison stands).
 
-4. **base-002-ceil anomaly (2026-10-25 — EXPLAINED, NOT BIOLOGY):** the anomaly was
-   caused by a code bug: `base-002-ceil.R` used raw expression matrices for both reference
-   and test, bypassing `expr_for()`. The "dense raw-graph signature" at n=160 vs n=74
-   explains cor(size,Z) flipping from +0.911 to -0.036. Script fixed in commit 1177d8c;
-   experiment reset to PENDING. See finding file and METHODS.md for full correction.
+4. **inp-023 (PARTIAL, PENDING): technical + ILR residualisation, 7/20 draws.**
+   Gold ranks 43/43 (last) in all 7 draws; mean 92.5% of modules beat gold (sd Z=6.84).
+   Consistent with inp-022 within-arm pattern. Will resume after base-002-ceil.
 
-**Read `RANKING.md` first.** Rebuilt from `findings/`; 27 findings as of 2026-10-25 (including
-partial inp-023 finding and corrected ceiling anomaly finding).
+5. **base-002-ceil (RUNNING, attempt 5):** split-half ceiling with corrected matrices.
+   67-module reference (n=160 controls). Ceiling ctrl: gold Z=35.78 (68/68 last, 15/67
+   above gold). Nolith 500 perms running now; lith draws after that. Cap 06:17Z UTC.
+
+**Read `RANKING.md` first.** Rebuilt from findings/; 29 findings as of 2026-10-26.
 
 ## Infrastructure
 
@@ -46,8 +45,9 @@ partial inp-023 finding and corrected ceiling anomaly finding).
 
 DONE (4): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader).
-RUNNING (1): **base-002-ceil** (attempt 5, started 2026-10-26T03:17Z, cap expires 06:17Z;
-  ceiling ctrl checkpoint done from attempt 4; nolith 500 perms + lith draws in progress).
+RUNNING (1): **base-002-ceil** (attempt 4 total / attempt 2 post-reset, started 2026-10-26T03:17Z,
+  cap expires 06:17Z; ceiling ctrl checkpoint done from prior attempt; nolith 500 perms in progress
+  at 04:10Z — est. done ~04:40Z; then ~11 lith draws; likely PARTIAL before cap).
 PENDING (46): **inp-023** first (7/20 lith draws checkpointed), then pow-009, gene-027,
   inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
@@ -58,7 +58,7 @@ Key caches available:
 - `ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm` (base-001) — EXISTS ✓
 - `ref_control_all_bicor_signed_p12_composition_ilr_b1b4_ds4_mch00_offsetrm` (inp-022) — EXISTS ✓
 - `ref_control_all_bicor_signed_p12_technical_ilr_age_sex_rin_b1b4_ds4_mch00_offsetrm` (inp-023) — EXISTS ✓
-- ctrl160 reference (base-002-ceil) — gitignored (will rebuild in ~27 min when needed)
+- ctrl160 reference (base-002-ceil) — EXISTS in cache ✓ (loaded at 03:17Z start; 67 modules)
 - bp_nolith reference (ref-002) — NOT YET BUILT
 - bp_lith reference (ref-003) — NOT YET BUILT
 - technical-only (inp-021): needs age+sex+rin+plate+seqpc1-3 residualisation — NOT YET BUILT
@@ -69,10 +69,12 @@ All 45 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutH
 
 ## Parameters every downstream row should use
 
-`power = 12`, `deepSplit = 4`, `mergeCutHeight = 0` → 33 modules, largest 11.68% of genes.
-**Never `mergeCutHeight = 0.25`**: it collapses 33 modules to 3 with one holding 97.5% of
-the transcriptome, because the median eigengene pair correlates 0.739 against a 0.75
-threshold.
+`power = 12`, `deepSplit = 4`, `mergeCutHeight = 0`. With offset-removed expression from
+`expr_for()` this yields **71 modules** in the n=234 control reference (base-001 verified),
+NOT 33. The earlier "33 modules" came from mod-000-resolution which used the pre-offset-removal
+expression. Never use 33 as the expected module count downstream — it is from a superseded analysis.
+**Never `mergeCutHeight = 0.25`**: it collapses the structure with one module holding 97.5%
+because median eigengene-pair correlation 0.739 is just below the 0.75 merge threshold.
 
 Quote every Zsummary against WGCNA's `gold` random-gene module, never against Langfelder's
 published bands — gold scores 20.26 here, so the bands place noise in "strongly preserved".
@@ -129,10 +131,12 @@ After base-002-ceil finishes (cap 2026-10-26T06:17Z):
      - Score fully: expected E=5 R=5 B=5 D=5 C=4 = 24/25
      - Update inp-022 finding: R score 4→5, total 12→13/25 (robustness confirmed by replication)
      - IMPORTANT: do NOT conflate with pre-correction 23/25
+     - TIMING NOTE: inp-023 draws take ~12 min each (same reference size n=234 as base-001),
+       so 13 remaining draws ≈ 156 min ≈ 2.6 h, fitting comfortably in one 3h cap
 3. **Rebuild RANKING.md** via `Rscript network/build_index.R`
 4. **Update RESULTS.md** with completed run summaries
 5. **Commit + push**
-6. Driver continues: pow-009 (SFT curves, 15 min) → gene-027 (LM22, ~2.8h)
+6. Driver continues: pow-009 (SFT curves, ~15 min) → gene-027 (LM22, ~2.8h)
 
 NOTE: base-002-ceil anomaly is EXPLAINED (code bug, not biology). The pres-030 follow-up
 (density vs connectivity) is still valid for the re-run results when base-002-ceil
@@ -150,14 +154,15 @@ completes; do not run pres-030 against the archived contaminated results.
 
 ## Session 8 notes (2026-10-26)
 
-- base-002-ceil attempt 5 started 03:17Z; loaded 67-module cache, ceiling checkpoint
-  skipped (done attempt 4); nolith 500 perms in progress at 03:17Z
-- Expected nolith finish ~04:00-04:05Z; then ~10 lith draws before cap at 06:17Z
-- RESULTS.md, STATE.md, RANKING.md updated 04:30Z with corrected base-001 numbers
-- base-001 nolith: gold Z=14.01, rank 72/72, **65/71** above gold (RESULTS.md previously
-  wrong at "63 of 69")
+- base-002-ceil attempt 4 started 03:17Z; loaded 67-module cache (n=160 ref), ceiling
+  checkpoint skipped (done in prior attempt); nolith 500 perms in progress
+- Nolith timing corrected: per-perm time at n_ref=160 is ~9.9 s, so 500 perms ≈ 82 min
+  (not 29 min as estimated earlier with wrong n_ref). Nolith expected done ~04:40Z.
+  Then ~11 lith draws (50 perms each × ~8 min = ~88 min) → likely PARTIAL at 06:17Z cap.
+- RESULTS.md and STATE.md updated at 04:10Z with corrected base-001 numbers
+- base-001 nolith: gold Z=14.01, rank 72/72, **65/71** above gold (RESULTS.md fixed)
 - base-001 lith (20 draws): gold Z mean=21.74 sd=7.05, always last (20/20), 17/71 beat
-  gold in all 20 draws; 49/71 beat gold per draw on average
+  gold in all 20 draws; 49/71 beat gold per draw on average (68.9%)
 
 ## inp-023 reference network (pre-computed, for finding reference)
 
