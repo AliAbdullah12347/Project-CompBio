@@ -33,18 +33,18 @@ not a substantive difference. medianRank is perm-independent and is the primary 
 
 ## lith draws result
 
-**Preliminary (2/20 draws complete, as of 19:55Z):** gold Z mean=28.29 (sd=2.64, range
-[26.42, 30.16]), medianRank=66/66 (last) in BOTH draws. 32/65 modules beat gold in both
-draws, 22/65 in neither. Gold Z is higher than base-001 lith mean (21.74): this is expected
+**Preliminary (3/20 draws complete, as of 20:07Z):** gold last in ALL 3 draws (Z=30.16,
+26.42, 21.89; mean=26.16). Gold Z is higher than base-001 lith mean (21.74): expected
 with 65 modules (gold has fewer competitors), not a methodological issue.
 
-[FILL remaining statistics after all 20 draws complete — expected ~23:34Z.
-Run: `Rscript network/scripts/analyze_gene027.R` when `lith_draw_020.rds` exists.]
+[FILL ALL statistics below after all 20 draws complete (~23:31Z).
+Run: `Rscript network/scripts/analyze_gene027.R` when `lith_draw_020.rds` exists.
+Replace this entire paragraph and table with final results.]
 
 | | gene-027 (non-LM22, 65 modules, 50 perms/draw) | base-001 (all genes, 71 modules, 50 perms/draw) |
 |:--|:--|:--|
-| gold Zsummary (mean, sd) | [FILL — 1 draw: 30.16] | 21.74 (sd 7.05) |
-| gold medianRank | [FILL: 1/1 draws = last of 66] | 72 of 72, all 20 draws |
+| gold Zsummary (mean, sd) | [FILL] of 20 draws | 21.74 (sd 7.05) |
+| gold medianRank | [FILL — 3/3 draws = 66 of 66 (last)] | 72 of 72, all 20 draws |
 | modules beating gold in all 20 | [FILL] of 65 | 17 of 71 |
 | modules beating gold in 0 | [FILL] of 65 | 4 of 71 |
 
@@ -118,15 +118,17 @@ the modules themselves changed.
 
 ## Connection to prior findings
 
-- **Finding #15** (darkred/erythrocyte): that module has near-zero LM22 correlation because
-  erythrocytes are not in LM22. Preservation of that module is unchanged by LM22 exclusion.
-- **Finding #2** (73% composition): the module disruption signal was 73% explained by cell
-  composition. gene-027 checks whether that signal came from the LM22 genes themselves.
-  It did not.
-- **PCA analysis #003** (2026-10-14): dropping 350 LM22 Ensembl IDs moves PC2
-  association p-value and composition share by <1%. Module network preservation now
-  confirms the same conclusion at the network level.
+- **[Darkred is an erythrocyte module](2026-10-14-darkred-is-erythrocyte-module.md)**: that
+  module has near-zero LM22 correlation because erythrocytes are not in LM22. Its preservation
+  is unchanged by LM22 exclusion.
+- **[73% composition](2026-10-14-lithium-dimension-is-composition.md)**: the module disruption
+  signal was 73% explained by cell composition. gene-027 checks whether that signal came from
+  the LM22 genes themselves. It did not.
+- **[PCA circularity check](2026-10-14-lm22-circularity-passes.md)** (analysis 003, 2026-10-14):
+  dropping 350 LM22 Ensembl IDs moves PC2 association p-value and composition share by <1%.
+  Module network preservation now confirms the same conclusion at the network level.
 
 <!-- SCORES PENDING LITH COMPLETION — fill with actual values once all 20 draws done -->
-<!-- Expected: E=5 R=4 B=3 D=5 C=4 → total 21/25; Interest=6/10 -->
+<!-- Expected: E=5 R=4 B=3 D=5 C=4 → total 21/25; Interest=6/10; Δ=-2.4 -->
+<!-- Δ = (6/10 - 21/25) × 10 = (0.60 - 0.84) × 10 = -2.4 -->
 <!-- Scores will be inserted HERE and the Evidence/Interest header lines filled in -->
