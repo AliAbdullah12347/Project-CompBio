@@ -111,3 +111,4 @@
 "note","2026-10-18-logout-kills-eduroam.md","The real cause of the 3-day outage: logging out disconnects eduroam","","","","2026-10-18","network/notes/2026-10-18-logout-kills-eduroam.md","",""
 "note","2026-10-18-three-days-lost-to-wifi.md","Three days lost: every wake started a session into a dead network","","","","2026-10-18","network/notes/2026-10-18-three-days-lost-to-wifi.md","",""
 "note","2026-10-25-reference-build-verification.md","Reference builds now verify the matrix, not the label","","","","2026-10-25","network/notes/2026-10-25-reference-build-verification.md","",""
+"note","2026-10-26-how-to-read-the-preservation-rows.md","How to read the 28 preservation rows: the perm split is by design, the comparison was not","","","","2026-10-26","network/notes/2026-10-26-how-to-read-the-preservation-rows.md","",""
