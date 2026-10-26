@@ -505,3 +505,27 @@ firing on its own and the launchd configuration needs a human.
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-26T03:17:21Z  base-002-ceil  hit 10800s cap; partial results kept; +4 new checkpoints (attempt refunded)
+```
+       Calculating new MEs...
+[2026-10-25T20:30:21] reference: 67 modules
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2432801 130.0    4385325 234.3         NA   4385325  234.3
+Vcells 16070876 122.7   62815239 479.3      16384 480942441 3669.3
+[2026-10-25T20:30:21] CEILING: 74 control preservation (500 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-25T21:57:51] ceiling done: Zsummary range [7.91, 65.08]
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2456176 131.2    4385325 234.3         NA   4385325  234.3
+Vcells 18113526 138.2   65622723 500.7      16384 480942441 3669.3
+[2026-10-25T21:57:51] bp_nolith preservation (500 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+

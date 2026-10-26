@@ -141,3 +141,4 @@ Vcells 18113526 138.2   65622723 500.7      16384 480942441 3669.3
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
