@@ -11,3 +11,157 @@ load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.
      Fraction of slow calculations: 0.000000
     ..connectivity..
     ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....clustering..
+ ....detecting modules..
+ ....calculating module eigengenes..
+ ....checking kME in modules..
+     ..removing 244 genes from module 1 because their KME is too low.
+     ..removing 151 genes from module 2 because their KME is too low.
+     ..removing 171 genes from module 3 because their KME is too low.
+     ..removing 61 genes from module 4 because their KME is too low.
+     ..removing 14 genes from module 5 because their KME is too low.
+     ..removing 20 genes from module 6 because their KME is too low.
+     ..removing 122 genes from module 7 because their KME is too low.
+     ..removing 36 genes from module 8 because their KME is too low.
+     ..removing 25 genes from module 9 because their KME is too low.
+     ..removing 1 genes from module 10 because their KME is too low.
+     ..removing 18 genes from module 11 because their KME is too low.
+     ..removing 31 genes from module 12 because their KME is too low.
+     ..removing 11 genes from module 15 because their KME is too low.
+     ..removing 11 genes from module 16 because their KME is too low.
+     ..removing 3 genes from module 17 because their KME is too low.
+     ..removing 1 genes from module 18 because their KME is too low.
+     ..removing 10 genes from module 19 because their KME is too low.
+     ..removing 2 genes from module 22 because their KME is too low.
+     ..removing 1 genes from module 34 because their KME is too low.
+  ..reassigning 79 genes from module 1 to modules with higher KME.
+  ..reassigning 52 genes from module 2 to modules with higher KME.
+  ..reassigning 100 genes from module 3 to modules with higher KME.
+  ..reassigning 50 genes from module 4 to modules with higher KME.
+  ..reassigning 52 genes from module 5 to modules with higher KME.
+  ..reassigning 24 genes from module 6 to modules with higher KME.
+  ..reassigning 102 genes from module 7 to modules with higher KME.
+  ..reassigning 17 genes from module 8 to modules with higher KME.
+  ..reassigning 22 genes from module 9 to modules with higher KME.
+  ..reassigning 19 genes from module 10 to modules with higher KME.
+  ..reassigning 25 genes from module 11 to modules with higher KME.
+  ..reassigning 28 genes from module 12 to modules with higher KME.
+  ..reassigning 22 genes from module 13 to modules with higher KME.
+  ..reassigning 68 genes from module 14 to modules with higher KME.
+  ..reassigning 9 genes from module 15 to modules with higher KME.
+  ..reassigning 27 genes from module 16 to modules with higher KME.
+  ..reassigning 45 genes from module 17 to modules with higher KME.
+  ..reassigning 11 genes from module 18 to modules with higher KME.
+  ..reassigning 24 genes from module 19 to modules with higher KME.
+  ..reassigning 6 genes from module 20 to modules with higher KME.
+  ..reassigning 5 genes from module 21 to modules with higher KME.
+  ..reassigning 15 genes from module 22 to modules with higher KME.
+  ..reassigning 4 genes from module 24 to modules with higher KME.
+  ..reassigning 2 genes from module 25 to modules with higher KME.
+  ..reassigning 4 genes from module 26 to modules with higher KME.
+  ..reassigning 7 genes from module 27 to modules with higher KME.
+  ..reassigning 4 genes from module 28 to modules with higher KME.
+  ..reassigning 8 genes from module 29 to modules with higher KME.
+  ..reassigning 2 genes from module 30 to modules with higher KME.
+  ..reassigning 5 genes from module 31 to modules with higher KME.
+  ..reassigning 3 genes from module 32 to modules with higher KME.
+  ..reassigning 7 genes from module 33 to modules with higher KME.
+  ..reassigning 3 genes from module 34 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-10-26T05:26:42] 42 modules detected (excluding grey)
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2414821 129.0    4385421 234.3         NA   4385421  234.3
+Vcells 16032590 122.4   63232392 482.5      16384 483640382 3689.9
+[2026-10-26T05:26:43] bp_nolith checkpoint exists, skipping
+[2026-10-26T05:26:43] draw 1 exists, skipping
+[2026-10-26T05:26:43] draw 2 exists, skipping
+[2026-10-26T05:26:43] draw 3 exists, skipping
+[2026-10-26T05:26:43] draw 4 exists, skipping
+[2026-10-26T05:26:43] draw 5 exists, skipping
+[2026-10-26T05:26:43] draw 6 exists, skipping
+[2026-10-26T05:26:43] draw 7 exists, skipping
+[2026-10-26T05:26:43] draw 8/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T05:38:47] draw 8 done: Zsummary [6.53, 71.13]
+[2026-10-26T05:38:47] draw 9/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T05:50:46] draw 9 done: Zsummary [7.46, 96.92]
+[2026-10-26T05:50:47] draw 10/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T06:03:06] draw 10 done: Zsummary [6.75, 72.83]
+[2026-10-26T06:03:06] draw 11/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T06:16:05] draw 11 done: Zsummary [7.1, 79.84]
+[2026-10-26T06:16:05] draw 12/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T06:28:55] draw 12 done: Zsummary [9.13, 92.78]
+[2026-10-26T06:28:55] draw 13/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T06:41:21] draw 13 done: Zsummary [9.3, 94.37]
+[2026-10-26T06:41:21] draw 14/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T06:53:21] draw 14 done: Zsummary [6.58, 79.12]
+[2026-10-26T06:53:21] draw 15/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T07:05:21] draw 15 done: Zsummary [8.75, 90.53]
+[2026-10-26T07:05:21] draw 16/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T07:17:22] draw 16 done: Zsummary [7.83, 84.75]
+[2026-10-26T07:17:22] draw 17/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T07:29:22] draw 17 done: Zsummary [7.4, 67.55]
+[2026-10-26T07:29:22] draw 18/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T07:41:29] draw 18 done: Zsummary [8.18, 78.47]
+[2026-10-26T07:41:29] draw 19/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T07:53:36] draw 19 done: Zsummary [9.02, 88.05]
+[2026-10-26T07:53:36] draw 20/20 ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T08:05:45] draw 20 done: Zsummary [6.98, 73.58]
+[2026-10-26T08:05:46] aggregating results ...
+[2026-10-26T08:05:46] Results written to network/runs/inp-023
+[2026-10-26T08:05:46] === inp-023 COMPLETE ===
