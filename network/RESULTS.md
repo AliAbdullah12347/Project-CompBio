@@ -9,12 +9,36 @@
 
 ## The answer so far
 
-**The arm's central question is answered (provisionally): module structure disruption in
-bp_lith is substantially driven by cell composition.** After residualising for ILR b1–b4,
-bp_lith modules achieve gold Z = 15.55 (vs. 14.01 bp_nolith — same reference, matched
-instrument), with 41/44 modules (93%) above gold by mean Z. Gold ranked last by medianRank
-in all 20 draws. The reference module count drops from 71 (raw) to 44 (residualised),
-indicating ~27 raw modules were composition-driven. See inp-022 finding.
+**The arm's central question is NOT yet answered.** An earlier version of this section
+claimed it was, on the strength of "gold Z = 15.55 (vs. 14.01 bp_nolith — same reference,
+matched instrument)". That comparison is invalid on three counts and is withdrawn:
+
+- **Not the same reference.** 15.55 comes from inp-022's 44-module
+  composition-residualised network; 14.01 from base-001's 71-module network. Two
+  different caches. WGCNA names modules by size rank within a run, so even identically
+  named modules are different gene sets.
+- **Not the same arm.** 15.55 is inp-022's *bp_lith*; 14.01 is base-001's *bp_nolith*.
+- **Not a matched instrument.** 50 perms per draw versus 500.
+
+inp-022's own bp_nolith gold is **30.46**, not 14.01 — which is the direct demonstration
+that Zsummary is set by the reference network, not just by the instrument.
+
+**What the completed runs do support, within each arm against its own gold:**
+
+| arm | reference | gold Zsummary | gold rank | modules above gold |
+|:--|:--|--:|:--|:--|
+| base-001 bp_nolith | 71-module | 14.01 | 72 of 72 (last) | 63 of 69 |
+| inp-022 bp_lith (20 draws) | 44-module residualised | 15.55 (sd 8.13) | last in all 20 | 41 of 44 |
+| inp-022 bp_nolith | 44-module residualised | 30.46 | 45 of 45 (last) | 22 of 44 |
+
+Real modules separate from random genes in every arm. That is a statement about the
+**decomposition being real**, not about lithium or composition. Note inp-022's gold sd of
+8.13 against base-001's 0.93: residualising for the ILR balances appears to destabilise
+the network, which is itself a result and bears on inp-023 and tob-045.
+
+To answer the central question, one reference must be scored against both test groups
+under one instrument. base-002-ceil was built to do that and is being re-run after the
+raw-matrix fix.
 
 **inp-023 (technical + ILR, 7/20 draws done):** Gold ranks last in all 7 draws; 92.5%
 of modules above gold. Replicates inp-022 pattern under stricter residualisation.

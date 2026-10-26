@@ -37,17 +37,17 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 21/25 · 9/10 | live | [Real modules do beat the random gene set — once the decomposition is real](findings/2026-10-18-modules-do-beat-gold.md) | 2026-10-18 |
 | 20/25 · 8/10 | live | [Darkred is an erythrocyte module: stable because RBC genes are absent from immune composition](findings/2026-10-14-darkred-is-erythrocyte-module.md) | 2026-10-14 |
 | 20/25 · 5/10 | live | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) | 2026-10-14 |
-| 20/25 · 7/10 | live | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | 2026-10-25 |
 | 19/25 · 7/10 | live | [PC2 is a lithium axis in the full cohort too, and the lithium DE signal is module-specific](findings/2026-10-14-pc2-lithium-axis-replicates-full-cohort.md) | 2026-10-14 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise drives PC2: the lithium-associated dimension is localised to one module](findings/2026-10-14-darkturquoise-drives-pc2.md) | 2026-10-14 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise group×composition interaction: the control-lith contrast survives proper slope correction](findings/2026-10-14-darkturquoise-interaction.md) | 2026-10-14 |
 | 18/25 · 6/10 | live | [No module eigengene associates with lithium — and the modules are not independent](findings/2026-10-14-module-trait-no-lithium-association.md) | 2026-10-14 |
-| 18/25 · 5/10 | live | [base-002-ceil: split-half ceiling calibrates n=74 noise floor](findings/2026-10-24-base-002-ceil-ceiling.md) | 2026-10-24 |
 | 17/25 · 8/10 | live | [Darkturquoise: control-lith contrast survives composition adjustment; nolith-lith does not](findings/2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md) | 2026-10-14 |
 | 16/25 · 8/10 | live | [BP disease tightens inter-module correlations: modules move more in lockstep](findings/2026-10-14-inter-module-correlations-tighten-in-bp.md) | 2026-10-14 |
 | 15/25 · 5/10 | live | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) | 2026-10-25 |
+| 14/25 · 5/10 | live | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | 2026-10-25 |
 | 12/25 · 5/10 | CORRECTED | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | 2026-10-24 |
 | 10/25 · 5/10 | CORRECTED | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | 2026-10-22 |
+| 8/25 · 3/10 | live | [base-002-ceil: split-half ceiling calibrates n=74 noise floor](findings/2026-10-24-base-002-ceil-ceiling.md) | 2026-10-24 |
 | 6/25 · 1/10 | live | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) | 2026-10-09 |
 | 6/25 · 4/10 | live | [No module reliably beats a random gene set (degenerate decomposition)](findings/2026-10-09-gold-baseline-no-module-beats-random.md) | 2026-10-09 |
 | 0/25 · 0/10 | RETRACTED | [The merge threshold is decisive: 33 modules vs 3](findings/2026-10-09-merge-threshold-decisive.md) | 2026-10-09 |
@@ -95,9 +95,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_test_contaminated_20261025T193947Z | live | 102 files |
-| base-001 | live | 62 files |
+| base-001 | live | 100 files |
 | inp-022 | live | 57 files |
-| inp-023 | live | 17 files |
+| inp-023 | live | 19 files |
 | mod-000-resolution | live | 15 files |
 
 ## Queue experiments (51)
@@ -110,7 +110,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 |:--|:--|:--|:--|
 | ann-041 | annot | PENDING | module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules |
 | ann-042 | annot | PENDING | module overlap with LM22 markers and cell-type DE results; Fisher exact, BH |
-| base-001 | baseline | PENDING | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
+| base-001 | baseline | RUNNING | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
 | base-002-ceil | baseline | PENDING | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
 | base-003-remerge | baseline | PENDING | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
 | bmind-046 | celltype | PENDING | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
@@ -130,7 +130,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | hub-037 | hub | PENDING | differential connectivity per gene between groups, same permutation null |
 | inp-021 | input | PENDING | ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (sp |
 | inp-022 | input | DONE | ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW |
-| inp-023 | input | RUNNING | ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (s |
+| inp-023 | input | PENDING | ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (s |
 | inp-024 | input | PENDING | ref=control;input=voom_weighted_from_counts;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | mod-000-resolution | moddetect | DONE | BLOCKING DIAGNOSTIC - revised. base-001's log shows cutreeDynamic found 18 MODULES, which mergeCloseModules at mergeCutH |
 | mod-013 | moddetect | PENDING | ref=control;deepSplit=0;minModuleSize=30;mergeCutHeight=0.25 |
