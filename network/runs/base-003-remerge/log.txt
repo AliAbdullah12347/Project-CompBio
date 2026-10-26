@@ -1,0 +1,49 @@
+[2026-10-25T20:17:14] === base-003-remerge starting ===
+[2026-10-25T20:17:14] Checking base-001 v2 completion ...
+[2026-10-25T20:17:14]   ref cache: TRUE
+[2026-10-25T20:17:14]   v2 marker: TRUE
+[2026-10-25T20:17:14]   nolith:    TRUE
+[2026-10-25T20:17:14]   lith draws done: 20/20
+[2026-10-25T20:17:14] base-001 v2 is complete. Reading results ...
+[2026-10-25T20:17:14] 
+--- bp_nolith Zsummary (500 perms, 33 modules, deepSplit=4 mch=0) ---
+[2026-10-25T20:17:14] gold Zsummary in bp_nolith = 14.01 (random gene set)
+       module Zsummary medianRank
+         cyan 75.31008         11
+ midnightblue 59.77560         21
+       yellow 58.63452         42
+       purple 58.59783         31
+        white 57.58942          3
+    turquoise 53.64123         62
+    lightcyan 53.39711         19
+          red 48.90077         50
+      darkred 48.54354         20
+         blue 48.08783         65
+[2026-10-25T20:17:14] 
+--- bp_lith Zsummary across 20 draws (top 10) ---
+[2026-10-25T20:17:14] gold mean across 20 draws = 21.74 (sd=7.05)
+       module Zsummary_mean Zsummary_sd medianRank_mean
+         cyan      79.93416   11.620098            6.80
+        white      61.13910    6.297322            2.30
+    turquoise      60.96892    5.498852           57.10
+   lightgreen      55.22744    5.632202           18.35
+       yellow      54.12140    5.229227           46.45
+ midnightblue      53.64227    7.515855           21.05
+    lightcyan      50.65216    7.851166           24.00
+      darkred      50.52811    5.062241           14.45
+       purple      49.80021    6.669895           36.95
+          red      49.63345    6.843373           45.30
+[2026-10-25T20:17:14] 
+--- Modules that beat gold: n_draws/20 ---
+       module n_draws_total n_beats_gold pct_beats
+         blue            20           20       100
+        brown            20           20       100
+       brown4            20           20       100
+         cyan            20           20       100
+     darkgrey            20           20       100
+      darkred            20           20       100
+  greenyellow            20           20       100
+    lightcyan            20           20       100
+   lightgreen            20           20       100
+ midnightblue            20           20       100
+[2026-10-25T20:17:14] === base-003-remerge COMPLETE ===
