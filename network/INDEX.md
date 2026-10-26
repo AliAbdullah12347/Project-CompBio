@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-10-25 · **Catalogued:** 108 items
+**Updated:** 2026-10-25 · **Catalogued:** 111 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (28 — 24 live, 4 retracted)
+## Findings (29 — 25 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -31,6 +31,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 24/25 · 10/10 | live | [The reference network is built on an un-removed per-sample library offset](findings/2026-10-15-library-offset-artifact.md) | 2026-10-15 |
 | 24/25 · 9/10 | live | [36 places scored a raw test matrix against an offset-removed reference](findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md) | 2026-10-25 |
 | 23/25 · 10/10 | live | [The corrected network has 71 modules, and its eigengenes are near-orthogonal](findings/2026-10-18-rebuilt-network-71-modules.md) | 2026-10-18 |
+| 23/25 · 8/10 | live | [base-001 re-run on a verified network: gold ranks last every time, but beats most modules on Zsummary](findings/2026-10-26-base001-verified-clean.md) | 2026-10-26 |
 | 22/25 · 9/10 | CORRECTED | [Darkturquoise is a ribosomal/translation module: the composition signal has a biological substrate](findings/2026-10-14-darkturquoise-is-ribosomal.md) | 2026-10-14 |
 | 22/25 · 7/10 | live | [The lithium dimension replicates across decompositions, and never survives composition](findings/2026-10-14-lithium-dimension-replicates.md) | 2026-10-14 |
 | 22/25 · 9/10 | live | [Removing the library offset rebuilds the network into a well-behaved one](findings/2026-10-18-normalisation-rebuild-required.md) | 2026-10-18 |
@@ -88,21 +89,23 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-18 | 2026-10-18-three-days-lost-to-wifi.md | Three days lost: every wake started a session into a dead network |
 | 2026-10-25 | 2026-10-25-reference-build-verification.md | Reference builds now verify the matrix, not the label |
 
-## Run directories (7)
+## Run directories (9)
 
 | run | status | size |
 |:--|:--|:--|
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_test_contaminated_20261025T193947Z | live | 102 files |
-| base-001 | live | 100 files |
+| base-001 | live | 106 files |
+| base-002-ceil | live | 3 files |
+| base-003-remerge | live | 6 files |
 | inp-022 | live | 57 files |
 | inp-023 | live | 19 files |
 | mod-000-resolution | live | 15 files |
 
 ## Queue experiments (51)
 
-Status: DONE=2  PENDING=48  RUNNING=1
+Status: DONE=4  PENDING=46  RUNNING=1
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -110,9 +113,9 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 |:--|:--|:--|:--|
 | ann-041 | annot | PENDING | module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules |
 | ann-042 | annot | PENDING | module overlap with LM22 markers and cell-type DE results; Fisher exact, BH |
-| base-001 | baseline | RUNNING | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
-| base-002-ceil | baseline | PENDING | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
-| base-003-remerge | baseline | PENDING | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
+| base-001 | baseline | DONE | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
+| base-002-ceil | baseline | RUNNING | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
+| base-003-remerge | baseline | DONE | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
 | bmind-046 | celltype | PENDING | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
 | bmind-047 | celltype | PENDING | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
 | cent-040 | central | PENDING | degree, betweenness, eigenvector centrality; between-group differences |

@@ -1,0 +1,41 @@
+[2026-10-25T20:17:16] === base-002-ceil starting ===
+Allowing parallel execution with up to 3 working processes.
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-25T20:17:21] Control split: 160 reference, 74 ceiling test
+[2026-10-25T20:17:21] pickSoftThreshold scan for 160-control reference ...
+   Power SFT.R.sq slope truncated.R.sq mean.k. median.k. max.k.
+1      1  0.00469  4.78          0.944  6200.0   6200.00   6400
+2      2  0.14500 -5.53          0.940  3360.0   3360.00   3780
+3      3  0.34000 -3.74          0.955  1950.0   1930.00   2550
+4      4  0.46100 -2.98          0.953  1190.0   1170.00   1860
+5      5  0.52100 -2.41          0.956   764.0    734.00   1420
+6      6  0.56800 -2.18          0.947   509.0    478.00   1130
+7      7  0.60900 -2.07          0.942   351.0    320.00    915
+8      8  0.64900 -2.01          0.946   249.0    218.00    756
+9      9  0.68400 -1.98          0.949   181.0    153.00    634
+10    10  0.70200 -1.99          0.943   135.0    109.00    539
+11    11  0.70800 -2.03          0.935   102.0     78.90    462
+12    12  0.71400 -2.05          0.933    78.7     58.00    400
+13    13  0.71200 -2.12          0.929    61.6     42.90    348
+14    14  0.71400 -2.15          0.931    48.8     32.10    305
+15    15  0.73200 -2.13          0.940    39.1     24.20    269
+16    16  0.74800 -2.12          0.948    31.6     18.40    238
+17    17  0.75900 -2.13          0.956    25.9     14.10    212
+18    18  0.76800 -2.11          0.961    21.3     10.90    190
+19    19  0.77700 -2.12          0.965    17.7      8.47    170
+20    20  0.78500 -2.11          0.969    14.8      6.60    153
+[2026-10-25T20:17:52] powerEstimate = NA (expected 1 or NA: function failing)
+[2026-10-25T20:17:52] R2 curve saved (max R2=0.785)
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2402078 128.3    4385325 234.3         NA  3198811 170.9
+Vcells 15972780 121.9   34076907 260.0      16384 25760056 196.6
+[2026-10-25T20:17:52] building reference network (160 controls, bicor, signed, power 12) ...
+ Calculating module eigengenes block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ..Working on block 1 .
+    TOM calculation: adjacency..
+    ..will use 3 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..

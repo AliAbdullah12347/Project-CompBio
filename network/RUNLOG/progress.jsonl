@@ -54,3 +54,4 @@
 {"ts":"2026-10-26T00:17:10Z","run_id":"base-001","phase":"done","pct":100,"msg":"base-001 DONE 3603s"}
 {"ts":"2026-10-26T00:17:13Z","run_id":"base-003-remerge","phase":"run","pct":5,"msg":"starting network/experiments/base-003-remerge.R cap=10800s"}
 {"ts":"2026-10-26T00:17:14Z","run_id":"base-003-remerge","phase":"done","pct":100,"msg":"base-003-remerge DONE 1s"}
+{"ts":"2026-10-26T00:17:16Z","run_id":"base-002-ceil","phase":"run","pct":5,"msg":"starting network/experiments/base-002-ceil.R cap=10800s"}
