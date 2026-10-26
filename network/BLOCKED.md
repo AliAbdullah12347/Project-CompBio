@@ -592,3 +592,21 @@ Vcells 20745555 158.3   59904000 457.1      16384 457846405 3493.1
 CAP EXCEEDED after 7200s
 ```
 
+## 2026-10-26T19:19:14Z  gene-027  exit 143 after 516s; see log.txt
+```
+[2026-10-26T15:10:38] === gene-027 starting ===
+Allowing parallel execution with up to 3 working processes.
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-26T15:10:42] LM22 genes: 547 symbols | matched to 350 Ensembl IDs in our set | kept: 12018 genes
+[2026-10-26T15:10:42] loading cached reference: network/cache/ref_control_noLM22_12018_bicor_signed_p12_ds4_mch00_offsetrm.rds
+[2026-10-26T15:10:42] 65 modules (non-LM22 genes)
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2373693 126.8    4446265 237.5         NA  3076347 164.3
+Vcells 20610994 157.3   33910325 258.8      16384 28268592 215.7
+[2026-10-26T15:10:43] bp_nolith (non-LM22, 500 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+```
+
