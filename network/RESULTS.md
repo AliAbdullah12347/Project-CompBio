@@ -1,9 +1,9 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-26T08:00Z
-**Runs completed:** 5 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, **base-002-ceil** DONE 2026-10-26T07:46Z).
+**Updated:** 2026-10-26T12:15Z
+**Runs completed:** 6 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, **inp-023** DONE 2026-10-26T12:05Z).
 **Running:** none.
-**Pending:** inp-023 (7/20 lith draws checkpointed; queued next).
+**Pending:** pow-009 next.
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 30 — see `RANKING.md`.
 
 ---
@@ -38,12 +38,14 @@ therefore the final picture for this arm's central question.
 | base-001 | 71-mod raw | 14.01 | 21.74 ± 7.05 | always last |
 | inp-022 | 44-mod ILR | 30.46 | 15.55 ± 8.13 | always last |
 | base-002-ceil | 67-mod raw (n=160) | 23.16 | 22.22 ± 7.34 | always last |
+| inp-023 | 42-mod tech+ILR | 28.08 | 16.98 ± 10.79 | always last |
 
 Cross-arm Zsummary comparison remains invalid (reference size determines baseline).
 
-**inp-023 (technical + ILR, 7/20 draws checkpointed, PENDING):** Gold ranks last in all
-7 draws; 92.5% of modules above gold. Replicates inp-022 pattern under stricter
-residualisation. Draws 8–20 queued next.
+**inp-023 DONE 2026-10-26T12:05Z:** Gold ranks last in ALL 20 draws (43/43); 40/42 modules
+beat gold by mean Z (95%); 16/42 beat gold in every single draw. Replicates inp-022 pattern
+under stricter (technical + ILR) residualisation. E=24/25. See
+`findings/2026-10-25-inp023-technical-ilr-replication.md`.
 
 **NOTE 2026-10-25 — raw matrix bug found (base-001 and base-003-remerge now re-run and
 DONE):** base-001 lith draws, all of base-002-ceil, and base-003-remerge used raw
@@ -63,6 +65,7 @@ figure — the verified gold Z is 21.74. See
 | `base-001` | 3603 s | **VERIFIED.** 71-module reference, corrected test matrices. nolith gold Z=14.01 (72/72 last, 65/71 above); lith gold Z=21.74 (sd 7.05, 72/72 last in all 20 draws, 17/71 modules beat gold in all 20 draws). Gold's high Zsummary but last medianRank: size effect confirmed (cor 0.879). E=23/25. | [network/runs/base-001](runs/base-001) |
 | `base-003-remerge` | 1 s | Read from base-001 v2 results; verified 20/20 draws complete. Reports consistent with base-001 log. No new finding. | [network/runs/base-003-remerge](runs/base-003-remerge) |
 | `base-002-ceil` | 5357 s (attempt 4) | **DONE 2026-10-26T07:46Z.** Split-half ceiling, corrected matrices, all groups. ctrl_ceiling gold Z=35.78, nolith gold Z=23.16, lith mean gold Z=22.22 (sd 7.34). KEY NEGATIVE: lith≈nolith (r=0.93). E=24/25. | [network/runs/base-002-ceil](runs/base-002-ceil) |
+| `inp-023` | 10311 s | **DONE 2026-10-26T12:05Z.** Technical+ILR residualisation: 42-module reference. nolith gold Z=28.08 (43/43 last, 25/42 above); lith gold mean Z=16.98 (sd 10.79, 43/43 last in all 20 draws, 40/42 beat gold by mean Z, 16/42 in ALL draws). Replicates inp-022. E=24/25. | [network/runs/inp-023](runs/inp-023) |
 
 ### Previously reset (now re-run and DONE)
 
@@ -76,9 +79,7 @@ None.
 
 ### Pending (checkpoints saved)
 
-| id | draws done | status |
-|:--|--:|:--|
-| `inp-023` | 7/20 lith | PENDING. Gold last in all 7 draws; 92.5% modules above gold. Next in queue. |
+None currently — all checkpointed partial runs completed this session.
 
 ---
 

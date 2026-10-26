@@ -1,0 +1,16 @@
+{
+  "id": "pow-009",
+  "family": "power",
+  "spec": "pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result)",
+  "power_vector": "1:20",
+  "networkType": "signed",
+  "corFnc": "bicor",
+  "power_used": 12,
+  "power_rationale": "WGCNA FAQ signed n>40: use 12 when scale-free fit fails",
+  "groups": ["control", "bp_nolith", "bp_lith"],
+  "bp_lith_subsample_n": 74,
+  "seed_base": 20261009,
+  "git_sha": "a317694",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}
