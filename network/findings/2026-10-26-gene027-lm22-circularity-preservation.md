@@ -65,14 +65,14 @@ LM22 exclusion reduces the module count from 71 (base-001) to 65 (gene-027). All
 gene-027 modules have the same WGCNA colour as a base-001 module — no new modules appeared.
 The 6 modules present in base-001 but absent in gene-027 are:
 
-| module | base-001 beat_gold (lith, 20 draws) | interpretation |
-|:--|--:|:--|
-| lightcoral | 0/20 | candidate disrupted |
-| mediumpurple2 | 1/20 | candidate disrupted |
-| skyblue1 | 1/20 | candidate disrupted |
-| plum | 5/20 | mildly disrupted |
-| lightsteelblue | 6/20 | mildly disrupted |
-| orangered3 | 7/20 | mildly disrupted |
+| module | base-001 size | base-001 beat_gold (lith, 20 draws) | interpretation |
+|:--|--:|--:|:--|
+| lightcoral | 30 | 0/20 | candidate disrupted |
+| mediumpurple2 | 35 | 1/20 | candidate disrupted |
+| skyblue1 | 38 | 1/20 | candidate disrupted |
+| plum | 36 | 5/20 | mildly disrupted |
+| lightsteelblue | 33 | 6/20 | mildly disrupted |
+| orangered3 | 35 | 7/20 | mildly disrupted |
 
 These 6 modules beat gold in a mean of 3.3/20 base-001 lith draws — versus 14.8/20 for
 the 65 non-LM22-dependent modules. The 6 modules that **depend on LM22 genes to form** are
