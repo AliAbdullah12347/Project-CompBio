@@ -2,7 +2,7 @@
 
 **Updated:** 2026-10-26
 **Runs completed:** 4 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge).
-**Running:** base-002-ceil (attempt 5, nolith done + lith draws in progress; cap 2026-10-26T06:17Z).
+**Running:** base-002-ceil (attempt 4 / attempt 2 post-reset; nolith 500 perms in progress at 04:10Z; expected done ~04:40Z; cap 2026-10-26T06:17Z).
 **Pending:** inp-023 (7/20 lith draws checkpointed; will resume after base-002-ceil cap).
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 29 — see `RANKING.md`.
 
@@ -52,7 +52,7 @@ residualisation. Draws 8–20 will resume after base-002-ceil completes.
 DONE):** base-001 lith draws, all of base-002-ceil, and base-003-remerge used raw
 expression (`t(d$logtpm)`) for test matrices, bypassing `expr_for()`. Scripts fixed in
 commit 1177d8c. base-001 and base-003-remerge completed re-runs on 2026-10-26 with
-corrected matrices. base-002-ceil is currently being re-run (attempt 5). Do not quote
+corrected matrices. base-002-ceil is currently being re-run (attempt 4). Do not quote
 the contaminated "base-001 lith gold Z=4.06" figure — the verified gold Z is 21.74. See
 `findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md`.
 
@@ -77,7 +77,7 @@ Contaminated archived results remain in `_raw_test_contaminated_20261025T193947Z
 
 | id | started | progress |
 |:--|:--|:--|
-| `base-002-ceil` | 2026-10-26T03:17Z (attempt 5) | Split-half ceiling. Ceiling ctrl checkpoint done (attempt 4). Nolith + lith draws in progress; cap at 06:17Z. |
+| `base-002-ceil` | 2026-10-26T03:17Z (attempt 4) | Split-half ceiling. Ceiling ctrl checkpoint done (prior attempt). Nolith in progress; expected lith draws 04:40–06:17Z. |
 
 ### Pending (checkpoints saved)
 

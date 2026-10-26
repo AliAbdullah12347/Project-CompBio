@@ -1691,9 +1691,31 @@ A secondary error: the "gold sd 0.93" from the contaminated base-001 lith draws 
 contrasted with inp-022's sd of 8.13 to suggest residualisation destabilises the network.
 The verified sd is 7.05 (both show similarly high variance). The text is corrected.
 
-### base-002-ceil attempt 5 (session 8)
+### base-002-ceil attempt 4 total / attempt 2 post-reset (session 9, 2026-10-26T04:10Z)
 
-Started 2026-10-26T03:17Z. ceiling_ctrl checkpoint loaded from attempt 4 (67-module
-reference on n=160 controls). Nolith 500 perms running at session start (~43 min).
-After nolith: lith draws begin at ~13 min each; cap at 06:17Z. Expected ~10 draws.
-If PARTIAL, draws resume in next attempt; base-002-ceil remains RUNNING until DONE.
+CORRECTION: the preceding entry said "attempt 5". This is attempt 4 total (counting from
+the first run before the reset) or attempt 2 post-reset (queue attempts counter reset when
+the row was moved back to PENDING after the raw-matrix bug fix). The ceiling_ctrl checkpoint
+was written in attempt 3 (2026-10-26T01:57Z) and the current attempt loaded it. Nolith
+500 perms still running at session 9 start (04:10Z). Previous estimate of ~43 min was
+based on the wrong per-perm time (see timing correction below).
+
+### Per-permutation timing correction (2026-10-26)
+
+IMAC_README.md §Budget states "5.2 s per permutation" from base-001. That measurement came
+from the OLD base-001 which used a degenerate 4-module reference (raw matrices + mch=0.25
+collapsed to 4 modules). With only 4 modules, modulePreservation runs much faster.
+
+The CORRECT base-001 (71-module reference, n=234, offset-removed) shows:
+- Draw 16: 2026-10-25T19:17Z to 19:29Z = **724 s for 50 perms = 14.5 s/perm**
+- All draws 16-20: consistently ~720-730 s per 50-perm draw
+
+For base-002-ceil (67-module reference, n=160): proportionally faster by reference size
+and module count. Observed: nolith (500 perms) started at 03:17Z and still running at
+04:20Z = 63 min+ in. Expected total ~82 min (500 × ~9.9 s/perm) based on scaling from
+the 14.5 s/perm at n=234/71modules to n=160/67modules.
+
+**Do not use the 5.2 s/perm figure for future planning.** Updated per-perm costs:
+- n=234 reference, 71 modules: ~14.5 s/perm → 50 perms ≈ 12-13 min/draw
+- n=160 reference, 67 modules: ~9.9 s/perm → 50 perms ≈ 8 min/draw, 500 perms ≈ 82 min
+- These scale roughly as n_ref / 74 × (n_modules/4) relative to the original 5.2 s/perm

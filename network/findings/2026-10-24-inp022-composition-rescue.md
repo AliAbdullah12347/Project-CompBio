@@ -25,7 +25,7 @@
 
 
 **Date:** 2026-10-24
-**Analysis:** `network/runs/inp-022` (ILR b1–b4 residualized, 45-module reference on 234 controls, 20 lith draws)
+**Analysis:** `network/runs/inp-022` (ILR b1–b4 residualized, 44-module reference on 234 controls, 20 lith draws)
 **Evidence:** 12/25 · **Interest:** 5/10  _(corrected; was 23/25 and 9/10)_ · **Δ:** -0.2
 
 ## Design
@@ -164,5 +164,5 @@ differ (44 vs 71 modules, different gene sets). What remains: within-arm gold al
 in all 20 draws (E=3), 20-draw robustness (R=4), plausible composition mechanism (B=2),
 directional within-arm (D=2), weak cross-arm causality (C=1). See correction note above._
 
-Robustness = 4 (not 5) because a single residualisation formula is tested here; inp-023
-tests technical + ILR residualisation jointly. If inp-023 replicates, B rises to 5.
+R = 4 (not 5) because a single residualisation formula is tested here; inp-023
+tests technical + ILR residualisation jointly. If inp-023 replicates, R rises to 5 → total 13/25.

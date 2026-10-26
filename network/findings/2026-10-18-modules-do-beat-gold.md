@@ -1,5 +1,19 @@
 # Real modules do beat the random gene set — once the decomposition is real
 
+> **CORRECTION 2026-10-26 — numbers updated from base-001 verified re-run.**
+>
+> The nolith arm figures in this finding came from the first base-001 run (2026-10-18).
+> The verified re-run (2026-10-26, committed after raw-test-matrix fix) gives:
+>
+> - "63 of 69 real modules above gold" → **65 of 71** (same gold Z=14.01, same rank 72/72)
+> - "sd 0.93" and "sd 1.86 at 15 draws" are from contaminated lith draws (raw test matrices).
+>   Verified lith gold Z=21.74, **sd 7.05** (20 draws). See
+>   `findings/2026-10-26-base001-verified-clean.md`.
+>
+> The main claim — real modules decisively beat random once the decomposition is real —
+> stands and is strengthened. The nolith bp arm gives gold rank 72/72 (last) in a 71-module
+> network; gold also ranks last in all 20 lith draws.
+
 **Date:** 2026-10-18
 **Analysis:** `network/runs/base-001` (offset-removed, 71-module reference)
 **Evidence:** 21/25 · **Interest:** 9/10 · **Δ:** new

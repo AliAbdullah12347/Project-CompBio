@@ -34,7 +34,7 @@ Each arm built its **own reference network** — four distinct caches now exist:
 
 ```
 ref_control_all_..._offsetrm.rds                       71 modules   base-001
-ref_ctrl160_all_..._offsetrm.rds                       36 modules   base-002-ceil
+ref_ctrl160_all_..._offsetrm.rds                       67 modules   base-002-ceil  (36 was from the contaminated raw-expression reference)
 ref_control_all_..._composition_ilr_b1b4_..._offsetrm  44 modules   inp-022
 ref_control_all_..._technical_ilr_age_sex_rin_b1b4_... —            inp-021/023
 ```
@@ -66,8 +66,9 @@ One reference, two test sets, identical instrument:
 - test A: the 74 held-out controls — this is `base-002-ceil`, already done
 - test B: 74 bp_lith subsampled, 20 draws, 50 perms — **does not exist yet**
 
-With both tests scored against the same 36-module reference, Zsummary is on one scale and
-the question becomes a paired test over identical gene sets. `base-001` cannot serve as
+With both tests scored against the same 67-module reference (clean expr_for() run; the
+36-module count was from the contaminated reference), Zsummary is on one scale and the
+question becomes a paired test over identical gene sets. `base-001` cannot serve as
 test B because it scores against the 234-control network, not ctrl160.
 
 This is a single ~3 h row and it is the only thing standing between this arm and its
@@ -93,5 +94,32 @@ The claim "The decomposition is real" still holds, supported by:
 The ceiling arm gold Z=20.98 and base-001 lith gold Z=4.06 are from invalid runs and
 cannot be quoted. base-002-ceil and base-001 reset to PENDING; will re-run with corrected
 scripts.
+
+## CORRECTION 2026-10-26 — base-001 re-run complete; updated synthesis table
+
+base-001 completed 2026-10-26T00:17Z with offset-removed expression for both reference
+and test matrices. The synthesis table is partially updated with verified numbers:
+
+| arm | modules | gold Zsummary (lith draws) | gold rank pct | beat gold in all 20 draws |
+|:--|--:|:--|:--|--:|
+| ceiling — ctrl160 ref, test = 74 bp_lith | **67** | **PENDING** (lith draws starting ~04:40Z) | TBD | TBD |
+| observed — ctrl234 ref, test = 74 bp_lith | **71** | **21.74 (sd 7.05)** | **100th (72/72)** | **17/71** |
+| comp-adj (inp-022) — ILR residualised | 44 | 15.55 (sd 8.13) | 100th | 16/44 |
+
+Key change for the "sd" comparison: the old base-001 lith gold sd was **0.93** (from the
+contaminated run). The verified value is **7.05**. Comparing 7.05 (base-001) to 8.13
+(inp-022) shows *both arms have similarly high draw-to-draw variance* — the suggestion
+that ILR residualisation "destabilises the network substantially" was based on the
+contaminated sd and is retracted.
+
+The claim "the decomposition is real" is now supported by:
+- inp-022 (ILR-residualised): gold Z mean=15.55, always last in all 20 draws ✓
+- inp-023 (technical+ILR): gold always last in 7/7 draws (PARTIAL; resuming)
+- base-001 nolith: gold Z=14.01, ranked 72/72 (last) ✓
+- **base-001 lith: gold Z=21.74 (sd 7.05), 72/72 last in all 20 draws** ✓ (new)
+
+The ceiling finding (base-002-ceil lith rows) will update this table when available.
+"The experiment that would settle it" (base-002-ceil lith draws) is running; nolith
+checkpoint expected ~04:40Z, then lith draws at ~8 min each, cap at 06:17Z.
 
 E=3 R=3 B=3 D=3 C=2

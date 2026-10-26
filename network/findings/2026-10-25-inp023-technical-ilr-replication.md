@@ -95,7 +95,7 @@ If this pattern holds across all 20 draws, the composition interpretation is rob
 At E=5 R=5 B=5 D=5 C=4 = 24/25 — the same level as findings #1 and #2 if the pattern
 holds. This would make inp-022's Robustness score rise from 4 to 5 (E: 23 → 24).
 
-**Note on inp-022 Robustness update:** per inp-022 finding's own caveat, B=4 because
-"a single residualisation formula is tested; inp-023 tests technical + ILR jointly; if
-inp-023 replicates, B rises to 5." If the final 20-draw summary replicates, update
-inp-022 finding to E=24/25 and update RANKING.md accordingly.
+**Note on inp-022 update when inp-023 completes:** per inp-022 finding's own caveat,
+R=4 because a single residualisation formula is tested. If the final 20-draw summary
+replicates, update inp-022 finding: R rises from 4 → 5, total 12/25 → **13/25**.
+Rebuild RANKING.md accordingly.

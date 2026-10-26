@@ -25,9 +25,12 @@
    Gold ranks 43/43 (last) in all 7 draws; mean 92.5% of modules beat gold (sd Z=6.84).
    Consistent with inp-022 within-arm pattern. Will resume after base-002-ceil.
 
-5. **base-002-ceil (RUNNING, attempt 5):** split-half ceiling with corrected matrices.
-   67-module reference (n=160 controls). Ceiling ctrl: gold Z=35.78 (68/68 last, 15/67
-   above gold). Nolith 500 perms running now; lith draws after that. Cap 06:17Z UTC.
+5. **base-002-ceil (RUNNING, attempt 4):** split-half ceiling with corrected matrices.
+   67-module reference (n=160 controls). Ceiling ctrl (VERIFIED from rds file written in
+   prior attempt with fixed script): gold Z=35.78 (68/68 last; **only 15/67 modules beat
+   gold by Zsummary** — because Zsummary is dominated by population similarity). MedanRank
+   puts gold last even in ceiling. Nolith 500 perms in progress at 04:10Z;
+   estimated done ~04:40Z; cap 06:17Z UTC.
 
 **Read `RANKING.md` first.** Rebuilt from findings/; 29 findings as of 2026-10-26.
 
