@@ -78,3 +78,12 @@ venv/
 
 # Network arm scratch cache (rebuilt by network/00_load.R in ~40 s)
 network/cache/
+
+# === (d) environment and credential files - NEVER committed ==================
+# .env holds storage credentials; env.sh / env.ps1 are machine-specific setup.
+.env
+.env.*
+*.env
+env.sh
+env.ps1
+.Renviron
