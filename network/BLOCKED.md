@@ -529,3 +529,27 @@ Vcells 18113526 138.2   65622723 500.7      16384 480942441 3669.3
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-26T06:17:25Z  base-002-ceil  hit 10800s cap; partial results kept; +11 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-26T01:57:04] draw 8 done: Zsummary range [9.08, 77.33]
+[2026-10-26T01:57:04] draw 9/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T02:05:56] draw 9 done: Zsummary range [11.04, 84.43]
+[2026-10-26T02:05:56] draw 10/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T02:14:49] draw 10 done: Zsummary range [9.65, 65.8]
+[2026-10-26T02:14:50] draw 11/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+

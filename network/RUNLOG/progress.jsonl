@@ -58,3 +58,5 @@
 {"ts":"2026-10-26T03:17:20Z","run_id":"base-002-ceil","phase":"progress","pct":50,"msg":"4 new non-empty checkpoints"}
 {"ts":"2026-10-26T03:17:20Z","run_id":"base-002-ceil","phase":"done","pct":100,"msg":"base-002-ceil PARTIAL 10804s"}
 {"ts":"2026-10-26T03:17:24Z","run_id":"base-002-ceil","phase":"run","pct":5,"msg":"starting network/experiments/base-002-ceil.R cap=10800s"}
+{"ts":"2026-10-26T06:17:25Z","run_id":"base-002-ceil","phase":"progress","pct":50,"msg":"11 new non-empty checkpoints"}
+{"ts":"2026-10-26T06:17:25Z","run_id":"base-002-ceil","phase":"done","pct":100,"msg":"base-002-ceil PARTIAL 10800s"}
