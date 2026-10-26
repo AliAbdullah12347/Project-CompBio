@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T09:15Z
+**Updated:** 2026-10-26T12:30Z
 
 ## Where the science stands
 
@@ -21,9 +21,11 @@
    `findings/2026-10-24-inp022-composition-rescue.md` (E=12/25 — cross-arm comparison
    invalid; within-arm gold comparison stands).
 
-4. **inp-023 (PARTIAL, PENDING): technical + ILR residualisation, 7/20 draws.**
-   Gold ranks 43/43 (last) in all 7 draws; mean 92.5% of modules beat gold (sd Z=6.84).
-   Consistent with inp-022 within-arm pattern. Queued next.
+4. **inp-023 (DONE 2026-10-26T12:05Z): technical + ILR residualisation, 20/20 draws.**
+   Gold Z mean=16.98 (sd=10.79); gold ranked 43/43 (last) in ALL 20 draws; 40/42 real modules
+   above gold mean Z (95%). bp_nolith: gold Z=28.08, 43/43 last. Fully replicates inp-022
+   within-arm pattern. E=24/25. inp-022 R score raised 4→5 (total 12→13/25).
+   `findings/2026-10-25-inp023-technical-ilr-replication.md`
 
 5. **base-002-ceil (DONE 2026-10-26T07:46Z): split-half ceiling with corrected matrices.
    COMPLETE — 20/20 lith draws.** 67-module reference (n=160 controls).
@@ -49,12 +51,11 @@
 
 ## Queue
 
-DONE (5): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+DONE (6): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
-  **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s).
-RUNNING (1): **inp-023** (started 2026-10-26T09:13Z; rebuilding TOM cache ~18 min, then
-  draws 8–20 ×~12 min = ~156 min; expected done ~12:30Z; cap 12:13Z — may be PARTIAL).
-  Bug fixed: assert_expr_mode incompatible with residualised matrices (commit 7bf5747).
+  **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
+  **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s).
+RUNNING (0):
 PENDING (45): pow-009, gene-027,
   inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
@@ -128,10 +129,7 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **When inp-023 completes (20/20 draws):**
-   - Score fully: expected E=5 R=5 B=5 D=5 C=4 = 24/25
-   - Update inp-022 finding: R score 4→5, total 12→13/25 (robustness confirmed by replication)
-   - IMPORTANT: do NOT conflate with pre-correction 23/25
+1. **inp-023 complete** (scored 24/25, inp-022 updated 12→13/25) ✓ 2026-10-26T12:30Z
 2. **Driver continues:** pow-009 (SFT curves, ~15 min) → gene-027 (LM22, ~2.8h)
 3. **pres-030** (density vs connectivity decomposition) is queued; run against the
    validated base-002-ceil results (attempt 4, corrected matrices). Do NOT use archived

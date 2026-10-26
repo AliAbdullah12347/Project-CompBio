@@ -1,13 +1,8 @@
 # inp-023: technical + ILR residualisation replicates inp-022's rescue
 
-> **PARTIAL — 7 of 20 lith draws complete as of 2026-10-25T20:40Z.** The nolith comparison
-> and draws 1–7 are done; draws 8–20 are in progress (draw 8 running; cap at 22:16 UTC;
-> draws 17–20 expected to need next session). Final scores will be computed from all 20 draws.
-> Numbers below are provisional and will be revised. Do not quote them.
-
-**Date:** 2026-10-25
+**Date:** 2026-10-25 (completed 2026-10-26T12:05Z)
 **Analysis:** `network/runs/inp-023` (age+sex+rin + ILR b1–b4 residualised, 42-module reference on 234 controls, 20 lith draws)
-**Evidence:** PARTIAL (see below) · **Interest:** TBD · **Δ:** TBD
+**Evidence:** 24/25 · **Interest:** 5/10 · **Δ:** −4.6
 
 ## Design
 
@@ -33,7 +28,7 @@ doubly-residualising). Two fewer than inp-022 (44), consistent with residualisin
 three additional technical covariates removing a small amount of additional co-expression
 structure.
 
-SFT curve (pre-computed, attempt 1):
+SFT curve (recorded in sft_r2_curve.csv):
 
 | arm | first power R²≥0.80 | max R² | powerEstimate |
 |:--|--:|--:|--:|
@@ -42,10 +37,10 @@ SFT curve (pre-computed, attempt 1):
 | inp-023 (this) | power 13 | 0.836 | NA |
 
 Adding technical covariates on top of ILR degrades the SFT criterion slightly (0.880 →
-0.836, no longer produces a powerEstimate) — consistent with technical covariates
-capturing some genuine regulatory variation whose removal reduces the scale-free structure.
+0.836, no powerEstimate returned) — consistent with technical covariates capturing some
+genuine regulatory variation whose removal reduces the scale-free structure.
 
-## Provisional results (4 of 20 lith draws)
+## Final results (20 of 20 lith draws)
 
 **bp_nolith** (500 perms, n=74 fixed, complete):
 
@@ -55,47 +50,54 @@ capturing some genuine regulatory variation whose removal reduces the scale-free
 | gold medianRank | 43/43 (last) | 45/45 (last) |
 | modules above gold (Zsummary) | 25 of 42 (60%) | 22 of 44 (50%) |
 
-**bp_lith** (50 perms per draw, 7 of 20 draws):
+**bp_lith** (50 perms per draw, 20 draws, complete):
 
-| metric | inp-023 provisional | inp-022 final |
+| metric | inp-023 final | inp-022 final |
 |:--|--:|--:|
-| gold mean Z | 14.58 (sd 6.84, 7 draws) | 15.55 (sd 8.13, 20 draws) |
-| gold medianRank | **43/43 in all 7 draws** | 45/45 in all 20 draws |
-| modules above gold (per-draw mean) | 38.9/42 (92.5%) | 41/44 (93%) |
-| draw-by-draw gold Z | 29.0, 11.7, 10.9, 12.4, 11.4, 17.3, 9.3 | — |
+| gold mean Z (across 20 draws) | **16.98** (sd 10.79) | 15.55 (sd 8.13) |
+| gold medianRank | **43/43 in all 20 draws** | 45/45 in all 20 draws |
+| modules with mean Z > gold mean Z | **40 of 42 (95%)** | 41 of 44 (93%) |
+| real modules mean Z | 35.08 (sd 13.74) | — |
+| gold Z range across draws | 6.75 – 38.21 | 7.6 – 33.1 |
 
-Gold ranks **last** in every draw so far, matching the inp-022 pattern. The high draw-to-draw
-variance in gold Z (sd 6.84, range [9.35, 29.04]) matches inp-022 (sd 8.13). The fraction
-of real modules beating gold (~93% at 7 draws) is consistent with inp-022 (93% final).
+Gold ranks **last** in every single draw (43/43 = rank 43 out of 43 entries, 20/20 draws),
+fully matching the inp-022 pattern. 40/42 real modules beat gold by mean Zsummary; all 42
+beat it by medianRank in every draw.
 
-## Interpretation (provisional)
+## Interpretation
 
-These partial results are consistent with **inp-022's rescue replicating under a stricter
-residualisation.** Removing technical covariates on top of ILR composition produces a
-42-module reference that behaves similarly to inp-022's 44-module reference:
+With technical covariates (age, sex, RIN) residualised on top of ILR composition removal,
+the network behaves nearly identically to inp-022:
 
-- Gold always ranks last → all real modules beat the random gene set by medianRank
-- ~89–93% of modules beat gold by Zsummary within each draw
-- High draw-to-draw variance in gold Z → heterogeneity of co-expression coherence across
-  bp_lith subsamples persists after technical+ILR residualisation
+- The 42-module reference is smaller by only 2 modules vs inp-022 (44 → 42; −5%). Technical
+  covariates contributed almost nothing to the composition-driven co-expression architecture.
+- Gold always ranks last: all real modules beat the random gene set in every draw.
+- 95% of modules beat gold's mean Zsummary — essentially the same as inp-022 (93%).
+- Draw-to-draw variance in gold Z remains high (sd 10.79 vs 8.13), confirming genuine
+  heterogeneity in bp_lith subsamples that persists after full residualisation.
 
-If this pattern holds across all 20 draws, the composition interpretation is robust to:
-1. ILR-only residualisation (inp-022) → stable
-2. Technical + ILR residualisation (inp-023) → replicates ✓ (provisional)
+**This confirms the composition finding is robust to technical covariate residualisation.**
+The within-arm evidence is complete; the within-arm structure is real. Cross-arm Zsummary
+comparisons (base-001 vs inp-022 vs inp-023) remain invalid because the reference networks
+differ (71 / 44 / 42 modules, different gene sets).
 
-## Scores
+## Caveat
 
-**Will be assigned when all 20 draws complete.** Anticipated:
-- E=5 if gold ranks last in all 20 draws and ≥39/42 modules beat gold (mean Z)
-- R=5 if inp-022 pattern is replicated consistently
-- B=5 (was 4 in inp-022 because inp-023 was pending; now provides the robustness check)
-- D=5 if gold is always last by medianRank
-- C=4 (same as inp-022; cross-arm comparison remains invalid due to different references)
+Cross-arm Zsummary comparisons are not on a common scale (different reference networks,
+different module counts, different gene membership). The evidence base for this finding
+is the within-arm comparison only: gold vs. real modules, within the same network. That
+comparison is valid.
 
-At E=5 R=5 B=5 D=5 C=4 = 24/25 — the same level as findings #1 and #2 if the pattern
-holds. This would make inp-022's Robustness score rise from 4 to 5 (E: 23 → 24).
+## Score
 
-**Note on inp-022 update when inp-023 completes:** per inp-022 finding's own caveat,
-R=4 because a single residualisation formula is tested. If the final 20-draw summary
-replicates, update inp-022 finding: R rises from 4 → 5, total 12/25 → **13/25**.
-Rebuild RANKING.md accordingly.
+E=5 R=5 B=5 D=5 C=4
+
+- E=5 (Evidence): 20/20 draws complete for both lith and nolith; question directly answered with
+  full pre-specified data.
+- R=5 (Relevance): directly addresses the arm's key question — does composition + technical
+  residualisation leave any co-expression structure?
+- B=5 (Robustness): gold always last across all 20 draws; replicates inp-022 pattern exactly;
+  two independent residualisation specs give the same answer.
+- D=5 (Decisiveness): gold last in all 20 draws is an unambiguous within-arm result.
+- C=4 (Completeness): within-arm evidence is complete; −1 because cross-arm comparison
+  (to base-001 / inp-022) is structurally not possible (different reference networks).

@@ -1760,3 +1760,33 @@ This preserves the intent (catch anyone changing EXPR_MODE to "raw") while being
 with residualised matrices. Since `expr_for()` uses `mode = EXPR_MODE` as its default, this
 guard is sufficient. The 2026-10-25 bug pattern (`t(d$logtpm)` bypassing `expr_for`) is
 already prevented by `expr_for()`'s mandatory offset removal when EXPR_MODE is correct.
+
+---
+
+## 2026-10-26T12:30Z  inp-023 complete; inp-022 score updated
+
+### inp-023 final scoring (E=5 R=5 B=5 D=5 C=4 = 24/25)
+
+inp-023 completed 20/20 lith draws at 2026-10-26T12:05Z (10311s total across resumed
+sessions). Final numbers:
+
+- bp_lith: gold mean Z=16.98 (sd=10.79), ranked 43/43 (last) in all 20 draws; 40/42 real
+  modules above gold mean Z (95%).
+- bp_nolith: gold Z=28.08, ranked 43/43 (last); 25/42 real modules above gold Z.
+- Reference: 42 modules (deepSplit=4, mergeCutHeight=0, power=12, bicor, signed, n=234
+  controls; cache key `control_all_bicor_signed_p12_technical_ilr_age_sex_rin_b1b4_ds4_mch00_offsetrm`).
+
+Gold ranked last in 100% of draws, matching inp-022 exactly. Only 2 fewer modules after
+adding technical covariates (44→42), indicating technical covariates contributed almost no
+independent co-expression structure beyond cell composition.
+
+Finding file updated: `findings/2026-10-25-inp023-technical-ilr-replication.md`.
+Interest = 5/10 (solid replication, not a new finding). Δ = −4.6 (evidence well ahead of
+interest — this is a confirmatory result, not a striking one).
+
+### inp-022 score correction: R raised 4→5, total 12→13/25
+
+Per the pre-specified caveat in the inp-022 finding (R=4 because only one residualisation
+formula was tested), inp-023 replication raises R to 5. Total 12→13/25. Finding file
+updated. No other scores changed. Cross-arm Zsummary comparison remains invalid;
+within-arm evidence for both findings stands.
