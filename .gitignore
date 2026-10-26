@@ -87,3 +87,6 @@ network/cache/
 env.sh
 env.ps1
 .Renviron
+# Kubernetes cluster credentials
+kubeconfig*
+*.kubeconfig
