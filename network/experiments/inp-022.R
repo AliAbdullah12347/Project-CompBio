@@ -134,10 +134,12 @@ if (ref_cache_ok(ref_cache)) {
   msg(ref_net$n_modules, " modules loaded")
 } else {
   msg("building reference network (residualised bicor, signed, power ", POWER, ") ...")
+  # assert_expr_mode() cannot verify residualised matrices (residuals differ from
+  # offset-removed values). Guard on EXPR_MODE — expr_for() uses it as default `mode`.
+  if (!identical(EXPR_MODE, "offset_removed"))
+    stop("inp-022: EXPR_MODE must be 'offset_removed'; got '", EXPR_MODE, "'")
   tmp_ref <- expr_for(d, group = REF_GROUP, residualise = RESID_FORMULA)
   set.seed(SEED_BASE)
-  # Read the matrix, not its label: a cache key records intent only.
-  assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-022 reference")
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
     deepSplit = DEEP_SPLIT, minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,

@@ -1719,3 +1719,44 @@ the 14.5 s/perm at n=234/71modules to n=160/67modules.
 - n=234 reference, 71 modules: ~14.5 s/perm → 50 perms ≈ 12-13 min/draw
 - n=160 reference, 67 modules: ~9.9 s/perm → 50 perms ≈ 8 min/draw, 500 perms ≈ 82 min
 - These scale roughly as n_ref / 74 × (n_modules/4) relative to the original 5.2 s/perm
+
+### base-002-ceil COMPLETE — session 10, 2026-10-26T07:46Z
+
+All 20 lith draws completed in attempt 4 (started 06:17Z, cap was 09:17Z; completed after
+5357 s). Key decision: 50 perms per lith draw vs 500 perms for ctrl_ceiling and bp_nolith.
+This makes lith Zsummary not directly comparable to ctrl_ceiling/nolith on an absolute scale.
+The valid comparisons are: (a) gold rank (always 68/68 last across all groups), and (b) the
+lith-nolith module Z correlation (r=0.93). Both support a clean negative.
+
+**Finding updated:** `findings/2026-10-24-base-002-ceil-ceiling.md` raised from 20/25 (PARTIAL)
+to 24/25 (DONE). R score 3→4 (robustness: 20 lith draws consistent across all draws and
+consistent with base-001 pattern). B score 4→5 (completeness: all groups, verified). C score 3→5.
+
+**Next:** inp-023 (13 remaining draws from 7 checkpointed; ~2.6 h total; queued first).
+
+---
+
+## 2026-10-26T08:10Z  inp-023 assert_expr_mode bug fix
+
+### assert_expr_mode is incompatible with residualised matrices
+
+`assert_expr_mode()` verifies that a matrix matches the project's offset-removed expression
+by value comparison. This comparison is valid only for non-residualised matrices. When
+`expr_for()` is called with `residualise = RESID_FORMULA`, it first removes the offset and
+then regresses out the covariates; the resulting matrix is legitimate but its values differ
+from the raw offset-removed expression by the regression coefficients × covariates.
+
+Both `inp-022.R` and `inp-023.R` called `assert_expr_mode(tmp_ref, d, EXPR_MODE, ...)` on
+the residualised reference matrix. When inp-022's cache was warm this check was never
+reached; when inp-023's cache was quarantined (no expr_mode stamp), the check fired and
+halted the run.
+
+**Fix:** replaced `assert_expr_mode(tmp_ref, ...)` in both scripts with a direct guard:
+```r
+if (!identical(EXPR_MODE, "offset_removed"))
+  stop("inp-0XX: EXPR_MODE must be 'offset_removed'; got '", EXPR_MODE, "'")
+```
+This preserves the intent (catch anyone changing EXPR_MODE to "raw") while being compatible
+with residualised matrices. Since `expr_for()` uses `mode = EXPR_MODE` as its default, this
+guard is sufficient. The 2026-10-25 bug pattern (`t(d$logtpm)` bypassing `expr_for`) is
+already prevented by `expr_for()`'s mandatory offset removal when EXPR_MODE is correct.

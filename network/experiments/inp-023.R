@@ -135,10 +135,14 @@ if (ref_cache_ok(ref_cache)) {
   msg(ref_net$n_modules, " modules loaded")
 } else {
   msg("building reference network (doubly residualised, power ", POWER, ") ...")
+  # assert_expr_mode() compares values against the un-residualised offset-removed matrix;
+  # that comparison is meaningless after residualisation, which legitimately changes the
+  # values. Guard instead on EXPR_MODE, which expr_for() uses as its `mode` default — if
+  # EXPR_MODE is "offset_removed", expr_for() removes the offset before residualising.
+  if (!identical(EXPR_MODE, "offset_removed"))
+    stop("inp-023: EXPR_MODE must be 'offset_removed'; got '", EXPR_MODE, "'")
   tmp_ref <- expr_for(d, group = REF_GROUP, residualise = RESID_FORMULA)
   set.seed(SEED_BASE)
-  # Read the matrix, not its label: a cache key records intent only.
-  assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-023 reference")
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
     deepSplit = DEEP_SPLIT, minModuleSize = MIN_MODULE, mergeCutHeight = MERGE_THRESH,
