@@ -1790,3 +1790,65 @@ Per the pre-specified caveat in the inp-022 finding (R=4 because only one residu
 formula was tested), inp-023 replication raises R to 5. Total 12→13/25. Finding file
 updated. No other scores changed. Cross-arm Zsummary comparison remains invalid;
 within-arm evidence for both findings stands.
+
+---
+
+## 2026-10-26T14:15Z  pow-009 complete; scale-free retraction partially revisited
+
+### pow-009 result (86s, offset-removed expression, all 3 groups)
+
+`pickSoftThreshold` on offset-removed expression confirms scale-free topology fails:
+
+| group | n | max signed R² | power | threshold |
+|:--|--:|--:|--:|:--|
+| control | 234 | 0.770 | 17 | FAILS (<0.80) |
+| bp_nolith | 74 | 0.755 | 20 | FAILS |
+| bp_lith | 74 | 0.701 | 20 | FAILS |
+
+All `powerEstimate = NA` (honest failure; Phase 0 returned 1, a silently wrong answer).
+
+### Partial restoration of retracted finding #27
+
+Finding #27 was retracted 2026-10-18 because the original measurement was on raw expression
+and the retraction stated "scale-free does not fail on offset-removed expression." pow-009
+shows this was an overstatement: max R² is 0.770 (control) on corrected expression — improved
+from 0.66 but still below the 0.80 criterion.
+
+The correct picture:
+- Raw expression: scale-free fails with non-monotone R² (artifacts)
+- Offset-removed: scale-free nearly fails (R²=0.770; monotone but below threshold)
+- ILR-residualised (inp-022): scale-free fits at power 9 (R²=0.802)
+
+Conclusion: residual scale-free failure on offset-removed expression is composition-driven.
+This is a new finding (`findings/2026-10-26-pow009-scale-free-composition-driven.md`, E=22/25).
+
+Finding #27 (`2026-10-09-scale-free-fails.md`) remains retracted as it was on raw expression.
+The original *claim* (scale-free fails) is partially rehabilitated — it fails on ALL non-residualised
+expressions — but the new finding supersedes it with correct measurement and context.
+
+---
+
+## 2026-10-26T14:30Z  pow-009: SFT curves on offset-removed expression
+
+### Scale-free topology still fails on raw offset-removed expression
+
+pow-009 ran `pickSoftThreshold(powerVector=1:20)` on offset-removed (un-residualised)
+expression for all three groups. Key results:
+
+| group | n | max R² | powerEstimate |
+|:--|--:|--:|--:|
+| control | 234 | 0.770 (power 20) | NA |
+| bp_nolith | 74 | 0.755 (power 20) | NA |
+| bp_lith | 74 (subsampled) | 0.701 (power 20) | NA |
+
+None reaches R²≥0.80. The retraction note in finding #27 ("scale-free does not fail on
+offset-removed expression") was incorrect. What offset removal achieved: R² curves became
+monotone and `powerEstimate` changed from 1 (silently wrong) to NA (honest failure). What
+actually achieves scale-free is ILR residualisation (inp-022: R²=0.802 at power 9).
+
+The finding is in `findings/2026-10-26-pow009-scale-free-composition-driven.md` (E=22/25).
+Power 12 remains justified by the WGCNA FAQ for signed networks when no power satisfies the
+scale-free criterion (n>40 → use 12).
+
+Finding #27 remains retracted (it was based on pre-offset-removal data). pow-009's finding
+is a new entry, not a reinstatement of #27.

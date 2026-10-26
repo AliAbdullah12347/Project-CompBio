@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T12:30Z
+**Updated:** 2026-10-26T14:20Z
 
 ## Where the science stands
 
@@ -18,8 +18,8 @@
 3. **inp-022 (DONE 2026-10-24): ILR residualisation within-arm gold always last.**
    Gold Z lith=15.55 (sd 8.13); 41/44 (93%) modules above gold; gold ranked last in
    all 20 draws. 44-module reference (27 raw modules were composition artifacts).
-   `findings/2026-10-24-inp022-composition-rescue.md` (E=12/25 — cross-arm comparison
-   invalid; within-arm gold comparison stands).
+   `findings/2026-10-24-inp022-composition-rescue.md` (E=13/25 — R raised 4→5 after inp-023
+   replication; cross-arm comparison remains invalid; within-arm gold comparison stands).
 
 4. **inp-023 (DONE 2026-10-26T12:05Z): technical + ILR residualisation, 20/20 draws.**
    Gold Z mean=16.98 (sd=10.79); gold ranked 43/43 (last) in ALL 20 draws; 40/42 real modules
@@ -37,7 +37,13 @@
      r=0.93; nolith median Z=31.05 vs lith mean Z=32.28). Both are below ceiling.
    `findings/2026-10-24-base-002-ceil-ceiling.md` (E=24/25).
 
-**Read `RANKING.md` first.** Rebuilt from findings/; 30 findings as of 2026-10-26.
+6. **pow-009 (DONE 2026-10-26T14:12Z): SFT curves on offset-removed expression.**
+   All 3 groups fail scale-free (control max R²=0.770, bp_nolith=0.755, bp_lith=0.701;
+   all below 0.80). Offset removal improves but doesn't fix; composition removal (inp-022)
+   rescues it. New finding `2026-10-26-pow009-scale-free-composition-driven.md` (E=22/25).
+   Partially rehabilitates retracted finding #27.
+
+**Read `RANKING.md` first.** Rebuilt from findings/; 31 findings as of 2026-10-26.
 
 ## Infrastructure
 
@@ -51,13 +57,14 @@
 
 ## Queue
 
-DONE (6): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
-  **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s).
-RUNNING (0):
-PENDING (45): pow-009, gene-027,
-  inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
+  **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
+  **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s),
+  **gene-027** (RUNNING 2026-10-26T14:15Z; LM22 circularity check, cap 7200s — likely PARTIAL).
+RUNNING (1): gene-027 (started 2026-10-26T14:15Z)
+PENDING (43): inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
   hub-036/037, comm-038/039, cent-040, filt-044, tob-045, bmind-046/047, synth-048.
@@ -129,11 +136,24 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **inp-023 complete** (scored 24/25, inp-022 updated 12→13/25) ✓ 2026-10-26T12:30Z
-2. **Driver continues:** pow-009 (SFT curves, ~15 min) → gene-027 (LM22, ~2.8h)
+1. **When gene-027 completes (RUNNING):**
+   - Score fully: inp-022-equivalent analysis but on non-LM22 genes; compare gold behavior
+   - This IS the circularity check for module preservation, analogous to finding #10 for PCA
+   - Write finding file; rebuild RANKING.md
+2. **Driver continues:** inp-021 (technical-only residualisation, ~2.8h)
 3. **pres-030** (density vs connectivity decomposition) is queued; run against the
    validated base-002-ceil results (attempt 4, corrected matrices). Do NOT use archived
    contaminated results.
+
+## Session 9 notes (2026-10-26T14:15Z)
+
+- inp-023 DONE at 12:05Z (10311s), 20/20 draws. Gold last in all 20 draws (43/43).
+  Finding updated: E=24/25. inp-022 R score raised 4→5, total 12→13/25.
+- pow-009 DONE at 14:12Z (86s). SFT curves on offset-removed expression: all 3 groups fail
+  (control max R²=0.770, bp_nolith=0.755, bp_lith=0.701). New finding E=22/25 (partially
+  rehabilitates retracted finding #27 with correct context).
+- gene-027 started at 14:15Z (LM22 circularity check, 12018 genes, cap 7200s). Expected
+  2.8h → likely PARTIAL at cap; checkpoint per draw means safe resumption.
 
 ## Session 7 notes (2026-10-25)
 
@@ -172,7 +192,9 @@ Module count progression:
 SFT curve comparison:
 | arm | residualisation | first power R²≥0.80 | max R² | powerEstimate |
 |:--|:--|--:|--:|--:|
-| base-001 | none (raw) | never | 0.770 | NA |
+| pow-009 ctrl | none (offset-removed) | never | 0.770 at p20 | NA |
+| pow-009 nolith | none (offset-removed) | never | 0.755 at p20 | NA |
+| pow-009 lith | none (offset-removed) | never | 0.701 at p20 | NA |
 | inp-022 | ILR b1–b4 | power 9 (R²=0.802) | 0.880 | 16 |
 | inp-023 | age+sex+rin + ILR b1–b4 | power 13 (R²=0.806) | 0.836 | NA |
 
