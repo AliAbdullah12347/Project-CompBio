@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-10-25 · **Catalogued:** 111 items
+**Updated:** 2026-10-25 · **Catalogued:** 112 items
 
 ## How to search
 
@@ -57,7 +57,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 0/25 · 0/10 | RETRACTED | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) | 2026-10-14 |
 | — | live | [inp-023: technical + ILR residualisation replicates inp-022's rescue](findings/2026-10-25-inp023-technical-ilr-replication.md) | 2026-10-25 |
 
-## Analyses (18)
+## Analyses (19)
 
 | id | status | output | title |
 |:--|:--|:--|:--|
@@ -79,6 +79,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 015-referee-verification | has results | 5 result files | 015-referee-verification |
 | 016-normalisation-decision | has results | 2 result files | 016-normalisation-decision |
 | 017-preservation-synthesis | has results | 2 result files | 017-preservation-synthesis |
+| 018-matched-ceiling-comparison | no results | 0 result files | 018-matched-ceiling-comparison |
 
 ## Notes — infrastructure and defects (4)
 
@@ -97,7 +98,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_test_contaminated_20261025T193947Z | live | 102 files |
 | base-001 | live | 106 files |
-| base-002-ceil | live | 3 files |
+| base-002-ceil | live | 4 files |
 | base-003-remerge | live | 6 files |
 | inp-022 | live | 57 files |
 | inp-023 | live | 19 files |
