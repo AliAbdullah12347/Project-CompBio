@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T20:05Z
+**Updated:** 2026-10-26T20:20Z
 
 ## Where the science stands
 
@@ -139,13 +139,19 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **When gene-027 completes (~19:32 EDT / ~23:32Z):**
-   - Run `Rscript network/scripts/analyze_gene027.R` — script exists; outputs gold comparison
-   - Fill [FILL] sections in `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
-     (template already written with nolith results and the 6-module cross-analysis)
-   - Run `Rscript network/build_index.R` to rebuild RANKING.md
-   - Update RESULTS.md, STATE.md; commit; then run `bash network/run_next.sh`
-2. **Driver continues:** inp-021 (full technical residualisation, cap 10800s; spans sessions via checkpoints)
+1. **When gene-027 completes (~23:31Z, draw 20 done):**
+   - Driver (bash) will mark DONE in queue and push; then LaunchDaemon starts inp-021 automatically.
+   - This session (still running) must:
+     * Check `ls network/runs/gene-027/lith_draw_020.rds` exists and `network/RUNLOG/queue.tsv` shows DONE
+     * Run `Rscript network/scripts/analyze_gene027.R` — outputs gold comparison stats
+     * Fill [FILL] sections in `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
+       (template pre-written with nolith results, 6-module cross-analysis, 3-draw preliminary)
+     * Add score line `E=5 R=4 B=3 D=5 C=4` to finding file; fill Evidence/Interest/Δ header
+     * Run `Rscript network/build_index.R` to rebuild RANKING.md
+     * Update RESULTS.md: add gene-027 to completed runs table, update counts
+     * Update STATE.md: move gene-027 to DONE, update timestamp
+     * Commit and push (driver's data commit will already be there; this adds documentation)
+2. **Driver continues:** inp-021 (full technical residualisation, cap 10800s; spans sessions)
 3. **pres-030** (density vs connectivity decomposition) is queued after inp-021
 
 ## Session 12 notes (2026-10-26T19:45Z)
@@ -161,9 +167,10 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   non-LM22 modules. These modules likely capture immune cell composition patterns.
 - Draw 1 complete at 19:44Z: gold Z=30.16, rank=66/66 (LAST).
 - Draw 2 complete at ~20:00Z: gold Z=26.42, rank=66/66 (LAST). Both gold last. Mean Z=28.29.
-- Draw 3 in progress since 19:55Z (expected ~20:07Z). All 20 expected ~23:31Z, within cap.
+- Draw 3 complete at 20:06Z: gold Z=21.89, rank=66/66 (LAST). 3 draws done, gold last in all 3.
+- All 20 expected ~23:31Z, within cap (~00:21 EDT).
 - Finding template updated: `findings/2026-10-26-gene027-lm22-circularity-preservation.md`
-  has nolith results, 6-module analysis, and 2-draw preliminary result (gold last in both).
+  has nolith results, 6-module analysis, and 3-draw preliminary result (gold last in all 3).
   Run `Rscript network/scripts/analyze_gene027.R` once lith_draw_020.rds exists.
 - cost-scaling finding: fixed n_test typo (was 234, correct is 74).
 
