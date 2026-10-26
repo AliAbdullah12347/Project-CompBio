@@ -59,7 +59,8 @@ rewrite() {
 # PARTIAL and stale RUNNING both return to PENDING while attempts remain.
 requeue() {
   local cutoff=$(( $(now) - STALE_SECS ))
-  awk -F'\t' -v OFS='\t' -v cutoff="$cutoff" -v maxa="$MAX_ATTEMPTS" '
+  local dead; dead="$(dead_claims)"
+  awk -F'\t' -v OFS='\t' -v cutoff="$cutoff" -v maxa="$MAX_ATTEMPTS" -v dead="$dead" '
     NR==1 { print; next }
     $3=="RUNNING" {
       # -u is required: $5 is UTC and BSD `date -j` would otherwise read it as
@@ -70,13 +71,16 @@ requeue() {
       # An unparseable stamp must be treated as stale, not skipped, or the row
       # is stuck RUNNING forever. getline leaves `started` untouched on failure,
       # which is why it is reset to "" above.
-      if (started == "" || started+0 < cutoff) {
+      is_dead = (dead != "" && index("," dead ",", "," $1 ",") > 0)
+      if (is_dead || started == "" || started+0 < cutoff) {
         # Judged on attempts alone a long, correctly-progressing experiment that is
         # killed mid-session three times would be retired. The driver refunds attempts
         # when a run produced real checkpoints, so by the time $4 reaches maxa here the
         # row has genuinely failed that many times without producing anything.
         if ($4+0 >= maxa) { $3="BLOCKED"; $8="dead RUNNING after " $4 " attempts, no progress" }
-        else              { $3="PENDING"; $8="requeued from stale RUNNING" }
+        else              { $3="PENDING"
+                            $8 = is_dead ? "requeued: claiming driver gone" \
+                                         : "requeued from stale RUNNING" }
       }
     }
     $3=="PARTIAL" && $4+0 < maxa { $3="PENDING"; $8="requeued from PARTIAL (attempt " $4 ")" }
@@ -88,6 +92,33 @@ next_pending() { awk -F'\t' 'NR>1 && $3=="PENDING" { print $1; exit }' "$QUEUE";
 field() { awk -F'\t' -v id="$1" -v n="$2" '$1==id { print $n; exit }' "$QUEUE"; }
 
 # attempts is incremented HERE AND NOWHERE ELSE.
+# --- claim ownership ---------------------------------------------------------
+# A row is freed only by its timestamp (STALE_SECS). When a driver dies without
+# a clean exit - a session ending mid-row, a hard kill at the session cap - the
+# row it claimed sits RUNNING for the full 6 h even though nothing is working on
+# it. That happened to inp-023 on 2026-10-25: 7 completed draws frozen for over
+# three hours. The lock already does PID-liveness checking; rows did not.
+#
+# Each claim drops a sidecar holding the driver PID. requeue() frees a RUNNING
+# row immediately when its claimer is demonstrably gone, and still falls back to
+# the timestamp when there is no sidecar (rows claimed before this existed) or
+# when the PID is alive. PID recycling can only make this MISS a dead claimer,
+# never free a live one - the conservative direction.
+claim_file() { echo "network/RUNLOG/.claim_$1.pid"; }
+set_claim()  { printf '%s\n' "$$" > "$(claim_file "$1")" 2>/dev/null || true; }
+clear_claim(){ rm -f "$(claim_file "$1")" 2>/dev/null || true; }
+dead_claims() {
+  local out="" pf id pid
+  for pf in network/RUNLOG/.claim_*.pid; do
+    [ -f "$pf" ] || continue
+    id="$(basename "$pf" .pid)"; id="${id#.claim_}"
+    pid="$(head -1 "$pf" 2>/dev/null)"
+    case "$pid" in ''|*[!0-9]*) continue ;; esac
+    kill -0 "$pid" 2>/dev/null || out="$out,$id"
+  done
+  printf '%s' "${out#,}"
+}
+
 claim() {
   local id="$1"
   awk -F'\t' -v OFS='\t' -v id="$id" -v t="$(ts)" '
@@ -96,6 +127,7 @@ claim() {
     { print }
   ' "$QUEUE" | rewrite || return 1
   [ "$(field "$id" 3)" = "RUNNING" ] || return 1   # verify, do not assume
+  set_claim "$id"
 }
 
 release() {   # undo a claim without burning an attempt
@@ -356,6 +388,7 @@ fi
 echo "=== $ID -> $STATUS (${WALL}s) ==="
 beat "$ID" "done" 100 "$ID $STATUS ${WALL}s"
 mark "$ID" "$STATUS" "$WALL" "$NOTE"
+clear_claim "$ID"
 [ "$STATUS" != "DONE" ] && { echo "## $(ts)  $ID  $NOTE"; echo '```'; tail -20 "$OUTDIR/log.txt"; echo '```'; echo; } >> network/BLOCKED.md
 
 sync_up "network: $ID $STATUS - $NOTE"

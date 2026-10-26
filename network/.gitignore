@@ -11,6 +11,7 @@
 .driver.lock/
 .wake.lock/
 RUNLOG/.ckpt_mark_*
+RUNLOG/.claim_*.pid
 RUNLOG/.daemon_verified
 RUNLOG/.driver.lock/
 RUNLOG/.last_done_count
