@@ -568,3 +568,27 @@ Error in assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-023 reference") :
 Execution halted
 ```
 
+## 2026-10-26T16:15:23Z  gene-027  hit 7200s cap; partial results kept; +3 new checkpoints (attempt refunded)
+```
+  ..reassigning 1 genes from module 58 to modules with higher KME.
+  ..reassigning 1 genes from module 59 to modules with higher KME.
+  ..reassigning 5 genes from module 60 to modules with higher KME.
+  ..reassigning 1 genes from module 61 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-10-26T10:27:42] 65 modules detected
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2432572 130.0    4388124 234.4         NA   4388124  234.4
+Vcells 16082236 122.7   74880000 571.3      16384 457846405 3493.1
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2432425 130.0    4388124 234.4         NA   4388124  234.4
+Vcells 20745555 158.3   59904000 457.1      16384 457846405 3493.1
+[2026-10-26T10:27:43] bp_nolith (non-LM22, 500 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 7200s
+```
+
