@@ -247,36 +247,22 @@ Evidence 18/25 · Interest 7/10 · Δ −0.2.
 
 ### 009 — All 33 modules across groups: BP disease drives network-wide differences
 
+> **RETRACTED 2026-10-15.** Eigengenes were computed on the raw (library-offset-contaminated)
+> expression matrix. The 31/33 result collapses to 0/33 once the library offset is removed.
+> See finding `2026-10-14-bp-disease-drives-network-globally.md` for the full retraction note.
+> Evidence now **0/25**. The 0/33 nolith-lith result (finding #001) is not affected.
+
 `network/analyses/009-all-modules-across-groups/` · Finding:
 [2026-10-14-bp-disease-drives-network-globally.md](findings/2026-10-14-bp-disease-drives-network-globally.md)
 
-| Contrast | Sig modules (bonf<0.05, additive comp adj) |
-|:--|--:|
-| control vs bp_nolith | **31 / 33** |
-| control vs bp_lith | **32 / 33** |
-| bp_nolith vs bp_lith | **0 / 33** |
-
-BP disease per se (not lithium) is associated with a network-wide restructuring of peripheral
-blood co-expression (31/33 modules, R²_comp for these modules 3–25%). Lithium adds nothing
-within BP (0/33 nolith-lith). Darkturquoise is the **only** module where ctrl-nolith is NS
-(bonf=0.814) but ctrl-lith is significant (bonf=0.001) — attributable to its high composition
-dependency (R²_comp=32.6%) and the steeper b2 slope in bp_lith.
-
-Evidence 19/25 · Interest 9/10 · Δ +1.4.
-
 ### 010 — PC1 of all-sample ME matrix: BP disease as a global network factor
+
+> **RETRACTED 2026-10-15.** Same contamination as analysis 009 — eigengenes on raw expression.
+> PC1=77.5% disease result is invalid. Evidence now **0/25**.
+> See `2026-10-14-pc1-captures-bp-disease.md` for the full retraction note.
 
 `network/analyses/010-full-pca-all-samples/` · Finding:
 [2026-10-14-pc1-captures-bp-disease.md](findings/2026-10-14-pc1-captures-bp-disease.md)
-
-PCA of 33-module ME across 460 samples: PC1=77.5% variance (all 33 modules load similarly;
-negative loadings −0.181 to −0.191). Control mean PC1=−1.43, bp_nolith=+0.98, bp_lith=+1.73.
-r(PC1, disease)=0.289, permutation p<0.001 (0/1000 permutations as extreme).
-
-PC2 (10%) = composition/lithium signal (r_b1=−0.434, r_b2=−0.447) — the same dimension
-as analysis 002 PC2 but demoted by the dominant disease PC1 when controls are included.
-
-Evidence 18/25 · Interest 7/10 · Δ −0.2.
 
 ### 013 — Inter-module correlation structure: BP tightens module coupling
 
@@ -347,19 +333,15 @@ Evidence 20/25 · Interest 8/10 · Δ +0.4.
     contrast does NOT (p_bonf=0.339 / 0.509). The BP-only result from finding 002 is intact;
     adding controls reveals a robust residual signal whose biological origin (genuine lithium
     effect vs unmeasured composition) remains open.
-13. **BP disease (not lithium) drives a network-wide co-expression change** (31/33 modules,
-    ctrl-nolith significant; R²_comp 3-25% ≫ composition). Within BP, lithium adds nothing
-    beyond composition (0/33 nolith-lith). Darkturquoise is the only module showing
-    specifically ctrl-lith (not ctrl-nolith) significance — explained by its high composition
-    dependency (R²_comp=33%).
-14. **A global network factor (PC1=77.5%)** captures the disease effect: controls are
-    systematically higher across all 33 modules (mean PC1=−1.43 vs BP: +1.0 to +1.7).
-    r(PC1, disease)=0.289, permutation p<0.001. PC2 (10%) = composition/lithium signal.
+13. ~~**BP disease (not lithium) drives a network-wide co-expression change** (31/33 modules,
+    ctrl-nolith significant)~~ **RETRACTED 2026-10-15.** 31/33 collapses to 0/33 on
+    offset-removed expression. The only valid sub-claim: 0/33 nolith-lith (finding #001).
+14. ~~**A global network factor (PC1=77.5%)** captures the disease effect~~ **RETRACTED
+    2026-10-15.** PC1 result was on raw-expression eigengenes. Evidence now 0/25.
 15. **The lone exception (darkred) is the erythrocyte module**: hub gene ANK1 (ankyrin-1,
     kME=0.937), top GO erythrocyte development (FDR=2.1e-6). LM22 has no erythrocyte cell type
     → darkred has near-zero composition correlations (r_b2=−0.097) → invisible to the
-    composition proxy → no group effect. The 31 modules that DO change in BP are all
-    measuring immune cell biology, which is exactly what LM22 captures.
+    composition proxy → no group effect.
 16. **BP disease tightens module coupling**: inter-module median |r| increases from 0.763
     (ctrl) to 0.790 (nolith) to 0.845 (lith). Mantel structure similarity ctrl vs nolith
     r=0.934 is significantly lower than the null (0.972; p=0.024). This tighter coupling is
