@@ -44,7 +44,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 18/25 · 6/10 | live | [No module eigengene associates with lithium — and the modules are not independent](findings/2026-10-14-module-trait-no-lithium-association.md) | 2026-10-14 |
 | 17/25 · 8/10 | live | [Darkturquoise: control-lith contrast survives composition adjustment; nolith-lith does not](findings/2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md) | 2026-10-14 |
 | 16/25 · 8/10 | live | [BP disease tightens inter-module correlations: modules move more in lockstep](findings/2026-10-14-inter-module-correlations-tighten-in-bp.md) | 2026-10-14 |
-| 15/25 · 5/10 | live | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) | 2026-10-25 |
+| 15/25 · 5/10 | CORRECTED | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) | 2026-10-25 |
 | 14/25 · 5/10 | live | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | 2026-10-25 |
 | 12/25 · 5/10 | CORRECTED | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | 2026-10-24 |
 | 10/25 · 5/10 | CORRECTED | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | 2026-10-22 |
@@ -99,7 +99,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | _raw_matrix_archive_20261018T211754Z | ARCHIVED (raw matrix) | 18 files |
 | _raw_test_contaminated_20261025T193947Z | live | 102 files |
 | base-001 | live | 106 files |
-| base-002-ceil | live | 4 files |
+| base-002-ceil | live | 6 files |
 | base-003-remerge | live | 6 files |
 | inp-022 | live | 57 files |
 | inp-023 | live | 19 files |

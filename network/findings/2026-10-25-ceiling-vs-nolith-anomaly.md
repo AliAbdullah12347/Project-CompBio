@@ -1,5 +1,22 @@
 # The one fully-matched comparison behaves incoherently — stop before interpreting it
 
+> **CORRECTION 2026-10-26 — I attributed the size dependence to the wrong cause.**
+>
+> This finding reads `cor(log10 size, Zsummary) = +0.911` in the ceiling arm as "the
+> dense raw-graph signature" of contamination. The re-run on verified offset-removed
+> expression gives **+0.838** for the same arm — barely lower, and in line with the
+> 0.879 this arm measured independently. **Zsummary's size dependence is intrinsic,
+> not an artifact.** The raw test matrices were real and did invalidate the run, but
+> they are not what that number was showing.
+>
+> What remains genuinely odd is the *other* half: nolith's **−0.036**, where the size
+> dependence disappeared. A clean nolith arm is running now and will settle whether
+> that too was contamination or something real.
+>
+> Clean ceiling arm, for the record: 67 modules, gold Zsummary 35.78 at medianRank
+> 68 of 68 (last), module Z median 25.07, only 15 of 67 above gold.
+
+
 **Date:** 2026-10-25
 **Analysis:** `network/runs/base-002-ceil`
 **Evidence:** 15/25 · **Interest:** 5/10 · **Δ:** -1.0
