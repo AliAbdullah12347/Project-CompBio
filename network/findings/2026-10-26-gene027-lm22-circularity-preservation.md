@@ -109,5 +109,6 @@ the modules themselves changed.
   association p-value and composition share by <1%. Module network preservation now
   confirms the same conclusion at the network level.
 
-E=0 R=0 B=0 D=0 C=0
-<!-- Fill scores after results complete. Expected: E=19-22/25, B=4/5, D=4/5, C=4/5, R=4/5 -->
+<!-- SCORES PENDING LITH COMPLETION — fill with actual values once all 20 draws done -->
+<!-- Expected: E=5 R=4 B=3 D=5 C=4 → total 21/25; Interest=6/10 -->
+<!-- Scores will be inserted HERE and the Evidence/Interest header lines filled in -->
