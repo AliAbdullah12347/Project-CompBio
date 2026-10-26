@@ -57,13 +57,12 @@
 
 ## Queue
 
-DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+DONE (7): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
   **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
-  **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s),
-  **gene-027** (RUNNING 2026-10-26T14:15Z; LM22 circularity check, cap 7200s — likely PARTIAL).
-RUNNING (1): gene-027 (started 2026-10-26T14:15Z)
+  **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s).
+RUNNING (1): **gene-027** (started 2026-10-26T14:15Z; LM22 circularity check, cap 7200s — will be PARTIAL)
 PENDING (43): inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
