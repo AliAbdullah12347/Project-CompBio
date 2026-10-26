@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Alpha and beta diversity — brief summary</title>
+<style>body{font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.4;max-width:900px;margin:24px auto;padding:0 16px;color:#111;background:#fff}h1{font-size:18pt}h2{font-size:14pt;margin-top:22px}</style>
+</head><body>
+
+<h1>Alpha and beta diversity — brief summary</h1>
+
+<h2>What it is</h2>
+<p>Instead of testing 12,018 genes one by one, these ask the mediation question once, about the whole transcriptome:</p>
+<ul>
+<li><b>Alpha diversity:</b> how evenly one person's blood spreads its expression across genes. It is one number per person (Shannon entropy).</li>
+<li><b>Beta diversity:</b> how different two people's overall expression profiles are, as a distance between every pair of people (Aitchison distance).</li>
+</ul>
+
+<h2>Main techniques</h2>
+<ul>
+<li><b>Alpha:</b> Shannon diversity on protein-coding, non-signature genes. It goes through our existing mediation estimator, with 10,000 bootstrap and 10,000 permutation replicates.</li>
+<li><b>Decomposition:</b> splits bulk diversity into "cells changed" versus "mix changed" (Jost 2007), using the per-lineage expression estimates.</li>
+<li><b>Beta:</b>
+<ul>
+<li>PERMANOVA: does lithium shift the profiles?</li>
+<li>PERMDISP: does lithium change how varied people are?</li>
+<li>Partial dbRDA and variation partitioning: how much of the shift is shared with cell mix?</li>
+<li>A joint-significance test for mediation.</li>
+</ul></li>
+<li><b>Pathway level:</b> both repeated on the 50 Hallmark pathways, with KEGG as a check.</li>
+</ul>
+
+<h2>Results</h2>
+<table style="border-collapse:collapse">
+<tr>
+<th style="border:1px solid #9a9a9a;padding:4px 8px;background:#ececec;text-align:left;vertical-align:top"></th>
+<th style="border:1px solid #9a9a9a;padding:4px 8px;background:#ececec;text-align:left;vertical-align:top">Result</th>
+<th style="border:1px solid #9a9a9a;padding:4px 8px;background:#ececec;text-align:left;vertical-align:top">Meaningful?</th>
+</tr>
+<tr>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>Alpha</b></td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">Lithium lowers diversity <b>through the cell mix</b>: indirect effect −0.034 (95% CI −0.072 to −0.007), p = 0.020; Holm-adjusted p = 0.041</td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>Yes</b>, the cleanest confirmatory finding in the arm. The effect is small: about 3.4% fewer "effective genes"</td>
+</tr>
+<tr>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>Decomposition</b></td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>95%</b> of that change is the blood being reweighted toward granulocytes; changes inside cell types are not detectable</td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">Supports the alpha result without relying on the mediation model</td>
+</tr>
+<tr>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>Beta: shift</b></td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">Lithium shifts the whole transcriptome (p = 0.0003), but does not change how varied people are (p = 0.50)</td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">Yes, the shift is real</td>
+</tr>
+<tr>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>Beta: mediation</b></td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>About 67%</b> of the shift is shared with cell mix, but the formal test fails on the main tree (p = 0.080). It passes on the proposal tree (p = 0.041)</td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">Suggestive, not confirmed</td>
+</tr>
+<tr>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>Pathways</b></td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">Lithium's shift is <b>essentially all</b> compositional: no direct effect is left once cell mix is accounted for (p = 0.35)</td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">Yes, but treat it as descriptive</td>
+</tr>
+<tr>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top"><b>Bipolar vs control</b> (exploratory)</td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">No shift and no diversity change. Patients <i>may</i> be more varied among themselves on two of the distance measures (p = 0.011, 0.013)</td>
+<td style="border:1px solid #9a9a9a;padding:4px 8px;vertical-align:top">A lead only. It does not hold on the main distance measure</td>
+</tr>
+</table>
+<p></p>
+
+<h2>What it means</h2>
+<p>Lithium makes blood more granulocyte-heavy, and granulocytes have a narrower transcriptome, so overall blood expression becomes less diverse. That route through cell composition is real and measurable: unlike the per-gene proportion mediated, here the indirect effect passes an actual test. At the level of biological programmes, lithium's effect looks almost entirely compositional. Gene by gene, part of it still survives as a direct effect.</p>
+
+</body></html>

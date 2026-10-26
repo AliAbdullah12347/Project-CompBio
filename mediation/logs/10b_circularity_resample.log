@@ -1,0 +1,72 @@
+
+== lineage == fixed significant-TE sets: C1 1273, C2 48, C3 1329 | observed median PM 0.3914 / 0.3372 / 0.3906
+   boot   50/1000 | 5.6 min | ~107.1 min left
+   boot  100/1000 | 9.5 min | ~85.5 min left
+   boot  150/1000 | 14.5 min | ~82.0 min left
+   boot  200/1000 | 19.8 min | ~79.3 min left
+   boot  250/1000 | 24.1 min | ~72.4 min left
+   boot  300/1000 | 27.5 min | ~64.1 min left
+   boot  350/1000 | 30.4 min | ~56.4 min left
+   boot  400/1000 | 33.2 min | ~49.8 min left
+   boot  450/1000 | 37.1 min | ~45.3 min left
+   boot  500/1000 | 43.4 min | ~43.4 min left
+   boot  550/1000 | 49.5 min | ~40.5 min left
+   boot  600/1000 | 98.1 min | ~65.4 min left
+   boot  650/1000 | 102.1 min | ~55.0 min left
+   boot  700/1000 | 106.0 min | ~45.4 min left
+   boot  750/1000 | 110.4 min | ~36.8 min left
+   boot  800/1000 | 115.4 min | ~28.8 min left
+   boot  850/1000 | 119.5 min | ~21.1 min left
+   boot  900/1000 | 123.3 min | ~13.7 min left
+   boot  950/1000 | 127.0 min | ~6.7 min left
+   boot 1000/1000 | 131.0 min | ~0.0 min left
+   perm   50/300 | 127.8 min | ~638.8 min left
+   perm  100/300 | 132.8 min | ~265.6 min left
+   perm  150/300 | 135.6 min | ~135.6 min left
+   perm  200/300 | 137.7 min | ~68.9 min left
+   perm  250/300 | 142.8 min | ~28.6 min left
+   perm  300/300 | 147.9 min | ~0.0 min left
+ set n_sig observed boot_lo boot_hi null_median perm_p
+  C1  1273   0.3914  0.1482  0.5617      0.3718  0.488
+  C2    48   0.3372  0.1177  0.5001      0.3573  0.522
+  C3  1329   0.3906  0.1474  0.5590      0.3719  0.488
+    tree                    contrast observed      lo     hi
+ lineage C2 markers - C1 non-markers  -0.0542 -0.1410 0.0194
+ lineage     C3 all - C1 non-markers  -0.0008 -0.0038 0.0008
+
+== proposal == fixed significant-TE sets: C1 1083, C2 47, C3 1129 | observed median PM 0.4452 / 0.3525 / 0.4433
+   boot   50/1000 | 3.9 min | ~74.9 min left
+   boot  100/1000 | 8.5 min | ~76.3 min left
+   boot  150/1000 | 12.9 min | ~73.4 min left
+   boot  200/1000 | 17.9 min | ~71.7 min left
+   boot  250/1000 | 23.1 min | ~69.3 min left
+   boot  300/1000 | 28.3 min | ~66.1 min left
+   boot  350/1000 | 33.8 min | ~62.9 min left
+   boot  400/1000 | 39.4 min | ~59.1 min left
+   boot  450/1000 | 45.0 min | ~55.0 min left
+   boot  500/1000 | 49.5 min | ~49.5 min left
+   boot  550/1000 | 52.4 min | ~42.8 min left
+   boot  600/1000 | 55.6 min | ~37.1 min left
+   boot  650/1000 | 59.0 min | ~31.8 min left
+   boot  700/1000 | 61.8 min | ~26.5 min left
+   boot  750/1000 | 64.7 min | ~21.6 min left
+   boot  800/1000 | 67.5 min | ~16.9 min left
+   boot  850/1000 | 70.8 min | ~12.5 min left
+   boot  900/1000 | 73.7 min | ~8.2 min left
+   boot  950/1000 | 76.8 min | ~4.0 min left
+   boot 1000/1000 | 80.1 min | ~0.0 min left
+   perm   50/300 | 3.3 min | ~16.3 min left
+   perm  100/300 | 6.6 min | ~13.3 min left
+   perm  150/300 | 10.1 min | ~10.1 min left
+   perm  200/300 | 13.2 min | ~6.6 min left
+   perm  250/300 | 16.4 min | ~3.3 min left
+   perm  300/300 | 20.0 min | ~0.0 min left
+ set n_sig observed boot_lo boot_hi null_median perm_p
+  C1  1083   0.4452  0.2266  0.6203      0.3665  0.392
+  C2    47   0.3525  0.1934  0.5733      0.3452  0.495
+  C3  1129   0.4433  0.2247  0.6196      0.3663  0.392
+     tree                    contrast observed     lo     hi
+ proposal C2 markers - C1 non-markers  -0.0927 -0.135 0.0344
+ proposal     C3 all - C1 non-markers  -0.0019 -0.004 0.0014
+
+10b complete.

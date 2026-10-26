@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Diversity analysis — meeting notes</title>
+<style>body{font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.4;max-width:860px;margin:24px auto;padding:0 16px;color:#111;background:#fff}h1{font-size:17pt}h2{font-size:13pt;margin-top:20px}</style>
+</head><body>
+
+<h1>Alpha and beta diversity — meeting notes</h1>
+
+<h2>Main results</h2>
+<ol>
+<li><b>Lithium makes blood gene expression less diverse — through the cell mix.</b> Confirmed.</li>
+<li><b>The cause is more granulocytes</b>, not cells behaving differently.</li>
+<li><b>Lithium shifts people's whole expression profile; most of that shift goes with the cell mix.</b> Suggestive.</li>
+<li><b>Bipolar off lithium looks like controls.</b></li>
+</ol>
+
+<h2>Key details</h2>
+<table style="border-collapse:collapse">
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Alpha, via cell mix</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">≈ 3.4% fewer "effective genes"; p = 0.020, corrected 0.041</td></tr>
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Where it comes from</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">95% is the blood reweighting toward granulocytes</td></tr>
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Transcriptome size by cell type</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">granulocytes ~1,400 effective genes · monocytes ~2,100 · T and B ~3,600 · NK ~4,800</td></tr>
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Cell mix evenness</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">less even on lithium, p = 0.003</td></tr>
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Beta, shift</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">p = 0.0003; people not more or less varied (p = 0.50)</td></tr>
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Beta, mediation</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">67% shared with cell mix; formal test p = 0.080 (main tree), 0.041 (proposal tree)</td></tr>
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Pathways</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">no direct effect left once cell mix is accounted for (p = 0.35)</td></tr>
+<tr><td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top"><b>Bipolar</b></td>
+<td style="border:1px solid #9a9a9a;padding:3px 8px;vertical-align:top">no shift, no diversity change; patients possibly more varied among themselves (p = 0.011, 0.013) — exploratory</td></tr>
+</table>
+<p></p>
+
+<h2>How the results connect</h2>
+<ol>
+<li><b>Lithium raises granulocytes relative to monocytes</b> → the cell mix gets less even (p = 0.003).</li>
+<li><b>Granulocytes have by far the narrowest transcriptome</b> (~1,400 effective genes, a third of a lymphocyte's).</li>
+<li><b>So blood with more granulocytes has a less diverse average transcriptome</b> — even if no cell changes. It is arithmetic of mixing.</li>
+<li><b>That is exactly what we measured:</b> the indirect effect is significant, 95% of the drop is reweighting, and nothing is detectable inside cell types.</li>
+<li><b>The same shift is the main way lithium moves whole profiles:</b> the top axes lithium moves track granulocyte fraction and are ~70–80% mediated (beta).</li>
+</ol>
+
+<h2>What it means</h2>
+<ul>
+<li><b>It backs up the per-gene result.</b> Gene by gene we estimated ~40% mediated but could not prove it. Asked once for the whole transcriptome, the cell-mix route is confirmed. Same answer, now with evidence.</li>
+<li><b>Why the indirect effect is significant when the total is not:</b> lithium moves essentially one thing in the cell mix (granulocytes vs monocytes). The indirect effect zooms in on it; tests of the whole mix or the whole effect get diluted. Same reason the beta mediation test is borderline.</li>
+<li><b>Composition dominates, but direct effects exist.</b> Globally and per pathway, lithium's effect is compositional; gene by gene, 245 genes keep a direct effect (e.g. TSPAN2). Reading: lithium's cell-intrinsic effects hit specific genes, not whole biological programmes.</li>
+<li><b>For the project's question:</b> a blood "signature" in lithium-treated patients largely reflects a shifted cell mix — which fits the premise of Arm 1 (cell-mix ratios predicting lithium nearly as well as all genes), to be tested there.</li>
+<li><b>Bipolar:</b> no trace in diversity or cell mix, matching the DE arm. The "patients more varied" pattern is a lead to mention, not a finding.</li>
+</ul>
+<p><b>Caveats:</b> effects are small; the data are observational (a confounder as strong as age could matter); the cell-type split rests on estimated profiles; the bipolar result is exploratory.</p>
+
+</body></html>

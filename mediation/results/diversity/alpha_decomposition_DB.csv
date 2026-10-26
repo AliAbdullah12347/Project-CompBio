@@ -1,0 +1,7 @@
+"component","meaning","effect_of_lithium","lo","hi","share_of_total"
+"H_bulk","bulk diversity (total)",-0.0404870390989768,-0.0873537273374631,0.00452875785719865,1
+"reweighting","MIXTURE: lineage weights change, lineage diversity held at average",-0.0385569041937013,-0.0635074607522395,-0.0153271094582522,0.952327091626609
+"within_lineage","CELLS: each lineage's own diversity changes, weights held at average",-0.0116788791699357,-0.0441157303883397,0.0204469740371586,0.288459700433635
+"cross","weights and lineage diversity changing together",-0.001636281678489,-0.0121840062905966,0.00821924970779017,0.0404149504360854
+"between_JSD","MIXTURE: divergence between lineages, weighted by the mix",0.000460757841802312,-0.0050705056555492,0.00569758015992008,-0.0113803788090287
+"residual","what the bMIND mixture does not reproduce",0.0109242681013467,-0.0063783869202258,0.0299059011519863,-0.269821363687294

@@ -1,0 +1,11 @@
+"category","lineage","proposal","both_trees"
+"TOTAL",1272,1075,1074
+"DIRECT",245,167,164
+"VIA_MIX",784,761,624
+"UNRESOLVED",243,147,114
+"OPPOSING",37,26,23
+"INTERACTION",1,0,0
+"NIE_delta",0,3647,0
+"NIE_boot",0,3883,0
+"NIE_perm",0,5888,0
+"NIE_consensus",0,3385,0

@@ -291,3 +291,129 @@ proposal's own rule requires ("We specify a single primary model here and design
 other configuration exploratory"). They are run regardless of whether the primary result is
 interpretable, because running them only on a bad result would make them a contingency on
 the outcome -- which is the multiple-testing problem the feedback warned about.
+
+
+---
+---
+
+## 7. ADDENDUM A — circularity sensitivity analysis
+
+**Declared 2026-10-18, before any of it was run.**
+Requested by Ali: *"add another mediation that is done on only the 547 signature genes, and
+then on the entire filtered gene set including the 547 signature genes, so that we can do a
+sort of circularity sensitivity analysis."*
+
+### 7.1 Which of the 547 signature genes exist in this data — measured, not assumed
+
+| Step | Genes | Note |
+|:--|--:|:--|
+| LM22 signature matrix | **547** | Newman et al. 2015 |
+| present in the GENCODE v19 count matrix | **541** | absent: FLJ13197, LINC00597, LINC00921, LOC100130100, LOC126987, TRBC1 |
+| pass the expression filter (>10 counts in ≥90 % of samples) | **350** | the genes that carry signal in blood |
+| present but fail the filter | **191** | median gene has >10 counts in only **3.8 %** of samples; they mostly mark cell types that are rare or absent in blood (Tregs 25, plasma cells 18, macrophages M1 17, mast cells activated 15, dendritic cells resting 13, …) |
+| all-zero in all 474 samples | 2 | cannot be modelled at all |
+
+So "the 547 signature genes" can mean, in blood, the **350 that are expressed**. The 191 others
+contributed almost nothing to the deconvolution either: CIBERSORT fits on the linear scale,
+where genes near zero carry essentially no weight.
+
+### 7.2 Design — one common fit, so only the gene set differs
+
+| Element | Choice |
+|:--|:--|
+| subjects | the 226 bipolar I subjects, as the primary |
+| normalisation | TMM factors and library sizes computed **once**, on all 12,368 filtered genes |
+| precision weights | voom **once**, on all 12,368 |
+| variance moderation | empirical Bayes **once**, across all 12,368 |
+| mediator, estimator, covariates | identical to the primary |
+| trees | both (lineage 4-balance and proposal 5-balance) |
+
+| Code | Outcome gene set | Genes |
+|:--|:--|--:|
+| **C1** | non-marker genes | 12,018 |
+| **C2** | expressed LM22 signature genes | 350 |
+| **C3** | entire filtered set, markers included | 12,368 |
+| C4 | every LM22 gene with any counts (adds the 189 unexpressed ones via a second voom on 12,557 genes) | 539 |
+
+Multiple testing: BH **within each set's own family** (that is what "a mediation on only these
+genes" means); C2's genes are also reported within the full 12,368 family.
+
+Inference: bootstrap B = 1000 over subjects for the median proportion mediated of C1–C3,
+taken from the **same** replicates so the difference C2 − C1 gets its own paired interval;
+permutation null B = 300 per set for the median PM on a fixed gene set (as in `04b`); point
+estimates and delta-method only for C4.
+
+### 7.3 Why one common fit — and why this supersedes S1
+
+The earlier marker check (S1, `05_sensitivity.R`) normalised the 350 markers **on their own
+counts**: library size = the sum of the marker counts. That sum itself rises and falls with
+cell composition, so each marker was measured relative to the other markers, and composition
+entered the denominator. That is a confound, not a sensitivity analysis. It is superseded.
+
+Normalising on the whole expressed transcriptome is the standard and is what the DE arm did.
+With normalisation, weights and the variance prior held fixed, any difference between C1, C2
+and C3 comes **only from which genes are summarised** — the cleanest form of the question.
+
+The primary analysis normalised on its own 12,018 genes. C1 repeats it on the 12,368 basis,
+so the effect of that choice is measured, not assumed.
+
+### 7.4 What would indicate circularity — fixed now
+
+1. **The direct signature.** Per gene, the share of expression variance explained by the cell
+   mix beyond lithium and covariates (partial R² of the balance block). Circularity predicts it
+   is much larger for markers than non-markers. Tested by Wilcoxon rank-sum.
+2. C2's median proportion mediated above C1's, with the paired bootstrap 95 % interval of the
+   difference excluding zero.
+3. C3's median PM pulled toward C2's.
+
+If (1) holds but (2) does not, circularity inflates the mediator–outcome link without
+inflating the *share* mediated — the pattern S1 hinted at, now tested properly.
+
+---
+
+## 8. ADDENDUM B — alpha and beta diversity, mediated through cell mix
+
+**Declared 2026-10-18, before any of it was run.** Research: `DIVERSITY_RESEARCH.md`.
+Ali delegated every open choice ("make these decisions on your own … make sure it is
+justifiable"). Each is recorded with its reason.
+
+### 8.1 Decisions
+
+| # | Question | Decision | Why — briefly |
+|:--|:--|:--|:--|
+| 1 | Which meaning of alpha / beta? | **All three, ranked.** (A) per-person / between-person = **primary**. (B) within- vs between-cell-type decomposition = secondary. (C) diversity of the cell mix itself = secondary | (A) is the standard omics usage and answers the question with one test. (B) is the only exact split of bulk diversity into "cells changed" vs "mix changed" (Jost 2007), but rests on noisy bMIND estimates, so it cannot be primary. (C) is cheap and explains *why* (B) behaves as it does: the between-cell-type term can never exceed the diversity of the cell mix |
+| 2 | Beta: location, dispersion, or both? | **Both.** Mediation of the location effect is primary; dispersion is mediated only if lithium changes dispersion at α = 0.05 | PERMANOVA is unreliable under unequal dispersion in **unbalanced** designs (Anderson & Walsh 2013) and ours is 152 : 74, so dispersion must be checked anyway; dispersion is also its own question (differential variability, Ho et al. 2008) |
+| 3 | Exposure | **Lithium = primary.** Bipolar-off-lithium vs control = **exploratory** | Lithium is the arm's pre-specified primary. The pre-proposal feedback warned that swapping exposures is a multiple-testing problem, so bipolar is labelled exploratory and reported as such. A global measure is the natural follow-up to a per-gene DE that found almost nothing |
+| 4 | Pathway database | **MSigDB Hallmark** (50 sets) primary; **KEGG legacy** sensitivity | Hallmark was built specifically to remove redundancy (Liberzon et al. 2015), and 50 programmes are interpretable. KEGG legacy is flat (not nested), so fractional counting stays meaningful; Reactome and GO are deeply nested and would make it meaningless |
+| 5 | Pathway representation | **Aggregated abundance** (a gene in *k* sets gives 1/*k* of its TPM to each), not GSVA | Diversity needs non-negative abundances; GSVA scores can be negative and no published work takes the entropy of them. Aggregation is the direct analogue of collapsing species into higher taxa, which is the framework the request comes from. It also avoids a large Bioconductor dependency |
+| 6 | Alpha measure | **Shannon H** (Hill q = 1) primary; Hill q = 0 and q = 2 secondary | Shannon is the measure that partitions exactly (Jost 2007) and is insensitive to depth, unlike richness |
+| 7 | Gene universe | **protein-coding ∩ filtered ∩ non-LM22** primary | Structural non-coding RNAs dominate the counts (RN7SL1 6.86 %, RN7SL2 4.79 %, RN7SK 3.45 %); markers excluded for circularity, matching the primary rule. Sensitivities: markers included; all genes; mitochondrial genes excluded |
+| 8 | Scale | **TPM** primary; read counts sensitivity | TPM approximates transcript proportions; read counts match García-Nieto et al. 2022 |
+| 9 | Covariates | the arm's set **+ log library size** | Transcriptome diversity is a known technical variable (García-Nieto et al. 2022) |
+| 10 | Beta distance | **Aitchison** primary; Jensen–Shannon and Bray–Curtis secondary | RNA-seq is compositional; Aitchison is the same geometry as the ILR mediator |
+| 11 | Mediator tree | lineage 4-balance primary; proposal 5-balance sensitivity | as the arm |
+| 12 | Evidence for mediation | **the indirect-effect test**, never the proportion mediated | the arm showed PM sits near 0.4 under pure noise (permutation p = 0.49) |
+| 13 | Resampling | alpha: B = 10,000 bootstrap and 10,000 permutations; beta: 9,999 permutations, B = 1,000 bootstrap | alpha is one outcome per person, so this is cheap |
+| 14 | Multiplicity | **primary family = 2 tests** (alpha NIE, beta mediation; lithium) → Holm. All else descriptive or exploratory | keeps the confirmatory claim small |
+| 15 | Packages | install `vegan` and `msigdbr` only | `GSVA` is not needed (decision 5); `energy` (MODIMA) is not needed because MODIMA cannot adjust for confounders and age is imbalanced here |
+
+### 8.2 The tests, exactly
+
+| # | Question | Statistic | Null | Inference |
+|:--|:--|:--|:--|:--|
+| **A1** | Does lithium change alpha diversity? | total effect of lithium on Shannon H | no effect | t-test in `H ~ lithium + C`; bootstrap CI |
+| **A2** | **Is that mediated by cell mix?** | natural indirect effect, `med.R` | NIE = 0 | percentile bootstrap 95 % CI (B = 10,000) + permutation (B = 10,000) |
+| A3 | Does cell mix modify lithium's effect? | joint F, 4 lithium × balance terms | no interaction | F-test |
+| **B1** | Does lithium shift whole-transcriptome location? | PERMANOVA pseudo-F, lithium given C | no shift | 9,999 permutations, by margin |
+| **B2** | Does lithium change heterogeneity? | PERMDISP F | equal dispersion | 9,999 permutations |
+| **B3** | **Is the location shift mediated?** | (i) partial dbRDA, lithium given C + balances; (ii) share of lithium's adjusted R² shared with cell mix; (iii) joint significance of both paths | no remaining direct effect / no mediation | (i) permutation; (ii) bootstrap CI; (iii) both paths at α = 0.05 |
+| B4 | Is a dispersion change mediated? *(only if B2 significant)* | NIE, outcome = distance to the non-user centroid | NIE = 0 | as A2 |
+| D-B | Within- vs between-cell-type split | lithium's effect on each Shannon component; residual reported | — | regression + bootstrap |
+| D-C | Cell-mix diversity | lithium's effect on Shannon of the 5 lineage fractions, and on Aitchison dispersion of the cell mix | — | regression; PERMDISP |
+| P | Pathway level | A1–B3 on Hallmark aggregates | as above | as above |
+| BD | Bipolar vs control *(exploratory)* | A1, A2, B1, B2, B3 | as above | as above |
+
+### 8.3 Reported whichever way it comes out
+
+Every row above, both trees, every sensitivity, and the residual of the D-B decomposition.
+Nothing is dropped for being null.

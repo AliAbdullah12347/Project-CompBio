@@ -1,0 +1,62 @@
+
+lithium | lineage tree (PRIMARY)
+================================
+  path a  exposure -> cell mix, MANOVA Pillai (declared): p = 0.0803
+  path a  as RDA on ILR (Aitchison geometry, reported beside): F = 1.692, p = 0.1729
+  cell-mix dispersion (PERMDISP on ILR): F = 0.013, p = 0.9142
+  EQUIVALENCE CHECK  PERMANOVA F = 3.587511 | RDA-on-scores F = 3.587511 -> IDENTICAL
+  gene_aitchison             B1 p=0.0003 | B2 p=0.4975 | direct p=0.0057 | shared 0.674 [-0.001, 0.778] | path b p=0.0001 | 300s
+  gene_aitchison_markers     B1 p=0.0003 | B2 p=0.4462 | direct p=0.0043 | shared 0.662 [-0.012, 0.776] | path b p=0.0001 | 268s
+  pw_hallmark_aitchison      B1 p=0.0088 | B2 p=0.3177 | direct p=0.3518 | shared 0.992 [-0.098, 1.004] | path b p=0.0001 | 117s
+  pw_hallmark_noLM22_aitchison B1 p=0.0062 | B2 p=0.2621 | direct p=0.3304 | shared 0.983 [0.066, 1.012] | path b p=0.0001 | 108s
+  pw_kegg_aitchison          B1 p=0.0011 | B2 p=0.1628 | direct p=0.0610 | shared 0.737 [-0.067, 0.855] | path b p=0.0001 | 2821s
+  gene_jsd                   B1 p=0.0011 | B2 p=0.4177 | direct p=0.0854 | shared 0.798 [no CI] | path b p=0.0001 | 235s
+  gene_bray                  B1 p=0.0006 | B2 p=0.2991 | direct p=0.0575 | shared 0.810 [no CI] | path b p=0.0001 | 171s
+
+ axis var_explained     TE    TE_p     NIE    NIE_se   NIE_p    PM corr_with_granulocyte_fraction
+  PC1         0.205  4.480 0.00891  3.0800 1.3636444 0.02400 0.687                          0.537
+  PC2         0.117 -3.250 0.01400 -2.5800 0.9620764 0.00735 0.793                         -0.591
+  PC3         0.076  0.748 0.29900  0.0633 0.2197747 0.77300    NA                          0.145
+  PC4         0.062  1.760 0.03000  1.0400 0.4894119 0.03330 0.593                          0.376
+  PC5         0.047 -0.892 0.30900  0.0757 0.2869430 0.79200    NA                          0.038
+
+lithium | proposal tree
+=======================
+  path a  exposure -> cell mix, MANOVA Pillai (declared): p = 0.0412
+  path a  as RDA on ILR (Aitchison geometry, reported beside): F = 0.630, p = 0.4989
+  cell-mix dispersion (PERMDISP on ILR): F = 0.066, p = 0.7961
+  gene_aitchison             B1 p=0.0005 | B2 p=0.4975 | direct p=0.0047 | shared 0.710 [0.049, 0.795] | path b p=0.0001 | 163s
+  pw_hallmark_aitchison      B1 p=0.0088 | B2 p=0.3177 | direct p=0.3926 | shared 1.010 [-0.144, 1.005] | path b p=0.0001 | 82s
+
+ axis var_explained     TE   TE_p     NIE    NIE_se   NIE_p    PM corr_with_granulocyte_fraction
+  PC1         0.205  4.380 0.0139  3.6900 1.2954636 0.00442 0.843                          0.537
+  PC2         0.117 -3.260 0.0126 -2.9800 0.9623529 0.00193 0.915                         -0.591
+  PC3         0.076  0.758 0.2940  0.0934 0.2504776 0.70900    NA                          0.145
+  PC4         0.062  1.710 0.0315  0.8630 0.5613316 0.12400 0.505                          0.376
+  PC5         0.047 -0.832 0.3430 -0.1190 0.3395984 0.72600    NA                          0.038
+
+bipolar vs control | lineage tree (EXPLORATORY)
+===============================================
+  path a  exposure -> cell mix, MANOVA Pillai (declared): p = 0.3738
+  path a  as RDA on ILR (Aitchison geometry, reported beside): F = 1.463, p = 0.2089
+  cell-mix dispersion (PERMDISP on ILR): F = 1.241, p = 0.2628
+  gene_aitchison             B1 p=0.0615 | B2 p=0.3690 | direct p=0.1703 | shared 0.715 [-0.436, 0.747] | path b p=0.0001 | 349s
+  gene_aitchison_markers     B1 p=0.0494 | B2 p=0.3061 | direct p=0.1271 | shared 0.663 [-0.389, 0.738] | path b p=0.0001 | 303s
+  pw_hallmark_aitchison      B1 p=0.4101 | B2 p=0.0781 | direct p=0.6077 | shared -4.474 [-3.217, 4.236] | path b p=0.0001 | 85s
+  pw_hallmark_noLM22_aitchison B1 p=0.4138 | B2 p=0.0530 | direct p=0.6323 | shared -3.890 [-1.962, 3.703] | path b p=0.0001 | 89s
+  pw_kegg_aitchison          B1 p=0.1185 | B2 p=0.0150 | direct p=0.3009 | shared 0.830 [-1.020, 0.936] | path b p=0.0001 | 187s
+  gene_jsd                   B1 p=0.1533 | B2 p=0.0108 | direct p=0.3511 | shared 0.937 [no CI] | path b p=0.0001 | 405s
+  gene_bray                  B1 p=0.1164 | B2 p=0.0134 | direct p=0.3190 | shared 0.901 [no CI] | path b p=0.0001 | 7775s
+
+ axis var_explained    TE   TE_p     NIE    NIE_se  NIE_p PM corr_with_granulocyte_fraction
+  PC1         0.225 1.770 0.2390  1.5900 0.8867521 0.0727 NA                         -0.171
+  PC2         0.123 3.300 0.0591  1.9600 1.6540645 0.2360 NA                         -0.731
+  PC3         0.067 0.337 0.7190 -0.3030 0.3400411 0.3730 NA                          0.096
+  PC4         0.059 0.639 0.5360 -0.0326 0.4875329 0.9470 NA                          0.367
+  PC5         0.050 0.581 0.4990  0.0886 0.3396996 0.7940 NA                          0.182
+
+B4  dispersion mediation (pre-declared to run only if B2 is significant)
+========================================================================
+  B2 was NOT significant (p = 0.4975): B4 is not run, exactly as declared.
+
+13_diversity_beta complete.

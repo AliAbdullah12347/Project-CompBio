@@ -176,7 +176,10 @@ correlation 0.9984; median PM 0.396 weighted vs 0.400 unweighted).
 
 ---
 
-## 5. Validation — `00_validate_med.R`, 25 checks, 0 failures
+## 5. Validation — `00_validate_med.R`, 27 checks, 0 failures
+
+*(25 checks originally; two were added after the review found the product-of-coefficients
+comparison tautological — see incident 5.)*
 
 Nothing checks the estimator against my own algebra. Every test checks it against something
 independent.
@@ -381,9 +384,53 @@ Recorded because a methods section that reports only successes is not a methods 
    review notes after a correction, then reverted to Prof. Ay once Ali confirmed they are
    his. The annotation author field reads `ahmetay` throughout.
 
+8. **The calibration was quoted for both trees when it had only run on one.** The corrected
+   proportion of 0.587 came from the lineage tree, because reliability had only been measured
+   for the four lineage balances. Ali caught it. `06b_calibration_proposal.R` measured
+   reliability for the proposal's five balances the same way and ran the calibration there:
+   0.449 → 0.767. The larger jump reflects a *less reliable* mediator (median ICC 0.474 vs
+   0.614; CD4-naive-vs-memory only 0.200), so the lineage figure stays the one to quote.
+
+9. **The first marker-only check was confounded by its own normalisation.** S1 normalised the
+   350 signature genes on their own counts, so the library size was the sum of the marker
+   counts — which itself tracks cell composition. The circularity analysis (section 10 below)
+   replaces it with one common fit on all 12,368 genes.
+
+10. **Path a was briefly coded as RDA where the protocol declared MANOVA.** RDA weights the
+    balances by raw variance, so the low-variance granulocyte/monocyte balance — the one
+    lithium moves — barely counts (p = 0.17 vs Pillai's 0.08). The declared test is used;
+    the RDA value is reported beside it.
+
+11. **Two shell-escaping errors**, both caught by assertions before they produced a result:
+    a `\.` inside an R string passed through bash, and a `\\1` backreference collapsed to
+    `\1`, which wrote a control character in place of every gene biotype. The second is now
+    guarded by an explicit check that more than 20,000 protein-coding genes are recognised.
+
 ---
 
-## 10. Files
+## 10. Added after the main run
+
+Both analyses were declared in `PRESPEC.md` (addenda A and B) before they ran. Full results,
+interpretation and every gene list are in **`MEDIATION_MASTER.md`**.
+
+**Circularity sensitivity** (`10_circularity.R`, `10b_circularity_resample.R`). The mediation
+re-run on the 350 expressed LM22 signature genes and on all 12,368 filtered genes, from one
+common fit (TMM, voom weights and variance prior computed once), so the only difference between
+analyses is which genes are summarised. 541 of the 547 signature genes exist in the
+annotation; 191 of those are essentially unexpressed in blood and are analysed only as an
+extended set.
+
+**Alpha and beta diversity** (`11_diversity_prep.R`, `12_diversity_alpha.R`,
+`13_diversity_beta.R`). Shannon diversity of each person's expression (protein-coding,
+non-LM22, TPM) as a single mediation outcome through `med.R`; Aitchison-distance PERMANOVA,
+PERMDISP, partial dbRDA, variation partitioning and joint significance for between-person
+structure; a within- vs between-lineage Shannon decomposition from the bMIND profiles; the cell
+mix's own Shannon diversity; Hallmark and KEGG pathway layers. Research and sources in
+`DIVERSITY_RESEARCH.md`.
+
+---
+
+## 11. Files
 
 | Path | Holds |
 |:--|:--|
