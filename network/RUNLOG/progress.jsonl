@@ -68,3 +68,4 @@
 {"ts":"2026-10-26T12:05:46Z","run_id":"inp-023","phase":"done","pct":100,"msg":"inp-023 DONE 10311s"}
 {"ts":"2026-10-26T14:10:41Z","run_id":"pow-009","phase":"run","pct":5,"msg":"starting network/experiments/pow-009.R cap=3600s"}
 {"ts":"2026-10-26T14:12:07Z","run_id":"pow-009","phase":"done","pct":100,"msg":"pow-009 DONE 86s"}
+{"ts":"2026-10-26T14:15:20Z","run_id":"gene-027","phase":"run","pct":5,"msg":"starting network/experiments/gene-027.R cap=7200s"}
