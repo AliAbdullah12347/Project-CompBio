@@ -51,3 +51,90 @@ Vcells 20688789 157.9   70813496 540.3      16384 70813496 540.3
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-26T16:39:33] draw 6 done: Z[11.92, 63.67]
+[2026-10-26T16:39:33] draw 7/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T16:50:36] draw 7 done: Z[9, 71.79]
+[2026-10-26T16:50:36] draw 8/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T17:01:41] draw 8 done: Z[9.5, 79.54]
+[2026-10-26T17:01:41] draw 9/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T17:12:46] draw 9 done: Z[12.2, 87.76]
+[2026-10-26T17:12:46] draw 10/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T17:23:52] draw 10 done: Z[10.45, 74.01]
+[2026-10-26T17:23:52] draw 11/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T17:34:57] draw 11 done: Z[11.93, 70.02]
+[2026-10-26T17:34:57] draw 12/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T17:46:02] draw 12 done: Z[11.82, 78.65]
+[2026-10-26T17:46:02] draw 13/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T17:57:07] draw 13 done: Z[11.8, 72]
+[2026-10-26T17:57:07] draw 14/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T18:08:13] draw 14 done: Z[10.23, 72.89]
+[2026-10-26T18:08:13] draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T18:19:55] draw 15 done: Z[12.58, 81.37]
+[2026-10-26T18:19:55] draw 16/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T18:31:11] draw 16 done: Z[11.68, 88.47]
+[2026-10-26T18:31:11] draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T18:42:20] draw 17 done: Z[12.49, 78.4]
+[2026-10-26T18:42:20] draw 18/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T18:53:30] draw 18 done: Z[14.15, 77.02]
+[2026-10-26T18:53:30] draw 19/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T19:04:37] draw 19 done: Z[12.14, 83.93]
+[2026-10-26T19:04:37] draw 20/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-26T19:15:46] draw 20 done: Z[11.52, 74.28]
+[2026-10-26T19:15:46] aggregating ...
+[2026-10-26T19:15:46] === gene-027 COMPLETE ===
