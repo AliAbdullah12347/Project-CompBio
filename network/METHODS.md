@@ -1657,3 +1657,43 @@ last, most modules beat gold, high draw-to-draw variance in gold Z.
 
 This session expects draws 4–16 to complete (cap hits ~22:16 UTC). Draws 17–20 would
 then run in the following session (~52 min total).
+
+---
+
+## 2026-10-26T04:30Z  base-001 re-run complete; RESULTS.md error corrected
+
+### base-001 re-run complete (session 8)
+
+After the raw-matrix fix (commit 1177d8c), base-001 re-ran its lith draws on 2026-10-25
+to 2026-10-26. All 20 draws completed; DONE recorded at 2026-10-26T00:17Z (3603 s).
+
+**Corrected key numbers (71-module reference, 234 controls, verified test matrices):**
+
+| group | gold Z | gold rank | modules above gold |
+|:--|--:|:--|:--|
+| bp_nolith (500 perms) | 14.01 | 72/72 (last) | 65/71 |
+| bp_lith (20 draws mean) | 21.74 (sd 7.05) | 72/72 last in all 20 | 17/71 beat gold in all 20 draws |
+
+Finding `2026-10-26-base001-verified-clean.md` records these results (E=23/25).
+
+### base-003-remerge complete (session 8)
+
+base-003-remerge (reader script) completed in 1 s immediately after base-001. It reads
+base-001 draw RDS files and prints the same summary. No new finding; base-001 finding is
+the authoritative record.
+
+### RESULTS.md factual error corrected
+
+RESULTS.md previously stated "63 of 69" modules above gold in base-001 bp_nolith. The
+correct number (computed from nolith_preservation.rds) is **65 of 71**. The old number
+appears to have been copied from an earlier run with a different module count. Fixed.
+A secondary error: the "gold sd 0.93" from the contaminated base-001 lith draws was being
+contrasted with inp-022's sd of 8.13 to suggest residualisation destabilises the network.
+The verified sd is 7.05 (both show similarly high variance). The text is corrected.
+
+### base-002-ceil attempt 5 (session 8)
+
+Started 2026-10-26T03:17Z. ceiling_ctrl checkpoint loaded from attempt 4 (67-module
+reference on n=160 controls). Nolith 500 perms running at session start (~43 min).
+After nolith: lith draws begin at ~13 min each; cap at 06:17Z. Expected ~10 draws.
+If PARTIAL, draws resume in next attempt; base-002-ceil remains RUNNING until DONE.

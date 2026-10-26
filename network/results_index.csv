@@ -2,7 +2,7 @@
 "mod-000-resolution","moddetect","DONE",1033,"completed in 1033s"
 "base-001","baseline","DONE",3603,"completed in 3603s"
 "base-003-remerge","baseline","DONE",1,"completed in 1s"
-"base-002-ceil","baseline","RUNNING",0,"reset: test matrices were raw (expr_for bypass), fixed 2026-10-25"
+"base-002-ceil","baseline","RUNNING",10804,"requeued from PARTIAL (attempt 0)"
 "inp-022","input","DONE",800,"completed in 800s"
 "inp-023","input","PENDING",10802,"released: claiming process gone (verified), 7 draws kept; was frozen until 01:16Z"
 "pow-009","power","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"

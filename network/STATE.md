@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-25T20:40Z
+**Updated:** 2026-10-26T04:30Z
 
 ## Where the science stands
 
@@ -44,22 +44,15 @@ partial inp-023 finding and corrected ceiling anomaly finding).
 
 ## Queue
 
-DONE (2): mod-000-resolution, inp-022.
-PARTIAL (1): **inp-023** (technical + ILR residualisation, 2 prior attempts, 5/20 lith
-  draws done; claimed session 7 at 2026-10-25T19:16Z; **42 modules** in doubly-residualised
-  reference; draw 6 running; cap expires 22:16Z; draws 17-20 need next session).
-PENDING: 48 rows (includes base-001, base-002-ceil, base-003-remerge — reset by commit
-  1177d8c after raw test matrix bug found).
-
-Order after inp-023: **base-001** (reset to PENDING — raw matrix bug fix, needs re-run
-  with correct expr_for() test matrices; ~2.8h for 20 draws), then base-002-ceil (reset,
-  ~6h), base-003-remerge (reads from base-001, fast ~1s), pow-009 (SFT curves, ~15 min),
-  gene-027 (LM22 circularity, ~2.8h), inp-021, perm-031, trait-033/034/035, pres-030
-  (**KEY** for base-002-ceil re-run diagnosis), samp-043, ann-041, ann-042, ref-002/003/004,
-  corr-005/006, net-007/008, pow-010/011/012, mod-013 through mod-020, inp-024,
-  gene-025/026/028/029, perm-032, hub-036/037, comm-038/039, cent-040, filt-044, tob-045,
-  bmind-046/047 (require bMIND profiles, ~3.1 h to compute), synth-048. Full order in
-  `RUNLOG/queue.tsv`.
+DONE (4): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+  expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader).
+RUNNING (1): **base-002-ceil** (attempt 5, started 2026-10-26T03:17Z, cap expires 06:17Z;
+  ceiling ctrl checkpoint done from attempt 4; nolith 500 perms + lith draws in progress).
+PENDING (46): **inp-023** first (7/20 lith draws checkpointed), then pow-009, gene-027,
+  inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
+  samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
+  pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
+  hub-036/037, comm-038/039, cent-040, filt-044, tob-045, bmind-046/047, synth-048.
 
 Key caches available:
 - `ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm` (base-001) — EXISTS ✓
@@ -126,36 +119,45 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-After inp-023 PARTIAL (driver auto-commits after cap):
-1. **Update finding** at `network/findings/2026-10-25-inp023-technical-ilr-replication.md`
-   with stats from all draws done at session start (expected 5–16):
-   - Run `Rscript network/cache/compute_inp023_stats.R` for current counts
-   - Compare to inp-022: gold rank always last? ≥89% modules above gold?
-2. **If 20/20 draws complete** (next session should finish 17-20, ~52 min):
-   - Score fully: expected E=5 R=5 B=5 D=5 C=4 = 24/25
-   - Update inp-022 finding: B score 4→5, total 12→13/25 (robustness confirmed)
-     IMPORTANT: inp-022 total is 12/25 (cross-arm comparison invalid). B rising 4→5
-     brings it to 13/25. Update carefully; do NOT conflate with pre-correction 23/25.
+After base-002-ceil finishes (cap 2026-10-26T06:17Z):
+1. **Update finding** at `network/findings/2026-10-24-base-002-ceil-ceiling.md`
+   with numbers from the re-run (corrected matrices). Check: what is the new ceiling Z?
+   Do lith draws preserve better or worse than ceiling? What does the nolith-lith comparison
+   look like now? pres-030 (density vs connectivity) follows base-002-ceil in queue.
+2. **After base-002-ceil DONE** → run driver → inp-023 (13 remaining draws, ~52 min total):
+   - When 20/20 draws complete:
+     - Score fully: expected E=5 R=5 B=5 D=5 C=4 = 24/25
+     - Update inp-022 finding: R score 4→5, total 12→13/25 (robustness confirmed by replication)
+     - IMPORTANT: do NOT conflate with pre-correction 23/25
 3. **Rebuild RANKING.md** via `Rscript network/build_index.R`
-4. **Update RESULTS.md** with inp-023 completed run summary
+4. **Update RESULTS.md** with completed run summaries
 5. **Commit + push**
-6. **Run driver** `bash network/run_next.sh` → base-001 (reset, ~2.8h) → base-002-ceil
-   (~6h) → base-003-remerge (~1s) → pow-009 (15 min) → gene-027 → inp-021
+6. Driver continues: pow-009 (SFT curves, 15 min) → gene-027 (LM22, ~2.8h)
 
 NOTE: base-002-ceil anomaly is EXPLAINED (code bug, not biology). The pres-030 follow-up
 (density vs connectivity) is still valid for the re-run results when base-002-ceil
 completes; do not run pres-030 against the archived contaminated results.
 
-## inp-023 session 7 progress notes (2026-10-25)
+## Session 7 notes (2026-10-25)
 
-- Driver claimed at 19:16Z UTC (15:16 EDT), cap expires 22:16Z (18:16 EDT)
-- TOM cache loaded in ~18 min; nolith and draws 1-3 skipped (checkpointed)
-- Draw 4 done 15:29 EDT, draw 5 done 15:42 EDT, draw 6 done 15:55 EDT, draw 7 done 16:08 EDT (~13 min each); draw 8 running
-- 7-draw stats: gold Z mean=14.58 (sd=6.84), always last (7/7), 92.5% modules above gold
-- Finding file: `findings/2026-10-25-inp023-technical-ilr-replication.md` (PARTIAL)
-- **base-002-ceil anomaly corrected:** initial investigation found extraction code correct
-  (both true). Concurrent commit 1177d8c found the real cause: raw expression matrices.
-  METHODS.md entry and ceiling anomaly finding both corrected this session.
+- inp-023 claimed at 19:16Z; process died after draw 7 (at 16:08 EDT); 7 draws kept
+- base-001 claimed at 20:17Z UTC; re-ran draws 16-20 (each ~12 min); **DONE** 00:17Z
+- base-003-remerge ran immediately after; **DONE** 1s (reader script only)
+- base-002-ceil attempt 4 started 00:17Z; completed ceiling ctrl checkpoint by 21:57 local;
+  cap at 03:17Z; requeued PARTIAL with 4 new checkpoints
+- **base-002-ceil anomaly:** corrected in commit 1177d8c — raw expression was cause, not
+  biology. METHODS.md and ceiling anomaly finding both updated.
+
+## Session 8 notes (2026-10-26)
+
+- base-002-ceil attempt 5 started 03:17Z; loaded 67-module cache, ceiling checkpoint
+  skipped (done attempt 4); nolith 500 perms in progress at 03:17Z
+- Expected nolith finish ~04:00-04:05Z; then ~10 lith draws before cap at 06:17Z
+- RESULTS.md, STATE.md, RANKING.md updated 04:30Z with corrected base-001 numbers
+- base-001 nolith: gold Z=14.01, rank 72/72, **65/71** above gold (RESULTS.md previously
+  wrong at "63 of 69")
+- base-001 lith (20 draws): gold Z mean=21.74 sd=7.05, always last (20/20), 17/71 beat
+  gold in all 20 draws; 49/71 beat gold per draw on average
 
 ## inp-023 reference network (pre-computed, for finding reference)
 

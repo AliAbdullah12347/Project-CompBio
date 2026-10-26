@@ -1,9 +1,10 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-25
-**Runs completed:** 2 of 51 queued (mod-000-resolution, inp-022). inp-023 RUNNING (7/20 draws).
-**Reset to PENDING:** base-001, base-002-ceil, base-003-remerge (raw test matrices — see below).
-**Analyses completed:** 4 (001–004) + runs done. **Findings:** 28 — see `RANKING.md`.
+**Updated:** 2026-10-26
+**Runs completed:** 4 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge).
+**Running:** base-002-ceil (attempt 5, nolith done + lith draws in progress; cap 2026-10-26T06:17Z).
+**Pending:** inp-023 (7/20 lith draws checkpointed; will resume after base-002-ceil cap).
+**Analyses completed:** 4 (001–004) + runs done. **Findings:** 29 — see `RANKING.md`.
 
 ---
 
@@ -27,27 +28,32 @@ that Zsummary is set by the reference network, not just by the instrument.
 
 | arm | reference | gold Zsummary | gold rank | modules above gold |
 |:--|:--|--:|:--|:--|
-| base-001 bp_nolith | 71-module | 14.01 | 72 of 72 (last) | 63 of 69 |
+| base-001 bp_nolith | 71-module | 14.01 | 72/72 (last) | 65 of 71 |
+| base-001 bp_lith (20 draws) | 71-module | 21.74 (sd 7.05) | 72/72 last in all 20 | 49 of 71 per draw (mean) |
 | inp-022 bp_lith (20 draws) | 44-module residualised | 15.55 (sd 8.13) | last in all 20 | 41 of 44 |
-| inp-022 bp_nolith | 44-module residualised | 30.46 | 45 of 45 (last) | 22 of 44 |
+| inp-022 bp_nolith | 44-module residualised | 30.46 | 45/45 (last) | 22 of 44 |
 
 Real modules separate from random genes in every arm. That is a statement about the
 **decomposition being real**, not about lithium or composition. Note inp-022's gold sd of
-8.13 against base-001's 0.93: residualising for the ILR balances appears to destabilise
-the network, which is itself a result and bears on inp-023 and tob-045.
+8.13 against base-001's 7.05: both show high draw-to-draw variance in the gold baseline,
+consistent with genuine heterogeneity in 74-sample subsets rather than residualisation
+destabilising the network (base-001's corrected gold sd is 7.05, not 0.93 — the low value
+was from the contaminated raw-matrix run; do not quote it).
 
 To answer the central question, one reference must be scored against both test groups
 under one instrument. base-002-ceil was built to do that and is being re-run after the
 raw-matrix fix.
 
-**inp-023 (technical + ILR, 7/20 draws done):** Gold ranks last in all 7 draws; 92.5%
-of modules above gold. Replicates inp-022 pattern under stricter residualisation.
+**inp-023 (technical + ILR, 7/20 draws checkpointed, PENDING):** Gold ranks last in all
+7 draws; 92.5% of modules above gold. Replicates inp-022 pattern under stricter
+residualisation. Draws 8–20 will resume after base-002-ceil completes.
 
-**NOTE 2026-10-25 — raw matrix bug found:** base-001 lith draws, all of base-002-ceil,
-and base-003-remerge used raw expression (`t(d$logtpm)`) for test matrices, bypassing
-`expr_for()`. These results are invalid. The claim "bp_nolith gold Z=4.64" (base-002-ceil)
-and "base-001 lith gold Z=4.06" are from contaminated runs; do not quote. Scripts fixed
-in commit 1177d8c; those three experiments reset to PENDING. See
+**NOTE 2026-10-25 — raw matrix bug found (base-001 and base-003-remerge now re-run and
+DONE):** base-001 lith draws, all of base-002-ceil, and base-003-remerge used raw
+expression (`t(d$logtpm)`) for test matrices, bypassing `expr_for()`. Scripts fixed in
+commit 1177d8c. base-001 and base-003-remerge completed re-runs on 2026-10-26 with
+corrected matrices. base-002-ceil is currently being re-run (attempt 5). Do not quote
+the contaminated "base-001 lith gold Z=4.06" figure — the verified gold Z is 21.74. See
 `findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md`.
 
 ---
@@ -58,20 +64,26 @@ in commit 1177d8c; those three experiments reset to PENDING. See
 |:--|--:|:--|:--|
 | `mod-000-resolution` | 1033 s | **Arm unblocked.** Rebuilt offset-removed: deepSplit=4, mergeCutHeight=0 → 71 modules | [network/runs/mod-000-resolution](runs/mod-000-resolution) |
 | `inp-022` | 800 s | **KEY RESULT.** ILR b1–b4 residualisation: bp_lith gold Z=15.55. 41/44 (93%) modules above gold by mean Z; gold ranked last in all 20 draws. 44-module reference — 27 raw modules were composition-driven. E=12/25. | [network/runs/inp-022](runs/inp-022) |
+| `base-001` | 3603 s | **VERIFIED.** 71-module reference, corrected test matrices. nolith gold Z=14.01 (72/72 last, 65/71 above); lith gold Z=21.74 (sd 7.05, 72/72 last in all 20 draws, 17/71 modules beat gold in all 20 draws). Gold's high Zsummary but last medianRank: size effect confirmed (cor 0.879). E=23/25. | [network/runs/base-001](runs/base-001) |
+| `base-003-remerge` | 1 s | Read from base-001 v2 results; verified 20/20 draws complete. Reports consistent with base-001 log. No new finding. | [network/runs/base-003-remerge](runs/base-003-remerge) |
 
-### Reset to PENDING — raw matrix bug (2026-10-25)
+### Previously reset (now re-run and DONE)
 
-| id | reason | archived results |
-|:--|:--|:--|
-| `base-001` | lith draws used raw test matrices (nolith arm stands) | `_raw_test_contaminated_20261025T193947Z/` |
-| `base-002-ceil` | reference AND test matrices both raw; anomaly was artifact | `_raw_test_contaminated_20261025T193947Z/` |
-| `base-003-remerge` | reads from base-001 lith (invalid) | `_raw_test_contaminated_20261025T193947Z/` |
+`base-001` and `base-003-remerge` were reset 2026-10-25 (raw matrix bug in lith draws,
+commit 1177d8c). Both re-ran successfully 2026-10-26 with corrected `expr_for()` test matrices.
+Contaminated archived results remain in `_raw_test_contaminated_20261025T193947Z/`; do not use.
 
 ### Running
 
 | id | started | progress |
 |:--|:--|:--|
-| `inp-023` | 2026-10-25T19:16Z | Technical + ILR residualisation. 7/20 lith draws done (as of 16:08 EDT). Gold always last (7/7); 92.5% modules above gold. Replicates inp-022 pattern. |
+| `base-002-ceil` | 2026-10-26T03:17Z (attempt 5) | Split-half ceiling. Ceiling ctrl checkpoint done (attempt 4). Nolith + lith draws in progress; cap at 06:17Z. |
+
+### Pending (checkpoints saved)
+
+| id | draws done | status |
+|:--|--:|:--|
+| `inp-023` | 7/20 lith | PENDING. Gold last in all 7 draws; 92.5% modules above gold. Will resume after base-002-ceil cap. |
 
 ---
 
@@ -360,11 +372,15 @@ Evidence 20/25 · Interest 8/10 · Δ +0.4.
 
 ## Next
 
-1. **inp-023** (RUNNING) — technical + ILR residualisation. Robustness test for inp-022.
-   If it replicates: B in inp-022 finding rises from 4 to 5 (Evidence 23→24/25).
-2. After inp-023: **pow-009** (SFT curves all 3 groups, fast ~15 min),
+1. **base-002-ceil** (RUNNING) — split-half ceiling, corrected matrices. Will calibrate
+   the n=74 noise floor needed to interpret lith vs nolith preservation in the same reference.
+   When complete: update finding `2026-10-24-base-002-ceil-ceiling.md` and rebuild RANKING.md.
+2. **inp-023** (PENDING, 7/20 draws) — technical + ILR residualisation. Robustness test.
+   If all 20 draws replicate: R in inp-022 finding rises from 4 to 5 (Evidence 12→13/25);
+   inp-023 scores E=5 R=5 B=5 D=5 C=4 = 24/25.
+3. After inp-023: **pow-009** (SFT curves all 3 groups, fast ~15 min),
    then **gene-027** (LM22 circularity check), **inp-021** (technical-only residualisation).
-3. The remaining 45 pending experiments cover power, correlation function, network type,
+4. 44 more pending experiments cover power, correlation function, network type,
    gene subset, hub, community, centrality, annotation, trait association, permutation null,
    reference sensitivity, bMIND, and synthesis analyses.
 
