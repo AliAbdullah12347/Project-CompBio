@@ -553,3 +553,18 @@ CAP EXCEEDED after 10800s
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-26T09:11:00Z  inp-023  exit 1 after 5s; see log.txt
+```
+[2026-10-26T05:10:55] === inp-023 starting ===
+Allowing parallel execution with up to 3 working processes.
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+ref_cache_ok: QUARANTINED ref_control_all_bicor_signed_p12_technical_ilr_age_sex_rin_b1b4_ds4_mch00_offsetrm.rds - no expr_mode stamp (pre-2026-10-25, unverifiable)
+  moved to network/cache/quarantine/ref_control_all_bicor_signed_p12_technical_ilr_age_sex_rin_b1b4_ds4_mch00_offsetrm.rds.20261026T051100Z.rds; it will be rebuilt.
+[2026-10-26T05:11:00] building reference network (doubly residualised, power 12) ...
+Error in assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-023 reference") : 
+  assert_expr_mode: inp-023 reference does NOT match mode 'offset_removed' (max abs deviation 15.2). It looks like: neither.
+  This is the 2026-10-25 failure mode - see network/lint_expr.sh and
+  findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md
+Execution halted
+```
+
