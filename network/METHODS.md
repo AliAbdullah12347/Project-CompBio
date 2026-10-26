@@ -1855,6 +1855,39 @@ is a new entry, not a reinstatement of #27.
 
 ---
 
+## 2026-10-26T19:20Z  Batch cap audit: 10 experiments raised 5400 → 10800s
+
+### Root cause
+
+gene-027's first attempt (7200s cap) showed that `modulePreservation()` with 500 nolith
+permutations and the full ~12000-gene data set takes ~6480s measured wall time. This exceeds
+any cap below ~7000s. The cause: `modulePreservation()` rebuilds both reference TOM (n=234,
+~2800s) and test TOM (n=74, ~790s) internally on every call, then runs 500 permutations
+at ~5.2s each (total 2600s). Combined: ~6190–6480s.
+
+The 5400s caps on the following experiments were set before this was measured. They would
+produce permanent PARTIAL status on the nolith step (no checkpoint, no progress). Updated:
+
+| experiment | old cap | new cap | reason |
+|:--|--:|--:|:--|
+| pres-030 | 5400 | 10800 | 500 nolith perms, 12368 genes |
+| mod-013 | 5400 | 10800 | 500 nolith perms, 12368 genes, deepSplit=0 |
+| mod-014 | 5400 | 10800 | 500 nolith perms, 12368 genes, deepSplit=2 mm=30 |
+| mod-015 | 5400 | 10800 | 500 nolith perms, 12368 genes, deepSplit=4 mm=30 |
+| mod-016 | 5400 | 10800 | 500 nolith perms, 12368 genes, deepSplit=2 mm=20 |
+| mod-017 | 5400 | 10800 | 500 nolith perms, 12368 genes, deepSplit=2 mm=50 |
+| mod-018 | 5400 | 10800 | 500 nolith perms, 12368 genes, deepSplit=2 mm=100 |
+| mod-019 | 5400 | 10800 | 500 nolith perms, 12368 genes, mergeCutHeight=0.15 |
+| mod-020 | 5400 | 10800 | 500 nolith perms, 12368 genes, mergeCutHeight=0.35 |
+| gene-029 | 5400 | 10800 | 500 nolith perms, ~10881 non-DEG genes |
+
+No scientific trade-off — these are infrastructure fixes, not analysis changes.
+
+Experiments with smaller gene sets (gene-025: 2000 genes, gene-026: 5000 genes) and experiments
+with only 50 perms per draw (not 500) retain their original caps and are fine.
+
+---
+
 ## 2026-10-26T16:30Z  gene-027 cap raised 7200 → 10800s
 
 ### Reason
