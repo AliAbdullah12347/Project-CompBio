@@ -365,13 +365,30 @@ nolith takes ~720s (same as one lith draw). Circularity check still valid — we
 (perm-independent) and relative Z patterns, not absolute Z values. Documented in gene-027.R
 and METHODS.md 2026-10-26.
 
+## Session 12 additions (2026-10-26T20:20Z)
+
+### gene-027 preliminary results (RUNNING, 4/20 lith draws done as of 20:17Z)
+
+- nolith: gold Z=12.23 (66/66 last) — matches base-001 pattern. Circularity check NEGATIVE.
+- lith draws 1-4: gold last in ALL 4 (Z=30.16, 26.42, 21.89, 33.02; mean=27.87). Higher mean
+  than base-001 (21.74) because fewer modules (65 vs 71) → less competition for gold rank.
+- All 20 draws expected ~23:29Z, within 18000s cap. Finding template pre-written.
+- Finding `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md` —
+  fill [FILL] sections once all 20 draws complete, then rebuild RANKING.md.
+
+### Documentation cleanup
+
+- Added retraction notes to analyses 009 and 010 in this document (above). Both were run on
+  raw (library-offset-contaminated) eigengenes. 31/33 result → 0/33 on clean data. Headline
+  chain items #13 and #14 struck.
+
 ## Next
 
-1. **gene-027** (RUNNING at 19:20Z, 18000s cap) — LM22 circularity check. When DONE:
-   - Write finding file; score Evidence (expect ~E=19–22/25, analogous to finding #15 but
-     for module preservation rather than PCA)
-   - Update RANKING.md, ranking.csv, results_index.csv
-2. **inp-021** — technical-only residualisation (~2 sessions: first builds ref + nolith + 5-6 draws; second completes remaining draws)
+1. **gene-027** (RUNNING at 19:20Z, 18000s cap, 4/20 draws) — When all 20 complete:
+   - Run `Rscript network/scripts/analyze_gene027.R` — script exists
+   - Fill finding file, score E=5 R=4 B=3 D=5 C=4 (21/25), Interest=6/10, Δ=-2.4
+   - Rebuild RANKING.md and update this RESULTS.md (add gene-027 to completed table)
+2. **inp-021** — technical-only residualisation (~2 sessions; starts automatically via LaunchDaemon)
 3. **perm-031** — group-label permutation null (fast: 20 draws × 720s = 4h within 10800s cap)
 4. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast)
 5. 40 more pending experiments cover gene subsets, module detection sensitivity, correlation
