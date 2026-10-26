@@ -1,10 +1,10 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-26T12:15Z
-**Runs completed:** 6 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, **inp-023** DONE 2026-10-26T12:05Z).
-**Running:** none.
-**Pending:** pow-009 next.
-**Analyses completed:** 4 (001–004) + runs done. **Findings:** 30 — see `RANKING.md`.
+**Updated:** 2026-10-26T14:30Z
+**Runs completed:** 7 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009).
+**Running:** gene-027 (started 14:15Z, LM22 circularity check, cap 7200s; will be PARTIAL).
+**Pending:** inp-021 (technical-only residualisation) next after gene-027.
+**Analyses completed:** 4 (001–004) + runs done. **Findings:** 31 — see `RANKING.md`.
 
 ---
 
@@ -61,11 +61,12 @@ figure — the verified gold Z is 21.74. See
 | id | wall | verdict | folder |
 |:--|--:|:--|:--|
 | `mod-000-resolution` | 1033 s | **Arm unblocked.** Rebuilt offset-removed: deepSplit=4, mergeCutHeight=0 → 71 modules | [network/runs/mod-000-resolution](runs/mod-000-resolution) |
-| `inp-022` | 800 s | **KEY RESULT.** ILR b1–b4 residualisation: bp_lith gold Z=15.55. 41/44 (93%) modules above gold by mean Z; gold ranked last in all 20 draws. 44-module reference — 27 raw modules were composition-driven. E=12/25. | [network/runs/inp-022](runs/inp-022) |
+| `inp-022` | 800 s | **KEY RESULT.** ILR b1–b4 residualisation: bp_lith gold Z=15.55. 41/44 (93%) modules above gold by mean Z; gold ranked last in all 20 draws. 44-module reference — 27 raw modules were composition-driven. E=13/25 (R raised 4→5 after inp-023 replication). | [network/runs/inp-022](runs/inp-022) |
 | `base-001` | 3603 s | **VERIFIED.** 71-module reference, corrected test matrices. nolith gold Z=14.01 (72/72 last, 65/71 above); lith gold Z=21.74 (sd 7.05, 72/72 last in all 20 draws, 17/71 modules beat gold in all 20 draws). Gold's high Zsummary but last medianRank: size effect confirmed (cor 0.879). E=23/25. | [network/runs/base-001](runs/base-001) |
 | `base-003-remerge` | 1 s | Read from base-001 v2 results; verified 20/20 draws complete. Reports consistent with base-001 log. No new finding. | [network/runs/base-003-remerge](runs/base-003-remerge) |
 | `base-002-ceil` | 5357 s (attempt 4) | **DONE 2026-10-26T07:46Z.** Split-half ceiling, corrected matrices, all groups. ctrl_ceiling gold Z=35.78, nolith gold Z=23.16, lith mean gold Z=22.22 (sd 7.34). KEY NEGATIVE: lith≈nolith (r=0.93). E=24/25. | [network/runs/base-002-ceil](runs/base-002-ceil) |
 | `inp-023` | 10311 s | **DONE 2026-10-26T12:05Z.** Technical+ILR residualisation: 42-module reference. nolith gold Z=28.08 (43/43 last, 25/42 above); lith gold mean Z=16.98 (sd 10.79, 43/43 last in all 20 draws, 40/42 beat gold by mean Z, 16/42 in ALL draws). Replicates inp-022. E=24/25. | [network/runs/inp-023](runs/inp-023) |
+| `pow-009` | 86 s | **DONE 2026-10-26T14:12Z.** SFT curves on offset-removed expression, all 3 groups. Scale-free still fails (control max R²=0.770, bp_nolith=0.755, bp_lith=0.701; all below 0.80 threshold). Improvement from raw (0.66/0.41/0.54) confirms offset was part of the problem; residual failure is composition-driven (inp-022 SFT fits at power 9). E=22/25. | [network/runs/pow-009](runs/pow-009) |
 
 ### Previously reset (now re-run and DONE)
 
@@ -75,11 +76,14 @@ Contaminated archived results remain in `_raw_test_contaminated_20261025T193947Z
 
 ### Running
 
-None.
+`gene-027` — started 2026-10-26T14:15Z. LM22 circularity check: build reference network
+on all genes MINUS 547 LM22 signature genes; measure bp_lith and bp_nolith preservation.
+Tests whether the composition-based findings depend on the exact genes used to estimate
+cell fractions. Cap 7200s (will be PARTIAL; draws resume next session).
 
 ### Pending (checkpoints saved)
 
-None currently — all checkpointed partial runs completed this session.
+None currently — gene-027 checkpoints per draw.
 
 ---
 

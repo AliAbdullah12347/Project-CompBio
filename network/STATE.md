@@ -43,7 +43,7 @@
    rescues it. New finding `2026-10-26-pow009-scale-free-composition-driven.md` (E=22/25).
    Partially rehabilitates retracted finding #27.
 
-**Read `RANKING.md` first.** Rebuilt from findings/; 31 findings as of 2026-10-26.
+**Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-26.
 
 ## Infrastructure
 
