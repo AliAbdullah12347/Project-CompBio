@@ -417,3 +417,52 @@ justifiable"). Each is recorded with its reason.
 
 Every row above, both trees, every sensitivity, and the residual of the D-B decomposition.
 Nothing is dropped for being null.
+
+
+---
+---
+
+## 9. ADDENDUM C — alpha and beta diversity of the cell-type-specific estimates
+
+**Declared 2026-10-27, before any of it was run.** Runs on another machine from
+`mediation/CELLTYPE_DIVERSITY_HANDOFF.md`; code `scripts/16_celltype_diversity.R`.
+
+### 9.1 What changes when the outcome is a cell type
+
+In whole blood the question was "does lithium change diversity, and does that run through
+the cell mix?". The bMIND estimates are, by construction, expression **within** one lineage,
+with the mix already taken out. So:
+
+| | Whole blood (addendum B) | Cell-type estimates (this addendum) |
+|:--|:--|:--|
+| primary question | is the change mediated by the cell mix? | **does lithium change diversity *inside* a cell type at all?** |
+| a lithium effect means | the blood changed, by any route | the cells changed — or the **sub-types inside the lineage** shifted (e.g. eosinophils within granulocytes, neutrophil maturity) |
+| mediation through the cell mix | the scientific question | a **leakage check**: it should be ~0. A non-zero indirect effect means the estimates still carry composition |
+
+### 9.2 Decisions
+
+| # | Question | Decision | Why |
+|:--|:--|:--|:--|
+| 1 | Input | the bMIND posterior means already used by the DE arm (`data/analysis_matrices/bmind/`, exported from `de_analysis/results/bmind_profiles.rds`, verified to reproduce stored values to 2e-5) | same estimates as every other cell-type result; re-running bMIND is ~4 h and not bit-reproducible |
+| 2 | Lineages | gran, mono, T **interpretable**; NK and B run but **flagged uninformative** | DE-arm detection floors: 0.73 / 0.74 / 0.77 log2FC vs **4.07 (NK) and 26.11 (B)** |
+| 3 | Exposures | lithium within bipolar I (226) **primary**; bipolar-off-lithium vs control (308) **exploratory** | as addendum B |
+| 4 | Gene universe | protein-coding ∩ filtered ∩ non-LM22 (10,288), as whole blood | comparability; markers included as a sensitivity |
+| 5 | Scale | un-log `2^A − 1`, clipped at 0, renormalised to proportions within each sample and lineage | bMIND worked on log2(TPM+1); Shannon needs linear proportions |
+| 6 | Alpha | Shannon H (primary), log Hill q = 2; Hallmark pathway Shannon (fractional counting) | as whole blood. Richness is not computed: bMIND has no detection concept |
+| 7 | Beta distance | Euclidean on each sample's centred log2(TPM+1) profile (a log-ratio / Aitchison distance with pseudocount 1 TPM); Jensen–Shannon secondary | as whole blood; the estimates arrive on that log scale |
+| 8 | Covariates | the whole-blood set: age, sex, tobacco, RIN, plate, seqPC1–3, log library size; + assessment group for bipolar vs control | identical to the whole-blood analysis |
+| 9 | **Shrinkage confound** | every total-effect test is repeated **adjusting for the lineage's own log fraction and its mean posterior SE** | bMIND shrinks a sample's estimate toward the cohort profile more when the lineage is scarce in that sample. Lithium changes fractions, so a dispersion or diversity difference could be manufactured by differential shrinkage. Lithium raises granulocytes: their estimates get *less* shrunk in users |
+| 10 | Primary tests | **A1** (lithium → H per lineage) and **B1** (PERMANOVA per lineage), **Holm across the 3 interpretable lineages** within each test | small confirmatory family; NK and B reported but outside it |
+| 11 | Secondary | B2 PERMDISP (also on residuals after the shrinkage covariates), A2/B3 mediation through the cell mix as the **leakage check**, pathway layer | |
+| 12 | Resampling | alpha: B = 10,000 bootstrap, 10,000 permutations; beta: 9,999 permutations, B = 1,000 bootstrap for the shared fraction | as whole blood |
+| 13 | Bridge to whole blood | the per-lineage H already enters the whole-blood decomposition (section 8, D-B); report how A1 for gran/mono/T compares with that decomposition's "within-lineage" component | the two must tell one story |
+
+### 9.3 What would mean what — fixed now
+
+| Result | Reading |
+|:--|:--|
+| no A1/B1 effect in gran, mono, T | lithium's diversity effect in blood is compositional, consistent with the whole-blood decomposition |
+| an effect in a lineage that **survives** the shrinkage covariates | lithium changes that lineage's transcriptome (cell-intrinsic or sub-type shift) |
+| an effect that **disappears** with the shrinkage covariates | an artefact of bMIND precision, not biology |
+| a non-zero indirect effect through the cell mix | the estimates still carry composition; their per-lineage results must be read with that caveat |
+| anything in NK or B | uninformative (precision), whatever its p-value |
