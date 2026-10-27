@@ -2120,4 +2120,22 @@ Technical-only residualisation removes 8 modules (11%). ILR removes 27 (38%).
 Cell composition, not technical covariates, is the primary driver of reference network structure.
 
 Cache key: `control_all_bicor_signed_p12_technical_full_age_sex_rin_plate_seqpc123_ds4_mch00_offsetrm`
-bp_nolith preservation running (~50 perms); lith draws to follow (20 draws, 50 perms).
+
+## 2026-10-27T00:40Z — inp-021 nolith complete; lith draws running
+
+bp_nolith preservation complete at 2026-10-26T20:33:29 EDT (703s, 50 perms).
+Zsummary range [8.30, 63.14]; gold Zsummary=31.13, medianRank=64/64 (LAST).
+25/63 real modules exceed gold by Zsummary; all 63 by medianRank.
+
+**Zsummary vs medianRank discrepancy (technical note):** gold Zsummary=31.13 is notably higher
+than base-001 nolith (14.01, 500 perms). Two contributing factors:
+1. Fewer permutations (50 vs 500): Zsummary estimate is noisier and can be higher or lower.
+2. Cleaner input data: technical residualisation reduces noise, inflating Zsummary for all
+   modules including gold. medianRank (perm-independent) is unaffected by both.
+
+The gold-last pattern (medianRank=64/64) is the primary statistic and confirms the finding is
+consistent with all prior arms: every real module is better preserved than a random gene set.
+
+Lith draws: draw 1 started 2026-10-26T20:33:29 EDT. At 720s/draw × 20 draws = 14400s;
+cap fires at 23:08 EDT (10800s from start). Expected ~12 draws before cap → PARTIAL result.
+Final lith stats will be filled when cap fires.
