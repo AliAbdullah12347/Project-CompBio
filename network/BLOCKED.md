@@ -630,3 +630,6 @@ osxkeychain shows no stored GitHub credentials in this session.
 commits when it next wakes. Local commits: ec4c312, 30602f7 (gene-027 docs + inp-021 SFT
 note). No work is lost — only unpushed.
 
+**RESOLVED 2026-10-27T00:45Z:** LaunchDaemon sync_up() pushed all commits successfully.
+`git log origin/main..HEAD` confirms HEAD==origin/main as of session 15 (2026-10-27T00:40Z).
+
