@@ -86,9 +86,14 @@ For reference: base-001 lith gold Z mean=21.74 (sd 7.05), 17/71 beat gold in all
   uses technical only; inp-023 uses technical+ILR. Their module counts (63 vs 42) and SFT
   (0.797 vs 0.836) differ primarily in the ILR component.
 
-<!-- SCORES PENDING COMPLETION — pre-specify before looking at lith results -->
-<!-- Expected based on structure: E=5 R=5 B=4 D=? C=? -->
-<!-- D depends on how decisive the lith result is (all 20 draws gold last? partial?) -->
-<!-- C=5 if all 20 draws complete, 2 if PARTIAL (cap at ~10 draws) -->
-<!-- Interest: 6/10 — confirmation finding, methodologically interesting but expected -->
-<!-- Full scoring after all 20 draws complete or final PARTIAL status recorded -->
+<!-- SCORES PRE-SPECIFIED (write before looking at lith results; change requires justification) -->
+<!-- E=5: strong evidence from available draws; SFT/module count already recorded -->
+<!-- R=5: completes residualisation ladder; direct comparison to inp-023 and base-001 -->
+<!-- B=4: 50 perms/draw (same as base-001); adequate for medianRank primary stat -->
+<!-- D=5 if gold last in all draws; D=3 if mixed ranks across draws -->
+<!-- C=2 if PARTIAL (~13 draws before cap); C=5 if all 20 complete -->
+<!-- Interest=6/10: methodologically important, expected negative (gold last as in all other arms) -->
+<!-- If gold ranks other than last in majority of draws: raise Interest to 7-8/10 and note it -->
+<!-- Δ = (6/10 - E/25) × 10 (fill when Evidence total is known) -->
+<!-- Scoring will be inserted as a score line at the bottom of this file after results are known -->
+<!-- Expected partial: E=5 R=5 B=4 D=5 C=2 → 21/25; Interest=6/10; Δ=-3.0 -->
