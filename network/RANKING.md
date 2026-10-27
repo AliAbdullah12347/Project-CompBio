@@ -48,7 +48,7 @@ is ahead of the proof.
 | 31 | **0/25** | 0/10 | +0.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) | E=4 R=2 B=3 D=4 C=2 | network/runs/base-001 (sft curve) + Phase 0 probes |
 | 32 | **0/25** | 0/10 | +0.0 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) | E=4 R=5 B=2 D=4 C=4 | network/analyses/009-all-modules-across-groups |
 | 33 | **0/25** | 0/10 | +0.0 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) | E=4 R=4 B=2 D=4 C=4 | network/analyses/010-full-pca-all-samples |
-| 34 | **NA/25** | NA/10 | NA | [perm-031: group-label permutation null for module preservation](findings/2026-10-27-perm031-group-label-permutation-null.md) | E=5 R=5 B=2 D=2 C=5 | network/runs/perm-031 — K=20 permuted draws of 74 random samples from all 474, compared to base-001 bp_lith observed Zsummary |
+| 34 | **16/25** | 5/10 | −1.4 | [perm-031: group-label permutation null for module preservation](findings/2026-10-27-perm031-group-label-permutation-null.md) | E=5 R=5 B=2 D=2 C=2 (PARTIAL: ~1/20 draws) | network/runs/perm-031 — K=20 permuted draws of 74 random samples from all 474, compared to base-001 bp_lith observed Zsummary |
 
 ## Table B — Interest
 
@@ -87,4 +87,4 @@ is ahead of the proof.
 | 31 | **0/10** | 0/25 | +0.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) |
 | 32 | **0/10** | 0/25 | +0.0 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) |
 | 33 | **0/10** | 0/25 | +0.0 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) |
-| 34 | **NA/10** | NA/25 | NA | [perm-031: group-label permutation null for module preservation](findings/2026-10-27-perm031-group-label-permutation-null.md) |
+| 34 | **5/10** | 16/25 | −1.4 | [perm-031: group-label permutation null for module preservation](findings/2026-10-27-perm031-group-label-permutation-null.md) |

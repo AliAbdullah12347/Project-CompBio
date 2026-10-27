@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-27T19:15Z
+**Updated:** 2026-10-27T19:30Z
 
 ## Where the science stands
 
@@ -84,9 +84,10 @@ DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
 RUNNING (1): **perm-031** (claimed 2026-10-27T19:06Z; group-label permutation null K=20;
   random draws from all 474 samples, vs base-001 bp_lith observed Zsummary;
-  draw 1 in progress as of 19:15Z; cap 22:06Z; ~15 draws expected before cap).
-PENDING (43): **inp-021** (reset from BLOCKED 2026-10-27T19:10Z; 18/20 lith draws done;
-  claims when perm-031 completes this session), trait-033/034/035, pres-030,
+  draw 2 in progress as of 19:30Z; cap 22:06Z; ~15 draws expected before cap.
+  Draw 1 done 19:18Z, 732s; gold null Z=30.15 > observed 21.74; 35/71 real modules below null.)
+PENDING (43): **inp-021** (reset from BLOCKED to PENDING/attempts=0 session 19-20; 18/20 lith draws done;
+  claims when perm-031 PARTIAL), trait-033/034/035, pres-030,
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
   hub-036/037, comm-038/039, cent-040, filt-044, tob-045, bmind-046/047, synth-048.
@@ -158,15 +159,26 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **perm-031** PARTIAL expected at 22:06Z cap (~15 draws); driver will commit/push on exit.
-   - After perm-031 session ends: inp-021 is next PENDING (row 1 in queue).
-2. **inp-021** PENDING (18/20 draws done):
-   - Next session (after perm-031 current RUNNING): claims inp-021, runs draws 19-20 (~24 min), exits 0 DONE.
-   - When DONE: run `Rscript network/scripts/analyze_inp021.R`, fill finding lith section fully,
-     re-score to C=5 → E=24/25, rebuild RANKING.md, commit and push.
-3. **perm-031** resumes after inp-021 DONE (perm-031 will be PARTIAL, queued after inp-021).
-4. **trait-033/034/035** — fast (<60s each); claimed after perm-031 session.
-5. **pres-030** — WGCNA heavy, similar to base-001 structure; PARTIAL expected.
+1. **perm-031** RUNNING (draw 2 of ~15 expected, cap 22:06Z). Draw 1: gold null Z=30.15 > observed 21.74.
+   - At cap: driver commits PARTIAL; draws continue next session.
+2. **inp-021** PENDING (18/20 draws done; attempts=0):
+   - Next session (after perm-031 PARTIAL): claims inp-021, runs draws 19-20 (~24 min).
+   - When DONE: re-score to C=5 → E=24/25, update RANKING.md and RESULTS.md, commit.
+3. **perm-031** resumes after inp-021 DONE.
+4. **trait-033/034/035** — fast (<60s each); claimed after perm-031 completes.
+5. **pres-030** — WGCNA heavy.
+
+## Session 20 notes (2026-10-27T19:20Z)
+
+- Session resumed while perm-031 draw 2 running (draw 1 done 15:18 EDT = 19:18Z, took 732s).
+- Identified root cause of inp-021 BLOCKED: driver (run_next.sh) was killed by claude session exit
+  before R completed draw 19; no PARTIAL record written; 3 dead-claim attempts → BLOCKED.
+  Previous sessions (17-19) had already fixed inp-021 (reset BLOCKED→PENDING, attempts=1),
+  documented all 18 draws in finding file, and committed analysis. This session re-reset to
+  attempts=0 (already committed in f548719 via driver sync_up).
+- Updated RANKING.md and ranking.csv: perm-031 interim score 16/25 (was NA). E=5 R=5 B=2 D=2 C=2.
+- Queue: DONE=8 RUNNING=1 (perm-031) PENDING=43 (inp-021 row 1) BLOCKED=0.
+- Next PENDING after inp-021: perm-031 (still PARTIAL), then trait-033.
 
 ## Session 19 notes (2026-10-27T19:06Z)
 
