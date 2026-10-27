@@ -1,26 +1,32 @@
-[2026-10-27T05:06:08] === inp-021 starting ===
+[2026-10-27T10:08:38] === inp-021 starting ===
 Allowing parallel execution with up to 3 working processes.
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-10-27T05:06:12] loading cached reference modules: network/cache/ref_control_all_bicor_signed_p12_technical_full_age_sex_rin_plate_seqpc123_ds4_mch00_offsetrm.rds
-[2026-10-27T05:06:12] 63 modules loaded
-[2026-10-27T05:06:13] bp_nolith checkpoint exists, skipping
-[2026-10-27T05:06:13] draw 1 exists, skipping
-[2026-10-27T05:06:13] draw 2 exists, skipping
-[2026-10-27T05:06:13] draw 3 exists, skipping
-[2026-10-27T05:06:13] draw 4 exists, skipping
-[2026-10-27T05:06:13] draw 5 exists, skipping
-[2026-10-27T05:06:13] draw 6 exists, skipping
-[2026-10-27T05:06:13] draw 7 exists, skipping
-[2026-10-27T05:06:13] draw 8 exists, skipping
-[2026-10-27T05:06:13] draw 9 exists, skipping
-[2026-10-27T05:06:13] draw 10 exists, skipping
-[2026-10-27T05:06:13] draw 11 exists, skipping
-[2026-10-27T05:06:13] draw 12 exists, skipping
-[2026-10-27T05:06:13] draw 13 exists, skipping
-[2026-10-27T05:06:13] draw 14 exists, skipping
-[2026-10-27T05:06:13] draw 15 exists, skipping
-[2026-10-27T05:06:13] draw 16 exists, skipping
-[2026-10-27T05:06:13] draw 17/20
+[2026-10-27T10:08:43] loading cached reference modules: network/cache/ref_control_all_bicor_signed_p12_technical_full_age_sex_rin_plate_seqpc123_ds4_mch00_offsetrm.rds
+[2026-10-27T10:08:43] 63 modules loaded
+[2026-10-27T10:08:44] bp_nolith checkpoint exists, skipping
+[2026-10-27T10:08:44] draw 1 exists, skipping
+[2026-10-27T10:08:44] draw 2 exists, skipping
+[2026-10-27T10:08:44] draw 3 exists, skipping
+[2026-10-27T10:08:44] draw 4 exists, skipping
+[2026-10-27T10:08:44] draw 5 exists, skipping
+[2026-10-27T10:08:44] draw 6 exists, skipping
+[2026-10-27T10:08:44] draw 7 exists, skipping
+[2026-10-27T10:08:44] draw 8 exists, skipping
+[2026-10-27T10:08:44] draw 9 exists, skipping
+[2026-10-27T10:08:44] draw 10 exists, skipping
+[2026-10-27T10:08:44] draw 11 exists, skipping
+[2026-10-27T10:08:44] draw 12 exists, skipping
+[2026-10-27T10:08:44] draw 13 exists, skipping
+[2026-10-27T10:08:44] draw 14 exists, skipping
+[2026-10-27T10:08:44] draw 15 exists, skipping
+[2026-10-27T10:08:44] draw 16 exists, skipping
+[2026-10-27T10:08:44] draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T10:20:27] draw 17 done: Zsummary [10.74, 71.55]
+[2026-10-27T10:20:27] draw 18/20
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
