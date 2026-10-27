@@ -20,3 +20,76 @@ load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-10-27T15:42:55] draw 3 done: Z[10.94, 73.56]
+[2026-10-27T15:42:55] permuted draw 4/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T15:54:57] draw 4 done: Z[8.47, 69.42]
+[2026-10-27T15:54:57] permuted draw 5/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T16:07:00] draw 5 done: Z[6.18, 62.85]
+[2026-10-27T16:07:00] permuted draw 6/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T16:19:02] draw 6 done: Z[9.57, 76.84]
+[2026-10-27T16:19:02] permuted draw 7/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T16:31:03] draw 7 done: Z[8.88, 75.22]
+[2026-10-27T16:31:03] permuted draw 8/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T16:43:05] draw 8 done: Z[7.96, 69.92]
+[2026-10-27T16:43:05] permuted draw 9/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T16:55:07] draw 9 done: Z[9.49, 71.53]
+[2026-10-27T16:55:08] permuted draw 10/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T17:07:11] draw 10 done: Z[8.5, 79.37]
+[2026-10-27T17:07:11] permuted draw 11/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T17:19:24] draw 11 done: Z[7.63, 79.6]
+[2026-10-27T17:19:24] permuted draw 12/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T17:31:40] draw 12 done: Z[8.61, 74.3]
+[2026-10-27T17:31:40] permuted draw 13/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T17:43:37] draw 13 done: Z[9.51, 74.28]
+[2026-10-27T17:43:37] permuted draw 14/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T17:55:32] draw 14 done: Z[10.67, 72.85]
+[2026-10-27T17:55:33] permuted draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s

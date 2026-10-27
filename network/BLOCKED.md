@@ -687,3 +687,27 @@ DONE count has been stuck at 8 across 8 wake-ups (~40 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-10-27T22:06:27Z  perm-031  hit 10800s cap; partial results kept; +14 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-27T17:31:40] draw 12 done: Z[8.61, 74.3]
+[2026-10-27T17:31:40] permuted draw 13/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T17:43:37] draw 13 done: Z[9.51, 74.28]
+[2026-10-27T17:43:37] permuted draw 14/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T17:55:32] draw 14 done: Z[10.67, 72.85]
+[2026-10-27T17:55:33] permuted draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
