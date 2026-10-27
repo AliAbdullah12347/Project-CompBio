@@ -2276,3 +2276,36 @@ Mitigation: the `wake.sh` lock and single driver lock prevent two drivers from r
 simultaneously. This race arose because the R orphan persisted after the driver died.
 No further infrastructure change is needed; this is a known corner case of the
 PARTIAL-session design.
+
+---
+
+## 2026-10-27T19:18Z  perm-031 draw timing: 732s/draw (vs inp-021's 697s)
+
+perm-031 draw 1 completed at 19:18:40Z after starting at 19:06:28Z = 732 seconds.
+inp-021 measured 697s/draw (session 15, draws 1 and 17-18 all consistent).
+
+perm-031 is 5% slower despite having the same setup (n=74 test, 50 perms). The difference
+is the reference: perm-031 uses the 71-module reference (base-001, 234 controls) while
+inp-021 uses the 63-module reference. More modules = slightly longer permutation loop.
+WGCNA 1.74 permutation setup cost scales with nPermutations × n_modules, so 72/64 = 1.125×
+theoretical factor; observed 732/697 = 1.05× — consistent.
+
+Budget update: perm-031 cap=10800s, draw 1 took 732s.
+- Available for remaining draws: 10800 - 737s (draw 1 + setup) = 10063s
+- Additional draws: floor(10063/732) = 13
+- Total expected: 14 draws of 20
+
+Empirical minimum p with K=14: 1/14 = 0.071.
+At K=14 draws and 71 modules, BH 5% requires p_(k) ≤ k×0.05/71 ≈ 0.0007 for k=1.
+With minimum achievable p=0.071, BH significance is impossible. The finding is directional only.
+
+### Interim draw 1 result (not a conclusion — N=1 draw)
+
+- Gold null Z draw 1 = 30.15 (vs observed bp_lith mean = 21.74)
+  → gold observed < null: bp_lith gold preservation is lower than random-subsample gold
+- Real modules: 36/71 observed > null draw 1; 35/71 observed < null (≈ 50/50)
+  → no systematic direction for real modules in this single draw
+
+Pattern is consistent with the arm's central result: gold (random gene set) is consistently
+less preserved in bp_lith than in random cohort subsets, but real modules preserve at
+approximately the same level as random subsets. Both observations are compositionally driven.
