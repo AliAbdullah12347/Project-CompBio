@@ -178,7 +178,7 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   and draw 1 checkpoints skipped; draw 2 now running.
 - Queue: DONE=8 RUNNING=1 (inp-021, attempt 2) PENDING=42 BLOCKED=0.
 - inp-021 interim finding filled (1-draw stats), STATE.md/RESULTS.md updated.
-- Run `Rscript network/build_index.R` after all 20 draws to add inp-021 as finding #33.
+- RANKING.md already rebuilt (session 16): 34 findings, inp-021 at rank 15 (E=21/25 interim). Re-run after all 20 draws to update C=2→5 score.
 
 ## Session 15 notes (2026-10-27T00:40Z)
 
