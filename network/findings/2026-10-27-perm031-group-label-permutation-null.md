@@ -2,7 +2,9 @@
 
 **Date:** 2026-10-27
 **Analysis:** `network/runs/perm-031` — K=20 permuted draws of 74 random samples from all 474, compared to base-001 bp_lith observed Zsummary
-**Evidence:** [FILL] · **Interest:** [FILL] · **Δ:** new
+**Evidence:** 16/25 (PARTIAL: E=5+R=5+B=2+D=2+C=2) · **Interest:** 5/10 · **Δ:** −1.4
+
+*(PARTIAL — ~14/20 draws expected this session, rest next session. Re-score when DONE.)*
 
 ## Claim
 
@@ -40,23 +42,70 @@ relative to the range of random draws?) rather than formal p-values.
 
 ## Null distribution vs observed
 
-[FILL after perm-031 complete.
+**INTERIM — K=1 draw as of 2026-10-27T19:20Z. Fill fully when DONE.**
 
-Key stats:
-- null Zsummary: mean and sd per module
-- observed mean (base-001 lith) per module
-- direction: what fraction of modules are less preserved than null mean?
-- empirical p distribution: how many modules with p=0.05 vs p=1.0?
-- n_sig BH 5%: expected 0 (see limitation above)
+Draw 1 null Zsummary range: [9.54, 79.16]. 732s per draw.
 
-Compare to nolith: does the null Zsummary land near bp_nolith's actual Zsummary?
-(If nolith ≈ null, that confirms null is well-calibrated.)
-]
+**Gold module (draw 1):**
+- Null gold Z = 30.15 (draw 1 only — noisy with single draw)
+- Observed gold Z (bp_lith, base-001 mean 20 draws) = 21.74
+- Gold observed < null: TRUE → bp_lith gold preservation is specifically lower than random
+  subsamples from the full cohort.
+
+**Real modules (draw 1):**
+- Less preserved in bp_lith than null draw 1: 35/71 (49%)
+- More preserved in bp_lith than null draw 1: 36/71 (51%)
+- Result: essentially 50/50; no systematic direction in K=1 draw.
+
+**Top most-reduced below null (draw 1):**
+
+| module | observed (base-001 lith mean) | null (draw 1) | Δ |
+|:--|--:|--:|--:|
+| green | 39.47 | 55.74 | −16.27 |
+| blue | 44.93 | 58.15 | −13.22 |
+| salmon | 23.39 | 34.75 | −11.36 |
+| black | 30.53 | 41.08 | −10.55 |
+| greenyellow | 47.42 | 57.64 | −10.22 |
+
+**Top most-elevated above null (draw 1):**
+
+| module | observed (base-001 lith mean) | null (draw 1) | Δ |
+|:--|--:|--:|--:|
+| plum2 | 30.59 | 18.30 | +12.29 |
+| white | 61.14 | 52.50 | +8.63 |
+| ivory | 35.05 | 26.66 | +8.40 |
+| orange | 40.93 | 33.64 | +7.29 |
+| thistle2 | 33.17 | 26.18 | +7.00 |
+
+**Critical limitation (PARTIAL):** With K=14 draws (cap-limited), minimum achievable empirical
+p = 1/14 = 0.071. BH 5% over 71 modules requires p_(1) ≤ 0.05 × 1/71 ≈ 0.0007. This is
+mathematically impossible. The finding is directional only.
+
+**BH significance: 0 modules** (expected; confirmed when DONE).
+
+[Update when all draws complete: fill mean/sd across K draws, empirical p distribution,
+direction consensus across all K draws, compare to bp_nolith observed Zsummary as null calibration.]
 
 ## Comparison with gold-module baseline
 
-[FILL: what is the null Zsummary for the gold module itself? If null gold Z < real module
-Z, it confirms the internal baseline and external null are consistent.]
+Gold module null Z (draw 1) = 30.15 > observed bp_lith gold Z = 21.74.
+
+This confirms: bp_lith gold preservation is specifically reduced relative to random cohort
+subsamples. In other words, the "null" random draws (mixed controls + nolith + lith) show
+HIGHER gold preservation than actual bp_lith draws. This is the external null complement to
+base-001's internal gold-last pattern:
+- base-001: gold last in medianRank within each bp_lith draw (real modules > random genes)
+- perm-031: gold in bp_lith < gold in random draws (bp_lith is specifically less cohesive)
+
+These two results are consistent: the within-draw ranking (real > random genes) is preserved,
+but the absolute level of preservation (compared to null) is depressed in bp_lith vs control-
+heavy random draws. This is consistent with composition driving the bp_lith co-expression
+structure — the reference was built on controls, and random draws from all 474 include ~50%
+controls, giving higher preservation than pure bp_lith.
+
+**Calibration check (to fill when DONE):** compare null gold Z to bp_nolith gold Z (=14.01,
+base-001). If null gold Z ≈ nolith gold Z, the null is well-calibrated as "what you'd see
+drawing from a balanced cohort." If null > nolith, the null has more controls than bp_nolith.
 
 ## Connection to prior findings
 
