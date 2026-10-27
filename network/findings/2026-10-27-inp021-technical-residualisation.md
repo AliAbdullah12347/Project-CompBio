@@ -49,6 +49,39 @@ confirms composition is the primary structural driver. Adding ILR to technical (
 removes essentially the same modules as ILR alone (42 vs 44): technical covariates are
 redundant once composition is removed.
 
+## Module overlap with base-001 and gene-027
+
+63 inp-021 modules are a strict subset of base-001's 71: no new modules appear.
+The 8 modules absent from inp-021 (all 30–43 genes in base-001):
+
+| module | base-001 size | in LM22-absent (gene-027)? | base-001 beat_gold (lith, 20 draws) |
+|:--|--:|:--|--:|
+| lightcoral | 30 | **YES** | 0/20 |
+| mediumpurple2 | 35 | **YES** | 1/20 |
+| skyblue1 | 38 | **YES** | 1/20 |
+| plum | 36 | **YES** | 5/20 |
+| lightsteelblue | 33 | **YES** | 6/20 |
+| orangered3 | 35 | **YES** | 7/20 |
+| skyblue2 | 43 | no | 0/20 |
+| yellow4 | 41 | no | — |
+
+**All 6 LM22-dependent modules** (absent from gene-027's non-LM22 reference) are **also** absent
+from inp-021's technically-residualised reference. These modules dissolve under both perturbations:
+removing LM22 genes AND removing technical batch covariates. The 2 unique inp-021 removals
+(skyblue2, yellow4) are driven by technical covariates but not LM22 gene co-expression.
+
+Interpretation: the 6 modules at the LM22/technical intersection capture variance driven by a
+combination of immune-cell composition signals AND technical covariates. Both are required to
+maintain their structure. This convergence is not causal (technical residualisation does not
+remove composition) but suggests these modules sit near the composition-technical correlation
+boundary. skyblue2 and yellow4, dissolving only under technical residualisation, are driven
+by sequencing batch effects (plate, seqPCs) rather than composition.
+
+Cross-run comparison: modules absent in **both** gene-027 and inp-021 are the most fragile
+in base-001's bp_lith preservation (mean beat_gold 3.3/20 for the 6 shared, vs 14.8/20 for
+stable modules). The convergent dissolution makes them strong candidates for technical/
+compositional confounders rather than biologically-meaningful modules.
+
 ## nolith result
 
 [FILL after nolith_preservation.rds appears — run: `Rscript network/scripts/analyze_inp021.R`
