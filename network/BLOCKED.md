@@ -657,3 +657,8 @@ note). No work is lost — only unpushed.
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-27T09:09:49Z  NO PROGRESS IN 3 CONSECUTIVE SESSIONS
+DONE count has been stuck at 8 across 3 wake-ups (~15 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+

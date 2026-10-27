@@ -7,7 +7,7 @@ inp-022	input	DONE	1	2026-10-24T00:18:07Z	2026-10-24T00:31:28Z	800	completed in 
 inp-023	input	DONE	3	2026-10-26T09:13:55Z	2026-10-26T12:05:46Z	10311	completed in 10311s	10800	ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 pow-009	power	DONE	1	2026-10-26T14:10:41Z	2026-10-26T14:12:07Z	86	completed in 86s	3600	pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result)
 gene-027	geneset	DONE	2	2026-10-26T19:20:52Z	2026-10-26T23:15:47Z	14093	completed in 14093s	18000	ref=control;genes=all_minus_547_LM22 ** CIRCULARITY CHECK **
-inp-021	input	PARTIAL	1	2026-10-27T04:07:15Z	2026-10-27T07:07:16Z	10800	hit 10800s cap; partial results kept; +15 new checkpoints (attempt refunded)	10800	ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+inp-021	input	RUNNING	2	2026-10-27T09:06:07Z	2026-10-27T07:07:16Z	10800	requeued from PARTIAL (attempt 1)	10800	ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 perm-031	perm	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws
 trait-033	modtrait	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene ~ lithium, dx, age, sex, RIN, plate; BH across modules
 trait-034	modtrait	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene ~ 5 lineage fractions (gran mono T NK B)
