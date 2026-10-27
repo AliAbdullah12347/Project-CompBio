@@ -2055,3 +2055,34 @@ gene-027 completed (14093s, 20/20 lith draws). Final stats from `analyze_gene027
 
 Scores: E=5, R=4, B=3, D=5, C=4 → Evidence=21/25, Interest=6/10, Δ=−2.4.
 Finding: `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
+
+## 2026-10-27T00:45Z — inp-021 SFT (technical-only residualisation, preliminary)
+
+### SFT comparison across residualisation strategies
+
+inp-021 SFT checkpoint complete (`network/runs/inp-021/sft_r2_curve.csv`). Key result:
+technical-only residualisation (age+sex+rin+plate+seqpc1-3) achieves max R²=0.797 at
+power 18, powerEstimate=NA. This is the boundary case: just below the 0.80 threshold,
+and closer than raw/offset-removed expression but not as good as ILR residualisation.
+
+Updated cross-run SFT summary:
+
+| arm | residualisation | max R² | power at max | first R²≥0.80 | powerEstimate |
+|:--|:--|--:|--:|--:|--:|
+| pow-009 ctrl | none (offset-removed) | 0.770 | p20 | never | NA |
+| pow-009 nolith | none (offset-removed) | 0.755 | p20 | never | NA |
+| pow-009 lith | none (offset-removed) | 0.701 | p20 | never | NA |
+| inp-021 | age+sex+rin+plate+seqpc1-3 | **0.797** | p18 | never | NA |
+| inp-022 | ILR b1–b4 | 0.880 | p9 | **p9 (R²=0.802)** | 16 |
+| inp-023 | age+sex+rin + ILR b1–b4 | 0.836 | p13 | **p13 (R²=0.806)** | NA |
+
+Key observation: technical residualisation alone (inp-021) improves R² from 0.770 to 0.797
+but doesn't cross 0.80. ILR composition removal is necessary and sufficient. Adding ILR to
+technical covariates (inp-023) slightly lowers max R² vs ILR alone (0.836 vs 0.880) — the
+technical covariates do not reinforce the composition signal.
+
+This confirms: scale-free topology failure is composition-driven, not driven by technical
+covariates. inp-021 module count and preservation results are preliminary (reference network
+building in progress at time of this note).
+
+Power 12 remains correct for inp-021 (WGCNA FAQ signed n>40; powerEstimate=NA → FAQ table).

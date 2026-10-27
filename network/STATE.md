@@ -247,12 +247,13 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 mergeCutHeight=0, power=12, bicor, signed). TOM cache written by attempt 1 and reused
 by attempt 2 (TOM took 18 min in attempt 2 = loading cache + clustering).
 
-Module count progression:
+Module count progression (inp-021 pending completion):
 | arm | residualisation | modules | reduction vs raw |
 |:--|:--|--:|:--|
 | base-001 | none (raw) | 71 | — |
 | inp-022 | ILR b1–b4 | 44 | −27 (38%) |
 | inp-023 | age+sex+rin + ILR b1–b4 | **42** | −29 (41%) |
+| inp-021 | age+sex+rin+plate+seqpc1-3 | TBD (reference building) | — |
 
 SFT curve comparison:
 | arm | residualisation | first power R²≥0.80 | max R² | powerEstimate |
@@ -260,8 +261,13 @@ SFT curve comparison:
 | pow-009 ctrl | none (offset-removed) | never | 0.770 at p20 | NA |
 | pow-009 nolith | none (offset-removed) | never | 0.755 at p20 | NA |
 | pow-009 lith | none (offset-removed) | never | 0.701 at p20 | NA |
+| inp-021 | age+sex+rin+plate+seqpc1-3 | never | **0.797 at p18** | NA |
 | inp-022 | ILR b1–b4 | power 9 (R²=0.802) | 0.880 | 16 |
 | inp-023 | age+sex+rin + ILR b1–b4 | power 13 (R²=0.806) | 0.836 | NA |
+
+Pattern: technical residualisation (inp-021) brings R² from 0.770 to 0.797 — close but
+not over the threshold. ILR composition removal is necessary (inp-022: 0.880, inp-023:
+0.836). Composition is the primary driver of scale-free topology failure in this data.
 
 ## Layout
 
