@@ -378,9 +378,9 @@ and METHODS.md 2026-10-26.
 
 ## Next
 
-1. **inp-021** (RUNNING, started 2026-10-27T00:08Z) — technical-only residualisation
-   (age+sex+rin+plate+seqpc1-3; 100 draws, 50 perms/draw; 10800s cap; spans sessions).
-2. **perm-031** — group-label permutation null (K=500; 10800s cap)
+1. **inp-021** (RUNNING — lith draws in progress; cap 23:08 EDT; expected PARTIAL ~12/20 draws).
+   Nolith DONE 2026-10-26T20:33 EDT: gold Z=31.13 (64/64 last). Finding file updated.
+2. **perm-031** — group-label permutation null (K=20; 10800s cap; auto-claims after inp-021 cap)
 3. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast)
 4. **pres-030** — density vs connectivity decomposition of module preservation
 5. 42 more pending experiments cover gene subsets, module detection sensitivity, correlation
