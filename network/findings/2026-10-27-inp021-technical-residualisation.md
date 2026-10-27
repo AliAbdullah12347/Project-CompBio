@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-27
 **Analysis:** `network/runs/inp-021` — reference rebuilt on 234 controls residualised for age+sex+rin+plate+seqpc1-3
-**Evidence:** [FILL] · **Interest:** [FILL] · **Δ:** new
+**Evidence:** 21/25 (PARTIAL: E=5+R=5+B=4+D=5+C=2) · **Interest:** 6/10 · **Δ:** −2.4
 
 ## Claim
 
@@ -103,13 +103,22 @@ is the correct one.
 
 ## lith draws result
 
-[FILL after all 20 lith draws complete.
+**PARTIAL — 1 of 20 draws (as of 2026-10-27T04:07Z; run continuing).**
 
-Key stats: gold Z mean/sd, gold rank in every draw, modules beating gold in all 20.
-Cap is 10800s — expect 10-11 draws in session 14, rest in session 15+.
+| | inp-021 lith, 1 draw | base-001 lith, 20 draws | inp-023 lith, 20 draws |
+|:--|:--|:--|:--|
+| gold Z (draw 1) | 31.29 | mean 21.74 (sd 7.05) | mean 16.98 (sd 10.79) |
+| gold medianRank | 64/64 (LAST) | 72/72 last in all 20 | 43/43 last in all 20 |
+| modules above gold | 31/63 in draw 1 | 17/71 beat gold in all 20 | 16/42 beat gold in all 20 |
 
-For reference: base-001 lith gold Z mean=21.74 (sd 7.05), 17/71 beat gold in all 20 draws.
-]
+Draw 1: gold Z=31.29, medianRank=64/64 (LAST). Gold-last pattern confirmed in first draw.
+31/63 modules beat gold in draw 1 (Zsummary > 31.29). This fraction (49%) is higher than
+base-001's 17/71 (24%) that beat gold in ALL 20 draws; the comparison is not direct (1 draw vs
+all-20 threshold), but suggests the technically-residualised modules have higher preservation.
+
+**Interim D=5 (gold last in draw 1; full draw coverage needed to confirm D score).**
+
+[Update when all 20 draws complete: fill mean/sd across 20 draws, modules beating gold in ALL 20.]
 
 ## Connection to prior findings
 

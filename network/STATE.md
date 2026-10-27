@@ -49,13 +49,16 @@
    27/65 modules beat gold in all 20 draws. Pattern indistinguishable from base-001 (all genes).
    `findings/2026-10-26-gene027-lm22-circularity-preservation.md` (E=21/25).
 
-8. **inp-021 (PARTIAL — ~13/20 draws, cap 23:08 EDT): technical-only residualisation.**
+8. **inp-021 (PARTIAL — 1/20 lith draws; run resuming in session 16): technical-only residualisation.**
    63-module reference on technically-residualised controls (age+sex+rin+plate+seqpc1-3).
    Nolith gold Z=31.13 (64/64 last, 50 perms). Draw 1 gold Z=31.29 (64/64 last).
    Scale-free: max R²=0.797 (never achieves 0.80; ILR is required). Module count: 63 (−8 vs base-001).
    All 6 LM22-dependent modules also absent from technical-only reference (convergent dissolution).
-   Finding file `findings/2026-10-27-inp021-technical-residualisation.md` — interim; lith [FILL].
-   Scoring deferred: E=5 R=5 B=4 D=5 C=2 → 21/25 expected PARTIAL; full score when 20/20 draws done.
+   Finding file `findings/2026-10-27-inp021-technical-residualisation.md` — interim filled with 1-draw stats.
+   Interim score: E=5 R=5 B=4 D=5 C=2 → 21/25 (PARTIAL); Interest=6/10; Δ=−2.4.
+   NOTE: Session 15 estimated "~13/20 draws" at 03:08Z cap — in practice the process died after draw 2
+   started (697s/draw timing correct but R crashed mid-draw-2 at ~00:45 EDT). Only 1 draw checkpoint saved.
+   Session 16: re-ran at 04:07Z, draws 2-20 in progress, cap 07:07Z. Expected ~15 draws (draws 2-16).
 
 **Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-27 (inp-021 pending score).
 
@@ -79,9 +82,10 @@ DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   **gene-027** (DONE 2026-10-26T23:15Z; LM22 circularity NEGATIVE; 65-module reference on 12018
   non-LM22 genes; nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67), 66/66 last
   in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
-RUNNING (1): **inp-021** (started 2026-10-27T00:08Z; technical-only residualisation
-  age+sex+rin+plate+seqpc1-3; 20 draws, 50 perms/draw; cap 10800s; spans sessions.
-  NOLITH DONE 00:33Z; lith draws running, ~13/20 before cap at 03:08Z).
+RUNNING (1): **inp-021** (re-started 2026-10-27T04:07Z after claim died; technical-only residualisation
+  age+sex+rin+plate+seqpc1-3; 20 draws, 50 perms/draw; cap 07:07Z; PARTIAL 1/20 draws done.
+  NOLITH DONE; draw 1 done 20:45 EDT; draws 2-20 currently running.
+  Previous session died mid-draw-2 at cap; only 1 draw saved. Dead claim detected, requeued.).
 PENDING (42): perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
@@ -92,9 +96,9 @@ Key caches available:
 - `ref_control_all_bicor_signed_p12_composition_ilr_b1b4_ds4_mch00_offsetrm` (inp-022) — EXISTS ✓
 - `ref_control_all_bicor_signed_p12_technical_ilr_age_sex_rin_b1b4_ds4_mch00_offsetrm` (inp-023) — EXISTS ✓
 - ctrl160 reference (base-002-ceil) — EXISTS in cache ✓ (loaded at 03:17Z start; 67 modules)
+- technical-only (inp-021) — EXISTS ✓ (`ref_control_all_bicor_signed_p12_technical_full_age_sex_rin_plate_seqpc123_ds4_mch00_offsetrm.rds`)
 - bp_nolith reference (ref-002) — NOT YET BUILT
 - bp_lith reference (ref-003) — NOT YET BUILT
-- technical-only (inp-021): RUNNING (nolith done 00:33Z; lith ~13/20 draws before cap at 03:08Z)
 
 All 45 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutHeight=0`
 (builder scripts) or point to the v2 cache key `control_all_bicor_signed_p12_ds4_mch00`
@@ -154,21 +158,27 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **inp-021** PARTIAL (cap 23:08 EDT; ~13/20 lith draws) — When cap fires:
-   - Daemon REQUEUES inp-021 to PENDING (same row position, before perm-031). Daemon then
-     RE-CLAIMS inp-021 for draws 14-20 in next session (PARTIAL auto-continues, not perm-031).
-   - Check how many draws exist: `ls network/runs/inp-021/lith_draw_*.rds | wc -l`.
-   - Run `Rscript network/scripts/analyze_inp021.R` for partial lith stats.
-   - INTERIM DOCUMENTATION (fill even before all 20 draws):
-     - Fill finding file lith section `[FILL]` with PARTIAL stats (N/20 draws at writing).
-     - Interim score: E=5 R=5 B=4 D=5 C=2 → 21/25 (PARTIAL); Interest=6/10; Δ=−2.4.
-     - Update RESULTS.md completed runs table row for inp-021 (PARTIAL).
-     - Run `Rscript network/build_index.R` → 33rd finding, rebuild RANKING.md.
-     - Commit and push. (Note: finding will be re-scored to C=5→24/25 when all 20 done.)
-   - When all 20 draws DONE (spans additional sessions): re-run analyze, update finding/RANKING.
+1. **inp-021** PARTIAL (1/20 draws; run continues to cap 07:07Z):
+   - When cap fires: daemon requeues inp-021. Next session will claim draws 16+ (if 15 complete this session).
+   - When all 20 draws DONE: run `Rscript network/scripts/analyze_inp021.R`, fill finding lith section fully,
+     re-score to C=5 → E=24/25, rebuild RANKING.md, commit and push.
+   - At cap (partial, ~16 draws): update finding with N/20 stats, update RESULTS.md table, commit/push.
 2. **perm-031** — NOT claimed until inp-021 fully DONE (all 20 draws). PARTIAL expected after.
 3. **trait-033/034/035** — fast (<60s each); claimed after perm-031 fully completes.
 4. **pres-030** — WGCNA heavy, similar to inp-021 structure; PARTIAL expected.
+
+## Session 16 notes (2026-10-27T04:07Z)
+
+- inp-021 claim PID was dead (process died mid-draw-2 at ~00:45 EDT; only 1 draw saved, not ~13).
+  Reason: session 15 estimate of ~13 draws before 23:08 EDT cap was correct in timing, but the
+  R process exited abnormally. No error in log — log ends mid-draw-2 with no completion line.
+  Likely OOM or signal kill during draw 2 permutation computation.
+- Session 16: detected dead claim via .claim_inp-021.pid PID check. Dead claim enabled immediate
+  requeue (no 6h stale wait). Driver re-ran at 04:07Z; reference loaded from cache (fast); nolith
+  and draw 1 checkpoints skipped; draw 2 now running.
+- Queue: DONE=8 RUNNING=1 (inp-021, attempt 2) PENDING=42 BLOCKED=0.
+- inp-021 interim finding filled (1-draw stats), STATE.md/RESULTS.md updated.
+- Run `Rscript network/build_index.R` after all 20 draws to add inp-021 as finding #33.
 
 ## Session 15 notes (2026-10-27T00:40Z)
 
@@ -176,10 +186,9 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   gold Z=31.13 (50 perms), medianRank=64/64 (LAST). Same gold-last pattern as all other arms.
   25/63 real modules above gold by Zsummary; all 63 above gold by medianRank.
   Zsummary inflation vs base-001 (14.01) reflects fewer perms + cleaner data; medianRank is primary.
-- Lith draw 1 done 2026-10-26T20:45:06 EDT (697s). At 697s/draw: ~13 draws before 23:08 EDT cap → PARTIAL.
-- After cap: inp-021 auto-requeues to PENDING at same row (before perm-031). Daemon re-claims for draws 14-20.
-  perm-031 is NOT claimed until inp-021 fully completes all 20 draws (likely 2 more sessions).
-- All commits pushed (LaunchDaemon sync_up() resolved earlier push failures). New session 15 commits local.
+- Lith draw 1 done 2026-10-26T20:45:06 EDT (697s). At 697s/draw: ~13 draws expected before cap → PARTIAL.
+  ACTUAL: R process died mid-draw-2; only 1 draw saved. Session 16 restarted.
+- All commits pushed (LaunchDaemon sync_up() resolved earlier push failures).
 
 ## Session 14 notes (2026-10-27T00:45Z)
 

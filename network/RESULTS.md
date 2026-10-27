@@ -1,9 +1,9 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-27T00:40Z
+**Updated:** 2026-10-27T04:20Z
 **Runs completed:** 8 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027).
-**Running:** inp-021 (technical-only residualisation; nolith DONE at 20:33 EDT; lith draws in progress).
-**Pending:** perm-031 (next after inp-021 cap), then trait-033/034/035, pres-030, etc.
+**Running:** inp-021 (technical-only residualisation; nolith DONE; lith PARTIAL — 1/20 draws done; draws 2-20 running, cap 07:07Z).
+**Pending:** perm-031 (next after inp-021 fully DONE), then trait-033/034/035, pres-030, etc.
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 32 — see `RANKING.md`.
 
 ---
@@ -39,7 +39,7 @@ therefore the final picture for this arm's central question.
 | inp-022 | 44-mod ILR | 30.46 | 15.55 ± 8.13 | always last |
 | base-002-ceil | 67-mod raw (n=160) | 23.16 | 22.22 ± 7.34 | always last |
 | inp-023 | 42-mod tech+ILR | 28.08 | 16.98 ± 10.79 | always last |
-| inp-021 | 63-mod technical | 31.13 | PARTIAL (lith in progress) | nolith: last |
+| inp-021 | 63-mod technical | 31.13 | PARTIAL — 1/20 lith draws; draw 1 gold Z=31.29, last | nolith: last; lith draw 1: last |
 
 Cross-arm Zsummary comparison remains invalid (reference size determines baseline).
 

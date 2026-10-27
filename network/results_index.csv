@@ -7,7 +7,7 @@
 "inp-023","input","DONE",10311,"completed in 10311s"
 "pow-009","power","DONE",86,"completed in 86s"
 "gene-027","geneset","DONE",14093,"completed in 14093s"
-"inp-021","input","RUNNING",0,"reset for offsetrm rebuild 20261018T211633Z"
+"inp-021","input","RUNNING",0,"requeued: claiming driver gone"
 "perm-031","perm","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "trait-033","modtrait","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "trait-034","modtrait","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
