@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-27T00:45Z
+**Updated:** 2026-10-27T01:00Z
 
 ## Where the science stands
 
@@ -49,7 +49,15 @@
    27/65 modules beat gold in all 20 draws. Pattern indistinguishable from base-001 (all genes).
    `findings/2026-10-26-gene027-lm22-circularity-preservation.md` (E=21/25).
 
-**Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-27.
+8. **inp-021 (PARTIAL — ~13/20 draws, cap 23:08 EDT): technical-only residualisation.**
+   63-module reference on technically-residualised controls (age+sex+rin+plate+seqpc1-3).
+   Nolith gold Z=31.13 (64/64 last, 50 perms). Draw 1 gold Z=31.29 (64/64 last).
+   Scale-free: max R²=0.797 (never achieves 0.80; ILR is required). Module count: 63 (−8 vs base-001).
+   All 6 LM22-dependent modules also absent from technical-only reference (convergent dissolution).
+   Finding file `findings/2026-10-27-inp021-technical-residualisation.md` — interim; lith [FILL].
+   Scoring deferred: E=5 R=5 B=4 D=5 C=2 → 21/25 expected PARTIAL; full score when 20/20 draws done.
+
+**Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-27 (inp-021 pending score).
 
 ## Infrastructure
 
@@ -72,7 +80,8 @@ DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   non-LM22 genes; nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67), 66/66 last
   in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
 RUNNING (1): **inp-021** (started 2026-10-27T00:08Z; technical-only residualisation
-  age+sex+rin+plate+seqpc1-3; 100 draws, 50 perms/draw; cap 10800s; spans sessions).
+  age+sex+rin+plate+seqpc1-3; 20 draws, 50 perms/draw; cap 10800s; spans sessions.
+  NOLITH DONE 00:33Z; lith draws running, ~13/20 before cap at 03:08Z).
 PENDING (42): perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
@@ -85,7 +94,7 @@ Key caches available:
 - ctrl160 reference (base-002-ceil) — EXISTS in cache ✓ (loaded at 03:17Z start; 67 modules)
 - bp_nolith reference (ref-002) — NOT YET BUILT
 - bp_lith reference (ref-003) — NOT YET BUILT
-- technical-only (inp-021): RUNNING (claimed 2026-10-27T00:08Z)
+- technical-only (inp-021): RUNNING (nolith done 00:33Z; lith ~13/20 draws before cap at 03:08Z)
 
 All 45 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutHeight=0`
 (builder scripts) or point to the v2 cache key `control_all_bicor_signed_p12_ds4_mch00`
