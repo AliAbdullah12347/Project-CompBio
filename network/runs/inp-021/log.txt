@@ -1,0 +1,136 @@
+[2026-10-26T20:08:18] === inp-021 starting ===
+[2026-10-26T20:08:18] config written: network/config/inp-021.json
+Allowing parallel execution with up to 3 working processes.
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-26T20:08:23] pickSoftThreshold scan (residualised age+sex+rin+plate+seqpc1-3) ...
+   Power SFT.R.sq  slope truncated.R.sq mean.k. median.k. max.k.
+1      1  0.00237   2.88          0.898 6200.00   6200.00 6440.0
+2      2  0.24000 -11.30          0.953 3290.00   3280.00 3670.0
+3      3  0.39700  -6.58          0.969 1830.00   1820.00 2310.0
+4      4  0.48100  -4.48          0.981 1060.00   1050.00 1570.0
+5      5  0.56500  -3.61          0.986  643.00    625.00 1130.0
+6      6  0.61400  -3.13          0.979  403.00    384.00  852.0
+7      7  0.65400  -2.83          0.976  261.00    242.00  662.0
+8      8  0.68800  -2.68          0.969  174.00    156.00  527.0
+9      9  0.71500  -2.59          0.964  119.00    103.00  427.0
+10    10  0.73400  -2.51          0.961   83.70     68.70  351.0
+11    11  0.75200  -2.45          0.961   60.10     46.60  292.0
+12    12  0.76400  -2.44          0.962   44.00     32.20  246.0
+13    13  0.76600  -2.43          0.961   32.80     22.50  209.0
+14    14  0.78000  -2.40          0.967   24.80     15.90  178.0
+15    15  0.78500  -2.37          0.968   19.10     11.30  153.0
+16    16  0.78400  -2.37          0.963   14.80      8.12  133.0
+17    17  0.78800  -2.34          0.963   11.70      5.94  116.0
+18    18  0.79700  -2.29          0.968    9.32      4.33  101.0
+19    19  0.79600  -2.27          0.965    7.50      3.20   88.8
+20    20  0.79000  -2.26          0.957    6.08      2.37   78.3
+[2026-10-26T20:09:01] powerEstimate = NA (expected 1 or NA)
+[2026-10-26T20:09:01] R2 curve saved (max R2=0.797)
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2404045 128.4    4381922 234.1         NA  3208834 171.4
+Vcells 15977597 121.9   35240583 268.9      16384 35237813 268.9
+[2026-10-26T20:09:01] building reference network (full-technical residualised, power 12) ...
+ Calculating module eigengenes block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ..Working on block 1 .
+    TOM calculation: adjacency..
+    ..will use 3 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....clustering..
+ ....detecting modules..
+ ....calculating module eigengenes..
+ ....checking kME in modules..
+     ..removing 215 genes from module 1 because their KME is too low.
+     ..removing 39 genes from module 2 because their KME is too low.
+     ..removing 16 genes from module 3 because their KME is too low.
+     ..removing 13 genes from module 4 because their KME is too low.
+     ..removing 35 genes from module 5 because their KME is too low.
+     ..removing 1 genes from module 6 because their KME is too low.
+     ..removing 44 genes from module 7 because their KME is too low.
+     ..removing 16 genes from module 9 because their KME is too low.
+     ..removing 33 genes from module 10 because their KME is too low.
+     ..removing 20 genes from module 11 because their KME is too low.
+     ..removing 32 genes from module 13 because their KME is too low.
+     ..removing 10 genes from module 14 because their KME is too low.
+     ..removing 15 genes from module 15 because their KME is too low.
+     ..removing 2 genes from module 18 because their KME is too low.
+     ..removing 20 genes from module 21 because their KME is too low.
+     ..removing 9 genes from module 22 because their KME is too low.
+     ..removing 4 genes from module 23 because their KME is too low.
+     ..removing 2 genes from module 24 because their KME is too low.
+     ..removing 6 genes from module 25 because their KME is too low.
+     ..removing 15 genes from module 26 because their KME is too low.
+     ..removing 5 genes from module 27 because their KME is too low.
+     ..removing 1 genes from module 28 because their KME is too low.
+     ..removing 6 genes from module 30 because their KME is too low.
+     ..removing 1 genes from module 33 because their KME is too low.
+     ..removing 1 genes from module 34 because their KME is too low.
+     ..removing 2 genes from module 37 because their KME is too low.
+  ..reassigning 241 genes from module 1 to modules with higher KME.
+  ..reassigning 28 genes from module 2 to modules with higher KME.
+  ..reassigning 57 genes from module 3 to modules with higher KME.
+  ..reassigning 21 genes from module 4 to modules with higher KME.
+  ..reassigning 37 genes from module 5 to modules with higher KME.
+  ..reassigning 43 genes from module 6 to modules with higher KME.
+  ..reassigning 30 genes from module 7 to modules with higher KME.
+  ..reassigning 59 genes from module 8 to modules with higher KME.
+  ..reassigning 48 genes from module 9 to modules with higher KME.
+  ..reassigning 69 genes from module 10 to modules with higher KME.
+  ..reassigning 46 genes from module 11 to modules with higher KME.
+  ..reassigning 51 genes from module 12 to modules with higher KME.
+  ..reassigning 41 genes from module 13 to modules with higher KME.
+  ..reassigning 40 genes from module 14 to modules with higher KME.
+  ..reassigning 9 genes from module 15 to modules with higher KME.
+  ..reassigning 23 genes from module 16 to modules with higher KME.
+  ..reassigning 13 genes from module 17 to modules with higher KME.
+  ..reassigning 19 genes from module 18 to modules with higher KME.
+  ..reassigning 26 genes from module 19 to modules with higher KME.
+  ..reassigning 17 genes from module 20 to modules with higher KME.
+  ..reassigning 24 genes from module 21 to modules with higher KME.
+  ..reassigning 19 genes from module 22 to modules with higher KME.
+  ..reassigning 41 genes from module 23 to modules with higher KME.
+  ..reassigning 15 genes from module 24 to modules with higher KME.
+  ..reassigning 16 genes from module 25 to modules with higher KME.
+  ..reassigning 10 genes from module 26 to modules with higher KME.
+  ..reassigning 6 genes from module 27 to modules with higher KME.
+  ..reassigning 16 genes from module 28 to modules with higher KME.
+  ..reassigning 16 genes from module 29 to modules with higher KME.
+  ..reassigning 16 genes from module 30 to modules with higher KME.
+  ..reassigning 8 genes from module 31 to modules with higher KME.
+  ..reassigning 8 genes from module 32 to modules with higher KME.
+  ..reassigning 4 genes from module 33 to modules with higher KME.
+  ..reassigning 6 genes from module 34 to modules with higher KME.
+  ..reassigning 3 genes from module 36 to modules with higher KME.
+  ..reassigning 1 genes from module 37 to modules with higher KME.
+  ..reassigning 4 genes from module 39 to modules with higher KME.
+  ..reassigning 7 genes from module 41 to modules with higher KME.
+  ..reassigning 2 genes from module 42 to modules with higher KME.
+  ..reassigning 1 genes from module 43 to modules with higher KME.
+  ..reassigning 3 genes from module 44 to modules with higher KME.
+  ..reassigning 1 genes from module 46 to modules with higher KME.
+  ..reassigning 1 genes from module 47 to modules with higher KME.
+  ..reassigning 2 genes from module 48 to modules with higher KME.
+  ..reassigning 4 genes from module 52 to modules with higher KME.
+  ..reassigning 2 genes from module 54 to modules with higher KME.
+  ..reassigning 2 genes from module 55 to modules with higher KME.
+  ..reassigning 4 genes from module 56 to modules with higher KME.
+  ..reassigning 2 genes from module 61 to modules with higher KME.
+  ..reassigning 3 genes from module 62 to modules with higher KME.
+  ..reassigning 2 genes from module 63 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-10-26T20:21:46] 63 modules detected (excluding grey)
+           used  (Mb) gc trigger  (Mb) limit (Mb)  max used   (Mb)
+Ncells  2434220 130.1    4381922 234.1         NA   4381922  234.1
+Vcells 16073328 122.7   63240199 482.5      16384 483690873 3690.3
+[2026-10-26T20:21:46] bp_nolith (full-technical residualised, 50 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

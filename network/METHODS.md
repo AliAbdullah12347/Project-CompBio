@@ -2096,3 +2096,28 @@ Technical residualisation alone removes 11% of modules; ILR removes 38%. This mi
 SFT R² pattern and confirms composition is the primary driver of module structure.
 
 Power 12 remains correct for inp-021 (WGCNA FAQ signed n>40; powerEstimate=NA → FAQ table).
+
+## 2026-10-27T00:21Z — inp-021 reference network built
+
+inp-021 started 2026-10-27T00:08Z (cap=10800s). Reference network built in ~13 min.
+
+SFT scan: max R²=0.797 at power 18, powerEstimate=NA. Technical residualisation improves
+SFT fit slightly vs raw (0.770) but fails to reach 0.80 threshold. ILR residualisation
+is required to pass (inp-022: first fit at power 9, R²=0.802).
+
+Module count: **63 real modules** (non-grey) from n=234 controls residualised for
+age+sex+rin+plate+seqpc1-3.
+
+Module count comparison:
+| arm | residualisation | modules |
+|:--|:--|--:|
+| base-001 | none (raw, offset-removed) | 71 |
+| inp-021 | tech (age+sex+rin+plate+seqpc1-3) | **63** |
+| inp-022 | ILR b1–b4 | 44 |
+| inp-023 | tech + ILR | 42 |
+
+Technical-only residualisation removes 8 modules (11%). ILR removes 27 (38%).
+Cell composition, not technical covariates, is the primary driver of reference network structure.
+
+Cache key: `control_all_bicor_signed_p12_technical_full_age_sex_rin_plate_seqpc123_ds4_mch00_offsetrm`
+bp_nolith preservation running (~50 perms); lith draws to follow (20 draws, 50 perms).
