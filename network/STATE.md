@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T23:30Z
+**Updated:** 2026-10-27T00:45Z
 
 ## Where the science stands
 
@@ -43,7 +43,13 @@
    rescues it. New finding `2026-10-26-pow009-scale-free-composition-driven.md` (E=22/25).
    Partially rehabilitates retracted finding #27.
 
-**Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-26.
+7. **gene-027 (DONE 2026-10-26T23:15Z): LM22 circularity check NEGATIVE.**
+   65-module reference rebuilt on 12018 non-LM22 genes. nolith gold Z=12.23 (66/66 last);
+   lith mean gold Z=21.41 (sd 6.67, range 9.00–33.02), 66/66 last in ALL 20 draws.
+   27/65 modules beat gold in all 20 draws. Pattern indistinguishable from base-001 (all genes).
+   `findings/2026-10-26-gene027-lm22-circularity-preservation.md` (E=21/25).
+
+**Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-27.
 
 ## Infrastructure
 
@@ -65,8 +71,9 @@ DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   **gene-027** (DONE 2026-10-26T23:15Z; LM22 circularity NEGATIVE; 65-module reference on 12018
   non-LM22 genes; nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67), 66/66 last
   in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
-RUNNING (0): none (inp-021 next in queue — driver will claim automatically).
-PENDING (43): inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
+RUNNING (1): **inp-021** (started 2026-10-27T00:08Z; technical-only residualisation
+  age+sex+rin+plate+seqpc1-3; 100 draws, 50 perms/draw; cap 10800s; spans sessions).
+PENDING (42): perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
   hub-036/037, comm-038/039, cent-040, filt-044, tob-045, bmind-046/047, synth-048.
@@ -78,7 +85,7 @@ Key caches available:
 - ctrl160 reference (base-002-ceil) — EXISTS in cache ✓ (loaded at 03:17Z start; 67 modules)
 - bp_nolith reference (ref-002) — NOT YET BUILT
 - bp_lith reference (ref-003) — NOT YET BUILT
-- technical-only (inp-021): needs age+sex+rin+plate+seqpc1-3 residualisation — NOT YET BUILT
+- technical-only (inp-021): RUNNING (claimed 2026-10-27T00:08Z)
 
 All 45 PENDING experiments have scripts. All scripts use `deepSplit=4, mergeCutHeight=0`
 (builder scripts) or point to the v2 cache key `control_all_bicor_signed_p12_ds4_mch00`
@@ -138,11 +145,19 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **gene-027 DONE 2026-10-26T23:15Z.** All documentation complete (finding filled, ranked,
-   RESULTS.md and STATE.md updated, committed and pushed). Circularity check NEGATIVE (E=21/25).
-2. **Driver continues:** inp-021 (full technical residualisation, cap 10800s; spans sessions).
-   Script exists. Will claim automatically via LaunchDaemon.
-3. **pres-030** (density vs connectivity decomposition) is queued after inp-021.
+1. **inp-021** (RUNNING at 2026-10-27T00:08Z, cap 10800s) — When complete or PARTIAL:
+   - Check output: n modules in technical-only reference, SFT curve, draw completion count.
+   - Update finding file, RANKING.md, RESULTS.md, STATE.md.
+   - Compare technical-only reference module count to base-001 (71) and inp-023 (42).
+2. **pres-030** (density vs connectivity decomposition) — next after inp-021.
+3. **perm-031** (group-label permutation null, K=500) — can run in parallel with anything.
+
+## Session 14 notes (2026-10-27T00:45Z)
+
+- gene-027 documentation completed: RANKING.md rebuilt (32 findings), RESULTS.md/STATE.md updated.
+- inp-021 automatically claimed by LaunchDaemon at 2026-10-27T00:08Z. RUNNING.
+- Queue: DONE=8 RUNNING=1 PENDING=42 BLOCKED=0.
+- perm-031 is next claimable (script exists; cap 10800s; group-label permutation null K=500).
 
 ## Session 13 notes (2026-10-26T23:30Z)
 
@@ -152,7 +167,7 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - Circularity check NEGATIVE. Same population-level pattern as base-001 with 350 LM22 genes excluded.
   Mean gold Z nearly identical (21.41 vs base-001 21.74), confirming LM22 genes do not drive the result.
 - Finding file fully filled (Evidence=21/25, Interest=6/10, Δ=−2.4). RANKING.md rebuilt (32 findings).
-- RESULTS.md, STATE.md updated. Proceeding to commit and push, then start inp-021.
+- RESULTS.md, STATE.md updated. Committed and pushed. inp-021 started automatically.
 
 ## Session 12 notes (2026-10-26T19:45Z)
 

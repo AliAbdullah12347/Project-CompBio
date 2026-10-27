@@ -377,14 +377,12 @@ and METHODS.md 2026-10-26.
 
 ## Next
 
-1. **gene-027** (RUNNING at 19:20Z, 18000s cap, 4/20 draws) — When all 20 complete:
-   - Run `Rscript network/scripts/analyze_gene027.R` — script exists
-   - Fill finding file, score E=5 R=4 B=3 D=5 C=4 (21/25), Interest=6/10, Δ=-2.4
-   - Rebuild RANKING.md and update this RESULTS.md (add gene-027 to completed table)
-2. **inp-021** — technical-only residualisation (~2 sessions; starts automatically via LaunchDaemon)
-3. **perm-031** — group-label permutation null (fast: 20 draws × 720s = 4h within 10800s cap)
-4. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast)
-5. 40 more pending experiments cover gene subsets, module detection sensitivity, correlation
+1. **inp-021** (RUNNING, started 2026-10-27T00:08Z) — technical-only residualisation
+   (age+sex+rin+plate+seqpc1-3; 100 draws, 50 perms/draw; 10800s cap; spans sessions).
+2. **perm-031** — group-label permutation null (K=500; 10800s cap)
+3. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast)
+4. **pres-030** — density vs connectivity decomposition of module preservation
+5. 42 more pending experiments cover gene subsets, module detection sensitivity, correlation
    function, network type, power, annotation, community, centrality, hub stability, bMIND.
 
 ---
