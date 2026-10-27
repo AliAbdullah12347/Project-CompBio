@@ -2164,3 +2164,62 @@ similarly measured ~697-720s), cap allows ~15 new draws. Draws 2-16 expected to 
 in session 16. Draws 17-20 will roll to session 17.
 
 No change to parameters or analysis design. This is a pure checkpoint resume.
+
+---
+
+## 2026-10-27T09:05Z — Session 17: background-bash anti-pattern kills Rscript on -p exit
+
+Session 17 was triggered by the 09:05Z daemon wake. At that point inp-021 was PARTIAL
+(draws 1–16 done, draws 17–20 remaining). The driver ran, detected the 07:07Z PARTIAL,
+requeued inp-021 PENDING→RUNNING, and started Rscript. The R process (PID unknown at
+time of writing) began draw 17 — WGCNA printed its initial messages to log.txt at
+09:06:22 UTC — and then died 14 seconds later.
+
+**Root cause:** Claude was invoked with the `-p` (print mode) flag, which runs the
+conversation once and exits. The session ran `bash network/run_next.sh` with
+`run_in_background=True`. The background bash task mechanism forks the command and
+returns the task ID immediately to Claude. Claude wrote its turn text ("Waiting for
+monitor notifications") and exited (rc=0 at 09:09Z). When the `-p` Claude process
+exited, it killed all background tasks it had spawned, including run_next.sh and its
+child Rscript. The kill happened ~14 seconds after Rscript started.
+
+**Implication:** In `-p` mode, `run_in_background=True` for Bash tool calls is
+INCORRECT — the background task is tied to the Claude process and dies with it. The
+correct pattern is to call `bash network/run_next.sh` SYNCHRONOUSLY (without
+run_in_background). The bash tool blocks for up to 10 minutes, but run_next.sh runs
+Rscript under `timeout $CAP_SEC`, so when Rscript completes (or the cap fires),
+run_next.sh exits and the bash tool returns. Claude then handles the DONE/PARTIAL
+result and posts-processes before exiting.
+
+The 09:05Z crash left draw 17 incomplete. Claim PID from that session was dead.
+
+---
+
+## 2026-10-27T14:05Z — Session 18: double LaunchDaemon+LaunchAgent invocation
+
+At the 14:05Z daemon wake, BOTH the LaunchDaemon (`com.aaylab.networkarm.daemon`) and
+the LaunchAgent (`com.aaylab.networkarm`) fired simultaneously, producing two Claude
+processes (PIDs 29144 and 29150, both started at 10:05AM EDT). Both carried the
+same prompt; both ran in the same working directory.
+
+**How the driver handled it:**
+1. The first run_next.sh invocation (from Claude 29150) acquired the driver lock
+   (`network/RUNLOG/.driver.lock`, PID 29561), detected the dead 09:05Z claim for
+   inp-021, requeued it, and started Rscript (PID 29622).
+2. The second run_next.sh invocation (not called — Claude 29144 saw the lock was held
+   and instead did reads/analysis work).
+3. Rscript is running at 95–100% CPU computing draws 17–20 from checkpoint.
+
+**Consequence:** The driver lock prevented double-claiming. Only one R process is
+running. The second Claude instance (29144) is observing and documenting; it will not
+call run_next.sh until the lock is released. Draw 17–20 expected to complete by
+~14:55Z. This is the third time draw 17 has been attempted (sessions 16 partial,
+17 killed, 18 running). Attempts counter = 3.
+
+**Root of the double invocation:** The LaunchAgent has a `StartInterval=18000` and an
+hourly watchdog. When logged out, the agent should be dead — but if a user login was
+active, both agent and daemon fire. The daemon is the correct and reliable mechanism;
+the agent is redundancy. For future sessions: the `wake.sh` lock (`network/RUNLOG/.wake.lock`)
+should prevent the same claude invocation from starting twice from the same wake source,
+but it does NOT prevent two separate launchd jobs from both calling wake.sh at the same
+time if both fire within the same second.
