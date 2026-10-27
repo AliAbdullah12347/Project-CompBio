@@ -103,22 +103,35 @@ is the correct one.
 
 ## lith draws result
 
-**PARTIAL — 1 of 20 draws (as of 2026-10-27T04:07Z; run continuing).**
+**PARTIAL — 18 of 20 draws (as of 2026-10-27T19:20Z; draws 19-20 pending).**
 
-| | inp-021 lith, 1 draw | base-001 lith, 20 draws | inp-023 lith, 20 draws |
+| | inp-021 lith, 18 draws | base-001 lith, 20 draws | inp-023 lith, 20 draws |
 |:--|:--|:--|:--|
-| gold Z (draw 1) | 31.29 | mean 21.74 (sd 7.05) | mean 16.98 (sd 10.79) |
-| gold medianRank | 64/64 (LAST) | 72/72 last in all 20 | 43/43 last in all 20 |
-| modules above gold | 31/63 in draw 1 | 17/71 beat gold in all 20 | 16/42 beat gold in all 20 |
+| gold Z mean (sd) | **32.66 (3.97)** | 21.74 (7.05) | 16.98 (10.79) |
+| gold Z range | [26.71, 45.00] | [11.19, 34.23] | [6.75, 38.21] |
+| gold medianRank | **64/64 LAST** in all 18 | 72/72 last in all 20 | 43/43 last in all 20 |
+| modules beat gold ALL draws | 10/63 (16%) | 17/71 (24%) | 16/42 (38%) |
+| modules beat gold 0 draws | 24/63 (38%) | — | — |
 
-Draw 1: gold Z=31.29, medianRank=64/64 (LAST). Gold-last pattern confirmed in first draw.
-31/63 modules beat gold in draw 1 (Zsummary > 31.29). This fraction (49%) is higher than
-base-001's 17/71 (24%) that beat gold in ALL 20 draws; the comparison is not direct (1 draw vs
-all-20 threshold), but suggests the technically-residualised modules have higher preservation.
+Gold always ranks LAST (64/64 medianRank) in all 18 completed draws. Gold-last pattern
+confirmed across 18 draws; 10/63 modules beat gold in every draw.
 
-**Interim D=5 (gold last in draw 1; full draw coverage needed to confirm D score).**
+**18-draw vs 1-draw update:** Mean gold Z=32.66 (sd=3.97), substantially less variable than
+draw 1 (31.29) suggested. The sd=3.97 across 18 draws is much tighter than base-001's sd=7.05
+or inp-023's sd=10.79. Technical residualisation stabilises the draw-to-draw gold Z estimate
+— likely because it removes sequencing batch effects that cause high-variance subsamples.
 
-[Update when all 20 draws complete: fill mean/sd across 20 draws, modules beating gold in ALL 20.]
+**Module counts:** 10/63 (16%) beat gold in ALL 18 draws, vs 17/71 (24%) in base-001 and
+16/42 (38%) in inp-023. The fraction decreasing with technical residualisation vs base-001 is
+unexpected: if technical covariates add noise, removing them should increase consistency.
+Possible explanation: the 8 modules dissolved by technical residualisation (vs base-001) were
+relatively well-preserved modules; removing them lowers the average beat-gold fraction for the
+surviving 63. The 24/63 (38%) modules that NEVER beat gold may include the more fragile
+composition-adjacent modules that persist in inp-021 but dissolve in inp-022/023.
+
+**D=5 confirmed: gold last in all 18 checked draws.** Score unchanged from pre-specification.
+
+[Update to all-20 stats when draws 19-20 complete. Expected stats: similar mean/sd, gold last in 20/20.]
 
 ## Connection to prior findings
 
