@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-27T01:00Z
+**Updated:** 2026-10-27T19:15Z
 
 ## Where the science stands
 
@@ -56,9 +56,9 @@
    All 6 LM22-dependent modules also absent from technical-only reference (convergent dissolution).
    Finding file `findings/2026-10-27-inp021-technical-residualisation.md` — interim filled with 1-draw stats.
    Interim score: E=5 R=5 B=4 D=5 C=2 → 21/25 (PARTIAL); Interest=6/10; Δ=−2.4.
-   NOTE: Session 15 estimated "~13/20 draws" at 03:08Z cap — in practice the process died after draw 2
-   started (697s/draw timing correct but R crashed mid-draw-2 at ~00:45 EDT). Only 1 draw checkpoint saved.
-   Session 16: re-ran at 04:07Z, draws 2-20 in progress, cap 07:07Z. Expected ~15 draws (draws 2-16).
+   NOTE: 18/20 draws now complete (draws 1-18 checkpointed). Session 19 (2026-10-27T19:10Z) found
+   inp-021 BLOCKED due to orphan-process race (METHODS.md 2026-10-27T19:10Z). Manual reset to PENDING,
+   attempts=1. Will complete draws 19-20 (~24 min) in the next driver invocation after perm-031 finishes.
 
 **Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-27 (inp-021 pending score).
 
@@ -82,11 +82,11 @@ DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   **gene-027** (DONE 2026-10-26T23:15Z; LM22 circularity NEGATIVE; 65-module reference on 12018
   non-LM22 genes; nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67), 66/66 last
   in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
-RUNNING (1): **inp-021** (re-started 2026-10-27T04:07Z after claim died; technical-only residualisation
-  age+sex+rin+plate+seqpc1-3; 20 draws, 50 perms/draw; cap 07:07Z; PARTIAL 1/20 draws done.
-  NOLITH DONE; draw 1 done 20:45 EDT; draws 2-20 currently running.
-  Previous session died mid-draw-2 at cap; only 1 draw saved. Dead claim detected, requeued.).
-PENDING (42): perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
+RUNNING (1): **perm-031** (claimed 2026-10-27T19:06Z; group-label permutation null K=20;
+  random draws from all 474 samples, vs base-001 bp_lith observed Zsummary;
+  draw 1 in progress as of 19:15Z; cap 22:06Z; ~15 draws expected before cap).
+PENDING (43): **inp-021** (reset from BLOCKED 2026-10-27T19:10Z; 18/20 lith draws done;
+  claims when perm-031 completes this session), trait-033/034/035, pres-030,
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
   hub-036/037, comm-038/039, cent-040, filt-044, tob-045, bmind-046/047, synth-048.
@@ -158,14 +158,43 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **inp-021** PARTIAL (1/20 draws; run continues to cap 07:07Z):
-   - When cap fires: daemon requeues inp-021. Next session will claim draws 16+ (if 15 complete this session).
-   - When all 20 draws DONE: run `Rscript network/scripts/analyze_inp021.R`, fill finding lith section fully,
+1. **perm-031** PARTIAL expected at 22:06Z cap (~15 draws); driver will commit/push on exit.
+   - After perm-031 session ends: inp-021 is next PENDING (row 1 in queue).
+2. **inp-021** PENDING (18/20 draws done):
+   - Next session (after perm-031 current RUNNING): claims inp-021, runs draws 19-20 (~24 min), exits 0 DONE.
+   - When DONE: run `Rscript network/scripts/analyze_inp021.R`, fill finding lith section fully,
      re-score to C=5 → E=24/25, rebuild RANKING.md, commit and push.
-   - At cap (partial, ~16 draws): update finding with N/20 stats, update RESULTS.md table, commit/push.
-2. **perm-031** — NOT claimed until inp-021 fully DONE (all 20 draws). PARTIAL expected after.
-3. **trait-033/034/035** — fast (<60s each); claimed after perm-031 fully completes.
-4. **pres-030** — WGCNA heavy, similar to inp-021 structure; PARTIAL expected.
+3. **perm-031** resumes after inp-021 DONE (perm-031 will be PARTIAL, queued after inp-021).
+4. **trait-033/034/035** — fast (<60s each); claimed after perm-031 session.
+5. **pres-030** — WGCNA heavy, similar to base-001 structure; PARTIAL expected.
+
+## Session 19 notes (2026-10-27T19:06Z)
+
+- Session started, found inp-021 BLOCKED (18/20 lith draws done; driver blocked after orphan-race).
+- Root cause: 09:06Z driver was killed (SIGHUP) leaving Rscript as orphan; draws 17-18 completed by orphan.
+  14:08Z new session requeued (attempts=2<3) → claimed (attempts=3) → ran draws 17-18 again → started draw 19.
+  19:06Z session: dead claim detected → attempts=3≥3 → BLOCKED. But 18 draws are valid checkpoints.
+- Manual fix: reset inp-021 BLOCKED→PENDING, attempts=3→1. Documented in METHODS.md 2026-10-27T19:10Z.
+- perm-031 claimed at 19:06Z (was next PENDING after inp-021's BLOCKED was detected by driver).
+  perm-031 running draw 1 as of 19:15Z. Cap 22:06Z. Expected ~15/20 draws before cap.
+- Commits: 9fab110 (queue reset + METHODS.md).
+- Queue: DONE=8 RUNNING=1 (perm-031) PENDING=43 (inp-021 included) BLOCKED=1 (inp-021, now reset).
+
+## Session 18 notes (2026-10-27T14:08Z)
+
+- inp-021 re-claimed (09:06Z claim PID dead). Found draws 1-16 done. Started draw 17.
+- Draw 17 done at 10:20:27 EDT (14:20:27 UTC). Draw 18 done at 10:32:08 EDT. Draw 19 started.
+- Process died during draw 19 (no draw 19 checkpoint). 18/20 draws total.
+- No progress log "done" entry — driver was killed before Rscript finished.
+  Attempted 3rd time: still only 18 draws. Driver at cap or killed before PARTIAL recorded.
+- Result: inp-021 sits RUNNING (dead) → BLOCKED in session 19.
+
+## Session 17 notes (2026-10-27T09:06Z)
+
+- inp-021 claimed at 09:06Z. Driver process itself killed (SIGHUP). Rscript became orphan.
+- Orphan R computed draws 17-18 (10:20, 10:32 EDT respectively).
+- Orphan started draw 19 before being killed. Draw 19 incomplete.
+- Driver never called mark() → no PARTIAL/DONE record. Claim PID dead for session 18.
 
 ## Session 16 notes (2026-10-27T04:07Z)
 
