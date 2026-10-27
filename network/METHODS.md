@@ -2082,7 +2082,17 @@ technical covariates (inp-023) slightly lowers max R² vs ILR alone (0.836 vs 0.
 technical covariates do not reinforce the composition signal.
 
 This confirms: scale-free topology failure is composition-driven, not driven by technical
-covariates. inp-021 module count and preservation results are preliminary (reference network
-building in progress at time of this note).
+covariates. inp-021 module count confirmed: **63 modules** (reference built at 20:21 EDT).
+
+Module count pattern:
+| arm | residualisation | modules | reduction |
+|:--|:--|--:|:--|
+| base-001 | none | 71 | — |
+| inp-021 | technical (age+sex+rin+plate+seqpc1-3) | **63** | −8 (11%) |
+| inp-022 | ILR b1–b4 | 44 | −27 (38%) |
+| inp-023 | technical + ILR | 42 | −29 (41%) |
+
+Technical residualisation alone removes 11% of modules; ILR removes 38%. This mirrors the
+SFT R² pattern and confirms composition is the primary driver of module structure.
 
 Power 12 remains correct for inp-021 (WGCNA FAQ signed n>40; powerEstimate=NA → FAQ table).

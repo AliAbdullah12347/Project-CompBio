@@ -615,3 +615,18 @@ DONE count has been stuck at 7 across 3 wake-ups (~15 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+**RESOLVED 2026-10-26T23:15Z:** gene-027 completed (14093s, 20/20 lith draws). Root cause
+was cap too low for initial attempts (7200s → raised to 10800s → raised to 18000s for
+nolith 50-perm + 20 lith draws). DONE count now 8. inp-021 started automatically at
+2026-10-27T00:08Z.
+
+## 2026-10-27T00:45Z  PUSH FAILED — no GitHub credentials in interactive session
+
+git push failed: "could not read Username for 'https://github.com'" and SSH key
+permission denied. The CLAUDE_CODE_OAUTH_TOKEN in ~/.arm3_token is for Claude, not GitHub.
+osxkeychain shows no stored GitHub credentials in this session.
+
+**Workaround:** Commits are local. The LaunchDaemon's sync_up() will push all queued
+commits when it next wakes. Local commits: ec4c312, 30602f7 (gene-027 docs + inp-021 SFT
+note). No work is lost — only unpushed.
+
