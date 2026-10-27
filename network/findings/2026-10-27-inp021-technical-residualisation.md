@@ -84,16 +84,22 @@ compositional confounders rather than biologically-meaningful modules.
 
 ## nolith result
 
-[FILL after nolith_preservation.rds appears — run: `Rscript network/scripts/analyze_inp021.R`
-or read rds directly.
+| | inp-021 (tech-only, 63 modules, 50 perms) | base-001 (raw, 71 modules, 500 perms) | inp-023 (tech+ILR, 42 modules, 50 perms) |
+|:--|:--|:--|:--|
+| gold Zsummary | **31.13** | 14.01 | 28.08 |
+| gold medianRank | **64 of 64 (last)** | 72 of 72 (last) | 43 of 43 (last) |
+| n modules (real) | 63 | 71 | 42 |
+| modules above gold (Zsummary) | 25 of 63 (40%) | 65 of 71 (92%) | 25 of 42 (60%) |
 
-Key stat to fill:
-- gold Zsummary (50 perms)
-- gold medianRank (expected: 64/64 last, i.e. 63 real + gold)
-- n modules including gold
+Gold ranks LAST in medianRank — same qualitative pattern as base-001 and inp-023.
+Gold Z is higher (31.13) than inp-023 (28.08) because inp-021 has more modules (63 vs 42);
+more modules means more Z competitors, pushing gold's permutation-based Z higher. This is a
+scale artifact, not a substantive difference. medianRank (perm-independent) is the primary stat.
 
-For reference: base-001 nolith gold Z=14.01 (72/72 last), inp-023 nolith gold Z=28.08 (43/43 last).
-]
+The 40% (25/63) modules-above-gold by Zsummary vs 92% in base-001 reflects the same
+scale artifact in reverse: base-001's gold Z is so low (14.01, with 500 perms and noisy
+gold estimate at 500 perms) that more real modules exceed it by raw Z. The rank comparison
+is the correct one.
 
 ## lith draws result
 
