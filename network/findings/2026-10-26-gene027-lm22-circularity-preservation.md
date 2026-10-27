@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-26
 **Analysis:** `network/runs/gene-027` — reference rebuilt on 12018 non-LM22 genes (350 excluded)
-**Evidence:** [FILL] · **Interest:** [FILL] · **Δ:** new
+**Evidence:** 21/25 (E=5 R=4 B=3 D=5 C=4) · **Interest:** 6/10 · **Δ:** −2.4
 
 ## Claim
 
@@ -33,28 +33,24 @@ not a substantive difference. medianRank is perm-independent and is the primary 
 
 ## lith draws result
 
-**Preliminary (3/20 draws complete, as of 20:07Z):** gold last in ALL 3 draws (Z=30.16,
-26.42, 21.89; mean=26.16). Gold Z is higher than base-001 lith mean (21.74): expected
-with 65 modules (gold has fewer competitors), not a methodological issue.
-
-[FILL ALL statistics below after all 20 draws complete (~23:31Z).
-Run: `Rscript network/scripts/analyze_gene027.R` when `lith_draw_020.rds` exists.
-Replace this entire paragraph and table with final results.]
+**Final (20/20 draws complete):** Gold ranks last (66/66) in ALL 20 lith draws.
+Mean gold Z=21.41 (sd=6.67, range 9.00–33.02). Gold Z mean is nearly identical to
+base-001 lith (21.74, sd 7.05) despite using 350 fewer genes and 65 vs 71 modules.
 
 | | gene-027 (non-LM22, 65 modules, 50 perms/draw) | base-001 (all genes, 71 modules, 50 perms/draw) |
 |:--|:--|:--|
-| gold Zsummary (mean, sd) | [FILL] of 20 draws | 21.74 (sd 7.05) |
-| gold medianRank | [FILL — 3/3 draws = 66 of 66 (last)] | 72 of 72, all 20 draws |
-| modules beating gold in all 20 | [FILL] of 65 | 17 of 71 |
-| modules beating gold in 0 | [FILL] of 65 | 4 of 71 |
+| gold Zsummary (mean, sd) | **21.41 (sd 6.67, range 9.00–33.02)** | 21.74 (sd 7.05) |
+| gold medianRank | **66 of 66 (last), all 20 draws** | 72 of 72, all 20 draws |
+| modules beating gold in all 20 | **27 of 65** | 17 of 71 |
+| modules beating gold in 0 | **0 of 65** | 4 of 71 |
 
 ## Why this is the expected negative
 
 The circularity concern would manifest as: "LM22 genes define the preservation-driving
 modules, so removing them collapses the preservation signal." If that were true:
-- Gold would rise in medianRank (from last toward middle) — does not happen
-- The fraction of modules beating gold would plummet — [FILL whether this happens]
-- The Zsummary rank ordering of modules would change substantially — [FILL]
+- Gold would rise in medianRank (from last toward middle) — does NOT happen (66/66 last, all 20 draws)
+- The fraction of modules beating gold would plummet — does NOT happen (27/65 vs 17/71 in base-001, slightly more)
+- The Zsummary rank ordering of modules would change substantially — does NOT happen at population level (mean gold Z 21.41 ≈ base-001 21.74)
 
 None of these are expected to happen because the earlier PCA-arm check (analysis #003,
 2026-10-14) already showed that dropping LM22 markers moves the association and composition
@@ -128,7 +124,5 @@ the modules themselves changed.
   dropping 350 LM22 Ensembl IDs moves PC2 association p-value and composition share by <1%.
   Module network preservation now confirms the same conclusion at the network level.
 
-<!-- SCORES PENDING LITH COMPLETION — fill with actual values once all 20 draws done -->
-<!-- Expected: E=5 R=4 B=3 D=5 C=4 → total 21/25; Interest=6/10; Δ=-2.4 -->
-<!-- Δ = (6/10 - 21/25) × 10 = (0.60 - 0.84) × 10 = -2.4 -->
-<!-- Scores will be inserted HERE and the Evidence/Interest header lines filled in -->
+**Scores:** E=5 R=4 B=3 D=5 C=4 → Evidence=21/25 · Interest=6/10 · Δ=−2.4
+Δ = (6/10 − 21/25) × 10 = (0.60 − 0.84) × 10 = −2.4 (solid evidence, modest interest — expected negative)

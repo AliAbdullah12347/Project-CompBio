@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-26T20:20Z
+**Updated:** 2026-10-26T23:30Z
 
 ## Where the science stands
 
@@ -57,16 +57,15 @@
 
 ## Queue
 
-DONE (7): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
   **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
-  **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s).
-RUNNING (1): **gene-027** (started 2026-10-26T19:20Z; LM22 circularity check, 65-module
-  reference on 12018 non-LM22 genes; NOLITH_PERMS=50; cap=18000s;
-  nolith DONE 15:32:27 EDT: Z=[10.89, 74.91]; 20 lith draws in progress;
-  expected all draws DONE ~19:32 EDT / ~23:32Z; expected COMPLETE before cap ~20:21 EDT.
-  All 25 PENDING nolith experiments similarly fixed.)
+  **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s),
+  **gene-027** (DONE 2026-10-26T23:15Z; LM22 circularity NEGATIVE; 65-module reference on 12018
+  non-LM22 genes; nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67), 66/66 last
+  in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
+RUNNING (0): none (inp-021 next in queue — driver will claim automatically).
 PENDING (43): inp-021, perm-031, trait-033/034/035, pres-030 (**KEY** for base-002-ceil diagnosis),
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
@@ -139,20 +138,21 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **When gene-027 completes (~23:31Z, draw 20 done):**
-   - Driver (bash) will mark DONE in queue and push; then LaunchDaemon starts inp-021 automatically.
-   - This session (still running) must:
-     * Check `ls network/runs/gene-027/lith_draw_020.rds` exists and `network/RUNLOG/queue.tsv` shows DONE
-     * Run `Rscript network/scripts/analyze_gene027.R` — outputs gold comparison stats
-     * Fill [FILL] sections in `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
-       (template pre-written with nolith results, 6-module cross-analysis, 3-draw preliminary)
-     * Add score line `E=5 R=4 B=3 D=5 C=4` to finding file; fill Evidence/Interest/Δ header
-     * Run `Rscript network/build_index.R` to rebuild RANKING.md
-     * Update RESULTS.md: add gene-027 to completed runs table, update counts
-     * Update STATE.md: move gene-027 to DONE, update timestamp
-     * Commit and push (driver's data commit will already be there; this adds documentation)
-2. **Driver continues:** inp-021 (full technical residualisation, cap 10800s; spans sessions)
-3. **pres-030** (density vs connectivity decomposition) is queued after inp-021
+1. **gene-027 DONE 2026-10-26T23:15Z.** All documentation complete (finding filled, ranked,
+   RESULTS.md and STATE.md updated, committed and pushed). Circularity check NEGATIVE (E=21/25).
+2. **Driver continues:** inp-021 (full technical residualisation, cap 10800s; spans sessions).
+   Script exists. Will claim automatically via LaunchDaemon.
+3. **pres-030** (density vs connectivity decomposition) is queued after inp-021.
+
+## Session 13 notes (2026-10-26T23:30Z)
+
+- gene-027 DONE at 23:15:47Z (14093s). All 20 lith draws confirmed present.
+- Final results: nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd=6.67,
+  range 9.00–33.02), 66/66 last in ALL 20 draws. 27/65 modules beat gold in all 20 draws.
+- Circularity check NEGATIVE. Same population-level pattern as base-001 with 350 LM22 genes excluded.
+  Mean gold Z nearly identical (21.41 vs base-001 21.74), confirming LM22 genes do not drive the result.
+- Finding file fully filled (Evidence=21/25, Interest=6/10, Δ=−2.4). RANKING.md rebuilt (32 findings).
+- RESULTS.md, STATE.md updated. Proceeding to commit and push, then start inp-021.
 
 ## Session 12 notes (2026-10-26T19:45Z)
 

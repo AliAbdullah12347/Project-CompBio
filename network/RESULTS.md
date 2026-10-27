@@ -1,10 +1,10 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-26T19:35Z
-**Runs completed:** 7 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009).
-**Running:** gene-027 (attempt 3; nolith DONE 15:32 EDT Z=[10.89,74.91]; 20 lith draws in progress; expected DONE ~19:32 EDT).
-**Pending:** inp-021 (technical-only residualisation) next after gene-027.
-**Analyses completed:** 4 (001–004) + runs done. **Findings:** 31 — see `RANKING.md`.
+**Updated:** 2026-10-26T23:30Z
+**Runs completed:** 8 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027).
+**Running:** inp-021 (technical-only residualisation; next in queue).
+**Pending:** inp-021 (next), then pres-030, perm-031, etc.
+**Analyses completed:** 4 (001–004) + runs done. **Findings:** 32 — see `RANKING.md`.
 
 ---
 
@@ -67,20 +67,13 @@ figure — the verified gold Z is 21.74. See
 | `base-002-ceil` | 5357 s (attempt 4) | **DONE 2026-10-26T07:46Z.** Split-half ceiling, corrected matrices, all groups. ctrl_ceiling gold Z=35.78, nolith gold Z=23.16, lith mean gold Z=22.22 (sd 7.34). KEY NEGATIVE: lith≈nolith (r=0.93). E=24/25. | [network/runs/base-002-ceil](runs/base-002-ceil) |
 | `inp-023` | 10311 s | **DONE 2026-10-26T12:05Z.** Technical+ILR residualisation: 42-module reference. nolith gold Z=28.08 (43/43 last, 25/42 above); lith gold mean Z=16.98 (sd 10.79, 43/43 last in all 20 draws, 40/42 beat gold by mean Z, 16/42 in ALL draws). Replicates inp-022. E=24/25. | [network/runs/inp-023](runs/inp-023) |
 | `pow-009` | 86 s | **DONE 2026-10-26T14:12Z.** SFT curves on offset-removed expression, all 3 groups. Scale-free still fails (control max R²=0.770, bp_nolith=0.755, bp_lith=0.701; all below 0.80 threshold). Improvement from raw (0.66/0.41/0.54) confirms offset was part of the problem; residual failure is composition-driven (inp-022 SFT fits at power 9). E=22/25. | [network/runs/pow-009](runs/pow-009) |
+| `gene-027` | 14093 s | **DONE 2026-10-26T23:15Z.** LM22 circularity check: 65-module reference on 12018 non-LM22 genes. nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67, range 9.00–33.02), 66/66 last in ALL 20 draws. 27/65 modules beat gold in all 20 draws. **Circularity check NEGATIVE** — same pattern as base-001 with LM22 genes excluded. E=21/25. | [network/runs/gene-027](runs/gene-027) |
 
 ### Previously reset (now re-run and DONE)
 
 `base-001` and `base-003-remerge` were reset 2026-10-25 (raw matrix bug in lith draws,
 commit 1177d8c). Both re-ran successfully 2026-10-26 with corrected `expr_for()` test matrices.
 Contaminated archived results remain in `_raw_test_contaminated_20261025T193947Z/`; do not use.
-
-### Running
-
-`gene-027` — attempt 3, started 2026-10-26T19:20Z. LM22 circularity check: reference on
-12018 non-LM22 genes (65 modules), bp_nolith and bp_lith (20 draws, 50 perms each).
-NOLITH_PERMS reduced 500→50 (WGCNA 1.74 setup scales with nPerms; see METHODS.md 2026-10-26).
-Nolith DONE at 15:32:27 EDT: Z=[10.89, 74.91]. Lith draws in progress. Expected DONE ~23:32Z.
-Cap=18000s (fires ~20:21 EDT). Analysis script: `network/scripts/analyze_gene027.R`.
 
 ---
 

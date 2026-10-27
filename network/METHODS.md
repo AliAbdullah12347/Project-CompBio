@@ -2042,3 +2042,16 @@ gold) where the question is "does the overall preservation pattern change?" not
 
 This applies to all geneset-family experiments (gene-025, gene-026, gene-027, gene-028,
 gene-029): their module structures cannot be directly mapped onto base-001's modules.
+
+## 2026-10-26T23:30Z — gene-027 final results documented
+
+gene-027 completed (14093s, 20/20 lith draws). Final stats from `analyze_gene027.R`:
+- nolith: gold Z=12.23, medianRank=66/66 (last); n=66 including gold
+- lith (20 draws, 50 perms each): gold mean Z=21.41 (sd=6.67, range 9.00–33.02),
+  66/66 (last) in all 20 draws; 27/65 modules beat gold in all 20 draws; 0 beat gold in 0 draws
+- Module overlap: 65 shared colours, 6 in base-001 only, 0 in gene-027 only
+- Nolith Zsummary correlation (shared modules, gene-027 vs base-001): 0.359 (see cross-run
+  comparison note above)
+
+Scores: E=5, R=4, B=3, D=5, C=4 → Evidence=21/25, Interest=6/10, Δ=−2.4.
+Finding: `network/findings/2026-10-26-gene027-lm22-circularity-preservation.md`
