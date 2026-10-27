@@ -2309,3 +2309,45 @@ With minimum achievable p=0.071, BH significance is impossible. The finding is d
 Pattern is consistent with the arm's central result: gold (random gene set) is consistently
 less preserved in bp_lith than in random cohort subsets, but real modules preserve at
 approximately the same level as random subsets. Both observations are compositionally driven.
+
+---
+
+## 2026-10-27T19:30Z  Session 20: inp-021 reset correction (attempts=0, refunds cleared)
+
+Session 19 METHODS entry (2026-10-27T19:10Z) recorded: "attempts: 3 → 1 (two refunds justified)."
+Session 20 corrected this further: **attempts reset to 0** (not 1) and `.refunds_inp-021` deleted.
+
+Rationale: given the orphan-race history and that the refund file persisted from a previous partial,
+starting fresh (attempts=0, no refund debt) is cleaner than trying to reconstruct the exact
+legitimate refund count. The R process has 18 valid checkpoints regardless. If draw 19-20 produce
+any checkpoints before the driver exits at cap, they will be counted against the fresh attempt 1.
+
+Additionally, `.ckpt_mark_inp-021` (a stale mark from the 14:08Z session) was deleted to prevent
+false-negative checkpoint detection in the next claim.
+
+Queue state after session 20 fix:
+- inp-021: status=PENDING, attempts=0, claim=empty, notes="requeued by session 17..."
+- No BLOCKED rows in queue.tsv
+
+---
+
+## 2026-10-27T19:35Z  perm-031 K=2 analysis
+
+Draw 2 completed at 19:30:50Z (729s; consistent with draw 1's 732s).
+Draw 3 started at 19:30:50Z.
+
+K=2 null draw aggregate statistics vs base-001 observed:
+- Gold null Z: draw 1=30.15, draw 2=29.78; K=2 mean=29.97
+- Gold observed (bp_lith base-001 mean, 20 draws) = 21.74
+- Gold observed < null in both draws → bp_lith specifically less cohesive than random subsets
+
+Real modules (obs vs K=2 null mean):
+- Observed < null: 37/72 (51%) — still approximately 50/50
+
+Top modules most reduced (obs < null by K=2 mean):
+- green: obs=39.47, null=60.24, Δ=−20.77
+- salmon: obs=23.39, null=41.81, Δ=−18.42
+- black: obs=30.53, null=43.39, Δ=−12.86
+
+These top-reduced modules are stable across K=1 and K=2 for green/salmon/black. Blue and
+greenyellow (top-5 in K=1) were replaced by purple and pink in K=2 — sampling noise at low K.
