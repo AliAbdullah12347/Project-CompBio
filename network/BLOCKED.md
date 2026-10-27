@@ -633,3 +633,27 @@ note). No work is lost — only unpushed.
 **RESOLVED 2026-10-27T00:45Z:** LaunchDaemon sync_up() pushed all commits successfully.
 `git log origin/main..HEAD` confirms HEAD==origin/main as of session 15 (2026-10-27T00:40Z).
 
+## 2026-10-27T07:07:16Z  inp-021  hit 10800s cap; partial results kept; +15 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-27T02:38:31] draw 14 done: Zsummary [11.14, 78.92]
+[2026-10-27T02:38:31] draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T02:50:04] draw 15 done: Zsummary [11.83, 80.08]
+[2026-10-27T02:50:04] draw 16/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T03:01:38] draw 16 done: Zsummary [11.62, 97.7]
+[2026-10-27T03:01:38] draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
