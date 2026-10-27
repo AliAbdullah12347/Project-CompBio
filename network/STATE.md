@@ -152,6 +152,16 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 2. **pres-030** (density vs connectivity decomposition) — next after inp-021.
 3. **perm-031** (group-label permutation null, K=500) — can run in parallel with anything.
 
+## Session 15 notes (2026-10-27T00:40Z)
+
+- inp-021 nolith complete at 2026-10-26T20:33:29 EDT (703s; 50 perms, 63 modules + gold).
+  gold Z=31.13 (50 perms), medianRank=64/64 (LAST). Same gold-last pattern as all other arms.
+  25/63 real modules above gold by Zsummary; all 63 above gold by medianRank.
+  Zsummary inflation vs base-001 (14.01) reflects fewer perms + cleaner data; medianRank is primary.
+- Lith draw 1 started 2026-10-26T20:33:29 EDT. At 720s/draw: ~12 draws before 23:08 EDT cap → PARTIAL.
+- perm-031 ready to auto-claim when inp-021 cap fires.
+- All commits pushed (LaunchDaemon sync_up() resolved earlier push failures).
+
 ## Session 14 notes (2026-10-27T00:45Z)
 
 - gene-027 documentation completed: RANKING.md rebuilt (32 findings), RESULTS.md/STATE.md updated.
