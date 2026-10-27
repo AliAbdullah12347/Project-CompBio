@@ -42,40 +42,40 @@ relative to the range of random draws?) rather than formal p-values.
 
 ## Null distribution vs observed
 
-**INTERIM — K=1 draw as of 2026-10-27T19:20Z. Fill fully when DONE.**
+**INTERIM — K=2 draws as of 2026-10-27T19:35Z. Fill fully when DONE.**
 
-Draw 1 null Zsummary range: [9.54, 79.16]. 732s per draw.
+Draw 1 null Zsummary range: [9.54, 79.16]. Draw 2: [10.10, 65.61]. ~730s per draw.
 
-**Gold module (draw 1):**
-- Null gold Z = 30.15 (draw 1 only — noisy with single draw)
+**Gold module (K=2 draws):**
+- Null gold Z draw 1 = 30.15, draw 2 = 29.78; K=2 mean = 29.97
 - Observed gold Z (bp_lith, base-001 mean 20 draws) = 21.74
-- Gold observed < null: TRUE → bp_lith gold preservation is specifically lower than random
-  subsamples from the full cohort.
+- Gold observed < null: TRUE (both draws) → bp_lith gold preservation specifically lower than
+  random subsamples from the full cohort.
 
-**Real modules (draw 1):**
-- Less preserved in bp_lith than null draw 1: 35/71 (49%)
-- More preserved in bp_lith than null draw 1: 36/71 (51%)
-- Result: essentially 50/50; no systematic direction in K=1 draw.
+**Real modules (K=2 draws, obs vs null mean):**
+- Less preserved in bp_lith than null mean: 37/72 (51%)
+- More preserved in bp_lith than null mean: 35/72 (49%)
+- Result: essentially 50/50; no systematic direction at K=2.
 
-**Top most-reduced below null (draw 1):**
+**Top most-reduced below null (K=2 mean):**
 
-| module | observed (base-001 lith mean) | null (draw 1) | Δ |
+| module | observed (base-001 lith mean) | null mean (K=2) | Δ |
 |:--|--:|--:|--:|
-| green | 39.47 | 55.74 | −16.27 |
-| blue | 44.93 | 58.15 | −13.22 |
-| salmon | 23.39 | 34.75 | −11.36 |
-| black | 30.53 | 41.08 | −10.55 |
-| greenyellow | 47.42 | 57.64 | −10.22 |
+| green | 39.47 | 60.24 | −20.77 |
+| salmon | 23.39 | 41.81 | −18.42 |
+| black | 30.53 | 43.39 | −12.86 |
+| purple | 49.80 | 61.37 | −11.57 |
+| pink | 22.04 | 30.58 | −8.54 |
 
-**Top most-elevated above null (draw 1):**
+**Top most-elevated above null (K=2 mean):**
 
-| module | observed (base-001 lith mean) | null (draw 1) | Δ |
+| module | observed (base-001 lith mean) | null mean (K=2) | Δ |
 |:--|--:|--:|--:|
-| plum2 | 30.59 | 18.30 | +12.29 |
-| white | 61.14 | 52.50 | +8.63 |
-| ivory | 35.05 | 26.66 | +8.40 |
-| orange | 40.93 | 33.64 | +7.29 |
-| thistle2 | 33.17 | 26.18 | +7.00 |
+| plum2 | 30.59 | 20.57 | +10.02 |
+| cyan | 79.93 | 70.18 | +9.75 |
+| orange | 40.93 | 32.01 | +8.92 |
+| white | 61.14 | 52.78 | +8.36 |
+| ivory | 35.05 | 27.61 | +7.44 |
 
 **Critical limitation (PARTIAL):** With K=14 draws (cap-limited), minimum achievable empirical
 p = 1/14 = 0.071. BH 5% over 71 modules requires p_(1) ≤ 0.05 × 1/71 ≈ 0.0007. This is

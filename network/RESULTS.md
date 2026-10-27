@@ -1,9 +1,9 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-27T19:15Z
+**Updated:** 2026-10-27T19:30Z
 **Runs completed:** 8 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027).
-**Running:** perm-031 (group-label permutation null; K=20 permuted draws from all 474 samples; draw 1 of 20 in progress 19:06Z; cap 22:06Z; ~15/20 draws expected).
-**Pending (next):** inp-021 (18/20 lith draws done; BLOCKED then reset to PENDING 2026-10-27T19:10Z; claims after perm-031 session; ~24 min to complete draws 19-20).
+**Running:** perm-031 (group-label permutation null; K=20 permuted draws from all 474 samples; draw 2 of 20 in progress 19:30Z; cap 22:06Z; ~14/20 draws expected).
+**Pending (next):** inp-021 (18/20 lith draws done; reset to PENDING/attempts=0; claims after perm-031 PARTIAL; ~24 min to complete draws 19-20).
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 34 — see `RANKING.md`.
 
 ---
@@ -39,7 +39,7 @@ therefore the final picture for this arm's central question.
 | inp-022 | 44-mod ILR | 30.46 | 15.55 ± 8.13 | always last |
 | base-002-ceil | 67-mod raw (n=160) | 23.16 | 22.22 ± 7.34 | always last |
 | inp-023 | 42-mod tech+ILR | 28.08 | 16.98 ± 10.79 | always last |
-| inp-021 | 63-mod technical | 31.13 | PARTIAL — 18/20 lith draws; gold Z draws 1–18 range [10.74,71.55] | nolith: last; lith all 18 checked: last |
+| inp-021 | 63-mod technical | 31.13 | PARTIAL — 18/20 lith draws; gold Z mean=32.66 sd=3.97 range=[26.71,45.00] | nolith: last; lith all 18 checked: last |
 
 Cross-arm Zsummary comparison remains invalid (reference size determines baseline).
 

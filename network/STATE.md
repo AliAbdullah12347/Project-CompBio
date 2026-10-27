@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-27T19:30Z
+**Updated:** 2026-10-27T19:35Z
 
 ## Where the science stands
 
@@ -84,9 +84,10 @@ DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
 RUNNING (1): **perm-031** (claimed 2026-10-27T19:06Z; group-label permutation null K=20;
   random draws from all 474 samples, vs base-001 bp_lith observed Zsummary;
-  draw 2 in progress as of 19:30Z; cap 22:06Z; ~15 draws expected before cap.
-  Draw 1 done 19:18Z, 732s; gold null Z=30.15 > observed 21.74; 35/71 real modules below null.)
-PENDING (43): **inp-021** (reset from BLOCKED to PENDING/attempts=0 session 19-20; 18/20 lith draws done;
+  draw 3 in progress as of 19:35Z; cap 22:06Z; ~15 draws expected before cap.
+  Draw 1 done 19:18Z, 732s; gold null Z=30.15 > observed 21.74; 35/71 real modules below null.
+  Draw 2 done 19:30Z, 729s; Z[10.1, 65.61].)
+PENDING (43): **inp-021** (reset to PENDING/attempts=0 in session 20; 18/20 lith draws done;
   claims when perm-031 PARTIAL), trait-033/034/035, pres-030,
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
@@ -173,9 +174,9 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - Session resumed while perm-031 draw 2 running (draw 1 done 15:18 EDT = 19:18Z, took 732s).
 - Identified root cause of inp-021 BLOCKED: driver (run_next.sh) was killed by claude session exit
   before R completed draw 19; no PARTIAL record written; 3 dead-claim attempts → BLOCKED.
-  Previous sessions (17-19) had already fixed inp-021 (reset BLOCKED→PENDING, attempts=1),
-  documented all 18 draws in finding file, and committed analysis. This session re-reset to
-  attempts=0 (already committed in f548719 via driver sync_up).
+  Previous sessions (17-19) had partially fixed inp-021 (documented all 18 draws in finding file,
+  committed analysis). This session reset to attempts=0 and deleted stale refund/ckpt files
+  (committed in f548719 via driver sync_up).
 - Updated RANKING.md and ranking.csv: perm-031 interim score 16/25 (was NA). E=5 R=5 B=2 D=2 C=2.
 - Queue: DONE=8 RUNNING=1 (perm-031) PENDING=43 (inp-021 row 1) BLOCKED=0.
 - Next PENDING after inp-021: perm-031 (still PARTIAL), then trait-033.
@@ -186,7 +187,7 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 - Root cause: 09:06Z driver was killed (SIGHUP) leaving Rscript as orphan; draws 17-18 completed by orphan.
   14:08Z new session requeued (attempts=2<3) → claimed (attempts=3) → ran draws 17-18 again → started draw 19.
   19:06Z session: dead claim detected → attempts=3≥3 → BLOCKED. But 18 draws are valid checkpoints.
-- Manual fix: reset inp-021 BLOCKED→PENDING, attempts=3→1. Documented in METHODS.md 2026-10-27T19:10Z.
+- Manual fix: reset inp-021 BLOCKED→PENDING, attempts=3→0 (finalized in session 20). Documented in METHODS.md 2026-10-27T19:10Z.
 - perm-031 claimed at 19:06Z (was next PENDING after inp-021's BLOCKED was detected by driver).
   perm-031 running draw 1 as of 19:15Z. Cap 22:06Z. Expected ~15/20 draws before cap.
 - Commits: 9fab110 (queue reset + METHODS.md).
