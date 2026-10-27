@@ -2139,3 +2139,28 @@ consistent with all prior arms: every real module is better preserved than a ran
 Lith draws: draw 1 started 2026-10-26T20:33:29 EDT. At 720s/draw × 20 draws = 14400s;
 cap fires at 23:08 EDT (10800s from start). Expected ~12 draws before cap → PARTIAL result.
 Final lith stats will be filled when cap fires.
+
+## 2026-10-27T04:07Z — inp-021 session 16 restart (dead claim detected)
+
+Session 15 ended after draw 1 only (not ~13 as estimated). The R process (PID 73092)
+died during draw 2 permutation computation — log ends mid-progress with no error message
+or completion line. Most likely cause: OOM kill (the permutation matrix for 64 modules ×
+74 samples × 50 perms is memory-intensive; WGCNA 1.74 allocates permuted statistics in
+full at the start of the computation).
+
+The queue driver's claim file (`network/RUNLOG/.claim_inp-021.pid`) held PID 73092.
+At the start of session 16, `kill -0 73092` returned "no such process" — dead claim.
+The `dead_claims()` function in run_next.sh detected this and immediately requeued inp-021
+from RUNNING to PENDING (no 6h stale-wait required). This is the correct behavior.
+
+Session 16 re-ran inp-021 at 04:07Z:
+- Reference cache loaded from disk (fast, no rebuild)
+- nolith checkpoint skipped (exists)
+- draw 1 checkpoint skipped (exists)
+- draws 2-20 running under cap 07:07Z
+
+At 697s/draw (measured from draw 1: 00:33Z start to 00:45Z done = 726s; prior sessions
+similarly measured ~697-720s), cap allows ~15 new draws. Draws 2-16 expected to complete
+in session 16. Draws 17-20 will roll to session 17.
+
+No change to parameters or analysis design. This is a pure checkpoint resume.
