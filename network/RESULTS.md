@@ -1,8 +1,8 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-27T19:30Z
+**Updated:** 2026-10-27T19:40Z
 **Runs completed:** 8 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027).
-**Running:** perm-031 (group-label permutation null; K=20 permuted draws from all 474 samples; draw 2 of 20 in progress 19:30Z; cap 22:06Z; ~14/20 draws expected).
+**Running:** perm-031 (group-label permutation null; K=20 permuted draws from all 474 samples; draw 3 of 20 in progress ~19:43Z; cap 22:06Z; ~15/20 draws expected before PARTIAL).
 **Pending (next):** inp-021 (18/20 lith draws done; reset to PENDING/attempts=0; claims after perm-031 PARTIAL; ~24 min to complete draws 19-20).
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 34 — see `RANKING.md`.
 

@@ -169,7 +169,7 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 4. **trait-033/034/035** — fast (<60s each); claimed after perm-031 completes.
 5. **pres-030** — WGCNA heavy.
 
-## Session 20 notes (2026-10-27T19:20Z)
+## Session 20 notes (2026-10-27T19:20Z — continued from summary)
 
 - Session resumed while perm-031 draw 2 running (draw 1 done 15:18 EDT = 19:18Z, took 732s).
 - Identified root cause of inp-021 BLOCKED: driver (run_next.sh) was killed by claude session exit
@@ -178,6 +178,11 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   committed analysis). This session reset to attempts=0 and deleted stale refund/ckpt files
   (committed in f548719 via driver sync_up).
 - Updated RANKING.md and ranking.csv: perm-031 interim score 16/25 (was NA). E=5 R=5 B=2 D=2 C=2.
+- Fixed RESULTS.md line 42: gold Z range for inp-021 was incorrectly [10.74,71.55] (per-draw
+  all-module range); correct gold Z range is [26.71,45.00] (sd=3.97, 18 draws).
+- Draw 2 done 15:30 EDT (729s); K=2 analysis: gold null mean=29.97 > observed 21.74; 37/72 obs<null.
+  Top reduced: green (−20.77), salmon (−18.42), black (−12.86). Updated findings K=1→K=2.
+- Draw 3 in progress at 19:37Z; expected ~19:43Z. Cap fires 22:06Z; ~15/20 draws expected.
 - Queue: DONE=8 RUNNING=1 (perm-031) PENDING=43 (inp-021 row 1) BLOCKED=0.
 - Next PENDING after inp-021: perm-031 (still PARTIAL), then trait-033.
 
