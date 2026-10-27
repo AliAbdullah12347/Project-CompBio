@@ -176,9 +176,10 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
   gold Z=31.13 (50 perms), medianRank=64/64 (LAST). Same gold-last pattern as all other arms.
   25/63 real modules above gold by Zsummary; all 63 above gold by medianRank.
   Zsummary inflation vs base-001 (14.01) reflects fewer perms + cleaner data; medianRank is primary.
-- Lith draw 1 started 2026-10-26T20:33:29 EDT. At 720s/draw: ~12 draws before 23:08 EDT cap → PARTIAL.
-- perm-031 ready to auto-claim when inp-021 cap fires.
-- All commits pushed (LaunchDaemon sync_up() resolved earlier push failures).
+- Lith draw 1 done 2026-10-26T20:45:06 EDT (697s). At 697s/draw: ~13 draws before 23:08 EDT cap → PARTIAL.
+- After cap: inp-021 auto-requeues to PENDING at same row (before perm-031). Daemon re-claims for draws 14-20.
+  perm-031 is NOT claimed until inp-021 fully completes all 20 draws (likely 2 more sessions).
+- All commits pushed (LaunchDaemon sync_up() resolved earlier push failures). New session 15 commits local.
 
 ## Session 14 notes (2026-10-27T00:45Z)
 
