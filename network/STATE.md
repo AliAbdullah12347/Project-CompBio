@@ -145,12 +145,16 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **inp-021** (RUNNING at 2026-10-27T00:08Z, cap 10800s) — When complete or PARTIAL:
-   - Check output: n modules in technical-only reference, SFT curve, draw completion count.
-   - Update finding file, RANKING.md, RESULTS.md, STATE.md.
-   - Compare technical-only reference module count to base-001 (71) and inp-023 (42).
-2. **pres-030** (density vs connectivity decomposition) — next after inp-021.
-3. **perm-031** (group-label permutation null, K=500) — can run in parallel with anything.
+1. **inp-021** PARTIAL (cap 23:08 EDT; ~13/20 lith draws) — When cap fires:
+   - Run `Rscript network/scripts/analyze_inp021.R` for final draw stats (gold Z mean/sd, beat-gold counts).
+   - Fill finding file lith section `[FILL]` with actual stats.
+   - Score: E=5 R=5 B=4 D=5 C=2 → 21/25 (PARTIAL cap); Interest=6/10; Δ = (6/10−21/25)×10 = −2.4.
+   - Update RESULTS.md completed runs table row for inp-021.
+   - Run `Rscript network/build_index.R` → 33rd finding, rebuild RANKING.md.
+   - Commit and push.
+2. **perm-031** — auto-claimed by daemon after inp-021 cap. PARTIAL expected (697s/draw × 20 > 10800s cap).
+3. **trait-033/034/035** — fast (<60s each); auto-claimed after perm-031 or alongside it.
+4. **pres-030** — WGCNA heavy, similar to inp-021 structure; PARTIAL expected.
 
 ## Session 15 notes (2026-10-27T00:40Z)
 
