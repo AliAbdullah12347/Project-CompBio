@@ -2223,3 +2223,56 @@ the agent is redundancy. For future sessions: the `wake.sh` lock (`network/RUNLO
 should prevent the same claude invocation from starting twice from the same wake source,
 but it does NOT prevent two separate launchd jobs from both calling wake.sh at the same
 time if both fire within the same second.
+
+---
+
+## 2026-10-27T19:10Z  inp-021 BLOCKED due to orphan-race; manual reset
+
+### What happened
+
+inp-021 was BLOCKED (status=BLOCKED, attempts=3) despite having 18/20 lith draws completed
+legitimately. Root cause: a race between an orphaned R process and a new claim.
+
+Timeline of the final three attempts:
+1. **Attempt 1 (00:08Z):** Driver claimed. R process died mid-draw-2 (likely OOM/SIGHUP at
+   session cap). No new checkpoints written during this specific run. Attempts=1; requeued.
+2. **Attempt 2 (04:07Z):** Driver claimed (attempts=2). R ran draws 2–16 (15 new checkpoints).
+   Hit cap at 07:07Z. PARTIAL → refund → attempts=1. refunds_inp-021=1.
+3. **Attempt 3a (09:06Z):** Driver claimed (attempts=2). Driver process itself was killed
+   (SIGHUP at session end). R script continued as an orphan process. Drew 17–18 from orphan.
+   Driver never called mark() or refunded. Claim PID died; but the R orphan was still computing.
+4. **Attempt 3b (14:08Z):** New session detected dead 09:06Z claim. requeue() saw
+   attempts=2 < 3 → PENDING. claim() → attempts=3. New R started draw 17. Orphan was
+   simultaneously computing draw 19 (having completed 17–18). Race: two processes writing
+   to the same run_dir. New R completed draws 17–18, started draw 19, then died. No
+   new checkpoints were written by the 14:08Z session before it was killed (it re-wrote
+   draws 17–18 that the orphan had already written — no NEW files by mtime).
+5. **19:06Z (current session):** run_next.sh called. requeue() saw inp-021 RUNNING with
+   dead claim. attempts=3 >= MAX_ATTEMPTS=3 → BLOCKED.
+
+**Why refund was not granted during attempt 3b:** The session ended without the driver's
+`wait $RPID` returning, so the refund logic at the end of run_next.sh never ran.
+
+### Fix applied
+
+Manual queue rewrite at 2026-10-27T19:10Z:
+- status: BLOCKED → PENDING
+- attempts: 3 → 1 (two runs produced real progress, two refunds are justified)
+- note updated to document the reset
+
+The refunds_inp-021 counter remains at 1 (legitimate from the 04:07Z PARTIAL run). The
+next claim will increment attempts to 2, and the run should complete draws 19–20 in
+~24 minutes, then exit 0 and mark DONE. No refund needed for a DONE run.
+
+### Engineering lesson
+
+When an R process becomes an orphan (driver killed, R continues), the next session's
+requeue() may not see any progress checkpoints because the NEW files were written by
+the orphan BEFORE the new session's CKPT_MARK was set. The driver's checkpoint detection
+is based on mtime relative to a mark set JUST BEFORE the new Rscript starts — an orphan's
+files from before that mark are invisible to the refund logic.
+
+Mitigation: the `wake.sh` lock and single driver lock prevent two drivers from running
+simultaneously. This race arose because the R orphan persisted after the driver died.
+No further infrastructure change is needed; this is a known corner case of the
+PARTIAL-session design.
