@@ -1,0 +1,16 @@
+[2026-10-27T15:06:24] === perm-031 starting ===
+[2026-10-27T15:06:24] config written: network/config/perm-031.json
+Allowing parallel execution with up to 3 working processes.
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-27T15:06:28] 71 modules
+[2026-10-27T15:06:28] permuted draw 1/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-27T15:18:40] draw 1 done: Z[9.54, 79.16]
+[2026-10-27T15:18:41] permuted draw 2/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set

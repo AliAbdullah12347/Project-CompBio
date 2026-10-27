@@ -1,0 +1,19 @@
+{
+  "id": "perm-031",
+  "family": "perm",
+  "spec": "group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws",
+  "K_spec": 500,
+  "K_implemented": 20,
+  "K_revision_note": "Same budget constraint as base-001 draws: K=500 x ~1962s = 272h (infeasible); K=20 = ~10.9h. METHODS.md 2026-10-09.",
+  "pool": "all 474 samples (any sample can be test under null)",
+  "ref": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "perms_per_draw": 50,
+  "subsample_n": 74,
+  "comparison": "base-001 bp_lith observed Zsummary vs permuted null",
+  "correction": "BH across modules (not across draws)",
+  "min_empirical_p": 0.05,
+  "seed_base": 20292009,
+  "git_sha": "3be7fae",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}
