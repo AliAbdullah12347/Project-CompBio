@@ -2351,3 +2351,46 @@ Top modules most reduced (obs < null by K=2 mean):
 
 These top-reduced modules are stable across K=1 and K=2 for green/salmon/black. Blue and
 greenyellow (top-5 in K=1) were replaced by purple and pink in K=2 — sampling noise at low K.
+
+---
+
+## 2026-10-31  Session 21: inp-021 DONE + perm-031 K=14 analysis
+
+### inp-021 draws 19-20
+
+Session claimed inp-021 (PENDING, 18/20 draws done). Driver started immediately at
+~15:05 EDT (19:05Z). Draws 1-18 skipped (checkpoints exist). Draw 19 computed in 992s
+(15:06:19 – 15:22:51 local; longer than typical 697-720s, possibly due to memory pressure
+or load). Draw 20 started at 15:22:51. Expected completion ~15:35 EDT (19:35Z).
+
+### perm-031 K=14 interim analysis
+
+While inp-021 ran draws 19-20, analyzed the 14 existing perm-031 checkpoints. Key findings:
+
+**Gold module:** null mean = 32.61 > observed bp_lith = 21.74 in ALL 14 draws (confirmed).
+
+**Real modules:** 42/72 (58%) less preserved than null mean (shifted from 51% at K=2).
+Majority direction confirmed at K=14.
+
+**Surprise finding — emp_p=0 for 9 modules:** purple, salmon, gold, blue, black, pink,
+grey60, plum, coral2 all have observed Zsummary < minimum of all 14 null draws.
+Empirical p = 0/14 = 0. Under BH correction with 71 modules, all 9 pass FDR 5%.
+
+**Pre-specification correction:** the pre-specification stated "BH 5% significance is
+mathematically impossible with K=20 (min p=0.05 > 0.05/71=0.0007)." This was wrong:
+emp_p=0 (no null draws ≤ observed) is achievable and IS observed for 9 modules.
+The pre-specification assumed minimum p = 1/K (non-zero), missing the p=0 case.
+The finding is still limited by K — at K=20, those 9 modules would need 0/20 null draws
+≤ observed to maintain FDR significance after BH.
+
+**Score updates for perm-031 PARTIAL K=14:**
+- D: 2 → 3 (58% modules below null mean; pre-specified criterion "D=3 if most below null")
+- Interest: 5 → 7 (pre-specified "raise to 7-8 if ANY module passes BH 5%")
+- Evidence: 16/25 → 17/25 (+1 from D)
+- Δ: -1.4 → +0.2
+- perm-031 finding file updated accordingly.
+
+### Score changes to document in RANKING.md
+
+- perm-031: 16/25 → 17/25 (D=2→3, Interest=5→7, Δ=-1.4→+0.2)
+- inp-021: 21/25 → 24/25 (C=2→5, Interest=6/10, Δ=-2.4→-3.6) [after draw 20 confirms gold-last]

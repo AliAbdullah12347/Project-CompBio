@@ -711,3 +711,14 @@ Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-10-27T22:06:29Z  PULL --REBASE FAILED (rc=1), ABORTED
+Local commits are intact on main and unpushed. A human must reconcile.
+```
+fatal: unable to access 'https://github.com/AliAbdullah12347/Project-CompBio.git/': Could not resolve host: github.com
+```
+
+## 2026-10-31T19:31:44Z  NO PROGRESS IN 9 CONSECUTIVE SESSIONS
+DONE count has been stuck at 8 across 9 wake-ups (~45 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+
