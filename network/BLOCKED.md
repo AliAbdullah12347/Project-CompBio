@@ -722,3 +722,14 @@ DONE count has been stuck at 8 across 9 wake-ups (~45 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+
+## 2026-10-31T19:44Z  inp-021 draw 20 OOM kill
+
+R process (PID 89840) and driver (PID 89768) killed during inp-021 draw 20. 
+System memory: 16 GB total, only ~37 MB free (Pages free: 9118 × 4096). 
+Draw 19 completed in 992s (vs expected 697-720s — 40% slower, consistent with heavy swapping).
+Draw 20 started at 19:22:51Z, R died at ~19:44:30Z (21 min, ~1260s) without writing checkpoint.
+
+19/20 draws saved (lith_draw_001-019.rds all present).
+Plan: requeue inp-021 and retry draw 20 with fresh R session (only 1 draw needed).
+Note: JamfDaemon at 92.2% CPU contributing to memory/CPU pressure; beyond our control.
