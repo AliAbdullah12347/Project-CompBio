@@ -1,9 +1,9 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-27T19:40Z
-**Runs completed:** 8 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027).
-**Running:** perm-031 (group-label permutation null; K=20 permuted draws from all 474 samples; draw 3 of 20 in progress ~19:43Z; cap 22:06Z; ~15/20 draws expected before PARTIAL).
-**Pending (next):** inp-021 (18/20 lith draws done; reset to PENDING/attempts=0; claims after perm-031 PARTIAL; ~24 min to complete draws 19-20).
+**Updated:** 2026-10-31T20:02Z
+**Runs completed:** 9 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027, **inp-021 DONE 2026-10-31**).
+**Running:** none.
+**Pending (next):** perm-031 (PARTIAL→PENDING; 14/20 draws done; claims next driver invocation; 6 draws remaining ~6000s, fits in 10800s cap; expected DONE in one session).
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 34 — see `RANKING.md`.
 
 ---
@@ -39,7 +39,7 @@ therefore the final picture for this arm's central question.
 | inp-022 | 44-mod ILR | 30.46 | 15.55 ± 8.13 | always last |
 | base-002-ceil | 67-mod raw (n=160) | 23.16 | 22.22 ± 7.34 | always last |
 | inp-023 | 42-mod tech+ILR | 28.08 | 16.98 ± 10.79 | always last |
-| inp-021 | 63-mod technical | 31.13 | PARTIAL — 18/20 lith draws; gold Z mean=32.66 sd=3.97 range=[26.71,45.00] | nolith: last; lith all 18 checked: last |
+| inp-021 | 63-mod technical | 31.13 | **DONE** — 20/20 lith draws; gold Z mean=32.60 sd=3.81 range=[26.71,45.00] | nolith: last; lith: last in all 20 |
 
 Cross-arm Zsummary comparison remains invalid (reference size determines baseline).
 
@@ -378,9 +378,11 @@ and METHODS.md 2026-10-26.
 
 ## Next
 
-1. **perm-031** (RUNNING — draw 1 of 20 in progress 2026-10-27T19:06Z; cap 22:06Z; ~15/20 draws expected).
-2. **inp-021** (PENDING — 18/20 lith draws done; 2 draws remaining; claims next session after perm-031).
-   Nolith DONE 2026-10-26T20:33 EDT: gold Z=31.13 (64/64 last). Run analyze_inp021.R when DONE.
+1. **perm-031** (PENDING — 14/20 draws done; claims on next driver invocation; 6 draws needed ~6000s;
+   expected DONE in one session. K=14 interim: gold null mean=32.61 > obs 21.74 in all 14 draws;
+   9 modules with emp_p=0 BH-significant at K=14; 42/72 modules below null mean. Score updated 17/25.)
+2. **inp-021** (DONE 2026-10-31T20:00Z — 20/20 lith draws; gold Z mean=32.60 sd=3.81; gold last in all 20.
+   Evidence raised 21→24/25. Score: E=5 R=5 B=4 D=5 C=5.)
 3. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast, ~60s each)
 4. **pres-030** — density vs connectivity decomposition of module preservation
 5. 41 more pending experiments cover gene subsets, module detection sensitivity, correlation

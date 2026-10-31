@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-27T19:35Z
+**Updated:** 2026-10-31T20:05Z
 
 ## Where the science stands
 
@@ -49,18 +49,15 @@
    27/65 modules beat gold in all 20 draws. Pattern indistinguishable from base-001 (all genes).
    `findings/2026-10-26-gene027-lm22-circularity-preservation.md` (E=21/25).
 
-8. **inp-021 (PARTIAL — 1/20 lith draws; run resuming in session 16): technical-only residualisation.**
+8. **inp-021 (DONE 2026-10-31T20:00Z, session 21): technical-only residualisation.**
    63-module reference on technically-residualised controls (age+sex+rin+plate+seqpc1-3).
-   Nolith gold Z=31.13 (64/64 last, 50 perms). Draw 1 gold Z=31.29 (64/64 last).
+   Nolith gold Z=31.13 (64/64 last). Lith: gold Z mean=32.60 (sd=3.81, range [26.71, 45.00]);
+   64/64 LAST in ALL 20 draws; 10/63 modules beat gold ALL 20 draws; 24/63 beat gold 0 draws.
    Scale-free: max R²=0.797 (never achieves 0.80; ILR is required). Module count: 63 (−8 vs base-001).
-   All 6 LM22-dependent modules also absent from technical-only reference (convergent dissolution).
-   Finding file `findings/2026-10-27-inp021-technical-residualisation.md` — interim filled with 1-draw stats.
-   Interim score: E=5 R=5 B=4 D=5 C=2 → 21/25 (PARTIAL); Interest=6/10; Δ=−2.4.
-   NOTE: 18/20 draws now complete (draws 1-18 checkpointed). Session 19 (2026-10-27T19:10Z) found
-   inp-021 BLOCKED due to orphan-process race (METHODS.md 2026-10-27T19:10Z). Manual reset to PENDING,
-   attempts=1. Will complete draws 19-20 (~24 min) in the next driver invocation after perm-031 finishes.
+   Final score: E=5 R=5 B=4 D=5 C=5 → **24/25**; Interest=6/10; Δ=−3.6.
+   Draw 20 required 2 attempts (OOM kills, BLOCKED.md 2026-10-31). See METHODS.md 2026-10-31.
 
-**Read `RANKING.md` first.** Rebuilt from findings/; 32 findings as of 2026-10-27 (inp-021 pending score).
+**Read `RANKING.md` first.** Rebuilt from findings/; 34 findings as of 2026-10-31.
 
 ## Infrastructure
 
@@ -74,21 +71,21 @@
 
 ## Queue
 
-DONE (8): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+DONE (9): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
   **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
   **pow-009** (DONE 2026-10-26T14:12Z; SFT curves all groups, 86s),
   **gene-027** (DONE 2026-10-26T23:15Z; LM22 circularity NEGATIVE; 65-module reference on 12018
   non-LM22 genes; nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67), 66/66 last
-  in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s).
-RUNNING (1): **perm-031** (claimed 2026-10-27T19:06Z; group-label permutation null K=20;
-  random draws from all 474 samples, vs base-001 bp_lith observed Zsummary;
-  draw 3 in progress as of 19:35Z; cap 22:06Z; ~15 draws expected before cap.
-  Draw 1 done 19:18Z, 732s; gold null Z=30.15 > observed 21.74; 35/71 real modules below null.
-  Draw 2 done 19:30Z, 729s; Z[10.1, 65.61].)
-PENDING (43): **inp-021** (reset to PENDING/attempts=0 in session 20; 18/20 lith draws done;
-  claims when perm-031 PARTIAL), trait-033/034/035, pres-030,
+  in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s),
+  **inp-021** (DONE 2026-10-31T20:00Z; 20/20 lith draws, 826s; gold Z mean=32.60 sd=3.81
+  range [26.71,45.00]; 64/64 last ALL 20 draws; 10/63 beat gold ALL draws; E=24/25).
+RUNNING (0): —
+PENDING (42): **perm-031** (14/20 draws done; K=20 group-label permutation null;
+  gold null Z mean=32.61 sd=4.07 range [26.54,39.02] across K=14; obs=21.74 < null all 14;
+  9 modules emp_p=0 BH-sig; 42/72 real modules below null mean;
+  needs 6 more draws to complete; claims next), trait-033/034/035, pres-030,
   samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
   pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
   hub-036/037, comm-038/039, cent-040, filt-044, tob-045, bmind-046/047, synth-048.
@@ -160,14 +157,32 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **perm-031** RUNNING (draw 2 of ~15 expected, cap 22:06Z). Draw 1: gold null Z=30.15 > observed 21.74.
-   - At cap: driver commits PARTIAL; draws continue next session.
-2. **inp-021** PENDING (18/20 draws done; attempts=0):
-   - Next session (after perm-031 PARTIAL): claims inp-021, runs draws 19-20 (~24 min).
-   - When DONE: re-score to C=5 → E=24/25, update RANKING.md and RESULTS.md, commit.
-3. **perm-031** resumes after inp-021 DONE.
-4. **trait-033/034/035** — fast (<60s each); claimed after perm-031 completes.
-5. **pres-030** — WGCNA heavy.
+1. **perm-031** PENDING (14/20 draws done; 6 draws remaining; ~6000s, fits in 10800s cap):
+   - Needs draws 15-20; checkpoints perm_draw_001–014 exist; script resumes automatically.
+   - When DONE: score C=2→5 (all 20 draws), finalize emp_p, update finding/RANKING.md/RESULTS.md, commit.
+   - Key interim finding: 9 modules emp_p=0 BH-significant (purple, salmon, gold, blue, black, pink, grey60, plum, coral2).
+2. **trait-033/034/035** — fast (<60s each); claimed after perm-031 completes.
+3. **pres-030** — WGCNA heavy (~3h cap).
+
+## Session 21 notes (2026-10-31T20:05Z)
+
+- **inp-021 DONE**: Completed draws 19-20 in 826s. Draw 20 required 2 attempts (OOM kill at 37 MB free;
+  second attempt with 149-315 MB free succeeded). See BLOCKED.md 2026-10-31T19:44Z.
+- **inp-021 final stats**: gold Z mean=32.60 (sd=3.81), range [26.71, 45.00]; 64/64 last ALL 20 draws.
+  10/63 modules beat gold all draws; 24/63 never beat gold. Score raised 21→24/25 (C=2→5).
+  Δ updated −3.0→−3.6. Finding file, RANKING.md, RESULTS.md all updated.
+- **perm-031 K=14 interim analysis**: Analyzed 14 existing draw checkpoints (perm_draw_001–014.rds).
+  Gold null Z mean=32.61 (sd=4.07), range [26.54, 39.02]. Observed base-001 lith Z=21.74 < null ALL 14 draws.
+  9 modules emp_p=0 (BH-significant at α=0.05/K=14): purple (−17.08), salmon (−10.90), gold (−10.87),
+  blue (−9.52), black (−8.51), pink (−6.95), grey60 (−6.18), plum (−3.72), coral2 (−2.72).
+  42/72 real modules below null mean (58%); pre-specified D criterion met → D raised 2→3.
+  Interest raised 5→7 (unexpected BH-significant modules found). Perm-031 score now 17/25 (PARTIAL K=14/20).
+- **Pre-specification correction**: perm-031 finding previously stated "BH 5% sig mathematically impossible
+  with K=20 (min p=0.05)"; this was wrong — emp_p=0 is achievable and is observed. Corrected in finding file.
+- **Calibration**: null (32.61) > lith (21.74) > nolith (14.01). Group-label permutation inflates Z vs real lith.
+- **Commits**: all changes committed locally; push fails (HTTPS, no stored credentials, see BLOCKED.md).
+- **Queue**: DONE=9 RUNNING=0 PENDING=42 (perm-031 first, 14/20 draws done).
+- **METHODS.md**: session 21 notes appended (OOM details, perm-031 K=14, inp-021 draw 20 final stats).
 
 ## Session 20 notes (2026-10-27T19:20Z — continued from summary)
 

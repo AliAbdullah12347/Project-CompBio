@@ -2394,3 +2394,16 @@ The finding is still limited by K — at K=20, those 9 modules would need 0/20 n
 
 - perm-031: 16/25 → 17/25 (D=2→3, Interest=5→7, Δ=-1.4→+0.2)
 - inp-021: 21/25 → 24/25 (C=2→5, Interest=6/10, Δ=-2.4→-3.6) [after draw 20 confirms gold-last]
+
+### inp-021 draw 20 final result (2026-10-31T20:00:02Z)
+
+Draw 20 completed at 16:00:02 local (822s). Gold Z = 30.30, rank 64/64 (LAST).
+
+20-draw final stats: mean=32.602, sd=3.808, range [26.71, 45.00].
+Gold last in ALL 20 draws ✓. 10/63 modules beat gold in all 20 draws. 24/63 in 0 draws.
+
+Draw 20 required 2 attempts: first attempt (PID 89840) killed at ~21 min (OOM, 37 MB free);
+second attempt (PID 4292) completed in 13:42 (822s, 149-315 MB free during computation).
+
+inp-021 scoring: C raised from 2 to 5 (all 20 draws complete). Evidence: 21/25 → 24/25.
+Δ = (6/10 - 24/25) × 10 = -3.6.

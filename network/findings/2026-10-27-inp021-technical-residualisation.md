@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-27
 **Analysis:** `network/runs/inp-021` — reference rebuilt on 234 controls residualised for age+sex+rin+plate+seqpc1-3
-**Evidence:** 21/25 (PARTIAL: E=5+R=5+B=4+D=5+C=2) · **Interest:** 6/10 · **Δ:** −2.4
+**Evidence:** 24/25 (E=5+R=5+B=4+D=5+C=5) · **Interest:** 6/10 · **Δ:** −3.6
 
 ## Claim
 
@@ -103,35 +103,33 @@ is the correct one.
 
 ## lith draws result
 
-**PARTIAL — 18 of 20 draws (as of 2026-10-27T19:20Z; draws 19-20 pending).**
+**COMPLETE — 20/20 draws (2026-10-31T20:00:02Z). Draws 19-20 added by session 21.**
 
-| | inp-021 lith, 18 draws | base-001 lith, 20 draws | inp-023 lith, 20 draws |
+| | inp-021 lith, **20 draws** | base-001 lith, 20 draws | inp-023 lith, 20 draws |
 |:--|:--|:--|:--|
-| gold Z mean (sd) | **32.66 (3.97)** | 21.74 (7.05) | 16.98 (10.79) |
+| gold Z mean (sd) | **32.60 (3.81)** | 21.74 (7.05) | 16.98 (10.79) |
 | gold Z range | [26.71, 45.00] | [11.19, 34.23] | [6.75, 38.21] |
-| gold medianRank | **64/64 LAST** in all 18 | 72/72 last in all 20 | 43/43 last in all 20 |
+| gold medianRank | **64/64 LAST** in all 20 | 72/72 last in all 20 | 43/43 last in all 20 |
 | modules beat gold ALL draws | 10/63 (16%) | 17/71 (24%) | 16/42 (38%) |
 | modules beat gold 0 draws | 24/63 (38%) | — | — |
 
-Gold always ranks LAST (64/64 medianRank) in all 18 completed draws. Gold-last pattern
-confirmed across 18 draws; 10/63 modules beat gold in every draw.
+Gold always ranks LAST (64/64 medianRank) in ALL 20 draws. Gold-last pattern
+confirmed across all 20 draws; 10/63 modules beat gold in every draw.
 
-**18-draw vs 1-draw update:** Mean gold Z=32.66 (sd=3.97), substantially less variable than
-draw 1 (31.29) suggested. The sd=3.97 across 18 draws is much tighter than base-001's sd=7.05
-or inp-023's sd=10.79. Technical residualisation stabilises the draw-to-draw gold Z estimate
-— likely because it removes sequencing batch effects that cause high-variance subsamples.
+Per-draw gold Z: 31.29, 34.70, 45.00, 29.90, 34.11, 35.60, 26.71, 31.38, 32.49, 31.70,
+35.00, 35.29, 30.81, 28.57, 32.80, 32.24, 28.10, 32.18, 33.89, 30.30.
 
-**Module counts:** 10/63 (16%) beat gold in ALL 18 draws, vs 17/71 (24%) in base-001 and
-16/42 (38%) in inp-023. The fraction decreasing with technical residualisation vs base-001 is
-unexpected: if technical covariates add noise, removing them should increase consistency.
-Possible explanation: the 8 modules dissolved by technical residualisation (vs base-001) were
-relatively well-preserved modules; removing them lowers the average beat-gold fraction for the
-surviving 63. The 24/63 (38%) modules that NEVER beat gold may include the more fragile
-composition-adjacent modules that persist in inp-021 but dissolve in inp-022/023.
+**20-draw vs 18-draw:** Mean gold Z unchanged (32.60 vs 32.66). Draw 19 (33.89) and draw 20
+(30.30) are within the previously observed range. Draws 19-20 added via session 21 after
+repeated OOM kills (see BLOCKED.md 2026-10-31). sd=3.81 (slightly tighter than 18-draw sd=3.97).
 
-**D=5 confirmed: gold last in all 18 checked draws.** Score unchanged from pre-specification.
+**Module counts:** 10/63 (16%) beat gold in ALL 20 draws — final, unchanged from 18-draw interim.
+24/63 (38%) modules NEVER beat gold. The decreasing fraction vs base-001 (24%) and inp-023 (38%)
+is unexpected; explained by the 8 modules dissolved under technical residualisation being the
+most well-preserved (see Module overlap section).
 
-[Update to all-20 stats when draws 19-20 complete. Expected stats: similar mean/sd, gold last in 20/20.]
+**D=5 confirmed: gold last in all 20 draws.** Score as pre-specified. C raised to 5 (all 20 draws complete).
+Evidence: E=5+R=5+B=4+D=5+C=5 = **24/25**. Δ = (6/10 − 24/25) × 10 = **−3.6**.
 
 ## Connection to prior findings
 
@@ -158,3 +156,6 @@ composition-adjacent modules that persist in inp-021 but dissolve in inp-022/023
 <!-- Δ = (6/10 - E/25) × 10 (fill when Evidence total is known) -->
 <!-- Scoring will be inserted as a score line at the bottom of this file after results are known -->
 <!-- Expected partial: E=5 R=5 B=4 D=5 C=2 → 21/25; Interest=6/10; Δ=-3.0 -->
+<!-- 2026-10-31 FINAL: all 20 draws confirmed. C raised 2→5. Evidence 21→24. -->
+<!-- Draw 20 required 2 attempts due to OOM kills (BLOCKED.md 2026-10-31T19:44Z). -->
+<!-- Final score: E=5 R=5 B=4 D=5 C=5 → 24/25; Interest=6/10; Δ=-3.6 -->
