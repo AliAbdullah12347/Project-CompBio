@@ -1,0 +1,7 @@
+[2026-10-31T17:34:27] === trait-034 starting ===
+[2026-10-31T17:34:27] config written: network/config/trait-034.json
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-31T17:34:30] 71 modules
+[2026-10-31T17:34:40] eigengenes: 474 x 71
+[2026-10-31T17:34:40] 211 module-fraction pairs significant at BH 5%
+[2026-10-31T17:34:40] === trait-034 COMPLETE ===

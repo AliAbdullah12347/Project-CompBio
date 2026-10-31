@@ -10,7 +10,7 @@ gene-027	geneset	DONE	2	2026-10-26T19:20:52Z	2026-10-26T23:15:47Z	14093	complete
 inp-021	input	DONE	2	2026-10-31T19:46:15Z	2026-10-31T20:00:02Z	826	completed in 826s	10800	ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 perm-031	perm	DONE	1	2026-10-31T20:08:29Z	2026-10-31T21:24:57Z	4587	completed in 4587s	10800	group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws
 trait-033	modtrait	DONE	1	2026-10-31T21:31:26Z	2026-10-31T21:31:39Z	13	completed in 13s	3600	eigengene ~ lithium, dx, age, sex, RIN, plate; BH across modules
-trait-034	modtrait	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene ~ 5 lineage fractions (gran mono T NK B)
+trait-034	modtrait	DONE	1	2026-10-31T21:34:26Z	2026-10-31T21:34:41Z	15	completed in 15s	3600	eigengene ~ 5 lineage fractions (gran mono T NK B)
 trait-035	modtrait	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene ~ ILR balances b1-b4
 pres-030	preserve	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z; cap raised 5400->10800 (nolith 500 perms ~6480s > old cap)	10800	ref=control;report density and connectivity components SEPARATELY; disagreement is informative
 samp-043	samplestruct	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene-space separation by group; outlier detection; hclust; does any cluster track lithium?

@@ -1,0 +1,15 @@
+{
+  "id": "trait-034",
+  "family": "modtrait",
+  "spec": "eigengene ~ 5 lineage fractions (gran mono T NK B)",
+  "ref_cache": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "formula": "eigengene ~ mono + T + NK + B (gran dropped: 5 fracs sum to 1)",
+  "dropped_fraction": "gran",
+  "predictors": "mono,T,NK,B",
+  "samples": "all 474",
+  "correction": "BH across modules, per predictor",
+  "seed": 20261009,
+  "git_sha": "f709275",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}
