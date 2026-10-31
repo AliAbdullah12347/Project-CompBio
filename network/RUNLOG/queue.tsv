@@ -8,7 +8,7 @@ inp-023	input	DONE	3	2026-10-26T09:13:55Z	2026-10-26T12:05:46Z	10311	completed i
 pow-009	power	DONE	1	2026-10-26T14:10:41Z	2026-10-26T14:12:07Z	86	completed in 86s	3600	pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result)
 gene-027	geneset	DONE	2	2026-10-26T19:20:52Z	2026-10-26T23:15:47Z	14093	completed in 14093s	18000	ref=control;genes=all_minus_547_LM22 ** CIRCULARITY CHECK **
 inp-021	input	DONE	2	2026-10-31T19:46:15Z	2026-10-31T20:00:02Z	826	completed in 826s	10800	ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
-perm-031	perm	PENDING	0	2026-10-27T19:06:23Z	2026-10-27T22:06:27Z	10804	requeued from PARTIAL (attempt 0)	10800	group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws
+perm-031	perm	DONE	1	2026-10-31T20:08:29Z	2026-10-31T21:24:57Z	4587	completed in 4587s	10800	group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws
 trait-033	modtrait	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene ~ lithium, dx, age, sex, RIN, plate; BH across modules
 trait-034	modtrait	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene ~ 5 lineage fractions (gran mono T NK B)
 trait-035	modtrait	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	3600	eigengene ~ ILR balances b1-b4
