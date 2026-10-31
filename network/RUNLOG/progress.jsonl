@@ -89,3 +89,5 @@
 {"ts":"2026-10-31T20:00:02Z","run_id":"inp-021","phase":"done","pct":100,"msg":"inp-021 DONE 826s"}
 {"ts":"2026-10-31T20:08:30Z","run_id":"perm-031","phase":"run","pct":5,"msg":"starting network/experiments/perm-031.R cap=10800s"}
 {"ts":"2026-10-31T21:24:57Z","run_id":"perm-031","phase":"done","pct":100,"msg":"perm-031 DONE 4587s"}
+{"ts":"2026-10-31T21:31:26Z","run_id":"trait-033","phase":"run","pct":5,"msg":"starting network/experiments/trait-033.R cap=3600s"}
+{"ts":"2026-10-31T21:31:39Z","run_id":"trait-033","phase":"done","pct":100,"msg":"trait-033 DONE 13s"}

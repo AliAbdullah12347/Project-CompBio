@@ -1,0 +1,13 @@
+{
+  "id": "trait-033",
+  "family": "modtrait",
+  "spec": "eigengene ~ lithium + dx + age + sex + rin + plate; BH across modules",
+  "ref_cache": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "formula": "~lithium + dx + age + sex + rin + plate",
+  "samples": "all 474",
+  "correction": "BH across modules, per predictor",
+  "seed": 20261009,
+  "git_sha": "e622afb",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}

@@ -1,0 +1,7 @@
+[2026-10-31T17:31:26] === trait-033 starting ===
+[2026-10-31T17:31:26] config written: network/config/trait-033.json
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-10-31T17:31:30] 71 modules (excl grey)
+[2026-10-31T17:31:39] Module eigengenes computed: 474 samples x 71 modules
+[2026-10-31T17:31:39] 137 module-predictor pairs significant at BH 5%
+[2026-10-31T17:31:39] === trait-033 COMPLETE ===
