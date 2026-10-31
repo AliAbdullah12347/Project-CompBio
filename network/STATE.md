@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-31T20:05Z
+**Updated:** 2026-10-31T21:32Z
 
 ## Where the science stands
 
@@ -71,7 +71,7 @@
 
 ## Queue
 
-DONE (9): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+DONE (10): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
   **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
@@ -80,15 +80,15 @@ DONE (9): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corr
   non-LM22 genes; nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67), 66/66 last
   in ALL 20 draws; 27/65 modules beat gold in all 20 draws. E=21/25. 14093s),
   **inp-021** (DONE 2026-10-31T20:00Z; 20/20 lith draws, 826s; gold Z mean=32.60 sd=3.81
-  range [26.71,45.00]; 64/64 last ALL 20 draws; 10/63 beat gold ALL draws; E=24/25).
+  range [26.71,45.00]; 64/64 last ALL 20 draws; 10/63 beat gold ALL draws; E=24/25),
+  **perm-031** (DONE 2026-10-31T21:25Z; K=20 group-label permutation null; gold null mean=32.02
+  sd=5.21 range [17.94,39.02]; obs=21.74 < null in 19/20 draws; 44/72 modules below null mean;
+  4 BH-sig: blue, grey60, pink, purple; E=20/25. 4587s).
 RUNNING (0): —
-PENDING (42): **perm-031** (14/20 draws done; K=20 group-label permutation null;
-  gold null Z mean=32.61 sd=4.07 range [26.54,39.02] across K=14; obs=21.74 < null all 14;
-  9 modules emp_p=0 BH-sig; 42/72 real modules below null mean;
-  needs 6 more draws to complete; claims next), trait-033/034/035, pres-030,
-  samp-043, ann-041, ann-042, ref-002/003/004, corr-005/006, net-007/008,
-  pow-010/011/012, mod-013–mod-020, inp-024, gene-025/026/028/029, perm-032,
-  hub-036/037, comm-038/039, cent-040, filt-044, tob-045, bmind-046/047, synth-048.
+PENDING (41): trait-033/034/035, pres-030, samp-043, ann-041, ann-042, ref-002/003/004,
+  corr-005/006, net-007/008, pow-010/011/012, mod-013–mod-020, inp-024,
+  gene-025/026/028/029, perm-032, hub-036/037, comm-038/039, cent-040, filt-044,
+  tob-045, bmind-046/047, synth-048.
 
 Key caches available:
 - `ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm` (base-001) — EXISTS ✓
@@ -157,12 +157,21 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **perm-031** PENDING (14/20 draws done; 6 draws remaining; ~6000s, fits in 10800s cap):
-   - Needs draws 15-20; checkpoints perm_draw_001–014 exist; script resumes automatically.
-   - When DONE: score C=2→5 (all 20 draws), finalize emp_p, update finding/RANKING.md/RESULTS.md, commit.
-   - Key interim finding: 9 modules emp_p=0 BH-significant (purple, salmon, gold, blue, black, pink, grey60, plum, coral2).
-2. **trait-033/034/035** — fast (<60s each); claimed after perm-031 completes.
-3. **pres-030** — WGCNA heavy (~3h cap).
+1. **trait-033/034/035** — fast (~60s each); next 3 in queue; eigengene-trait associations.
+2. **pres-030** — WGCNA heavy (~3h cap); density vs connectivity decomposition.
+3. **inp-024** — next residualisation ladder arm (after trait-033–035).
+
+## Session 22 notes (2026-10-31T21:32Z)
+
+- **perm-031 DONE**: Completed draws 15-20. Draw 15 started 20:08:43Z, draw 20 completed 21:24:57Z (4587s total).
+  Draw timing: draws 15-20 ranged 725-874s (draw 15 slow, 874s, likely system load; others ~725s).
+- **K=20 final stats**: Gold null mean=32.02 (sd=5.21), range [17.94, 39.02]. Observed bp_lith=21.74.
+  Null gold Z > observed in 19/20 draws; draw 18 outlier (null Z=17.94 < obs 21.74) → gold emp_p=0.05, padj=0.36.
+- **BH-significant at K=20**: 4 modules (emp_p=0): purple, blue, pink, grey60.
+  5 K=14-significant modules lost significance (emp_p=1/20=0.05 not BH-sig): salmon, gold, black, plum, coral2.
+- **Scores updated**: Evidence 17→20/25 (C=2→5); D=3 confirmed (44/72=61% below null); Interest=7; Δ=−1.0.
+- **Queue**: DONE=10, RUNNING=0, PENDING=41. Next: trait-033 (fast, ~60s).
+- **Push**: still fails (HTTPS, no stored credentials). All committed locally.
 
 ## Session 21 notes (2026-10-31T20:05Z)
 

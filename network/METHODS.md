@@ -2407,3 +2407,30 @@ second attempt (PID 4292) completed in 13:42 (822s, 149-315 MB free during compu
 
 inp-021 scoring: C raised from 2 to 5 (all 20 draws complete). Evidence: 21/25 → 24/25.
 Δ = (6/10 - 24/25) × 10 = -3.6.
+
+## Session 22 (2026-10-31T21:32Z)
+
+**perm-031 K=20 DONE (4587s).** Draws 15-20 completed by session 22. Draw timing variability:
+draw 15 took 874s (vs baseline 725s), likely due to system load from other processes (JamfDaemon
+at 93% CPU, Python at 36%, Microsoft extension at 25%). Draws 16-20 returned to 725s range.
+
+**K=20 final null distribution:** gold null Z mean=32.02 (sd=5.21, range=[17.94, 39.02]).
+Draw 18 outlier: null gold Z=17.94 — the lowest null gold Z in K=20, below observed 21.74.
+This single draw gives gold module emp_p=0.05 → padj=0.36 (not BH-sig), reversing the K=14
+result where gold had emp_p=0. The draw 18 sample happened to be poorly preserved overall;
+this is within the expected null distribution variability (sd=5.21).
+
+**BH-significant at K=20 (emp_p=0, 4 modules):** purple, blue, pink, grey60.
+Modules losing significance from K=14 (emp_p=0→0.05): salmon (null_min=22.65<obs=23.39),
+gold (null_min=17.94<obs=21.74), black (null_min=30.12<obs=30.53),
+plum (null_min=11.51<obs=15.21), coral2 (null_min=10.87<obs=11.02).
+All 5 had small observed-to-null-min gaps; one new draw for each crossed the threshold.
+
+**Scoring:** C raised 2→5 (all 20 draws complete). D=3 confirmed (44/72=61% below null mean).
+Evidence 17→20/25. Interest stays 7/10 (4 BH-sig remain). Δ = (7/10 - 20/25) × 10 = -1.0.
+
+**Background monitoring problems:** ScheduleWakeup fired 15-60 seconds after being set (regardless
+of requested delay 120-900s). Background Bash tasks exited immediately due to tmpfs write issues
+(tmpfs used for task output files). Workaround: foreground until-loops with explicit timeouts
+(240-540s) polled for draw checkpoints; each foreground call waited for one draw completion then
+re-invoked. This required ~10-15 conversation turns to monitor draws 15-20. Noted for future sessions.

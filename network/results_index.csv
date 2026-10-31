@@ -8,7 +8,7 @@
 "pow-009","power","DONE",86,"completed in 86s"
 "gene-027","geneset","DONE",14093,"completed in 14093s"
 "inp-021","input","DONE",826,"completed in 826s"
-"perm-031","perm","PENDING",10804,"requeued from PARTIAL (attempt 0)"
+"perm-031","perm","DONE",4587,"completed in 4587s"
 "trait-033","modtrait","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "trait-034","modtrait","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "trait-035","modtrait","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"

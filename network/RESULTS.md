@@ -1,9 +1,9 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-31T20:02Z
-**Runs completed:** 9 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027, **inp-021 DONE 2026-10-31**).
+**Updated:** 2026-10-31T21:25Z
+**Runs completed:** 10 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027, inp-021, **perm-031 DONE 2026-10-31T21:25Z**).
 **Running:** none.
-**Pending (next):** perm-031 (PARTIAL→PENDING; 14/20 draws done; claims next driver invocation; 6 draws remaining ~6000s, fits in 10800s cap; expected DONE in one session).
+**Pending (next):** trait-033 (first of 3 fast eigengene-trait experiments).
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 34 — see `RANKING.md`.
 
 ---
@@ -69,6 +69,8 @@ figure — the verified gold Z is 21.74. See
 | `inp-023` | 10311 s | **DONE 2026-10-26T12:05Z.** Technical+ILR residualisation: 42-module reference. nolith gold Z=28.08 (43/43 last, 25/42 above); lith gold mean Z=16.98 (sd 10.79, 43/43 last in all 20 draws, 40/42 beat gold by mean Z, 16/42 in ALL draws). Replicates inp-022. E=24/25. | [network/runs/inp-023](runs/inp-023) |
 | `pow-009` | 86 s | **DONE 2026-10-26T14:12Z.** SFT curves on offset-removed expression, all 3 groups. Scale-free still fails (control max R²=0.770, bp_nolith=0.755, bp_lith=0.701; all below 0.80 threshold). Improvement from raw (0.66/0.41/0.54) confirms offset was part of the problem; residual failure is composition-driven (inp-022 SFT fits at power 9). E=22/25. | [network/runs/pow-009](runs/pow-009) |
 | `gene-027` | 14093 s | **DONE 2026-10-26T23:15Z.** LM22 circularity check: 65-module reference on 12018 non-LM22 genes. nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67, range 9.00–33.02), 66/66 last in ALL 20 draws. 27/65 modules beat gold in all 20 draws. **Circularity check NEGATIVE** — same pattern as base-001 with LM22 genes excluded. E=21/25. | [network/runs/gene-027](runs/gene-027) |
+| `inp-021` | 826 s (draw 20, 2nd attempt) | **DONE 2026-10-31T20:00Z.** Technical-only residualisation (age+sex+rin+plate+seqpc1-3): 63-module reference. nolith gold Z=31.13 (64/64 last); lith gold Z mean=32.60 (sd 3.81, range [26.71,45.00]), 64/64 last in ALL 20 draws. 10/63 modules beat gold in all 20 draws; 24/63 never beat gold. SFT max R²=0.797 (below 0.80; ILR required). 6 LM22-dependent modules absent. E=24/25. | [network/runs/inp-021](runs/inp-021) |
+| `perm-031` | 4587 s (6 remaining draws) | **DONE 2026-10-31T21:25Z.** Group-label permutation null K=20: 74 random samples from all 474 vs base-001 bp_lith Zsummary. Gold null mean=32.02 (sd 5.21, range [17.94,39.02]); observed=21.74 < null in 19/20 draws. 44/72 modules less preserved in bp_lith than null mean (61%). **4 BH-significant (emp_p=0): blue, grey60, pink, purple.** Draw 18 null gold Z=17.94 < obs, so gold not BH-sig (padj=0.36). E=20/25. | [network/runs/perm-031](runs/perm-031) |
 
 ### Previously reset (now re-run and DONE)
 
@@ -378,15 +380,16 @@ and METHODS.md 2026-10-26.
 
 ## Next
 
-1. **perm-031** (PENDING — 14/20 draws done; claims on next driver invocation; 6 draws needed ~6000s;
-   expected DONE in one session. K=14 interim: gold null mean=32.61 > obs 21.74 in all 14 draws;
-   9 modules with emp_p=0 BH-significant at K=14; 42/72 modules below null mean. Score updated 17/25.)
-2. **inp-021** (DONE 2026-10-31T20:00Z — 20/20 lith draws; gold Z mean=32.60 sd=3.81; gold last in all 20.
-   Evidence raised 21→24/25. Score: E=5 R=5 B=4 D=5 C=5.)
-3. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast, ~60s each)
-4. **pres-030** — density vs connectivity decomposition of module preservation
-5. 41 more pending experiments cover gene subsets, module detection sensitivity, correlation
+1. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast, ~60s each each; claims next)
+2. **pres-030** — density vs connectivity decomposition of module preservation (~3h cap)
+3. **inp-022/023/021 lith draws** are all done. Pending residualisation ladder: inp-024.
+4. 41 more pending experiments cover gene subsets, module detection sensitivity, correlation
    function, network type, power, annotation, community, centrality, hub stability, bMIND.
+
+**perm-031 DONE summary (2026-10-31T21:25Z):** K=20 group-label permutation null. 44/72 modules (61%) less
+preserved in bp_lith than null; 4 BH-significant (blue, grey60, pink, purple, all emp_p=0). Gold module:
+19/20 draws null > observed (directional); emp_p=0.05 → padj=0.36 (not formally sig at K=20). Draw 18
+outlier (null gold Z=17.94 < obs 21.74) limits precision. Evidence 20/25; Interest 7/10; Δ=−1.0.
 
 ---
 
