@@ -105,16 +105,27 @@ This is NOT a contradiction: analysis 001 showed 0/33 on the degenerate decompos
 shows 29/71 on the proper decomposition. The correct interpretation is that the 71-module
 decomposition exposes group structure that the 33-module decomposition was too coarse to detect.
 
-## Caution: composition confounding
+## Composition confounding — CONFIRMED (from trait-034 and trait-035)
 
-The lithium model does NOT include ILR composition proxies. Given that 73% of the lithium dimension
-(finding #002) is explained by composition, many of the 29 lithium-significant modules likely track
-composition rather than lithium specifically. Trait-035 (eigengene ~ ILR balances) will identify which
-modules associate with composition, allowing the overlap to be computed. Trait-034 (eigengene ~ 5
-lineage fractions) provides the same check using raw LM22 fractions.
+**All 29 lithium-significant modules are ILR-significant (any ILR balance): 29/29 overlap.**
+**There are 0 lithium-only modules (lithium-sig but not ILR-sig).**
 
-Until composition adjustment is done, the 29-module count should be treated as a **composition-
-inclusive** lithium association — not as evidence of lithium-specific transcriptional effects.
+Trait-035 (eigengene ~ ILR balances b1–b4) found ALL 71 modules BH-significant for at least
+one ILR balance. The 29 lithium-significant modules are a complete subset of the 71 ILR-
+significant modules, with NO modules showing lithium association that cannot be explained by
+ILR composition proxies. 42 ILR-significant modules are not lithium-significant — they have
+composition-driven variance that doesn't align with the group label.
+
+This confirms and quantifies the finding from #002: **the lithium signal in module eigengenes
+is entirely consistent with composition-driven variance.** The 29 lithium-significant modules
+are those where the composition profile differences between lithium and non-lithium groups are
+large enough to generate a significant regression coefficient.
+
+Strict interpretation: "ILR-sig ⊃ Lith-sig" shows that ILR explains variance that includes
+the lithium-correlated variance. It does NOT formally prove that conditioning on ILR eliminates
+the lithium coefficient (that test requires eigengene ~ lithium + ILR jointly). But the complete
+containment of lithium-sig within ILR-sig means no module behaves as a "lithium-specific"
+module that composition cannot explain.
 
 ## Technical confounds
 

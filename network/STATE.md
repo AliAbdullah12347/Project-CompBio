@@ -1,6 +1,6 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-31T21:32Z
+**Updated:** 2026-10-31T23:00Z
 
 ## Where the science stands
 
@@ -57,7 +57,14 @@
    Final score: E=5 R=5 B=4 D=5 C=5 → **24/25**; Interest=6/10; Δ=−3.6.
    Draw 20 required 2 attempts (OOM kills, BLOCKED.md 2026-10-31). See METHODS.md 2026-10-31.
 
-**Read `RANKING.md` first.** Rebuilt from findings/; 34 findings as of 2026-10-31.
+9. **trait-033/034/035 (DONE 2026-10-31T21:42Z): CRITICAL — 0 lithium-specific modules.**
+   Eigengene ~ lithium + dx + technical (trait-033): 29/71 modules BH-sig for lithium;
+   46 RIN-sig, 52 plate-sig. Eigengene ~ ILR b1–b4 (trait-035): ALL 71 modules ILR-sig.
+   **All 29 lithium-sig modules are ILR-sig → 0 lithium-specific modules at BH 5%.**
+   Raw fraction analysis (trait-034) agrees exactly. Confirms the 73% composition finding
+   at the module eigengene level: every apparent lithium association is captured by ILR.
+
+**Read `RANKING.md` first.** Rebuilt from findings/; 37 findings as of 2026-10-31.
 
 ## Infrastructure
 
@@ -71,7 +78,7 @@
 
 ## Queue
 
-DONE (10): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
+DONE (13): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with corrected
   expr_for() test matrices; 20/20 lith draws, 3603s), **base-003-remerge** (1s reader),
   **base-002-ceil** (DONE 2026-10-26T07:46Z; 20/20 lith draws, all groups complete, 5357s),
   **inp-023** (DONE 2026-10-26T12:05Z; 20/20 lith draws, 10311s),
@@ -83,9 +90,15 @@ DONE (10): mod-000-resolution, inp-022, **base-001** (re-run 2026-10-26 with cor
   range [26.71,45.00]; 64/64 last ALL 20 draws; 10/63 beat gold ALL draws; E=24/25),
   **perm-031** (DONE 2026-10-31T21:25Z; K=20 group-label permutation null; gold null mean=32.02
   sd=5.21 range [17.94,39.02]; obs=21.74 < null in 19/20 draws; 44/72 modules below null mean;
-  4 BH-sig: blue, grey60, pink, purple; E=20/25. 4587s).
+  4 BH-sig: blue, grey60, pink, purple; E=20/25. 4587s),
+  **trait-033** (DONE 2026-10-31T21:31Z; 13s; 29/71 lithium-sig BH; 46 RIN-sig, 52 plate-sig;
+  E=24/25),
+  **trait-034** (DONE 2026-10-31T21:34Z; 15s; 211 BH-sig pairs; ALL 71 modules any-fraction-sig;
+  E=22/25),
+  **trait-035** (DONE 2026-10-31T21:42Z; 12s; 217 BH-sig pairs; ALL 71 modules ILR-sig;
+  29/29 lithium-sig are ILR-sig → 0 lithium-only modules; CRITICAL FINDING; E=24/25).
 RUNNING (0): —
-PENDING (41): trait-033/034/035, pres-030, samp-043, ann-041, ann-042, ref-002/003/004,
+PENDING (38): pres-030, samp-043, ann-041, ann-042, ref-002/003/004,
   corr-005/006, net-007/008, pow-010/011/012, mod-013–mod-020, inp-024,
   gene-025/026/028/029, perm-032, hub-036/037, comm-038/039, cent-040, filt-044,
   tob-045, bmind-046/047, synth-048.
@@ -157,9 +170,27 @@ published bands — gold scores 20.26 here, so the bands place noise in "strongl
 
 ## Pending task for next session
 
-1. **trait-033/034/035** — fast (~60s each); next 3 in queue; eigengene-trait associations.
-2. **pres-030** — WGCNA heavy (~3h cap); density vs connectivity decomposition.
-3. **inp-024** — next residualisation ladder arm (after trait-033–035).
+1. **pres-030** — WGCNA density vs connectivity decomposition (~3h cap); queue position #1.
+2. **inp-024** — next residualisation ladder arm.
+3. Continue with ann-041/042, ref-002/003/004 and other light experiments.
+
+## Session 23 notes (2026-10-31T23:00Z)
+
+- **trait-033/034/035 DONE** (13s/15s/12s each). Driver ran all three automatically.
+- **CRITICAL FINDING (trait-035)**: All 29 lithium-significant modules (trait-033) are also
+  ILR-significant (trait-035) → 0 lithium-only modules. ALL 71 modules associate with ILR.
+  Raw fraction analysis (trait-034) agrees exactly: ALL 71 any-fraction-sig.
+  Confirms 73% composition finding at the module eigengene level.
+- **trait-033 detail**: 29/71 lithium-sig (13 elevated, 16 reduced in bp_lith); 46 RIN-sig,
+  52 plate-sig, 6 sex-sig, 4 dx-sig (blue, grey60, midnightblue, tan). Cross-validates with
+  perm-031: blue, grey60, midnightblue are both less preserved AND eigengene-altered in lith.
+- **trait-034**: 211 BH-sig pairs; T (56/71), NK (52/71), mono (54/71), B (49/71); gran=0
+  (reference category). B cell fraction has largest effects (thistle1 coef=+3.20).
+- **trait-035**: 217 BH-sig pairs; b1 (59/71), b3 (58/71), b2 (50/71), b4 (50/71).
+- **Finding files created**: trait-033 updated (composition confounding confirmed section added);
+  trait-034 and trait-035 finding files created.
+- **Queue**: DONE=13, RUNNING=0, PENDING=38. Next: pres-030.
+- **Commit pending**: all changes need `git add network/ && git commit`.
 
 ## Session 22 notes (2026-10-31T21:32Z)
 

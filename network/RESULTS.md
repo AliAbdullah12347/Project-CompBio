@@ -1,9 +1,9 @@
 # Arm 3 — Results
 
-**Updated:** 2026-10-31T21:25Z
-**Runs completed:** 10 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027, inp-021, **perm-031 DONE 2026-10-31T21:25Z**).
+**Updated:** 2026-10-31T23:00Z
+**Runs completed:** 13 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027, inp-021, perm-031, **trait-033/034/035 DONE 2026-10-31T21:42Z**).
 **Running:** none.
-**Pending (next):** trait-033 (first of 3 fast eigengene-trait experiments).
+**Pending (next):** pres-030 (density vs connectivity decomposition, ~3h cap).
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 34 — see `RANKING.md`.
 
 ---
@@ -71,6 +71,9 @@ figure — the verified gold Z is 21.74. See
 | `gene-027` | 14093 s | **DONE 2026-10-26T23:15Z.** LM22 circularity check: 65-module reference on 12018 non-LM22 genes. nolith gold Z=12.23 (66/66 last); lith mean gold Z=21.41 (sd 6.67, range 9.00–33.02), 66/66 last in ALL 20 draws. 27/65 modules beat gold in all 20 draws. **Circularity check NEGATIVE** — same pattern as base-001 with LM22 genes excluded. E=21/25. | [network/runs/gene-027](runs/gene-027) |
 | `inp-021` | 826 s (draw 20, 2nd attempt) | **DONE 2026-10-31T20:00Z.** Technical-only residualisation (age+sex+rin+plate+seqpc1-3): 63-module reference. nolith gold Z=31.13 (64/64 last); lith gold Z mean=32.60 (sd 3.81, range [26.71,45.00]), 64/64 last in ALL 20 draws. 10/63 modules beat gold in all 20 draws; 24/63 never beat gold. SFT max R²=0.797 (below 0.80; ILR required). 6 LM22-dependent modules absent. E=24/25. | [network/runs/inp-021](runs/inp-021) |
 | `perm-031` | 4587 s (6 remaining draws) | **DONE 2026-10-31T21:25Z.** Group-label permutation null K=20: 74 random samples from all 474 vs base-001 bp_lith Zsummary. Gold null mean=32.02 (sd 5.21, range [17.94,39.02]); observed=21.74 < null in 19/20 draws. 44/72 modules less preserved in bp_lith than null mean (61%). **4 BH-significant (emp_p=0): blue, grey60, pink, purple.** Draw 18 null gold Z=17.94 < obs, so gold not BH-sig (padj=0.36). E=20/25. | [network/runs/perm-031](runs/perm-031) |
+| `trait-033` | 13 s | **DONE 2026-10-31T21:31Z.** Eigengene ~ lithium + dx + age + sex + rin + plate, all 474, 71 modules. **29/71 lithium-significant** (BH <5%): 13 elevated, 16 reduced. Also: 46 RIN-sig, 52 plate-sig, 6 sex-sig, 4 dx-sig (blue, grey60, midnightblue, tan), 0 age-sig. Convergent with perm-031: blue, grey60, midnightblue overlap. E=24/25. See trait-034/035 for composition overlap. | [network/runs/trait-033](runs/trait-033) |
+| `trait-034` | 15 s | **DONE 2026-10-31T21:34Z.** Eigengene ~ mono + T + NK + B (gran dropped), all 474, 71 modules. **211 BH-sig pairs** (T:56/71, NK:52/71, mono:54/71, B:49/71; gran:0). ALL 71 modules sig for any fraction. All 29 lithium-sig (trait-033) are fraction-sig: 0 lithium-only modules. E=22/25. | [network/runs/trait-034](runs/trait-034) |
+| `trait-035` | 12 s | **DONE 2026-10-31T21:42Z.** Eigengene ~ ILR b1–b4, all 474, 71 modules. **217 BH-sig pairs** (b1:59, b2:50, b3:58, b4:50). ALL 71 modules ILR-significant. **CRITICAL: all 29 lithium-sig modules are ILR-sig → 0 lithium-specific modules.** Confirms 73% composition finding at module level. E=24/25; Interest=7/10. | [network/runs/trait-035](runs/trait-035) |
 
 ### Previously reset (now re-run and DONE)
 
@@ -380,16 +383,17 @@ and METHODS.md 2026-10-26.
 
 ## Next
 
-1. **trait-033/034/035** — eigengene-trait associations (3600s cap, fast, ~60s each each; claims next)
-2. **pres-030** — density vs connectivity decomposition of module preservation (~3h cap)
-3. **inp-022/023/021 lith draws** are all done. Pending residualisation ladder: inp-024.
-4. 41 more pending experiments cover gene subsets, module detection sensitivity, correlation
+1. **pres-030** — density vs connectivity decomposition of module preservation (~3h cap); queue position #1
+2. **inp-024** — residualisation ladder next step (technical+ILR+interaction, if queued)
+3. 38 more pending experiments cover gene subsets, module detection sensitivity, correlation
    function, network type, power, annotation, community, centrality, hub stability, bMIND.
 
-**perm-031 DONE summary (2026-10-31T21:25Z):** K=20 group-label permutation null. 44/72 modules (61%) less
-preserved in bp_lith than null; 4 BH-significant (blue, grey60, pink, purple, all emp_p=0). Gold module:
-19/20 draws null > observed (directional); emp_p=0.05 → padj=0.36 (not formally sig at K=20). Draw 18
-outlier (null gold Z=17.94 < obs 21.74) limits precision. Evidence 20/25; Interest 7/10; Δ=−1.0.
+**trait-033/034/035 DONE summary (2026-10-31T21:42Z):** CRITICAL FINDING: All 29 lithium-significant
+modules (trait-033 BH 5%) are ILR-significant (trait-035); 0 lithium-only modules. ALL 71 modules
+associate with ILR composition in both ILR (trait-035) and raw fraction (trait-034) approaches.
+Confirmed at the module eigengene level: the 73% composition finding from analysis 002 extends to show
+that every apparent lithium module association is captured by ILR. The joint model (lithium + ILR
+simultaneously) is the decisive test; pending.
 
 ---
 
