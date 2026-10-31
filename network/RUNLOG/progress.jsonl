@@ -93,3 +93,5 @@
 {"ts":"2026-10-31T21:31:39Z","run_id":"trait-033","phase":"done","pct":100,"msg":"trait-033 DONE 13s"}
 {"ts":"2026-10-31T21:34:26Z","run_id":"trait-034","phase":"run","pct":5,"msg":"starting network/experiments/trait-034.R cap=3600s"}
 {"ts":"2026-10-31T21:34:41Z","run_id":"trait-034","phase":"done","pct":100,"msg":"trait-034 DONE 15s"}
+{"ts":"2026-10-31T21:42:05Z","run_id":"trait-035","phase":"run","pct":5,"msg":"starting network/experiments/trait-035.R cap=3600s"}
+{"ts":"2026-10-31T21:42:17Z","run_id":"trait-035","phase":"done","pct":100,"msg":"trait-035 DONE 12s"}

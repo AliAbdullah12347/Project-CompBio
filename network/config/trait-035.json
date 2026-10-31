@@ -1,0 +1,14 @@
+{
+  "id": "trait-035",
+  "family": "modtrait",
+  "spec": "eigengene ~ ILR balances b1-b4",
+  "ref_cache": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "formula": "eigengene ~ b1 + b2 + b3 + b4",
+  "ilr_note": "b1-b4 are ILR coordinates of 5-lineage fractions; uncorrelated, no sum-to-1 constraint",
+  "samples": "all 474",
+  "correction": "BH across modules, per ILR coordinate",
+  "seed": 20261009,
+  "git_sha": "f220e35",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}
