@@ -733,3 +733,12 @@ Draw 20 started at 19:22:51Z, R died at ~19:44:30Z (21 min, ~1260s) without writ
 19/20 draws saved (lith_draw_001-019.rds all present).
 Plan: requeue inp-021 and retry draw 20 with fresh R session (only 1 draw needed).
 Note: JamfDaemon at 92.2% CPU contributing to memory/CPU pressure; beyond our control.
+
+## 2026-10-31T23:05Z  GIT PUSH STILL FAILING (persistent)
+
+Git push continues to fail due to no stored HTTPS credentials and no network access
+from the automated session. As of session 23, the repository is 9 commits ahead of
+origin/main (sessions 20-23 commits local only). A human must run:
+  git push
+from a terminal with GitHub credentials. No action needed from the automated session;
+commits are safely local.
