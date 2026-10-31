@@ -2434,3 +2434,34 @@ of requested delay 120-900s). Background Bash tasks exited immediately due to tm
 (tmpfs used for task output files). Workaround: foreground until-loops with explicit timeouts
 (240-540s) polled for draw checkpoints; each foreground call waited for one draw completion then
 re-invoked. This required ~10-15 conversation turns to monitor draws 15-20. Noted for future sessions.
+
+## Session 23 (2026-10-31T23:00Z)
+
+**trait-033/034/035 DONE** (13s/15s/12s each; all completed by driver in session 22 before this session started).
+
+**trait-033 design:** eigengene ~ lithium + dx + age + sex + rin + plate; all 474 samples; 71 modules from base-001.
+BH correction per predictor across 71 modules (separate FDR per predictor column). Result: 29/71 lithium-sig,
+52/71 plate-sig, 46/71 RIN-sig, 6/71 sex-sig, 4/71 dx-sig (blue, grey60, midnightblue, tan), 0/71 age-sig.
+Positive lith coef (elevated in bp_lith): 13 modules; negative: 16 modules. Effect sizes small (~0.02 eigengene units).
+
+**trait-034 design:** eigengene ~ mono + T + NK + B; gran dropped (reference category; 5 fracs sum to 1).
+BH correction per fraction predictor across 71 modules. Result: 211/355 BH-sig pairs. By predictor: T=56/71,
+NK=52/71, mono=54/71, B=49/71, gran=0 (reference; not tested). All 71 modules sig for any fraction.
+
+**trait-035 design:** eigengene ~ b1 + b2 + b3 + b4; ILR coordinates of 5-lineage fractions (uncorrelated,
+no sum-to-1 constraint). BH correction per ILR coordinate across 71 modules. Result: 217/284 BH-sig pairs.
+By coordinate: b1=59/71, b2=50/71, b3=58/71, b4=50/71. All 71 modules sig for any ILR balance.
+
+**CRITICAL FINDING:** The 29 lithium-significant modules (trait-033) are a strict subset of the 71
+ILR-significant modules (trait-035): 29/29 overlap, 0 lithium-only modules. The same holds for raw
+fractions (trait-034): 29/29 lith-sig are fraction-sig. The lithium-significant module set is entirely
+contained within the composition-significant set — there are no modules with lithium association that
+cannot be explained by ILR composition proxies.
+
+**Interpretation note:** This confirms the 73% composition finding (finding #2) at the module level.
+"ILR-sig ⊃ Lith-sig" does not formally prove that conditioning on ILR eliminates lithium coefficients
+(that requires a joint eigengene ~ lithium + ILR model). But 100% containment means no module behaves
+as "lithium-specific" in the unadjusted model.
+
+**pres-030 launched** at 2026-10-31T21:52:18Z (session 23). nolith (50 perms) running first; 20 lith
+draws with 50 perms each follow. Cap 10800s (3h). Expected ~14-15 draws before cap at ~720s/draw.
