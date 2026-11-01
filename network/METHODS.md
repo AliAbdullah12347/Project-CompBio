@@ -2478,3 +2478,6 @@ draws with 50 perms each follow. Cap 10800s (3h). Expected ~14-15 draws before c
 
 ## 2026-11-01 — samp-043 done (12 s)
 Weak lith-enriched hclust cluster (chi-square p=0.0069, unadjusted); no centroid separation; outliers proportional to group size. Scored 15/25, Interest 4/10, delta -2.0. Not adjusted for composition, so not interpreted beyond trait-033/035. 14 samples are labelled "other" in the cluster table (474 total vs 460 in the three named groups).
+
+## 2026-11-01 — ann-041 done (3 s)
+19 module-DEG overlaps at BH 5% (CT_LI 4, WB_LI 15, WB_BPD 0 because only 4 genes in background). BH within list only, not pooled across lists. Scored 16/25, Interest 5/10, delta -1.4. Not tested against ILR-associated module set.
