@@ -2,7 +2,7 @@
 
 **Updated:** 2026-11-01T23:00Z
 
-**Session 24:** pres-030 DONE (20/20 draws) — density>>connectivity split identical in nolith and lith; 21/25, Interest 6/10. Next: samp-043. Queue DONE=14, PENDING=37.
+**Session 24:** pres-030 DONE (20/20 draws) — density>>connectivity split identical in nolith and lith; 21/25, Interest 6/10. Next: samp-043. Queue DONE=14, PENDING=37.  samp-043 DONE (15/25, I=4). Next: ann-041. Queue DONE=15, PENDING=36.
 
 ## Where the science stands
 

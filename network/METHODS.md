@@ -2475,3 +2475,6 @@ draws with 50 perms each follow. Cap 10800s (3h). Expected ~14-15 draws before c
 - QC flag: nolith gold Zsummary 30.82 (50 perms) vs 14.01 in base-001 (500 perms) on the same samples:
   permutation noise, so pres-030's nolith gold values are unreliable. Not adjusted.
 - Queue: PENDING=37; next row samp-043. Tool-timeout lesson: launch run_next.sh with run_in_background.
+
+## 2026-11-01 — samp-043 done (12 s)
+Weak lith-enriched hclust cluster (chi-square p=0.0069, unadjusted); no centroid separation; outliers proportional to group size. Scored 15/25, Interest 4/10, delta -2.0. Not adjusted for composition, so not interpreted beyond trait-033/035. 14 samples are labelled "other" in the cluster table (474 total vs 460 in the three named groups).
