@@ -2481,3 +2481,6 @@ Weak lith-enriched hclust cluster (chi-square p=0.0069, unadjusted); no centroid
 
 ## 2026-11-01 — ann-041 done (3 s)
 19 module-DEG overlaps at BH 5% (CT_LI 4, WB_LI 15, WB_BPD 0 because only 4 genes in background). BH within list only, not pooled across lists. Scored 16/25, Interest 5/10, delta -1.4. Not tested against ILR-associated module set.
+
+## 2026-11-01 — ann-042 done (5 s)
+14 module-geneset overlaps at BH 5% (LM22 8, CT_LI sets 6; NK has 4 genes, untestable). mediumpurple2 and lightyellow are both LM22 and lithium-DEG modules; yellow/darkred are lithium-DEG only. Scored 17/25, Interest 5/10, delta -1.4.
