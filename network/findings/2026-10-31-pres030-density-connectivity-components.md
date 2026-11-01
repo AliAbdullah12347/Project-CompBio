@@ -2,9 +2,9 @@
 
 **Date:** 2026-10-31
 **Analysis:** `network/runs/pres-030` — modulePreservation density + connectivity components separately; 71 modules; bp_nolith (50 perms) + bp_lith (20 draws × 50 perms)
-**Evidence:** [FILL] · **Interest:** [FILL] · **Δ:** [FILL]
+**Evidence:** 21/25 (E=5 R=4 B=3 D=4 C=5) · **Interest:** 6/10 · **Δ:** −2.4
 
-*(PARTIAL — K=[FILL]/20 draws, [DATE]. Final scoring when all 20 complete or session cap hit.)*
+*(COMPLETE — 20/20 lith draws, nolith 50 perms; finalised 2026-11-01 after a PARTIAL at the 10800 s cap, resumed from checkpoints.)*
 
 ## Claim
 
@@ -68,50 +68,33 @@ survives in bp_nolith, but the specific hub gene structure does not.
 
 Pink is the only module with connectivity slightly > density: Zdensity=21.90, Zconn=26.51, delta=−4.6.
 
-**bp_lith (2/20 draws done as of 2026-10-31T23:40Z — PARTIAL):**
+**bp_lith (20/20 draws × 50 perms; per-draw `results_lith_alldraws.csv`):**
 
-*(50 perms per draw. Draw 1 = 832s, draw 2 = 1304s. Cap fires 20:52:18 EDT; ~8-9 draws expected.)*
+| quantity (gold = WGCNA random set) | mean over 20 draws | sd | range |
+|:--|--:|--:|:--|
+| gold Zsummary | 19.14 | 6.06 | 9.12–29.01 |
+| gold Zdensity | 10.44 | 4.65 | 1.35–17.76 |
+| gold Zconnectivity | 27.84 | 7.79 | 16.88–40.58 |
 
-**Draw 1 gold:**
-- Zsummary: 13.58; Zdensity: 6.59; Zconnectivity: 20.57; medianRank: 72/72 (last)
+Per draw, real modules (71) above gold: Zsummary mean 53.6/71 (range 32–70); Zdensity 69.75/71
+(65–71); Zconnectivity 8.0/71 (1–20). Real-module mean Zdensity ≈ 42–53, Zconnectivity ≈ 14–16 in
+every draw. Zdensity > Zconnectivity for 70/71 modules (mean over draws), and for 95.8–100% of
+modules in each draw (mean 98.3%). Per-module lith-vs-nolith correlation: density r=0.94,
+connectivity r=0.97.
 
-**Draw 2 gold:**
-- Zsummary: 9.12; Zdensity: 1.35; Zconnectivity: 16.88; medianRank: 72/72 (last)
+**Conclusion.** The density ≫ connectivity split is the same in bp_nolith and bp_lith. It is a property
+of how real modules compare with the random gold set, not a lithium effect. What differs between
+groups is only the gold level (lith lower on density), which is the base-001 pattern.
 
-**Draw 1 real modules (71):**
-| component | mean | sd | mods > gold |
-|:--|--:|--:|--:|
-| Zsummary | 30.82 | 16.03 | 64/71 |
-| Zdensity | 47.28 | 27.90 | **71/71** |
-| Zconnectivity | 14.35 | 8.62 | 12/71 |
-
-70/71 modules: Zdensity > Zconnectivity. Mean delta = +32.93 (density − connectivity).
-
-**Comparison nolith vs lith draw 1:**
-
-| metric | bp_nolith | bp_lith draw1 |
-|:--|--:|--:|
-| Gold Zsummary | 30.82 | 13.58 |
-| Gold Zdensity | 22.07 | 6.59 |
-| Gold Zconnectivity | 39.57 | 20.57 |
-| Real Zdensity mean | 48.32 | 47.28 |
-| Real Zconn mean | 15.61 | 14.35 |
-| Density − Conn delta | +32.71 | +32.93 |
-| Mods > gold Zdensity | 60/71 | **71/71** |
-| Mods > gold Zconn | 0/71 | 12/71 |
-
-**KEY PRELIMINARY FINDING**: The density >> connectivity dissociation (mean delta ~33) is the same
-in both nolith and lith! The pattern is not lith-specific — it appears to be an intrinsic property of
-the module structure vs random gene sets. Both groups show:
-- Density component: well-preserved for real modules (47-48 mean Z)
-- Connectivity component: poorly preserved for real modules (14-16 mean Z)
-- Gold module Zconn > real module Zconn mean in BOTH groups
-
-The between-group difference is in the **absolute gold module** values: gold Z is much lower in lith
-(Zsummary 13.58 vs 30.82). This is consistent with base-001's finding that overall preservation is
-lower in lith. But the density/connectivity SPLIT is similar in both groups.
-
-[FILL additional draws once draws 3-9 complete after cap]
+**QC flags (recorded, not adjusted):**
+1. nolith gold Zsummary here is 30.82 (50 perms) vs 14.01 in base-001 (500 perms) on the same
+   74 samples. The observed statistics are identical, so the difference is permutation-null noise. This
+   run's nolith gold values are therefore unreliable. The lith draws are not affected the same way
+   (gold Zsummary mean 19.14, sd 6.06, vs base-001 21.74, sd 7.05, consistent).
+2. 50 perms per draw gives a noisy Z; only the descriptive pattern is claimed. No p-values, no
+   calibrated null (README §6.3).
+3. Gold Zconnectivity exceeding nearly all real modules is probably a feature of how Zconnectivity
+   behaves for a random set of mixed-size genes; I did not test this. I make no hub-architecture claim.
 
 ## Connection to prior findings
 
@@ -134,3 +117,5 @@ lower in lith. But the density/connectivity SPLIT is similar in both groups.
 <!-- Interest=5/10 if same pattern; 7/10 if dissociation; 8/10 if dissociation is module-specific -->
 <!-- Pre-specified PARTIAL (12 draws, dissociation): E=5+R=5+B=3+D=5+C=2 → 20/25; I=7/10; Δ=-3.0 -->
 <!-- Pre-specified PARTIAL (12 draws, same): E=5+R=5+B=3+D=3+C=2 → 18/25; I=5/10; Δ=-2.8 -->
+
+<!-- FINAL: pre-specified D=5 reduced to 4 (dissociation found but not group-specific); R=5 reduced to 4 (cannot attribute to hubs, see QC 3). E=5 R=4 B=3 D=4 C=5 = 21/25; I=6/10; delta=-2.4 -->

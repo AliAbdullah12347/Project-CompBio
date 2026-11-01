@@ -12,7 +12,7 @@
 "trait-033","modtrait","DONE",13,"completed in 13s"
 "trait-034","modtrait","DONE",15,"completed in 15s"
 "trait-035","modtrait","DONE",12,"completed in 12s"
-"pres-030","preserve","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z; cap raised 5400->10800 (nolith 500 perms ~6480s > old cap)"
+"pres-030","preserve","DONE",2260,"completed in 2260s"
 "samp-043","samplestruct","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "ann-041","annot","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"
 "ann-042","annot","PENDING",0,"reset for offsetrm rebuild 20261018T211633Z"

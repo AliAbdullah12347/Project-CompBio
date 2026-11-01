@@ -1,6 +1,8 @@
 # Arm 3 — Run State
 
-**Updated:** 2026-10-31T23:00Z
+**Updated:** 2026-11-01T23:00Z
+
+**Session 24:** pres-030 DONE (20/20 draws) — density>>connectivity split identical in nolith and lith; 21/25, Interest 6/10. Next: samp-043. Queue DONE=14, PENDING=37.
 
 ## Where the science stands
 

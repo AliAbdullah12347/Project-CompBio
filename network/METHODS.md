@@ -2465,3 +2465,13 @@ as "lithium-specific" in the unadjusted model.
 
 **pres-030 launched** at 2026-10-31T21:52:18Z (session 23). nolith (50 perms) running first; 20 lith
 draws with 50 perms each follow. Cap 10800s (3h). Expected ~14-15 draws before cap at ~720s/draw.
+
+## 2026-11-01 — pres-030 completed (session 24)
+- The row was requeued after a PARTIAL at the 10800 s cap. A foreground run was killed by the tool timeout
+  (not a driver failure); a rerun resumed from the 20 per-draw checkpoints and finished (DONE).
+- Result: density >> connectivity split is identical in bp_nolith and bp_lith (not lithium-specific).
+  Scored E=5 R=4 B=3 D=4 C=5 = 21/25, Interest 6/10, delta -2.4. The pre-specified D=5/R=5 were lowered
+  (split not group-specific; hub claim unsupported). Stated here, not quietly changed.
+- QC flag: nolith gold Zsummary 30.82 (50 perms) vs 14.01 in base-001 (500 perms) on the same samples:
+  permutation noise, so pres-030's nolith gold values are unreliable. Not adjusted.
+- Queue: PENDING=37; next row samp-043. Tool-timeout lesson: launch run_next.sh with run_in_background.

@@ -3,7 +3,7 @@
 **Updated:** 2026-10-31T23:00Z
 **Runs completed:** 13 of 51 queued (mod-000-resolution, inp-022, base-001, base-003-remerge, base-002-ceil, inp-023, pow-009, gene-027, inp-021, perm-031, **trait-033/034/035 DONE 2026-10-31T21:42Z**).
 **Running:** none.
-**Pending (next):** pres-030 (density vs connectivity decomposition, ~3h cap).
+**Done 2026-11-01:** pres-030 — density>>connectivity preservation split is the same in bp_nolith and bp_lith (not lithium-specific); see findings/2026-10-31-pres030-density-connectivity-components.md. **Pending (next):** samp-043.
 **Analyses completed:** 4 (001–004) + runs done. **Findings:** 34 — see `RANKING.md`.
 
 ---
