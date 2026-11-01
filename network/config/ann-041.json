@@ -1,0 +1,14 @@
+{
+  "id": "ann-041",
+  "family": "annot",
+  "spec": "module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules",
+  "deg_file": "de_final/results/significant_genes.csv",
+  "ref_cache": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "deg_lists": "WB_LI;WB_BPD;CT_LI",
+  "background": "12368 filtered genes",
+  "test": "Fisher exact (one-sided, over-representation)",
+  "correction": "BH across modules within each DEG list",
+  "seed": 20261009,
+  "git_sha": "92013fb",
+  "r_version": "4.2.2"
+}

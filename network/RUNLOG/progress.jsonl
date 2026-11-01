@@ -104,3 +104,5 @@
 {"ts":"2026-11-01T22:32:58Z","run_id":"pres-030","phase":"done","pct":100,"msg":"pres-030 DONE 2260s"}
 {"ts":"2026-11-01T22:33:56Z","run_id":"samp-043","phase":"run","pct":5,"msg":"starting network/experiments/samp-043.R cap=3600s"}
 {"ts":"2026-11-01T22:34:08Z","run_id":"samp-043","phase":"done","pct":100,"msg":"samp-043 DONE 12s"}
+{"ts":"2026-11-01T22:34:31Z","run_id":"ann-041","phase":"run","pct":5,"msg":"starting network/experiments/ann-041.R cap=3600s"}
+{"ts":"2026-11-01T22:34:35Z","run_id":"ann-041","phase":"done","pct":100,"msg":"ann-041 DONE 3s"}

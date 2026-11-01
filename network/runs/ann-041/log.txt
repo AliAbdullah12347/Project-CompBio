@@ -1,0 +1,12 @@
+[2026-11-01T17:34:32] === ann-041 starting ===
+[2026-11-01T17:34:32] config written: network/config/ann-041.json
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-11-01T17:34:34] 71 modules | background N=12368
+[2026-11-01T17:34:34] DEG list CT_LI: 120 genes in background
+[2026-11-01T17:34:34] DEG list WB_BPD: 4 genes in background
+[2026-11-01T17:34:34] DEG list WB_LI: 1426 genes in background
+[2026-11-01T17:34:35] 19 significant module-DEG overlaps at BH 5%
+[2026-11-01T17:34:35] CT_LI top modules: yellow,darkred,lightyellow,mediumpurple2 (padj<0.05)
+[2026-11-01T17:34:35] WB_BPD top modules:  (padj<0.05)
+[2026-11-01T17:34:35] WB_LI top modules: tan,darkred,lightyellow,white,yellow (padj<0.05)
+[2026-11-01T17:34:35] === ann-041 COMPLETE ===
