@@ -95,3 +95,7 @@
 {"ts":"2026-10-31T21:34:41Z","run_id":"trait-034","phase":"done","pct":100,"msg":"trait-034 DONE 15s"}
 {"ts":"2026-10-31T21:42:05Z","run_id":"trait-035","phase":"run","pct":5,"msg":"starting network/experiments/trait-035.R cap=3600s"}
 {"ts":"2026-10-31T21:42:17Z","run_id":"trait-035","phase":"done","pct":100,"msg":"trait-035 DONE 12s"}
+{"ts":"2026-10-31T21:52:18Z","run_id":"pres-030","phase":"run","pct":5,"msg":"starting network/experiments/pres-030.R cap=10800s"}
+{"ts":"2026-11-01T00:05:17Z","run_id":"pres-030","phase":"run","pct":5,"msg":"starting network/experiments/pres-030.R cap=10800s"}
+{"ts":"2026-11-01T03:05:20Z","run_id":"pres-030","phase":"progress","pct":50,"msg":"14 new non-empty checkpoints"}
+{"ts":"2026-11-01T03:05:20Z","run_id":"pres-030","phase":"done","pct":100,"msg":"pres-030 PARTIAL 10802s"}

@@ -742,3 +742,27 @@ origin/main (sessions 20-23 commits local only). A human must run:
   git push
 from a terminal with GitHub credentials. No action needed from the automated session;
 commits are safely local.
+## 2026-11-01T03:05:20Z  pres-030  hit 10800s cap; partial results kept; +14 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-10-31T22:31:40] draw 14 done
+[2026-10-31T22:31:40] draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-31T22:43:32] draw 15 done
+[2026-10-31T22:43:32] draw 16/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-10-31T22:55:26] draw 16 done
+[2026-10-31T22:55:26] draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+

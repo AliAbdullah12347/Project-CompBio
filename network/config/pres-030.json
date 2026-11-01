@@ -1,0 +1,18 @@
+{
+  "id": "pres-030",
+  "family": "preserve",
+  "spec": "ref=control;report density and connectivity components SEPARATELY; disagreement is informative",
+  "ref_cache": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "corFnc": "bicor",
+  "networkType": "signed",
+  "power": 12,
+  "draws_lith": 20,
+  "perms_per_draw": 50,
+  "nolith_perms": 50,
+  "subsample_n": 74,
+  "seed_base": 20291009,
+  "output_note": "Density-only and connectivity-only Z-scores extracted separately from Zsummary",
+  "git_sha": "c3f920d",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}
