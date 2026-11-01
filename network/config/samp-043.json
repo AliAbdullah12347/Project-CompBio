@@ -1,0 +1,14 @@
+{
+  "id": "samp-043",
+  "family": "samplestruct",
+  "spec": "eigengene-space separation by group; outlier detection; hclust; does any cluster track lithium?",
+  "ref_cache": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "outlier_sd_threshold": 2.5,
+  "cluster_method": "complete linkage on euclidean distance in eigengene space",
+  "pca_components": 10,
+  "samples": "all 474",
+  "seed": 20261009,
+  "git_sha": "5def9ae",
+  "r_version": "4.2.2",
+  "wgcna_version": "1.74"
+}
