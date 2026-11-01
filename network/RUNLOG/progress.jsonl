@@ -99,3 +99,6 @@
 {"ts":"2026-11-01T00:05:17Z","run_id":"pres-030","phase":"run","pct":5,"msg":"starting network/experiments/pres-030.R cap=10800s"}
 {"ts":"2026-11-01T03:05:20Z","run_id":"pres-030","phase":"progress","pct":50,"msg":"14 new non-empty checkpoints"}
 {"ts":"2026-11-01T03:05:20Z","run_id":"pres-030","phase":"done","pct":100,"msg":"pres-030 PARTIAL 10802s"}
+{"ts":"2026-11-01T21:35:08Z","run_id":"pres-030","phase":"run","pct":5,"msg":"starting network/experiments/pres-030.R cap=10800s"}
+{"ts":"2026-11-01T21:55:18Z","run_id":"pres-030","phase":"run","pct":5,"msg":"starting network/experiments/pres-030.R cap=10800s"}
+{"ts":"2026-11-01T22:32:58Z","run_id":"pres-030","phase":"done","pct":100,"msg":"pres-030 DONE 2260s"}
