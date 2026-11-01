@@ -1,0 +1,14 @@
+{
+  "id": "ann-042",
+  "family": "annot",
+  "spec": "module overlap with LM22 markers and cell-type DE results; Fisher exact, BH",
+  "lm22_source": "data/LM22.txt (via d$lm22 from 00_load.R, matched by HGNC symbol)",
+  "ct_de_source": "de_final/results/DE_CT_LI.csv.gz",
+  "ref_cache": "control_all_bicor_signed_p12_ds4_mch00_offsetrm",
+  "background": "12368 filtered genes",
+  "test": "Fisher exact (one-sided, over-representation)",
+  "correction": "BH across modules within each gene set",
+  "seed": 20261009,
+  "git_sha": "c8f3a14",
+  "r_version": "4.2.2"
+}
