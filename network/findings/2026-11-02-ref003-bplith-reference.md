@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-02
 **Analysis:** `network/runs/ref-003` — 77 modules (+gold) defined once on all 152 bp_lith; tested in bp_nolith (n=74, one run, 50 perms) and control (20 draws of 74 from 234, 50 perms each). Power 12, bicor, signed.
-**Evidence:** 18/25 (E=4 R=3 B=4 D=3 C=4) · **Interest:** 4/10 · **Δ:** −0.8
+**Evidence:** 18/25 (E=4 R=3 B=4 D=3 C=4) · **Interest:** 4/10 · **Δ:** −3.2
 
 ## Claim
 Do modules defined in lithium-treated patients preserve in off-lithium patients and in healthy controls?
