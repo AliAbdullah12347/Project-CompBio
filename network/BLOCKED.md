@@ -777,3 +777,5 @@ No wake recorded for 21h (last: 2026-11-01T00:05:00Z) and no session, driver or 
 The watchdog kickstarted `com.aaylab.networkarm`. If this entry repeats, the scheduler is not
 firing on its own and the launchd configuration needs a human.
 
+
+- 2026-11-02T03:05:18Z: git push fails (no credentials on this machine: "could not read Username for https://github.com"). Commits are local only until push auth is configured. Not worked around.
