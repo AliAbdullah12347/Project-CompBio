@@ -16,7 +16,7 @@ pres-030	preserve	DONE	3	2026-11-01T21:55:18Z	2026-11-01T22:32:58Z	2260	complete
 samp-043	samplestruct	DONE	1	2026-11-01T22:33:56Z	2026-11-01T22:34:08Z	12	completed in 12s	3600	eigengene-space separation by group; outlier detection; hclust; does any cluster track lithium?
 ann-041	annot	DONE	1	2026-11-01T22:34:31Z	2026-11-01T22:34:35Z	3	completed in 3s	3600	module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules
 ann-042	annot	DONE	1	2026-11-01T22:34:54Z	2026-11-01T22:34:59Z	5	completed in 5s	3600	module overlap with LM22 markers and cell-type DE results; Fisher exact, BH
-ref-002	reference	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+ref-002	reference	RUNNING	1	2026-11-01T22:35:17Z		0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 ref-003	reference	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=bp_lith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 ref-004	reference	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=consensus(all3);corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 corr-005	corr	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)

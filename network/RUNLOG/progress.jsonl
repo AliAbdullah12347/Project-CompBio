@@ -108,3 +108,4 @@
 {"ts":"2026-11-01T22:34:35Z","run_id":"ann-041","phase":"done","pct":100,"msg":"ann-041 DONE 3s"}
 {"ts":"2026-11-01T22:34:54Z","run_id":"ann-042","phase":"run","pct":5,"msg":"starting network/experiments/ann-042.R cap=3600s"}
 {"ts":"2026-11-01T22:34:59Z","run_id":"ann-042","phase":"done","pct":100,"msg":"ann-042 DONE 5s"}
+{"ts":"2026-11-01T22:35:17Z","run_id":"ref-002","phase":"run","pct":5,"msg":"starting network/experiments/ref-002.R cap=10800s"}

@@ -2484,3 +2484,6 @@ Weak lith-enriched hclust cluster (chi-square p=0.0069, unadjusted); no centroid
 
 ## 2026-11-01 — ann-042 done (5 s)
 14 module-geneset overlaps at BH 5% (LM22 8, CT_LI sets 6; NK has 4 genes, untestable). mediumpurple2 and lightyellow are both LM22 and lithium-DEG modules; yellow/darkred are lithium-DEG only. Scored 17/25, Interest 5/10, delta -1.4.
+
+## 2026-11-01 — ref-002 interrupted by tool time limit (session 24)
+My background launch was stopped at the 2 h tool maximum (ref-002 cap is 3 h). No process remains; the row is RUNNING and stale, with per-draw checkpoints on disk. The driver requeues stale RUNNING rows and resumes from checkpoints, so nothing restarts from zero. Not a scientific failure; no result yet.
