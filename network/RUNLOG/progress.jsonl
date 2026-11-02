@@ -113,3 +113,4 @@
 {"ts":"2026-11-02T03:05:13Z","run_id":"ref-002","phase":"interrupted","pct":5,"msg":"ref-002 resumed, killed again at 2h background limit; checkpoints kept"}
 {"ts":"2026-11-02T05:11:16Z","run_id":"ref-002","phase":"run","pct":5,"msg":"starting network/experiments/ref-002.R cap=10800s"}
 {"ts":"2026-11-02T05:31:21Z","run_id":"ref-003","phase":"run","pct":5,"msg":"starting network/experiments/ref-003.R cap=10800s"}
+{"ts":"2026-11-02T10:05:07Z","run_id":"ref-003","phase":"run","pct":5,"msg":"starting network/experiments/ref-003.R cap=10800s"}

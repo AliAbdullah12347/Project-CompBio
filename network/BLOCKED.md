@@ -783,3 +783,8 @@ firing on its own and the launchd configuration needs a human.
 ## 2026-11-02 session note
 - ref-002 marked BLOCKED by the driver ("dead RUNNING after 3 attempts, no progress"), although 10 ctrl draws + nolith checkpoint exist in network/runs/ref-002. Two of the three attempts were cut short by tool/background limits (one by my own default 10-min timeout), not by script failure. Needs a requeue (PARTIAL/PENDING) to resume from checkpoints; not done by hand to avoid editing queue state.
 - ref-003 started 05:31Z in the same driver call and was stopped at the 2h background limit; it is left RUNNING (stale) with checkpoints in network/runs/ref-003; the next run_next.sh requeues it.
+## 2026-11-02T10:34:30Z  NO PROGRESS IN 3 CONSECUTIVE SESSIONS
+DONE count has been stuck at 17 across 3 wake-ups (~15 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+
