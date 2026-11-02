@@ -1,41 +1,81 @@
-[2026-11-02T05:05:08] === ref-003 starting ===
+[2026-11-02T15:05:11] === ref-003 starting ===
 Allowing parallel execution with up to 3 working processes.
-[2026-11-02T05:05:12] WGCNA 1.74 loaded; threads enabled
+[2026-11-02T15:05:16] WGCNA 1.74 loaded; threads enabled
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-11-02T05:05:13] R2 curve checkpoint exists, skipping scan
-[2026-11-02T05:05:13] loading cached reference modules: network/cache/ref_bp_lith152_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
-[2026-11-02T05:05:13] 77 modules loaded (11947 genes in non-grey modules)
-[2026-11-02T05:05:13] bp_nolith checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 1/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 2/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 3/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 4/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 5/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 6/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 7/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 8/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 9/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 10/20 checkpoint exists, skipping
-[2026-11-02T05:05:13] ctrl draw 11/20: subsampling control (n=74 from 234) ...
+[2026-11-02T15:05:17] R2 curve checkpoint exists, skipping scan
+[2026-11-02T15:05:17] loading cached reference modules: network/cache/ref_bp_lith152_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
+[2026-11-02T15:05:17] 77 modules loaded (11947 genes in non-grey modules)
+[2026-11-02T15:05:17] bp_nolith checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 1/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 2/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 3/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 4/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 5/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 6/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 7/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 8/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 9/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 10/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 11/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 12/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 13/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 14/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 15/20 checkpoint exists, skipping
+[2026-11-02T15:05:17] ctrl draw 16/20: subsampling control (n=74 from 234) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-11-02T05:14:19] ctrl draw 11/20 done: Zsummary range [8.43, 61.41]
-[2026-11-02T05:14:19] ctrl draw 12/20: subsampling control (n=74 from 234) ...
+[2026-11-02T15:14:33] ctrl draw 16/20 done: Zsummary range [7.82, 67.86]
+[2026-11-02T15:14:33] ctrl draw 17/20: subsampling control (n=74 from 234) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-11-02T05:23:20] ctrl draw 12/20 done: Zsummary range [9.15, 63.38]
-[2026-11-02T05:23:20] ctrl draw 13/20: subsampling control (n=74 from 234) ...
+[2026-11-02T15:23:35] ctrl draw 17/20 done: Zsummary range [8.12, 66.23]
+[2026-11-02T15:23:35] ctrl draw 18/20: subsampling control (n=74 from 234) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-11-02T05:32:22] ctrl draw 13/20 done: Zsummary range [8.2, 67.42]
-[2026-11-02T05:32:23] ctrl draw 14/20: subsampling control (n=74 from 234) ...
+[2026-11-02T15:32:33] ctrl draw 18/20 done: Zsummary range [9.77, 63.76]
+[2026-11-02T15:32:33] ctrl draw 19/20: subsampling control (n=74 from 234) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-11-02T15:41:31] ctrl draw 19/20 done: Zsummary range [7.89, 64.03]
+[2026-11-02T15:41:31] ctrl draw 20/20: subsampling control (n=74 from 234) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-02T15:50:28] ctrl draw 20/20 done: Zsummary range [9.38, 57.74]
+[2026-11-02T15:50:28] all draws complete; aggregating results ...
+[2026-11-02T15:50:29] 
+--- bp_nolith Zsummary (50 perms, descriptive only) ---
+       module Zsummary medianRank
+       grey60 69.55126         13
+       purple 68.86708         19
+ midnightblue 64.18068          8
+          tan 62.45383         18
+  darkmagenta 57.03375          9
+        green 55.83931         34
+        black 55.82886         28
+  greenyellow 55.51585         23
+   orangered4 54.21496          4
+        brown 54.03592         61
+[2026-11-02T15:50:29] 
+--- control Zsummary_mean across 20 draws (top 10, descriptive only) ---
+      module Zsummary_mean Zsummary_sd medianRank_mean
+         tan      62.33764    4.765837            7.90
+       ivory      60.47636    5.612061            1.00
+     sienna3      54.79879    5.048709            3.95
+       plum1      53.31733    6.045588            4.20
+   turquoise      52.10910    5.267492           59.85
+       green      52.03108    8.502125           29.40
+         red      51.64548    8.707448           23.85
+ darkmagenta      50.20808    5.873951           10.95
+    skyblue3      49.45857    7.892319           10.35
+ greenyellow      45.33094    4.448225           24.40
+[2026-11-02T15:50:29] === ref-003 COMPLETE ===
