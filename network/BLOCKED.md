@@ -779,3 +779,7 @@ firing on its own and the launchd configuration needs a human.
 
 
 - 2026-11-02T03:05:18Z: git push fails (no credentials on this machine: "could not read Username for https://github.com"). Commits are local only until push auth is configured. Not worked around.
+
+## 2026-11-02 session note
+- ref-002 marked BLOCKED by the driver ("dead RUNNING after 3 attempts, no progress"), although 10 ctrl draws + nolith checkpoint exist in network/runs/ref-002. Two of the three attempts were cut short by tool/background limits (one by my own default 10-min timeout), not by script failure. Needs a requeue (PARTIAL/PENDING) to resume from checkpoints; not done by hand to avoid editing queue state.
+- ref-003 started 05:31Z in the same driver call and was stopped at the 2h background limit; it is left RUNNING (stale) with checkpoints in network/runs/ref-003; the next run_next.sh requeues it.

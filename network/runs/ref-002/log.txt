@@ -1,124 +1,51 @@
-[2026-11-01T20:05:09] === ref-002 starting ===
+[2026-11-02T00:11:21] === ref-002 starting ===
 Allowing parallel execution with up to 3 working processes.
-[2026-11-01T20:05:12] WGCNA 1.74 loaded; threads enabled
+[2026-11-02T00:11:27] WGCNA 1.74 loaded; threads enabled
 load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
-[2026-11-01T20:05:13] R2 curve checkpoint exists, skipping scan
-[2026-11-01T20:05:13] loading cached reference modules: network/cache/ref_bp_nolith_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
-[2026-11-01T20:05:13] 83 modules loaded (12086 genes in non-grey modules)
-[2026-11-01T20:05:13] lith draw 1/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 2/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 3/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 4/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 5/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 6/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 7/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 8/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 9/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 10/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 11/20 checkpoint exists, skipping
-[2026-11-01T20:05:13] lith draw 12/20: subsampling bp_lith (n=74 from 152) ...
+[2026-11-02T00:11:28] R2 curve checkpoint exists, skipping scan
+[2026-11-02T00:11:28] loading cached reference modules: network/cache/ref_bp_nolith_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
+[2026-11-02T00:11:28] 83 modules loaded (12086 genes in non-grey modules)
+[2026-11-02T00:11:28] lith draw 1/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 2/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 3/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 4/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 5/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 6/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 7/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 8/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 9/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 10/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 11/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 12/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 13/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 14/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 15/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 16/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 17/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 18/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 19/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] lith draw 20/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 1/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 2/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 3/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 4/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 5/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 6/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 7/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 8/20 checkpoint exists, skipping
+[2026-11-02T00:11:28] ctrl draw 9/20: subsampling control (n=74 from 234) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-11-01T20:12:11] lith draw 12/20 done: Zsummary range [8.62, 66.41]
-[2026-11-01T20:12:11] lith draw 13/20: subsampling bp_lith (n=74 from 152) ...
+[2026-11-02T00:18:39] ctrl draw 9/20 done: Zsummary range [4.76, 68.34]
+[2026-11-02T00:18:39] ctrl draw 10/20: subsampling control (n=74 from 234) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
-[2026-11-01T20:20:04] lith draw 13/20 done: Zsummary range [6.94, 71.92]
-[2026-11-01T20:20:04] lith draw 14/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T20:26:47] lith draw 14/20 done: Zsummary range [7.72, 69.91]
-[2026-11-01T20:26:47] lith draw 15/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T20:33:32] lith draw 15/20 done: Zsummary range [9.48, 66.66]
-[2026-11-01T20:33:32] lith draw 16/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T20:40:15] lith draw 16/20 done: Zsummary range [9.83, 70.97]
-[2026-11-01T20:40:15] lith draw 17/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T20:46:56] lith draw 17/20 done: Zsummary range [8.89, 69.97]
-[2026-11-01T20:46:56] lith draw 18/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T20:53:44] lith draw 18/20 done: Zsummary range [9.37, 60.49]
-[2026-11-01T20:53:44] lith draw 19/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:00:27] lith draw 19/20 done: Zsummary range [10.4, 66.51]
-[2026-11-01T21:00:27] lith draw 20/20: subsampling bp_lith (n=74 from 152) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:07:10] lith draw 20/20 done: Zsummary range [10.26, 88]
-[2026-11-01T21:07:10] ctrl draw 1/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:13:54] ctrl draw 1/20 done: Zsummary range [4.9, 51.53]
-[2026-11-01T21:13:54] ctrl draw 2/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:20:38] ctrl draw 2/20 done: Zsummary range [6.02, 58.28]
-[2026-11-01T21:20:38] ctrl draw 3/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:27:20] ctrl draw 3/20 done: Zsummary range [5.74, 59.78]
-[2026-11-01T21:27:21] ctrl draw 4/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:34:04] ctrl draw 4/20 done: Zsummary range [6.46, 56.57]
-[2026-11-01T21:34:04] ctrl draw 5/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:40:47] ctrl draw 5/20 done: Zsummary range [6.19, 56.57]
-[2026-11-01T21:40:47] ctrl draw 6/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:47:30] ctrl draw 6/20 done: Zsummary range [4.21, 60.62]
-[2026-11-01T21:47:31] ctrl draw 7/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T21:54:15] ctrl draw 7/20 done: Zsummary range [4.93, 58.74]
-[2026-11-01T21:54:15] ctrl draw 8/20: subsampling control (n=74 from 234) ...
-      ..checking data for excessive amounts of missing data..
-      ..calculating observed preservation values
-      ..calculating permutation Z scores
-     ..Working with set 1 as reference set
-[2026-11-01T22:02:15] ctrl draw 8/20 done: Zsummary range [5.23, 51.72]
-[2026-11-01T22:02:16] ctrl draw 9/20: subsampling control (n=74 from 234) ...
+[2026-11-02T00:25:32] ctrl draw 10/20 done: Zsummary range [5.87, 56.5]
+[2026-11-02T00:25:32] ctrl draw 11/20: subsampling control (n=74 from 234) ...
       ..checking data for excessive amounts of missing data..
       ..calculating observed preservation values
       ..calculating permutation Z scores
