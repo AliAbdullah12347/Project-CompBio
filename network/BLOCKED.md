@@ -788,3 +788,27 @@ DONE count has been stuck at 17 across 3 wake-ups (~15 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-11-03T08:26:16Z  ref-004  hit 10800s cap; partial results kept; +3 new checkpoints (attempt refunded)
+```
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-03T03:04:04] bp_nolith done: Zsummary [10.5, 90.81]
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  2408071 128.7    4385348 234.3         NA  4041220 215.9
+Vcells 18920659 144.4   56545818 431.5      16384 73544033 561.1
+[2026-11-03T03:04:04] lith draw 1/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-03T03:16:09] lith draw 1 done: Zsummary [9.2, 83.06]
+[2026-11-03T03:16:09] lith draw 2/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
