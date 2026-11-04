@@ -1,3 +1,4 @@
 === ref-004 (family=reference, cap=10800s) at 2026-11-03T05:26:12Z ===
 network/run_next.sh: line 331: 66090 Terminated: 15          Rscript "$SCRIPT" "$ID" > "$OUTDIR/log.txt" 2>&1
 === ref-004 -> PARTIAL (10804s) ===
+PULL --REBASE FAILED rc=1
