@@ -823,3 +823,8 @@ No wake recorded for 40h (last: 2026-11-03T05:26:04Z) and no session, driver or 
 The watchdog kickstarted `com.aaylab.networkarm`. If this entry repeats, the scheduler is not
 firing on its own and the launchd configuration needs a human.
 
+## 2026-11-04T21:36:13Z  NO PROGRESS IN 3 CONSECUTIVE SESSIONS
+DONE count has been stuck at 18 across 3 wake-ups (~15 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+

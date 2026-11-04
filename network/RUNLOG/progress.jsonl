@@ -121,3 +121,4 @@
 {"ts":"2026-11-03T05:26:12Z","run_id":"ref-004","phase":"run","pct":5,"msg":"starting network/experiments/ref-004.R cap=10800s"}
 {"ts":"2026-11-03T08:26:16Z","run_id":"ref-004","phase":"progress","pct":50,"msg":"3 new non-empty checkpoints"}
 {"ts":"2026-11-03T08:26:16Z","run_id":"ref-004","phase":"done","pct":100,"msg":"ref-004 PARTIAL 10804s"}
+{"ts":"2026-11-04T21:35:08Z","run_id":"ref-004","phase":"run","pct":5,"msg":"starting network/experiments/ref-004.R cap=10800s"}
