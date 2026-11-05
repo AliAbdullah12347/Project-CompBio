@@ -904,3 +904,8 @@ DONE count has been stuck at 18 across 4 wake-ups (~20 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-11-05T09:35:00Z  SCHEDULER STALL DETECTED AND RECOVERED
+No wake recorded for 6h (last: 2026-11-05T03:35:00Z) and no session, driver or experiment running.
+The watchdog kickstarted `com.aaylab.networkarm`. If this entry repeats, the scheduler is not
+firing on its own and the launchd configuration needs a human.
+
