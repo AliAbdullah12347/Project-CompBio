@@ -1,0 +1,79 @@
+# Bipolar-status contest: 375 work items across six workers.
+#
+#   225 real-label runs   3 cohorts x 75 splits, 4 feature sets x 2 models
+#   150 permutation runs  primary cohort, 50 label permutations x 3 folds
+#
+# Design and the reasoning behind every cohort decision: BPD_DESIGN.md.
+#
+# No PersistentVolumeClaim. The inputs total 15 MB, so each pod pulls its own
+# copy from S3 into an emptyDir -- scratch volumes here are reaped with their
+# claim, and at this size a shared volume buys nothing but a failure mode.
+# Results go back to S3 after each item, so an interrupted worker loses at most
+# one item and a re-run resumes from what is already in the bucket.
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: prediction-bpd
+  namespace: user-aabdullah
+spec:
+  ttlSecondsAfterFinished: 604800   # 7 days, the maximum the policy allows
+  minAvailable: 1
+  schedulerName: volcano
+  queue: cpu
+  tasks:
+    - replicas: 6
+      name: worker
+      template:
+        metadata:
+          name: prediction-bpd
+        spec:
+          restartPolicy: Never
+          activeDeadlineSeconds: 86400
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+            - name: worker
+              image: bioconductor/bioconductor_docker:RELEASE_3_20
+              imagePullPolicy: IfNotPresent
+              command: ["/bin/sh", "/cfg/12_worker.sh"]
+              envFrom:
+                - secretRef:
+                    name: s3-credentials
+              env:
+                - name: S3_BUCKET
+                  value: aabdullah-lithium-bipolar-project-fall-2026
+                - name: NW
+                  value: "6"
+                # glmnet and randomForest are single-threaded, so the
+                # parallelism is six concurrent workers rather than threads
+                # inside one. Pinning BLAS to 2 stops six pods each spawning a
+                # thread per core on a 32-core node and thrashing.
+                - name: OMP_NUM_THREADS
+                  value: "2"
+                - name: OPENBLAS_NUM_THREADS
+                  value: "2"
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
+              resources:
+                requests:
+                  cpu: "1"
+                  memory: "6Gi"
+                limits:
+                  cpu: "2"          # 6 x 2 = 12 CPU, under the 16-per-job cap
+                  memory: "12Gi"
+              volumeMounts:
+                - { name: cfg,  mountPath: /cfg }
+                - { name: work, mountPath: /work }
+          volumes:
+            - name: cfg
+              configMap:
+                name: prediction-bpd-scripts
+            - name: work
+              emptyDir: {}
