@@ -22,3 +22,80 @@ load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[2026-11-05T02:44:19] draw 12/20 done: Zsummary range [12.78, 78.47]
+[2026-11-05T02:44:19] draw 13/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T02:55:26] draw 13/20 done: Zsummary range [11.53, 83.78]
+[2026-11-05T02:55:26] draw 14/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T03:06:36] draw 14/20 done: Zsummary range [11.19, 77.52]
+[2026-11-05T03:06:36] draw 15/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T03:17:45] draw 15/20 done: Zsummary range [12.55, 90.73]
+[2026-11-05T03:17:46] draw 16/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T03:28:49] draw 16/20 done: Zsummary range [10.86, 94.2]
+[2026-11-05T03:28:49] draw 17/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T03:39:55] draw 17/20 done: Zsummary range [10.93, 77.06]
+[2026-11-05T03:39:55] draw 18/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T03:51:07] draw 18/20 done: Zsummary range [11.38, 83.95]
+[2026-11-05T03:51:07] draw 19/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T04:02:35] draw 19/20 done: Zsummary range [11.14, 86.9]
+[2026-11-05T04:02:35] draw 20/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T04:13:47] draw 20/20 done: Zsummary range [12.08, 66.9]
+[2026-11-05T04:13:47] all draws complete; aggregating results ...
+[2026-11-05T04:13:47] 
+--- bp_nolith Zsummary (50 perms, descriptive only) ---
+      module Zsummary_point medianRank_point
+  lightgreen       75.92054                7
+        pink       65.89047               18
+      yellow       63.70261               32
+       brown       63.14389               39
+      grey60       62.79034                4
+ greenyellow       55.93369               33
+   lightcyan       54.88825               16
+ lightyellow       53.52114               13
+   turquoise       50.51740               57
+         red       50.24807               38
+[2026-11-05T04:13:47] 
+--- bp_lith Zsummary_mean across 20 draws (top 10, descriptive only) ---
+    module Zsummary_mean Zsummary_sd medianRank_mean
+      pink      76.52619    8.567154           10.90
+     brown      74.53003    8.575868           28.35
+    yellow      60.20383   11.472221           32.60
+    grey60      55.56525    8.026820           10.60
+       red      55.38337   10.247011           31.15
+ turquoise      53.08902    4.795428           62.00
+    salmon      51.85482    5.702898           17.90
+       tan      51.79854    9.744147           20.60
+   magenta      51.71866    5.537172           31.40
+ lightcyan      50.80675    6.039082           20.95
+[2026-11-05T04:13:47] === corr-005 COMPLETE ===

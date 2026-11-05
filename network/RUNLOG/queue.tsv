@@ -19,7 +19,7 @@ ann-042	annot	DONE	1	2026-11-01T22:34:54Z	2026-11-01T22:34:59Z	5	completed in 5s
 ref-002	reference	BLOCKED	3	2026-11-02T05:11:16Z		0	dead RUNNING after 3 attempts, no progress	10800	ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 ref-003	reference	DONE	3	2026-11-02T20:05:09Z	2026-11-02T20:50:29Z	2719	completed in 2719s	10800	ref=bp_lith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 ref-004	reference	BLOCKED	3	2026-11-05T03:35:09Z	2026-11-05T00:35:13Z	10804	dead RUNNING after 3 attempts, no progress	10800	ref=consensus(all3);corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
-corr-005	corr	RUNNING	2	2026-11-05T07:33:10Z	2026-11-05T06:56:31Z	10802	requeued from PARTIAL (attempt 1)	10800	ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
+corr-005	corr	DONE	2	2026-11-05T07:33:10Z	2026-11-05T09:13:47Z	6037	completed in 6037s	10800	ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 corr-006	corr	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=control;corr=spearman;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 net-007	nettype	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=control;corr=bicor;net=unsigned;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
 net-008	nettype	PENDING	0			0	reset for offsetrm rebuild 20261018T211633Z	10800	ref=control;corr=bicor;net=signed_hybrid;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions)
