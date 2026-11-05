@@ -1,0 +1,108 @@
+# Volcano job: group-specific co-expression networks for Arm 3.
+#
+# Submit:  KUBECONFIG=./kubeconfig-user-aabdullah.yaml \
+#            kubectl create --dry-run=server -f network/cluster/grp-051-job.yaml   # check
+#          KUBECONFIG=./kubeconfig-user-aabdullah.yaml \
+#            kubectl create -f network/cluster/grp-051-job.yaml                    # run
+#
+# Inputs come from the public GitHub repo (sparse checkout, ~60 MB), so the job
+# needs no pre-staged data. Results go to S3, because a pod's own files and
+# logs are deleted a minute after it finishes.
+#
+# 24 CPU limit and the analysis is told to use all 24 — WGCNA parallelises the
+# correlation matrix, which is where nearly all the time goes. A single network
+# took 1,934 s on 7 threads locally; 25 of them single-threaded would not finish.
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: grp-051-networks
+spec:
+  queue: cpu
+  ttlSecondsAfterFinished: 604800
+  tasks:
+    - name: main
+      replicas: 1
+      template:
+        spec:
+          restartPolicy: Never
+          activeDeadlineSeconds: 43200        # 12 h; the analysis is ~5 h
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            seccompProfile: {type: RuntimeDefault}
+          volumes:
+            - name: work
+              emptyDir: {sizeLimit: 18Gi}
+            - name: s3-ca
+              configMap: {name: s3-ca}
+          containers:
+            - name: main
+              image: bioconductor/bioconductor_docker:RELEASE_3_20
+              workingDir: /work
+              envFrom: [{secretRef: {name: s3-credentials}}]
+              env:
+                - {name: HOME,          value: /work}
+                - {name: R_LIBS_USER,   value: /work/rlibs}
+                - {name: AWS_CA_BUNDLE, value: /etc/s3-ca/ca-bundle.pem}
+                - {name: GRP_THREADS,   value: "24"}
+                - {name: GRP_DRAWS,     value: "8"}
+                - {name: GRP_OUT,       value: /work/out}
+                - {name: BUCKET,        value: aabdullah-lithium-bipolar-project-fall-2026}
+                - {name: PREFIX,        value: network/grp-051}
+              volumeMounts:
+                - {name: work,  mountPath: /work}
+                - {name: s3-ca, mountPath: /etc/s3-ca, readOnly: true}
+              resources:
+                requests: {cpu: "8",  memory: 32Gi}
+                limits:   {cpu: "24", memory: 64Gi}
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities: {drop: [ALL]}
+              command: ["bash", "-lc"]
+              args:
+                - |
+                  set -euo pipefail
+                  mkdir -p /work/rlibs /work/out
+                  LOG=/work/out/run.log
+                  exec > >(tee -a "$LOG") 2>&1
+                  echo "== $(date -u) start =="
+
+                  up () {   # up <localfile> <s3key>
+                    curl --fail --silent --show-error --retry 3 \
+                      --cacert /etc/s3-ca/ca-bundle.pem \
+                      --aws-sigv4 "aws:amz:${AWS_REGION}:s3" \
+                      --user "${AWS_ACCESS_KEY_ID}:${AWS_SECRET_ACCESS_KEY}" \
+                      -H "Content-Type: application/octet-stream" \
+                      -T "$1" "${AWS_ENDPOINT_URL}/${BUCKET}/${PREFIX}/$2"
+                  }
+                  # upload the log even if something below fails, so a failure
+                  # is diagnosable after the pod is gone
+                  trap 'up "$LOG" run.log || true' EXIT
+
+                  echo "== sparse checkout =="
+                  git clone --filter=blob:none --no-checkout --depth 1 \
+                    https://github.com/AliAbdullah12347/Project-CompBio.git /work/repo
+                  cd /work/repo
+                  git sparse-checkout init --no-cone
+                  git sparse-checkout set \
+                    "/data/analysis_matrices/*" "/data/LM22.txt" \
+                    "/de_analysis/data/*" "/network/*" \
+                    "/de_v2/scripts/*" "/de_final/results/*"
+                  git checkout
+                  du -sh /work/repo
+
+                  echo "== R packages =="
+                  Rscript -e 'options(Ncpus=16); if (!requireNamespace("WGCNA",quietly=TRUE)) BiocManager::install(c("WGCNA","impute","preprocessCore","GO.db","AnnotationDbi","org.Hs.eg.db"), ask=FALSE, update=FALSE)'
+                  Rscript -e 'for (p in c("WGCNA","GO.db","org.Hs.eg.db","AnnotationDbi")) cat(sprintf("%-14s %s\n", p, requireNamespace(p, quietly=TRUE)))'
+
+                  echo "== analysis =="
+                  nproc
+                  Rscript network/experiments/grp-051.R
+
+                  echo "== upload =="
+                  cd /work/out
+                  tar czf /work/grp-051-results.tar.gz --exclude=ck .
+                  ls -la /work/grp-051-results.tar.gz
+                  up /work/grp-051-results.tar.gz results.tar.gz
+                  for f in *.csv; do [ -f "$f" ] && up "$f" "csv/$f"; done
+                  echo "== $(date -u) done =="
