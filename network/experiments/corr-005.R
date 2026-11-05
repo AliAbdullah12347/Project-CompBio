@@ -49,7 +49,8 @@ for (d_ in c(run_dir, cfg_dir, cache_dir))
 POWER          <- 12L
 POWER_MIN      <-  4L        # guard: reject auto-selected power < 4
 NET_TYPE       <- "signed"
-COR_FNC        <- "pearson"
+COR_FNC        <- "cor"       # corFnc for Pearson (match.fun target)
+COR_TYPE       <- "pearson"  # blockwiseModules corType
 GENE_SET       <- "all"
 REF_GROUP      <- "control"
 MIN_MODULE     <- 30L
@@ -181,7 +182,7 @@ if (ref_cache_ok(ref_cache)) {
     power          = POWER,
     networkType    = NET_TYPE,
     TOMType        = NET_TYPE,
-    corType        = COR_FNC,
+    corType        = COR_TYPE,
     deepSplit      = DEEP_SPLIT,
     minModuleSize  = MIN_MODULE,
     mergeCutHeight = MERGE_THRESH,

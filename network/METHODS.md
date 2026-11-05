@@ -2490,3 +2490,6 @@ My background launch was stopped at the 2 h tool maximum (ref-002 cap is 3 h). N
 
 ## 2026-11-02 — ref-003 DONE
 bp_lith (152) reference, 77 modules; nolith 50 perms (not 500 as the script header says; reduced per 2026-10-26 entry), control 20 draws x 50 perms. Gold last in both test groups. Scored 18/25, Interest 4/10 (finding 2026-11-02-ref003-bplith-reference). Breadth chosen over precision (20 draws). ref-002 remains BLOCKED by the driver retry counter despite checkpoints; not edited by hand.
+
+## 2026-11-05 — corr-005 script fix (before any result computed)
+First launch failed in 3 s: `corFnc="pearson"` is not a function for `pickSoftThreshold`/`modulePreservation` (match.fun). Pearson is `corFnc="cor"`; `blockwiseModules` keeps `corType="pearson"`. Split into COR_FNC="cor" and COR_TYPE="pearson". Parameters, seed and spec unchanged; no results existed. Also: `setsid` is absent on macOS; detach long runs with `(nohup bash ... &)`.

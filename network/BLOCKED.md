@@ -872,3 +872,6 @@ Calls: pickSoftThreshold -> match.fun -> get
 Execution halted
 ```
 
+
+## 2026-11-05 — ref-004 marked BLOCKED by driver
+Driver: "dead RUNNING after 3 attempts, no progress". Cause: a foreground tool timeout killed the run mid-attempt, which counted as a dead attempt; ref-004 had earlier hit the 10800 s cap twice (checkpoints kept in network/runs/ref-004). Not a scientific failure. Revisit by resetting the row if time allows.
