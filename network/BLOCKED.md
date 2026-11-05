@@ -858,3 +858,17 @@ No wake recorded for 6h (last: 2026-11-04T21:35:00Z) and no session, driver or e
 The watchdog kickstarted `com.aaylab.networkarm`. If this entry repeats, the scheduler is not
 firing on its own and the launchd configuration needs a human.
 
+## 2026-11-05T03:55:40Z  corr-005  exit 1 after 3s; see log.txt
+```
+[2026-11-04T22:55:37] === corr-005 starting ===
+[2026-11-04T22:55:37] config written: network/config/corr-005.json
+Allowing parallel execution with up to 3 working processes.
+[2026-11-04T22:55:39] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-11-04T22:55:39] pickSoftThreshold scan (powers 1:20) ...
+Error in get(as.character(FUN), mode = "function", envir = envir) : 
+  object 'pearson' of mode 'function' was not found
+Calls: pickSoftThreshold -> match.fun -> get
+Execution halted
+```
+

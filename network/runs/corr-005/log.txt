@@ -1,0 +1,10 @@
+[2026-11-04T22:55:37] === corr-005 starting ===
+[2026-11-04T22:55:37] config written: network/config/corr-005.json
+Allowing parallel execution with up to 3 working processes.
+[2026-11-04T22:55:39] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-11-04T22:55:39] pickSoftThreshold scan (powers 1:20) ...
+Error in get(as.character(FUN), mode = "function", envir = envir) : 
+  object 'pearson' of mode 'function' was not found
+Calls: pickSoftThreshold -> match.fun -> get
+Execution halted
