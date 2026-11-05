@@ -875,3 +875,27 @@ Execution halted
 
 ## 2026-11-05 — ref-004 marked BLOCKED by driver
 Driver: "dead RUNNING after 3 attempts, no progress". Cause: a foreground tool timeout killed the run mid-attempt, which counted as a dead attempt; ref-004 had earlier hit the 10800 s cap twice (checkpoints kept in network/runs/ref-004). Not a scientific failure. Revisit by resetting the row if time allows.
+## 2026-11-05T06:56:31Z  corr-005  hit 10800s cap; partial results kept; +14 new checkpoints (attempt refunded)
+```
+     ..Working with set 1 as reference set
+[2026-11-05T01:29:32] draw 9/20 done: Zsummary range [12.77, 80.86]
+[2026-11-05T01:29:32] draw 10/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T01:40:29] draw 10/20 done: Zsummary range [10.02, 83.24]
+[2026-11-05T01:40:29] draw 11/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-05T01:51:27] draw 11/20 done: Zsummary range [11.36, 69.3]
+[2026-11-05T01:51:27] draw 12/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
