@@ -78,3 +78,7 @@ venv/
 
 # Network arm scratch cache (rebuilt by network/00_load.R in ~40 s)
 network/cache/
+
+# credentials -- never commit
+.env
+kubeconfig-*.yaml

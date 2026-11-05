@@ -1,0 +1,11 @@
+# Derived data: large, reproducible, and kept durably in S3 instead.
+cache/
+results/splits/
+results/fractions/
+results/bpd/
+worklist_bpd.csv
+
+# Never commit credentials.
+.env
+secret.yaml
+kubeconfig-*.yaml
