@@ -899,3 +899,8 @@ Driver: "dead RUNNING after 3 attempts, no progress". Cause: a foreground tool t
 CAP EXCEEDED after 10800s
 ```
 
+## 2026-11-05T07:35:01Z  NO PROGRESS IN 4 CONSECUTIVE SESSIONS
+DONE count has been stuck at 18 across 4 wake-ups (~20 h).
+The scheduler and sessions are running, but nothing is completing.
+Check the newest entries above and `network/RUNLOG/progress.jsonl`.
+
