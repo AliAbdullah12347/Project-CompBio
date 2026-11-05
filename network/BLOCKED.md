@@ -828,3 +828,22 @@ DONE count has been stuck at 18 across 3 wake-ups (~15 h).
 The scheduler and sessions are running, but nothing is completing.
 Check the newest entries above and `network/RUNLOG/progress.jsonl`.
 
+## 2026-11-05T00:35:13Z  ref-004  hit 10800s cap; partial results kept; +15 new checkpoints (attempt refunded)
+```
+[2026-11-04T16:35:10] === ref-004 starting ===
+Allowing parallel execution with up to 3 working processes.
+[2026-11-04T16:35:15] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /Users/Aaylab/Project-CompBio/network/cache/project.rds
+[2026-11-04T16:35:16] loading cached consensus modules: network/cache/ref_consensus_all3_bicor_signed_p12_ds4_mch00_offsetrm.rds
+[2026-11-04T16:35:16] 81 consensus modules loaded
+[2026-11-04T16:35:16] control preservation checkpoint exists, skipping
+[2026-11-04T16:35:16] bp_nolith checkpoint exists, skipping
+[2026-11-04T16:35:16] lith draw 1 exists, skipping
+[2026-11-04T16:35:16] lith draw 2/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+CAP EXCEEDED after 10800s
+```
+
