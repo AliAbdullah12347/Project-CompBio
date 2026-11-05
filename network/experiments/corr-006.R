@@ -49,7 +49,7 @@ for (d_ in c(run_dir, cfg_dir, cache_dir))
 POWER          <- 12L
 POWER_MIN      <-  4L        # guard: reject auto-selected power < 4
 NET_TYPE       <- "signed"
-COR_FNC        <- "spearman"
+COR_FNC        <- "cor"   # Spearman = Pearson on within-dataset column ranks (rk() below); WGCNA has no "spearman" corFnc
 GENE_SET       <- "all"
 REF_GROUP      <- "control"
 MIN_MODULE     <- 30L
@@ -128,6 +128,7 @@ msg("WGCNA ", as.character(packageVersion("WGCNA")), " loaded; threads enabled")
 
 # ---------- 5. Data ----------------------------------------------------------
 source("network/00_load.R")
+rk <- function(m) { r <- apply(m, 2, rank); dimnames(r) <- dimnames(m); r }  # per-gene ranks across samples
 d <- load_project()   # stops loudly if shape is wrong; verified facts checked inside
 
 # ---------- 6. Scale-free topology scan (R2 curve is itself a result) --------
@@ -137,7 +138,7 @@ if (!file.exists(r2_path)) {
   set.seed(SEED_BASE)
   tmp_ref <- expr_for(d, group = REF_GROUP)   # 234 x 12368
   sft <- pickSoftThreshold(
-    tmp_ref,
+    rk(tmp_ref),
     powerVector = 1:20,
     networkType = NET_TYPE,
     corFnc      = COR_FNC,
@@ -177,11 +178,11 @@ if (ref_cache_ok(ref_cache)) {
   # Read the matrix, not its label: a cache key records intent only.
   assert_expr_mode(tmp_ref, d, EXPR_MODE, "corr-006 reference")
   bwm <- blockwiseModules(
-    tmp_ref,
+    rk(tmp_ref),
     power          = POWER,
     networkType    = NET_TYPE,
     TOMType        = NET_TYPE,
-    corType        = COR_FNC,
+    corType        = "pearson",
     deepSplit      = DEEP_SPLIT,
     minModuleSize  = MIN_MODULE,
     mergeCutHeight = MERGE_THRESH,
@@ -216,7 +217,7 @@ if (ref_cache_ok(ref_cache)) {
 }
 
 # refExpr is needed by every modulePreservation call — build once here.
-refExpr <- expr_for(d, group = REF_GROUP)   # 234 x 12368
+refExpr <- rk(expr_for(d, group = REF_GROUP))   # ranked; 234 x 12368
 
 # ---------- Helper: extract Zsummary + medianRank from modulePreservation ----
 # Returns a data.frame with columns: module, Zsummary, medianRank.
@@ -241,7 +242,7 @@ extract_mp <- function(mp) {
 nolith_ckpt <- file.path(run_dir, "nolith_preservation.rds")
 if (!file.exists(nolith_ckpt)) {
   msg("bp_nolith preservation: 500 perms (fixed test set, no subsampling) ...")
-  nolithExpr <- expr_for(d, group = "bp_nolith")   # 74 x 12368
+  nolithExpr <- rk(expr_for(d, group = "bp_nolith"))   # 74 x 12368
   perm_file  <- file.path(run_dir, "permStats_nolith.RData")
   mp_nolith  <- modulePreservation(
     multiData = list(
@@ -288,7 +289,7 @@ for (draw in seq_len(DRAWS)) {
   msg("draw ", draw, "/", DRAWS, ": subsampling bp_lith (n=", SUBSAMPLE_N, " from 152) ...")
   set.seed(SEED_BASE + draw)
   sel_sids <- sample(lith_sids, SUBSAMPLE_N, replace = FALSE)
-  testExpr <- expr_samples(d, sel_sids)   # 74 x 12368
+  testExpr <- rk(expr_samples(d, sel_sids))   # 74 x 12368
 
   perm_file <- file.path(run_dir, sprintf("permStats_lith_draw_%03d.RData", draw))
 

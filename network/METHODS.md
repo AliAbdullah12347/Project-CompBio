@@ -2493,3 +2493,6 @@ bp_lith (152) reference, 77 modules; nolith 50 perms (not 500 as the script head
 
 ## 2026-11-05 — corr-005 script fix (before any result computed)
 First launch failed in 3 s: `corFnc="pearson"` is not a function for `pickSoftThreshold`/`modulePreservation` (match.fun). Pearson is `corFnc="cor"`; `blockwiseModules` keeps `corType="pearson"`. Split into COR_FNC="cor" and COR_TYPE="pearson". Parameters, seed and spec unchanged; no results existed. Also: `setsid` is absent on macOS; detach long runs with `(nohup bash ... &)`.
+
+## 2026-11-05 — corr-006 script fix (Spearman)
+First attempt failed in 5 s: `corFnc="spearman"` is not a function WGCNA can resolve. Spearman is now implemented as Pearson (`cor`) on per-gene ranks across samples, ranked within each dataset (reference, nolith, each draw's 74-sample test set); `blockwiseModules` uses `corType="pearson"`. Spec, draw count and seeds unchanged. Row is PARTIAL with no results, so no scores affected.
