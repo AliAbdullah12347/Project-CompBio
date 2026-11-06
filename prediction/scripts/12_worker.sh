@@ -28,7 +28,7 @@ python3 /cfg/s3.py get "$IN/bpd_inputs.rds"              "$W/prediction/cache/bp
 python3 /cfg/s3.py get "$IN/splits_bpd_groupA.csv"       "$W/prediction/splits/splits_bpd_groupA.csv"
 python3 /cfg/s3.py get "$IN/splits_bpd_full.csv"         "$W/prediction/splits/splits_bpd_full.csv"
 python3 /cfg/s3.py get "$IN/splits_bpd_groupA_plate.csv" "$W/prediction/splits/splits_bpd_groupA_plate.csv"
-python3 /cfg/s3.py get "$IN/worklist_bpd.csv"            "$W/worklist.csv"
+python3 /cfg/s3.py get "$IN/worklist_bpd.tsv"            "$W/worklist.tsv"
 python3 /cfg/s3.py get "$IN/11_run_bpd_split.R"          "$W/scripts/11_run_bpd_split.R"
 
 echo "=== R packages ==="
@@ -49,25 +49,36 @@ Rscript -e '
   for (p in need) cat(sprintf("  %-14s %s\n", p, requireNamespace(p, quietly=TRUE)))
 ' 2>&1 | tail -6
 
+echo "=== items already in S3 (skipped) ==="
+python3 /cfg/s3.py ls prediction/bpd/results/ > "$W/done.txt" 2>/dev/null || : > "$W/done.txt"
+echo "  $(wc -l < "$W/done.txt") already present"
+
 echo "=== work items ==="
 N=0
 DONE=0
+# Tab-separated, and IFS is a literal tab: the models and features fields
+# contain commas, and splitting on comma tore "enet,rf" into two fields -- the
+# whole first cluster run produced zero-row files that way.
+TAB=$(printf '	')
 # Skip the header, then take every NWth row.
-tail -n +2 "$W/worklist.csv" | while IFS=, read -r COHORT PERM SPLIT MODELS FEATURES; do
+tail -n +2 "$W/worklist.tsv" | while IFS="$TAB" read -r COHORT PERM SPLIT MODELS FEATURES; do
   N=$((N + 1))
   [ $(( (N - 1) % NW )) -eq "$IDX" ] || continue
   KEY="prediction/bpd/results/${COHORT}_perm$(printf '%02d' "$PERM")_split$(printf '%03d' "$SPLIT").csv"
   OUT="$W/prediction/results/bpd/$(basename "$KEY")"
+  if grep -qx "$KEY" "$W/done.txt" 2>/dev/null; then
+    echo "--- item $N: $KEY already in S3, skipping ---"; continue
+  fi
   echo "--- item $N: $COHORT perm=$PERM split=$SPLIT [$MODELS / $FEATURES] ---"
   if Rscript "$W/scripts/11_run_bpd_split.R" \
        --split "$SPLIT" --cohort "$COHORT" --perm "$PERM" \
        --models "$MODELS" --features "$FEATURES" \
        --impl "$W" --outdir "$W/prediction/results/bpd" 2>&1 | grep -vE "^Loading|^Warning|built under"; then
-    if [ -s "$OUT" ]; then
+    if [ -s "$OUT" ] && [ "$(wc -l < "$OUT")" -gt 1 ]; then
       python3 /cfg/s3.py put "$OUT" "$KEY" >/dev/null && echo "    -> $KEY"
       DONE=$((DONE + 1))
     else
-      echo "    !! no output file produced"
+      echo "    !! no usable output ($(wc -l < "$OUT" 2>/dev/null || echo 0) lines); not uploading"
     fi
   else
     echo "    !! item failed, continuing"

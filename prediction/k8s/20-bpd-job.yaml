@@ -18,6 +18,7 @@ metadata:
 spec:
   ttlSecondsAfterFinished: 604800   # 7 days, the maximum the policy allows
   minAvailable: 1
+  maxRetry: 20            # quota held by another job is transient, not fatal
   schedulerName: volcano
   queue: cpu
   tasks:
@@ -62,12 +63,18 @@ spec:
                 capabilities:
                   drop: ["ALL"]
               resources:
+                # Sized against the namespace quota, which binds on memory
+                # rather than CPU: hard caps are 8 requests.cpu, 24 limits.cpu,
+                # 32Gi requests.memory, 64Gi limits.memory. Six workers:
+                #   cpu     6x1  = 6  <= 8     6x2  = 12 <= 24
+                #   memory  6x5  = 30 <= 32    6x10 = 60 <= 64
+                # Peak usage per worker is ~2Gi, so this is comfortable.
                 requests:
                   cpu: "1"
-                  memory: "6Gi"
+                  memory: "5Gi"
                 limits:
-                  cpu: "2"          # 6 x 2 = 12 CPU, under the 16-per-job cap
-                  memory: "12Gi"
+                  cpu: "2"
+                  memory: "10Gi"
               volumeMounts:
                 - { name: cfg,  mountPath: /cfg }
                 - { name: work, mountPath: /work }

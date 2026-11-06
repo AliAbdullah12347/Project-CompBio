@@ -31,7 +31,7 @@ impl    <- getarg("impl", "..")
 OUTDIR  <- getarg("outdir", file.path(impl, "prediction/results/bpd"))
 MODELS  <- strsplit(getarg("models", "enet,rf"), ",")[[1]]
 FEATSEL <- getarg("features", "all")
-stopifnot(!is.na(SPLIT), COHORT %in% c("groupA", "full"))
+stopifnot(!is.na(SPLIT), COHORT %in% c("groupA", "full", "groupA_plate"))
 
 MIN_COUNT <- 10
 MIN_PROP  <- 0.90
