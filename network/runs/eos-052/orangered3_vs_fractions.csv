@@ -1,0 +1,6 @@
+"cell_type","spearman_r","p"
+"Eosinophils",0.295,1.13924160071726e-10
+"Mast cells resting",0.148,0.00150762162677282
+"Neutrophils",-0.036,0.447431972481892
+"Monocytes",0.153,0.000994374360339237
+"neutrophil share of granulocytes",-0.21,5.32905837233491e-06

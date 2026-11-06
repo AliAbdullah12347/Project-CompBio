@@ -1,0 +1,7 @@
+"model","li_beta","li_p","pct_attenuation"
+"lithium only",0.0245,0.000143251478272633,0
+"+ 5-lineage ILR (grp-051b)",0.02527,8.58259422678072e-05,-3.1
+"+ mast/basophil fraction",0.02524,6.05963313050567e-05,-3
+"+ eosinophils detected",0.02118,0.000380544607081546,13.6
+"+ neutrophil share of granulocytes",0.02259,0.000251063499562572,7.8
+"+ all three",0.02083,0.000353952800767375,15

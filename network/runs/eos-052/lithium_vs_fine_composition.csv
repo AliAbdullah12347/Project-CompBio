@@ -1,0 +1,6 @@
+"measure","test","beta","p","padj"
+"Neutrophils","lm, adj dx+age+sex+rin+plate",0.0426139625177347,0.00014472942590211,0.000723647129510552
+"Mast cells resting","lm, adj dx+age+sex+rin+plate",0.00186920656604337,0.108345838931765,0.270864597329412
+"Monocytes","lm, adj dx+age+sex+rin+plate",-0.00873763302278881,0.167258526631412,0.278764211052354
+"Eosinophils detected (yes/no)","logistic, adj dx+age+sex+rin+plate",0.0884273842579983,0.832795627873665,0.832795627873665
+"neutrophil share of granulocytes","lm, adj dx+age+sex+rin+plate",0.000987252741332084,0.823655760999714,0.832795627873665
