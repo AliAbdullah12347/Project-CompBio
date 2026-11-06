@@ -1,0 +1,33 @@
+"contrast","A","B","n_modules_A","n_modules_B","ARI","median_jaccard","frac_j50","frac_j25"
+"ceiling: control vs control","control_A_01","control_B_01",69,64,0.2881,0.182,0.058,0.333
+"bipolar: control vs bp_nolith","control_A_01","bp_nolith",69,83,0.1811,0.147,0.043,0.145
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_01",83,78,0.2254,0.172,0.036,0.12
+"control vs bp_lith","control_A_01","bp_lith_01",69,78,0.251,0.17,0.058,0.246
+"ceiling: control vs control","control_A_02","control_B_02",75,68,0.2869,0.162,0.053,0.2
+"bipolar: control vs bp_nolith","control_A_02","bp_nolith",75,83,0.2009,0.188,0.04,0.187
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_02",83,69,0.2282,0.158,0.036,0.193
+"control vs bp_lith","control_A_02","bp_lith_02",75,69,0.2242,0.153,0.053,0.173
+"ceiling: control vs control","control_A_03","control_B_03",84,66,0.2406,0.169,0.06,0.262
+"bipolar: control vs bp_nolith","control_A_03","bp_nolith",84,83,0.1961,0.142,0.036,0.095
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_03",83,88,0.2291,0.176,0.036,0.241
+"control vs bp_lith","control_A_03","bp_lith_03",84,88,0.2524,0.155,0.071,0.202
+"ceiling: control vs control","control_A_04","control_B_04",74,71,0.267,0.191,0.068,0.284
+"bipolar: control vs bp_nolith","control_A_04","bp_nolith",74,83,0.1762,0.146,0.041,0.149
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_04",83,84,0.236,0.177,0.036,0.193
+"control vs bp_lith","control_A_04","bp_lith_04",74,84,0.2281,0.14,0.054,0.162
+"ceiling: control vs control","control_A_05","control_B_05",66,82,0.2465,0.185,0.076,0.258
+"bipolar: control vs bp_nolith","control_A_05","bp_nolith",66,83,0.1745,0.158,0.061,0.136
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_05",83,79,0.2297,0.165,0.036,0.193
+"control vs bp_lith","control_A_05","bp_lith_05",66,79,0.18,0.163,0.061,0.152
+"ceiling: control vs control","control_A_06","control_B_06",62,57,0.2921,0.198,0.065,0.306
+"bipolar: control vs bp_nolith","control_A_06","bp_nolith",62,83,0.1793,0.179,0.048,0.258
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_06",83,82,0.2068,0.176,0.036,0.169
+"control vs bp_lith","control_A_06","bp_lith_06",62,82,0.243,0.165,0.048,0.242
+"ceiling: control vs control","control_A_07","control_B_07",59,71,0.267,0.21,0.085,0.22
+"bipolar: control vs bp_nolith","control_A_07","bp_nolith",59,83,0.1801,0.15,0.068,0.119
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_07",83,78,0.2249,0.176,0.048,0.217
+"control vs bp_lith","control_A_07","bp_lith_07",59,78,0.2051,0.171,0.102,0.153
+"ceiling: control vs control","control_A_08","control_B_08",76,67,0.2537,0.182,0.079,0.237
+"bipolar: control vs bp_nolith","control_A_08","bp_nolith",76,83,0.188,0.154,0.039,0.132
+"lithium: bp_nolith vs bp_lith","bp_nolith","bp_lith_08",83,78,0.2544,0.182,0.048,0.181
+"control vs bp_lith","control_A_08","bp_lith_08",76,78,0.2135,0.162,0.053,0.158

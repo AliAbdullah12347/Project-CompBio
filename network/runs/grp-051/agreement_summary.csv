@@ -1,0 +1,5 @@
+"contrast","n_comparisons","ARI_median","ARI_min","ARI_max","median_jaccard","frac_j50"
+"ceiling: control vs control",8,0.267,0.2406,0.2921,0.184,0.066
+"lithium: bp_nolith vs bp_lith",8,0.2286,0.2068,0.2544,0.176,0.036
+"control vs bp_lith",8,0.2262,0.18,0.2524,0.162,0.056
+"bipolar: control vs bp_nolith",8,0.1806,0.1745,0.2009,0.152,0.042

@@ -1,0 +1,492 @@
+== Thu Nov  5 09:09:40 PM UTC 2026 start ==
+== sparse checkout ==
+Cloning into '/work/repo'...
+Your branch is up to date with 'origin/main'.
+186M	/work/repo
+== R packages ==
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://p3m.dev/cran/__linux__/noble/latest
+Bioconductor version 3.20 (BiocManager 1.30.25), R 4.4.2 (2024-10-31)
+Installing package(s) 'WGCNA', 'impute', 'GO.db', 'AnnotationDbi',
+  'org.Hs.eg.db'
+also installing the dependencies ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘backports’, ‘zlibbioc’, ‘UCSC.utils’, ‘GenomeInfoDbData’, ‘isoband’, ‘S7’, ‘scales’, ‘checkmate’, ‘bit’, ‘XVector’, ‘GenomeInfoDb’, ‘ggplot2’, ‘gtable’, ‘gridExtra’, ‘data.table’, ‘htmlTable’, ‘viridisLite’, ‘colorspace’, ‘Formula’, ‘iterators’, ‘bit64’, ‘blob’, ‘httr’, ‘png’, ‘Biostrings’, ‘dynamicTreeCut’, ‘fastcluster’, ‘matrixStats’, ‘Hmisc’, ‘foreach’, ‘doParallel’, ‘BiocGenerics’, ‘Biobase’, ‘IRanges’, ‘DBI’, ‘RSQLite’, ‘S4Vectors’, ‘KEGGREST’
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/farver_2.1.2_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 1466588 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/labeling_0.4.3_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 60930 bytes (59 KB)
+==================================================
+downloaded 59 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/RColorBrewer_1.1-3_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 51813 bytes (50 KB)
+==================================================
+downloaded 50 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/backports_1.5.1.tar.gz'
+Content type 'binary/octet-stream' length 116094 bytes (113 KB)
+==================================================
+downloaded 113 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/zlibbioc_1.52.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 235529 bytes (230 KB)
+==================================================
+downloaded 230 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/UCSC.utils_1.2.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 293849 bytes (286 KB)
+==================================================
+downloaded 286 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/GenomeInfoDbData_1.2.13_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 12929455 bytes (12.3 MB)
+==================================================
+downloaded 12.3 MB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/isoband_0.3.0.tar.gz'
+Content type 'binary/octet-stream' length 1676969 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/S7_0.2.2.tar.gz'
+Content type 'binary/octet-stream' length 325706 bytes (318 KB)
+==================================================
+downloaded 318 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/scales_1.4.0.tar.gz'
+Content type 'binary/octet-stream' length 842727 bytes (822 KB)
+==================================================
+downloaded 822 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/checkmate_2.3.4.tar.gz'
+Content type 'binary/octet-stream' length 767637 bytes (749 KB)
+==================================================
+downloaded 749 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/bit_4.6.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 628098 bytes (613 KB)
+==================================================
+downloaded 613 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/XVector_0.46.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 755918 bytes (738 KB)
+==================================================
+downloaded 738 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/GenomeInfoDb_1.42.3_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 4176518 bytes (4.0 MB)
+==================================================
+downloaded 4.0 MB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/ggplot2_4.0.3.tar.gz'
+Content type 'binary/octet-stream' length 8450515 bytes (8.1 MB)
+==================================================
+downloaded 8.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/gtable_0.3.6_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 222621 bytes (217 KB)
+==================================================
+downloaded 217 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/gridExtra_2.3.1.tar.gz'
+Content type 'binary/octet-stream' length 524577 bytes (512 KB)
+==================================================
+downloaded 512 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/data.table_1.18.6.1.tar.gz'
+Content type 'binary/octet-stream' length 2973651 bytes (2.8 MB)
+==================================================
+downloaded 2.8 MB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/htmlTable_2.5.0.tar.gz'
+Content type 'binary/octet-stream' length 429723 bytes (419 KB)
+==================================================
+downloaded 419 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/viridisLite_0.4.3.tar.gz'
+Content type 'binary/octet-stream' length 1297567 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/colorspace_2.1-4.tar.gz'
+Content type 'binary/octet-stream' length 2638249 bytes (2.5 MB)
+==================================================
+downloaded 2.5 MB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/Formula_1.2-6.tar.gz'
+Content type 'binary/octet-stream' length 79407 bytes (77 KB)
+==================================================
+downloaded 77 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/iterators_1.0.14_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 346447 bytes (338 KB)
+==================================================
+downloaded 338 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/bit64_4.8.6.tar.gz'
+Content type 'binary/octet-stream' length 560518 bytes (547 KB)
+==================================================
+downloaded 547 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/blob_1.3.0.tar.gz'
+Content type 'binary/octet-stream' length 49753 bytes (48 KB)
+==================================================
+downloaded 48 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/httr_1.4.9.tar.gz'
+Content type 'binary/octet-stream' length 479289 bytes (468 KB)
+==================================================
+downloaded 468 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/png_0.1-9.tar.gz'
+Content type 'binary/octet-stream' length 41261 bytes (40 KB)
+==================================================
+downloaded 40 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/Biostrings_2.74.1_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 14367403 bytes (13.7 MB)
+==================================================
+downloaded 13.7 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/dynamicTreeCut_1.63-1_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 90065 bytes (87 KB)
+==================================================
+downloaded 87 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/fastcluster_1.3.0.tar.gz'
+Content type 'binary/octet-stream' length 185969 bytes (181 KB)
+==================================================
+downloaded 181 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/matrixStats_1.5.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 475029 bytes (463 KB)
+==================================================
+downloaded 463 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/Hmisc_5.3-0.tar.gz'
+Content type 'binary/octet-stream' length 3699636 bytes (3.5 MB)
+==================================================
+downloaded 3.5 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/foreach_1.5.2_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 139706 bytes (136 KB)
+==================================================
+downloaded 136 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/doParallel_1.0.17_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 188101 bytes (183 KB)
+==================================================
+downloaded 183 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/BiocGenerics_0.52.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 634644 bytes (619 KB)
+==================================================
+downloaded 619 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/Biobase_2.66.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 2660487 bytes (2.5 MB)
+==================================================
+downloaded 2.5 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/IRanges_2.40.1_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 2477485 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/DBI_1.3.0.tar.gz'
+Content type 'binary/octet-stream' length 938547 bytes (916 KB)
+==================================================
+downloaded 916 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/RSQLite_3.53.3.tar.gz'
+Content type 'binary/octet-stream' length 1394356 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/S4Vectors_0.44.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 2740007 bytes (2.6 MB)
+==================================================
+downloaded 2.6 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/KEGGREST_1.46.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 411386 bytes (401 KB)
+==================================================
+downloaded 401 KB
+
+trying URL 'https://p3m.dev/cran/__linux__/noble/latest/src/contrib/WGCNA_1.74.tar.gz'
+Content type 'binary/octet-stream' length 1169904 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/impute_1.80.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 665832 bytes (650 KB)
+==================================================
+downloaded 650 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/GO.db_3.20.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 26400153 bytes (25.2 MB)
+==================================================
+downloaded 25.2 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/AnnotationDbi_1.68.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 5223880 bytes (5.0 MB)
+==================================================
+downloaded 5.0 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/container-binaries/bioconductor_docker/src/contrib/org.Hs.eg.db_3.20.0_R_x86_64-pc-linux-gnu.tar.gz'
+Content type 'application/octet-stream' length 98311179 bytes (93.8 MB)
+==================================================
+downloaded 93.8 MB
+
+begin installing package ‘farver’
+begin installing package ‘labeling’
+begin installing package ‘RColorBrewer’
+begin installing package ‘backports’
+begin installing package ‘zlibbioc’
+begin installing package ‘GenomeInfoDbData’
+begin installing package ‘isoband’
+begin installing package ‘S7’
+begin installing package ‘bit’
+begin installing package ‘gtable’
+begin installing package ‘data.table’
+begin installing package ‘viridisLite’
+begin installing package ‘colorspace’
+begin installing package ‘Formula’
+begin installing package ‘iterators’
+begin installing package ‘blob’
+* installing *binary* package ‘RColorBrewer’ ...
+* DONE (RColorBrewer)
+begin installing package ‘httr’
+* installing *binary* package ‘labeling’ ...
+* DONE (labeling)
+begin installing package ‘png’
+* installing *binary* package ‘blob’ ...
+* DONE (blob)
+begin installing package ‘dynamicTreeCut’
+* installing *binary* package ‘backports’ ...
+* DONE (backports)
+begin installing package ‘fastcluster’
+* installing *binary* package ‘zlibbioc’ ...
+* DONE (zlibbioc)
+begin installing package ‘matrixStats’
+* installing *binary* package ‘gtable’ ...
+* DONE (gtable)
+begin installing package ‘BiocGenerics’
+* installing *binary* package ‘Formula’ ...
+* DONE (Formula)
+begin installing package ‘DBI’
+* installing *binary* package ‘iterators’ ...
+* DONE (iterators)
+begin installing package ‘impute’
+* installing *binary* package ‘S7’ ...
+* DONE (S7)
+* installing *binary* package ‘bit’ ...
+* DONE (bit)
+begin installing package ‘checkmate’
+begin installing package ‘gridExtra’
+* installing *binary* package ‘viridisLite’ ...
+* DONE (viridisLite)
+begin installing package ‘bit64’
+* installing *binary* package ‘isoband’ ...
+* DONE (isoband)
+begin installing package ‘foreach’
+* installing *binary* package ‘farver’ ...
+* DONE (farver)
+begin installing package ‘scales’
+* installing *binary* package ‘png’ ...
+* DONE (png)
+* installing *binary* package ‘colorspace’ ...
+* DONE (colorspace)
+* installing *binary* package ‘dynamicTreeCut’ ...
+* DONE (dynamicTreeCut)
+* installing *binary* package ‘fastcluster’ ...
+* DONE (fastcluster)
+* installing *binary* package ‘httr’ ...
+* DONE (httr)
+* installing *binary* package ‘BiocGenerics’ ...
+* DONE (BiocGenerics)
+begin installing package ‘Biobase’
+begin installing package ‘S4Vectors’
+* installing *binary* package ‘gridExtra’ ...
+* DONE (gridExtra)
+* installing *binary* package ‘bit64’ ...
+* DONE (bit64)
+* installing *binary* package ‘impute’ ...
+* DONE (impute)
+* installing *binary* package ‘data.table’ ...
+* DONE (data.table)
+* installing *binary* package ‘checkmate’ ...
+* DONE (checkmate)
+begin installing package ‘htmlTable’
+* installing *binary* package ‘DBI’ ...
+* DONE (DBI)
+begin installing package ‘RSQLite’
+* installing *binary* package ‘foreach’ ...
+* DONE (foreach)
+begin installing package ‘doParallel’
+* installing *binary* package ‘matrixStats’ ...
+* DONE (matrixStats)
+* installing *binary* package ‘scales’ ...
+* DONE (scales)
+begin installing package ‘ggplot2’
+* installing *binary* package ‘GenomeInfoDbData’ ...
+* DONE (GenomeInfoDbData)
+* installing *binary* package ‘doParallel’ ...
+* DONE (doParallel)
+* installing *binary* package ‘htmlTable’ ...
+* DONE (htmlTable)
+* installing *binary* package ‘RSQLite’ ...
+* DONE (RSQLite)
+* installing *binary* package ‘Biobase’ ...
+* DONE (Biobase)
+* installing *binary* package ‘S4Vectors’ ...
+* DONE (S4Vectors)
+begin installing package ‘UCSC.utils’
+begin installing package ‘IRanges’
+* installing *binary* package ‘UCSC.utils’ ...
+* DONE (UCSC.utils)
+* installing *binary* package ‘IRanges’ ...
+* DONE (IRanges)
+begin installing package ‘XVector’
+begin installing package ‘GenomeInfoDb’
+* installing *binary* package ‘ggplot2’ ...
+* DONE (ggplot2)
+begin installing package ‘Hmisc’
+* installing *binary* package ‘XVector’ ...
+* DONE (XVector)
+* installing *binary* package ‘Hmisc’ ...
+* DONE (Hmisc)
+begin installing package ‘WGCNA’
+* installing *binary* package ‘GenomeInfoDb’ ...
+* DONE (GenomeInfoDb)
+begin installing package ‘Biostrings’
+* installing *binary* package ‘Biostrings’ ...
+* DONE (Biostrings)
+begin installing package ‘KEGGREST’
+* installing *binary* package ‘KEGGREST’ ...
+* DONE (KEGGREST)
+begin installing package ‘AnnotationDbi’
+* installing *binary* package ‘AnnotationDbi’ ...
+* DONE (AnnotationDbi)
+begin installing package ‘GO.db’
+begin installing package ‘org.Hs.eg.db’
+* installing *binary* package ‘GO.db’ ...
+* DONE (GO.db)
+* installing *binary* package ‘org.Hs.eg.db’ ...
+* DONE (org.Hs.eg.db)
+* installing *source* package ‘WGCNA’ ...
+** package ‘WGCNA’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+using C++ compiler: ‘g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+make[1]: Entering directory '/tmp/Rtmp239pS3/R.INSTALL3d1335dd44b/WGCNA/src'
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/usr/local/lib/R/site-library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c corFunctions-utils.c -o corFunctions-utils.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/usr/local/lib/R/site-library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c corFunctions.c -o corFunctions.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/usr/local/lib/R/site-library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c myMatrixMultiplication.c -o myMatrixMultiplication.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/usr/local/lib/R/site-library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c networkFunctions.c -o networkFunctions.o
+g++ -std=gnu++17 -I"/usr/local/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/usr/local/lib/R/site-library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -DR_NO_REMAP -c parallelQuantile.cc -o parallelQuantile.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -DWITH_THREADS -I'/usr/local/lib/R/site-library/Rcpp/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c pivot.c -o pivot.o
+g++ -std=gnu++17 -shared -L/usr/local/lib/R/lib -L/usr/local/lib -o WGCNA.so corFunctions-utils.o corFunctions.o myMatrixMultiplication.o networkFunctions.o parallelQuantile.o pivot.o -lpthread -L/usr/local/lib/R/lib -lR
+make[1]: Leaving directory '/tmp/Rtmp239pS3/R.INSTALL3d1335dd44b/WGCNA/src'
+installing to /work/rlibs/00LOCK-WGCNA/00new/WGCNA/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (WGCNA)
+
+The downloaded source packages are in
+	‘/tmp/RtmpPF0N4z/downloaded_packages’
+Warning message:
+package(s) not installed when version(s) same as or greater than current; use
+  `force = TRUE` to re-install: 'preprocessCore' 
+WGCNA          TRUE
+
+GO.db          TRUE
+
+org.Hs.eg.db   TRUE
+AnnotationDbi  TRUE
+== analysis ==
+32
+Allowing parallel execution with up to 24 working processes.
+[2026-11-05 21:11:46] groups: control 234, bp_nolith 74, bp_lith 152
+[2026-11-05 21:11:46] building 25 networks at n = 74 on 24 threads
+[2026-11-05 21:12:30] bp_nolith: 83 modules, 12086 genes assigned, 43s
+[2026-11-05 21:13:16] control_A_01: 69 modules, 11761 genes assigned, 45s
+[2026-11-05 21:14:00] control_B_01: 64 modules, 11764 genes assigned, 44s
+[2026-11-05 21:14:42] bp_lith_01: 78 modules, 11891 genes assigned, 42s
+[2026-11-05 21:15:26] control_A_02: 75 modules, 11966 genes assigned, 43s
+[2026-11-05 21:16:11] control_B_02: 68 modules, 11845 genes assigned, 45s
+[2026-11-05 21:16:53] bp_lith_02: 69 modules, 11862 genes assigned, 42s
+[2026-11-05 21:17:36] control_A_03: 84 modules, 11909 genes assigned, 43s
+[2026-11-05 21:18:19] control_B_03: 66 modules, 11857 genes assigned, 43s
+[2026-11-05 21:19:02] bp_lith_03: 88 modules, 12030 genes assigned, 42s
+[2026-11-05 21:19:44] control_A_04: 74 modules, 11898 genes assigned, 42s
+[2026-11-05 21:20:29] control_B_04: 71 modules, 11818 genes assigned, 44s
+[2026-11-05 21:21:12] bp_lith_04: 84 modules, 11953 genes assigned, 42s
+[2026-11-05 21:22:00] control_A_05: 66 modules, 11656 genes assigned, 48s
+[2026-11-05 21:22:44] control_B_05: 82 modules, 12001 genes assigned, 43s
+[2026-11-05 21:23:26] bp_lith_05: 79 modules, 12002 genes assigned, 42s
+[2026-11-05 21:24:12] control_A_06: 62 modules, 11783 genes assigned, 46s
+[2026-11-05 21:24:59] control_B_06: 57 modules, 11757 genes assigned, 46s
+[2026-11-05 21:25:44] bp_lith_06: 82 modules, 11918 genes assigned, 45s
+[2026-11-05 21:26:30] control_A_07: 59 modules, 11671 genes assigned, 46s
+[2026-11-05 21:27:17] control_B_07: 71 modules, 11786 genes assigned, 46s
+[2026-11-05 21:28:06] bp_lith_07: 78 modules, 11952 genes assigned, 49s
+[2026-11-05 21:28:54] control_A_08: 76 modules, 11886 genes assigned, 48s
+[2026-11-05 21:29:39] control_B_08: 67 modules, 11799 genes assigned, 44s
+[2026-11-05 21:30:24] bp_lith_08: 78 modules, 11901 genes assigned, 45s
+             A            B n_modules_A n_modules_B    ARI median_jaccard
+1 control_A_01 control_B_01          69          64 0.2881          0.182
+  frac_j50 frac_j25
+1    0.058    0.333
+             A         B n_modules_A n_modules_B    ARI median_jaccard frac_j50
+1 control_A_01 bp_nolith          69          83 0.1811          0.147    0.043
+  frac_j25
+1    0.145
+          A          B n_modules_A n_modules_B    ARI median_jaccard frac_j50
+1 bp_nolith bp_lith_01          83          78 0.2254          0.172    0.036
+  frac_j25
+1     0.12
+
+
+[2026-11-05 21:30:36] GO enrichment on the control reference ...
+[2026-11-05 21:30:55]   6816 GO terms with >= 10 genes in the universe
+[2026-11-05 21:32:10] GO done
+[2026-11-05 21:32:10] === module counts by group ===
+     group n_networks median_modules min max median_assigned
+   bp_lith          8           78.5  69  88         11935.0
+ bp_nolith          1           83.0  83  83         12086.0
+ control_A          8           71.5  59  84         11834.5
+ control_B          8           67.5  57  82         11808.5
+[2026-11-05 21:32:10] === agreement, every contrast against the ceiling ===
+                      contrast n_comparisons ARI_median ARI_min ARI_max
+   ceiling: control vs control             8     0.2670  0.2406  0.2921
+ lithium: bp_nolith vs bp_lith             8     0.2286  0.2068  0.2544
+            control vs bp_lith             8     0.2262  0.1800  0.2524
+ bipolar: control vs bp_nolith             8     0.1806  0.1745  0.2009
+ median_jaccard frac_j50
+          0.184    0.066
+          0.176    0.036
+          0.162    0.056
+          0.152    0.042
+[2026-11-05 21:32:10] === hub overlap ===
+                      contrast shared  pct
+   ceiling: control vs control     70 35.0
+ bipolar: control vs bp_nolith     51 25.5
+ lithium: bp_nolith vs bp_lith     53 26.5
+[2026-11-05 21:32:10] done
+== upload ==
