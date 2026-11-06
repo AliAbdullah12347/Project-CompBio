@@ -28,6 +28,8 @@ python3 /cfg/s3.py get "$IN/bpd_inputs.rds"              "$W/prediction/cache/bp
 python3 /cfg/s3.py get "$IN/splits_bpd_groupA.csv"       "$W/prediction/splits/splits_bpd_groupA.csv"
 python3 /cfg/s3.py get "$IN/splits_bpd_full.csv"         "$W/prediction/splits/splits_bpd_full.csv"
 python3 /cfg/s3.py get "$IN/splits_bpd_groupA_plate.csv" "$W/prediction/splits/splits_bpd_groupA_plate.csv"
+python3 /cfg/s3.py get "$IN/splits_bpd_lithium.csv"      "$W/prediction/splits/splits_bpd_lithium.csv"
+python3 /cfg/s3.py get "$IN/lithium_inputs.rds"          "$W/prediction/cache/lithium_inputs.rds"
 python3 /cfg/s3.py get "$IN/worklist_bpd.tsv"            "$W/worklist.tsv"
 python3 /cfg/s3.py get "$IN/11_run_bpd_split.R"          "$W/scripts/11_run_bpd_split.R"
 

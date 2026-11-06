@@ -31,7 +31,11 @@ impl    <- getarg("impl", "..")
 OUTDIR  <- getarg("outdir", file.path(impl, "prediction/results/bpd"))
 MODELS  <- strsplit(getarg("models", "enet,rf"), ",")[[1]]
 FEATSEL <- getarg("features", "all")
-stopifnot(!is.na(SPLIT), COHORT %in% c("groupA", "full", "groupA_plate"))
+stopifnot(!is.na(SPLIT), COHORT %in% c("groupA", "full", "groupA_plate", "lithium"))
+# The lithium contest uses its own cache (226 BP1, is_case = lithium user) but
+# the identical pipeline otherwise, so any difference in the answer is about
+# the contrast rather than about how it was analysed.
+CACHE <- if (COHORT == "lithium") "lithium_inputs.rds" else "bpd_inputs.rds"
 
 MIN_COUNT <- 10
 MIN_PROP  <- 0.90
@@ -41,7 +45,7 @@ ALPHAS    <- c(0.1, 0.5, 0.9, 1.0)
 set.seed(481 + SPLIT + 1000 * PERM)
 
 ## ---- data ------------------------------------------------------------------
-cache <- readRDS(file.path(impl, "prediction/cache/bpd_inputs.rds"))
+cache <- readRDS(file.path(impl, "prediction/cache", CACHE))
 sp <- read.csv(file.path(impl, sprintf("prediction/splits/splits_bpd_%s.csv", COHORT)),
                stringsAsFactors = FALSE)
 s <- sp[sp$split_id == SPLIT, ]
