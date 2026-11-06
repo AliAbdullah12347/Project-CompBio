@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
 # ===========================================================================
+# SUPERSEDED by grp-051.R, which runs 8 draws on the cluster instead of 1,
+# adds GO enrichment, and fixes the 1-D table() bug below. Kept because its
+# four networks reproduce grp-051's first draw exactly (69/64/83/78 modules),
+# which is the cross-check that the cluster run is deterministic.
+#
 # grp-050 — group-specific networks: which modules and hub genes does each
 #           group actually have, and how much do they overlap?
 #
@@ -125,8 +130,8 @@ pair <- function(A, B) {
   rand <- ari(a$colors[keep], b$colors[keep])
   tb <- table(a$colors, b$colors)
   tb <- tb[rownames(tb) != "grey", colnames(tb) != "grey", drop = FALSE]
-  sa <- rowSums(table(a$colors))[rownames(tb)]
-  sb <- colSums(table(b$colors))[colnames(tb)]
+  sa <- table(a$colors)[rownames(tb)]   # table() of one factor is 1-D:
+  sb <- table(b$colors)[colnames(tb)]   # rowSums/colSums error on it
   rows <- lapply(rownames(tb), function(m) {
     ov <- tb[m, ]; j <- ov / (sa[m] + sb - ov)
     k <- which.max(j)
