@@ -40,7 +40,13 @@ REF_CACHE       <- file.path("network/cache", paste0("ref_", REF_CACHE_KEY, ".rd
 BASE001_LITH    <- "network/runs/base-001/results_lith_alldraws.csv"
 NET_TYPE        <- "signed"
 COR_FNC         <- "bicor"
-K               <- 20L          # spec=500; revised to 20 (METHODS.md 2026-10-09)
+# K is env-overridable so the 200 draws can be split across cluster pods.
+# PERM_K_FROM/PERM_K_TO let one pod own a slice; it then exits 0 without
+# aggregating, because aggregation needs every draw and another step does it.
+K               <- as.integer(Sys.getenv("PERM_K", "20"))
+K_FROM          <- as.integer(Sys.getenv("PERM_K_FROM", "1"))
+K_TO            <- as.integer(Sys.getenv("PERM_K_TO", as.character(K)))
+SLICE           <- !(K_FROM == 1L && K_TO == K)
 PERMS_PER_DRAW  <- 50L
 SUBSAMPLE_N     <- 74L
 SEED_BASE       <- 20261009L + 31000L   # offset from base-001 to avoid collisions
@@ -110,7 +116,7 @@ extract_mp <- function(mp) {
 }
 
 # ---- K permuted draws -------------------------------------------------------
-for (k in seq_len(K)) {
+for (k in seq(K_FROM, K_TO)) {
   ckpt <- file.path(run_dir, sprintf("perm_draw_%03d.rds", k))
   if (file.exists(ckpt)) { msg("draw ", k, " exists"); next }
   msg("permuted draw ", k, "/", K)
@@ -137,6 +143,11 @@ for (k in seq_len(K)) {
 
 done_k <- vapply(seq_len(K), function(i)
   file.exists(file.path(run_dir, sprintf("perm_draw_%03d.rds",i))), logical(1))
+if (SLICE) {
+  msg("slice ", K_FROM, "-", K_TO, " complete; ", sum(done_k), "/", K,
+      " draws present overall. Aggregation is a separate step.")
+  quit(save="no", status=0L)
+}
 if (sum(done_k) < K) {
   msg("not complete: ", sum(done_k), "/", K, " permuted draws done")
   quit(save="no", status=1L)

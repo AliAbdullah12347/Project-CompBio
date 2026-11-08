@@ -1,0 +1,104 @@
+# Step 2 of 3. Drains every PENDING row of network/RUNLOG/queue.tsv that has
+# an experiment script. 8 pods x 3 CPU = 24, the per-job ceiling.
+#
+# Rows are assigned by a STATIC partition on pod index: sorted by declared cap
+# descending, then dealt round-robin. No coordination is needed, which matters
+# because a job's pods cannot reach cluster services to take a lock, and a
+# static deal cannot double-run a row or lose one.
+#
+# Each row's whole output directory, checkpoints included, is uploaded to S3
+# as it finishes, so a pod dying late costs one row rather than all of them.
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: arm3-queue
+spec:
+  queue: cpu
+  ttlSecondsAfterFinished: 604800
+  tasks:
+    - name: main
+      replicas: 8
+      template:
+        spec:
+          restartPolicy: Never
+          activeDeadlineSeconds: 86400
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            seccompProfile: {type: RuntimeDefault}
+          volumes:
+            - name: work
+              emptyDir: {sizeLimit: 18Gi}
+            - name: s3-ca
+              configMap: {name: s3-ca}
+          containers:
+            - name: main
+              image: bioconductor/bioconductor_docker:RELEASE_3_20
+              workingDir: /work
+              envFrom: [{secretRef: {name: s3-credentials}}]
+              env:
+                - {name: HOME,          value: /work}
+                - {name: R_LIBS_USER,   value: /work/rlibs}
+                - {name: AWS_CA_BUNDLE, value: /etc/s3-ca/ca-bundle.pem}
+                - {name: BUCKET,        value: aabdullah-lithium-bipolar-project-fall-2026}
+                - {name: PREFIX,        value: network/arm3}
+                - {name: NPODS,         value: "8"}
+                - {name: OMP_NUM_THREADS, value: "3"}
+                - name: POD_NAME
+                  valueFrom: {fieldRef: {fieldPath: metadata.name}}
+              volumeMounts:
+                - {name: work,  mountPath: /work}
+                - {name: s3-ca, mountPath: /etc/s3-ca, readOnly: true}
+              resources:
+                requests: {cpu: "1", memory: 4Gi}
+                limits:   {cpu: "3", memory: 8Gi}
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities: {drop: [ALL]}
+              command: ["bash", "-lc"]
+              args:
+                - |
+                  set -euo pipefail
+                  IDX="${POD_NAME##*-}"
+                  mkdir -p /work/rlibs /work/out
+                  LOG="/work/out/queue-${IDX}.log"
+                  exec > >(tee -a "$LOG") 2>&1
+                  echo "== $(date -u) arm3-queue pod ${IDX}/${NPODS} =="
+                  git clone --filter=blob:none --no-checkout --depth 1 \
+                    https://github.com/AliAbdullah12347/Project-CompBio.git /work/repo
+                  cd /work/repo
+                  git sparse-checkout init --no-cone
+                  git sparse-checkout set "/data/analysis_matrices/*" "/data/LM22.txt" \
+                    "/de_analysis/data/*" "/network/*" "/de_v2/scripts/*" "/de_final/results/*"
+                  git checkout
+                  mkdir -p network/cache network/runs
+                  source network/cluster/lib.sh
+                  trap 's3_put "$LOG" logs/queue-'"${IDX}"'.log || true' EXIT
+
+                  setup_r
+                  fetch_cache
+
+                  # PENDING rows that actually have a script, biggest cap first
+                  ROWS=$(awk -F'\t' 'NR>1 && $3=="PENDING"{print $9"\t"$1}' network/RUNLOG/queue.tsv \
+                         | sort -rn | cut -f2 \
+                         | while read -r r; do [ -f "network/experiments/$r.R" ] && echo "$r"; done)
+                  MINE=$(echo "$ROWS" | awk -v i="$IDX" -v n="$NPODS" 'NR % n == i')
+                  echo "-- assigned: $(echo $MINE | tr '\n' ' ')"
+
+                  for id in $MINE; do
+                    CAP=$(awk -F'\t' -v r="$id" '$1==r{print $9}' network/RUNLOG/queue.tsv)
+                    echo "=== $id (cap ${CAP}s) $(date -u) ==="
+                    START=$(date +%s)
+                    set +e
+                    timeout "${CAP}" Rscript "network/experiments/$id.R" "$id" \
+                      > "network/runs/$id.log" 2>&1
+                    RC=$?
+                    set -e
+                    mkdir -p "network/runs/$id"
+                    mv "network/runs/$id.log" "network/runs/$id/log.txt" 2>/dev/null || true
+                    echo "$id rc=$RC secs=$(( $(date +%s) - START ))" \
+                      | tee -a /work/out/status-${IDX}.tsv
+                    upload_run "$id" || true
+                  done
+                  s3_put /work/out/status-${IDX}.tsv "status/queue-${IDX}.tsv" || true
+                  echo "== $(date -u) pod ${IDX} done =="

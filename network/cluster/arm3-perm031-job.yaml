@@ -1,0 +1,122 @@
+# Step 3 of 3. perm-031 raised from K=20 to K=200.
+#
+# WHY. At K=20 the smallest attainable empirical p is 1/20 = 0.05, so after BH
+# across 71 modules nothing can clear FDR regardless of the biology. The
+# existing result — bp_lith below the null in 19 of 20 draws, p = 0.05,
+# BH 0.36 — is suggestive and uninterpretable. At K=200 the floor is 0.005,
+# which can clear BH, so the test can finally return an answer either way.
+#
+# 180 new draws at roughly 800 s each is ~40 h serially. Split across 12 pods
+# it is ~3 h. Each pod owns a contiguous slice via PERM_K_FROM/PERM_K_TO,
+# writes one checkpoint per draw, and uploads each checkpoint as soon as it
+# exists, so an interrupted pod costs one draw. Aggregation across all 200 is
+# a separate step once every slice has landed.
+#
+# priorityClassName: burst — this runs beyond the 24-CPU guaranteed quota,
+# which arm3-queue is already using, and burst jobs are capped at 24 h on cpu.
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: arm3-perm031
+spec:
+  queue: cpu
+  priorityClassName: burst
+  ttlSecondsAfterFinished: 604800
+  tasks:
+    - name: main
+      replicas: 12
+      template:
+        spec:
+          restartPolicy: Never
+          activeDeadlineSeconds: 86400
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            seccompProfile: {type: RuntimeDefault}
+          volumes:
+            - name: work
+              emptyDir: {sizeLimit: 18Gi}
+            - name: s3-ca
+              configMap: {name: s3-ca}
+          containers:
+            - name: main
+              image: bioconductor/bioconductor_docker:RELEASE_3_20
+              workingDir: /work
+              envFrom: [{secretRef: {name: s3-credentials}}]
+              env:
+                - {name: HOME,          value: /work}
+                - {name: R_LIBS_USER,   value: /work/rlibs}
+                - {name: AWS_CA_BUNDLE, value: /etc/s3-ca/ca-bundle.pem}
+                - {name: BUCKET,        value: aabdullah-lithium-bipolar-project-fall-2026}
+                - {name: PREFIX,        value: network/arm3}
+                - {name: PERM_K,        value: "200"}
+                - {name: K_START,       value: "21"}    # 1-20 already exist
+                - {name: K_END,         value: "200"}
+                - {name: NPODS,         value: "12"}
+                - name: POD_NAME
+                  valueFrom: {fieldRef: {fieldPath: metadata.name}}
+              volumeMounts:
+                - {name: work,  mountPath: /work}
+                - {name: s3-ca, mountPath: /etc/s3-ca, readOnly: true}
+              resources:
+                requests: {cpu: "1", memory: 4Gi}
+                limits:   {cpu: "2", memory: 10Gi}
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities: {drop: [ALL]}
+              command: ["bash", "-lc"]
+              args:
+                - |
+                  set -euo pipefail
+                  IDX="${POD_NAME##*-}"
+                  mkdir -p /work/rlibs /work/out
+                  LOG="/work/out/perm031-${IDX}.log"
+                  exec > >(tee -a "$LOG") 2>&1
+                  echo "== $(date -u) arm3-perm031 pod ${IDX}/${NPODS} =="
+                  git clone --filter=blob:none --no-checkout --depth 1 \
+                    https://github.com/AliAbdullah12347/Project-CompBio.git /work/repo
+                  cd /work/repo
+                  git sparse-checkout init --no-cone
+                  git sparse-checkout set "/data/analysis_matrices/*" "/data/LM22.txt" \
+                    "/de_analysis/data/*" "/network/*" "/de_v2/scripts/*" "/de_final/results/*"
+                  git checkout
+                  mkdir -p network/cache network/runs/perm-031
+                  source network/cluster/lib.sh
+                  trap 's3_put "$LOG" logs/perm031-'"${IDX}"'.log || true' EXIT
+
+                  setup_r
+                  fetch_cache
+
+                  TOTAL=$(( K_END - K_START + 1 ))
+                  PER=$(( (TOTAL + NPODS - 1) / NPODS ))
+                  FROM=$(( K_START + IDX * PER ))
+                  TO=$(( FROM + PER - 1 )); [ "$TO" -gt "$K_END" ] && TO=$K_END
+                  if [ "$FROM" -gt "$K_END" ]; then echo "-- no slice for this pod"; exit 0; fi
+                  echo "-- slice: draws ${FROM}..${TO} of ${K_START}..${K_END}"
+
+                  # Upload each checkpoint the moment it lands, in the background,
+                  # so a pod lost at hour 3 still contributes everything it finished.
+                  ( while sleep 120; do
+                      for f in network/runs/perm-031/perm_draw_*.rds; do
+                        [ -e "$f" ] || continue
+                        b=$(basename "$f")
+                        [ -e "/work/sent_$b" ] && continue
+                        s3_put "$f" "perm031/$b" && touch "/work/sent_$b"
+                      done
+                    done ) &
+                  SYNC=$!
+
+                  export PERM_K PERM_K_FROM="$FROM" PERM_K_TO="$TO"
+                  set +e
+                  Rscript network/experiments/perm-031.R perm-031
+                  RC=$?
+                  set -e
+                  kill $SYNC 2>/dev/null || true
+
+                  for f in network/runs/perm-031/perm_draw_*.rds; do
+                    [ -e "$f" ] && s3_put "$f" "perm031/$(basename "$f")" || true
+                  done
+                  echo "slice ${FROM}-${TO} rc=$RC draws=$(ls network/runs/perm-031/perm_draw_*.rds 2>/dev/null | wc -l)" \
+                    | tee /work/out/status-${IDX}.txt
+                  s3_put /work/out/status-${IDX}.txt "status/perm031-${IDX}.txt" || true
+                  echo "== $(date -u) pod ${IDX} done =="
