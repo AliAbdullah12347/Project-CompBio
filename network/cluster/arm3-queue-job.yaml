@@ -18,7 +18,7 @@ spec:
   ttlSecondsAfterFinished: 604800
   tasks:
     - name: main
-      replicas: 8
+      replicas: 6
       template:
         spec:
           restartPolicy: Never
@@ -43,16 +43,16 @@ spec:
                 - {name: AWS_CA_BUNDLE, value: /etc/s3-ca/ca-bundle.pem}
                 - {name: BUCKET,        value: aabdullah-lithium-bipolar-project-fall-2026}
                 - {name: PREFIX,        value: network/arm3}
-                - {name: NPODS,         value: "8"}
-                - {name: OMP_NUM_THREADS, value: "3"}
+                - {name: NPODS,         value: "6"}
+                - {name: OMP_NUM_THREADS, value: "4"}
                 - name: POD_NAME
                   valueFrom: {fieldRef: {fieldPath: metadata.name}}
               volumeMounts:
                 - {name: work,  mountPath: /work}
                 - {name: s3-ca, mountPath: /etc/s3-ca, readOnly: true}
               resources:
-                requests: {cpu: "1", memory: 3Gi}
-                limits:   {cpu: "3", memory: 7Gi}
+                requests: {cpu: "1", memory: 8Gi}
+                limits:   {cpu: "4", memory: 22Gi}
               securityContext:
                 allowPrivilegeEscalation: false
                 capabilities: {drop: [ALL]}
