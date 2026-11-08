@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-08 · **Catalogued:** 147 items
+**Updated:** 2026-11-08 · **Catalogued:** 150 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (42 — 38 live, 4 retracted)
+## Findings (43 — 39 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -38,6 +38,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 24/25 · 7/10 | live | [trait-035: module eigengene ~ ILR balance associations](findings/2026-10-31-trait035-module-eigengene-ilr-associations.md) | 2026-10-31 |
 | 23/25 · 10/10 | live | [The corrected network has 71 modules, and its eigengenes are near-orthogonal](findings/2026-10-18-rebuilt-network-71-modules.md) | 2026-10-18 |
 | 23/25 · 8/10 | live | [base-001 re-run on a verified network: gold ranks last every time, but beats most modules on Zsummary](findings/2026-10-26-base001-verified-clean.md) | 2026-10-26 |
+| 23/25 · 8/10 | live | [Resolved: lithium associations do not survive composition adjustment — finding 001 was right](findings/2026-11-08-composition-contradiction-resolved.md) | 2026-11-08 |
 | 22/25 · 9/10 | CORRECTED | [Darkturquoise is a ribosomal/translation module: the composition signal has a biological substrate](findings/2026-10-14-darkturquoise-is-ribosomal.md) | 2026-10-14 |
 | 22/25 · 7/10 | live | [The lithium dimension replicates across decompositions, and never survives composition](findings/2026-10-14-lithium-dimension-replicates.md) | 2026-10-14 |
 | 22/25 · 9/10 | live | [Removing the library offset rebuilds the network into a well-behaved one](findings/2026-10-18-normalisation-rebuild-required.md) | 2026-10-18 |
@@ -93,9 +94,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 016-normalisation-decision | has results | 2 result files | 016-normalisation-decision |
 | 017-preservation-synthesis | has results | 2 result files | 017-preservation-synthesis |
 | 018-matched-ceiling-comparison | has results | 1 result files | 018-matched-ceiling-comparison |
-| 019-bpd-module-connection | has results | 1 result files | 019-bpd-module-connection |
+| 019-bpd-module-connection | has results | 2 result files | 019-bpd-module-connection |
 
-## Notes — infrastructure and defects (5)
+## Notes — infrastructure and defects (6)
 
 | date | file | what happened |
 |:--|:--|:--|
@@ -104,8 +105,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-18 | 2026-10-18-three-days-lost-to-wifi.md | Three days lost: every wake started a session into a dead network |
 | 2026-10-25 | 2026-10-25-reference-build-verification.md | Reference builds now verify the matrix, not the label |
 | 2026-10-26 | 2026-10-26-how-to-read-the-preservation-rows.md | How to read the 28 preservation rows: the perm split is by design, the comparison was not |
+| 2026-11-08 | 2026-11-08-stale-running-path-ignored-progress.md | Three experiments were retired while holding 57 checkpoints between them |
 
-## Run directories (28)
+## Run directories (29)
 
 | run | status | size |
 |:--|:--|:--|
@@ -126,7 +128,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | inp-022 | live | 57 files |
 | inp-023 | live | 48 files |
 | mod-000-resolution | live | 15 files |
-| net-007 | live | 2 files |
+| net-007 | live | 21 files |
 | perm-031 | live | 43 files |
 | pow-009 | live | 2 files |
 | pres-030 | live | 46 files |
@@ -137,10 +139,11 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | trait-033 | live | 3 files |
 | trait-034 | live | 2 files |
 | trait-035 | live | 2 files |
+| trait-053 | live | 1 files |
 
 ## Queue experiments (52)
 
-Status: BLOCKED=3  DONE=19  PENDING=29  RUNNING=1
+Status: DONE=19  PENDING=32  RUNNING=1
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -158,7 +161,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | comm-038 | community | PENDING | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
 | comm-039 | community | PENDING | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
 | corr-005 | corr | DONE | ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
-| corr-006 | corr | BLOCKED | ref=control;corr=spearman;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
+| corr-006 | corr | PENDING | ref=control;corr=spearman;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | filt-044 | filtsens | PENDING | reuse 31 filters from de_v2/scripts/13_filter_sweep_wb.R; which modules survive all? |
 | gene-025 | geneset | PENDING | ref=control;genes=top2000_most_variable |
 | gene-026 | geneset | PENDING | ref=control;genes=top5000_most_variable |
@@ -189,9 +192,9 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | pow-011 | power | PENDING | ref=control;power=8 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans session |
 | pow-012 | power | PENDING | ref=control;power=12 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessio |
 | pres-030 | preserve | DONE | ref=control;report density and connectivity components SEPARATELY; disagreement is informative |
-| ref-002 | reference | BLOCKED | ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
+| ref-002 | reference | PENDING | ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | ref-003 | reference | DONE | ref=bp_lith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
-| ref-004 | reference | BLOCKED | ref=consensus(all3);corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
+| ref-004 | reference | PENDING | ref=consensus(all3);corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | samp-043 | samplestruct | DONE | eigengene-space separation by group; outlier detection; hclust; does any cluster track lithium? |
 | synth-048 | synthesis | PENDING | cross-run synthesis: which conclusions are stable across all variants? write to RESULTS.md |
 | tob-045 | tobacco | PENDING | repeat inp-022 across several of the 20 tobacco imputations; does any conclusion move? |
