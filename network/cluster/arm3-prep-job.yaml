@@ -16,7 +16,7 @@ spec:
       template:
         spec:
           restartPolicy: Never
-          activeDeadlineSeconds: 10800        # 3 h; the build is ~30 min
+          activeDeadlineSeconds: 14400        # 4 h; TOM path is ~40 min
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
@@ -75,4 +75,5 @@ spec:
                          cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds
                   s3_put network/cache/project.rds cache/project.rds
                   s3_put network/cache/rebuild_verification.csv cache/rebuild_verification.csv
+                  s3_put network/runs/mod-000-resolution/labels_p12_ds4.rds cache/labels_p12_ds4.rds
                   echo "== $(date -u) prep done =="
