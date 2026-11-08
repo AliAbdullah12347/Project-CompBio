@@ -163,10 +163,15 @@ meaningless, so I ran rank-based enrichment (Wilcoxon on −log10 p, no threshol
 So a *distributed, sub-threshold* BPD signal does exist — too weak per gene to survive
 gene-level FDR, concentrated enough that module aggregation detects it.
 
-**Load-bearing caveat:** module genes are co-expressed by construction, so their DE
-statistics are correlated and a Wilcoxon that assumes independence is anti-conservative.
-The honest null permutes *sample* labels and recomputes DE, which needs the `de_final`
-pipeline. Until that is run, treat 27/69 as suggestive, not established.
+**Calibration (added 2026-11-08):** against 60 draws of random size-matched gene sets,
+the null gives a **median of 0** significant modules, 95th percentile **1**, max **1**.
+Observed is **27**. So this is not a module-size artifact — by a wide margin.
+
+**Load-bearing caveat that remains:** module genes are co-expressed by construction, so
+their DE statistics are correlated, and random size-matched sets are *not* correlated —
+which makes the null above too permissive. It rules out size, not correlation. The honest
+null permutes *sample* labels and recomputes DE, which needs the `de_final` pipeline.
+Until that is run, treat 27/69 as **well above a size null but not yet established**.
 
 ---
 

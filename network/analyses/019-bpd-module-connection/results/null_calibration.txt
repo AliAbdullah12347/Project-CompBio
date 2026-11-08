@@ -1,0 +1,5 @@
+random size-matched sets (60 reps): median 0.0 significant, 95th pct 1.0, max 1.0
+observed for WB_BPD: 27 of 69 modules
+verdict: 27 EXCEEDS the size-only null
+CAVEAT: random sets are uncorrelated; real module genes are co-expressed, so this
+null is too permissive. The honest null permutes SAMPLE labels and recomputes DE.
