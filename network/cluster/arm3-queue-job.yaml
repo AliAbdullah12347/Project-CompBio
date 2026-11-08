@@ -14,6 +14,7 @@ metadata:
   name: arm3-queue
 spec:
   queue: cpu
+  priorityClassName: burst
   ttlSecondsAfterFinished: 604800
   tasks:
     - name: main
@@ -50,8 +51,8 @@ spec:
                 - {name: work,  mountPath: /work}
                 - {name: s3-ca, mountPath: /etc/s3-ca, readOnly: true}
               resources:
-                requests: {cpu: "1", memory: 4Gi}
-                limits:   {cpu: "3", memory: 8Gi}
+                requests: {cpu: "1", memory: 3Gi}
+                limits:   {cpu: "3", memory: 7Gi}
               securityContext:
                 allowPrivilegeEscalation: false
                 capabilities: {drop: [ALL]}

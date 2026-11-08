@@ -8,6 +8,7 @@ metadata:
   name: arm3-prep
 spec:
   queue: cpu
+  priorityClassName: burst
   ttlSecondsAfterFinished: 604800
   tasks:
     - name: main
@@ -34,15 +35,15 @@ spec:
                 - {name: HOME,          value: /work}
                 - {name: R_LIBS_USER,   value: /work/rlibs}
                 - {name: AWS_CA_BUNDLE, value: /etc/s3-ca/ca-bundle.pem}
-                - {name: PREP_THREADS,  value: "24"}
+                - {name: PREP_THREADS,  value: "16"}
                 - {name: BUCKET,        value: aabdullah-lithium-bipolar-project-fall-2026}
                 - {name: PREFIX,        value: network/arm3}
               volumeMounts:
                 - {name: work,  mountPath: /work}
                 - {name: s3-ca, mountPath: /etc/s3-ca, readOnly: true}
               resources:
-                requests: {cpu: "8",  memory: 32Gi}
-                limits:   {cpu: "24", memory: 64Gi}
+                requests: {cpu: "4",  memory: 12Gi}
+                limits:   {cpu: "16", memory: 32Gi}
               securityContext:
                 allowPrivilegeEscalation: false
                 capabilities: {drop: [ALL]}

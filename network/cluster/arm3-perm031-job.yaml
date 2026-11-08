@@ -59,8 +59,8 @@ spec:
                 - {name: work,  mountPath: /work}
                 - {name: s3-ca, mountPath: /etc/s3-ca, readOnly: true}
               resources:
-                requests: {cpu: "1", memory: 4Gi}
-                limits:   {cpu: "2", memory: 10Gi}
+                requests: {cpu: "1", memory: 3Gi}
+                limits:   {cpu: "2", memory: 6Gi}
               securityContext:
                 allowPrivilegeEscalation: false
                 capabilities: {drop: [ALL]}
