@@ -59,8 +59,8 @@ rewrite() {
 # PARTIAL and stale RUNNING both return to PENDING while attempts remain.
 requeue() {
   local cutoff=$(( $(now) - STALE_SECS ))
-  local dead; dead="$(dead_claims)"
-  awk -F'\t' -v OFS='\t' -v cutoff="$cutoff" -v maxa="$MAX_ATTEMPTS" -v dead="$dead" '
+  local dead work; dead="$(dead_claims)"; work="$(rows_with_work)"
+  awk -F'\t' -v OFS='\t' -v cutoff="$cutoff" -v maxa="$MAX_ATTEMPTS" -v dead="$dead" -v work="$work" '
     NR==1 { print; next }
     $3=="RUNNING" {
       # -u is required: $5 is UTC and BSD `date -j` would otherwise read it as
@@ -77,7 +77,14 @@ requeue() {
         # killed mid-session three times would be retired. The driver refunds attempts
         # when a run produced real checkpoints, so by the time $4 reaches maxa here the
         # row has genuinely failed that many times without producing anything.
-        if ($4+0 >= maxa) { $3="BLOCKED"; $8="dead RUNNING after " $4 " attempts, no progress" }
+        has_work = (work != "" && index("," work ",", "," $1 ",") > 0)
+        if ($4+0 >= maxa && !has_work) {
+          $3="BLOCKED"; $8="dead RUNNING after " $4 " attempts, no progress"
+        } else if ($4+0 >= maxa && has_work) {
+          # Killed mid-run but it banked checkpoints: refund one attempt rather
+          # than retire it. The clean-exit path already does this; this path did not.
+          $3="PENDING"; $4=$4-1; $8="requeued: killed mid-run but has checkpoints (attempt refunded)"
+        }
         else              { $3="PENDING"
                             $8 = is_dead ? "requeued: claiming driver gone" \
                                          : "requeued from stale RUNNING" }
@@ -104,6 +111,27 @@ field() { awk -F'\t' -v id="$1" -v n="$2" '$1==id { print $n; exit }' "$QUEUE"; 
 # the timestamp when there is no sidecar (rows claimed before this existed) or
 # when the PID is alive. PID recycling can only make this MISS a dead claimer,
 # never free a live one - the conservative direction.
+# Rows that banked real work, for the stale-RUNNING path.
+#
+# The refund at the bottom of this script only runs when the driver exits
+# cleanly. A hard-killed row is left RUNNING, goes stale, and requeue() retires
+# it at MAX_ATTEMPTS with "no progress" WITHOUT EVER LOOKING AT ITS OUTPUT. On
+# 2026-11-08 that had wrongly BLOCKED three experiments holding 30, 18 and 9
+# checkpoints between them - ref-002 was ten draws into twenty.
+#
+# Same test the clean path uses: non-empty, not a quarantined stray.
+rows_with_work() {
+  local out="" d id n
+  for d in network/runs/*/; do
+    [ -d "$d" ] || continue
+    id="$(basename "$d")"
+    n=$(find "$d" -maxdepth 1 -type f \( -name '*.rds' -o -name '*.csv' \) \
+          ! -name 'stray-*' -size +0 2>/dev/null | wc -l | tr -d ' ')
+    [ "${n:-0}" -gt 0 ] && out="$out,$id"
+  done
+  printf '%s' "${out#,}"
+}
+
 claim_file() { echo "network/RUNLOG/.claim_$1.pid"; }
 set_claim()  { printf '%s\n' "$$" > "$(claim_file "$1")" 2>/dev/null || true; }
 clear_claim(){ rm -f "$(claim_file "$1")" 2>/dev/null || true; }
