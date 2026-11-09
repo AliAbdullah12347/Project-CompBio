@@ -81,7 +81,7 @@ if (!file.exists(cfg_path)) {
     subsample_n=SUBSAMPLE_N,
     comparison="base-001 bp_lith observed Zsummary vs permuted null",
     correction="BH across modules (not across draws)",
-    min_empirical_p=1/K,
+    min_empirical_p=1/(K+1),
     seed_base=SEED_BASE,
     git_sha=if(length(sha)&&!is.na(sha))sha else "unknown",
     r_version=paste(R.version$major,R.version$minor,sep="."),
@@ -148,17 +148,43 @@ if (SLICE) {
       " draws present overall. Aggregation is a separate step.")
   quit(save="no", status=0L)
 }
-if (sum(done_k) < K) {
+# Aggregate-only mode. The cluster runs this in slices (PERM_K_FROM/TO), and a
+# slice that hits its deadline leaves gaps in the draw range, so an all-or-
+# nothing gate means the draws that DID land are never scored. Draws are
+# exchangeable and which ones finished depends on pod scheduling, not on any
+# outcome, so a partial set is a valid null - it only raises the p floor to
+# 1/(K_avail + 1). PERM_AGGREGATE=1 scores whatever is on disk.
+AGG_ONLY <- Sys.getenv("PERM_AGGREGATE", "0") == "1"
+if (sum(done_k) < K && !AGG_ONLY) {
   msg("not complete: ", sum(done_k), "/", K, " permuted draws done")
+  msg("  set PERM_AGGREGATE=1 to score the ", sum(done_k), " draws that exist")
   quit(save="no", status=1L)
 }
+K_AVAIL <- sum(done_k)
+if (AGG_ONLY && K_AVAIL < K)
+  msg("AGGREGATE-ONLY: scoring ", K_AVAIL, " of ", K, " draws; p floor = ",
+      signif(1/(K_AVAIL+1), 3))
 
 # ---- compare to base-001 observed ------------------------------------------
 msg("aggregating and computing empirical p-values ...")
-null_all <- do.call(rbind, lapply(seq_len(K), function(i) {
+null_all <- do.call(rbind, lapply(which(done_k), function(i) {
   x <- readRDS(file.path(run_dir, sprintf("perm_draw_%03d.rds",i)))
   x[,c("module","Zsummary","medianRank","perm_draw")]
 }))
+# Draws 1-20 predate the cluster and exist only in the CSV the K=20 run wrote.
+prev <- file.path(run_dir, "null_zsummary_alldraws.csv")
+if (file.exists(prev)) {
+  old_draws <- read.csv(prev, stringsAsFactors=FALSE)
+  old_draws <- old_draws[!old_draws$perm_draw %in% null_all$perm_draw,
+                         c("module","Zsummary","medianRank","perm_draw")]
+  if (nrow(old_draws)) {
+    msg("  recovering ", length(unique(old_draws$perm_draw)),
+        " earlier draws from ", basename(prev))
+    null_all <- rbind(null_all, old_draws)
+  }
+}
+K_AVAIL <- length(unique(null_all$perm_draw))
+msg("  scoring ", K_AVAIL, " draws in total")
 write.csv(null_all, file.path(run_dir,"null_zsummary_alldraws.csv"), row.names=FALSE)
 
 obs_lith <- read.csv(BASE001_LITH, stringsAsFactors=FALSE)
@@ -188,7 +214,13 @@ cmp$empirical_pval_lower <- vapply(seq_len(nrow(cmp)), function(i) {
   obs <- cmp$obs_Zsummary_mean[i]
   nz  <- null_all$Zsummary[null_all$module==m]
   if (!length(nz)||is.na(obs)) return(NA_real_)
-  mean(nz <= obs)   # lower-tail: fraction of null ≤ observed
+  # Add-one (Phipson & Smyth 2010). mean(nz <= obs) returns 0 when the observed
+  # value is below every null draw, and a p of exactly 0 is not a probability -
+  # it says the true p is below 1/K, not that it is zero. perm-032 published
+  # "8 modules significant at BH 5%" off the back of eight such zeros; with the
+  # estimator below the same draws give 0 significant modules, because at K=20
+  # across 72 modules the smallest attainable BH value is 0.429.
+  (1 + sum(nz <= obs)) / (1 + K_AVAIL)
 }, numeric(1))
 cmp$padj <- p.adjust(cmp$empirical_pval_lower, method="BH")
 cmp$direction <- ifelse(cmp$obs_Zsummary_mean < cmp$null_Zsummary_mean,

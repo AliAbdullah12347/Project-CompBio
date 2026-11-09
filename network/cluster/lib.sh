@@ -133,9 +133,13 @@ RPROF
 restore_run () {   # restore_run <run_id>
   local id="$1" n d
   if s3_get "${PREFIX}/runs/${id}.tar.gz" "/work/${id}.prev.tar.gz" 2>/dev/null; then
-    tar xzf "/work/${id}.prev.tar.gz" -C network/runs
-    n=$(ls "network/runs/${id}" 2>/dev/null | wc -l)
-    d=$(ls "network/runs/${id}"/*draw_*.rds 2>/dev/null | wc -l)
+    tar xzf "/work/${id}.prev.tar.gz" -C network/runs || true
+    # find, not ls+glob: with set -e, `d=$(ls nomatch*)` is a FAILED assignment
+    # and kills the whole job. Rows that had draw checkpoints survived it and
+    # rows that did not were killed the instant they were restored, which is
+    # exactly the 11 rows that kept failing on 9 Nov. find exits 0 on no match.
+    n=$(find "network/runs/${id}" -maxdepth 1 -type f 2>/dev/null | wc -l)
+    d=$(find "network/runs/${id}" -maxdepth 1 -name '*draw_*.rds' 2>/dev/null | wc -l)
     echo "-- ${id}: restored ${n} files, ${d} draw checkpoints will be skipped"
   else
     echo "-- ${id}: nothing in S3, starting clean"

@@ -143,11 +143,21 @@ spec:
                     T0=$(date +%s)
                     mkdir -p "network/runs/$id"
                     restore_run "$id"
+                    # The row's stdout goes to its own log.txt, so a pod killed
+                    # mid-row leaves a pod log that stops at the line above and
+                    # says nothing about why. Ship the row log every 2 min.
+                    ( while sleep 120; do
+                        [ -e "network/runs/$id/log.txt" ] || continue
+                        s3_put "network/runs/$id/log.txt" "progress/${{id}}.log" || true
+                      done ) &
+                    SYNC=$!
                     set +e
                     timeout "$CAP" Rscript "network/experiments/$id.R" "$id" \\
                       >> "network/runs/$id/log.txt" 2>&1
                     RC=$?
                     set -e
+                    kill $SYNC 2>/dev/null || true
+                    s3_put "network/runs/$id/log.txt" "progress/${{id}}.log" || true
                     echo "$id rc=$RC secs=$(( $(date +%s) - T0 ))" \\
                       | tee -a /work/out/status-${{IDX}}.tsv
                     tail -3 "network/runs/$id/log.txt" || true
@@ -167,11 +177,13 @@ def main():
     ap.add_argument("--submit", action="store_true")
     ap.add_argument("--only", help="space-separated entries instead of HEAVY+LIGHT")
     ap.add_argument("--start", type=int, default=1, help="first job number")
+    ap.add_argument("--per-job", type=int, default=PODS_PER_JOB,
+                    help="pods per job; 1 isolates each row from gang eviction")
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
     entries = a.only.split() if a.only else HEAVY + LIGHT
     files = []
-    for i, g in enumerate(groups(entries, PODS_PER_JOB), start=a.start):
+    for i, g in enumerate(groups(entries, a.per_job), start=a.start):
         name = "arm3-run-%02d" % i
         path = os.path.join(OUT, name + ".yaml")
         with open(path, "w", newline="\n") as fh:

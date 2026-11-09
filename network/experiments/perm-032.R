@@ -66,7 +66,7 @@ if (!file.exists(cfg_path)) {
     pool_note="ctrl+lith 386 samples (perm-031 used all 474; contrast between pools informs sensitivity to pool choice)",
     pool_size=386L, ref=REF_CACHE_KEY,
     perms_per_draw=PERMS_PER_DRAW, subsample_n=SUBSAMPLE_N,
-    min_empirical_p=1/K,
+    min_empirical_p=1/(K+1),
     seed_base=SEED_BASE,
     git_sha=if(length(sha)&&!is.na(sha))sha else "unknown",
     r_version=paste(R.version$major,R.version$minor,sep="."),
@@ -155,7 +155,13 @@ cmp$empirical_pval_lower <- vapply(seq_len(nrow(cmp)), function(i) {
   m <- cmp$module[i]; obs <- cmp$obs_mean[i]
   nz <- null_all$Zsummary[null_all$module==m]
   if (!length(nz)||is.na(obs)) return(NA_real_)
-  mean(nz <= obs)
+  # Add-one (Phipson & Smyth 2010). mean(nz <= obs) returns 0 when the observed
+  # value is below every null draw, and a p of exactly 0 is not a probability -
+  # it says the true p is below 1/K, not that it is zero. perm-032 published
+  # "8 modules significant at BH 5%" off the back of eight such zeros; with the
+  # estimator below the same draws give 0 significant modules, because at K=20
+  # across 72 modules the smallest attainable BH value is 0.429.
+  (1 + sum(nz <= obs)) / (1 + K)
 }, numeric(1))
 cmp$padj <- p.adjust(cmp$empirical_pval_lower, method="BH")
 cmp$direction <- ifelse(cmp$obs_mean < cmp$null_mean, "less_preserved_than_null", "more_preserved_than_null")
