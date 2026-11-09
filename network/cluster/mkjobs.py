@@ -165,11 +165,13 @@ def groups(entries, k):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--submit", action="store_true")
+    ap.add_argument("--only", help="space-separated entries instead of HEAVY+LIGHT")
+    ap.add_argument("--start", type=int, default=1, help="first job number")
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
-    entries = HEAVY + LIGHT
+    entries = a.only.split() if a.only else HEAVY + LIGHT
     files = []
-    for i, g in enumerate(groups(entries, PODS_PER_JOB), start=1):
+    for i, g in enumerate(groups(entries, PODS_PER_JOB), start=a.start):
         name = "arm3-run-%02d" % i
         path = os.path.join(OUT, name + ".yaml")
         with open(path, "w", newline="\n") as fh:
