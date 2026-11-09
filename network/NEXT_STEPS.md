@@ -3,7 +3,20 @@
 **Updated:** 2026-11-09. Everything below is runnable from a clone of this repo.
 Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
 
-> **As of 9 Nov 12:00 UTC the bulk compute is on the research cluster, not the
+> **As of 9 Nov 23:00 UTC: 45 of 52 rows DONE, up from 19.** Item 1 is
+> ANSWERED - perm-031 at K=157 is a clean negative, 0 of 71 modules, smallest
+> p = 0.038. Item 4 is all but drained: `ref-004`, `net-008`, `inp-024`,
+> `cent-040`, `tob-045` and `bmind-046/047` are the last seven, all running.
+> Items 2 and 3 remain unstarted and are now the highest-value work left.
+>
+> **Three results need care before anyone cites them**, all the same K-floor
+> problem: `perm-032`'s "8 modules significant" is an artifact of p=0 (use
+> `results_permutation_test_addone.csv`: 0 significant); `hub-037`'s "0 of
+> 12360 genes" cannot return a positive at K=20, so it is not a negative; and
+> `comm-039` returned 12368 communities of one gene each, ARI=0, which is a
+> degenerate run, not a finding.
+>
+> **The bulk compute is on the research cluster, not the
 > iMac.** Item 4 is running as `arm3-run-01..07` (29 rows, one per pod) and
 > item 1 as `arm3-perm031` (12 pods). Items 2 and 3 are still unstarted and are
 > still the two highest-value things left. See `network/cluster/README.md` for
