@@ -79,6 +79,13 @@ setup_r () {
                                                "doParallel","foreach","gtools","coda"),
                                              rownames(installed.packages())),
                                      ask=FALSE, update=FALSE)
+                # BisqueRNA is archived on CRAN, so MIND cannot resolve it from the
+                # normal repos - that is the real reason the build failed, not a
+                # compile error. Take it from the archive first.
+                if (!requireNamespace("BisqueRNA", quietly=TRUE))
+                  try(install.packages(
+                    "https://cran.r-project.org/src/contrib/Archive/BisqueRNA/BisqueRNA_1.0.5.tar.gz",
+                    repos=NULL, type="source"))
                 try(remotes::install_github("randel/MIND", upgrade="never", quiet=FALSE))
               }'
   Rscript -e 'for (p in c("WGCNA","GO.db","org.Hs.eg.db","igraph","limma","edgeR","MIND")) cat(sprintf("%-14s %s\n", p, requireNamespace(p, quietly=TRUE)))'
