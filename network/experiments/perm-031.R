@@ -116,7 +116,12 @@ extract_mp <- function(mp) {
 }
 
 # ---- K permuted draws -------------------------------------------------------
-for (k in seq(K_FROM, K_TO)) {
+# PERM_AGGREGATE=1 scores the draws already on disk and computes none. Without
+# this the aggregate-only run walks 1..K and recomputes every gap at ~800 s a
+# draw, which for the 63 gaps the sliced cluster run left is about 14 hours -
+# the opposite of what aggregate-only is for.
+AGG_ONLY <- Sys.getenv("PERM_AGGREGATE", "0") == "1"
+for (k in if (AGG_ONLY) integer(0) else seq(K_FROM, K_TO)) {
   ckpt <- file.path(run_dir, sprintf("perm_draw_%03d.rds", k))
   if (file.exists(ckpt)) { msg("draw ", k, " exists"); next }
   msg("permuted draw ", k, "/", K)
@@ -154,7 +159,6 @@ if (SLICE) {
 # exchangeable and which ones finished depends on pod scheduling, not on any
 # outcome, so a partial set is a valid null - it only raises the p floor to
 # 1/(K_avail + 1). PERM_AGGREGATE=1 scores whatever is on disk.
-AGG_ONLY <- Sys.getenv("PERM_AGGREGATE", "0") == "1"
 if (sum(done_k) < K && !AGG_ONLY) {
   msg("not complete: ", sum(done_k), "/", K, " permuted draws done")
   msg("  set PERM_AGGREGATE=1 to score the ", sum(done_k), " draws that exist")
