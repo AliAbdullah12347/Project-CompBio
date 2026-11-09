@@ -72,7 +72,14 @@ setup_r () {
               if (!requireNamespace("MIND", quietly=TRUE)) {
                 if (!requireNamespace("remotes", quietly=TRUE))
                   install.packages("remotes", repos="https://cloud.r-project.org")
-                try(remotes::install_github("randel/MIND", upgrade="never", quiet=TRUE))
+                # MIND is pure R but its dependencies are not all pulled in by
+                # install_github; install them first and leave the log visible,
+                # because quiet=TRUE hid the real compile error on the first try.
+                BiocManager::install(setdiff(c("MCMCpack","nnls","matrixStats","Matrix",
+                                               "doParallel","foreach","gtools","coda"),
+                                             rownames(installed.packages())),
+                                     ask=FALSE, update=FALSE)
+                try(remotes::install_github("randel/MIND", upgrade="never", quiet=FALSE))
               }'
   Rscript -e 'for (p in c("WGCNA","GO.db","org.Hs.eg.db","igraph","limma","edgeR","MIND")) cat(sprintf("%-14s %s\n", p, requireNamespace(p, quietly=TRUE)))'
 }
