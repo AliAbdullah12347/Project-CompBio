@@ -111,7 +111,11 @@ expr_resid_tobacco <- function(d, group, tob_col, seed = NULL) {
       model.matrix(~ b1 + b2 + b3 + b4, data=md_full)
     })
   if (nrow(X) != ncol(M)) stop("residualize: row mismatch")
-  t(residuals(lm.fit(X, t(M))))   # samples x genes
+  # lm.fit(X, t(M)) already gives samples x genes, which is what the callers
+  # index into by sample. The outer t() made it genes x samples and tripped
+  # stopifnot(nrow(lithAll) == 152L). This path had never run before today:
+  # the expr_samples() call above failed first, so the bug was invisible.
+  residuals(lm.fit(X, t(M)))
 }
 
 extract_mp <- function(mp) {

@@ -60,11 +60,21 @@ setup_r () {
   fi
   # The cached tarball predates inp-024's need for limma. Top up what is
   # missing rather than invalidating the whole tarball for one package.
-  Rscript -e 'need <- setdiff(c("WGCNA","GO.db","org.Hs.eg.db","igraph","fastcluster","limma"),
+  Rscript -e 'need <- setdiff(c("WGCNA","GO.db","org.Hs.eg.db","igraph","fastcluster",
+                                "limma","edgeR","statmod"),
                               rownames(installed.packages()))
               if (length(need)) { cat("-- installing missing:", need, fill=TRUE)
-                BiocManager::install(need, ask=FALSE, update=FALSE) }'
-  Rscript -e 'for (p in c("WGCNA","GO.db","org.Hs.eg.db","igraph","limma")) cat(sprintf("%-14s %s\n", p, requireNamespace(p, quietly=TRUE)))'
+                BiocManager::install(need, ask=FALSE, update=FALSE) }
+              # bMIND. Not on CRAN or Bioconductor - de_analysis/scripts/06_bmind_profiles.R
+              # does library(MIND), so the project already depends on it; only the
+              # cluster image lacked it. Non-fatal: every row except bmind-046/047
+              # runs fine without it.
+              if (!requireNamespace("MIND", quietly=TRUE)) {
+                if (!requireNamespace("remotes", quietly=TRUE))
+                  install.packages("remotes", repos="https://cloud.r-project.org")
+                try(remotes::install_github("randel/MIND", upgrade="never", quiet=TRUE))
+              }'
+  Rscript -e 'for (p in c("WGCNA","GO.db","org.Hs.eg.db","igraph","limma","edgeR","MIND")) cat(sprintf("%-14s %s\n", p, requireNamespace(p, quietly=TRUE)))'
 }
 
 # The base-001 reference modules. Seven experiment scripts quit(status=1) when
