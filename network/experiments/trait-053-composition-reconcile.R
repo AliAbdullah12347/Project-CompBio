@@ -65,11 +65,19 @@ fit_and_count <- function(keep, model) {
   list(p=p, n_bh=sum(p.adjust(p,"BH") < 0.05, na.rm=TRUE))
 }
 
-out <- list()
+out <- list(); per_mod <- list()
 for (ss in names(sample_sets)) {
   keep <- sample_sets[[ss]]
   for (mm in c("marginal","M_001","M_051b")) {
     r <- fit_and_count(keep, mm)
+    # Counts alone cannot be followed up. "1 of 71 survives" is the headline,
+    # but which one decides whether it is the eosinophil module replicating
+    # across decompositions or a different module each time, and the first
+    # version of this row did not record it.
+    per_mod[[length(per_mod)+1]] <- data.frame(
+      sample_set=ss, n=sum(keep), model=mm,
+      module=sub("^ME", "", names(r$p)), p=unname(r$p),
+      p_bh=unname(p.adjust(r$p, "BH")))
     out[[length(out)+1]] <- data.frame(sample_set=ss, n=sum(keep), model=mm,
                                        n_modules=ncol(ME), n_BH05=r$n_bh)
     msg(sprintf("  %-9s n=%-3d  %-9s -> %d of %d modules at BH<0.05",
@@ -78,6 +86,15 @@ for (ss in names(sample_sets)) {
 }
 R <- do.call(rbind, out)
 write.csv(R, file.path(run_dir, "reconciliation.csv"), row.names=FALSE)
+
+PM <- do.call(rbind, per_mod)
+write.csv(PM, file.path(run_dir, "per_module_p.csv"), row.names=FALSE)
+surv <- PM[PM$p_bh < 0.05 & PM$model != "marginal", ]
+for (ss in unique(surv$sample_set)) for (mm in unique(surv$model)) {
+  g <- surv[surv$sample_set == ss & surv$model == mm, ]
+  if (nrow(g) && nrow(g) <= 6)
+    msg(sprintf("  survivors %-9s %-7s: %s", ss, mm, paste(g$module, collapse=", ")))
+}
 
 msg("")
 msg("=== READ THIS TABLE AS ===")

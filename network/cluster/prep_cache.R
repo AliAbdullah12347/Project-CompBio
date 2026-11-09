@@ -43,7 +43,10 @@ LABELS <- "network/runs/mod-000-resolution/labels_p12_ds4.rds"
 REF    <- "network/runs/base-001/reference_module_sizes.csv"
 POWER <- 12L; NET_TYPE <- "signed"; COR_FNC <- "bicor"
 DEEP_SPLIT <- 4L; MIN_MODULE <- 30L; MERGE_THRESH <- 0.0
-REF_GROUP <- "control"; GENE_SET <- "all"; EXPR_MODE <- "offsetrm"
+REF_GROUP <- "control"; GENE_SET <- "all"
+# NOT "offsetrm". That short form is the CACHE_KEY spelling; the stamp has to
+# be the loader's own EXPR_MODE ("offset_removed") or ref_cache_ok() reads the
+# cache as built in a different mode and quarantines a file that is correct.
 SEED <- 20261009L
 dir.create(dirname(LABELS), recursive = TRUE, showWarnings = FALSE)
 dir.create("network/cache", recursive = TRUE, showWarnings = FALSE)

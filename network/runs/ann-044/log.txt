@@ -1,0 +1,84 @@
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T11:50:51] === ann-044 starting ===
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T11:50:58] config written: network/config/ann-044.json
+[2026-11-09T11:50:59] 12368 genes, 71 non-grey modules, 8 grey
+[2026-11-09T11:51:00] wrote reference_gene_modules.csv (12368 genes, 11225 with a symbol)
+[2026-11-09T11:51:20] 10515 of 12368 genes carry GO annotation
+[2026-11-09T11:51:27] terms with >=10 genes in the universe: BP=5160 CC=709 MF=950
+[2026-11-09T11:51:28] kME on 234 controls x 12368 genes
+[2026-11-09T11:51:32]   antiquewhite4      53 genes     0 terms FDR<0.05
+[2026-11-09T11:51:32]   bisque4            70 genes   172 terms FDR<0.05
+[2026-11-09T11:51:32]   black             392 genes     0 terms FDR<0.05
+[2026-11-09T11:51:32]   blue              943 genes    16 terms FDR<0.05
+[2026-11-09T11:51:32]   brown             588 genes     0 terms FDR<0.05
+[2026-11-09T11:51:33]   brown4             79 genes    26 terms FDR<0.05
+[2026-11-09T11:51:33]   coral1             54 genes     0 terms FDR<0.05
+[2026-11-09T11:51:33]   coral2             51 genes     0 terms FDR<0.05
+[2026-11-09T11:51:33]   cyan              247 genes   132 terms FDR<0.05
+[2026-11-09T11:51:33]   darkgreen         158 genes    13 terms FDR<0.05
+[2026-11-09T11:51:33]   darkgrey          147 genes   112 terms FDR<0.05
+[2026-11-09T11:51:34]   darkmagenta       109 genes     0 terms FDR<0.05
+[2026-11-09T11:51:34]   darkolivegreen    112 genes     0 terms FDR<0.05
+[2026-11-09T11:51:34]   darkorange        140 genes    28 terms FDR<0.05
+[2026-11-09T11:51:34]   darkorange2        82 genes    22 terms FDR<0.05
+[2026-11-09T11:51:34]   darkred           176 genes     0 terms FDR<0.05
+[2026-11-09T11:51:35]   darkseagreen4      57 genes     0 terms FDR<0.05
+[2026-11-09T11:51:35]   darkslateblue      70 genes    12 terms FDR<0.05
+[2026-11-09T11:51:35]   darkturquoise     153 genes     0 terms FDR<0.05
+[2026-11-09T11:51:35]   floralwhite        83 genes     1 terms FDR<0.05
+[2026-11-09T11:51:35]   green             435 genes     0 terms FDR<0.05
+[2026-11-09T11:51:36]   greenyellow       335 genes     0 terms FDR<0.05
+[2026-11-09T11:51:36]   grey60            218 genes     0 terms FDR<0.05
+[2026-11-09T11:51:36]   honeydew1          58 genes     0 terms FDR<0.05
+[2026-11-09T11:51:36]   ivory              84 genes    46 terms FDR<0.05
+[2026-11-09T11:51:36]   lavenderblush3     61 genes    41 terms FDR<0.05
+[2026-11-09T11:51:36]   lightcoral         30 genes     0 terms FDR<0.05
+[2026-11-09T11:51:37]   lightcyan         226 genes     6 terms FDR<0.05
+[2026-11-09T11:51:37]   lightcyan1         89 genes     0 terms FDR<0.05
+[2026-11-09T11:51:37]   lightgreen        217 genes    58 terms FDR<0.05
+[2026-11-09T11:51:37]   lightpink4         62 genes    19 terms FDR<0.05
+[2026-11-09T11:51:37]   lightsteelblue     33 genes     9 terms FDR<0.05
+[2026-11-09T11:51:37]   lightsteelblue1    91 genes    23 terms FDR<0.05
+[2026-11-09T11:51:38]   lightyellow       188 genes    23 terms FDR<0.05
+[2026-11-09T11:51:38]   magenta           368 genes     0 terms FDR<0.05
+[2026-11-09T11:51:38]   maroon             63 genes     0 terms FDR<0.05
+[2026-11-09T11:51:38]   mediumorchid       45 genes     0 terms FDR<0.05
+[2026-11-09T11:51:38]   mediumpurple2      35 genes     4 terms FDR<0.05
+[2026-11-09T11:51:38]   mediumpurple3      96 genes   236 terms FDR<0.05
+[2026-11-09T11:51:39]   midnightblue      240 genes    71 terms FDR<0.05
+[2026-11-09T11:51:39]   navajowhite2       64 genes    14 terms FDR<0.05
+[2026-11-09T11:51:39]   orange            144 genes     0 terms FDR<0.05
+[2026-11-09T11:51:39]   orangered3         35 genes     7 terms FDR<0.05
+[2026-11-09T11:51:39]   orangered4         99 genes    30 terms FDR<0.05
+[2026-11-09T11:51:39]   paleturquoise     117 genes    47 terms FDR<0.05
+[2026-11-09T11:51:40]   palevioletred3     66 genes    76 terms FDR<0.05
+[2026-11-09T11:51:40]   pink              372 genes     0 terms FDR<0.05
+[2026-11-09T11:51:40]   plum               36 genes     8 terms FDR<0.05
+[2026-11-09T11:51:40]   plum1             104 genes    67 terms FDR<0.05
+[2026-11-09T11:51:40]   plum2              69 genes    46 terms FDR<0.05
+[2026-11-09T11:51:41]   purple            349 genes    35 terms FDR<0.05
+[2026-11-09T11:51:41]   red               430 genes    88 terms FDR<0.05
+[2026-11-09T11:51:41]   royalblue         183 genes     1 terms FDR<0.05
+[2026-11-09T11:51:41]   saddlebrown       129 genes    61 terms FDR<0.05
+[2026-11-09T11:51:41]   salmon            269 genes    13 terms FDR<0.05
+[2026-11-09T11:51:42]   salmon4            67 genes     0 terms FDR<0.05
+[2026-11-09T11:51:42]   sienna3           109 genes     5 terms FDR<0.05
+[2026-11-09T11:51:42]   skyblue           136 genes    91 terms FDR<0.05
+[2026-11-09T11:51:42]   skyblue1           38 genes     0 terms FDR<0.05
+[2026-11-09T11:51:42]   skyblue2           43 genes     0 terms FDR<0.05
+[2026-11-09T11:51:43]   skyblue3          105 genes   251 terms FDR<0.05
+[2026-11-09T11:51:43]   steelblue         117 genes     1 terms FDR<0.05
+[2026-11-09T11:51:43]   tan               315 genes    23 terms FDR<0.05
+[2026-11-09T11:51:43]   thistle1           68 genes    40 terms FDR<0.05
+[2026-11-09T11:51:43]   thistle2           68 genes    11 terms FDR<0.05
+[2026-11-09T11:51:44]   turquoise        1145 genes    42 terms FDR<0.05
+[2026-11-09T11:51:44]   violet            117 genes    69 terms FDR<0.05
+[2026-11-09T11:51:44]   white             136 genes   183 terms FDR<0.05
+[2026-11-09T11:51:44]   yellow            542 genes   192 terms FDR<0.05
+[2026-11-09T11:51:45]   yellow4            41 genes   112 terms FDR<0.05
+[2026-11-09T11:51:45]   yellowgreen       109 genes    74 terms FDR<0.05
+[2026-11-09T11:51:48] 47 of 71 modules have at least one term at FDR<0.05
+[2026-11-09T11:51:48] 012 comparison: 3 of 33 old modules share a top GO term with the same-named new module
+[2026-11-09T11:51:48]   (term-level only - the old per-gene labels no longer exist, which is why reference_gene_modules.csv is written here)
+[2026-11-09T11:51:48] === ann-044 COMPLETE ===

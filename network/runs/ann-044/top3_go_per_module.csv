@@ -1,0 +1,326 @@
+"go_id","n_mod","n_universe","p_fisher","fdr","term_name","namespace","module","n_module_genes"
+"GO:0051607",33,234,7.45677643260335e-39,3.84769663922333e-35,"defense response to virus","BP","bisque4",70
+"GO:0009615",34,300,9.24287678188144e-37,2.38466220972541e-33,"response to virus","BP","bisque4",70
+"GO:0140546",43,728,1.54891558200083e-35,2.66413480104142e-32,"defense response to symbiont","BP","bisque4",70
+"GO:0006399",35,185,4.22170294819328e-07,0.00217839872126773,"tRNA metabolic process","BP","blue",943
+"GO:0042254",43,289,1.65949269642672e-05,0.0356366431313235,"ribosome biogenesis","BP","blue",943
+"GO:0006396",99,865,2.17413045454667e-05,0.0356366431313235,"RNA processing","BP","blue",943
+"GO:0002526",5,49,1.43175623756368e-05,0.0343368264875302,"acute inflammatory response","BP","brown4",79
+"GO:0006954",13,515,2.06334310628911e-05,0.0343368264875302,"inflammatory response","BP","brown4",79
+"GO:0009617",11,369,2.10534273286369e-05,0.0343368264875302,"response to bacterium","BP","brown4",79
+"GO:0006119",24,124,2.3513226845115e-17,1.21328250520793e-13,"oxidative phosphorylation","BP","cyan",247
+"GO:0002181",25,151,2.43803951788424e-16,6.29014195614133e-13,"cytoplasmic translation","BP","cyan",247
+"GO:0015986",18,70,1.26426796025815e-15,2.17454089164401e-12,"proton motive force-driven ATP synthesis","BP","cyan",247
+"GO:0065007",113,6796,2.37876756720775e-08,9.09708704877418e-05,"biological regulation","BP","darkgrey",147
+"GO:0050794",107,6289,3.98998584223445e-08,9.09708704877418e-05,"regulation of cellular process","BP","darkgrey",147
+"GO:0050789",110,6590,5.28900409812453e-08,9.09708704877418e-05,"regulation of biological process","BP","darkgrey",147
+"GO:0008150",133,9884,2.96693684096719e-07,0.00153093940993907,"biological_process","BP","darkorange",140
+"GO:0044249",82,4889,3.64636439195465e-06,0.00728399800556193,"cellular biosynthetic process","BP","darkorange",140
+"GO:0009987",127,9362,4.23488256137322e-06,0.00728399800556193,"cellular process","BP","darkorange",140
+"GO:0065007",69,6796,1.872130400962e-08,9.66019286896394e-05,"biological regulation","BP","darkorange2",82
+"GO:0006338",18,668,2.74912633013486e-07,0.000709274593174794,"chromatin remodeling","BP","darkorange2",82
+"GO:0006325",19,784,6.15669939911517e-07,0.00105895229664781,"chromatin organization","BP","darkorange2",82
+"GO:0060271",11,254,1.63829745281873e-07,0.000781222069425073,"cilium assembly","BP","darkslateblue",70
+"GO:0044782",11,270,3.02799251715145e-07,0.000781222069425073,"cilium organization","BP","darkslateblue",70
+"GO:0120031",11,377,7.85567808739579e-06,0.0123584540224667,"plasma membrane bounded cell projection assembly","BP","darkslateblue",70
+"GO:0009719",19,796,1.15000028589224e-06,0.00308967920044462,"response to endogenous stimulus","BP","ivory",84
+"GO:0042221",32,2016,1.19755007769171e-06,0.00308967920044462,"response to chemical","BP","ivory",84
+"GO:0071495",17,668,1.97094790966592e-06,0.00339003040462538,"cellular response to endogenous stimulus","BP","ivory",84
+"GO:0001906",10,127,5.27703691131707e-10,2.72295104623961e-06,"cell killing","BP","lavenderblush3",61
+"GO:0002443",12,274,7.28674232032365e-09,1.8799795186435e-05,"leukocyte mediated immunity","BP","lavenderblush3",61
+"GO:0001909",8,90,1.23147824727245e-08,2.01044170074473e-05,"leukocyte mediated cytotoxicity","BP","lavenderblush3",61
+"GO:0002181",46,151,3.71095896129417e-45,1.91485482402779e-41,"cytoplasmic translation","BP","lightgreen",217
+"GO:0006412",59,573,1.08896116750784e-29,2.80951981217023e-26,"translation","BP","lightgreen",217
+"GO:0042274",22,100,1.7776498212225e-18,3.0575576925027e-15,"ribosomal small subunit biogenesis","BP","lightgreen",217
+"GO:0006952",39,1112,5.39801738248695e-07,0.00195753343892436,"defense response","BP","lightyellow",188
+"GO:0009605",44,1357,7.58733891055952e-07,0.00195753343892436,"response to external stimulus","BP","lightyellow",188
+"GO:0002573",13,164,1.26177843698552e-06,0.0021702589116151,"myeloid leukocyte differentiation","BP","lightyellow",188
+"GO:0033036",36,2074,8.38550467870238e-07,0.00271222998871105,"macromolecule localization","BP","mediumpurple3",96
+"GO:0070527",6,49,1.99546459563465e-06,0.00271222998871105,"platelet aggregation","BP","mediumpurple3",96
+"GO:0051179",47,3291,2.21968607701814e-06,0.00271222998871105,"localization","BP","mediumpurple3",96
+"GO:0044249",134,4889,1.86674726219237e-07,0.000563768869025881,"cellular biosynthetic process","BP","midnightblue",240
+"GO:0006396",40,865,2.18515065513907e-07,0.000563768869025881,"RNA processing","BP","midnightblue",240
+"GO:0044238",165,6576,5.08848206153427e-07,0.000875218914583894,"primary metabolic process","BP","midnightblue",240
+"GO:0042221",41,2016,5.60517092073132e-07,0.00289226819509736,"response to chemical","BP","paleturquoise",117
+"GO:0071345",18,532,2.40797785471879e-06,0.00621258286517449,"cellular response to cytokine stimulus","BP","paleturquoise",117
+"GO:0033993",17,518,7.0939312759005e-06,0.0122015617945489,"response to lipid","BP","paleturquoise",117
+"GO:0006955",21,1185,4.49953849018389e-07,0.00232176186093489,"immune response","BP","palevioletred3",66
+"GO:0002376",24,1712,3.7020607676637e-06,0.0057064199394964,"immune system process","BP","palevioletred3",66
+"GO:0051179",35,3291,4.44971637653728e-06,0.0057064199394964,"localization","BP","palevioletred3",66
+"GO:0008152",84,7270,1.43604642723154e-06,0.00594453233081638,"metabolic process","BP","plum1",104
+"GO:0006396",22,865,2.30408229876604e-06,0.00594453233081638,"RNA processing","BP","plum1",104
+"GO:0006139",55,3943,6.79446379159551e-06,0.00894363426976627,"nucleobase-containing compound metabolic process","BP","plum1",104
+"GO:0009987",67,9362,1.14380498137617e-06,0.00590203370390102,"cellular process","BP","plum2",69
+"GO:0008150",68,9884,3.36633999367973e-06,0.00868515718369371,"biological_process","BP","plum2",69
+"GO:0016192",18,1103,2.35632108978043e-05,0.0405287227442234,"vesicle-mediated transport","BP","plum2",69
+"GO:0042744",9,16,6.29537055563115e-10,3.24841120670567e-06,"hydrogen peroxide catabolic process","BP","red",430
+"GO:0020027",8,14,5.00269310952597e-09,8.80646767797797e-06,"hemoglobin metabolic process","BP","red",430
+"GO:0030218",20,120,5.12003934766161e-09,8.80646767797797e-06,"erythrocyte differentiation","BP","red",430
+"GO:0022613",19,419,6.50276993043846e-08,0.000335542928410625,"ribonucleoprotein complex biogenesis","BP","saddlebrown",129
+"GO:0065003",31,1154,6.20598746180183e-07,0.00157644792733031,"protein-containing complex assembly","BP","saddlebrown",129
+"GO:0043933",33,1302,9.16539492633902e-07,0.00157644792733031,"protein-containing complex organization","BP","saddlebrown",129
+"GO:0008150",247,9884,5.02938720583072e-08,0.000259516379820865,"biological_process","BP","salmon",269
+"GO:0044238",178,6576,8.40312007232231e-06,0.0216800497865916,"primary metabolic process","BP","salmon",269
+"GO:0050913",4,10,1.15084794245718e-06,0.0046342085118331,"sensory perception of bitter taste","BP","sienna3",109
+"GO:0050907",4,11,1.79620484954771e-06,0.0046342085118331,"detection of chemical stimulus involved in sensory perception","BP","sienna3",109
+"GO:0007606",5,27,3.35350599359106e-06,0.00495251949352783,"sensory perception of chemical stimulus","BP","sienna3",109
+"GO:0009987",129,9362,1.88789632830974e-09,7.9233927822954e-06,"cellular process","BP","skyblue",136
+"GO:0008150",132,9884,3.07108247375791e-09,7.9233927822954e-06,"biological_process","BP","skyblue",136
+"GO:0050789",104,6590,1.69252179894302e-08,2.91113749418199e-05,"regulation of biological process","BP","skyblue",136
+"GO:0042060",19,245,1.75423547302788e-13,9.05185504082388e-10,"wound healing","BP","skyblue3",105
+"GO:0007596",15,136,4.5574575532003e-13,9.74087337736599e-10,"blood coagulation","BP","skyblue3",105
+"GO:0050817",15,138,5.66329847521278e-13,9.74087337736599e-10,"coagulation","BP","skyblue3",105
+"GO:0141124",57,1193,2.0842103330879e-06,0.0107545253187336,"intracellular signaling cassette","BP","tan",315
+"GO:0043408",25,357,4.72320205160723e-06,0.0121858612931466,"regulation of MAPK cascade","BP","tan",315
+"GO:1902531",58,1305,1.55534892199988e-05,0.0204865755806388,"regulation of intracellular signal transduction","BP","tan",315
+"GO:0042113",17,211,9.60371415719611e-16,4.95551650511319e-12,"B cell activation","BP","thistle1",68
+"GO:0050853",10,63,1.28797088934958e-12,3.32296489452191e-09,"B cell receptor signaling pathway","BP","thistle1",68
+"GO:0050851",11,167,1.54130950309819e-09,2.65105234532889e-06,"antigen receptor-mediated signaling pathway","BP","thistle1",68
+"GO:0050900",10,230,4.60317736653226e-07,0.00237523952113065,"leukocyte migration","BP","thistle2",68
+"GO:0090304",453,3542,4.45869997663445e-17,2.30068918794338e-13,"nucleic acid metabolic process","BP","turquoise",1145
+"GO:0006357",245,1627,3.02742258845191e-16,7.81075027820594e-13,"regulation of transcription by RNA polymerase II","BP","turquoise",1145
+"GO:0006366",252,1723,3.80541359667807e-15,6.54531138628628e-12,"transcription by RNA polymerase II","BP","turquoise",1145
+"GO:0051054",12,236,2.30418748658408e-06,0.00607429742411268,"positive regulation of DNA metabolic process","BP","violet",117
+"GO:0051276",17,477,2.3543788465553e-06,0.00607429742411268,"chromosome organization","BP","violet",117
+"GO:0051052",15,400,5.30017782247351e-06,0.00863945824504937,"regulation of DNA metabolic process","BP","violet",117
+"GO:0001934",17,265,4.77675335259095e-09,9.43637535412706e-06,"positive regulation of protein phosphorylation","BP","white",136
+"GO:0010562",18,303,5.48626474077154e-09,9.43637535412706e-06,"positive regulation of phosphorus metabolic process","BP","white",136
+"GO:0045937",18,303,5.48626474077154e-09,9.43637535412706e-06,"positive regulation of phosphate metabolic process","BP","white",136
+"GO:0001819",37,326,1.02073693222878e-07,0.000526700257030052,"positive regulation of cytokine production","BP","yellow",542
+"GO:0007165",190,3175,4.51077023761234e-07,0.000533526377070921,"signal transduction","BP","yellow",542
+"GO:0051707",75,962,5.57490198995571e-07,0.000533526377070921,"response to other organism","BP","yellow",542
+"GO:0019646",10,81,7.78476775420595e-14,2.37470534143591e-10,"aerobic electron transport chain","BP","yellow4",41
+"GO:0006119",11,124,1.60649915863203e-13,2.37470534143591e-10,"oxidative phosphorylation","BP","yellow4",41
+"GO:0042773",10,88,1.84085685382628e-13,2.37470534143591e-10,"ATP synthesis coupled electron transport","BP","yellow4",41
+"GO:0008150",106,9884,8.31546842245174e-08,0.000214816010504617,"biological_process","BP","yellowgreen",109
+"GO:0008152",90,7270,8.32620195754328e-08,0.000214816010504617,"metabolic process","BP","yellowgreen",109
+"GO:0044238",82,6576,1.6089549151934e-06,0.00276740245413265,"primary metabolic process","BP","yellowgreen",109
+"GO:0005737",61,7745,4.57789790553552e-06,0.00324572961502468,"cytoplasm","CC","bisque4",70
+"GO:0005829",39,3992,4.21412405546052e-05,0.0149390697766076,"cytosol","CC","bisque4",70
+"GO:0042101",19,41,2.3647392446399e-11,1.67660012444969e-08,"T cell receptor complex","CC","blue",943
+"GO:0005759",55,425,7.02133715729006e-05,0.0247049856086631,"mitochondrial matrix","CC","blue",943
+"GO:0005739",146,1432,0.000104534494818039,0.0247049856086631,"mitochondrion","CC","blue",943
+"GO:0009986",11,413,5.89733064927411e-05,0.0418120743033534,"cell surface","CC","brown4",79
+"GO:0005886",31,2575,0.00013690016829929,0.0485311096620985,"plasma membrane","CC","brown4",79
+"GO:0005840",37,207,5.34313097344979e-25,2.00324438836735e-22,"ribosome","CC","cyan",247
+"GO:0044391",34,167,5.65090095449182e-25,2.00324438836735e-22,"ribosomal subunit","CC","cyan",247
+"GO:0005743",46,416,8.0537961379604e-22,1.90338048727131e-19,"mitochondrial inner membrane","CC","cyan",247
+"GO:0005739",48,1432,1.40267679889269e-10,9.94497850414918e-08,"mitochondrion","CC","darkgreen",158
+"GO:0005743",21,416,7.26144067896037e-08,2.57418072069145e-05,"mitochondrial inner membrane","CC","darkgreen",158
+"GO:0019866",21,454,3.14611334843162e-07,6.2728946623469e-05,"organelle inner membrane","CC","darkgreen",158
+"GO:0043232",76,3479,1.17255037110452e-09,4.21646229429234e-07,"intracellular non-membrane-bounded organelle","CC","darkgrey",147
+"GO:0043228",76,3480,1.18941108442661e-09,4.21646229429234e-07,"non-membrane-bounded organelle","CC","darkgrey",147
+"GO:0005694",39,1248,1.02536529733427e-08,2.42327998603333e-06,"chromosome","CC","darkgrey",147
+"GO:0110165",135,10195,3.52737439824895e-07,0.000232400395078552,"cellular anatomical entity","CC","darkorange",140
+"GO:0005575",135,10251,6.55572341547395e-07,0.000232400395078552,"cellular_component","CC","darkorange",140
+"GO:0031974",73,4246,1.0121175329603e-05,0.00143518266173771,"membrane-enclosed lumen","CC","darkorange",140
+"GO:0005643",6,80,1.43430795676107e-05,0.010169243413436,"nuclear pore","CC","darkorange2",82
+"GO:0005829",43,3992,0.000118612005315662,0.0420479558844023,"cytosol","CC","darkorange2",82
+"GO:0005929",11,376,7.6604815909072e-06,0.00543128144795321,"cilium","CC","darkslateblue",70
+"GO:0035869",4,46,0.000128335127124665,0.0388798062656192,"ciliary transition zone","CC","darkslateblue",70
+"GO:0097733",4,49,0.000164512579403184,0.0388798062656192,"photoreceptor cell cilium","CC","darkslateblue",70
+"GO:0042101",5,41,7.47075137847029e-06,0.00529676272733544,"T cell receptor complex","CC","floralwhite",83
+"GO:0071944",43,2724,3.97712035986548e-09,2.81977833514463e-06,"cell periphery","CC","ivory",84
+"GO:0005886",40,2575,3.54856060285008e-08,1.25796473371035e-05,"plasma membrane","CC","ivory",84
+"GO:0110165",82,10195,1.51454053554927e-05,0.0035793641323481,"cellular anatomical entity","CC","ivory",84
+"GO:0044194",5,14,4.77720889554759e-09,3.38704110694324e-06,"cytolytic granule","CC","lavenderblush3",61
+"GO:0009897",7,207,6.74166863621766e-05,0.0206212727143259,"external side of plasma membrane","CC","lavenderblush3",61
+"GO:0071944",27,2724,8.72550326417175e-05,0.0206212727143259,"cell periphery","CC","lavenderblush3",61
+"GO:0042995",44,1213,6.72531902199438e-06,0.00476825118659401,"cell projection","CC","lightcyan",226
+"GO:0030054",44,1248,1.3833126015356e-05,0.00490384317244368,"cell junction","CC","lightcyan",226
+"GO:0071944",76,2724,3.46668117567565e-05,0.00790531834655063,"cell periphery","CC","lightcyan",226
+"GO:0044391",53,167,2.90867992731719e-53,2.06225406846789e-50,"ribosomal subunit","CC","lightgreen",217
+"GO:0022626",43,105,9.38300013328891e-49,3.32627354725092e-46,"cytosolic ribosome","CC","lightgreen",217
+"GO:0005840",53,207,1.08479560636791e-47,2.56373361638282e-45,"ribosome","CC","lightgreen",217
+"GO:0005886",26,2575,0.000130302935609862,0.0315751543025035,"plasma membrane","CC","lightpink4",62
+"GO:0098588",19,1549,0.000133379581085935,0.0315751543025035,"bounding membrane of organelle","CC","lightpink4",62
+"GO:0030667",7,234,0.000160987441304205,0.0315751543025035,"secretory granule membrane","CC","lightpink4",62
+"GO:0005684",4,89,8.74061077384534e-05,0.0315435240822525,"U2-type spliceosomal complex","CC","lightsteelblue",33
+"GO:0005681",5,189,0.000132500418322324,0.0315435240822525,"spliceosomal complex","CC","lightsteelblue",33
+"GO:0016607",6,339,0.000240243344460954,0.0315435240822525,"nuclear speck","CC","lightsteelblue",33
+"GO:0005737",77,7745,3.25120054474779e-06,0.00230510118622618,"cytoplasm","CC","lightsteelblue1",91
+"GO:0009295",5,44,1.67140233146134e-05,0.00395008084335364,"nucleoid","CC","lightsteelblue1",91
+"GO:0042645",5,44,1.67140233146134e-05,0.00395008084335364,"mitochondrial nucleoid","CC","lightsteelblue1",91
+"GO:0071944",77,2724,3.32408118923207e-09,2.35677356316554e-06,"cell periphery","CC","lightyellow",188
+"GO:0005886",72,2575,2.4927302329462e-08,8.83672867579428e-06,"plasma membrane","CC","lightyellow",188
+"GO:0030141",23,573,1.95542964314163e-05,0.00462133205662472,"secretory granule","CC","lightyellow",188
+"GO:0031982",50,2481,2.65133001058811e-12,1.56178143221093e-09,"vesicle","CC","mediumpurple3",96
+"GO:0005576",43,1885,4.40558937153999e-12,1.56178143221093e-09,"extracellular region","CC","mediumpurple3",96
+"GO:0031410",38,1665,1.54890070049096e-10,2.87412439130568e-08,"cytoplasmic vesicle","CC","mediumpurple3",96
+"GO:0031974",130,4246,1.6310842829027e-10,3.85479585526004e-08,"membrane-enclosed lumen","CC","midnightblue",240
+"GO:0043233",130,4246,1.6310842829027e-10,3.85479585526004e-08,"organelle lumen","CC","midnightblue",240
+"GO:0070013",130,4246,1.6310842829027e-10,3.85479585526004e-08,"intracellular organelle lumen","CC","midnightblue",240
+"GO:0070062",13,1317,3.32007035305656e-05,0.00653480830102592,"extracellular exosome","CC","orangered3",35
+"GO:1903561",13,1329,3.65734931154574e-05,0.00653480830102592,"extracellular vesicle","CC","orangered3",35
+"GO:0043230",13,1330,3.68677478196103e-05,0.00653480830102592,"extracellular organelle","CC","orangered3",35
+"GO:0005622",95,9436,8.60552470317084e-08,2.73205850999409e-05,"intracellular anatomical structure","CC","orangered4",99
+"GO:0032991",57,3921,8.76159902189069e-08,2.73205850999409e-05,"protein-containing complex","CC","orangered4",99
+"GO:0043229",91,8672,1.15601911565335e-07,2.73205850999409e-05,"intracellular organelle","CC","orangered4",99
+"GO:0071944",44,2724,8.85221844861243e-05,0.0441711207379613,"cell periphery","CC","paleturquoise",117
+"GO:0005886",41,2575,0.000246001692147075,0.0441711207379613,"plasma membrane","CC","paleturquoise",117
+"GO:0031252",10,277,0.000292500769214719,0.0441711207379613,"cell leading edge","CC","paleturquoise",117
+"GO:0030141",16,573,3.61984912432221e-08,2.56647302914445e-05,"secretory granule","CC","palevioletred3",66
+"GO:0031410",26,1665,1.35662438771201e-07,3.36608260257388e-05,"cytoplasmic vesicle","CC","palevioletred3",66
+"GO:0097708",26,1669,1.42429447217512e-07,3.36608260257388e-05,"intracellular vesicle","CC","palevioletred3",66
+"GO:0033176",3,19,2.12551816857502e-05,0.01492244880112,"proton-transporting V-type ATPase complex","CC","plum",36
+"GO:0090533",3,24,4.3954790658154e-05,0.01492244880112,"cation-transporting ATPase complex","CC","plum",36
+"GO:0098533",3,27,6.31415323037518e-05,0.01492244880112,"ATPase dependent transmembrane transport complex","CC","plum",36
+"GO:0032991",60,3921,3.64244115124766e-08,1.89854648040942e-05,"protein-containing complex","CC","plum1",104
+"GO:0140513",28,1091,5.35556129875719e-08,1.89854648040942e-05,"nuclear protein-containing complex","CC","plum1",104
+"GO:0005622",99,9436,1.73708166544258e-07,4.10530300266264e-05,"intracellular anatomical structure","CC","plum1",104
+"GO:0043227",66,8581,5.20883801474549e-08,1.99556419887705e-05,"membrane-bounded organelle","CC","plum2",69
+"GO:0005737",63,7745,5.62923610402553e-08,1.99556419887705e-05,"cytoplasm","CC","plum2",69
+"GO:0005622",68,9436,1.65966892508479e-07,3.92235089295038e-05,"intracellular anatomical structure","CC","plum2",69
+"GO:0005622",299,9436,7.51524834276852e-06,0.00532831107502288,"intracellular anatomical structure","CC","purple",349
+"GO:0043227",275,8581,4.21067159838726e-05,0.0149268308162828,"membrane-bounded organelle","CC","purple",349
+"GO:0030134",9,67,0.00010328842005261,0.0166347623597384,"COPII-coated ER to Golgi transport vesicle","CC","purple",349
+"GO:0005829",201,3992,1.46461401331336e-10,1.03841133543917e-07,"cytosol","CC","red",430
+"GO:0005737",318,7745,2.67959018234572e-07,9.49914719641558e-05,"cytoplasm","CC","red",430
+"GO:0030863",11,69,2.33520870877005e-05,0.00551887658172655,"cortical cytoskeleton","CC","red",430
+"GO:0012505",69,3040,4.88884187513027e-05,0.0346618888946736,"endomembrane system","CC","royalblue",183
+"GO:0005743",17,416,1.45323320619643e-06,0.00103034234319327,"mitochondrial inner membrane","CC","saddlebrown",129
+"GO:0019866",17,454,4.73514753960758e-06,0.00167860980279089,"organelle inner membrane","CC","saddlebrown",129
+"GO:0005739",33,1432,7.43385177538765e-06,0.00175686696958328,"mitochondrion","CC","saddlebrown",129
+"GO:0005575",259,10251,6.38023900022916e-12,4.52358945116248e-09,"cellular_component","CC","salmon",269
+"GO:0110165",256,10195,2.15815329318837e-10,7.65065342435278e-08,"cellular anatomical entity","CC","salmon",269
+"GO:0005622",237,9436,6.02722074554509e-07,0.000142443316953049,"intracellular anatomical structure","CC","salmon",269
+"GO:0005575",132,10251,2.11345183751438e-07,0.00014984373527977,"cellular_component","CC","skyblue",136
+"GO:0110165",131,10195,6.6838778430698e-07,0.000236943469536825,"cellular anatomical entity","CC","skyblue",136
+"GO:0005737",111,7745,1.05659622752694e-06,0.000249708908438867,"cytoplasm","CC","skyblue",136
+"GO:0031091",14,52,5.59482240964083e-18,3.96672908843535e-15,"platelet alpha granule","CC","skyblue3",105
+"GO:0071944",62,2724,2.02936796155734e-16,7.19410942372079e-14,"cell periphery","CC","skyblue3",105
+"GO:0005886",56,2575,1.78328036893549e-13,4.21448593858422e-11,"plasma membrane","CC","skyblue3",105
+"GO:0071944",103,2724,6.29183536886231e-06,0.00379859374771771,"cell periphery","CC","tan",315
+"GO:0035580",8,44,1.29128656747295e-05,0.00379859374771771,"specific granule lumen","CC","tan",315
+"GO:0005886",97,2575,1.60730341934459e-05,0.00379859374771771,"plasma membrane","CC","tan",315
+"GO:0009897",11,207,1.47313993973911e-08,1.04445621727503e-05,"external side of plasma membrane","CC","thistle1",68
+"GO:0009986",14,413,4.09144110695176e-08,1.4504158724144e-05,"cell surface","CC","thistle1",68
+"GO:0005886",34,2575,8.30815335469928e-08,1.63493035636991e-05,"plasma membrane","CC","thistle1",68
+"GO:0016020",44,5149,0.000100269895560446,0.0316053318066348,"membrane","CC","thistle2",68
+"GO:0031982",27,2481,0.000151863716024385,0.0316053318066348,"vesicle","CC","thistle2",68
+"GO:0110165",66,10195,0.000227749207897459,0.0316053318066348,"cellular anatomical entity","CC","thistle2",68
+"GO:0005634",590,5333,1.17071904625657e-09,8.30039803795911e-07,"nucleus","CC","turquoise",1145
+"GO:0030992",8,16,3.4414699435342e-05,0.0122000109498287,"intraciliary transport particle B","CC","turquoise",1145
+"GO:0005687",6,11,0.000190771618715167,0.0450856925563512,"U4 snRNP","CC","turquoise",1145
+"GO:0000781",10,136,6.08995370132348e-07,0.000431777717423834,"chromosome, telomeric region","CC","violet",117
+"GO:0005622",108,9436,4.93231702397513e-06,0.00137543637713715,"intracellular anatomical structure","CC","violet",117
+"GO:0098687",13,312,7.67218810391201e-06,0.00137543637713715,"chromosomal region","CC","violet",117
+"GO:0005886",53,2575,9.01349173880004e-07,0.00058231980184318,"plasma membrane","CC","white",136
+"GO:0071944",54,2724,2.24989373640868e-06,0.00058231980184318,"cell periphery","CC","white",136
+"GO:0005829",70,3992,2.46397659454096e-06,0.00058231980184318,"cytosol","CC","white",136
+"GO:0031410",145,1665,3.1610226889108e-17,1.38889004297916e-14,"cytoplasmic vesicle","CC","yellow",542
+"GO:0097708",145,1669,3.91788446538549e-17,1.38889004297916e-14,"intracellular vesicle","CC","yellow",542
+"GO:0031982",183,2481,1.40960345888281e-14,3.33136284115971e-12,"vesicle","CC","yellow",542
+"GO:0098803",11,93,6.20783661848609e-15,4.40135616250664e-12,"respiratory chain complex","CC","yellow4",41
+"GO:1990204",10,117,3.40358556928307e-12,1.20657108431085e-09,"oxidoreductase complex","CC","yellow4",41
+"GO:1902495",11,199,2.94119227079071e-11,6.95101773330204e-09,"transmembrane transporter complex","CC","yellow4",41
+"GO:0043227",103,8581,7.36500395073028e-11,5.22178780106777e-08,"membrane-bounded organelle","CC","yellowgreen",109
+"GO:0043226",103,8936,2.77770486897733e-09,9.84696376052463e-07,"organelle","CC","yellowgreen",109
+"GO:0043231",97,8169,2.87628964016767e-08,6.79763118292959e-06,"intracellular membrane-bounded organelle","CC","yellowgreen",109
+"GO:0003725",9,67,1.1541256899288e-10,1.09641940543236e-07,"double-stranded RNA binding","MF","bisque4",70
+"GO:0042802",22,1402,5.26762472094126e-06,0.0025021217424471,"identical protein binding","MF","bisque4",70
+"GO:0016779",6,119,5.54779655419682e-05,0.0142652029017442,"nucleotidyltransferase activity","MF","bisque4",70
+"GO:0003823",12,38,1.51771517082106e-05,0.010636911225355,"antigen binding","MF","blue",943
+"GO:0140640",65,508,2.23934973165368e-05,0.010636911225355,"catalytic activity, acting on a nucleic acid","MF","blue",943
+"GO:0140101",23,124,5.47289870128557e-05,0.0173308458874043,"catalytic activity, acting on a tRNA","MF","blue",943
+"GO:0004888",10,320,3.45898267828295e-05,0.0233797611601654,"transmembrane signaling receptor activity","MF","brown4",79
+"GO:0070851",5,63,4.92205498108745e-05,0.0233797611601654,"growth factor receptor binding","MF","brown4",79
+"GO:0005126",6,112,7.83017723535587e-05,0.0247955612452936,"cytokine receptor binding","MF","brown4",79
+"GO:0003735",34,144,2.89127436990334e-27,2.74671065140817e-24,"structural constituent of ribosome","MF","cyan",247
+"GO:0005198",37,370,3.43105149004276e-16,1.62974945777031e-13,"structural molecule activity","MF","cyan",247
+"GO:0015078",19,133,1.61953355567713e-11,5.1285229263109e-09,"proton transmembrane transporter activity","MF","cyan",247
+"GO:0005515",130,8898,1.04339170336179e-06,0.0009912221181937,"protein binding","MF","darkgrey",147
+"GO:0046975",4,11,5.92509537826616e-06,0.00281442030467642,"histone H3K36 methyltransferase activity","MF","darkgrey",147
+"GO:0140096",36,1495,2.20657539391406e-05,0.00698748874739452,"catalytic activity, acting on a protein","MF","darkgrey",147
+"GO:0003674",137,10181,6.35339191614044e-09,6.03572232033342e-06,"molecular_function","MF","darkorange",140
+"GO:0005515",127,8898,3.84121025781433e-08,1.29784538026422e-05,"protein binding","MF","darkorange",140
+"GO:0005488",133,9705,4.09845909557123e-08,1.29784538026422e-05,"binding","MF","darkorange",140
+"GO:0140993",11,334,1.19378763593714e-05,0.0113409825414028,"histone modifying activity","MF","darkorange2",82
+"GO:0035173",8,186,3.10330037432439e-05,0.0118907709198473,"histone kinase activity","MF","darkorange2",82
+"GO:0004672",11,378,3.75498029047809e-05,0.0118907709198473,"protein kinase activity","MF","darkorange2",82
+"GO:0003674",81,10181,8.61234958078244e-05,0.0477742727454055,"molecular_function","MF","ivory",84
+"GO:0005515",75,8898,0.000100577416306117,0.0477742727454055,"protein binding","MF","ivory",84
+"GO:0004888",12,320,4.09653693975065e-08,3.89171009276311e-05,"transmembrane signaling receptor activity","MF","lavenderblush3",61
+"GO:0004930",8,120,1.19010804313447e-07,5.65301320488874e-05,"G protein-coupled receptor activity","MF","lavenderblush3",61
+"GO:0038023",12,453,1.71684974883277e-06,0.000407751815347784,"signaling receptor activity","MF","lavenderblush3",61
+"GO:0003735",52,144,1.15478301228492e-55,1.09704386167067e-52,"structural constituent of ribosome","MF","lightgreen",217
+"GO:0005198",54,370,6.87182419697285e-35,3.2641164935621e-32,"structural molecule activity","MF","lightgreen",217
+"GO:0019843",17,57,5.66634741259003e-17,1.79434334732018e-14,"rRNA binding","MF","lightgreen",217
+"GO:0061809",3,13,3.31045961210472e-05,0.0260728452961858,"NAD+ nucleotidase, cyclic ADP-ribose generating","MF","lightpink4",62
+"GO:0003841",3,18,9.27777932178571e-05,0.0260728452961858,"1-acylglycerol-3-phosphate O-acyltransferase activity","MF","lightpink4",62
+"GO:0042171",3,19,0.000109780401247098,0.0260728452961858,"lysophosphatidic acid acyltransferase activity","MF","lightpink4",62
+"GO:0003723",13,1407,3.2291353115506e-05,0.0277606045583732,"RNA binding","MF","lightsteelblue",33
+"GO:0003729",6,262,5.84433780176278e-05,0.0277606045583732,"mRNA binding","MF","lightsteelblue",33
+"GO:0005515",82,8898,2.04390753814543e-05,0.0194171216123815,"protein binding","MF","lightsteelblue1",91
+"GO:0005488",85,9705,9.37050695479557e-05,0.0440560583726927,"binding","MF","lightsteelblue1",91
+"GO:0003674",87,10181,0.000139124394861135,0.0440560583726927,"molecular_function","MF","lightsteelblue1",91
+"GO:0004888",8,320,2.35448810492698e-06,0.00223676369968063,"transmembrane signaling receptor activity","MF","mediumpurple2",35
+"GO:0004930",5,120,2.03396833533771e-05,0.00711526185287592,"G protein-coupled receptor activity","MF","mediumpurple2",35
+"GO:0038023",8,453,2.9958997275267e-05,0.00711526185287592,"signaling receptor activity","MF","mediumpurple2",35
+"GO:0050839",15,348,6.72126549371798e-08,6.38520221903208e-05,"cell adhesion molecule binding","MF","mediumpurple3",96
+"GO:0042802",29,1402,4.49518590581816e-07,0.000213521330526363,"identical protein binding","MF","mediumpurple3",96
+"GO:0005178",7,76,1.92232139631949e-06,0.000574059319057321,"integrin binding","MF","mediumpurple3",96
+"GO:0003723",50,1407,1.43791669039952e-05,0.00670718643016234,"RNA binding","MF","midnightblue",240
+"GO:0140658",6,30,2.01522489524407e-05,0.00670718643016234,"ATP-dependent chromatin remodeler activity","MF","midnightblue",240
+"GO:0097159",110,4085,2.11805887268284e-05,0.00670718643016234,"organic cyclic compound binding","MF","midnightblue",240
+"GO:0000166",19,1471,0.000106667463705398,0.0266686336864328,"nucleotide binding","MF","navajowhite2",64
+"GO:1901265",19,1484,0.000120080538330407,0.0266686336864328,"nucleoside phosphate binding","MF","navajowhite2",64
+"GO:0008094",5,99,0.000155735019636361,0.0266686336864328,"ATP-dependent activity, acting on DNA","MF","navajowhite2",64
+"GO:0003676",46,2836,2.00372923162419e-07,0.000190354277004298,"nucleic acid binding","MF","orangered4",99
+"GO:0005488",95,9705,8.73249517825708e-07,0.000235168666128493,"binding","MF","orangered4",99
+"GO:0003723",29,1407,9.88126872965355e-07,0.000235168666128493,"RNA binding","MF","orangered4",99
+"GO:0004407",3,19,0.000132313048706506,0.0491053169275201,"histone deacetylase activity","MF","palevioletred3",66
+"GO:0016811",4,50,0.000141634036931871,0.0491053169275201,"hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in linear amides","MF","palevioletred3",66
+"GO:0033558",3,20,0.000155069421876379,0.0491053169275201,"protein lysine deacetylase activity","MF","palevioletred3",66
+"GO:0042625",3,17,1.49757479538664e-05,0.00474232018539103,"ATPase-coupled ion transmembrane transporter activity","MF","plum",36
+"GO:0044769",3,17,1.49757479538664e-05,0.00474232018539103,"ATPase activity, coupled to transmembrane movement of ions, rotational mechanism","MF","plum",36
+"GO:0046961",3,17,1.49757479538664e-05,0.00474232018539103,"proton-transporting ATPase activity, rotational mechanism","MF","plum",36
+"GO:0003723",42,1407,2.4999962435975e-14,2.37499643141763e-11,"RNA binding","MF","plum1",104
+"GO:0097159",66,4085,1.77635200806529e-10,8.43767203831011e-08,"organic cyclic compound binding","MF","plum1",104
+"GO:0003676",52,2836,1.34109560875138e-09,4.24680276104605e-07,"nucleic acid binding","MF","plum1",104
+"GO:0005488",68,9705,1.03230375463235e-06,0.000672668943981415,"binding","MF","plum2",69
+"GO:0003674",69,10181,1.41614514522403e-06,0.000672668943981415,"molecular_function","MF","plum2",69
+"GO:0140662",6,27,8.66379647217918e-05,0.0413826097197137,"ATP-dependent protein folding chaperone","MF","purple",349
+"GO:0017111",30,512,0.000124003357921251,0.0413826097197137,"ribonucleoside triphosphate phosphatase activity","MF","purple",349
+"GO:0003674",312,10181,0.000135260852587696,0.0413826097197137,"molecular_function","MF","purple",349
+"GO:0016684",11,35,1.55112346877003e-08,1.47356729533153e-05,"oxidoreductase activity, acting on peroxide as acceptor","MF","red",430
+"GO:0004601",10,33,1.04985344533136e-07,4.98680386532395e-05,"peroxidase activity","MF","red",430
+"GO:0016209",10,47,3.79540607957827e-06,0.00120187859186645,"antioxidant activity","MF","red",430
+"GO:0003743",7,47,5.06961139358697e-07,0.000481613082390762,"translation initiation factor activity","MF","saddlebrown",129
+"GO:0008135",7,74,1.14880173521231e-05,0.00443015590154751,"translation factor activity, RNA binding","MF","saddlebrown",129
+"GO:0003723",32,1407,1.39899660048869e-05,0.00443015590154751,"RNA binding","MF","saddlebrown",129
+"GO:0003674",256,10181,1.63962804059075e-10,1.55764663856121e-07,"molecular_function","MF","salmon",269
+"GO:0003824",121,3631,3.00029174173363e-08,1.42513857732347e-05,"catalytic activity","MF","salmon",269
+"GO:0005488",239,9705,5.41663660981961e-06,0.00171526825977621,"binding","MF","salmon",269
+"GO:0003674",131,10181,5.74973505385608e-07,0.000546224830116328,"molecular_function","MF","skyblue",136
+"GO:0005515",119,8898,1.02972125802175e-05,0.00434292206585833,"protein binding","MF","skyblue",136
+"GO:0008514",9,131,1.37144907342895e-05,0.00434292206585833,"organic anion transmembrane transporter activity","MF","skyblue",136
+"GO:0005178",9,76,1.43801054084218e-08,1.36611001380007e-05,"integrin binding","MF","skyblue3",105
+"GO:0005102",20,653,4.8539905544915e-07,0.000230564551338346,"signaling receptor binding","MF","skyblue3",105
+"GO:0050840",5,24,1.49802903923051e-06,0.000474375862422995,"extracellular matrix binding","MF","skyblue3",105
+"GO:0005544",4,19,2.64191579464671e-05,0.0250982000491438,"calcium-dependent phospholipid binding","MF","steelblue",117
+"GO:0016773",28,462,1.93559431611112e-05,0.0126774415762186,"phosphotransferase activity, alcohol group as acceptor","MF","tan",315
+"GO:0016301",29,496,2.6689350686776e-05,0.0126774415762186,"kinase activity","MF","tan",315
+"GO:0004672",23,378,0.000102741755433784,0.0280853335372002,"protein kinase activity","MF","tan",315
+"GO:0038023",14,453,1.28792130316899e-07,6.11762619005272e-05,"signaling receptor activity","MF","thistle1",68
+"GO:0060089",14,453,1.28792130316899e-07,6.11762619005272e-05,"molecular transducer activity","MF","thistle1",68
+"GO:0004888",11,320,1.20493338677878e-06,0.000381562239146613,"transmembrane signaling receptor activity","MF","thistle1",68
+"GO:0005488",66,9705,1.27124550491039e-05,0.0120768322966487,"binding","MF","thistle2",68
+"GO:0003700",194,780,1.13474178081978e-40,1.07800469177879e-37,"DNA-binding transcription factor activity","MF","turquoise",1145
+"GO:0000981",182,732,4.98542765035861e-38,2.0439791572511e-35,"DNA-binding transcription factor activity, RNA polymerase II-specific","MF","turquoise",1145
+"GO:0000977",190,786,6.45467102289823e-38,2.0439791572511e-35,"RNA polymerase II transcription regulatory region sequence-specific DNA binding","MF","turquoise",1145
+"GO:0140640",18,508,1.24812898584587e-06,0.00118572253655358,"catalytic activity, acting on a nucleic acid","MF","violet",117
+"GO:0008094",8,99,4.21466915962947e-06,0.002001967850824,"ATP-dependent activity, acting on DNA","MF","violet",117
+"GO:0140097",10,202,2.11392108316778e-05,0.00542080643637924,"catalytic activity, acting on DNA","MF","violet",117
+"GO:0016773",16,462,4.68203384129877e-05,0.0423206386329322,"phosphotransferase activity, alcohol group as acceptor","MF","white",136
+"GO:0016301",16,496,0.00010813673441228,0.0423206386329322,"kinase activity","MF","white",136
+"GO:0004674",12,307,0.000143457775673535,0.0423206386329322,"protein serine/threonine kinase activity","MF","white",136
+"GO:0031625",27,250,1.3966338558845e-05,0.00695158402251251,"ubiquitin protein ligase binding","MF","yellow",542
+"GO:0044389",28,265,1.46349137316053e-05,0.00695158402251251,"ubiquitin-like protein ligase binding","MF","yellow",542
+"GO:1901981",16,131,0.000192404956666475,0.04451400202875,"phosphatidylinositol phosphate binding","MF","yellow",542
+"GO:0015453",10,62,4.65421504407875e-15,4.42150429187481e-12,"oxidoreduction-driven active transmembrane transporter activity","MF","yellow4",41
+"GO:0009055",10,93,3.2575510522326e-13,1.11233745679688e-10,"electron transfer activity","MF","yellow4",41
+"GO:0015078",11,133,3.51264460041121e-13,1.11233745679688e-10,"proton transmembrane transporter activity","MF","yellow4",41
+"GO:0003824",63,3631,5.19238293347487e-10,4.93276378680113e-07,"catalytic activity","MF","yellowgreen",109
+"GO:0005488",106,9705,1.44719704615458e-08,6.87418596923425e-06,"binding","MF","yellowgreen",109
+"GO:0003723",32,1407,2.60694436584389e-07,8.25532382517233e-05,"RNA binding","MF","yellowgreen",109
