@@ -75,6 +75,14 @@ mediation arm's "lower bound" framing predicts should exist.
   adjustment" means "survives the five lineage balances we can estimate", not
   "is independent of eosinophil count". **This is the main threat to the
   result** and the honest way to report it.
+- **It is not a gene-filter artifact.** `filt-044` sweeps 31 filters, and at
+  the project's own (`>10 counts in >=90% of samples`) all 35 genes survive, as
+  they do under edgeR's `filterByExpr`. The module only erodes under filters no
+  analysis uses — 7 of 35 at `>50 in >=90%`, 0 at `>50 in 100%`. Its summary
+  line reads "0/35 survive all filters", which means all 31 including the
+  absurd ones; the median module keeps 14.3% by that standard. These are
+  low-abundance genes, as eosinophil genes in whole blood should be, but they
+  are comfortably above the threshold the pipeline actually applies.
 - 35 genes is small. One eigengene from 35 genes is sensitive to a handful of
   outlying samples; a leave-one-out or bootstrap over subjects would settle it
   and has not been run.
