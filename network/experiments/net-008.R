@@ -181,7 +181,7 @@ if (ref_cache_ok(ref_cache)) {
     tmp_ref,
     power          = POWER,
     networkType    = NET_TYPE,
-    TOMType        = NET_TYPE,
+    TOMType        = "signed",   # "signed hybrid" is not a legal TOMType
     corType        = COR_FNC,
     deepSplit      = DEEP_SPLIT,
     minModuleSize  = MIN_MODULE,

@@ -112,7 +112,9 @@ if (!file.exists(REF_CACHE)) {
 ref_net      <- readRDS(REF_CACHE)
 wgcna_colors <- ref_net$moduleColors   # named character vector: gene -> colour
 genes        <- names(wgcna_colors)
-stopifnot(length(genes) == nrow(d$logtpm))
+if (is.null(genes)) genes <- rownames(d$logtpm)  # cache stores colours positionally
+stopifnot(length(genes) == length(wgcna_colors))
+names(wgcna_colors) <- genes
 msg("base-001 reference loaded: ", length(unique(wgcna_colors)) - 1L,
     " non-grey WGCNA modules; ", length(genes), " genes")
 

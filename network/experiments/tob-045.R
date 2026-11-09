@@ -98,7 +98,7 @@ d <- load_project()
 expr_resid_tobacco <- function(d, group, tob_col, seed = NULL) {
   if (!is.null(seed)) set.seed(seed)
   keep <- !is.na(d$groups) & d$groups %in% group
-  M    <- expr_samples(d, keep, transpose = FALSE)   # genes x samples
+  M    <- expr_samples(d, colnames(d$logtpm)[keep], transpose = FALSE)  # ids, not a mask
   md   <- d$meta[keep, , drop=FALSE]
   ilr  <- d$ilr[keep, -1, drop=FALSE]   # remove sample column
   tob  <- d$tobacco[keep, tob_col, drop=FALSE]

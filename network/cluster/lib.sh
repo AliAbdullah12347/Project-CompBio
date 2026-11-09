@@ -38,7 +38,7 @@ clone_repo () {
   cd /work/repo
   git sparse-checkout init --no-cone
   git sparse-checkout set \
-    "/data/analysis_matrices/*" "/data/LM22.txt" "/de_analysis/data/*" \
+    "/data/analysis_matrices/*" "/data/LM22.txt" "/de_analysis/data/*" "/de_analysis/scripts/*" \
     "/network/*" "/de_v2/scripts/*" "/de_final/results/*"
   git checkout
   mkdir -p network/cache network/runs
@@ -58,7 +58,13 @@ setup_r () {
     tar czf /work/rlibs.tar.gz -C "$RLIB" .
     s3_put /work/rlibs.tar.gz env/rlibs.tar.gz || true
   fi
-  Rscript -e 'for (p in c("WGCNA","GO.db","org.Hs.eg.db","igraph")) cat(sprintf("%-14s %s\n", p, requireNamespace(p, quietly=TRUE)))'
+  # The cached tarball predates inp-024's need for limma. Top up what is
+  # missing rather than invalidating the whole tarball for one package.
+  Rscript -e 'need <- setdiff(c("WGCNA","GO.db","org.Hs.eg.db","igraph","fastcluster","limma"),
+                              rownames(installed.packages()))
+              if (length(need)) { cat("-- installing missing:", need, fill=TRUE)
+                BiocManager::install(need, ask=FALSE, update=FALSE) }'
+  Rscript -e 'for (p in c("WGCNA","GO.db","org.Hs.eg.db","igraph","limma")) cat(sprintf("%-14s %s\n", p, requireNamespace(p, quietly=TRUE)))'
 }
 
 # The base-001 reference modules. Seven experiment scripts quit(status=1) when
@@ -81,4 +87,68 @@ upload_run () {   # upload_run <run_id>
   tar czf "/work/${id}.tar.gz" -C network/runs "$id"
   s3_put "/work/${id}.tar.gz" "runs/${id}.tar.gz"
   echo "-- $id: uploaded $(du -h "/work/${id}.tar.gz" | cut -f1)"
+}
+
+# ---------------------------------------------------------------------------
+# Correct detectCores() for the cgroup.
+#
+# parallel::detectCores() reports the HOST's cores - 32 on these nodes - not
+# the 4 this pod may use. WGCNA's enableWGCNAThreads() then takes nCores-1, so
+# every row of the 8 Nov run logged "up to 31 working processes" while holding
+# a 4-CPU quota and spent its time context-switching: 17-25 minutes per
+# modulePreservation call, against the ~80 s per 50 permutations recorded in
+# gene-027's header. Reporting the cgroup's allocation is what detectCores()
+# should do; R has no way to see it, so we supply it.
+#
+# R reads .Rprofile from the working directory at startup, before the script
+# body, so this is in place before library(WGCNA) runs.
+# ---------------------------------------------------------------------------
+write_rprofile () {   # write_rprofile <cpu-limit>
+  cat > /work/repo/.Rprofile <<RPROF
+local({
+  n  <- ${1}L
+  ok <- try({
+    ns <- asNamespace("parallel")
+    unlockBinding("detectCores", ns)
+    assign("detectCores", function(all.tests = FALSE, logical = TRUE) n + 1L, envir = ns)
+    lockBinding("detectCores", ns)
+    TRUE
+  }, silent = TRUE)
+  cat(sprintf("[.Rprofile] detectCores -> %d so enableWGCNAThreads picks %d: %s\n",
+              n + 1L, n, if (isTRUE(ok)) "ok" else "FAILED, threads left at host count"))
+})
+RPROF
+  echo "-- .Rprofile written, threads pinned to ${1}"
+}
+
+# ---------------------------------------------------------------------------
+# Restore a row's earlier partial output before re-running it.
+#
+# Every long row checkpoints per draw (lith_draw_NNN.rds) and skips draws whose
+# checkpoint already exists. The 8 Nov run timed out inside the draw loop but
+# uploaded what it had, so restoring first turns a 20-draw re-run into a 2- to
+# 16-draw one. Without this a resubmission silently repeats hours of finished
+# work and times out in the same place.
+# ---------------------------------------------------------------------------
+restore_run () {   # restore_run <run_id>
+  local id="$1" n d
+  if s3_get "${PREFIX}/runs/${id}.tar.gz" "/work/${id}.prev.tar.gz" 2>/dev/null; then
+    tar xzf "/work/${id}.prev.tar.gz" -C network/runs
+    n=$(ls "network/runs/${id}" 2>/dev/null | wc -l)
+    d=$(ls "network/runs/${id}"/*draw_*.rds 2>/dev/null | wc -l)
+    echo "-- ${id}: restored ${n} files, ${d} draw checkpoints will be skipped"
+  else
+    echo "-- ${id}: nothing in S3, starting clean"
+  fi
+}
+
+# filt-044 reads the 474-sample raw count matrix: 16 MB, untracked, so it
+# travels through S3 the same way the reference cache does.
+fetch_counts () {
+  mkdir -p data/cohort_474
+  if s3_get "${PREFIX}/data/counts_474.tsv.gz" data/cohort_474/counts_474.tsv.gz; then
+    echo "-- raw counts fetched ($(du -h data/cohort_474/counts_474.tsv.gz | cut -f1))"
+  else
+    echo "!! counts_474.tsv.gz missing in S3" >&2; return 1
+  fi
 }
