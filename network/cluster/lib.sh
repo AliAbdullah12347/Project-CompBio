@@ -82,6 +82,11 @@ setup_r () {
                 # BisqueRNA is archived on CRAN, so MIND cannot resolve it from the
                 # normal repos - that is the real reason the build failed, not a
                 # compile error. Take it from the archive first.
+                # limSolve is what BisqueRNA needs and nothing pulls in, so the
+                # chain is MIND -> BisqueRNA -> limSolve and each layer only
+                # names the next once the one below it is present.
+                if (!requireNamespace("limSolve", quietly=TRUE))
+                  try(install.packages("limSolve", repos="https://cloud.r-project.org"))
                 if (!requireNamespace("BisqueRNA", quietly=TRUE))
                   try(install.packages(
                     "https://cran.r-project.org/src/contrib/Archive/BisqueRNA/BisqueRNA_1.0.5.tar.gz",
