@@ -177,6 +177,8 @@ def main():
     ap.add_argument("--submit", action="store_true")
     ap.add_argument("--only", help="space-separated entries instead of HEAVY+LIGHT")
     ap.add_argument("--start", type=int, default=1, help="first job number")
+    ap.add_argument("--mem", default=MEM,
+                    help="memory per pod; cent-040 OOMed at 22Gi building three graphs")
     ap.add_argument("--per-job", type=int, default=PODS_PER_JOB,
                     help="pods per job; 1 isolates each row from gang eviction")
     a = ap.parse_args()
@@ -189,7 +191,7 @@ def main():
         with open(path, "w", newline="\n") as fh:
             fh.write(TEMPLATE.format(name=name, n=len(g), rows=" ".join(g),
                                      rowlist="\n#   ".join(g), cpu=CPU,
-                                     mem=MEM, deadline=DEADLINE))
+                                     mem=a.mem, deadline=DEADLINE))
         files.append(path)
         print("%-12s %d pods  %s" % (name, len(g), " ".join(g)))
     print("\n%d entries -> %d jobs, %d pods, %d CPU in all" %
