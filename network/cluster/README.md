@@ -2,7 +2,35 @@
 
 Everything in `network/NEXT_STEPS.md` that is bulk compute, moved off the iMac.
 
-## State on 9 Nov 2026, 12:00 UTC
+## State on 9 Nov 2026, 23:00 UTC
+
+**45 of 52 queue rows DONE** (was 19 on 8 Nov). Seven still in flight:
+`ref-004`, `net-008`, `inp-024`, `cent-040`, `tob-045`, `bmind-046/047`.
+
+`arm3-perm031` hit its 24 h ceiling with 137 of 180 new draws. Those plus the
+original 20 were aggregated at **K=157**, and the answer is a clean negative -
+see `findings/2026-11-09-perm031-at-157-draws-is-a-clean-negative.md`.
+
+### The three bugs that cost two drains
+
+1. **WGCNA ran 31 threads in a 4-CPU cgroup** (below). Cost: 19 rows.
+2. **`restore_run` counted checkpoints with `ls` under `set -e`.** A glob
+   matching nothing makes `ls` exit non-zero, the `$(...)` assignment inherits
+   that, and the whole job script dies *before* printing the row's return code.
+   Rows **with** draw checkpoints sailed past it; rows **without** one died the
+   instant they were restored. That is exactly which 11 rows kept failing,
+   across two different job shapes. `find` exits 0 on no match; `ls` does not.
+3. **Six rows asserted or imported things that could never hold:** `edgeR`,
+   `limma` and `MIND` missing from the image, `BisqueRNA` archived on CRAN, and
+   `tob-045`/`inp-024` calling `assert_expr_mode(..., "offset_removed")` on a
+   residualised and a voom matrix respectively - neither can match, and
+   `inp-024` had therefore never run once.
+
+**Read return codes, never upload counts.** The 8 Nov drain reported 30 rows
+uploaded and had finished 2.
+
+## How the first drain went
+
 
 | job | what | pods | status |
 |:--|:--|--:|:--|

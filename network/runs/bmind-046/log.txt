@@ -1,0 +1,48 @@
+[2026-11-09T07:44:19] === bmind-046 starting ===
+Error: bMIND script not found: de_analysis/scripts/06_bmind_profiles.R
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:32:09] === bmind-046 starting ===
+[2026-11-09T22:32:09] config written: network/config/bmind-046.json
+[2026-11-09T22:32:09] Starting bMIND profile rebuild (~3.1h) ...
+[2026-11-09T22:32:09] Script: de_analysis/scripts/06_bmind_profiles.R
+[2026-11-09T22:32:09] Working directory: /work/repo
+[2026-11-09T22:32:09] Running: Rscript de_analysis/scripts/06_bmind_profiles.R > network/runs/bmind-046/bmind_profiles.log 2>&1
+[2026-11-09T22:32:09] Return code: 1
+[2026-11-09T22:32:09] Last 4 lines of bMIND log:
+  [.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+  Error in library(MIND) : there is no package called ‘MIND’
+  Calls: suppressPackageStartupMessages -> withCallingHandlers -> library
+  Execution halted
+[2026-11-09T22:32:09] ERROR: bMIND script returned non-zero exit code 1
+[2026-11-09T22:32:09] Check log: network/runs/bmind-046/bmind_profiles.log
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:37:54] === bmind-046 starting ===
+[2026-11-09T22:37:54] config written: network/config/bmind-046.json
+[2026-11-09T22:37:54] Starting bMIND profile rebuild (~3.1h) ...
+[2026-11-09T22:37:54] Script: de_analysis/scripts/06_bmind_profiles.R
+[2026-11-09T22:37:54] Working directory: /work/repo
+[2026-11-09T22:37:54] Running: Rscript de_analysis/scripts/06_bmind_profiles.R > network/runs/bmind-046/bmind_profiles.log 2>&1
+[2026-11-09T22:37:54] Return code: 1
+[2026-11-09T22:37:54] Last 4 lines of bMIND log:
+  [.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+  Error in library(MIND) : there is no package called ‘MIND’
+  Calls: suppressPackageStartupMessages -> withCallingHandlers -> library
+  Execution halted
+[2026-11-09T22:37:54] ERROR: bMIND script returned non-zero exit code 1
+[2026-11-09T22:37:54] Check log: network/runs/bmind-046/bmind_profiles.log
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:42:19] === bmind-046 starting ===
+[2026-11-09T22:42:19] config written: network/config/bmind-046.json
+[2026-11-09T22:42:19] Starting bMIND profile rebuild (~3.1h) ...
+[2026-11-09T22:42:19] Script: de_analysis/scripts/06_bmind_profiles.R
+[2026-11-09T22:42:19] Working directory: /work/repo
+[2026-11-09T22:42:19] Running: Rscript de_analysis/scripts/06_bmind_profiles.R > network/runs/bmind-046/bmind_profiles.log 2>&1
+[2026-11-09T22:42:19] Return code: 1
+[2026-11-09T22:42:19] Last 4 lines of bMIND log:
+  [.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+  Error in library(MIND) : there is no package called ‘MIND’
+  Calls: suppressPackageStartupMessages -> withCallingHandlers -> library
+  Execution halted
+[2026-11-09T22:42:19] ERROR: bMIND script returned non-zero exit code 1
+[2026-11-09T22:42:19] Check log: network/runs/bmind-046/bmind_profiles.log

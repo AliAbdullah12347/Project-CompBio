@@ -1,0 +1,37 @@
+[2026-11-09T01:44:15] === net-008 starting ===
+[2026-11-09T01:44:15] config written: network/config/net-008.json
+Allowing parallel execution with up to 31 working processes.
+[2026-11-09T01:44:18] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T01:44:20] pickSoftThreshold scan (powers 1:20) ...
+   Power SFT.R.sq  slope truncated.R.sq  mean.k. median.k. max.k.
+1      1    0.411  1.570          0.968 1470.000  1.46e+03 2450.0
+2      2    0.205 -0.622          0.911  552.000  5.14e+02 1410.0
+3      3    0.595 -1.340          0.928  257.000  2.14e+02  923.0
+4      4    0.674 -1.670          0.915  136.000  1.00e+02  648.0
+5      5    0.666 -1.950          0.896   78.700  5.10e+01  477.0
+6      6    0.718 -1.980          0.925   48.500  2.73e+01  363.0
+7      7    0.751 -2.000          0.948   31.400  1.52e+01  283.0
+8      8    0.749 -2.090          0.954   21.200  8.73e+00  225.0
+9      9    0.763 -2.100          0.961   14.700  5.13e+00  181.0
+10    10    0.780 -2.090          0.970   10.500  3.12e+00  148.0
+11    11    0.755 -2.170          0.947    7.640  1.93e+00  123.0
+12    12    0.769 -2.150          0.953    5.680  1.20e+00  102.0
+13    13    0.782 -2.130          0.958    4.290  7.70e-01   86.3
+14    14    0.793 -2.120          0.962    3.290  4.99e-01   73.1
+15    15    0.801 -2.090          0.966    2.550  3.27e-01   62.4
+16    16    0.809 -2.070          0.969    2.000  2.17e-01   53.5
+17    17    0.814 -2.050          0.968    1.590  1.47e-01   46.2
+18    18    0.417 -2.720          0.481    1.270  9.92e-02   40.0
+19    19    0.422 -2.690          0.487    1.030  6.81e-02   34.8
+20    20    0.435 -2.700          0.497    0.834  4.67e-02   30.4
+[2026-11-09T01:46:42] pickSoftThreshold powerEstimate = NA
+[2026-11-09T01:46:42] R2 curve saved (max signed-R2 = 0.814 at power 17)
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2291703 122.4    4263418 227.7  3023840 161.5
+Vcells 15847662 121.0   33677592 257.0 27996904 213.6
+[2026-11-09T01:46:42] building reference network (bicor, signed hybrid, power 12) ...
+ Calculating module eigengenes block-wise from all genes
+Error in blockwiseModules(tmp_ref, power = POWER, networkType = NET_TYPE,  : 
+  Invalid 'TOMType'. Recognized values are none, unsigned, signed, signed Nowick, unsigned 2, signed 2, signed Nowick 2
+Execution halted

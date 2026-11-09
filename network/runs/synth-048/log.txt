@@ -1,0 +1,11 @@
+[2026-11-09T07:44:16] === synth-048 starting ===
+[2026-11-09T07:44:16] config written: network/config/synth-048.json
+[2026-11-09T07:44:16] === Reading experiment results ===
+[2026-11-09T07:44:16] base-001 lith: 72 modules
+[2026-11-09T07:44:17] completed robustness experiments: 6/25
+[2026-11-09T07:44:17] computing stability ...
+[2026-11-09T07:44:17] 71/72 modules stable across ≥80% of variants
+[2026-11-09T07:44:17] writing cross-run synthesis to RESULTS.md ...
+[2026-11-09T07:44:17] synthesis section written to network/runs/synth-048/synthesis_section.md (323 lines)
+[2026-11-09T07:44:17] appended synthesis to RESULTS.md (total 728 lines)
+[2026-11-09T07:44:17] === synth-048 COMPLETE ===

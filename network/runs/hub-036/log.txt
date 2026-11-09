@@ -1,0 +1,179 @@
+[2026-11-09T04:44:16] === hub-036 starting ===
+[2026-11-09T04:44:16] config written: network/config/hub-036.json
+Allowing parallel execution with up to 31 working processes.
+[2026-11-09T04:44:20] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T04:44:22] 71 non-grey modules; 12368 genes
+[2026-11-09T04:44:22] computing kME for control ...
+[2026-11-09T04:44:39] kme_control.csv written: 12368 genes x 71 modules
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2270206 121.3    4263827 227.8  2794280 149.3
+Vcells 16705084 127.5   33692314 257.1 33692178 257.1
+[2026-11-09T04:44:40] computing kME for bp_nolith ...
+[2026-11-09T04:44:45] kme_nolith.csv written: 12368 genes x 71 modules
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2270348 121.3    4263827 227.8  3011544 160.9
+Vcells 17595993 134.3   33692314 257.1 33692178 257.1
+[2026-11-09T04:44:45] bp_lith draw 1/20: subsampling 74 from 152 ...
+[2026-11-09T04:44:49] draw 1/20 done (12368 genes x 71 modules)
+[2026-11-09T04:44:49] bp_lith draw 2/20: subsampling 74 from 152 ...
+[2026-11-09T04:44:53] draw 2/20 done (12368 genes x 71 modules)
+[2026-11-09T04:44:54] bp_lith draw 3/20: subsampling 74 from 152 ...
+[2026-11-09T04:44:57] draw 3/20 done (12368 genes x 71 modules)
+[2026-11-09T04:44:58] bp_lith draw 4/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:03] draw 4/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:03] bp_lith draw 5/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:08] draw 5/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:09] bp_lith draw 6/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:14] draw 6/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:15] bp_lith draw 7/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:20] draw 7/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:21] bp_lith draw 8/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:24] draw 8/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:24] bp_lith draw 9/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:28] draw 9/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:28] bp_lith draw 10/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:33] draw 10/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:33] bp_lith draw 11/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:40] draw 11/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:40] bp_lith draw 12/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:47] draw 12/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:47] bp_lith draw 13/20: subsampling 74 from 152 ...
+[2026-11-09T04:45:55] draw 13/20 done (12368 genes x 71 modules)
+[2026-11-09T04:45:55] bp_lith draw 14/20: subsampling 74 from 152 ...
+[2026-11-09T04:46:00] draw 14/20 done (12368 genes x 71 modules)
+[2026-11-09T04:46:00] bp_lith draw 15/20: subsampling 74 from 152 ...
+[2026-11-09T04:46:07] draw 15/20 done (12368 genes x 71 modules)
+[2026-11-09T04:46:07] bp_lith draw 16/20: subsampling 74 from 152 ...
+[2026-11-09T04:46:14] draw 16/20 done (12368 genes x 71 modules)
+[2026-11-09T04:46:14] bp_lith draw 17/20: subsampling 74 from 152 ...
+[2026-11-09T04:46:19] draw 17/20 done (12368 genes x 71 modules)
+[2026-11-09T04:46:20] bp_lith draw 18/20: subsampling 74 from 152 ...
+[2026-11-09T04:46:24] draw 18/20 done (12368 genes x 71 modules)
+[2026-11-09T04:46:25] bp_lith draw 19/20: subsampling 74 from 152 ...
+[2026-11-09T04:46:29] draw 19/20 done (12368 genes x 71 modules)
+[2026-11-09T04:46:29] bp_lith draw 20/20: subsampling 74 from 152 ...
+[2026-11-09T04:46:31] draw 20/20 done (12368 genes x 71 modules)
+[2026-11-09T04:46:31] all draws complete; aggregating bp_lith kME across 20 draws ...
+[2026-11-09T04:47:05] kme_lith_mean.csv and kme_lith_sd.csv written
+[2026-11-09T04:47:05] hub_identity.csv written
+[2026-11-09T04:47:06] hub_stability.csv written
+[2026-11-09T04:47:06] Hub gene changed between control and bp_nolith: 49/71 modules
+[2026-11-09T04:47:06] Hub gene changed between control and bp_lith:   46/71 modules
+[2026-11-09T04:47:06] Median Spearman rho (ctrl vs bp_nolith): 0.908
+[2026-11-09T04:47:06] Median Spearman rho (ctrl vs bp_lith):   0.892
+[2026-11-09T04:47:06] === hub-036 COMPLETE ===
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T11:47:08] === hub-036 starting ===
+[2026-11-09T11:47:08] config written: network/config/hub-036.json
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T11:47:10] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T11:47:12] 71 non-grey modules; 12368 genes
+[2026-11-09T11:47:12] kme_control.csv exists; loading from checkpoint
+[2026-11-09T11:47:14] kme_nolith.csv exists; loading from checkpoint
+[2026-11-09T11:47:18] bp_lith draw 1/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 2/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 3/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 4/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 5/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 6/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 7/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 8/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 9/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 10/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 11/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 12/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 13/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 14/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 15/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 16/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 17/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 18/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 19/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] bp_lith draw 20/20 checkpoint exists, skipping
+[2026-11-09T11:47:18] all draws complete; aggregating bp_lith kME across 20 draws ...
+[2026-11-09T11:47:47] kme_lith_mean.csv and kme_lith_sd.csv written
+[2026-11-09T11:47:48] hub_identity.csv written
+[2026-11-09T11:47:49] hub_stability.csv written
+[2026-11-09T11:47:49] Hub gene changed between control and bp_nolith: 49/71 modules
+[2026-11-09T11:47:49] Hub gene changed between control and bp_lith:   46/71 modules
+[2026-11-09T11:47:49] Median Spearman rho (ctrl vs bp_nolith): 0.908
+[2026-11-09T11:47:49] Median Spearman rho (ctrl vs bp_lith):   0.892
+[2026-11-09T11:47:49] === hub-036 COMPLETE ===
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:14:18] === hub-036 starting ===
+[2026-11-09T22:14:18] config written: network/config/hub-036.json
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T22:14:20] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:14:21] 71 non-grey modules; 12368 genes
+[2026-11-09T22:14:21] kme_control.csv exists; loading from checkpoint
+[2026-11-09T22:14:23] kme_nolith.csv exists; loading from checkpoint
+[2026-11-09T22:14:25] bp_lith draw 1/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 2/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 3/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 4/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 5/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 6/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 7/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 8/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 9/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 10/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 11/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 12/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 13/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 14/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 15/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 16/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 17/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 18/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 19/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] bp_lith draw 20/20 checkpoint exists, skipping
+[2026-11-09T22:14:25] all draws complete; aggregating bp_lith kME across 20 draws ...
+[2026-11-09T22:14:49] kme_lith_mean.csv and kme_lith_sd.csv written
+[2026-11-09T22:14:49] hub_identity.csv written
+[2026-11-09T22:14:50] hub_stability.csv written
+[2026-11-09T22:14:52] Hub gene changed between control and bp_nolith: 49/71 modules
+[2026-11-09T22:14:52] Hub gene changed between control and bp_lith:   46/71 modules
+[2026-11-09T22:14:52] Median Spearman rho (ctrl vs bp_nolith): 0.908
+[2026-11-09T22:14:52] Median Spearman rho (ctrl vs bp_lith):   0.892
+[2026-11-09T22:14:52] === hub-036 COMPLETE ===
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:32:13] === hub-036 starting ===
+[2026-11-09T22:32:13] config written: network/config/hub-036.json
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T22:32:15] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:32:17] 71 non-grey modules; 12368 genes
+[2026-11-09T22:32:17] kme_control.csv exists; loading from checkpoint
+[2026-11-09T22:32:20] kme_nolith.csv exists; loading from checkpoint
+[2026-11-09T22:32:23] bp_lith draw 1/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 2/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 3/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 4/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 5/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 6/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 7/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 8/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 9/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 10/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 11/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 12/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 13/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 14/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 15/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 16/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 17/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 18/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 19/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] bp_lith draw 20/20 checkpoint exists, skipping
+[2026-11-09T22:32:23] all draws complete; aggregating bp_lith kME across 20 draws ...
+[2026-11-09T22:32:53] kme_lith_mean.csv and kme_lith_sd.csv written
+[2026-11-09T22:32:53] hub_identity.csv written
+[2026-11-09T22:32:54] hub_stability.csv written
+[2026-11-09T22:32:54] Hub gene changed between control and bp_nolith: 49/71 modules
+[2026-11-09T22:32:54] Hub gene changed between control and bp_lith:   46/71 modules
+[2026-11-09T22:32:54] Median Spearman rho (ctrl vs bp_nolith): 0.908
+[2026-11-09T22:32:54] Median Spearman rho (ctrl vs bp_lith):   0.892
+[2026-11-09T22:32:54] === hub-036 COMPLETE ===

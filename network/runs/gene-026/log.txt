@@ -1,0 +1,328 @@
+[2026-11-09T07:46:45] === gene-026 starting ===
+Allowing parallel execution with up to 31 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T07:46:50] computing per-gene variance across all 474 samples ...
+[2026-11-09T07:46:51] selected top 5000 variable genes (actual kept: 5000)
+[2026-11-09T07:46:51] config written: network/config/gene-026.json
+[2026-11-09T07:46:51] pickSoftThreshold scan on top-5000 variable gene set ...
+   Power SFT.R.sq slope truncated.R.sq mean.k. median.k. max.k.
+1      1   0.0606  6.00          0.880  2520.0   2520.00 2700.0
+2      2   0.1120 -3.16          0.877  1390.0   1380.00 1630.0
+3      3   0.2620 -2.62          0.814   816.0    808.00 1110.0
+4      4   0.3350 -1.74          0.759   510.0    497.00  796.0
+5      5   0.4190 -1.29          0.804   335.0    319.00  606.0
+6      6   0.4910 -1.40          0.803   230.0    213.00  493.0
+7      7   0.5510 -1.43          0.826   164.0    147.00  410.0
+8      8   0.6080 -1.46          0.855   120.0    103.00  347.0
+9      9   0.6360 -1.50          0.868    90.6     74.50  298.0
+10    10   0.6670 -1.52          0.888    69.9     54.60  260.0
+11    11   0.7090 -1.53          0.916    54.9     40.60  229.0
+12    12   0.7190 -1.57          0.921    43.9     30.60  203.0
+13    13   0.7390 -1.61          0.931    35.5     23.30  181.0
+14    14   0.7500 -1.65          0.939    29.1     17.90  163.0
+15    15   0.7550 -1.68          0.942    24.1     14.00  147.0
+16    16   0.7680 -1.69          0.950    20.2     10.90  133.0
+17    17   0.7750 -1.71          0.952    17.0      8.59  121.0
+18    18   0.7700 -1.75          0.945    14.5      6.82  110.0
+19    19   0.7780 -1.77          0.946    12.4      5.45  101.0
+20    20   0.7820 -1.80          0.956    10.6      4.38   92.5
+[2026-11-09T07:46:56] powerEstimate=NA
+[2026-11-09T07:46:56] R2 curve saved (max=0.782)
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2291569 122.4    4260415 227.6  2913377 155.6
+Vcells 15876972 121.2   42154479 321.7 42154475 321.7
+[2026-11-09T07:46:56] building reference network (top-5000 variable genes, power 12) ...
+ Calculating module eigengenes block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ..Working on block 1 .
+    TOM calculation: adjacency..
+    ..will use 31 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....clustering..
+ ....detecting modules..
+ ....calculating module eigengenes..
+ ....checking kME in modules..
+     ..removing 97 genes from module 1 because their KME is too low.
+     ..removing 81 genes from module 2 because their KME is too low.
+     ..removing 32 genes from module 3 because their KME is too low.
+     ..removing 17 genes from module 4 because their KME is too low.
+     ..removing 19 genes from module 5 because their KME is too low.
+     ..removing 37 genes from module 7 because their KME is too low.
+     ..removing 20 genes from module 8 because their KME is too low.
+     ..removing 11 genes from module 9 because their KME is too low.
+     ..removing 6 genes from module 10 because their KME is too low.
+     ..removing 13 genes from module 11 because their KME is too low.
+     ..removing 7 genes from module 12 because their KME is too low.
+     ..removing 4 genes from module 15 because their KME is too low.
+     ..removing 1 genes from module 16 because their KME is too low.
+     ..removing 3 genes from module 17 because their KME is too low.
+     ..removing 2 genes from module 20 because their KME is too low.
+     ..removing 1 genes from module 22 because their KME is too low.
+  ..reassigning 58 genes from module 1 to modules with higher KME.
+  ..reassigning 33 genes from module 2 to modules with higher KME.
+  ..reassigning 92 genes from module 3 to modules with higher KME.
+  ..reassigning 51 genes from module 4 to modules with higher KME.
+  ..reassigning 9 genes from module 5 to modules with higher KME.
+  ..reassigning 22 genes from module 6 to modules with higher KME.
+  ..reassigning 23 genes from module 7 to modules with higher KME.
+  ..reassigning 12 genes from module 8 to modules with higher KME.
+  ..reassigning 33 genes from module 9 to modules with higher KME.
+  ..reassigning 14 genes from module 10 to modules with higher KME.
+  ..reassigning 20 genes from module 11 to modules with higher KME.
+  ..reassigning 6 genes from module 12 to modules with higher KME.
+  ..reassigning 12 genes from module 13 to modules with higher KME.
+  ..reassigning 10 genes from module 14 to modules with higher KME.
+  ..reassigning 17 genes from module 15 to modules with higher KME.
+  ..reassigning 7 genes from module 16 to modules with higher KME.
+  ..reassigning 3 genes from module 17 to modules with higher KME.
+  ..reassigning 4 genes from module 18 to modules with higher KME.
+  ..reassigning 2 genes from module 20 to modules with higher KME.
+  ..reassigning 7 genes from module 21 to modules with higher KME.
+  ..reassigning 9 genes from module 22 to modules with higher KME.
+  ..reassigning 6 genes from module 23 to modules with higher KME.
+  ..reassigning 1 genes from module 25 to modules with higher KME.
+  ..reassigning 1 genes from module 27 to modules with higher KME.
+  ..reassigning 2 genes from module 28 to modules with higher KME.
+  ..reassigning 4 genes from module 29 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-11-09T07:47:12] 30 modules detected
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2323843 124.2    4260415 227.6  4260415 227.6
+Vcells 15963767 121.8   54682852 417.2 85441827 651.9
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2323690 124.1    4260415 227.6  4260415 227.6
+Vcells 17904094 136.6   54682852 417.2 85441827 651.9
+[2026-11-09T07:47:13] bp_nolith (top-5000 var genes, 50 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T07:52:49] bp_nolith done: Z[9.18, 47.41]
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2347016 125.4    4260415 227.6  4260415 227.6
+Vcells 17955307 137.0   54682852 417.2 85441827 651.9
+[2026-11-09T07:52:49] draw 1/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T07:58:32] draw 1 done: Z[11.77, 58.33]
+[2026-11-09T07:58:33] draw 2/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:04:58] draw 2 done: Z[9.72, 54.91]
+[2026-11-09T08:04:58] draw 3/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:10:59] draw 3 done: Z[9.99, 51.7]
+[2026-11-09T08:10:59] draw 4/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:16:48] draw 4 done: Z[9.44, 51.55]
+[2026-11-09T08:16:49] draw 5/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:22:01] draw 5 done: Z[10.93, 49.28]
+[2026-11-09T08:22:01] draw 6/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:27:22] draw 6 done: Z[10.35, 47.79]
+[2026-11-09T08:27:22] draw 7/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:33:10] draw 7 done: Z[10.36, 48.26]
+[2026-11-09T08:33:11] draw 8/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:38:25] draw 8 done: Z[9.11, 53.15]
+[2026-11-09T08:38:25] draw 9/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:43:55] draw 9 done: Z[10.12, 47.63]
+[2026-11-09T08:43:55] draw 10/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:49:00] draw 10 done: Z[11.1, 52.69]
+[2026-11-09T08:49:00] draw 11/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:53:07] draw 11 done: Z[10.49, 47.94]
+[2026-11-09T08:53:07] draw 12/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T08:57:49] draw 12 done: Z[9.26, 44.79]
+[2026-11-09T08:57:49] draw 13/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T09:03:31] draw 13 done: Z[9.03, 47.44]
+[2026-11-09T09:03:31] draw 14/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T09:09:18] draw 14 done: Z[9.24, 54.52]
+[2026-11-09T09:09:18] draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T09:14:59] draw 15 done: Z[9.62, 47.12]
+[2026-11-09T09:14:59] draw 16/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T11:46:58] === gene-026 starting ===
+Allowing parallel execution with up to 4 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T11:47:01] computing per-gene variance across all 474 samples ...
+[2026-11-09T11:47:03] selected top 5000 variable genes (actual kept: 5000)
+[2026-11-09T11:47:03] config written: network/config/gene-026.json
+[2026-11-09T11:47:03] building reference network (top-5000 variable genes, power 12) ...
+ Calculating module eigengenes block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ..Working on block 1 .
+    TOM calculation: adjacency..
+    ..will use 4 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....clustering..
+ ....detecting modules..
+ ....calculating module eigengenes..
+ ....checking kME in modules..
+     ..removing 97 genes from module 1 because their KME is too low.
+     ..removing 81 genes from module 2 because their KME is too low.
+     ..removing 32 genes from module 3 because their KME is too low.
+     ..removing 17 genes from module 4 because their KME is too low.
+     ..removing 19 genes from module 5 because their KME is too low.
+     ..removing 37 genes from module 7 because their KME is too low.
+     ..removing 20 genes from module 8 because their KME is too low.
+     ..removing 11 genes from module 9 because their KME is too low.
+     ..removing 6 genes from module 10 because their KME is too low.
+     ..removing 13 genes from module 11 because their KME is too low.
+     ..removing 7 genes from module 12 because their KME is too low.
+     ..removing 4 genes from module 15 because their KME is too low.
+     ..removing 1 genes from module 16 because their KME is too low.
+     ..removing 3 genes from module 17 because their KME is too low.
+     ..removing 2 genes from module 20 because their KME is too low.
+     ..removing 1 genes from module 22 because their KME is too low.
+  ..reassigning 58 genes from module 1 to modules with higher KME.
+  ..reassigning 33 genes from module 2 to modules with higher KME.
+  ..reassigning 92 genes from module 3 to modules with higher KME.
+  ..reassigning 51 genes from module 4 to modules with higher KME.
+  ..reassigning 9 genes from module 5 to modules with higher KME.
+  ..reassigning 22 genes from module 6 to modules with higher KME.
+  ..reassigning 23 genes from module 7 to modules with higher KME.
+  ..reassigning 12 genes from module 8 to modules with higher KME.
+  ..reassigning 33 genes from module 9 to modules with higher KME.
+  ..reassigning 14 genes from module 10 to modules with higher KME.
+  ..reassigning 20 genes from module 11 to modules with higher KME.
+  ..reassigning 6 genes from module 12 to modules with higher KME.
+  ..reassigning 12 genes from module 13 to modules with higher KME.
+  ..reassigning 10 genes from module 14 to modules with higher KME.
+  ..reassigning 17 genes from module 15 to modules with higher KME.
+  ..reassigning 7 genes from module 16 to modules with higher KME.
+  ..reassigning 3 genes from module 17 to modules with higher KME.
+  ..reassigning 4 genes from module 18 to modules with higher KME.
+  ..reassigning 2 genes from module 20 to modules with higher KME.
+  ..reassigning 7 genes from module 21 to modules with higher KME.
+  ..reassigning 9 genes from module 22 to modules with higher KME.
+  ..reassigning 6 genes from module 23 to modules with higher KME.
+  ..reassigning 1 genes from module 25 to modules with higher KME.
+  ..reassigning 1 genes from module 27 to modules with higher KME.
+  ..reassigning 2 genes from module 28 to modules with higher KME.
+  ..reassigning 4 genes from module 29 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-11-09T11:47:30] 30 modules detected
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2300585 122.9    4259584 227.5  4259584 227.5
+Vcells 15914433 121.5   52490732 400.5 96187502 733.9
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2300473 122.9    4259584 227.5  4259584 227.5
+Vcells 17854913 136.3   52490732 400.5 96187502 733.9
+[2026-11-09T11:47:31] bp_nolith exists, skipping
+[2026-11-09T11:47:31] draw 1 exists
+[2026-11-09T11:47:31] draw 2 exists
+[2026-11-09T11:47:31] draw 3 exists
+[2026-11-09T11:47:31] draw 4 exists
+[2026-11-09T11:47:31] draw 5 exists
+[2026-11-09T11:47:31] draw 6 exists
+[2026-11-09T11:47:31] draw 7 exists
+[2026-11-09T11:47:31] draw 8 exists
+[2026-11-09T11:47:31] draw 9 exists
+[2026-11-09T11:47:31] draw 10 exists
+[2026-11-09T11:47:31] draw 11 exists
+[2026-11-09T11:47:31] draw 12 exists
+[2026-11-09T11:47:31] draw 13 exists
+[2026-11-09T11:47:31] draw 14 exists
+[2026-11-09T11:47:31] draw 15 exists
+[2026-11-09T11:47:31] draw 16/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T11:53:12] draw 16 done: Z[8.29, 48.27]
+[2026-11-09T11:53:12] draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T11:59:00] draw 17 done: Z[10.74, 60.99]
+[2026-11-09T11:59:00] draw 18/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:04:28] draw 18 done: Z[11.72, 60.16]
+[2026-11-09T12:04:28] draw 19/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:09:47] draw 19 done: Z[9.87, 47.72]
+[2026-11-09T12:09:47] draw 20/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:15:15] draw 20 done: Z[8.02, 49.18]
+[2026-11-09T12:15:15] aggregating ...
+[2026-11-09T12:15:15] === gene-026 COMPLETE ===

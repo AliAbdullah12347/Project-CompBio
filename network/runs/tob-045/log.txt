@@ -1,0 +1,56 @@
+[2026-11-09T04:44:18] === tob-045 starting ===
+[2026-11-09T04:44:18] config written: network/config/tob-045.json
+Allowing parallel execution with up to 31 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T04:44:22] === imputation: tobacco_imp_01 ===
+[2026-11-09T04:44:22]   residualizing control (n=234) ...
+Error in expr_samples(d, keep, transpose = FALSE) : 
+  expr_samples: unknown sample ids: TRUE, FALSE
+Calls: expr_resid_tobacco -> expr_samples
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:32:07] === tob-045 starting ===
+[2026-11-09T22:32:07] config written: network/config/tob-045.json
+Allowing parallel execution with up to 4 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:32:11] === imputation: tobacco_imp_01 ===
+[2026-11-09T22:32:11]   residualizing control (n=234) ...
+[2026-11-09T22:32:12]   residualizing lith (n=152) ...
+Error: nrow(lithAll) == 152L is not TRUE
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:37:54] === tob-045 starting ===
+[2026-11-09T22:37:54] config written: network/config/tob-045.json
+Allowing parallel execution with up to 4 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:37:58] === imputation: tobacco_imp_01 ===
+[2026-11-09T22:37:58]   residualizing control (n=234) ...
+[2026-11-09T22:37:59]   residualizing lith (n=152) ...
+[2026-11-09T22:38:00]   building reference network for tobacco_imp_01 ...
+   Power SFT.R.sq slope truncated.R.sq  mean.k. median.k.  max.k.
+1      1    0.847 -1.72          0.979 7.10e+01  4.52e+01 400.000
+2      2    0.888 -1.74          0.991 6.75e+00  1.44e+00 108.000
+3      3    0.890 -1.70          0.989 1.39e+00  8.70e-02  41.500
+4      4    0.875 -1.71          0.973 4.03e-01  7.30e-03  18.800
+5      5    0.906 -1.65          0.986 1.44e-01  7.36e-04   9.430
+6      6    0.879 -1.66          0.933 5.88e-02  8.58e-05   5.090
+7      7    0.433 -2.08          0.441 2.66e-02  1.05e-05   2.890
+8      8    0.438 -2.03          0.450 1.30e-02  1.34e-06   1.700
+9      9    0.443 -1.98          0.458 6.74e-03  1.77e-07   1.030
+10    10    0.933 -1.48          0.961 3.70e-03  2.45e-08   0.641
+11    11    0.402 -1.76          0.254 2.13e-03  3.49e-09   0.446
+12    12    0.967 -1.47          0.984 1.27e-03  5.00e-10   0.369
+13    13    0.477 -1.78          0.385 7.93e-04  7.25e-11   0.310
+14    14    0.422 -2.02          0.300 5.11e-04  1.06e-11   0.263
+15    15    0.430 -1.95          0.300 3.41e-04  1.60e-12   0.225
+16    16    0.413 -2.08          0.260 2.34e-04  2.38e-13   0.194
+17    17    0.421 -2.02          0.267 1.65e-04  3.66e-14   0.168
+18    18    0.419 -1.94          0.263 1.20e-04  5.55e-15   0.145
+19    19    0.423 -1.88          0.268 8.92e-05  8.88e-16   0.127
+20    20    0.429 -1.84          0.273 6.78e-05  2.22e-16   0.111
+[2026-11-09T22:38:38]   power=12
+Error in assert_expr_mode(refExpr, d, EXPR_MODE, "tob-045 reference") : 
+  assert_expr_mode: tob-045 reference does NOT match mode 'offset_removed' (max abs deviation 5.39). It looks like: neither.
+  This is the 2026-10-25 failure mode - see network/lint_expr.sh and
+  findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md
+Execution halted

@@ -1,0 +1,95 @@
+[2026-11-09T04:44:15] === filt-044 starting ===
+Error: counts file not found: data/cohort_474/counts_474.tsv.gz
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:32:00] === filt-044 starting ===
+[2026-11-09T22:32:00] config written: network/config/filt-044.json
+Error in library(edgeR) : there is no package called ‘edgeR’
+Calls: suppressPackageStartupMessages -> withCallingHandlers -> library
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:37:55] === filt-044 starting ===
+[2026-11-09T22:37:55] config written: network/config/filt-044.json
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:38:00] 71 modules | background N=12368
+[2026-11-09T22:38:00] reading raw counts ...
+[2026-11-09T22:38:11] raw counts: 57820 x 474 (after version strip)
+Warning message:
+In filterByExpr.DGEList(dge_tmp) :
+  All samples appear to belong to the same group.
+[2026-11-09T22:38:19] filter gene counts: min=2087 max=24085 | baseline c10_p90=12368
+[2026-11-09T22:38:19] 31 filter gene sets built
+[2026-11-09T22:38:19] genes surviving ALL filters: 2087
+[2026-11-09T22:39:13] === Filter survival summary ===
+[2026-11-09T22:39:13] antiquewhite4: 7/53 (13.2%) survive all filters; worst filter=13.2%
+[2026-11-09T22:39:13] bisque4: 29/70 (41.4%) survive all filters; worst filter=41.4%
+[2026-11-09T22:39:13] black: 52/392 (13.3%) survive all filters; worst filter=13.3%
+[2026-11-09T22:39:13] blue: 39/943 (4.1%) survive all filters; worst filter=4.1%
+[2026-11-09T22:39:13] brown: 36/588 (6.1%) survive all filters; worst filter=6.1%
+[2026-11-09T22:39:13] brown4: 32/79 (40.5%) survive all filters; worst filter=40.5%
+[2026-11-09T22:39:13] coral1: 28/54 (51.9%) survive all filters; worst filter=51.9%
+[2026-11-09T22:39:13] coral2: 2/51 (3.9%) survive all filters; worst filter=3.9%
+[2026-11-09T22:39:13] cyan: 20/247 (8.1%) survive all filters; worst filter=8.1%
+[2026-11-09T22:39:13] darkgreen: 2/158 (1.3%) survive all filters; worst filter=1.3%
+[2026-11-09T22:39:13] darkgrey: 78/147 (53.1%) survive all filters; worst filter=53.1%
+[2026-11-09T22:39:13] darkmagenta: 50/109 (45.9%) survive all filters; worst filter=45.9%
+[2026-11-09T22:39:13] darkolivegreen: 15/112 (13.4%) survive all filters; worst filter=13.4%
+[2026-11-09T22:39:13] darkorange: 12/140 (8.6%) survive all filters; worst filter=8.6%
+[2026-11-09T22:39:13] darkorange2: 53/82 (64.6%) survive all filters; worst filter=64.6%
+[2026-11-09T22:39:13] darkred: 53/176 (30.1%) survive all filters; worst filter=30.1%
+[2026-11-09T22:39:13] darkseagreen4: 18/57 (31.6%) survive all filters; worst filter=31.6%
+[2026-11-09T22:39:13] darkslateblue: 0/70 (0%) survive all filters; worst filter=0%
+[2026-11-09T22:39:13] darkturquoise: 0/153 (0%) survive all filters; worst filter=0%
+[2026-11-09T22:39:13] floralwhite: 11/83 (13.3%) survive all filters; worst filter=13.3%
+[2026-11-09T22:39:13] green: 7/435 (1.6%) survive all filters; worst filter=1.6%
+[2026-11-09T22:39:13] greenyellow: 39/335 (11.6%) survive all filters; worst filter=11.6%
+[2026-11-09T22:39:13] grey60: 5/218 (2.3%) survive all filters; worst filter=2.3%
+[2026-11-09T22:39:13] honeydew1: 6/58 (10.3%) survive all filters; worst filter=10.3%
+[2026-11-09T22:39:13] ivory: 39/84 (46.4%) survive all filters; worst filter=46.4%
+[2026-11-09T22:39:13] lavenderblush3: 4/61 (6.6%) survive all filters; worst filter=6.6%
+[2026-11-09T22:39:13] lightcoral: 2/30 (6.7%) survive all filters; worst filter=6.7%
+[2026-11-09T22:39:13] lightcyan: 0/226 (0%) survive all filters; worst filter=0%
+[2026-11-09T22:39:13] lightcyan1: 1/89 (1.1%) survive all filters; worst filter=1.1%
+[2026-11-09T22:39:13] lightgreen: 53/217 (24.4%) survive all filters; worst filter=24.4%
+[2026-11-09T22:39:13] lightpink4: 38/62 (61.3%) survive all filters; worst filter=61.3%
+[2026-11-09T22:39:13] lightsteelblue: 9/33 (27.3%) survive all filters; worst filter=27.3%
+[2026-11-09T22:39:13] lightsteelblue1: 7/91 (7.7%) survive all filters; worst filter=7.7%
+[2026-11-09T22:39:13] lightyellow: 43/188 (22.9%) survive all filters; worst filter=22.9%
+[2026-11-09T22:39:13] magenta: 1/368 (0.3%) survive all filters; worst filter=0.3%
+[2026-11-09T22:39:13] maroon: 12/63 (19%) survive all filters; worst filter=19%
+[2026-11-09T22:39:13] mediumorchid: 1/45 (2.2%) survive all filters; worst filter=2.2%
+[2026-11-09T22:39:13] mediumpurple2: 0/35 (0%) survive all filters; worst filter=0%
+[2026-11-09T22:39:13] mediumpurple3: 47/96 (49%) survive all filters; worst filter=49%
+[2026-11-09T22:39:13] midnightblue: 62/240 (25.8%) survive all filters; worst filter=25.8%
+[2026-11-09T22:39:13] navajowhite2: 21/64 (32.8%) survive all filters; worst filter=32.8%
+[2026-11-09T22:39:13] orange: 37/144 (25.7%) survive all filters; worst filter=25.7%
+[2026-11-09T22:39:13] orangered3: 6/35 (17.1%) survive all filters; worst filter=17.1%
+[2026-11-09T22:39:13] orangered4: 31/99 (31.3%) survive all filters; worst filter=31.3%
+[2026-11-09T22:39:13] paleturquoise: 66/117 (56.4%) survive all filters; worst filter=56.4%
+[2026-11-09T22:39:13] palevioletred3: 23/66 (34.8%) survive all filters; worst filter=34.8%
+[2026-11-09T22:39:13] pink: 0/372 (0%) survive all filters; worst filter=0%
+[2026-11-09T22:39:13] plum: 9/36 (25%) survive all filters; worst filter=25%
+[2026-11-09T22:39:13] plum1: 26/104 (25%) survive all filters; worst filter=25%
+[2026-11-09T22:39:13] plum2: 25/69 (36.2%) survive all filters; worst filter=36.2%
+[2026-11-09T22:39:13] purple: 106/349 (30.4%) survive all filters; worst filter=30.4%
+[2026-11-09T22:39:13] red: 135/430 (31.4%) survive all filters; worst filter=31.4%
+[2026-11-09T22:39:13] royalblue: 58/183 (31.7%) survive all filters; worst filter=31.7%
+[2026-11-09T22:39:13] saddlebrown: 13/129 (10.1%) survive all filters; worst filter=10.1%
+[2026-11-09T22:39:13] salmon: 12/269 (4.5%) survive all filters; worst filter=4.5%
+[2026-11-09T22:39:13] salmon4: 3/67 (4.5%) survive all filters; worst filter=4.5%
+[2026-11-09T22:39:13] sienna3: 8/109 (7.3%) survive all filters; worst filter=7.3%
+[2026-11-09T22:39:13] skyblue: 27/136 (19.9%) survive all filters; worst filter=19.9%
+[2026-11-09T22:39:13] skyblue1: 3/38 (7.9%) survive all filters; worst filter=7.9%
+[2026-11-09T22:39:13] skyblue2: 1/43 (2.3%) survive all filters; worst filter=2.3%
+[2026-11-09T22:39:13] skyblue3: 5/105 (4.8%) survive all filters; worst filter=4.8%
+[2026-11-09T22:39:13] steelblue: 52/117 (44.4%) survive all filters; worst filter=44.4%
+[2026-11-09T22:39:13] tan: 45/315 (14.3%) survive all filters; worst filter=14.3%
+[2026-11-09T22:39:13] thistle1: 3/68 (4.4%) survive all filters; worst filter=4.4%
+[2026-11-09T22:39:13] thistle2: 39/68 (57.4%) survive all filters; worst filter=57.4%
+[2026-11-09T22:39:13] turquoise: 23/1145 (2%) survive all filters; worst filter=2%
+[2026-11-09T22:39:13] violet: 24/117 (20.5%) survive all filters; worst filter=20.5%
+[2026-11-09T22:39:13] white: 98/136 (72.1%) survive all filters; worst filter=72.1%
+[2026-11-09T22:39:13] yellow: 240/542 (44.3%) survive all filters; worst filter=44.3%
+[2026-11-09T22:39:13] yellow4: 7/41 (17.1%) survive all filters; worst filter=17.1%
+[2026-11-09T22:39:13] yellowgreen: 28/109 (25.7%) survive all filters; worst filter=25.7%
+[2026-11-09T22:39:13] === filt-044 COMPLETE ===

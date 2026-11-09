@@ -1,0 +1,4 @@
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+Error in library(MIND) : there is no package called ‘MIND’
+Calls: suppressPackageStartupMessages -> withCallingHandlers -> library
+Execution halted

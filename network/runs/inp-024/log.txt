@@ -1,0 +1,46 @@
+[2026-11-09T04:44:17] === inp-024 starting ===
+Error in packageVersion("limma") : there is no package called ‘limma’
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:32:09] === inp-024 starting ===
+Error in packageVersion("edgeR") : there is no package called ‘edgeR’
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:37:53] === inp-024 starting ===
+[2026-11-09T22:37:53] config written: network/config/inp-024.json
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T22:37:57] WGCNA 1.74 | limma 3.62.2 | edgeR 4.4.2 loaded
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:37:58] pickSoftThreshold scan on voom-normalised control expression ...
+   Power SFT.R.sq slope truncated.R.sq mean.k. median.k. max.k.
+1      1   0.0184 10.20          0.872  6200.0   6200.00   6350
+2      2   0.3110 -9.73          0.902  3360.0   3350.00   3810
+3      3   0.3720 -4.11          0.856  1950.0   1920.00   2560
+4      4   0.4150 -2.86          0.863  1190.0   1150.00   1870
+5      5   0.4760 -2.42          0.876   766.0    725.00   1450
+6      6   0.5360 -2.23          0.886   511.0    470.00   1150
+7      7   0.5850 -2.12          0.898   352.0    313.00    944
+8      8   0.6300 -2.06          0.910   250.0    213.00    786
+9      9   0.6550 -2.09          0.910   182.0    148.00    664
+10    10   0.6890 -2.07          0.924   136.0    105.00    567
+11    11   0.7020 -2.08          0.928   103.0     75.80    490
+12    12   0.7180 -2.10          0.933    79.2     55.40    426
+13    13   0.7270 -2.13          0.939    61.9     40.90    373
+14    14   0.7440 -2.12          0.948    49.1     30.30    329
+15    15   0.7600 -2.11          0.955    39.3     22.80    292
+16    16   0.7680 -2.12          0.958    31.9     17.20    260
+17    17   0.7800 -2.10          0.964    26.0     13.10    233
+18    18   0.7680 -2.16          0.959    21.5     10.10    209
+19    19   0.7800 -2.15          0.966    17.8      7.80    188
+20    20   0.7900 -2.13          0.971    14.9      6.06    170
+[2026-11-09T22:38:27] powerEstimate = NA (informational; power fixed at 12)
+[2026-11-09T22:38:27] R2 curve saved (max R2=0.79)
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2404124 128.4    4542435 242.6  3200718 171.0
+Vcells 16059683 122.6   46541526 355.1 44080671 336.4
+[2026-11-09T22:38:28] building reference network (voom-normalised, bicor, signed, power 12) ...
+Error in assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-024 reference") : 
+  assert_expr_mode: inp-024 reference does NOT match mode 'offset_removed' (max abs deviation 7.59). It looks like: neither.
+  This is the 2026-10-25 failure mode - see network/lint_expr.sh and
+  findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md
+Execution halted

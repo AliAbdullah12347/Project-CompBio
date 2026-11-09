@@ -1,0 +1,144 @@
+[2026-11-08T22:44:14] === perm-032 starting ===
+[2026-11-08T22:44:14] config written: network/config/perm-032.json
+Allowing parallel execution with up to 31 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-08T22:44:18] 71 modules
+[2026-11-08T22:44:19] permuted draw 1/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-08T23:09:07] draw 1 done: Z[11.23,88.92]
+[2026-11-08T23:09:08] permuted draw 2/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-08T23:34:04] draw 2 done: Z[9.29,69.56]
+[2026-11-08T23:34:05] permuted draw 3/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T00:09:48] draw 3 done: Z[8.3,86.48]
+[2026-11-09T00:09:48] permuted draw 4/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T00:45:58] draw 4 done: Z[10.19,74.69]
+[2026-11-09T00:45:58] permuted draw 5/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T01:14:13] draw 5 done: Z[8.91,75.3]
+[2026-11-09T01:14:13] permuted draw 6/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T11:47:00] === perm-032 starting ===
+[2026-11-09T11:47:00] config written: network/config/perm-032.json
+Allowing parallel execution with up to 4 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T11:47:04] 71 modules
+[2026-11-09T11:47:05] draw 1 exists
+[2026-11-09T11:47:05] draw 2 exists
+[2026-11-09T11:47:05] draw 3 exists
+[2026-11-09T11:47:05] draw 4 exists
+[2026-11-09T11:47:05] draw 5 exists
+[2026-11-09T11:47:05] permuted draw 6/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:00:08] draw 6 done: Z[10.17,74.05]
+[2026-11-09T12:00:08] permuted draw 7/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:12:15] draw 7 done: Z[8.3,76.62]
+[2026-11-09T12:12:15] permuted draw 8/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:23:38] draw 8 done: Z[8.28,79.55]
+[2026-11-09T12:23:38] permuted draw 9/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:34:48] draw 9 done: Z[7.34,78.16]
+[2026-11-09T12:34:48] permuted draw 10/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:46:15] draw 10 done: Z[10.07,79.27]
+[2026-11-09T12:46:15] permuted draw 11/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:57:25] draw 11 done: Z[7.27,65.31]
+[2026-11-09T12:57:25] permuted draw 12/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:08:49] draw 12 done: Z[7.56,72.17]
+[2026-11-09T13:08:49] permuted draw 13/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:20:14] draw 13 done: Z[8.93,70.65]
+[2026-11-09T13:20:14] permuted draw 14/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:31:34] draw 14 done: Z[7.78,75.36]
+[2026-11-09T13:31:34] permuted draw 15/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:42:56] draw 15 done: Z[8.1,67.7]
+[2026-11-09T13:42:56] permuted draw 16/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:53:33] draw 16 done: Z[8.08,80.86]
+[2026-11-09T13:53:33] permuted draw 17/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:03:09] draw 17 done: Z[9.56,61.87]
+[2026-11-09T14:03:10] permuted draw 18/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:11:31] draw 18 done: Z[11.71,73.59]
+[2026-11-09T14:11:31] permuted draw 19/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:19:28] draw 19 done: Z[8.54,66.47]
+[2026-11-09T14:19:28] permuted draw 20/20 (pool=ctrl+lith, 386 samples)
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:27:09] draw 20 done: Z[8.34,76.22]
+[2026-11-09T14:27:09] aggregating ...
+[2026-11-09T14:27:09] 8 modules significant at BH 5% (note: min p=1/K=0.05)
+[2026-11-09T14:27:09] === perm-032 COMPLETE ===

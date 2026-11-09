@@ -1,0 +1,431 @@
+[2026-11-08T22:44:16] === pow-011 starting ===
+[2026-11-08T22:44:16] config written: network/config/pow-011.json
+Allowing parallel execution with up to 31 working processes.
+[2026-11-08T22:44:19] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-08T22:44:20] pickSoftThreshold scan (powers 1:20) — informational only; POWER fixed at 8 ...
+   Power SFT.R.sq slope truncated.R.sq mean.k. median.k. max.k.
+1      1  0.00346  3.90          0.942  6200.0   6200.00   6410
+2      2  0.07960 -3.96          0.917  3370.0   3360.00   3780
+3      3  0.28600 -3.38          0.933  1960.0   1940.00   2570
+4      4  0.44900 -2.84          0.945  1200.0   1170.00   1890
+5      5  0.49900 -2.36          0.941   771.0    738.00   1460
+6      6  0.55000 -2.15          0.936   515.0    481.00   1160
+7      7  0.60500 -2.03          0.945   356.0    322.00    950
+8      8  0.65600 -1.97          0.949   254.0    221.00    790
+9      9  0.67800 -2.00          0.937   185.0    154.00    667
+10    10  0.69800 -2.02          0.933   138.0    110.00    570
+11    11  0.68300 -2.10          0.912   105.0     79.60    492
+12    12  0.67900 -2.19          0.909    81.0     58.50    428
+13    13  0.70200 -2.17          0.921    63.4     43.40    375
+14    14  0.72300 -2.15          0.931    50.4     32.50    330
+15    15  0.74100 -2.15          0.942    40.4     24.60    292
+16    16  0.75500 -2.14          0.950    32.8     18.70    260
+17    17  0.76800 -2.14          0.957    26.9     14.40    233
+18    18  0.75200 -2.20          0.956    22.2     11.10    209
+19    19  0.76100 -2.20          0.961    18.5      8.62    188
+20    20  0.77000 -2.20          0.964    15.5      6.72    170
+[2026-11-08T22:45:57] pickSoftThreshold powerEstimate = NA (informational only; this script uses fixed POWER=8)
+[2026-11-08T22:45:57] R2 curve saved (max signed-R2 = 0.77 at power 20; using fixed POWER=8)
+           used  (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  2291685 122.4    4257220 227.4  3023900 161.5
+Vcells 15847686 121.0   33677625 257.0 27996928 213.6
+[2026-11-08T22:45:57] building reference network (bicor, signed, power 8 fixed) ...
+ Calculating module eigengenes block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ..Working on block 1 .
+    TOM calculation: adjacency..
+    ..will use 31 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....clustering..
+ ....detecting modules..
+ ....calculating module eigengenes..
+ ....checking kME in modules..
+     ..removing 94 genes from module 1 because their KME is too low.
+     ..removing 69 genes from module 2 because their KME is too low.
+     ..removing 95 genes from module 3 because their KME is too low.
+     ..removing 101 genes from module 4 because their KME is too low.
+     ..removing 49 genes from module 5 because their KME is too low.
+     ..removing 18 genes from module 6 because their KME is too low.
+     ..removing 34 genes from module 7 because their KME is too low.
+     ..removing 1 genes from module 8 because their KME is too low.
+     ..removing 36 genes from module 9 because their KME is too low.
+     ..removing 14 genes from module 10 because their KME is too low.
+     ..removing 12 genes from module 11 because their KME is too low.
+     ..removing 19 genes from module 12 because their KME is too low.
+     ..removing 2 genes from module 13 because their KME is too low.
+     ..removing 2 genes from module 14 because their KME is too low.
+     ..removing 10 genes from module 15 because their KME is too low.
+     ..removing 4 genes from module 16 because their KME is too low.
+     ..removing 19 genes from module 19 because their KME is too low.
+     ..removing 7 genes from module 20 because their KME is too low.
+     ..removing 2 genes from module 21 because their KME is too low.
+     ..removing 6 genes from module 22 because their KME is too low.
+     ..removing 5 genes from module 26 because their KME is too low.
+     ..removing 9 genes from module 29 because their KME is too low.
+     ..removing 7 genes from module 30 because their KME is too low.
+     ..removing 1 genes from module 33 because their KME is too low.
+     ..removing 2 genes from module 43 because their KME is too low.
+     ..removing 1 genes from module 49 because their KME is too low.
+     ..removing 2 genes from module 51 because their KME is too low.
+     ..removing 1 genes from module 53 because their KME is too low.
+  ..reassigning 255 genes from module 1 to modules with higher KME.
+  ..reassigning 233 genes from module 2 to modules with higher KME.
+  ..reassigning 77 genes from module 3 to modules with higher KME.
+  ..reassigning 76 genes from module 4 to modules with higher KME.
+  ..reassigning 42 genes from module 5 to modules with higher KME.
+  ..reassigning 96 genes from module 6 to modules with higher KME.
+  ..reassigning 141 genes from module 7 to modules with higher KME.
+  ..reassigning 65 genes from module 8 to modules with higher KME.
+  ..reassigning 83 genes from module 9 to modules with higher KME.
+  ..reassigning 27 genes from module 10 to modules with higher KME.
+  ..reassigning 47 genes from module 11 to modules with higher KME.
+  ..reassigning 39 genes from module 12 to modules with higher KME.
+  ..reassigning 32 genes from module 13 to modules with higher KME.
+  ..reassigning 42 genes from module 14 to modules with higher KME.
+  ..reassigning 52 genes from module 15 to modules with higher KME.
+  ..reassigning 28 genes from module 16 to modules with higher KME.
+  ..reassigning 38 genes from module 17 to modules with higher KME.
+  ..reassigning 31 genes from module 18 to modules with higher KME.
+  ..reassigning 8 genes from module 19 to modules with higher KME.
+  ..reassigning 9 genes from module 20 to modules with higher KME.
+  ..reassigning 14 genes from module 21 to modules with higher KME.
+  ..reassigning 19 genes from module 22 to modules with higher KME.
+  ..reassigning 12 genes from module 23 to modules with higher KME.
+  ..reassigning 25 genes from module 24 to modules with higher KME.
+  ..reassigning 18 genes from module 25 to modules with higher KME.
+  ..reassigning 11 genes from module 26 to modules with higher KME.
+  ..reassigning 9 genes from module 27 to modules with higher KME.
+  ..reassigning 24 genes from module 28 to modules with higher KME.
+  ..reassigning 13 genes from module 29 to modules with higher KME.
+  ..reassigning 11 genes from module 30 to modules with higher KME.
+  ..reassigning 17 genes from module 31 to modules with higher KME.
+  ..reassigning 10 genes from module 32 to modules with higher KME.
+  ..reassigning 7 genes from module 33 to modules with higher KME.
+  ..reassigning 3 genes from module 34 to modules with higher KME.
+  ..reassigning 9 genes from module 35 to modules with higher KME.
+  ..reassigning 10 genes from module 36 to modules with higher KME.
+  ..reassigning 13 genes from module 37 to modules with higher KME.
+  ..reassigning 1 genes from module 38 to modules with higher KME.
+  ..reassigning 11 genes from module 39 to modules with higher KME.
+  ..reassigning 4 genes from module 40 to modules with higher KME.
+  ..reassigning 4 genes from module 41 to modules with higher KME.
+  ..reassigning 2 genes from module 43 to modules with higher KME.
+  ..reassigning 1 genes from module 44 to modules with higher KME.
+  ..reassigning 6 genes from module 45 to modules with higher KME.
+  ..reassigning 15 genes from module 47 to modules with higher KME.
+  ..reassigning 6 genes from module 48 to modules with higher KME.
+  ..reassigning 4 genes from module 49 to modules with higher KME.
+  ..reassigning 2 genes from module 50 to modules with higher KME.
+  ..reassigning 1 genes from module 51 to modules with higher KME.
+  ..reassigning 9 genes from module 52 to modules with higher KME.
+  ..reassigning 3 genes from module 53 to modules with higher KME.
+  ..reassigning 1 genes from module 54 to modules with higher KME.
+  ..reassigning 2 genes from module 55 to modules with higher KME.
+  ..reassigning 1 genes from module 56 to modules with higher KME.
+  ..reassigning 7 genes from module 57 to modules with higher KME.
+  ..reassigning 2 genes from module 58 to modules with higher KME.
+  ..reassigning 2 genes from module 59 to modules with higher KME.
+  ..reassigning 2 genes from module 60 to modules with higher KME.
+  ..reassigning 1 genes from module 61 to modules with higher KME.
+  ..reassigning 2 genes from module 64 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-11-08T22:47:54] reference network: 63 modules detected (excluding grey); 679 unassigned genes
+[2026-11-08T22:47:54] reference modules cached: network/cache/ref_control_all_bicor_signed_p8_ds4_mch00_offsetrm.rds
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  2323921 124.2    4257220 227.4   4257220  227.4
+Vcells 15949104 121.7   63220928 482.4 483566249 3689.4
+[2026-11-08T22:47:55] bp_nolith preservation: 500 perms (fixed test set, no subsampling) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-08T23:13:43] bp_nolith done: 64 modules; Zsummary range [11.17, 76.17]
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  2347059 125.4    4257220 227.4   4257220  227.4
+Vcells 18907167 144.3   68516804 522.8 483566249 3689.4
+[2026-11-08T23:13:43] draw 1/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-08T23:38:24] draw 1/20 done: Zsummary range [9.64, 73.39]
+[2026-11-08T23:38:25] draw 2/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T00:05:21] draw 2/20 done: Zsummary range [12.72, 80.47]
+[2026-11-09T00:05:21] draw 3/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T00:37:00] draw 3/20 done: Zsummary range [11.5, 81.64]
+[2026-11-09T00:37:00] draw 4/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T01:08:48] draw 4/20 done: Zsummary range [13.02, 93.12]
+[2026-11-09T01:08:49] draw 5/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T01:29:02] draw 5/20 done: Zsummary range [13.21, 77.34]
+[2026-11-09T01:29:03] draw 6/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T11:46:46] === pow-011 starting ===
+[2026-11-09T11:46:46] config written: network/config/pow-011.json
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T11:46:48] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T11:46:49] R2 curve checkpoint exists, skipping scan
+[2026-11-09T11:46:49] building reference network (bicor, signed, power 8 fixed) ...
+ Calculating module eigengenes block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ..Working on block 1 .
+    TOM calculation: adjacency..
+    ..will use 4 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....clustering..
+ ....detecting modules..
+ ....calculating module eigengenes..
+ ....checking kME in modules..
+     ..removing 94 genes from module 1 because their KME is too low.
+     ..removing 69 genes from module 2 because their KME is too low.
+     ..removing 95 genes from module 3 because their KME is too low.
+     ..removing 101 genes from module 4 because their KME is too low.
+     ..removing 49 genes from module 5 because their KME is too low.
+     ..removing 18 genes from module 6 because their KME is too low.
+     ..removing 34 genes from module 7 because their KME is too low.
+     ..removing 1 genes from module 8 because their KME is too low.
+     ..removing 36 genes from module 9 because their KME is too low.
+     ..removing 14 genes from module 10 because their KME is too low.
+     ..removing 12 genes from module 11 because their KME is too low.
+     ..removing 19 genes from module 12 because their KME is too low.
+     ..removing 2 genes from module 13 because their KME is too low.
+     ..removing 2 genes from module 14 because their KME is too low.
+     ..removing 10 genes from module 15 because their KME is too low.
+     ..removing 4 genes from module 16 because their KME is too low.
+     ..removing 19 genes from module 19 because their KME is too low.
+     ..removing 7 genes from module 20 because their KME is too low.
+     ..removing 2 genes from module 21 because their KME is too low.
+     ..removing 6 genes from module 22 because their KME is too low.
+     ..removing 5 genes from module 26 because their KME is too low.
+     ..removing 9 genes from module 29 because their KME is too low.
+     ..removing 7 genes from module 30 because their KME is too low.
+     ..removing 1 genes from module 33 because their KME is too low.
+     ..removing 2 genes from module 43 because their KME is too low.
+     ..removing 1 genes from module 49 because their KME is too low.
+     ..removing 2 genes from module 51 because their KME is too low.
+     ..removing 1 genes from module 53 because their KME is too low.
+  ..reassigning 255 genes from module 1 to modules with higher KME.
+  ..reassigning 233 genes from module 2 to modules with higher KME.
+  ..reassigning 77 genes from module 3 to modules with higher KME.
+  ..reassigning 76 genes from module 4 to modules with higher KME.
+  ..reassigning 42 genes from module 5 to modules with higher KME.
+  ..reassigning 96 genes from module 6 to modules with higher KME.
+  ..reassigning 141 genes from module 7 to modules with higher KME.
+  ..reassigning 65 genes from module 8 to modules with higher KME.
+  ..reassigning 83 genes from module 9 to modules with higher KME.
+  ..reassigning 27 genes from module 10 to modules with higher KME.
+  ..reassigning 47 genes from module 11 to modules with higher KME.
+  ..reassigning 39 genes from module 12 to modules with higher KME.
+  ..reassigning 32 genes from module 13 to modules with higher KME.
+  ..reassigning 42 genes from module 14 to modules with higher KME.
+  ..reassigning 52 genes from module 15 to modules with higher KME.
+  ..reassigning 28 genes from module 16 to modules with higher KME.
+  ..reassigning 38 genes from module 17 to modules with higher KME.
+  ..reassigning 31 genes from module 18 to modules with higher KME.
+  ..reassigning 8 genes from module 19 to modules with higher KME.
+  ..reassigning 9 genes from module 20 to modules with higher KME.
+  ..reassigning 14 genes from module 21 to modules with higher KME.
+  ..reassigning 19 genes from module 22 to modules with higher KME.
+  ..reassigning 12 genes from module 23 to modules with higher KME.
+  ..reassigning 25 genes from module 24 to modules with higher KME.
+  ..reassigning 18 genes from module 25 to modules with higher KME.
+  ..reassigning 11 genes from module 26 to modules with higher KME.
+  ..reassigning 9 genes from module 27 to modules with higher KME.
+  ..reassigning 24 genes from module 28 to modules with higher KME.
+  ..reassigning 13 genes from module 29 to modules with higher KME.
+  ..reassigning 11 genes from module 30 to modules with higher KME.
+  ..reassigning 17 genes from module 31 to modules with higher KME.
+  ..reassigning 10 genes from module 32 to modules with higher KME.
+  ..reassigning 7 genes from module 33 to modules with higher KME.
+  ..reassigning 3 genes from module 34 to modules with higher KME.
+  ..reassigning 9 genes from module 35 to modules with higher KME.
+  ..reassigning 10 genes from module 36 to modules with higher KME.
+  ..reassigning 13 genes from module 37 to modules with higher KME.
+  ..reassigning 1 genes from module 38 to modules with higher KME.
+  ..reassigning 11 genes from module 39 to modules with higher KME.
+  ..reassigning 4 genes from module 40 to modules with higher KME.
+  ..reassigning 4 genes from module 41 to modules with higher KME.
+  ..reassigning 2 genes from module 43 to modules with higher KME.
+  ..reassigning 1 genes from module 44 to modules with higher KME.
+  ..reassigning 6 genes from module 45 to modules with higher KME.
+  ..reassigning 15 genes from module 47 to modules with higher KME.
+  ..reassigning 6 genes from module 48 to modules with higher KME.
+  ..reassigning 4 genes from module 49 to modules with higher KME.
+  ..reassigning 2 genes from module 50 to modules with higher KME.
+  ..reassigning 1 genes from module 51 to modules with higher KME.
+  ..reassigning 9 genes from module 52 to modules with higher KME.
+  ..reassigning 3 genes from module 53 to modules with higher KME.
+  ..reassigning 1 genes from module 54 to modules with higher KME.
+  ..reassigning 2 genes from module 55 to modules with higher KME.
+  ..reassigning 1 genes from module 56 to modules with higher KME.
+  ..reassigning 7 genes from module 57 to modules with higher KME.
+  ..reassigning 2 genes from module 58 to modules with higher KME.
+  ..reassigning 2 genes from module 59 to modules with higher KME.
+  ..reassigning 2 genes from module 60 to modules with higher KME.
+  ..reassigning 1 genes from module 61 to modules with higher KME.
+  ..reassigning 2 genes from module 64 to modules with higher KME.
+ ..merging modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-11-09T11:47:53] reference network: 63 modules detected (excluding grey); 679 unassigned genes
+[2026-11-09T11:47:53] reference modules cached: network/cache/ref_control_all_bicor_signed_p8_ds4_mch00_offsetrm.rds
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  2300706 122.9    4256380 227.4   4256380  227.4
+Vcells 15899924 121.4   63211385 482.3 483504520 3688.9
+[2026-11-09T11:47:53] bp_nolith checkpoint exists, skipping
+[2026-11-09T11:47:53] draw 1/20 checkpoint exists, skipping
+[2026-11-09T11:47:53] draw 2/20 checkpoint exists, skipping
+[2026-11-09T11:47:53] draw 3/20 checkpoint exists, skipping
+[2026-11-09T11:47:53] draw 4/20 checkpoint exists, skipping
+[2026-11-09T11:47:53] draw 5/20 checkpoint exists, skipping
+[2026-11-09T11:47:53] draw 6/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:00:45] draw 6/20 done: Zsummary range [11.19, 71.63]
+[2026-11-09T12:00:45] draw 7/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:12:52] draw 7/20 done: Zsummary range [9.58, 61.99]
+[2026-11-09T12:12:52] draw 8/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:24:06] draw 8/20 done: Zsummary range [9.84, 73.62]
+[2026-11-09T12:24:07] draw 9/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:35:03] draw 9/20 done: Zsummary range [12.57, 82.89]
+[2026-11-09T12:35:03] draw 10/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:46:00] draw 10/20 done: Zsummary range [8.74, 76.51]
+[2026-11-09T12:46:00] draw 11/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T12:57:01] draw 11/20 done: Zsummary range [11.03, 77.47]
+[2026-11-09T12:57:01] draw 12/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:08:04] draw 12/20 done: Zsummary range [12.22, 91.68]
+[2026-11-09T13:08:04] draw 13/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:19:15] draw 13/20 done: Zsummary range [11.12, 80.65]
+[2026-11-09T13:19:15] draw 14/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:30:33] draw 14/20 done: Zsummary range [10.4, 66.52]
+[2026-11-09T13:30:33] draw 15/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:41:40] draw 15/20 done: Zsummary range [11.01, 91.73]
+[2026-11-09T13:41:41] draw 16/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T13:51:53] draw 16/20 done: Zsummary range [11.55, 92.62]
+[2026-11-09T13:51:53] draw 17/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:01:33] draw 17/20 done: Zsummary range [9.63, 66.35]
+[2026-11-09T14:01:33] draw 18/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:09:39] draw 18/20 done: Zsummary range [12.15, 84.96]
+[2026-11-09T14:09:39] draw 19/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:17:21] draw 19/20 done: Zsummary range [12.87, 82.14]
+[2026-11-09T14:17:21] draw 20/20: subsampling bp_lith (n=74 from 152) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T14:25:00] draw 20/20 done: Zsummary range [11.87, 79.36]
+[2026-11-09T14:25:00] all draws complete; aggregating results ...
+[2026-11-09T14:25:00] 
+--- bp_nolith Zsummary (50 perms, descriptive only) ---
+      module Zsummary_point medianRank_point
+   turquoise       76.17152               40
+       black       67.35797               23
+   steelblue       61.62176                3
+       brown       60.26423               38
+ lightyellow       59.64840               16
+     skyblue       56.49499               11
+        pink       55.47476               29
+      salmon       54.94200               26
+   lightcyan       54.53213               16
+         red       54.40037               30
+[2026-11-09T14:25:00] 
+--- bp_lith Zsummary_mean across 20 draws (top 10, descriptive only) ---
+        module Zsummary_mean Zsummary_sd medianRank_mean
+     turquoise      79.30406    8.913469           30.80
+    darkorange      59.75254    5.332994            7.65
+        salmon      57.98578    7.438207           22.00
+          pink      56.52315    9.346394           24.85
+     steelblue      55.52195    5.390671            6.90
+      skyblue3      54.93347    7.193496            2.65
+         black      54.46544    5.581750           27.65
+     lightcyan      54.35723    5.029589           16.30
+ darkturquoise      52.09652    6.189533           12.65
+         brown      48.79023    4.932829           46.05
+[2026-11-09T14:25:00] === pow-011 COMPLETE ===

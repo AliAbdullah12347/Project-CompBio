@@ -1,0 +1,97 @@
+[2026-11-09T07:44:21] === comm-039 starting ===
+Allowing parallel execution with up to 31 working processes.
+[2026-11-09T07:44:24] WGCNA 1.74 | igraph 2.3.4 loaded
+[2026-11-09T07:44:24] cluster_leiden found in igraph 2.3.4
+[2026-11-09T07:44:24] config written: network/config/comm-039.json
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T07:44:25] base-001 reference loaded: 71 non-grey WGCNA modules
+[2026-11-09T07:44:26] --- control: computing adjacency (234 samples) ---
+[2026-11-09T07:44:45]   edges before threshold: 76477528  after: 1036347  (1.4% retained)
+[2026-11-09T07:45:05]   igraph: 12368 vertices, 1036347 edges
+[2026-11-09T07:45:09]   leiden res=0.5: 11681 communities
+[2026-11-09T07:45:09]     vs WGCNA: ARI=0.0014  NMI=0.6283
+[2026-11-09T07:45:11]   leiden res=1: 12368 communities
+[2026-11-09T07:45:11]     vs WGCNA: ARI=0  NMI=0.639
+[2026-11-09T07:45:11]     comm-038 output not found at network/runs/comm-038/louvain_membership_control.csv; skipping Louvain comparison
+[2026-11-09T07:45:13]   leiden res=2: 12368 communities
+[2026-11-09T07:45:13]     vs WGCNA: ARI=0  NMI=0.639
+Error in data.frame(gene = genes, wgcna_module = wgcna_col_vec, leiden_community = as.integer(best_comm),  : 
+  arguments imply differing number of rows: 0, 12368
+Calls: run_leiden_for_group -> data.frame
+In addition: Warning messages:
+1: The `resolution_parameter` argument of `cluster_leiden()` is deprecated as of
+igraph 2.1.0.
+ℹ Please use the `resolution` argument instead. 
+2: In pab[pab > 0]/outer(pa, pb) :
+  longer object length is not a multiple of shorter object length
+Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:34:39] === comm-039 starting ===
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T22:34:41] WGCNA 1.74 | igraph 2.3.4 loaded
+[2026-11-09T22:34:41] cluster_leiden found in igraph 2.3.4
+[2026-11-09T22:34:42] config written: network/config/comm-039.json
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:34:43] base-001 reference loaded: 71 non-grey WGCNA modules
+[2026-11-09T22:34:43] --- control: computing adjacency (234 samples) ---
+[2026-11-09T22:34:58]   edges before threshold: 76477528  after: 1036347  (1.4% retained)
+[2026-11-09T22:35:14]   igraph: 12368 vertices, 1036347 edges
+[2026-11-09T22:35:16]   leiden res=0.5: 11681 communities
+[2026-11-09T22:35:17]     vs WGCNA: ARI=0.0014  NMI=0.6283
+[2026-11-09T22:35:18]   leiden res=1: 12368 communities
+[2026-11-09T22:35:18]     vs WGCNA: ARI=0  NMI=0.639
+[2026-11-09T22:35:21]     vs Louvain(comm-038, res=1): ARI=0  NMI=0.6471
+[2026-11-09T22:35:22]   leiden res=2: 12368 communities
+[2026-11-09T22:35:22]     vs WGCNA: ARI=0  NMI=0.639
+[2026-11-09T22:35:22] control done; membership written
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  2370224 126.6    4391910  234.6   4173043  222.9
+Vcells 21094484 161.0  603154221 4601.8 936580095 7145.6
+Warning messages:
+1: The `resolution_parameter` argument of `cluster_leiden()` is deprecated as of
+igraph 2.1.0.
+ℹ Please use the `resolution` argument instead. 
+2: In pab[pab > 0]/outer(pa, pb) :
+  longer object length is not a multiple of shorter object length
+[2026-11-09T22:35:23] --- bp_nolith: computing adjacency (74 samples) ---
+[2026-11-09T22:35:41]   edges before threshold: 76477528  after: 1118242  (1.5% retained)
+[2026-11-09T22:36:00]   igraph: 12368 vertices, 1118242 edges
+[2026-11-09T22:36:02]   leiden res=0.5: 11377 communities
+[2026-11-09T22:36:02]     vs WGCNA: ARI=0.0015  NMI=0.6241
+[2026-11-09T22:36:03]   leiden res=1: 12368 communities
+[2026-11-09T22:36:04]     vs WGCNA: ARI=0  NMI=0.639
+[2026-11-09T22:36:06]     vs Louvain(comm-038, res=1): ARI=0  NMI=0.584
+[2026-11-09T22:36:07]   leiden res=2: 12368 communities
+[2026-11-09T22:36:07]     vs WGCNA: ARI=0  NMI=0.639
+[2026-11-09T22:36:07] bp_nolith done; membership written
+           used  (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells  2370297 126.6    4391910  234.6    4173043  222.9
+Vcells 24461739 186.7  699419856 5336.2 1092843523 8337.8
+Warning message:
+In pab[pab > 0]/outer(pa, pb) :
+  longer object length is not a multiple of shorter object length
+[2026-11-09T22:36:08] bp_lith subsample: 74 of 152 (seed=20300010)
+[2026-11-09T22:36:08] --- bp_lith: computing adjacency (74 samples) ---
+[2026-11-09T22:36:23]   edges before threshold: 76477528  after: 951485  (1.2% retained)
+[2026-11-09T22:36:44]   igraph: 12368 vertices, 951485 edges
+[2026-11-09T22:36:45]   leiden res=0.5: 11515 communities
+[2026-11-09T22:36:46]     vs WGCNA: ARI=0.0014  NMI=0.626
+[2026-11-09T22:36:46]   leiden res=1: 12368 communities
+[2026-11-09T22:36:47]     vs WGCNA: ARI=0  NMI=0.639
+[2026-11-09T22:36:49]     vs Louvain(comm-038, res=1): ARI=0  NMI=0.5976
+[2026-11-09T22:36:51]   leiden res=2: 12368 communities
+[2026-11-09T22:36:51]     vs WGCNA: ARI=0  NMI=0.639
+[2026-11-09T22:36:51] bp_lith done; membership written
+           used  (Mb) gc trigger   (Mb)   max used   (Mb)
+Ncells  2371084 126.7    4391910  234.6    4173043  222.9
+Vcells 23963287 182.9  699421020 5336.2 1092845342 8337.8
+Warning message:
+In pab[pab > 0]/outer(pa, pb) :
+  longer object length is not a multiple of shorter object length
+[2026-11-09T22:36:52] community_comparison.csv written (9 rows)
+[2026-11-09T22:36:52] 
+--- Community comparison summary (resolution=1, algorithm=leiden) ---
+[2026-11-09T22:36:52]   control: n_communities=12368  ARI_wgcna=0  NMI_wgcna=0.639  ARI_louvain=0
+[2026-11-09T22:36:52]   bp_nolith: n_communities=12368  ARI_wgcna=0  NMI_wgcna=0.639  ARI_louvain=0
+[2026-11-09T22:36:52]   bp_lith: n_communities=12368  ARI_wgcna=0  NMI_wgcna=0.639  ARI_louvain=0
+[2026-11-09T22:36:52] === comm-039 COMPLETE ===
