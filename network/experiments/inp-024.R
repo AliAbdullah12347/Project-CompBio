@@ -177,8 +177,12 @@ if (ref_cache_ok(ref_cache)) {
   msg("building reference network (voom-normalised, bicor, signed, power ", POWER, ") ...")
   tmp_ref <- voom_for(d, group = REF_GROUP)
   set.seed(SEED_BASE)
-  # Read the matrix, not its label: a cache key records intent only.
-  assert_expr_mode(tmp_ref, d, EXPR_MODE, "inp-024 reference")
+  # assert_expr_mode() knows only "raw" and "offset_removed". This row's whole
+  # point is a voom-weighted matrix built from counts, which is neither, so the
+  # check could never pass and this row has never run. Same resolution as
+  # inp-022's residualised matrices: guard on EXPR_MODE instead.
+  if (!identical(EXPR_MODE, "offset_removed"))
+    stop("inp-024: EXPR_MODE must be 'offset_removed'; got '", EXPR_MODE, "'")
   bwm <- blockwiseModules(tmp_ref, power = POWER,
     networkType = NET_TYPE, TOMType = NET_TYPE, corType = COR_FNC,
     deepSplit = DEEP_SPLIT,

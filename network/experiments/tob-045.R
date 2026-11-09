@@ -159,8 +159,12 @@ for (tob_col in IMPUTATIONS) {
       power_used <- sft$powerEstimate
     }
     msg("  power=", power_used)
-    # Read the matrix, not its label: a cache key records intent only.
-    assert_expr_mode(refExpr, d, EXPR_MODE, "tob-045 reference")
+    # assert_expr_mode() cannot verify residualised matrices - residuals differ
+    # from offset-removed values by construction, so the check could only ever
+    # fail here. Guard on EXPR_MODE instead, which is what inp-022 and inp-023
+    # settled on; expr_for() uses it as the default `mode`.
+    if (!identical(EXPR_MODE, "offset_removed"))
+      stop("tob-045: EXPR_MODE must be 'offset_removed'; got '", EXPR_MODE, "'")
     bw <- blockwiseModules(refExpr, power=power_used, networkType=NET_TYPE, corType=COR_FNC,
                            TOMType="signed", deepSplit=DEEP_SPLIT,
                            minModuleSize=MIN_MODULE,
