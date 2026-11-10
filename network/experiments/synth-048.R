@@ -114,7 +114,11 @@ robustness_exps <- list(
   "pow-010"  = "network/runs/pow-010/results_lith_alldraws.csv",
   "pow-011"  = "network/runs/pow-011/results_lith_alldraws.csv",
   "ref-002"  = "network/runs/ref-002/results_lith_alldraws.csv",
-  "ref-003"  = "network/runs/ref-003/results_lith_alldraws.csv",
+  # ref-003 is NOT here. It uses bp_lith itself as the reference network and
+  # tests preservation in control and bp_nolith, so it has no
+  # results_lith_alldraws.csv and never will -- the entry that used to point
+  # at one read NULL every time and silently dropped out. Its Zsummary values
+  # are against a different reference and are not comparable with these.
   # Landed 2026-11-10 off the cluster; the list predates them.
   "ref-004"  = "network/runs/ref-004/results_lith_alldraws.csv",
   "pow-012"  = "network/runs/pow-012/results_lith_alldraws.csv",
@@ -157,12 +161,14 @@ perm031 <- safe_read("network/runs/perm-031/results_permutation_test.csv")
 perm032 <- safe_read("network/runs/perm-032/results_permutation_test.csv")
 ann041  <- safe_read("network/runs/ann-041/results_deg_overlap.csv")
 ann042  <- safe_read("network/runs/ann-042/results_geneset_overlap.csv")
-trait033 <- safe_read("network/runs/trait-033/results_lm_traits.csv")
-trait034 <- safe_read("network/runs/trait-034/results_lm_traits.csv")
-trait035 <- safe_read("network/runs/trait-035/results_lm_traits.csv")
-hub036  <- safe_read("network/runs/hub-036/results_kme_stability.csv")
-hub037  <- safe_read("network/runs/hub-037/results_delta_kme.csv")
-samp043 <- safe_read("network/runs/samp-043/results_sample_clustering.csv")
+# trait-033/034/035, hub-036, hub-037 and samp-043 were read here from file
+# names none of them writes -- results_lm_traits.csv against their actual
+# results_modtrait.csv, results_delta_kme.csv against delta_kme.csv, and so
+# on. All six reads returned NULL, all six variables were then never used,
+# and the only reason the rows still showed as complete in the table below is
+# that the fallback there tests for the run DIRECTORY, not the file. Removed
+# rather than repaired: a read whose result nothing consumes is worse than no
+# read, because it reads like the synthesis covers those rows.
 filt044 <- safe_read("network/runs/filt-044/results_module_survival_summary.csv")
 tob045  <- safe_read("network/runs/tob-045/results_sensitivity_summary.csv")
 bmind047_lith <- safe_read("network/runs/bmind-047/results_lith_alldraws.csv")
