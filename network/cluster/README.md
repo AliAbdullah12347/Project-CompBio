@@ -2,17 +2,24 @@
 
 Everything in `network/NEXT_STEPS.md` that is bulk compute, moved off the iMac.
 
-## State on 10 Nov 2026, 05:30 UTC
+## State on 10 Nov 2026, 19:00 UTC
 
-**51 of 52 queue rows DONE** (19 on 8 Nov, 45 on 9 Nov). One still in flight:
-`bmind-047`, on `arm3-run-81`.
+**All 52 queue rows DONE** (19 on 8 Nov, 45 on 9 Nov, 52 now). Nothing is in
+flight.
 
-`ref-004`, `net-008`, `inp-024`, `tob-045` and `cent-040` all returned rc=0
-overnight. `bmind-046` is DONE without having run: the profiles it was queued
-to rebuild have existed since 2026-10-01, the script that built them has not
-changed, and bMIND is a Gibbs sampler - a second run would return a different
-posterior draw and desynchronise the network arm from every DE-arm result
-computed off the first. It adopts them and says so in its flag file.
+The last two landed off `arm3-run-82` and `arm3-run-83`:
+
+- `bmind-047`, all five lineages, nolith plus 20 draws each. **0 of 5
+  lineages** show a lith/nolith preservation difference, p 0.729 to 1.000.
+- `hub-037` at K=500, restored from the budget cut to 20. **0 of 12360
+  genes** at BH 5%, smallest BH 0.149, with 11 genes at the p floor against
+  24.7 expected by chance.
+
+`bmind-046` is DONE without having run: the profiles it was queued to rebuild
+have existed since 2026-10-01, the script that built them has not changed,
+and bMIND is a Gibbs sampler - a second run would return a different
+posterior draw and desynchronise this arm from every DE-arm result computed
+off the first. It adopts them and says so in its flag file.
 
 `arm3-perm031` hit its 24 h ceiling with 137 of 180 new draws. Those plus the
 original 20 were aggregated at **K=157**, and the answer is a clean negative -
@@ -37,7 +44,7 @@ see `findings/2026-11-09-perm031-at-157-draws-is-a-clean-negative.md`.
    killed the last pod two seconds in, once `MIND` finally installed. It now
    falls back to a path relative to the working directory.
 
-### Four bugs that would have produced wrong results, not failures
+### Six bugs that would have produced wrong results, not failures
 
 Failures are cheap; these are not. Each of these ran to completion and wrote a
 plausible-looking number.
@@ -68,6 +75,18 @@ plausible-looking number.
   on 0.639 and look fine; under modularity it returned negative numbers, and
   NMI cannot be negative. Checked after the fix: 1.000 for a partition against
   itself, 0.005 for two independent ones, 0.817 for a coarsening.
+- **`hub-037`'s entire results column was NA, and its headline was computed
+  from it.** `pull_own_kme()` returns an unnamed vector -- `sapply()` over
+  `seq_along()` -- and every caller subsets it by gene id, which gives NA for
+  all 12360. "0 of 12360 genes significant" was
+  `sum(NA < 0.05, na.rm = TRUE)`. `delta_kme.csv` was unaffected because it
+  indexes the kME matrices, which carry rownames.
+- **`hub-037` also used `mean(null >= obs)`**, which returns exactly 0 when
+  the observed value beats every draw. With the names fixed, that put 1028
+  genes at BH 5%, all at p = 0. Under add-one the count is 0 again. This is
+  the third script found with that estimator, after `perm-031` and
+  `perm-032` -- worth grepping for before trusting any permutation p in this
+  arm.
 
 **Read return codes, never upload counts.** The 8 Nov drain reported 30 rows
 uploaded and had finished 2.

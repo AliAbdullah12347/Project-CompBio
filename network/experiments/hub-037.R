@@ -96,7 +96,8 @@ if (!file.exists(cfg_path)) {
     subsample_n         = SUBSAMPLE_N,
     delta_kme_direction = "kME_lith_mean - kME_ctrl (positive = more connected in lith)",
     correction          = "BH within each module separately, across genes",
-    min_empirical_p     = 1.0 / K,
+    # 1/(K+1), not 1/K: the add-one estimator's smallest attainable value.
+    min_empirical_p     = 1.0 / (K + 1.0),
     seed_base           = SEED_BASE,
     git_sha             = if (length(sha) && !is.na(sha)) sha else "unknown",
     r_version           = paste(R.version$major, R.version$minor, sep = "."),
@@ -313,6 +314,6 @@ n_less <- sum(diff_conn_rows$direction == "less_connected_in_lith" &
               !is.na(diff_conn_rows$padj) & diff_conn_rows$padj < 0.05, na.rm = TRUE)
 msg(n_sig, " genes with differential connectivity (BH 5%): ",
     n_more, " more connected in lith; ", n_less, " less connected")
-msg("Note: minimum empirical p = 1/K = ", round(1 / K, 3), " with K=", K,
+msg("Note: minimum empirical p = 1/(K+1) = ", signif(1 / (K + 1), 3), " with K=", K,
     " permuted draws")
 msg("=== ", id, " COMPLETE ===")

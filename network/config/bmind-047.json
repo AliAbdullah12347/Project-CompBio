@@ -1,0 +1,20 @@
+{
+  "id": "bmind-047",
+  "family": "bmind",
+  "spec": "per-lineage networks from bMIND profiles (requires bmind-046 DONE)",
+  "lineages": "gran;mono;T;NK;B",
+  "power": 12,
+  "net_type": "signed",
+  "cor_fnc": "bicor",
+  "deepSplit": 4,
+  "min_module": 30,
+  "mergeCutHeight": 0,
+  "draws_lith": 20,
+  "perms_per_draw": 50,
+  "nolith_perms": 200,
+  "subsample_n": 74,
+  "seed_base": 20308009,
+  "git_sha": "unknown",
+  "r_version": "4.6.1",
+  "wgcna_version": "1.74"
+}

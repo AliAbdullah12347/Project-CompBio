@@ -3,57 +3,47 @@
 **Updated:** 2026-11-10. Everything below is runnable from a clone of this repo.
 Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
 
-> **As of 10 Nov 13:00 UTC: 48 of 52 rows DONE, up from 19 on 8 Nov.** Four
-> are in flight and all four are re-runs of rows that had already "finished":
-> `bmind-047` and `hub-037` on the cluster (`arm3-run-82`, `arm3-run-83`),
-> `comm-038` and `comm-039` locally. Why, below. Item 1 is ANSWERED - perm-031
-> at K=157 is a clean negative, 0 of 71 modules, smallest p = 0.038. **Items 2
-> and 3 are the only unstarted work left in the arm.**
+> **As of 10 Nov 19:00 UTC: all 52 queue rows DONE**, from 19 on 8 Nov. Item
+> 4 is drained and item 1 is ANSWERED. **Items 2 and 3 are the only unstarted
+> work left in this arm.**
 >
-> `synth-048` has been re-run and now computes the robustness tally instead of
-> carrying it by hand: **0 of 25 parameter variants** show any lithium /
-> non-lithium preservation difference, p = 0.441 to 0.989. Its hardcoded
-> conclusions block, which still claimed a 4-module reference from a
-> decomposition abandoned on 2026-10-14, has been replaced by numbers read off
-> the data.
+> The arm's conclusion, now resting on every test it has:
 >
-> **Three results were wrong, not weak, and are being re-run.** Each ran to
-> completion and wrote a plausible number.
+> - **0 of 25 parameter variants** show a lithium/non-lithium preservation
+>   difference, p 0.441 to 0.989 (`runs/synth-048/primary_contrast_by_variant.csv`).
+> - **0 of 71 modules** against a group-label permutation null at K=157,
+>   smallest p 0.038 (`perm-031`).
+> - **0 of 5 cell lineages** when the question is re-asked on bMIND
+>   deconvolved expression, p 0.729 to 1.000 (`bmind-047`). This is the test
+>   that closes the "bulk dilutes a cell-type-specific effect" objection.
+> - **0 of 12360 genes** change intramodular connectivity at BH 5%, K=500,
+>   smallest BH 0.149, with below-chance occupancy of the p floor (`hub-037`).
+> - **70 of 71 modules** stable across 27 variants; the one that fails,
+>   `skyblue2`, sits on a Z-bracket edge at 8.64.
 >
-> - `hub-037`'s "0 of 12360 genes" came from an empty column, not from the
->   data: `pull_own_kme()` returns an unnamed vector and its callers subset it
->   by gene id, so `diff_connectivity.csv` was 12360 rows of NA and the
->   headline was `sum(NA < 0.05, na.rm = TRUE)`. With names attached the same
->   draws give 1028 genes, every one at empirical p = 0 from the invalid
->   `mean(null >= obs)` estimator; under add-one it is 0 again with a smallest
->   BH of 0.158. K is back to the spec's 500 from the budget cut of 20.
->   `delta_kme.csv` was always correct and is the table to use.
-> - `comm-039`'s "12368 communities, ARI = 0" was a unit mismatch.
->   `cluster_leiden()` defaults to CPM, where the resolution is compared
->   against edge density (0.0124 here), so gamma = 1 shatters the graph. Under
->   modularity it gives 1617-3063 communities and ARI 0.50-0.83 against
->   `comm-038`.
-> - **Every NMI `comm-038` and `comm-039` ever reported was wrong**, from
->   subsetting on the wrong side of a division. Under CPM it happened to land
->   on 0.639 and look fine.
+> Two positives survive all of it: the **eosinophil module** `mediumpurple2`,
+> whose lithium association strengthens under composition adjustment, and a
+> **global 11-22% thinning** of the lithium co-expression graph, reproduced in
+> three independent subsamples and localising to no module.
 >
-> **Two results still need care as written.** `perm-032`'s "8 modules
-> significant" is an artifact of p = 0 - use
+> **Five rows reported a wrong number before today**, each having exited 0.
+> All five are fixed and re-run; the detail is in `network/cluster/README.md`.
+> `perm-032` is the one still needing care as written - its "8 modules
+> significant" is an artifact of p=0, so use
 > `results_permutation_test_addone.csv`, which gives 0. And `cent-040`'s
-> matched comparison reports 52 of 71 modules differing on degree, but that is
-> one global density shift counted once per module, from a single lith
-> subsample, and the only density-insensitive metric gives 0 of 71. See
-> `findings/2026-11-10-centrality-difference-is-one-global-shift.md`.
+> matched comparison should not be cited as "52 of 71 modules differ": that is
+> one global shift counted once per module.
 >
-> **The open question `cent-040` leaves** is a control-split null: cut the 234
-> controls into two disjoint halves of 74 and run the same comparison. If two
-> halves of one group produce a comparable number of "differing" modules, the
-> procedure is measuring noise. Two adjacency builds, about an hour.
+> **The one open methodological question** is `cent-040`'s control-split null:
+> cut the 234 controls into two disjoint halves of 74 and run the same
+> comparison. If two halves of one group produce a comparable count of
+> "differing" modules, the procedure is measuring the global level and module
+> size rather than biology. Two adjacency builds, about an hour.
 >
 > **The bulk compute is on the research cluster, not the iMac.** See
-> `network/cluster/README.md` for what failed on the first attempt and why.
-> **Do not read an upload count as a success count** - the first drain reported
-> 30 rows uploaded and had finished 2. Return codes are in `status/*.tsv`.
+> `network/cluster/README.md`. **Do not read an upload count as a success
+> count** - the first drain reported 30 rows uploaded and had finished 2.
+> Return codes are in `status/*.tsv`.
 
 ---
 

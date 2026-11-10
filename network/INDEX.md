@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-10 · **Catalogued:** 187 items
+**Updated:** 2026-11-10 · **Catalogued:** 189 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (47 — 43 live, 4 retracted)
+## Findings (49 — 45 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -52,7 +52,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 20/25 · 8/10 | live | [Darkred is an erythrocyte module: stable because RBC genes are absent from immune composition](findings/2026-10-14-darkred-is-erythrocyte-module.md) | 2026-10-14 |
 | 20/25 · 5/10 | live | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) | 2026-10-14 |
 | 20/25 · 7/10 | live | [perm-031: group-label permutation null for module preservation](findings/2026-10-27-perm031-group-label-permutation-null.md) | 2026-10-27 |
+| 20/25 · 8/10 | live | [Deconvolving to five lineages does not reveal the lithium effect that whole blood hides](findings/2026-11-10-no-lineage-specific-lithium-effect-either.md) | 2026-11-10 |
 | 19/25 · 7/10 | live | [PC2 is a lithium axis in the full cohort too, and the lithium DE signal is module-specific](findings/2026-10-14-pc2-lithium-axis-replicates-full-cohort.md) | 2026-10-14 |
+| 19/25 · 6/10 | live | [No gene changes its intramodular connectivity under lithium, and raising K further would not settle it](findings/2026-11-10-no-differential-hub-genes-and-why-more-draws-will-not-help.md) | 2026-11-10 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise drives PC2: the lithium-associated dimension is localised to one module](findings/2026-10-14-darkturquoise-drives-pc2.md) | 2026-10-14 |
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise group×composition interaction: the control-lith contrast survives proper slope correction](findings/2026-10-14-darkturquoise-interaction.md) | 2026-10-14 |
 | 18/25 · 6/10 | live | [No module eigengene associates with lithium — and the modules are not independent](findings/2026-10-14-module-trait-no-lithium-association.md) | 2026-10-14 |
@@ -126,7 +128,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | base-002-ceil | live | 6 files |
 | base-003-remerge | live | 6 files |
 | bmind-046 | live | 3 files |
-| bmind-047 | live | 108 files |
+| bmind-047 | live | 212 files |
 | cent-040 | live | 5 files |
 | comm-038 | live | 8 files |
 | comm-039 | live | 8 files |
@@ -144,7 +146,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | grp-050 | live | 16 files |
 | grp-051 | live | 27 files |
 | hub-036 | live | 27 files |
-| hub-037 | live | 23 files |
+| hub-037 | live | 503 files |
 | inp-021 | live | 6 files |
 | inp-022 | live | 15 files |
 | inp-023 | live | 6 files |
@@ -180,7 +182,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 
 ## Queue experiments (52)
 
-Status: DONE=50  RUNNING=2
+Status: DONE=52
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -193,7 +195,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | base-002-ceil | baseline | DONE | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
 | base-003-remerge | baseline | DONE | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
 | bmind-046 | celltype | DONE | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
-| bmind-047 | celltype | RUNNING | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
+| bmind-047 | celltype | DONE | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
 | cent-040 | central | DONE | degree, betweenness, eigenvector centrality; between-group differences |
 | comm-038 | community | DONE | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
 | comm-039 | community | DONE | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
@@ -206,7 +208,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | gene-028 | geneset | DONE | ref=control;genes=lithium_DEGs_only (de_final/results/) |
 | gene-029 | geneset | DONE | ref=control;genes=explicit_non_DEGs |
 | hub-036 | hub | DONE | kME hub identity; stability across 100 draws; do hubs change between groups? |
-| hub-037 | hub | RUNNING | differential connectivity per gene between groups, same permutation null |
+| hub-037 | hub | DONE | differential connectivity per gene between groups, same permutation null |
 | inp-021 | input | DONE | ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (sp |
 | inp-022 | input | DONE | ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW |
 | inp-023 | input | DONE | ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (s |

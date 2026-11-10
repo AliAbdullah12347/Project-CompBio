@@ -318,6 +318,56 @@ if (length(all_lith_rows) > 0) {
   msg("wrote lith results: ", nrow(combined), " rows")
 }
 
+# The nolith result was only ever kept as an .rds per lineage, which is
+# gitignored, so nothing downstream could pair lith against nolith the way
+# every whole-blood row does. Write it as a CSV in the same shape as
+# results_nolith.csv elsewhere in the arm, and the contrast with it, so the
+# row answers its own question instead of leaving a Z range for a reader to
+# eyeball.
+nolith_rows <- do.call(rbind, lapply(available_lineages, function(lin) {
+  f <- file.path(run_dir, lin, "nolith_preservation.rds")
+  if (!file.exists(f)) return(NULL)
+  r <- readRDS(f); r$lineage <- lin; r
+}))
+if (!is.null(nolith_rows)) {
+  write.csv(nolith_rows, file.path(run_dir, "results_nolith.csv"), row.names = FALSE)
+  msg("wrote nolith results: ", nrow(nolith_rows), " rows")
+
+  if (length(all_lith_rows) > 0) {
+    contrast <- do.call(rbind, lapply(available_lineages, function(lin) {
+      l  <- combined[combined$lineage == lin & combined$module != "grey", ]
+      no <- nolith_rows[nolith_rows$lineage == lin & nolith_rows$module != "grey", ]
+      if (!nrow(l) || !nrow(no)) return(NULL)
+      ls_ <- aggregate(cbind(Zsummary, medianRank) ~ module, data = l, FUN = mean)
+      m <- merge(ls_, no[, c("module","Zsummary","medianRank")], by = "module",
+                 suffixes = c("_lith","_nolith"))
+      if (nrow(m) < 5) return(NULL)
+      # Same test as the whole-blood rows: paired because the two columns
+      # describe the same modules, Wilcoxon because medianRank is a rank.
+      w <- suppressWarnings(wilcox.test(m$medianRank_lith, m$medianRank_nolith,
+                                        paired = TRUE))
+      data.frame(lineage = lin, n_modules = nrow(m), n_draws = length(unique(l$draw)),
+                 lith_medianRank = median(m$medianRank_lith),
+                 nolith_medianRank = median(m$medianRank_nolith),
+                 lith_Zsummary_median = median(m$Zsummary_lith),
+                 nolith_Zsummary_median = median(m$Zsummary_nolith),
+                 p_wilcoxon = w$p.value, stringsAsFactors = FALSE)
+    }))
+    if (!is.null(contrast)) {
+      contrast$padj_BH <- p.adjust(contrast$p_wilcoxon, method = "BH")
+      write.csv(contrast, file.path(run_dir, "results_lineage_contrast.csv"),
+                row.names = FALSE)
+      msg(sum(contrast$padj_BH < 0.05), "/", nrow(contrast),
+          " lineages show a lith/nolith preservation difference at BH 5%",
+          " (p ", sprintf("%.3f", min(contrast$p_wilcoxon)), " to ",
+          sprintf("%.3f", max(contrast$p_wilcoxon)), ")")
+      for (i in seq_len(nrow(contrast))) msg("  ", contrast$lineage[i], ": ",
+          contrast$n_modules[i], " modules, p = ",
+          sprintf("%.3f", contrast$p_wilcoxon[i]))
+    }
+  }
+}
+
 # Completion check: all lineages, all draws, nolith
 all_done <- vapply(available_lineages, function(lin) {
   ld <- file.path(run_dir, lin)
