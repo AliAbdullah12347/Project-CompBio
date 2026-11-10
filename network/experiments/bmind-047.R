@@ -171,6 +171,28 @@ if (!length(available_lineages)) {
   quit(save = "no", status = 1L)
 }
 
+# ---- drop the genes WGCNA will refuse, from the TEST set only ---------------
+# modulePreservation() rejects an entire call if any gene in any set fails its
+# goodGenes() check, and a bMIND per-lineage profile has a few such genes in
+# almost every 74-sample subsample: the Gibbs posterior for a gene the sampler
+# cannot resolve in that cell type collapses to a near-constant, and which
+# genes those are depends on which samples are drawn. On 2026-11-10 that cost
+# 52 of 100 draws -- mono lost 16 of 20, B lost 16 of 20, and T lost its
+# nolith run and all 20 draws, while gran and NK had none and finished clean.
+#
+# The reference set is clean in all five lineages (goodGenes flags 0 genes in
+# every control matrix), so this never touches the module definitions. Only
+# the test matrix is trimmed, which is what modulePreservation's
+# "inColumnsAlsoPresentIn.Test" is for, and 1-6 genes out of 12368 is not a
+# change to what is being tested.
+drop_bad_genes <- function(m, label) {
+  ok <- WGCNA::goodGenes(m, verbose = 0)
+  n  <- sum(!ok)
+  if (n > 0) msg("    ", label, ": dropping ", n, " gene(s) WGCNA flags: ",
+                 paste(head(colnames(m)[!ok], 6), collapse = ", "))
+  m[, ok, drop = FALSE]
+}
+
 extract_mp <- function(mp) {
   obs  <- mp$preservation$observed[["ref.Ref"]][["inColumnsAlsoPresentIn.Test"]]
   zsco <- mp$preservation$Z[["ref.Ref"]][["inColumnsAlsoPresentIn.Test"]]
@@ -238,7 +260,8 @@ for (lin in available_lineages) {
     perm_file <- file.path(lin_dir, "permStats_nolith.RData")
     mp_nolith <- tryCatch(
       modulePreservation(
-        multiData=list(Ref=list(data=refExpr), Test=list(data=nolithExpr)),
+        multiData=list(Ref=list(data=refExpr),
+                       Test=list(data=drop_bad_genes(nolithExpr, paste(lin,"nolith")))),
         multiColor=list(Ref=moduleColors_lin), dataIsExpr=TRUE,
         networkType=NET_TYPE, corFnc=COR_FNC,
         nPermutations=NOLITH_PERMS, randomSeed=SEED_BASE + which(LINEAGES==lin)*1000L,
@@ -263,7 +286,8 @@ for (lin in available_lineages) {
     msg("  ", lin, " lith draw ", draw, "/", DRAWS)
     mp_draw <- tryCatch(
       modulePreservation(
-        multiData=list(Ref=list(data=refExpr), Test=list(data=testExpr)),
+        multiData=list(Ref=list(data=refExpr),
+                       Test=list(data=drop_bad_genes(testExpr, paste(lin,"draw",draw)))),
         multiColor=list(Ref=moduleColors_lin), dataIsExpr=TRUE,
         networkType=NET_TYPE, corFnc=COR_FNC,
         nPermutations=PERMS_PER_DRAW, randomSeed=SEED_BASE + which(LINEAGES==lin)*1000L + draw,
