@@ -2,29 +2,55 @@
 
 Everything in `network/NEXT_STEPS.md` that is bulk compute, moved off the iMac.
 
-## State on 9 Nov 2026, 23:00 UTC
+## State on 10 Nov 2026, 05:30 UTC
 
-**45 of 52 queue rows DONE** (was 19 on 8 Nov). Seven still in flight:
-`ref-004`, `net-008`, `inp-024`, `cent-040`, `tob-045`, `bmind-046/047`.
+**51 of 52 queue rows DONE** (19 on 8 Nov, 45 on 9 Nov). One still in flight:
+`bmind-047`, on `arm3-run-81`.
+
+`ref-004`, `net-008`, `inp-024`, `tob-045` and `cent-040` all returned rc=0
+overnight. `bmind-046` is DONE without having run: the profiles it was queued
+to rebuild have existed since 2026-10-01, the script that built them has not
+changed, and bMIND is a Gibbs sampler - a second run would return a different
+posterior draw and desynchronise the network arm from every DE-arm result
+computed off the first. It adopts them and says so in its flag file.
 
 `arm3-perm031` hit its 24 h ceiling with 137 of 180 new draws. Those plus the
 original 20 were aggregated at **K=157**, and the answer is a clean negative -
 see `findings/2026-11-09-perm031-at-157-draws-is-a-clean-negative.md`.
 
-### The three bugs that cost two drains
+### The four bugs that cost the overnight runs
 
 1. **WGCNA ran 31 threads in a 4-CPU cgroup** (below). Cost: 19 rows.
 2. **`restore_run` counted checkpoints with `ls` under `set -e`.** A glob
-   matching nothing makes `ls` exit non-zero, the `$(...)` assignment inherits
-   that, and the whole job script dies *before* printing the row's return code.
-   Rows **with** draw checkpoints sailed past it; rows **without** one died the
-   instant they were restored. That is exactly which 11 rows kept failing,
-   across two different job shapes. `find` exits 0 on no match; `ls` does not.
+   matching nothing makes `ls` exit non-zero, the `$(...)` assignment
+   inherits that, and the job script dies *before* printing the row's
+   return code. Rows **with** draw checkpoints sailed past it; rows
+   **without** one died the instant they were restored. That is exactly
+   which 11 rows kept failing, across two job shapes. `find` exits 0 on
+   no match; `ls` does not. Cost: 11 rows, twice.
 3. **Six rows asserted or imported things that could never hold:** `edgeR`,
-   `limma` and `MIND` missing from the image, `BisqueRNA` archived on CRAN, and
-   `tob-045`/`inp-024` calling `assert_expr_mode(..., "offset_removed")` on a
-   residualised and a voom matrix respectively - neither can match, and
-   `inp-024` had therefore never run once.
+   `limma` and `MIND` missing from the image, `BisqueRNA` archived on CRAN,
+   `limSolve` under that, and `tob-045`/`inp-024` calling
+   `assert_expr_mode(..., "offset_removed")` on a residualised and a voom
+   matrix respectively - neither can match, and `inp-024` had never run once.
+4. **`06_bmind_profiles.R` setwd()s to an absolute iMac path**, which is what
+   killed the last pod two seconds in, once `MIND` finally installed. It now
+   falls back to a path relative to the working directory.
+
+### Two bugs that would have produced wrong results, not failures
+
+Failures are cheap; these are not.
+
+- **`bmind-047` would have reported COMPLETE having done nothing.** Its
+  `normalise_bmind()` tested `is.list()` first and returned the object
+  unchanged, but `06_bmind_profiles.R` saves `list(A, SE, lineages, samples)`,
+  so the lineage names were never found, the loop body never ran - and
+  `all(logical(0))` is `TRUE`, so the completion check passed.
+- **`synth-048`'s conclusions block was hardcoded** and still asserted "4
+  modules detected in whole-blood controls ... after mergeCloseModules
+  (cutHeight=0.25)", a decomposition abandoned on 2026-10-14. Every re-run
+  would have republished that over a 71-module reference. It now reads its
+  numbers off the data.
 
 **Read return codes, never upload counts.** The 8 Nov drain reported 30 rows
 uploaded and had finished 2.
@@ -141,7 +167,14 @@ python network/cluster/s3ls.py              # everything under the prefix
 python network/cluster/s3ls.py runs/        # just finished rows
 python network/cluster/collect.py           # what landed vs what was asked for
 python network/cluster/collect.py --fetch   # download and unpack into network/runs/
+python network/cluster/collect.py --put FILE KEY   # send an input the other way
 ```
+
+Three inputs travel by `--put` because they are untracked and too big for git:
+the base-001 reference cache, `counts_474.tsv.gz` for filt-044, and
+`data/bmind_lineage_expr.rds` for bmind-047 (209 MB, written by
+`network/cluster/prep_bmind.R`). `lib.sh` has a `fetch_*` for each, and the
+pod only fetches the bMIND one when its entry mentions bmind.
 
 `collect.py` counts uploads; it does **not** know whether a row succeeded. For
 that read `status/*.tsv`, where each line is `<row> rc=<code> secs=<n>`:
@@ -154,12 +187,18 @@ The 8 Nov run looked like 30 successes by upload count and was 2 by return code.
 2. Check `status/*.tsv` return codes before believing any row finished.
 3. Aggregate perm-031 over the draws that exist — the pods ran in slice mode
    and exited without aggregating, by design.
-4. **Re-run `synth-048`.** It completed on 8 Nov, but from `6/25` robustness
-   rows, so its "71/72 modules stable across ≥80% of variants" describes six
-   variants. It must be re-run once `arm3-run-01..05` land.
-5. Update `network/RUNLOG/queue.tsv`, then `Rscript network/build_index.R` and
+4. **Re-run `synth-048`.** Done on 10 Nov: it had completed on 8 Nov from
+   `6/25` robustness rows, so its "71/72 modules stable" described six
+   variants. It now runs from 27 and computes the primary contrast itself -
+   0 of 25 variants, p 0.441 to 0.989, in
+   `runs/synth-048/primary_contrast_by_variant.csv`. Re-run it again whenever
+   a variant lands; it is idempotent and replaces its own section in
+   `RESULTS.md` rather than appending a second one.
+5. Update `network/RUNLOG/queue.tsv`, then
+   `ARM3_ROOT=$(pwd) Rscript network/build_index.R` and
    `Rscript network/build_catalog.R` to regenerate `RANKING.md` and the
-   indices — never merge those, regenerate them.
+   indices — never merge those, regenerate them. `build_index.R` defaults
+   `ARM3_ROOT` to the lab iMac's path and dies anywhere else.
 6. Write findings into `network/findings/`.
 
 ## Operational notes

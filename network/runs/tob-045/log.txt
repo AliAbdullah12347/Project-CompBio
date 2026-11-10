@@ -54,3 +54,175 @@ Error in assert_expr_mode(refExpr, d, EXPR_MODE, "tob-045 reference") :
   This is the 2026-10-25 failure mode - see network/lint_expr.sh and
   findings/2026-10-25-raw-test-matrices-bypassed-normalisation.md
 Execution halted
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:43:54] === tob-045 starting ===
+[2026-11-09T22:43:54] config written: network/config/tob-045.json
+Allowing parallel execution with up to 4 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:43:57] === imputation: tobacco_imp_01 ===
+[2026-11-09T22:43:57]   residualizing control (n=234) ...
+[2026-11-09T22:43:58]   residualizing lith (n=152) ...
+[2026-11-09T22:43:58]   building reference network for tobacco_imp_01 ...
+   Power SFT.R.sq slope truncated.R.sq  mean.k. median.k.  max.k.
+1      1    0.847 -1.72          0.979 7.10e+01  4.52e+01 400.000
+2      2    0.888 -1.74          0.991 6.75e+00  1.44e+00 108.000
+3      3    0.890 -1.70          0.989 1.39e+00  8.70e-02  41.500
+4      4    0.875 -1.71          0.973 4.03e-01  7.30e-03  18.800
+5      5    0.906 -1.65          0.986 1.44e-01  7.36e-04   9.430
+6      6    0.879 -1.66          0.933 5.88e-02  8.58e-05   5.090
+7      7    0.433 -2.08          0.441 2.66e-02  1.05e-05   2.890
+8      8    0.438 -2.03          0.450 1.30e-02  1.34e-06   1.700
+9      9    0.443 -1.98          0.458 6.74e-03  1.77e-07   1.030
+10    10    0.933 -1.48          0.961 3.70e-03  2.45e-08   0.641
+11    11    0.402 -1.76          0.254 2.13e-03  3.49e-09   0.446
+12    12    0.967 -1.47          0.984 1.27e-03  5.00e-10   0.369
+13    13    0.477 -1.78          0.385 7.93e-04  7.25e-11   0.310
+14    14    0.422 -2.02          0.300 5.11e-04  1.06e-11   0.263
+15    15    0.430 -1.95          0.300 3.41e-04  1.60e-12   0.225
+16    16    0.413 -2.08          0.260 2.34e-04  2.38e-13   0.194
+17    17    0.421 -2.02          0.267 1.65e-04  3.66e-14   0.168
+18    18    0.419 -1.94          0.263 1.20e-04  5.55e-15   0.145
+19    19    0.423 -1.88          0.268 8.92e-05  8.88e-16   0.127
+20    20    0.429 -1.84          0.273 6.78e-05  2.22e-16   0.111
+[2026-11-09T22:44:29]   power=12
+[2026-11-09T22:45:37]   43 modules
+[2026-11-09T22:45:37]   testing preservation in 1 lith draw (n=74) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T22:53:24]   done: Z[9.51,82.38]
+[2026-11-09T22:53:24] === imputation: tobacco_imp_05 ===
+[2026-11-09T22:53:24]   residualizing control (n=234) ...
+[2026-11-09T22:53:24]   residualizing lith (n=152) ...
+[2026-11-09T22:53:24]   building reference network for tobacco_imp_05 ...
+   Power SFT.R.sq slope truncated.R.sq  mean.k. median.k.  max.k.
+1      1    0.842 -1.73          0.975 7.08e+01  4.49e+01 399.000
+2      2    0.886 -1.73          0.990 6.74e+00  1.42e+00 107.000
+3      3    0.890 -1.70          0.990 1.38e+00  8.62e-02  41.300
+4      4    0.873 -1.71          0.970 4.02e-01  7.25e-03  18.700
+5      5    0.898 -1.67          0.976 1.43e-01  7.21e-04   9.460
+6      6    0.898 -1.65          0.963 5.86e-02  8.28e-05   5.110
+7      7    0.434 -2.09          0.449 2.64e-02  1.02e-05   2.900
+8      8    0.441 -2.03          0.457 1.29e-02  1.32e-06   1.710
+9      9    0.398 -2.38          0.427 6.71e-03  1.70e-07   1.040
+10    10    0.925 -1.50          0.959 3.68e-03  2.28e-08   0.644
+11    11    0.930 -1.48          0.945 2.11e-03  3.23e-09   0.451
+12    12    0.951 -1.48          0.959 1.27e-03  4.79e-10   0.373
+13    13    0.482 -1.79          0.389 7.87e-04  7.08e-11   0.314
+14    14    0.498 -1.76          0.396 5.07e-04  1.04e-11   0.266
+15    15    0.433 -1.95          0.304 3.37e-04  1.54e-12   0.228
+16    16    0.416 -2.08          0.264 2.32e-04  2.28e-13   0.196
+17    17    0.422 -2.02          0.269 1.63e-04  3.42e-14   0.169
+18    18    0.421 -1.95          0.267 1.18e-04  5.22e-15   0.147
+19    19    0.419 -2.01          0.253 8.80e-05  8.88e-16   0.128
+20    20    0.425 -1.96          0.260 6.68e-05  2.22e-16   0.112
+[2026-11-09T22:53:58]   power=12
+[2026-11-09T22:55:09]   45 modules
+[2026-11-09T22:55:09]   testing preservation in 1 lith draw (n=74) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T23:03:01]   done: Z[9.58,71.91]
+[2026-11-09T23:03:01] === imputation: tobacco_imp_10 ===
+[2026-11-09T23:03:01]   residualizing control (n=234) ...
+[2026-11-09T23:03:01]   residualizing lith (n=152) ...
+[2026-11-09T23:03:01]   building reference network for tobacco_imp_10 ...
+   Power SFT.R.sq slope truncated.R.sq  mean.k. median.k.  max.k.
+1      1    0.842 -1.75          0.976 6.95e+01  4.45e+01 393.000
+2      2    0.882 -1.76          0.987 6.51e+00  1.38e+00 105.000
+3      3    0.881 -1.73          0.983 1.32e+00  8.28e-02  40.400
+4      4    0.886 -1.71          0.986 3.83e-01  6.95e-03  18.400
+5      5    0.891 -1.70          0.973 1.36e-01  6.95e-04   9.280
+6      6    0.430 -2.17          0.452 5.53e-02  7.87e-05   5.000
+7      7    0.443 -2.11          0.466 2.49e-02  9.74e-06   2.830
+8      8    0.398 -2.44          0.433 1.21e-02  1.24e-06   1.660
+9      9    0.399 -2.37          0.434 6.30e-03  1.61e-07   1.000
+10    10    0.934 -1.48          0.956 3.46e-03  2.19e-08   0.620
+11    11    0.938 -1.48          0.960 1.99e-03  3.06e-09   0.447
+12    12    0.483 -1.85          0.452 1.19e-03  4.37e-10   0.370
+13    13    0.484 -1.78          0.388 7.44e-04  6.26e-11   0.310
+14    14    0.495 -1.74          0.390 4.81e-04  9.17e-12   0.263
+15    15    0.429 -1.93          0.298 3.22e-04  1.36e-12   0.225
+16    16    0.435 -1.86          0.307 2.22e-04  1.97e-13   0.193
+17    17    0.422 -2.01          0.266 1.58e-04  2.93e-14   0.167
+18    18    0.416 -1.92          0.260 1.15e-04  4.44e-15   0.145
+19    19    0.420 -1.86          0.264 8.61e-05  6.66e-16   0.126
+20    20    0.422 -1.81          0.265 6.58e-05  0.00e+00   0.110
+[2026-11-09T23:03:35]   power=12
+[2026-11-09T23:04:48]   45 modules
+[2026-11-09T23:04:48]   testing preservation in 1 lith draw (n=74) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T23:12:17]   done: Z[8.98,79.9]
+[2026-11-09T23:12:17] === imputation: tobacco_imp_15 ===
+[2026-11-09T23:12:17]   residualizing control (n=234) ...
+[2026-11-09T23:12:17]   residualizing lith (n=152) ...
+[2026-11-09T23:12:17]   building reference network for tobacco_imp_15 ...
+   Power SFT.R.sq slope truncated.R.sq  mean.k. median.k.  max.k.
+1      1    0.844 -1.74          0.977 7.03e+01  4.49e+01 397.000
+2      2    0.882 -1.76          0.986 6.65e+00  1.41e+00 107.000
+3      3    0.881 -1.72          0.985 1.36e+00  8.55e-02  41.000
+4      4    0.875 -1.71          0.970 3.94e-01  7.17e-03  18.700
+5      5    0.894 -1.69          0.978 1.40e-01  7.15e-04   9.450
+6      6    0.429 -2.17          0.445 5.71e-02  8.24e-05   5.100
+7      7    0.441 -2.11          0.461 2.58e-02  9.97e-06   2.890
+8      8    0.445 -2.05          0.467 1.26e-02  1.31e-06   1.700
+9      9    0.398 -2.37          0.430 6.53e-03  1.70e-07   1.030
+10    10    0.928 -1.50          0.959 3.58e-03  2.28e-08   0.638
+11    11    0.406 -1.77          0.259 2.06e-03  3.19e-09   0.449
+12    12    0.478 -1.85          0.452 1.23e-03  4.66e-10   0.371
+13    13    0.482 -1.78          0.387 7.68e-04  6.79e-11   0.311
+14    14    0.494 -1.75          0.390 4.96e-04  9.87e-12   0.263
+15    15    0.429 -1.94          0.300 3.31e-04  1.48e-12   0.225
+16    16    0.435 -1.87          0.308 2.28e-04  2.19e-13   0.193
+17    17    0.423 -2.02          0.269 1.62e-04  3.30e-14   0.167
+18    18    0.416 -1.93          0.260 1.18e-04  4.88e-15   0.144
+19    19    0.418 -1.87          0.261 8.78e-05  6.66e-16   0.126
+20    20    0.423 -1.82          0.267 6.69e-05  2.22e-16   0.109
+[2026-11-09T23:12:50]   power=12
+[2026-11-09T23:14:01]   48 modules
+[2026-11-09T23:14:01]   testing preservation in 1 lith draw (n=74) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T23:21:44]   done: Z[10.34,90.87]
+[2026-11-09T23:21:45] === imputation: tobacco_imp_20 ===
+[2026-11-09T23:21:45]   residualizing control (n=234) ...
+[2026-11-09T23:21:45]   residualizing lith (n=152) ...
+[2026-11-09T23:21:45]   building reference network for tobacco_imp_20 ...
+   Power SFT.R.sq slope truncated.R.sq  mean.k. median.k.  max.k.
+1      1    0.845 -1.74          0.978 7.04e+01  4.48e+01 400.000
+2      2    0.885 -1.76          0.988 6.67e+00  1.41e+00 108.000
+3      3    0.890 -1.71          0.988 1.36e+00  8.56e-02  41.600
+4      4    0.877 -1.71          0.971 3.96e-01  7.18e-03  19.000
+5      5    0.903 -1.67          0.982 1.41e-01  7.16e-04   9.640
+6      6    0.428 -2.16          0.443 5.77e-02  8.30e-05   5.210
+7      7    0.441 -2.10          0.456 2.60e-02  1.00e-05   2.960
+8      8    0.446 -2.04          0.466 1.27e-02  1.31e-06   1.740
+9      9    0.401 -2.38          0.436 6.59e-03  1.70e-07   1.060
+10    10    0.905 -1.53          0.929 3.61e-03  2.31e-08   0.657
+11    11    0.934 -1.47          0.952 2.07e-03  3.22e-09   0.442
+12    12    0.480 -1.85          0.452 1.24e-03  4.73e-10   0.366
+13    13    0.482 -1.79          0.389 7.69e-04  6.97e-11   0.308
+14    14    0.425 -2.02          0.303 4.95e-04  1.01e-11   0.261
+15    15    0.430 -1.94          0.305 3.29e-04  1.49e-12   0.223
+16    16    0.418 -2.08          0.264 2.26e-04  2.21e-13   0.192
+17    17    0.421 -2.02          0.267 1.60e-04  3.33e-14   0.166
+18    18    0.417 -1.93          0.260 1.16e-04  5.11e-15   0.144
+19    19    0.423 -1.88          0.267 8.60e-05  6.66e-16   0.125
+20    20    0.429 -1.83          0.274 6.53e-05  2.22e-16   0.109
+[2026-11-09T23:22:19]   power=12
+[2026-11-09T23:23:34]   47 modules
+[2026-11-09T23:23:34]   testing preservation in 1 lith draw (n=74) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-09T23:31:14]   done: Z[7.94,65.2]
+[2026-11-09T23:31:14] Zsummary range across imputations: black=28.29; blue=45.07; brown=22.22; cyan=45.38; darkgreen=22.26; darkgrey=24.49; darkmagenta=26.17; darkolivegreen=25.34; darkorange=48.46; darkred=39.04; darkturquoise=21.86; gold=8.42; green=13.92; greenyellow=34.74; grey60=41.34; ivory=10.82; lightcyan=46.72; lightcyan1=8.46; lightgreen=29.81; lightsteelblue1=11.97; lightyellow=21.88; magenta=21.74; mediumpurple3=11.47; midnightblue=30.76; orange=22.96; orangered4=29.77; paleturquoise=33.02; pink=14.89; plum1=17.43; purple=29.6; red=59.73; royalblue=9.37; saddlebrown=12; salmon=41.81; sienna3=27.31; skyblue=32.87; skyblue3=16.72; steelblue=12.06; tan=27.65; turquoise=36.65; violet=14.26; white=28.85; yellow=41.91; yellowgreen=22.67; darkorange2=3.59; floralwhite=6.1; bisque4=1.04; brown4=4.07; darkslateblue=0
+[2026-11-09T23:31:14] === tob-045 COMPLETE ===

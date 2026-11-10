@@ -56,3 +56,221 @@ Vcells 15926248 121.6  447364184 3413.2 578488896 4413.6
       ..calculating observed preservation values
       ..calculating permutation Z scores
      ..Working with set 1 as reference set
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:31:50] === ref-004 starting ===
+Allowing parallel execution with up to 4 working processes.
+[2026-11-09T22:31:52] WGCNA 1.74 loaded; threads enabled
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-09T22:31:53] building consensus network across control + bp_nolith + bp_lith ...
+[2026-11-09T22:31:53] bp_lith subsample for consensus: 74 of 152 samples
+[2026-11-09T22:31:53] multiExpr: ctrl=234 nolith=74 lith=74
+ Calculating consensus modules and module eigengenes block-wise from all genes
+ Calculating topological overlaps block-wise from all genes
+   Flagging genes and samples with too many missing values...
+    ..step 1
+ ....Working on set 1
+    TOM calculation: adjacency..
+    ..will use 4 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....Working on set 2
+    TOM calculation: adjacency..
+    ..will use 4 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ....Working on set 3
+    TOM calculation: adjacency..
+    ..will use 4 parallel threads.
+     Fraction of slow calculations: 0.000000
+    ..connectivity..
+    ..matrix multiplication (system BLAS)..
+    ..normalization..
+    ..done.
+ ..Working on block 1 .
+ ....Working on set 1
+ ....Working on set 2
+ ....Working on set 3
+ ....Calculating consensus network
+ ..Working on block 1 .
+ ....clustering and detecting modules..
+ ....calculating eigengenes..
+ ....checking consensus modules for statistical meaningfulness..
+ ....checking for genes that should be reassigned..
+ ..merging consensus modules that are too close..
+     mergeCloseModules: Merging modules whose distance is less than 0
+       Calculating new MEs...
+[2026-11-09T22:37:55] consensus network: 81 modules (excluding grey); 440 unassigned genes
+[2026-11-09T22:37:56] consensus modules cached: network/cache/ref_consensus_all3_bicor_signed_p12_ds4_mch00_offsetrm.rds
+           used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  2312527 123.6    4259869  227.6   4259869  227.6
+Vcells 15925607 121.6  447363593 3413.2 578488255 4413.6
+[2026-11-09T22:37:56] control self-preservation (consensus modules, 500 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T00:11:19] control self-preservation done: Zsummary [9.65, 67.56]
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  2337158 124.9    4259869 227.6   4259869  227.6
+Vcells 18887703 144.2   60044127 458.2 578488255 4413.6
+[2026-11-10T00:11:19] bp_nolith preservation (consensus modules, 50 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T00:19:30] bp_nolith done: Zsummary [10.5, 90.81]
+           used  (Mb) gc trigger  (Mb)  max used   (Mb)
+Ncells  2337190 124.9    4259869 227.6   4259869  227.6
+Vcells 18888222 144.2   57706362 440.3 578488255 4413.6
+[2026-11-10T00:19:30] lith draw 1/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T00:27:46] lith draw 1 done: Zsummary [9.2, 83.06]
+[2026-11-10T00:27:46] lith draw 2/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T00:35:54] lith draw 2 done: Zsummary [7.87, 104.45]
+[2026-11-10T00:35:54] lith draw 3/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T00:43:41] lith draw 3 done: Zsummary [8.8, 88.89]
+[2026-11-10T00:43:41] lith draw 4/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T00:51:30] lith draw 4 done: Zsummary [7.25, 96.94]
+[2026-11-10T00:51:30] lith draw 5/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T00:59:18] lith draw 5 done: Zsummary [7.59, 90.38]
+[2026-11-10T00:59:18] lith draw 6/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T01:07:03] lith draw 6 done: Zsummary [8.36, 87.59]
+[2026-11-10T01:07:03] lith draw 7/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T01:14:51] lith draw 7 done: Zsummary [8.41, 112.25]
+[2026-11-10T01:14:51] lith draw 8/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T01:22:42] lith draw 8 done: Zsummary [7.31, 93.57]
+[2026-11-10T01:22:42] lith draw 9/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T01:30:29] lith draw 9 done: Zsummary [8.91, 95.18]
+[2026-11-10T01:30:29] lith draw 10/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T01:38:20] lith draw 10 done: Zsummary [8.01, 88.96]
+[2026-11-10T01:38:20] lith draw 11/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T01:46:08] lith draw 11 done: Zsummary [8.77, 100.86]
+[2026-11-10T01:46:08] lith draw 12/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T01:53:57] lith draw 12 done: Zsummary [8.98, 98.67]
+[2026-11-10T01:53:57] lith draw 13/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:01:46] lith draw 13 done: Zsummary [8.5, 103.55]
+[2026-11-10T02:01:46] lith draw 14/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:09:36] lith draw 14 done: Zsummary [7.16, 94.61]
+[2026-11-10T02:09:36] lith draw 15/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:17:22] lith draw 15 done: Zsummary [8.3, 92.11]
+[2026-11-10T02:17:22] lith draw 16/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:25:09] lith draw 16 done: Zsummary [8.56, 115.22]
+[2026-11-10T02:25:09] lith draw 17/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:32:57] lith draw 17 done: Zsummary [7.6, 104.01]
+[2026-11-10T02:32:57] lith draw 18/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:40:43] lith draw 18 done: Zsummary [5.89, 84.43]
+[2026-11-10T02:40:43] lith draw 19/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:48:27] lith draw 19 done: Zsummary [9.68, 72.21]
+[2026-11-10T02:48:28] lith draw 20/20: subsampling bp_lith ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T02:56:16] lith draw 20 done: Zsummary [9.35, 92.34]
+[2026-11-10T02:56:16] aggregating results ...
+[2026-11-10T02:56:16] 
+--- Consensus module preservation summary (descriptive only) ---
+[2026-11-10T02:56:16] Control self-preservation (sanity check):
+      module Zsummary medianRank
+ greenyellow 67.56440         10
+         red 66.10490         27
+ lightyellow 57.78153         20
+   turquoise 54.60022         79
+        pink 53.64119         40
+[2026-11-10T02:56:16] bp_nolith (top 5 modules by Zsummary):
+      module Zsummary medianRank
+         red 90.81221         24
+ greenyellow 63.88494         16
+ lightyellow 63.06477         23
+  lightgreen 61.44938          8
+     magenta 60.22896         43
+[2026-11-10T02:56:16] bp_lith (top 5 modules by mean Zsummary across draws):
+      module Zsummary_mean Zsummary_sd medianRank_mean
+         red      94.96433   10.112042           12.35
+  lightgreen      64.90706    5.945580            8.55
+        pink      63.08561    8.525377           32.05
+ greenyellow      61.70186    9.545082           24.20
+   turquoise      56.69565    4.492547           70.95
+[2026-11-10T02:56:16] Results written to network/runs/ref-004
+[2026-11-10T02:56:16] === ref-004 COMPLETE ===

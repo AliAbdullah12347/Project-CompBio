@@ -69,11 +69,20 @@ subsampling 152 lithium users down to 74 produces, and the matched ceiling in
 ## How this reads in the paper
 
 This is a negative result that is now worth stating, because the test has the
-resolution to detect something and does not. Combined with the 21 parameter
-variants that all agree (`mod-013`…`mod-020`, `pow-010`…`pow-012`,
-`corr-005/006`, `net-007`, `gene-025`…`gene-029`, `ref-002`: **0 of 21** show
-any lithium/non-lithium preservation difference, p = 0.44–0.99), the network
-arm's conclusion is stable under every parameter we varied.
+resolution to detect something and does not. Combined with every parameter
+variant that ran the same contrast - **0 of 25**, p = 0.441 to 0.989 - the
+network arm's conclusion is stable under everything we varied: resolution,
+soft power, correlation function, network type, gene set and reference group.
+
+That tally was quoted as 0 of 21 and assembled by hand. `synth-048` now
+computes it, so it is reproducible and it moves as rows land:
+`runs/synth-048/primary_contrast_by_variant.csv`, a paired Wilcoxon of
+bp_lith medianRank -- averaged over that variant's draws -- against bp_nolith
+medianRank over the modules they share. `base-003-remerge` is excluded
+because it is `base-001` copied into its own run directory, and `ref-002` and
+`base-002-ceil` because neither writes a `results_nolith.csv` to pair
+against. The three rows that landed on 2026-11-10 are in it: `ref-004`
+p = 0.726, `net-008` 0.589, `inp-024` 0.947.
 
 ## Caveat
 

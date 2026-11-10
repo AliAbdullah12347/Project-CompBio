@@ -13,3 +13,11 @@
 [2026-11-09T22:42:20] === bmind-047 starting ===
 [2026-11-09T22:42:20] DEPENDENCY MISSING: bmind-046 not done (network/runs/bmind-046/bmind_profiles_done.flag absent)
 [2026-11-09T22:42:20] Exiting status=1 to requeue after bmind-046 completes.
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:45:41] === bmind-047 starting ===
+[2026-11-09T22:45:41] DEPENDENCY MISSING: bmind-046 not done (network/runs/bmind-046/bmind_profiles_done.flag absent)
+[2026-11-09T22:45:41] Exiting status=1 to requeue after bmind-046 completes.
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:50:04] === bmind-047 starting ===
+[2026-11-09T22:50:04] DEPENDENCY MISSING: bmind-046 not done (network/runs/bmind-046/bmind_profiles_done.flag absent)
+[2026-11-09T22:50:04] Exiting status=1 to requeue after bmind-046 completes.

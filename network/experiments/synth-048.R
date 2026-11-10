@@ -114,8 +114,16 @@ robustness_exps <- list(
   "pow-010"  = "network/runs/pow-010/results_lith_alldraws.csv",
   "pow-011"  = "network/runs/pow-011/results_lith_alldraws.csv",
   "ref-002"  = "network/runs/ref-002/results_lith_alldraws.csv",
-  "ref-003"  = "network/runs/ref-003/results_lith_alldraws.csv"
+  "ref-003"  = "network/runs/ref-003/results_lith_alldraws.csv",
+  # Landed 2026-11-10 off the cluster; the list predates them.
+  "ref-004"  = "network/runs/ref-004/results_lith_alldraws.csv",
+  "pow-012"  = "network/runs/pow-012/results_lith_alldraws.csv",
+  "gene-029" = "network/runs/gene-029/results_lith_alldraws.csv"
 )
+# base-003-remerge is deliberately NOT here. It is base-001 v2 copied into its
+# own run directory, byte-identical in both result files, so counting it as a
+# variant would make the primary run agree with itself and inflate every
+# tally below by one.
 mod_experiments <- list(
   "mod-013"  = "network/runs/mod-013/results_lith_alldraws.csv",
   "mod-014"  = "network/runs/mod-014/results_lith_alldraws.csv",
@@ -193,6 +201,44 @@ if (!is.null(base001_lith_sum)) {
       round(STABILITY_THRESHOLD*100), "% of variants")
 } else {
   stability_rows <- NULL
+}
+
+# ---- the primary contrast, variant by variant --------------------------------
+# Z-bracket agreement above answers "do the variants see the same modules".
+# It does not answer the arm's question, which is whether the lithium network
+# is less preserved than the non-lithium one. Each variant ran that comparison
+# already: medianRank of bp_lith (averaged over its draws) against medianRank
+# of bp_nolith, over the modules they share. Paired because the two columns
+# describe the same modules; Wilcoxon because medianRank is a rank.
+msg("comparing bp_lith against bp_nolith in every variant ...")
+contrast_one <- function(id) {
+  ls_ <- safe_read(sprintf("network/runs/%s/results_lith_summary.csv", id))
+  no  <- safe_read(sprintf("network/runs/%s/results_nolith.csv", id))
+  if (is.null(ls_) || is.null(no)) return(NULL)
+  if (!"medianRank_mean" %in% names(ls_) || !"medianRank" %in% names(no)) return(NULL)
+  m <- merge(ls_[, c("module","medianRank_mean")], no[, c("module","medianRank")],
+             by = "module")
+  m <- m[m$module != "grey", ]
+  if (nrow(m) < 5) return(NULL)
+  w <- suppressWarnings(wilcox.test(m$medianRank_mean, m$medianRank, paired = TRUE))
+  data.frame(variant = id, n_modules = nrow(m),
+             lith_medianRank = median(m$medianRank_mean),
+             nolith_medianRank = median(m$medianRank),
+             p_wilcoxon = w$p.value, stringsAsFactors = FALSE)
+}
+contrast_ids <- setdiff(
+  basename(dirname(Sys.glob("network/runs/*/results_lith_summary.csv"))),
+  c("base-001", "base-003-remerge"))        # primary, and its own copy
+contrast <- do.call(rbind, lapply(sort(contrast_ids), contrast_one))
+primary  <- contrast_one("base-001")
+if (!is.null(contrast)) {
+  contrast <- contrast[order(contrast$p_wilcoxon), ]
+  write.csv(rbind(primary, contrast),
+            file.path(run_dir, "primary_contrast_by_variant.csv"), row.names = FALSE)
+  n_sig <- sum(contrast$p_wilcoxon < 0.05)
+  msg(n_sig, "/", nrow(contrast), " variants show a lith/nolith difference at p<0.05 ",
+      "(range ", sprintf("%.3f", min(contrast$p_wilcoxon)), " to ",
+      sprintf("%.3f", max(contrast$p_wilcoxon)), ")")
 }
 
 # ---- write RESULTS.md section ------------------------------------------------
@@ -289,6 +335,36 @@ build_section <- function() {
     lines <- c(lines, "*Stability analysis unavailable (base-001 pending)*", "")
   }
 
+  # The primary contrast, variant by variant
+  lines <- c(lines, "### Is the lithium network less preserved? (every variant)", "")
+  if (!is.null(contrast)) {
+    n_sig <- sum(contrast$p_wilcoxon < 0.05)
+    lines <- c(lines,
+      paste0("Paired Wilcoxon on medianRank, bp_lith (mean over draws) against ",
+             "bp_nolith, over the modules each variant shares. **", n_sig, " of ",
+             nrow(contrast), " variants** reach p<0.05; the range is ",
+             sprintf("%.3f to %.3f", min(contrast$p_wilcoxon), max(contrast$p_wilcoxon)),
+             "."),
+      "",
+      paste0("base-001 itself gives p = ",
+             if (!is.null(primary)) sprintf("%.3f", primary$p_wilcoxon) else "pending",
+             ". base-003-remerge is base-001 copied into its own run directory and is ",
+             "excluded, or the primary run would be counted as agreeing with itself."),
+      "",
+      "| Variant | Modules | lith medianRank | nolith medianRank | p |",
+      "|---|---:|---:|---:|---:|",
+      vapply(seq_len(nrow(contrast)), function(i) {
+        r <- contrast[i, ]
+        sprintf("| %s | %d | %.1f | %.1f | %.3f |", r$variant, r$n_modules,
+                r$lith_medianRank, r$nolith_medianRank, r$p_wilcoxon)
+      }, character(1)),
+      "",
+      paste0("Rows absent from the table ran a different comparison and have no ",
+             "results_nolith.csv to pair against: ref-002, and base-002-ceil, ",
+             "which is the matched-size ceiling rather than a parameter variant."),
+      "")
+  } else { lines <- c(lines, "*no variant has both result files yet*", "") }
+
   # Annotation results
   lines <- c(lines, "### Annotation (ann-041, ann-042)", "")
   if (!is.null(ann041)) {
@@ -347,20 +423,51 @@ build_section <- function() {
     lines <- c(lines, "")
   } else { lines <- c(lines, "*bmind-047 pending (requires bmind-046)*", "") }
 
-  # Main conclusions
+  # Main conclusions. Every number here is read off the objects above rather
+  # than typed in: the previous version of this block still said "4 modules
+  # detected ... after mergeCloseModules (cutHeight=0.25)", which described a
+  # decomposition abandoned on 2026-10-14, and it would have been republished
+  # verbatim over a 71-module reference every time this row re-ran.
   lines <- c(lines, "### Conclusions", "")
+  # gold is WGCNA's all-genes pseudo-module and grey is the unassigned pile.
+  # Neither is a module, so neither is counted; the finding files say 71 and
+  # this has to agree with them.
+  n_ref <- if (!is.null(base001_lith_sum))
+    sum(!base001_lith_sum$module %in% c("gold", "grey")) else NA_integer_
+  lines <- c(lines, sprintf(
+    paste0("1. **Reference network**: %s modules on whole-blood controls (bicor, signed, ",
+           "power 12, deepSplit 4, no merge), excluding WGCNA's gold pseudo-module."),
+    if (is.na(n_ref)) "pending" else format(n_ref)), "")
+  if (!is.null(contrast)) {
+    lines <- c(lines, sprintf(
+      paste0("2. **The lithium network is not less preserved.** %d of %d parameter variants ",
+             "reach p<0.05 on the primary contrast (range %.3f to %.3f), and the primary run ",
+             "itself gives p = %s. Resolution, soft power, correlation function, network type, ",
+             "gene set and reference group were all varied; none of them changes the answer."),
+      sum(contrast$p_wilcoxon < 0.05), nrow(contrast),
+      min(contrast$p_wilcoxon), max(contrast$p_wilcoxon),
+      if (!is.null(primary)) sprintf("%.3f", primary$p_wilcoxon) else "pending"), "")
+  }
+  if (!is.null(perm031) && "padj" %in% names(perm031)) {
+    k <- if ("null_n_draws" %in% names(perm031)) max(perm031$null_n_draws, na.rm=TRUE) else NA
+    lines <- c(lines, sprintf(
+      paste0("3. **No module-specific lithium effect.** %d of %d modules clear BH 5%% against ",
+             "the group-label permutation null at K=%s draws; the smallest unadjusted p is %.3f. ",
+             "The four modules that led at K=20 were a floor artifact -- 1/(K+1) was 0.05 there, ",
+             "so nothing could clear BH whatever the biology."),
+      sum(perm031$padj < 0.05, na.rm=TRUE),
+      sum(!perm031$module %in% c("gold", "grey")),
+      if (is.na(k)) "?" else format(k),
+      min(perm031$empirical_pval_lower, na.rm=TRUE)), "")
+  }
   lines <- c(lines,
-    "1. **Reference network**: 4 modules detected in whole-blood controls (power=12, bicor, signed)",
-    "   after mergeCloseModules (cutHeight=0.25). Biologically plausible: cell-type composition",
-    "   dominates whole-blood co-expression.",
+    paste0("4. **Zsummary is descriptive.** No p-value is derived from Zsummary itself: draws ",
+           "share the reference network and are not independent. Every p above comes from a ",
+           "permutation or a rank test, not from the Z scale."),
     "",
-    "2. **Scale-free topology**: NOT achieved at any tested power (max signed-R²=0.955 at power=2,",
-    "   positive slope). Power=12 used per WGCNA FAQ for signed networks with n>40.",
-    "",
-    "3. **Zsummary interpretation**: DESCRIPTIVE ONLY. No p-values computed from Zsummary",
-    "   (no CDF transformation, no BH across draws). Draws are not independent.",
-    "",
-    "4. **Stability**: see table above (pending completion of robustness experiments).",
+    paste0("5. **The exception lives in findings/, not here.** One module survives adjustment ",
+           "for cell composition -- see findings/2026-11-09-eosinophil-module-survives-",
+           "composition.md. This row reads preservation results only and cannot see it."),
     "")
 
   lines

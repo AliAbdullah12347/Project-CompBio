@@ -1,0 +1,9 @@
+{
+  "id": "synth-048",
+  "family": "synthesis",
+  "spec": "cross-run synthesis: which conclusions are stable across all variants? write to RESULTS.md",
+  "stability_threshold": 0.8,
+  "output": "network/RESULTS.md",
+  "git_sha": "unknown",
+  "r_version": "4.6.1"
+}

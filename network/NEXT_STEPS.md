@@ -1,31 +1,41 @@
 # What is left, and exactly how to run it
 
-**Updated:** 2026-11-09. Everything below is runnable from a clone of this repo.
-Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
-
-> **As of 9 Nov 23:00 UTC: 45 of 52 rows DONE, up from 19.** Item 1 is
-> ANSWERED - perm-031 at K=157 is a clean negative, 0 of 71 modules, smallest
-> p = 0.038. Item 4 is all but drained: `ref-004`, `net-008`, `inp-024`,
-> `cent-040`, `tob-045` and `bmind-046/047` are the last seven, all running.
-> Items 2 and 3 remain unstarted and are now the highest-value work left.
+**Updated:** 2026-11-10. Everything below is runnable from a clone of this repo.
+Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
+
+> **As of 10 Nov 05:30 UTC: 51 of 52 rows DONE, up from 19 on 8 Nov.** Only
+> `bmind-047` is still running, on `arm3-run-81`. Item 1 is ANSWERED -
+> perm-031 at K=157 is a clean negative, 0 of 71 modules, smallest p = 0.038.
+> Item 4 is drained. **Items 2 and 3 are now the only real work left in the
+> arm** and neither has been started.
 >
-> **Three results need care before anyone cites them**, all the same K-floor
-> problem: `perm-032`'s "8 modules significant" is an artifact of p=0 (use
-> `results_permutation_test_addone.csv`: 0 significant); `hub-037`'s "0 of
+> `synth-048` has been re-run and now computes the robustness tally instead of
+> carrying it by hand: **0 of 25 parameter variants** show any lithium /
+> non-lithium preservation difference, p = 0.441 to 0.989. Its hardcoded
+> conclusions block, which still claimed a 4-module reference from a
+> decomposition abandoned on 2026-10-14, has been replaced by numbers read off
+> the data.
+>
+> **Four results need care before anyone cites them.** Three are the same
+> K-floor problem: `perm-032`'s "8 modules significant" is an artifact of p=0
+> (use `results_permutation_test_addone.csv`: 0 significant); `hub-037`'s "0 of
 > 12360 genes" cannot return a positive at K=20, so it is not a negative; and
-> `comm-039` returned 12368 communities of one gene each, ARI=0, which is a
-> degenerate run, not a finding.
+> `comm-039` returned 12368 communities of one gene each, ARI=0, a degenerate
+> run rather than a finding. The fourth is `cent-040`: its matched comparison
+> reports 52 of 71 modules differing on degree, but that is one global density
+> shift counted once per module, from a single lith subsample, and the only
+> density-insensitive metric gives 0 of 71 - see
+> `findings/2026-11-10-centrality-difference-is-one-global-shift.md`.
 >
-> **The bulk compute is on the research cluster, not the
-> iMac.** Item 4 is running as `arm3-run-01..07` (29 rows, one per pod) and
-> item 1 as `arm3-perm031` (12 pods). Items 2 and 3 are still unstarted and are
-> still the two highest-value things left. See `network/cluster/README.md` for
-> what failed on the first attempt and why — the short version is that WGCNA ran
-> 31 threads inside a 4-CPU cgroup, and 19 of 31 rows hit their time cap inside
-> `modulePreservation` because of it.
->
-> **Do not read an upload count as a success count.** The first drain reported
-> 30 rows uploaded and had finished 2. Return codes are in `status/*.tsv` in S3.
+> **The open question cent-040 leaves** is a control-split null: cut the 234
+> controls into two disjoint halves of 74 and run the same comparison. If two
+> halves of one group produce a comparable number of "differing" modules, the
+> procedure is measuring noise. Two adjacency builds, about an hour.
+>
+> **The bulk compute is on the research cluster, not the iMac.** See
+> `network/cluster/README.md` for what failed on the first attempt and why.
+> **Do not read an upload count as a success count** - the first drain reported
+> 30 rows uploaded and had finished 2. Return codes are in `status/*.tsv`.
 
 ---
 

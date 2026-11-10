@@ -256,6 +256,15 @@ comparison_rows <- do.call(rbind, lapply(modules, function(m) {
       wilcox.test(v_ctrl, v_lith, exact = FALSE),
       error = function(e) list(statistic = NA, p.value = NA)
     )
+    # nolith vs lith -- the only matched comparison in this row. Control has
+    # 234 samples and both patient graphs have 74, and centrality on a
+    # correlation graph rises with n, so every ctrl-vs-X column confounds
+    # lithium with sample size. These two are the same size by construction,
+    # so a difference here is the only one that can be about lithium.
+    wt_matched <- tryCatch(
+      wilcox.test(v_nolith, v_lith, exact = FALSE),
+      error = function(e) list(statistic = NA, p.value = NA)
+    )
 
     data.frame(
       module              = m,
@@ -268,6 +277,8 @@ comparison_rows <- do.call(rbind, lapply(modules, function(m) {
       pval_ctrl_nolith    = as.numeric(wt_nolith$p.value),
       W_ctrl_lith         = as.numeric(wt_lith$statistic),
       pval_ctrl_lith      = as.numeric(wt_lith$p.value),
+      W_nolith_lith       = as.numeric(wt_matched$statistic),
+      pval_nolith_lith    = as.numeric(wt_matched$p.value),
       stringsAsFactors    = FALSE
     )
   }))
@@ -282,6 +293,8 @@ for (met in metrics) {
       p.adjust(comparison_rows$pval_ctrl_nolith[idx_nolith], method = "BH")
     comparison_rows$padj_ctrl_lith[idx_lith] <-
       p.adjust(comparison_rows$pval_ctrl_lith[idx_lith], method = "BH")
+    comparison_rows$padj_nolith_lith[idx_lith] <-
+      p.adjust(comparison_rows$pval_nolith_lith[idx_lith], method = "BH")
   }
 }
 comparison_rows$padj_ctrl_nolith[is.na(comparison_rows$padj_ctrl_nolith)] <- NA_real_
@@ -296,8 +309,10 @@ for (met in metrics) {
   sub <- comparison_rows[comparison_rows$metric == met, ]
   n_sig_lith   <- sum(sub$padj_ctrl_lith   < 0.05, na.rm = TRUE)
   n_sig_nolith <- sum(sub$padj_ctrl_nolith < 0.05, na.rm = TRUE)
+  n_sig_matched <- sum(sub$padj_nolith_lith < 0.05, na.rm = TRUE)
   msg(met, ": ", n_sig_lith, " modules differ ctrl vs lith (BH 5%); ",
-      n_sig_nolith, " modules differ ctrl vs nolith (BH 5%)")
+      n_sig_nolith, " modules differ ctrl vs nolith (BH 5%); ",
+      n_sig_matched, " differ nolith vs lith, the matched comparison")
 }
 
 msg("=== ", id, " COMPLETE ===")
