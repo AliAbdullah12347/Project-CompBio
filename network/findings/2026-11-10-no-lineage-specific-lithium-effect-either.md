@@ -16,19 +16,21 @@ network per lineage on controls, and run the same preservation test.
 
 | lineage | modules | bp_lith medianRank | bp_nolith medianRank | p | BH |
 |:--|--:|--:|--:|--:|--:|
-| gran | 14 | 8.0 | 7.5 | 0.784 | 1.000 |
-| mono | 20 | 10.9 | 10.0 | 0.729 | 1.000 |
-| T | 16 | 8.5 | 8.5 | 0.821 | 1.000 |
-| NK | 16 | 8.2 | 8.5 | 1.000 | 1.000 |
-| B | 18 | 9.6 | 9.0 | 0.983 | 1.000 |
+| gran | 13 | 7.7 | 7.0 | 0.761 | 0.890 |
+| mono | 19 | 10.8 | 10.0 | 0.798 | 0.890 |
+| T | 15 | 7.1 | 8.0 | 0.890 | 0.890 |
+| NK | 15 | 7.8 | 8.0 | 0.869 | 0.890 |
+| B | 17 | 8.4 | 9.0 | 0.764 | 0.890 |
 
 Paired Wilcoxon on medianRank, bp_lith averaged over its 20 subsample draws
 against the full bp_nolith run, over the modules each lineage shares. **0 of
-5 lineages**, and the smallest p is 0.729 - further from significance than
+5 lineages**, and the smallest p is 0.761 - further from significance than
 any of the 25 whole-blood parameter variants, whose range starts at 0.441.
+`gold`, WGCNA's all-genes pseudo-module, is excluded; counting it would put
+every lineage one above the module count its own reference build reported.
 
-Preservation is strong throughout: median lith Zsummary 16.5 to 19.8 per
-lineage. One module of the 84 across all five falls below Zsummary 2 -
+Preservation is strong throughout: median lith Zsummary 15.3 to 20.6 per
+lineage. One module of the 79 across all five falls below Zsummary 2 -
 `lightyellow` in mono, at 1.68 - and it is at 2.04 in bp_nolith, so it is a
 weakly preserved module in both patient groups rather than something lithium
 takes apart.

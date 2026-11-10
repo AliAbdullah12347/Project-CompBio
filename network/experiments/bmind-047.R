@@ -335,8 +335,13 @@ if (!is.null(nolith_rows)) {
 
   if (length(all_lith_rows) > 0) {
     contrast <- do.call(rbind, lapply(available_lineages, function(lin) {
-      l  <- combined[combined$lineage == lin & combined$module != "grey", ]
-      no <- nolith_rows[nolith_rows$lineage == lin & nolith_rows$module != "grey", ]
+      # Drop gold as well as grey. gold is the all-genes pseudo-module
+      # modulePreservation adds, not a module, and counting it puts every
+      # lineage one above the module count its own reference build reported
+      # (gran 13, mono 19, T 15, NK 15, B 17).
+      drop <- c("grey", "gold")
+      l  <- combined[combined$lineage == lin & !combined$module %in% drop, ]
+      no <- nolith_rows[nolith_rows$lineage == lin & !nolith_rows$module %in% drop, ]
       if (!nrow(l) || !nrow(no)) return(NULL)
       ls_ <- aggregate(cbind(Zsummary, medianRank) ~ module, data = l, FUN = mean)
       m <- merge(ls_, no[, c("module","Zsummary","medianRank")], by = "module",

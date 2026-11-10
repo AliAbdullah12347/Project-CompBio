@@ -14,7 +14,7 @@ Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
 > - **0 of 71 modules** against a group-label permutation null at K=157,
 >   smallest p 0.038 (`perm-031`).
 > - **0 of 5 cell lineages** when the question is re-asked on bMIND
->   deconvolved expression, p 0.729 to 1.000 (`bmind-047`). This is the test
+>   deconvolved expression, p 0.761 to 0.890 (`bmind-047`). This is the test
 >   that closes the "bulk dilutes a cell-type-specific effect" objection.
 > - **0 of 12360 genes** change intramodular connectivity at BH 5%, K=500,
 >   smallest BH 0.149, with below-chance occupancy of the p floor (`hub-037`).

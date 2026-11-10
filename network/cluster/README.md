@@ -10,7 +10,7 @@ flight.
 The last two landed off `arm3-run-82` and `arm3-run-83`:
 
 - `bmind-047`, all five lineages, nolith plus 20 draws each. **0 of 5
-  lineages** show a lith/nolith preservation difference, p 0.729 to 1.000.
+  lineages** show a lith/nolith preservation difference, p 0.761 to 0.890.
 - `hub-037` at K=500, restored from the budget cut to 20. **0 of 12360
   genes** at BH 5%, smallest BH 0.149, with 11 genes at the p floor against
   24.7 expected by chance.
