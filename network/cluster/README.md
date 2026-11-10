@@ -37,9 +37,10 @@ see `findings/2026-11-09-perm031-at-157-draws-is-a-clean-negative.md`.
    killed the last pod two seconds in, once `MIND` finally installed. It now
    falls back to a path relative to the working directory.
 
-### Two bugs that would have produced wrong results, not failures
+### Four bugs that would have produced wrong results, not failures
 
-Failures are cheap; these are not.
+Failures are cheap; these are not. Each of these ran to completion and wrote a
+plausible-looking number.
 
 - **`bmind-047` would have reported COMPLETE having done nothing.** Its
   `normalise_bmind()` tested `is.list()` first and returned the object
@@ -51,6 +52,22 @@ Failures are cheap; these are not.
   (cutHeight=0.25)", a decomposition abandoned on 2026-10-14. Every re-run
   would have republished that over a 71-module reference. It now reads its
   numbers off the data.
+- **`comm-039` called Leiden with igraph's default objective function.**
+  `cluster_leiden()` defaults to the Constant Potts Model, where the
+  resolution parameter is compared against internal edge *density*. This
+  graph's density is 951485 / (12368 x 12367 / 2) = 0.0124, so at gamma = 1 no
+  community can qualify and every gene becomes its own: 12368 communities,
+  ARI = 0 against everything. That was recorded as a result about community
+  structure. With `objective_function = "modularity"` -- the resolution the
+  row was pre-specified in, and the one `comm-038`'s `cluster_louvain()`
+  already uses -- it returns 1617 to 3063 communities.
+- **`comm-038` and `comm-039` both computed NMI with the subsetting on the
+  wrong side of the division.** `pab[pab > 0] / outer(pa, pb)` divides a
+  vector of the non-zero cells by the whole matrix, R recycles, and the
+  `[pab > 0]` outside then samples the result. Under CPM it happened to land
+  on 0.639 and look fine; under modularity it returned negative numbers, and
+  NMI cannot be negative. Checked after the fix: 1.000 for a partition against
+  itself, 0.005 for two independent ones, 0.817 for a coarsening.
 
 **Read return codes, never upload counts.** The 8 Nov drain reported 30 rows
 uploaded and had finished 2.

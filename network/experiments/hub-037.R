@@ -44,7 +44,15 @@ dir.create(cfg_dir, showWarnings = FALSE, recursive = TRUE)
 
 # ---------- 2. Parameters — ALL pre-specified BEFORE any computation ---------
 SEED_BASE      <- 20261009L + 37000L
-K              <- 20L        # spec = 500; revised for budget (see METHODS.md 2026-10-09)
+# Back to the spec's 500. It was cut to 20 for budget on 2026-10-09, and at
+# K=20 this test cannot return a positive however strong the effect: with m
+# genes tied at the floor 1/(K+1) among n = 12360, the last of them gets BH
+# p = (1/(K+1)) * n/m, so a positive needs K > 20n/m - 1. The 2026-11-09 run
+# put 1028 genes at the floor, which needs K >= 240. A permuted draw takes
+# about 5 s, so the whole 500 is roughly 40 minutes - the budget argument was
+# never worth the loss of resolution. Draws are checkpointed individually, so
+# the 20 that exist are reused.
+K              <- 500L
 SUBSAMPLE_N    <- 74L
 REF_CACHE      <- "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds"
 HUB036_CTRL    <- "network/runs/hub-036/kme_control.csv"
@@ -143,13 +151,22 @@ names(gene_module) <- genes
 
 # For each gene, pull kME from its own module column in each group
 pull_own_kme <- function(kme_mat, gene_mod_vec) {
-  sapply(seq_along(gene_mod_vec), function(i) {
+  out <- sapply(seq_along(gene_mod_vec), function(i) {
     gn  <- names(gene_mod_vec)[i]
     mod <- gene_mod_vec[i]
     if (is.na(mod) || mod == "grey" || !gn %in% rownames(kme_mat) ||
         !mod %in% colnames(kme_mat)) return(NA_real_)
     kme_mat[gn, mod]
   })
+  # sapply() over seq_along() returns an UNNAMED vector, and everything
+  # downstream subsets these by gene id -- kme_own_ctrl[g_in_mod]. Subsetting
+  # an unnamed vector by character gives NA for every element, which is why
+  # diff_connectivity.csv came out 12360 rows of NA on 2026-11-09 while
+  # delta_kme.csv was fine: that one indexes the kME matrices, which carry
+  # rownames. The row then reported "0 genes significant" because
+  # sum(NA < 0.05, na.rm = TRUE) is 0 whatever the data says.
+  names(out) <- names(gene_mod_vec)
+  out
 }
 
 msg("extracting intramodular kME per gene ...")
@@ -258,7 +275,15 @@ diff_conn_rows <- do.call(rbind, lapply(modules, function(m) {
     obs_abs <- abs(obs_delta[i])
     if (is.na(obs_abs)) return(NA_real_)
     null_abs <- abs(null_g[i, ])
-    mean(null_abs >= obs_abs, na.rm = TRUE)
+    # Add-one (Phipson & Smyth 2010), not mean(). mean() returns exactly 0
+    # when the observed value beats every null draw, and a p of 0 is not a
+    # probability - it says the true p is below 1/K, not that it is zero. On
+    # 2026-11-09 all 1028 genes this row called significant had p = 0 by that
+    # route; under the estimator below the same draws give 0 significant and a
+    # smallest BH of 0.158. The same defect was found in perm-031 and
+    # perm-032 on the same day.
+    nz <- sum(!is.na(null_abs))
+    (1 + sum(null_abs >= obs_abs, na.rm = TRUE)) / (1 + nz)
   }, numeric(1))
 
   padj <- p.adjust(emp_pval, method = "BH")
