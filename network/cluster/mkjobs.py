@@ -129,6 +129,11 @@ spec:
                   setup_r
                   fetch_cache
                   fetch_counts || echo "-- no raw counts; only filt-044 needs them"
+                  # 209 MB, and only the bmind rows open it. Conditional rather
+                  # than unconditional so the other 50 rows do not pay for it.
+                  case "$ENTRY" in
+                    *bmind*) fetch_bmind || echo "-- no bMIND profiles; bmind-047 cannot run" ;;
+                  esac
                   write_rprofile "$CPU_LIMIT"
 
                   # Keep 15 min at the end for the final upload, and split what

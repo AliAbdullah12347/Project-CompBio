@@ -63,6 +63,31 @@ if (file.exists(DONE_FLAG)) {
   quit(save="no", status=0L)
 }
 
+# ---- adopt an existing build rather than redrawing it -----------------------
+# bMIND is a Gibbs sampler: a second run returns a different posterior draw,
+# not the same numbers. de_analysis/results/bmind_profiles.rds was written on
+# 2026-10-01 by the script below (12368 x 5 x 474, 31/31 chunks, no NAs) and
+# every DE-arm result downstream of it -- celltype_limma, celltype_mde,
+# celltype_null -- was computed from that draw. Rebuilding would desynchronise
+# the two arms for nothing, since the profiles are bmind-047's input and are
+# not a result in their own right. Re-run only if the file is gone.
+PRIOR <- c("de_analysis/results/bmind_profiles.rds",
+           "de_analysis/results/bmind_lineage_expr.rds")
+have  <- Filter(file.exists, PRIOR)
+if (length(have)) {
+  msg("existing bMIND profiles found, not redrawing: ", paste(have, collapse="; "))
+  for (f in have) msg("  ", f, "  ", round(file.size(f)/1048576), " MB  built ",
+                      format(file.mtime(f), "%Y-%m-%d %H:%M"))
+  writeLines(c(sprintf("completed: %s (adopted, not rebuilt)", now_()),
+               paste("outputs:", paste(have, collapse="; ")),
+               "note: bMIND is MCMC; rebuilding gives a different draw and would",
+               "      desynchronise the network arm from the DE arm's results."),
+             DONE_FLAG)
+  msg("flag written: ", DONE_FLAG)
+  msg("=== ", id, " COMPLETE (adopted existing profiles) ===")
+  quit(save="no", status=0L)
+}
+
 msg("Starting bMIND profile rebuild (~3.1h) ...")
 msg("Script: ", BMIND_SCRIPT)
 msg("Working directory: ", getwd())

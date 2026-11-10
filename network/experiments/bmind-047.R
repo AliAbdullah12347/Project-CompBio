@@ -94,6 +94,10 @@ d <- load_project()
 
 # ---- locate bMIND profiles ---------------------------------------------------
 possible_paths <- c(
+  # Written by network/cluster/prep_bmind.R from the 2026-10-01 profiles: the
+  # posterior mean alone, already in samples x genes, no SE. Preferred because
+  # it is the one layout normalise_bmind() reads without having to guess.
+  "de_analysis/results/bmind_lineage_expr.rds",
   "de_analysis/data/bmind_profiles.rds",
   "de_analysis/data/bMIND_profiles.rds",
   "de_analysis/data/bmind_ct_expression.rds",
@@ -111,11 +115,27 @@ bmind <- readRDS(bmind_path)
 # bMIND output format: typically a list of cell-type matrices, each samples x genes
 # Or a 3D array (T x G x N). Detect and normalise.
 normalise_bmind <- function(bm, lineages) {
-  if (is.list(bm)) {
-    # Named list: each element is a matrix (samples x genes or genes x samples)
-    nms <- names(bm)
-    msg("bMIND is a list with ", length(nms), " elements: ", paste(head(nms,5), collapse=", "))
+  if (is.list(bm) && any(lineages %in% names(bm))) {
+    # Named list of per-lineage matrices, samples x genes. This is what
+    # network/cluster/prep_bmind.R writes.
+    msg("bMIND is a per-lineage list: ", paste(names(bm), collapse=", "))
     return(bm)
+  }
+  if (is.list(bm) && is.array(bm$A) && length(dim(bm$A)) == 3L) {
+    # What de_analysis/scripts/06_bmind_profiles.R saves: list(A, SE, lineages,
+    # samples) with A genes x lineages x samples. The old code tested is.list()
+    # FIRST and returned this unchanged, so names(bm_list) was A/SE/lineages/
+    # samples, intersect() with LINEAGES was empty, the lineage loop never ran
+    # and all(logical(0)) is TRUE -- the script printed COMPLETE having done
+    # nothing and written no results. Handle the shape explicitly.
+    msg("bMIND is list(A, SE): A = ", paste(dim(bm$A), collapse=" x "))
+    ax <- which(vapply(dimnames(bm$A), function(nm) any(lineages %in% nm), logical(1)))
+    if (!length(ax)) stop("no axis of A carries lineage names")
+    present <- intersect(lineages, dimnames(bm$A)[[ax[1]]])
+    return(setNames(lapply(present, function(lin) {
+      slc <- switch(ax[1], `1` = bm$A[lin, , ], `2` = bm$A[, lin, ], `3` = bm$A[, , lin])
+      t(slc)   # samples x genes
+    }), present))
   }
   if (is.array(bm) && length(dim(bm)) == 3) {
     # 3D array: dim = (cell_types, genes, samples) or (genes, samples, cell_types)
@@ -142,6 +162,14 @@ bm_list <- tryCatch(normalise_bmind(bmind, LINEAGES),
 if (is.null(bm_list)) quit(save="no", status=1L)
 available_lineages <- intersect(LINEAGES, names(bm_list))
 msg("available lineages: ", paste(available_lineages, collapse=", "))
+# Without this the loop below is skipped, all_done is logical(0), and
+# all(logical(0)) is TRUE, so the script exits 0 announcing COMPLETE with no
+# results written. Fail where the problem is instead.
+if (!length(available_lineages)) {
+  msg("ERROR: none of ", paste(LINEAGES, collapse=", "), " found in ",
+      bmind_path, " (names: ", paste(head(names(bm_list), 8), collapse=", "), ")")
+  quit(save = "no", status = 1L)
+}
 
 extract_mp <- function(mp) {
   obs  <- mp$preservation$observed[["ref.Ref"]][["inColumnsAlsoPresentIn.Test"]]

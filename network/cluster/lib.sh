@@ -185,3 +185,20 @@ fetch_counts () {
     echo "!! counts_474.tsv.gz missing in S3" >&2; return 1
   fi
 }
+
+# bmind-047 reads per-lineage deconvolved expression. The source object is
+# de_analysis/results/bmind_profiles.rds, 441 MB and untracked; 047 uses only
+# its posterior mean, so network/cluster/prep_bmind.R reshapes that into a
+# 209 MB per-lineage file and this ships it. bmind-046 also looks for it, and
+# adopts it instead of spending 3.1 h redrawing a Gibbs sampler whose output
+# the DE arm has already published results from.
+fetch_bmind () {
+  mkdir -p de_analysis/results
+  if s3_get "${PREFIX}/data/bmind_lineage_expr.rds" \
+            de_analysis/results/bmind_lineage_expr.rds; then
+    echo "-- bMIND lineage profiles fetched ($(du -h de_analysis/results/bmind_lineage_expr.rds | cut -f1))"
+  else
+    echo "!! bmind_lineage_expr.rds missing in S3 — run network/cluster/prep_bmind.R and upload" >&2
+    return 1
+  fi
+}

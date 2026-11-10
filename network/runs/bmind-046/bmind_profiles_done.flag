@@ -1,0 +1,4 @@
+completed: 2026-11-10T00:06:44 (adopted, not rebuilt)
+outputs: de_analysis/results/bmind_profiles.rds; de_analysis/results/bmind_lineage_expr.rds
+note: bMIND is MCMC; rebuilding gives a different draw and would
+      desynchronise the network arm from the DE arm's results.

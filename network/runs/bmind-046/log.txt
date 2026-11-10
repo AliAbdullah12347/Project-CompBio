@@ -46,3 +46,32 @@ Execution halted
   Execution halted
 [2026-11-09T22:42:19] ERROR: bMIND script returned non-zero exit code 1
 [2026-11-09T22:42:19] Check log: network/runs/bmind-046/bmind_profiles.log
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:45:39] === bmind-046 starting ===
+[2026-11-09T22:45:39] config written: network/config/bmind-046.json
+[2026-11-09T22:45:39] Starting bMIND profile rebuild (~3.1h) ...
+[2026-11-09T22:45:39] Script: de_analysis/scripts/06_bmind_profiles.R
+[2026-11-09T22:45:39] Working directory: /work/repo
+[2026-11-09T22:45:39] Running: Rscript de_analysis/scripts/06_bmind_profiles.R > network/runs/bmind-046/bmind_profiles.log 2>&1
+[2026-11-09T22:45:40] Return code: 1
+[2026-11-09T22:45:40] Last 4 lines of bMIND log:
+  [.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+  Error in library(MIND) : there is no package called ‘MIND’
+  Calls: suppressPackageStartupMessages -> withCallingHandlers -> library
+  Execution halted
+[2026-11-09T22:45:40] ERROR: bMIND script returned non-zero exit code 1
+[2026-11-09T22:45:40] Check log: network/runs/bmind-046/bmind_profiles.log
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-09T22:50:01] === bmind-046 starting ===
+[2026-11-09T22:50:01] config written: network/config/bmind-046.json
+[2026-11-09T22:50:01] Starting bMIND profile rebuild (~3.1h) ...
+[2026-11-09T22:50:01] Script: de_analysis/scripts/06_bmind_profiles.R
+[2026-11-09T22:50:01] Working directory: /work/repo
+[2026-11-09T22:50:01] Running: Rscript de_analysis/scripts/06_bmind_profiles.R > network/runs/bmind-046/bmind_profiles.log 2>&1
+[2026-11-09T22:50:03] Return code: 1
+[2026-11-09T22:50:03] Last 3 lines of bMIND log:
+  [.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+  Error in setwd(HERE) : cannot change working directory
+  Execution halted
+[2026-11-09T22:50:03] ERROR: bMIND script returned non-zero exit code 1
+[2026-11-09T22:50:03] Check log: network/runs/bmind-046/bmind_profiles.log

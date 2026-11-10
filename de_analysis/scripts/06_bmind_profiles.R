@@ -43,7 +43,13 @@
 # ==============================================================================
 
 suppressPackageStartupMessages({library(MIND)})
+# The absolute path is the iMac's. On the cluster the repo is checked out to
+# /work/repo and this script is invoked from the repo root, so fall back to a
+# path relative to the working directory rather than failing in setwd(). Only
+# this script of the thirteen is changed, because only this one is invoked off
+# the iMac (by network/experiments/bmind-046.R).
 HERE <- "C:/Users/hp/Downloads/Colgate/Junior Fall/Comp Biology Research/Implementation/de_analysis"
+if (!dir.exists(HERE)) HERE <- normalizePath("de_analysis", mustWork = TRUE)
 setwd(HERE)
 p <- readRDS("data/prep.rds")
 OUT <- file.path("results", "bmind_profiles"); dir.create(OUT, showWarnings = FALSE, recursive = TRUE)

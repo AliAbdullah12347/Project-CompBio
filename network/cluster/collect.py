@@ -3,6 +3,7 @@
 
     python network/cluster/collect.py            # status only, downloads nothing
     python network/cluster/collect.py --fetch    # also unpack results into network/runs/
+    python network/cluster/collect.py --put FILE KEY   # send an input the other way
 
 A pod's own files and logs are deleted a minute after its job ends, so S3 is
 the only record. This reconciles what is there against what the queue says was
@@ -44,8 +45,17 @@ def queue_rows():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--fetch", action="store_true", help="download and unpack")
+    ap.add_argument("--put", nargs=2, metavar=("FILE", "KEY"),
+                    help="upload an input under the prefix, e.g. data/bmind_lineage_expr.rds")
     a = ap.parse_args()
     s3 = client()
+    if a.put:
+        src, key = a.put
+        size = os.path.getsize(src)
+        print(f"uploading {src} ({size/1048576:.0f} MB) -> {ROOT}{key}")
+        s3.upload_file(src, BUCKET, ROOT + key)
+        print("  done")
+        return
     keys = listing(s3)
 
     runs = sorted(k[len("runs/"):-len(".tar.gz")] for k in keys if k.startswith("runs/") and k.endswith(".tar.gz"))
