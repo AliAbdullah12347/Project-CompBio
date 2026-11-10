@@ -152,7 +152,15 @@ nmi <- function(a, b) {
   ha <- -sum(pa[pa > 0] * log(pa[pa > 0]))
   hb <- -sum(pb[pb > 0] * log(pb[pb > 0]))
   pab <- tab / n
-  mi  <- sum(pab[pab > 0] * log(pab[pab > 0] / outer(pa, pb))[pab > 0])
+  # The subsetting has to come AFTER the division. Written as
+  #   pab[pab > 0] / outer(pa, pb)
+  # a vector of the non-zero cells is divided by the FULL matrix, R recycles
+  # the shorter one, and the [pab > 0] on the outside then samples that
+  # nonsense. It is why every NMI in the 2026-11-09 run was wrong -- the CPM
+  # run happened to land on 0.639 and look plausible, and the modularity run
+  # returned negative values, which NMI cannot take.
+  ratio <- (pab / outer(pa, pb))[pab > 0]
+  mi  <- sum(pab[pab > 0] * log(ratio))
   mi / sqrt(ha * hb)
 }
 
@@ -160,8 +168,23 @@ nmi <- function(a, b) {
 run_cluster <- function(g, resolution, seed) {
   if (has_leiden) {
     set.seed(seed)
-    cluster_leiden(g, resolution_parameter = resolution,
-                   weights = E(g)$weight)
+    # objective_function = "modularity", NOT igraph's default of "CPM".
+    #
+    # Under the Constant Potts Model the resolution parameter is compared
+    # against internal edge DENSITY, and this graph's density is 951485 /
+    # (12368 * 12367 / 2) = 0.0124. At gamma = 1 no community can be denser
+    # than 100%, so every gene is its own community -- which is exactly what
+    # the 2026-11-09 run produced: 12368 communities at resolutions 1 and 2,
+    # 11515 at 0.5, ARI = 0 against everything. It looked like a finding about
+    # community structure and was a unit mismatch.
+    #
+    # Under modularity, resolution 1 is the ordinary Newman resolution, which
+    # is what RESOLUTIONS was pre-specified in and what comm-038's
+    # cluster_louvain() already uses. Leaving CPM in place would mean this row
+    # and comm-038 were never measuring the same thing.
+    cluster_leiden(g, objective_function = "modularity",
+                   resolution_parameter = resolution,
+                   weights = E(g)$weight, n_iterations = 10L)
   } else {
     # Louvain fallback: resolution parameter supported in igraph >= 1.3
     set.seed(seed)

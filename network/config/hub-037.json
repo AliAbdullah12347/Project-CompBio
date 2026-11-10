@@ -1,0 +1,19 @@
+{
+  "id": "hub-037",
+  "family": "hub",
+  "spec": "differential connectivity per gene between groups, same permutation null",
+  "K_spec": 500,
+  "K_implemented": 20,
+  "K_revision_note": "K=500 x compute time infeasible; revised to 20 (same budget constraint as base-001, see METHODS.md 2026-10-09). Minimum empirical p = 1/K = 0.05.",
+  "ref_cache": "network/cache/ref_control_all_bicor_signed_p12_ds4_mch00_offsetrm.rds",
+  "depends_on": "hub-036",
+  "pool_for_permutation": "all 474 samples",
+  "subsample_n": 74,
+  "delta_kme_direction": "kME_lith_mean - kME_ctrl (positive = more connected in lith)",
+  "correction": "BH within each module separately, across genes",
+  "min_empirical_p": 0.05,
+  "seed_base": 20298009,
+  "git_sha": "unknown",
+  "r_version": "4.6.1",
+  "wgcna_version": "1.74"
+}

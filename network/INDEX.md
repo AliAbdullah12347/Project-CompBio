@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-10 · **Catalogued:** 185 items
+**Updated:** 2026-11-10 · **Catalogued:** 186 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (45 — 41 live, 4 retracted)
+## Findings (46 — 42 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -64,6 +64,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 15/25 · 5/10 | CORRECTED | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) | 2026-10-25 |
 | 15/25 · 4/10 | live | [samp-043: eigengene-space sample structure by group](findings/2026-11-01-samp043-eigengene-sample-structure.md) | 2026-11-01 |
 | 14/25 · 5/10 | live | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | 2026-10-25 |
+| 14/25 · 6/10 | live | [cent-040's "52 of 71 modules differ" is one global density shift counted 52 times](findings/2026-11-10-centrality-difference-is-one-global-shift.md) | 2026-11-10 |
 | 13/25 · 5/10 | CORRECTED | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | 2026-10-24 |
 | 10/25 · 5/10 | CORRECTED | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | 2026-10-22 |
 | 6/25 · 1/10 | live | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) | 2026-10-09 |
@@ -124,10 +125,10 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | base-002-ceil | live | 6 files |
 | base-003-remerge | live | 6 files |
 | bmind-046 | live | 3 files |
-| bmind-047 | live | 1 files |
+| bmind-047 | live | 108 files |
 | cent-040 | live | 5 files |
-| comm-038 | live | 8 files |
-| comm-039 | live | 8 files |
+| comm-038 | live | 7 files |
+| comm-039 | live | 0 files |
 | corr-005 | live | 7 files |
 | corr-006 | live | 49 files |
 | driver_detached.log | live | 0 files |
@@ -178,7 +179,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 
 ## Queue experiments (52)
 
-Status: DONE=51  RUNNING=1
+Status: DONE=48  RUNNING=4
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -193,8 +194,8 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | bmind-046 | celltype | DONE | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
 | bmind-047 | celltype | RUNNING | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
 | cent-040 | central | DONE | degree, betweenness, eigenvector centrality; between-group differences |
-| comm-038 | community | DONE | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
-| comm-039 | community | DONE | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
+| comm-038 | community | RUNNING | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
+| comm-039 | community | RUNNING | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
 | corr-005 | corr | DONE | ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | corr-006 | corr | DONE | ref=control;corr=spearman;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | filt-044 | filtsens | DONE | reuse 31 filters from de_v2/scripts/13_filter_sweep_wb.R; which modules survive all? |
@@ -204,7 +205,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | gene-028 | geneset | DONE | ref=control;genes=lithium_DEGs_only (de_final/results/) |
 | gene-029 | geneset | DONE | ref=control;genes=explicit_non_DEGs |
 | hub-036 | hub | DONE | kME hub identity; stability across 100 draws; do hubs change between groups? |
-| hub-037 | hub | DONE | differential connectivity per gene between groups, same permutation null |
+| hub-037 | hub | RUNNING | differential connectivity per gene between groups, same permutation null |
 | inp-021 | input | DONE | ref=control;input=residualised_technical(age+sex+rin+plate+seqpc1-3);draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (sp |
 | inp-022 | input | DONE | ref=control;input=residualised_composition(ILR b1-b4) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW |
 | inp-023 | input | DONE | ref=control;input=residualised_both(technical+ILR) ** KEY QUESTION **;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (s |

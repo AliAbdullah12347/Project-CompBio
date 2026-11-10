@@ -4,7 +4,7 @@
 > Edit the per-finding files in `network/findings/` instead. On a merge conflict here,
 > regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Findings:** 45   **Updated:** 2026-11-10
+**Findings:** 46   **Updated:** 2026-11-10
 
 Two rankings. **Table A (Evidence, 0–25)** governs the write-up; it rewards evidential
 strength so a well-powered null can score top. **Table B (Interest, 0–10)** records how
@@ -51,15 +51,16 @@ is ahead of the proof.
 | 34 | **16/25** | 5/10 | -1.4 | [ann-041: module overlap with lithium / bipolar DEG lists](findings/2026-11-01-ann041-module-deg-overlap.md) | E=3 R=4 B=2 D=3 C=4 | network/runs/ann-041 — Fisher exact test of 71 base-001 modules against three DEG lists (de_final results), BH across modules within each list |
 | 35 | **15/25** | 5/10 | -1.0 | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) | E=4 R=2 B=3 D=3 C=3 | network/runs/base-002-ceil |
 | 36 | **15/25** | 4/10 | -2.0 | [samp-043: eigengene-space sample structure by group](findings/2026-11-01-samp043-eigengene-sample-structure.md) | E=3 R=4 B=2 D=2 C=4 | network/runs/samp-043 — 71 base-001 module eigengenes on all 474 samples; PCA, hclust k=3, centroid-distance outliers, per-module ANOVA by group |
-| 37 | **14/25** | 5/10 | -1.0 | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | E=3 R=3 B=3 D=3 C=2 | network/analyses/017-preservation-synthesis |
-| 38 | **13/25** | 5/10 | -0.2 | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | E=3 R=5 B=2 D=2 C=1 | network/runs/inp-022 (ILR b1–b4 residualized, 44-module reference on 234 controls, 20 lith draws) |
-| 39 | **10/25** | 5/10 | +1.0 | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | E=5 R=5 B=4 D=5 C=3 | network/runs/base-001 (offset-removed, 71-module reference, 20 draws) |
-| 40 | **6/25** | 4/10 | +1.0 | [No module reliably beats a random gene set (degenerate decomposition)](findings/2026-10-09-gold-baseline-no-module-beats-random.md) | E=5 R=5 B=3 D=5 C=2 | network/runs/base-001 |
-| 41 | **6/25** | 1/10 | -1.4 | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) | E=4 R=0 B=1 D=1 C=0 | Phase 0 probes + base-001 draw timings + gene-027 nolith timing |
-| 42 | **0/25** | 0/10 | -1.8 | [The merge threshold is decisive: 33 modules vs 3](findings/2026-10-09-merge-threshold-decisive.md) | E=5 R=5 B=3 D=5 C=4 | network/runs/mod-000-resolution |
-| 43 | **0/25** | 0/10 | +1.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) | E=4 R=2 B=3 D=4 C=2 | network/runs/base-001 (sft curve) + Phase 0 probes |
-| 44 | **0/25** | 0/10 | +1.4 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) | E=4 R=5 B=2 D=4 C=4 | network/analyses/009-all-modules-across-groups |
-| 45 | **0/25** | 0/10 | -0.2 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) | E=4 R=4 B=2 D=4 C=4 | network/analyses/010-full-pca-all-samples |
+| 37 | **14/25** | 6/10 | +0.4 | [cent-040's "52 of 71 modules differ" is one global density shift counted 52 times](findings/2026-11-10-centrality-difference-is-one-global-shift.md) | E=? R=? B=? D=? C=? | network/experiments/cent-040.R -> network/runs/cent-040 |
+| 38 | **14/25** | 5/10 | -1.0 | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) | E=3 R=3 B=3 D=3 C=2 | network/analyses/017-preservation-synthesis |
+| 39 | **13/25** | 5/10 | -0.2 | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) | E=3 R=5 B=2 D=2 C=1 | network/runs/inp-022 (ILR b1–b4 residualized, 44-module reference on 234 controls, 20 lith draws) |
+| 40 | **10/25** | 5/10 | +1.0 | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) | E=5 R=5 B=4 D=5 C=3 | network/runs/base-001 (offset-removed, 71-module reference, 20 draws) |
+| 41 | **6/25** | 4/10 | +1.0 | [No module reliably beats a random gene set (degenerate decomposition)](findings/2026-10-09-gold-baseline-no-module-beats-random.md) | E=5 R=5 B=3 D=5 C=2 | network/runs/base-001 |
+| 42 | **6/25** | 1/10 | -1.4 | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) | E=4 R=0 B=1 D=1 C=0 | Phase 0 probes + base-001 draw timings + gene-027 nolith timing |
+| 43 | **0/25** | 0/10 | -1.8 | [The merge threshold is decisive: 33 modules vs 3](findings/2026-10-09-merge-threshold-decisive.md) | E=5 R=5 B=3 D=5 C=4 | network/runs/mod-000-resolution |
+| 44 | **0/25** | 0/10 | +1.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) | E=4 R=2 B=3 D=4 C=2 | network/runs/base-001 (sft curve) + Phase 0 probes |
+| 45 | **0/25** | 0/10 | +1.4 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) | E=4 R=5 B=2 D=4 C=4 | network/analyses/009-all-modules-across-groups |
+| 46 | **0/25** | 0/10 | -0.2 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) | E=4 R=4 B=2 D=4 C=4 | network/analyses/010-full-pca-all-samples |
 
 ## Table B — Interest
 
@@ -93,20 +94,21 @@ is ahead of the proof.
 | 26 | **6/10** | 21/25 | -2.4 | [LM22 exclusion does not change module preservation pattern: circularity check negative](findings/2026-10-26-gene027-lm22-circularity-preservation.md) |
 | 27 | **6/10** | 21/25 | -2.4 | [pres-030: density vs connectivity preservation components](findings/2026-10-31-pres030-density-connectivity-components.md) |
 | 28 | **6/10** | 18/25 | -1.2 | [No module eigengene associates with lithium — and the modules are not independent](findings/2026-10-14-module-trait-no-lithium-association.md) |
-| 29 | **5/10** | 24/25 | -4.6 | [inp-023: technical + ILR residualisation replicates inp-022's rescue](findings/2026-10-25-inp023-technical-ilr-replication.md) |
-| 30 | **5/10** | 20/25 | -3.0 | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) |
-| 31 | **5/10** | 17/25 | -1.4 | [ann-042: module overlap with LM22 markers and cell-type lithium DEGs](findings/2026-11-01-ann042-module-lm22-celltype-overlap.md) |
-| 32 | **5/10** | 16/25 | -1.4 | [ann-041: module overlap with lithium / bipolar DEG lists](findings/2026-11-01-ann041-module-deg-overlap.md) |
-| 33 | **5/10** | 15/25 | -1.0 | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) |
-| 34 | **5/10** | 14/25 | -1.0 | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) |
-| 35 | **5/10** | 13/25 | -0.2 | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) |
-| 36 | **5/10** | 10/25 | +1.0 | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) |
-| 37 | **4/10** | 22/25 | -4.8 | [trait-034: module eigengene ~ lineage fraction associations](findings/2026-10-31-trait034-module-eigengene-fraction-associations.md) |
-| 38 | **4/10** | 18/25 | -3.2 | [ref-003: bp_lith (n=152) as reference — preservation in bp_nolith and control](findings/2026-11-02-ref003-bplith-reference.md) |
-| 39 | **4/10** | 15/25 | -2.0 | [samp-043: eigengene-space sample structure by group](findings/2026-11-01-samp043-eigengene-sample-structure.md) |
-| 40 | **4/10** | 6/25 | +1.0 | [No module reliably beats a random gene set (degenerate decomposition)](findings/2026-10-09-gold-baseline-no-module-beats-random.md) |
-| 41 | **1/10** | 6/25 | -1.4 | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) |
-| 42 | **0/10** | 0/25 | -1.8 | [The merge threshold is decisive: 33 modules vs 3](findings/2026-10-09-merge-threshold-decisive.md) |
-| 43 | **0/10** | 0/25 | +1.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) |
-| 44 | **0/10** | 0/25 | +1.4 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) |
-| 45 | **0/10** | 0/25 | -0.2 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) |
+| 29 | **6/10** | 14/25 | +0.4 | [cent-040's "52 of 71 modules differ" is one global density shift counted 52 times](findings/2026-11-10-centrality-difference-is-one-global-shift.md) |
+| 30 | **5/10** | 24/25 | -4.6 | [inp-023: technical + ILR residualisation replicates inp-022's rescue](findings/2026-10-25-inp023-technical-ilr-replication.md) |
+| 31 | **5/10** | 20/25 | -3.0 | [The lithium-composition result is not circular: it survives removing every marker gene](findings/2026-10-14-lm22-circularity-passes.md) |
+| 32 | **5/10** | 17/25 | -1.4 | [ann-042: module overlap with LM22 markers and cell-type lithium DEGs](findings/2026-11-01-ann042-module-lm22-celltype-overlap.md) |
+| 33 | **5/10** | 16/25 | -1.4 | [ann-041: module overlap with lithium / bipolar DEG lists](findings/2026-11-01-ann041-module-deg-overlap.md) |
+| 34 | **5/10** | 15/25 | -1.0 | [The one fully-matched comparison behaves incoherently — stop before interpreting it](findings/2026-10-25-ceiling-vs-nolith-anomaly.md) |
+| 35 | **5/10** | 14/25 | -1.0 | [Five experiments done; the decomposition is real, but the cross-group question is still unanswerable](findings/2026-10-25-preservation-arms-not-on-one-scale.md) |
+| 36 | **5/10** | 13/25 | -0.2 | [inp-022: ILR residualization rescues bp_lith co-expression preservation](findings/2026-10-24-inp022-composition-rescue.md) |
+| 37 | **5/10** | 10/25 | +1.0 | [base-001 complete: modules beat gold under subsampling — but Zsummary is not comparable across arms](findings/2026-10-22-base001-complete-and-zsummary-not-comparable.md) |
+| 38 | **4/10** | 22/25 | -4.8 | [trait-034: module eigengene ~ lineage fraction associations](findings/2026-10-31-trait034-module-eigengene-fraction-associations.md) |
+| 39 | **4/10** | 18/25 | -3.2 | [ref-003: bp_lith (n=152) as reference — preservation in bp_nolith and control](findings/2026-11-02-ref003-bplith-reference.md) |
+| 40 | **4/10** | 15/25 | -2.0 | [samp-043: eigengene-space sample structure by group](findings/2026-11-01-samp043-eigengene-sample-structure.md) |
+| 41 | **4/10** | 6/25 | +1.0 | [No module reliably beats a random gene set (degenerate decomposition)](findings/2026-10-09-gold-baseline-no-module-beats-random.md) |
+| 42 | **1/10** | 6/25 | -1.4 | [Cost scaling, measured](findings/2026-10-09-cost-scaling.md) |
+| 43 | **0/10** | 0/25 | -1.8 | [The merge threshold is decisive: 33 modules vs 3](findings/2026-10-09-merge-threshold-decisive.md) |
+| 44 | **0/10** | 0/25 | +1.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) |
+| 45 | **0/10** | 0/25 | +1.4 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) |
+| 46 | **0/10** | 0/25 | -0.2 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) |

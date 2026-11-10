@@ -75,3 +75,7 @@ Execution halted
   Execution halted
 [2026-11-09T22:50:03] ERROR: bMIND script returned non-zero exit code 1
 [2026-11-09T22:50:03] Check log: network/runs/bmind-046/bmind_profiles.log
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-10T05:11:06] === bmind-046 starting ===
+[2026-11-10T05:11:06] CHECKPOINT: bMIND profiles already built (network/runs/bmind-046/bmind_profiles_done.flag exists)
+[2026-11-10T05:11:06] === bmind-046 COMPLETE (from checkpoint) ===

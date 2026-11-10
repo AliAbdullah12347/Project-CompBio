@@ -3,11 +3,12 @@
 **Updated:** 2026-11-10. Everything below is runnable from a clone of this repo.
 Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
 
-> **As of 10 Nov 05:30 UTC: 51 of 52 rows DONE, up from 19 on 8 Nov.** Only
-> `bmind-047` is still running, on `arm3-run-81`. Item 1 is ANSWERED -
-> perm-031 at K=157 is a clean negative, 0 of 71 modules, smallest p = 0.038.
-> Item 4 is drained. **Items 2 and 3 are now the only real work left in the
-> arm** and neither has been started.
+> **As of 10 Nov 13:00 UTC: 48 of 52 rows DONE, up from 19 on 8 Nov.** Four
+> are in flight and all four are re-runs of rows that had already "finished":
+> `bmind-047` and `hub-037` on the cluster (`arm3-run-82`, `arm3-run-83`),
+> `comm-038` and `comm-039` locally. Why, below. Item 1 is ANSWERED - perm-031
+> at K=157 is a clean negative, 0 of 71 modules, smallest p = 0.038. **Items 2
+> and 3 are the only unstarted work left in the arm.**
 >
 > `synth-048` has been re-run and now computes the robustness tally instead of
 > carrying it by hand: **0 of 25 parameter variants** show any lithium /
@@ -16,18 +17,35 @@ Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
 > decomposition abandoned on 2026-10-14, has been replaced by numbers read off
 > the data.
 >
-> **Four results need care before anyone cites them.** Three are the same
-> K-floor problem: `perm-032`'s "8 modules significant" is an artifact of p=0
-> (use `results_permutation_test_addone.csv`: 0 significant); `hub-037`'s "0 of
-> 12360 genes" cannot return a positive at K=20, so it is not a negative; and
-> `comm-039` returned 12368 communities of one gene each, ARI=0, a degenerate
-> run rather than a finding. The fourth is `cent-040`: its matched comparison
-> reports 52 of 71 modules differing on degree, but that is one global density
-> shift counted once per module, from a single lith subsample, and the only
-> density-insensitive metric gives 0 of 71 - see
+> **Three results were wrong, not weak, and are being re-run.** Each ran to
+> completion and wrote a plausible number.
+>
+> - `hub-037`'s "0 of 12360 genes" came from an empty column, not from the
+>   data: `pull_own_kme()` returns an unnamed vector and its callers subset it
+>   by gene id, so `diff_connectivity.csv` was 12360 rows of NA and the
+>   headline was `sum(NA < 0.05, na.rm = TRUE)`. With names attached the same
+>   draws give 1028 genes, every one at empirical p = 0 from the invalid
+>   `mean(null >= obs)` estimator; under add-one it is 0 again with a smallest
+>   BH of 0.158. K is back to the spec's 500 from the budget cut of 20.
+>   `delta_kme.csv` was always correct and is the table to use.
+> - `comm-039`'s "12368 communities, ARI = 0" was a unit mismatch.
+>   `cluster_leiden()` defaults to CPM, where the resolution is compared
+>   against edge density (0.0124 here), so gamma = 1 shatters the graph. Under
+>   modularity it gives 1617-3063 communities and ARI 0.50-0.83 against
+>   `comm-038`.
+> - **Every NMI `comm-038` and `comm-039` ever reported was wrong**, from
+>   subsetting on the wrong side of a division. Under CPM it happened to land
+>   on 0.639 and look fine.
+>
+> **Two results still need care as written.** `perm-032`'s "8 modules
+> significant" is an artifact of p = 0 - use
+> `results_permutation_test_addone.csv`, which gives 0. And `cent-040`'s
+> matched comparison reports 52 of 71 modules differing on degree, but that is
+> one global density shift counted once per module, from a single lith
+> subsample, and the only density-insensitive metric gives 0 of 71. See
 > `findings/2026-11-10-centrality-difference-is-one-global-shift.md`.
 >
-> **The open question cent-040 leaves** is a control-split null: cut the 234
+> **The open question `cent-040` leaves** is a control-split null: cut the 234
 > controls into two disjoint halves of 74 and run the same comparison. If two
 > halves of one group produce a comparable number of "differing" modules, the
 > procedure is measuring noise. Two adjacency builds, about an hour.

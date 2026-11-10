@@ -21,3 +21,620 @@
 [2026-11-09T22:50:04] === bmind-047 starting ===
 [2026-11-09T22:50:04] DEPENDENCY MISSING: bmind-046 not done (network/runs/bmind-046/bmind_profiles_done.flag absent)
 [2026-11-09T22:50:04] Exiting status=1 to requeue after bmind-046 completes.
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-10T05:11:07] === bmind-047 starting ===
+[2026-11-10T05:11:07] config written: network/config/bmind-047.json
+Allowing parallel execution with up to 4 working processes.
+load_project: reusing cache /work/repo/network/cache/project.rds
+[2026-11-10T05:11:10] loading bMIND profiles from: de_analysis/results/bmind_lineage_expr.rds
+[2026-11-10T05:11:12] bMIND is a per-lineage list: gran, mono, T, NK, B
+[2026-11-10T05:11:12] available lineages: gran, mono, T, NK, B
+[2026-11-10T05:11:12] === lineage: gran ===
+[2026-11-10T05:11:12]   expression dim: 474 x 12368
+[2026-11-10T05:11:13]   building ref network for gran (n=234) ...
+[2026-11-10T05:12:28]   13 modules in gran reference
+[2026-11-10T05:12:28]   ref modules: 13 (excl. grey)
+[2026-11-10T05:12:28]   bp_nolith (200 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T05:35:05]   nolith done
+[2026-11-10T05:35:05]   gran lith draw 1/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T05:40:49]   gran lith draw 2/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T05:46:37]   gran lith draw 3/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T05:52:18]   gran lith draw 4/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T05:58:00]   gran lith draw 5/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:03:41]   gran lith draw 6/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:09:18]   gran lith draw 7/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:14:57]   gran lith draw 8/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:20:37]   gran lith draw 9/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:26:13]   gran lith draw 10/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:32:08]   gran lith draw 11/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:37:57]   gran lith draw 12/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:43:40]   gran lith draw 13/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:49:23]   gran lith draw 14/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T06:55:10]   gran lith draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T07:00:58]   gran lith draw 16/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T07:06:48]   gran lith draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T07:12:44]   gran lith draw 18/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T07:18:22]   gran lith draw 19/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T07:24:09]   gran lith draw 20/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T07:30:04] === lineage: mono ===
+[2026-11-10T07:30:04]   expression dim: 474 x 12368
+[2026-11-10T07:30:04]   building ref network for mono (n=234) ...
+[2026-11-10T07:31:13]   19 modules in mono reference
+[2026-11-10T07:31:13]   ref modules: 19 (excl. grey)
+[2026-11-10T07:31:13]   bp_nolith (200 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T07:58:12]   nolith done
+[2026-11-10T07:58:12]   mono lith draw 1/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T07:58:12] ERROR draw 1: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T07:58:13]   mono lith draw 2/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T08:04:59]   mono lith draw 3/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:04:59] ERROR draw 3: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:04:59]   mono lith draw 4/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:05:00] ERROR draw 4: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:05:00]   mono lith draw 5/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:05:00] ERROR draw 5: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:05:00]   mono lith draw 6/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T08:11:42]   mono lith draw 7/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:42] ERROR draw 7: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:42]   mono lith draw 8/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:42] ERROR draw 8: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:42]   mono lith draw 9/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:42] ERROR draw 9: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:43]   mono lith draw 10/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:43] ERROR draw 10: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:43]   mono lith draw 11/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:43] ERROR draw 11: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:43]   mono lith draw 12/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:43] ERROR draw 12: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:43]   mono lith draw 13/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:44] ERROR draw 13: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:44]   mono lith draw 14/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:11:44] ERROR draw 14: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:11:44]   mono lith draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T08:18:24]   mono lith draw 16/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:18:24] ERROR draw 16: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:18:24]   mono lith draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T08:25:06]   mono lith draw 18/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:25:06] ERROR draw 18: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:25:06]   mono lith draw 19/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:25:06] ERROR draw 19: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:25:06]   mono lith draw 20/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T08:31:54] === lineage: T ===
+[2026-11-10T08:31:54]   expression dim: 474 x 12368
+[2026-11-10T08:31:54]   building ref network for T (n=234) ...
+[2026-11-10T08:33:06]   15 modules in T reference
+[2026-11-10T08:33:06]   ref modules: 15 (excl. grey)
+[2026-11-10T08:33:06]   bp_nolith (200 perms) ...
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:06] ERROR: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:06]   T lith draw 1/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:07] ERROR draw 1: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:07]   T lith draw 2/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:07] ERROR draw 2: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:07]   T lith draw 3/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:07] ERROR draw 3: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:08]   T lith draw 4/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:08] ERROR draw 4: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:08]   T lith draw 5/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:08] ERROR draw 5: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:08]   T lith draw 6/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:09] ERROR draw 6: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:09]   T lith draw 7/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:09] ERROR draw 7: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:09]   T lith draw 8/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:09] ERROR draw 8: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:10]   T lith draw 9/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:10] ERROR draw 9: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:10]   T lith draw 10/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:10] ERROR draw 10: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:10]   T lith draw 11/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:11] ERROR draw 11: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:11]   T lith draw 12/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:11] ERROR draw 12: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:11]   T lith draw 13/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:11] ERROR draw 13: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:12]   T lith draw 14/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:12] ERROR draw 14: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:12]   T lith draw 15/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:12] ERROR draw 15: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:12]   T lith draw 16/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:12] ERROR draw 16: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:13]   T lith draw 17/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:13] ERROR draw 17: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:13]   T lith draw 18/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:13] ERROR draw 18: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:13]   T lith draw 19/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:14] ERROR draw 19: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:14]   T lith draw 20/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T08:33:14] ERROR draw 20: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T08:33:14] === lineage: NK ===
+[2026-11-10T08:33:14]   expression dim: 474 x 12368
+[2026-11-10T08:33:14]   building ref network for NK (n=234) ...
+[2026-11-10T08:34:27]   15 modules in NK reference
+[2026-11-10T08:34:27]   ref modules: 15 (excl. grey)
+[2026-11-10T08:34:27]   bp_nolith (200 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:01:23]   nolith done
+[2026-11-10T09:01:24]   NK lith draw 1/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:08:39]   NK lith draw 2/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:15:58]   NK lith draw 3/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:23:09]   NK lith draw 4/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:30:01]   NK lith draw 5/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:36:43]   NK lith draw 6/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:43:25]   NK lith draw 7/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:50:04]   NK lith draw 8/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T09:56:43]   NK lith draw 9/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:03:23]   NK lith draw 10/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:10:06]   NK lith draw 11/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:16:48]   NK lith draw 12/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:23:28]   NK lith draw 13/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:30:12]   NK lith draw 14/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:36:53]   NK lith draw 15/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:43:42]   NK lith draw 16/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:50:37]   NK lith draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T10:57:30]   NK lith draw 18/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T11:04:14]   NK lith draw 19/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T11:11:08]   NK lith draw 20/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T11:18:08] === lineage: B ===
+[2026-11-10T11:18:08]   expression dim: 474 x 12368
+[2026-11-10T11:18:08]   building ref network for B (n=234) ...
+[2026-11-10T11:19:21]   17 modules in B reference
+[2026-11-10T11:19:21]   ref modules: 17 (excl. grey)
+[2026-11-10T11:19:21]   bp_nolith (200 perms) ...
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T11:48:26]   nolith done
+[2026-11-10T11:48:26]   B lith draw 1/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T11:48:26] ERROR draw 1: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T11:48:26]   B lith draw 2/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T11:48:27] ERROR draw 2: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T11:48:27]   B lith draw 3/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T11:55:23]   B lith draw 4/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T12:02:18]   B lith draw 5/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:02:18] ERROR draw 5: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:02:18]   B lith draw 6/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:02:19] ERROR draw 6: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:02:19]   B lith draw 7/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:02:19] ERROR draw 7: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:02:19]   B lith draw 8/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T12:09:28]   B lith draw 9/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:28] ERROR draw 9: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:28]   B lith draw 10/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:28] ERROR draw 10: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:28]   B lith draw 11/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:29] ERROR draw 11: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:29]   B lith draw 12/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:29] ERROR draw 12: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:29]   B lith draw 13/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:29] ERROR draw 13: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:30]   B lith draw 14/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:30] ERROR draw 14: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:30]   B lith draw 15/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:30] ERROR draw 15: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:30]   B lith draw 16/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:09:31] ERROR draw 16: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:09:31]   B lith draw 17/20
+      ..checking data for excessive amounts of missing data..
+      ..calculating observed preservation values
+      ..calculating permutation Z scores
+     ..Working with set 1 as reference set
+[2026-11-10T12:16:36]   B lith draw 18/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:16:37] ERROR draw 18: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:16:37]   B lith draw 19/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:16:37] ERROR draw 19: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+[2026-11-10T12:16:37]   B lith draw 20/20
+      ..checking data for excessive amounts of missing data..
+[2026-11-10T12:16:37] ERROR draw 20: The submitted 'multiExpr' data contain genes or samples
+   with zero variance or excessive counts of missing entries.
+   Please use the function goodSamplesGenes on each set to identify the problematic
+   genes and samples, and remove them before running modulePreservation.
+There were 50 or more warnings (use warnings() to see the first 50)
+[2026-11-10T12:16:38] wrote lith results: 772 rows
+[2026-11-10T12:16:38] incomplete lineages: mono,T,B

@@ -134,7 +134,15 @@ nmi <- function(a, b) {
   ha <- -sum(pa[pa > 0] * log(pa[pa > 0]))
   hb <- -sum(pb[pb > 0] * log(pb[pb > 0]))
   pab <- tab / n
-  mi <- sum(pab[pab > 0] * log(pab[pab > 0] / outer(pa, pb))[pab > 0])
+  # The subsetting has to come AFTER the division. Written as
+  #   pab[pab > 0] / outer(pa, pb)
+  # a vector of the non-zero cells is divided by the FULL matrix, R recycles
+  # the shorter one, and the [pab > 0] on the outside then samples that
+  # nonsense. It is why every NMI in the 2026-11-09 run was wrong -- the CPM
+  # run happened to land on 0.639 and look plausible, and the modularity run
+  # returned negative values, which NMI cannot take.
+  ratio <- (pab / outer(pa, pb))[pab > 0]
+  mi  <- sum(pab[pab > 0] * log(ratio))
   mi / sqrt(ha * hb)
 }
 
