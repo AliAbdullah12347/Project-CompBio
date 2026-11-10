@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-10 · **Catalogued:** 186 items
+**Updated:** 2026-11-10 · **Catalogued:** 187 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (46 — 42 live, 4 retracted)
+## Findings (47 — 43 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -57,6 +57,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 18/25 · 7/10 | CORRECTED | [Darkturquoise group×composition interaction: the control-lith contrast survives proper slope correction](findings/2026-10-14-darkturquoise-interaction.md) | 2026-10-14 |
 | 18/25 · 6/10 | live | [No module eigengene associates with lithium — and the modules are not independent](findings/2026-10-14-module-trait-no-lithium-association.md) | 2026-10-14 |
 | 18/25 · 4/10 | live | [ref-003: bp_lith (n=152) as reference — preservation in bp_nolith and control](findings/2026-11-02-ref003-bplith-reference.md) | 2026-11-02 |
+| 18/25 · 7/10 | live | [The lithium co-expression graph is 11-22% sparser than the non-lithium one, in three independent draws, and it localises to no module](findings/2026-11-10-lithium-graph-is-sparser-in-three-independent-draws.md) | 2026-11-10 |
 | 17/25 · 8/10 | live | [Darkturquoise: control-lith contrast survives composition adjustment; nolith-lith does not](findings/2026-10-14-darkturquoise-ctrl-lith-survives-adjustment.md) | 2026-10-14 |
 | 17/25 · 5/10 | live | [ann-042: module overlap with LM22 markers and cell-type lithium DEGs](findings/2026-11-01-ann042-module-lm22-celltype-overlap.md) | 2026-11-01 |
 | 16/25 · 8/10 | live | [BP disease tightens inter-module correlations: modules move more in lockstep](findings/2026-10-14-inter-module-correlations-tighten-in-bp.md) | 2026-10-14 |
@@ -127,8 +128,8 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | bmind-046 | live | 3 files |
 | bmind-047 | live | 108 files |
 | cent-040 | live | 5 files |
-| comm-038 | live | 7 files |
-| comm-039 | live | 0 files |
+| comm-038 | live | 8 files |
+| comm-039 | live | 8 files |
 | corr-005 | live | 7 files |
 | corr-006 | live | 49 files |
 | driver_detached.log | live | 0 files |
@@ -179,7 +180,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 
 ## Queue experiments (52)
 
-Status: DONE=48  RUNNING=4
+Status: DONE=50  RUNNING=2
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -194,8 +195,8 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | bmind-046 | celltype | DONE | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
 | bmind-047 | celltype | RUNNING | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
 | cent-040 | central | DONE | degree, betweenness, eigenvector centrality; between-group differences |
-| comm-038 | community | RUNNING | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
-| comm-039 | community | RUNNING | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
+| comm-038 | community | DONE | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
+| comm-039 | community | DONE | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
 | corr-005 | corr | DONE | ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | corr-006 | corr | DONE | ref=control;corr=spearman;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | filt-044 | filtsens | DONE | reuse 31 filters from de_v2/scripts/13_filter_sweep_wb.R; which modules survive all? |

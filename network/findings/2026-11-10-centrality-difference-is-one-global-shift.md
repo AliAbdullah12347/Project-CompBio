@@ -54,20 +54,25 @@ independent signal.
 which strips the global level out by construction. It shows **0 of 71**. The
 metric insensitive to the global shift sees nothing at all.
 
-## The global shift itself rests on a single subsample
+## The global shift is real; the per-module counting is not
 
 `bp_lith` here is **one** fixed draw of 74 from the 152 users, seed 20301009,
-because betweenness is O(n^3) and 20 draws were unaffordable. Every
-preservation row in this arm uses 20 draws precisely because one draw is
-noisy, and `base-002-ceil` exists because a 152-to-74 subsample produces a
-measurable shift on its own. So the 22% figure has no error bar.
+because betweenness is O(n^3) and 20 draws were unaffordable. On its own that
+would be too thin to stand on. It does not stand alone: `comm-038` (seed
+20299010) and `comm-039` (seed 20300010) drew their own subsamples, sharing
+33 of 74 samples with this one against a chance expectation of 36, and both
+built a graph 11% and 15% thinner than the 74-sample non-lithium graph. Three
+independent draws, same direction, 11 to 22% - see
+`findings/2026-11-10-lithium-graph-is-sparser-in-three-independent-draws.md`.
 
-**This is not yet evidence of anything.** The test it needs is a control-split
-null: cut the 234 controls into two disjoint halves of 74 and run the same
-comparison. If two halves of one group produce a comparable number of
-"differing" modules, the procedure is measuring noise and the lithium number
-means nothing. That has not been run - it costs two adjacency builds, about an
-hour - and until it is, cent-040 should be read as descriptive.
+So the global difference is reproducible. **What is not supported is reading
+it off as 52 modules.** That number is the one shift re-detected in every
+module large enough to reach significance, and the test that would show this
+is a control-split null: cut the 234 controls into two disjoint halves of 74
+and run the same comparison. If two halves of one group produce a comparable
+count, the procedure is measuring the global level and module size, not
+biology. That has not been run - two adjacency builds, about an hour - and
+until it is, the `padj_nolith_lith` column stays descriptive.
 
 ## How this reads in the paper
 
@@ -84,4 +89,5 @@ per-gene degree, eigenvector and betweenness in each group, which is a fine
 descriptive table for picking hub genes. The `padj_nolith_lith` column should
 not be cited as a count of differing modules.
 
-See also [[2026-11-09-perm031-at-157-draws-is-a-clean-negative]].
+See also [[2026-11-10-lithium-graph-is-sparser-in-three-independent-draws]]
+and [[2026-11-09-perm031-at-157-draws-is-a-clean-negative]].

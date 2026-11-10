@@ -1,0 +1,81 @@
+# Re-run of 2026-11-10 after the Leiden/CPM and NMI fixes. Captured from the
+# driving shell rather than written by the script, because the run was piped
+# through a filter; WGCNA's progress dots and gc() tables are the only lines
+# missing. The result CSVs in this directory are the run's own output.
+
+[2026-11-10T07:45:52] === comm-039 starting ===
+[2026-11-10T07:45:55] WGCNA 1.74 | igraph 2.3.4 loaded
+[2026-11-10T07:45:55] cluster_leiden found in igraph 2.3.4
+[2026-11-10T07:45:55] config written: network/config/comm-039.json
+Warning message:
+load_project: reusing cache C:/Users/hp/Downloads/Colgate/Junior Fall/Comp Biology Research/Implementation/network/cache/project.rds
+[2026-11-10T07:45:56] base-001 reference loaded: 71 non-grey WGCNA modules
+[2026-11-10T07:45:56] --- control: computing adjacency (234 samples) ---
+[2026-11-10T07:46:48]   edges before threshold: 76477528  after: 1036347  (1.4% retained)
+[2026-11-10T07:47:06]   igraph: 12368 vertices, 1036347 edges
+[2026-11-10T07:47:10]   leiden res=0.5: 3057 communities
+[2026-11-10T07:47:10]     vs WGCNA: ARI=0.0796  NMI=0.469
+[2026-11-10T07:47:13]   leiden res=1: 3063 communities
+[2026-11-10T07:47:13]     vs WGCNA: ARI=0.1227  NMI=0.5055
+[2026-11-10T07:47:15]     vs Louvain(comm-038, res=1): ARI=0.4989  NMI=0.8651
+[2026-11-10T07:47:18]   leiden res=2: 3068 communities
+[2026-11-10T07:47:18]     vs WGCNA: ARI=0.22  NMI=0.5711
+[2026-11-10T07:47:18] control done; membership written
+Warning message:
+The `resolution_parameter` argument of `cluster_leiden()` is deprecated as of
+igraph 2.1.0.
+ℹ Please use the `resolution` argument instead. 
+[2026-11-10T07:47:19] --- bp_nolith: computing adjacency (74 samples) ---
+[2026-11-10T07:47:51]   edges before threshold: 76477528  after: 1118242  (1.5% retained)
+[2026-11-10T07:48:12]   igraph: 12368 vertices, 1118242 edges
+[2026-11-10T07:48:15]   leiden res=0.5: 1613 communities
+[2026-11-10T07:48:15]     vs WGCNA: ARI=0.1132  NMI=0.4465
+[2026-11-10T07:48:18]   leiden res=1: 1617 communities
+[2026-11-10T07:48:18]     vs WGCNA: ARI=0.1843  NMI=0.4985
+[2026-11-10T07:48:19]     vs Louvain(comm-038, res=1): ARI=0.8267  NMI=0.915
+[2026-11-10T07:48:22]   leiden res=2: 1627 communities
+[2026-11-10T07:48:22]     vs WGCNA: ARI=0.2059  NMI=0.5142
+[2026-11-10T07:48:22] bp_nolith done; membership written
+[2026-11-10T07:48:23] bp_lith subsample: 74 of 152 (seed=20300010)
+[2026-11-10T07:48:23] --- bp_lith: computing adjacency (74 samples) ---
+[2026-11-10T07:48:55]   edges before threshold: 76477528  after: 951485  (1.2% retained)
+[2026-11-10T07:49:16]   igraph: 12368 vertices, 951485 edges
+[2026-11-10T07:49:19]   leiden res=0.5: 1789 communities
+[2026-11-10T07:49:19]     vs WGCNA: ARI=0.088  NMI=0.414
+[2026-11-10T07:49:22]   leiden res=1: 1797 communities
+[2026-11-10T07:49:22]     vs WGCNA: ARI=0.1532  NMI=0.4722
+[2026-11-10T07:49:22]     vs Louvain(comm-038, res=1): ARI=0.6055  NMI=0.729
+[2026-11-10T07:49:25]   leiden res=2: 1804 communities
+[2026-11-10T07:49:25]     vs WGCNA: ARI=0.1886  NMI=0.5054
+[2026-11-10T07:49:25] bp_lith done; membership written
+[2026-11-10T07:49:25] community_comparison.csv written (9 rows)
+[2026-11-10T07:49:25] 
+--- Community comparison summary (resolution=1, algorithm=leiden) ---
+[2026-11-10T07:49:25]   control: n_communities=3063  ARI_wgcna=0.1227  NMI_wgcna=0.5055  ARI_louvain=0.4989
+[2026-11-10T07:49:25]   bp_nolith: n_communities=1617  ARI_wgcna=0.1843  NMI_wgcna=0.4985  ARI_louvain=0.8267
+[2026-11-10T07:49:25]   bp_lith: n_communities=1797  ARI_wgcna=0.1532  NMI_wgcna=0.4722  ARI_louvain=0.6055
+[2026-11-10T07:49:25] === comm-039 COMPLETE ===
+== comm-038 ==
+"group","resolution","n_louvain_communities","ARI_vs_wgcna","NMI_vs_wgcna","n_genes","n_samples","is_primary_resolution"
+"control",0.5,3056,0.0809663291003567,0.469180817520415,12368,234,FALSE
+"control",1,3061,0.14808507745749,0.522590850201957,12368,234,TRUE
+"control",2,3069,0.203620716601664,0.565886189587194,12368,234,FALSE
+"bp_nolith",0.5,1613,0.111217070759784,0.444735953370671,12368,74,FALSE
+"bp_nolith",1,1618,0.176273037161998,0.492035781806096,12368,74,TRUE
+"bp_nolith",2,1623,0.202001570353838,0.512360086776376,12368,74,FALSE
+"bp_lith",0.5,2043,0.0881086011356275,0.424579649521576,12368,74,FALSE
+"bp_lith",1,2048,0.153434706469111,0.471123350077356,12368,74,TRUE
+"bp_lith",2,2050,0.168755330031809,0.49728084792667,12368,74,FALSE
+== comm-039 ==
+"group","algorithm","resolution","n_communities","ARI_vs_wgcna","NMI_vs_wgcna","ARI_vs_louvain_comm038","NMI_vs_louvain_comm038","n_genes","n_samples","is_primary_resolution"
+"control","leiden",0.5,3057,0.0796021311088749,0.469018385497558,NA,NA,12368,234,FALSE
+"control","leiden",1,3063,0.122699828549891,0.505496933308135,0.498854794653018,0.865120168573282,12368,234,TRUE
+"control","leiden",2,3068,0.219998456983599,0.571148467281201,NA,NA,12368,234,FALSE
+"bp_nolith","leiden",0.5,1613,0.113234586062285,0.446482959846184,NA,NA,12368,74,FALSE
+"bp_nolith","leiden",1,1617,0.18425005021243,0.498490326933296,0.826713201922113,0.914982246529265,12368,74,TRUE
+"bp_nolith","leiden",2,1627,0.205897820739308,0.514159959098944,NA,NA,12368,74,FALSE
+"bp_lith","leiden",0.5,1789,0.0879677161281758,0.41396938698103,NA,NA,12368,74,FALSE
+"bp_lith","leiden",1,1797,0.153188991955931,0.472179167120962,0.605494403127235,0.728998565317907,12368,74,TRUE
+"bp_lith","leiden",2,1804,0.188602979663111,0.505440159323693,NA,NA,12368,74,FALSE
+
+[exited with code 0]
