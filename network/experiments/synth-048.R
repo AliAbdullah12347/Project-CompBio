@@ -201,10 +201,17 @@ if (!is.null(base001_lith_sum)) {
                stable=!is.na(frac_agree) && frac_agree >= STABILITY_THRESHOLD,
                stringsAsFactors=FALSE)
   }))
+  # gold is WGCNA's all-genes pseudo-module, not a module. Keep its row -- it
+  # is the all-genes baseline and worth seeing -- but do not count it, or the
+  # headline reads "71/72 modules" against a 71-module reference.
+  stability_rows$is_module <- !stability_rows$module %in% c("gold", "grey")
   write.csv(stability_rows, file.path(run_dir,"stability_analysis.csv"), row.names=FALSE)
-  n_stable <- sum(stability_rows$stable, na.rm=TRUE)
-  msg(n_stable, "/", nrow(stability_rows), " modules stable across ≥",
-      round(STABILITY_THRESHOLD*100), "% of variants")
+  real <- stability_rows[stability_rows$is_module, ]
+  n_stable <- sum(real$stable, na.rm=TRUE)
+  msg(n_stable, "/", nrow(real), " modules stable across ≥",
+      round(STABILITY_THRESHOLD*100), "% of variants",
+      if (any(!stability_rows$is_module))
+        " (gold, the all-genes pseudo-module, is listed but not counted)" else "")
 } else {
   stability_rows <- NULL
 }
@@ -332,9 +339,27 @@ build_section <- function() {
                "|---|---|---|---|---|---|")
     for (i in seq_len(nrow(stability_rows))) {
       r <- stability_rows[i,]
-      lines <- c(lines, sprintf("| %s | %.2f | %s | %d | %d | %s |",
-                                r$module, r$base001_Zsummary_mean, r$base001_bracket,
+      lines <- c(lines, sprintf("| %s%s | %.2f | %s | %d | %d | %s |",
+                                r$module,
+                                if (isTRUE(r$is_module)) "" else " *(pseudo-module, not counted)*",
+                                r$base001_Zsummary_mean, r$base001_bracket,
                                 r$n_variants, r$n_agree, if(r$stable) "YES" else "NO"))
+    }
+    # A module can fail this test purely by sitting on a bracket edge, so say
+    # which ones did and how far they were from the boundary. "70 of 71
+    # stable" otherwise invites the reader to go looking for a module that is
+    # genuinely unstable when there may not be one.
+    uns <- stability_rows[stability_rows$is_module & !stability_rows$stable, ]
+    if (nrow(uns)) {
+      lines <- c(lines, "",
+        paste0("The ", nrow(uns), " module(s) that fail: ",
+               paste(sprintf("%s (base-001 Z = %.2f, %d of %d variants agree)",
+                             uns$module, uns$base001_Zsummary_mean,
+                             uns$n_agree, uns$n_variants), collapse = "; "),
+               ". The brackets are Z<2, 2<=Z<10 and Z>=10, so a module whose Z ",
+               "sits near 2 or near 10 can disagree with every variant while ",
+               "moving hardly at all. Check the distance to the boundary ",
+               "before reading any of these as unstable."))
     }
     lines <- c(lines, "")
   } else {
