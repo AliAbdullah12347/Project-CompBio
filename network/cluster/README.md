@@ -239,6 +239,20 @@ The 8 Nov run looked like 30 successes by upload count and was 2 by return code.
 
 ## Operational notes
 
+**The authority for all of this is the OATS skill**, fetched from
+https://oats.colgate.edu/skill/SKILL.md and installed at
+`~/.claude/skills/oats/SKILL.md`. It is replaced daily, so a copy more than a
+day old should be re-downloaded before it is trusted. Everything below was
+learned the hard way and then confirmed against it; two things it has that
+this file did not:
+
+- `kubectl get configmap cluster-hardware -n s3storage-system -o jsonpath='{.data.nodes\.yaml}'`
+  lists every node, what is free on it right now, and each GPU's model and
+  memory. Read it before sizing a job instead of probing.
+- There is a **gpu queue**. Nothing in this arm uses it -- WGCNA, limma and
+  igraph have no GPU path, and cuML does not cover WGCNA -- but a long CPU
+  run should be checked against it before it is planned.
+
 - **Per-job ceiling is 24 CPU**, summed over every container of every replica,
   and **86400 s** `activeDeadlineSeconds` on burst. Both are enforced by a
   validating admission policy, so `kubectl create --dry-run=server` catches

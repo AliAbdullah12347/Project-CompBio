@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-10 · **Catalogued:** 189 items
+**Updated:** 2026-11-11 · **Catalogued:** 195 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (49 — 45 live, 4 retracted)
+## Findings (50 — 46 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -39,6 +39,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 23/25 · 10/10 | live | [The corrected network has 71 modules, and its eigengenes are near-orthogonal](findings/2026-10-18-rebuilt-network-71-modules.md) | 2026-10-18 |
 | 23/25 · 8/10 | live | [base-001 re-run on a verified network: gold ranks last every time, but beats most modules on Zsummary](findings/2026-10-26-base001-verified-clean.md) | 2026-10-26 |
 | 23/25 · 8/10 | live | [Resolved: lithium associations do not survive composition adjustment — finding 001 was right](findings/2026-11-08-composition-contradiction-resolved.md) | 2026-11-08 |
+| 23/25 · 7/10 | live | [There is no 28-versus-1 discrepancy: both decompositions find exactly one module, and it is the same one](findings/2026-11-11-the-28-vs-1-discrepancy-was-a-misread-column.md) | 2026-11-11 |
 | 22/25 · 9/10 | CORRECTED | [Darkturquoise is a ribosomal/translation module: the composition signal has a biological substrate](findings/2026-10-14-darkturquoise-is-ribosomal.md) | 2026-10-14 |
 | 22/25 · 7/10 | live | [The lithium dimension replicates across decompositions, and never survives composition](findings/2026-10-14-lithium-dimension-replicates.md) | 2026-10-14 |
 | 22/25 · 9/10 | live | [Removing the library offset rebuilds the network into a well-behaved one](findings/2026-10-18-normalisation-rebuild-required.md) | 2026-10-18 |
@@ -114,7 +115,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-26 | 2026-10-26-how-to-read-the-preservation-rows.md | How to read the 28 preservation rows: the perm split is by design, the comparison was not |
 | 2026-11-08 | 2026-11-08-stale-running-path-ignored-progress.md | Three experiments were retired while holding 57 checkpoints between them |
 
-## Run directories (61)
+## Run directories (63)
 
 | run | status | size |
 |:--|:--|:--|
@@ -164,11 +165,13 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | net-008 | live | 49 files |
 | perm-031 | live | 143 files |
 | perm-032 | live | 44 files |
+| perm-054 | live | 2 files |
 | pow-009 | live | 2 files |
 | pow-010 | live | 49 files |
 | pow-011 | live | 49 files |
 | pow-012 | live | 49 files |
 | pres-030 | live | 4 files |
+| recon-055 | live | 2 files |
 | ref-002 | live | 87 files |
 | ref-003 | live | 6 files |
 | ref-004 | live | 50 files |
@@ -180,9 +183,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | trait-035 | live | 2 files |
 | trait-053 | live | 2 files |
 
-## Queue experiments (52)
+## Queue experiments (55)
 
-Status: DONE=52
+Status: DONE=53  RUNNING=2
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -197,6 +200,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | bmind-046 | celltype | DONE | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
 | bmind-047 | celltype | DONE | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
 | cent-040 | central | DONE | degree, betweenness, eigenvector centrality; between-group differences |
+| cent-056 | centrality | RUNNING | control-split null: 10 disjoint 74/74 splits of the control group, identical comparison |
 | comm-038 | community | DONE | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
 | comm-039 | community | DONE | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
 | corr-005 | corr | DONE | ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
@@ -226,11 +230,13 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | net-008 | nettype | DONE | ref=control;corr=bicor;net=signed_hybrid;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | perm-031 | perm | DONE | group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws |
 | perm-032 | perm | DONE | group-label permutation null K=1000 if K=500 wall-clock allows |
+| perm-054 | permutation | RUNNING | permute diagnosis labels, refit DE, rescore modules; K=500; add-one estimator |
 | pow-009 | power | DONE | pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result) |
 | pow-010 | power | DONE | ref=control;power=6 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans session |
 | pow-011 | power | DONE | ref=control;power=8 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans session |
 | pow-012 | power | DONE | ref=control;power=12 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessio |
 | pres-030 | preserve | DONE | ref=control;report density and connectivity components SEPARATELY; disagreement is informative |
+| recon-055 | module-trait | DONE | re-score grp-051 control_A partition through trait-053's model; only the partition differs |
 | ref-002 | reference | DONE | ref=bp_nolith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | ref-003 | reference | DONE | ref=bp_lith;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | ref-004 | reference | DONE | ref=consensus(all3);corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |

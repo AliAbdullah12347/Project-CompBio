@@ -3,9 +3,18 @@
 **Updated:** 2026-11-10. Everything below is runnable from a clone of this repo.
 Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
 
-> **As of 10 Nov 19:00 UTC: all 52 queue rows DONE**, from 19 on 8 Nov. Item
-> 4 is drained and item 1 is ANSWERED. **Items 2 and 3 are the only unstarted
-> work left in this arm.**
+> **As of 11 Nov 15:45 UTC: 53 of 55 rows DONE**, from 19 on 8 Nov. Items 1
+> and 3 are ANSWERED and item 4 is drained. **Item 2 is running** as
+> `perm-054` on `arm3-run-91/92`, alongside `cent-056` on `arm3-run-93/94`,
+> the control-split null below.
+>
+> **Item 3 is answered and its premise was wrong.** `recon-055` ran
+> `grp-051`'s own partition through `trait-053`'s model and got **1 of 69**,
+> not 28 -- and `grp-051b`'s own output said so all along: `li_padj` = 29 is
+> the count BEFORE composition adjustment, `li_adj_padj` = 1 is after. The 28
+> was the unadjusted column. Both decompositions find exactly one surviving
+> module and, by the Jaccard in the eosinophil finding, it is the same one.
+> See `findings/2026-11-11-the-28-vs-1-discrepancy-was-a-misread-column.md`.
 >
 > The arm's conclusion, now resting on every test it has:
 >
@@ -142,33 +151,30 @@ permutation distribution, the distributed sub-threshold BPD signal is real. If n
 
 ---
 
-## 3. Why does a group-specific decomposition yield 28 survivors where the fixed reference yields 1?
-
-**What it is.** Newly opened today by `trait-053`. On the fixed verified 71-module
-reference, exactly **1 of 71** lithium associations survives composition adjustment.
-On `grp-051`'s group-specific 69-module `control_A` network, **28 of 69** do. Model and
-sample set are now ruled out — it is the module set.
-
-**How to run.** Re-score `grp-051`'s partition using `trait-053`'s exact model matrix, so
-only the partition differs:
-
-```r
-# in R, from the repo root
-source("network/00_load.R"); d <- load_project(cache=TRUE)
-g  <- read.csv("network/runs/grp-051/genes_control_A.csv")
-E  <- expr_for(d, group=NULL)
-ME <- WGCNA::moduleEigengenes(E, colors=g$module, excludeGrey=TRUE)$eigengenes
-# then apply the M_051b model from
-# network/experiments/trait-053-composition-reconcile.R verbatim
-```
-
-**What to look for.** If 28 survives under the identical model, the group-specific
-decomposition is finding composition-independent lithium signal the fixed reference
-misses — interesting and worth pursuing. If it collapses toward 1, `grp-051b`'s count
-came from something else in its pipeline and the fixed-reference answer stands.
-
----
-
+## 3. Why does a group-specific decomposition yield 28 survivors where the fixed reference yields 1?  -- ANSWERED, 2026-11-11
+
+**It does not.** `recon-055` re-scored `grp-051`'s `control_A` partition
+through `trait-053`'s model, changing nothing but the partition, and got
+**1 of 69** under both adjusted models -- matching the fixed reference's
+1 of 71. `grp-051b`'s own `module_trait_joint.csv` agrees: `li_padj` = 29 is
+lithium adjusted for diagnosis and technical covariates but NOT composition;
+`li_adj_padj` = 1 is the same model with the ILR balances added. The 28 in
+this file was the unadjusted column.
+
+The survivors are `mediumpurple2` in the fixed reference and `orangered3` in
+`grp-051` -- the same genes, Jaccard 0.846 against a 0.184 background. Two
+decompositions that agree on little else each find one module, and it is the
+same module.
+
+The partition does matter under the weaker `li + b1..b4` model, where the two
+give 26 and 33 on the full sample set, but that gap closes entirely once
+diagnosis and the technical covariates enter.
+
+Written up in
+`findings/2026-11-11-the-28-vs-1-discrepancy-was-a-misread-column.md`.
+
+---
+
 ## 4. Drain the queue (bulk compute, low value per hour)
 
 21 of 52 rows DONE, 29 RUNNING on the cluster, 0 PENDING, 0 BLOCKED.
