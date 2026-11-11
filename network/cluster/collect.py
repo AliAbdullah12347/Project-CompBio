@@ -58,7 +58,12 @@ def main():
         return
     keys = listing(s3)
 
-    runs = sorted(k[len("runs/"):-len(".tar.gz")] for k in keys if k.startswith("runs/") and k.endswith(".tar.gz"))
+    # A sliced row uploads runs/<id>.sliceNN.tar.gz, one per pod. They all
+    # unpack into the same network/runs/<id>/ directory, which is what the
+    # row's aggregation step reads, so the id is the part before ".slice".
+    run_keys = [k for k in keys if k.startswith("runs/") and k.endswith(".tar.gz")]
+    runs = sorted({re.sub(r"[.]slice\d+$", "",
+                          k[len("runs/"):-len(".tar.gz")]) for k in run_keys})
     draws = sorted(k for k in keys if k.startswith("perm031/perm_draw_"))
     logs = sorted(k for k in keys if k.startswith("logs/"))
     q = queue_rows()
@@ -89,13 +94,16 @@ def main():
 
     os.makedirs(RUNS, exist_ok=True)
     for r in runs:
-        key = f"runs/{r}.tar.gz"
-        tmp = os.path.join(RUNS, f"_{r}.tar.gz")
-        s3.download_file(BUCKET, ROOT + key, tmp)
-        with tarfile.open(tmp) as tf:
-            tf.extractall(RUNS)
-        os.remove(tmp)
-        print(f"  unpacked {r}")
+        mine = sorted(k for k in run_keys
+                      if re.sub(r"[.]slice\d+$", "",
+                                k[len("runs/"):-len(".tar.gz")]) == r)
+        for key in mine:
+            tmp = os.path.join(RUNS, "_" + os.path.basename(key))
+            s3.download_file(BUCKET, ROOT + key, tmp)
+            with tarfile.open(tmp) as tf:
+                tf.extractall(RUNS)
+            os.remove(tmp)
+        print(f"  unpacked {r}" + (f" ({len(mine)} slices)" if len(mine) > 1 else ""))
     dd = os.path.join(RUNS, "perm-031")
     os.makedirs(dd, exist_ok=True)
     for k in draws:

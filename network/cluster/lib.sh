@@ -110,12 +110,26 @@ fetch_cache () {
 
 # Push a finished row's outputs. Checkpoints (.rds/.RData) go up too so a
 # re-run resumes instead of recomputing.
+# A sliced row runs on several pods at once, each holding a different part of
+# the work, and every one of them would PUT to runs/<id>.tar.gz -- last writer
+# wins, and nine slices of ten vanish with nothing in any log to say so. Give
+# each slice its own key; collect.py unpacks them all into one directory,
+# which is what the row's own aggregation step expects to find.
+run_key () {   # run_key <run_id>
+  if [ "${SLICE_ID:-0}" -gt 0 ] 2>/dev/null; then
+    printf 'runs/%s.slice%02d.tar.gz' "$1" "${SLICE_ID}"
+  else
+    printf 'runs/%s.tar.gz' "$1"
+  fi
+}
+
 upload_run () {   # upload_run <run_id>
-  local id="$1" dir="network/runs/$1"
+  local id="$1" dir="network/runs/$1" key
   [ -d "$dir" ] || { echo "-- $id: no output dir"; return 0; }
+  key=$(run_key "$id")
   tar czf "/work/${id}.tar.gz" -C network/runs "$id"
-  s3_put "/work/${id}.tar.gz" "runs/${id}.tar.gz"
-  echo "-- $id: uploaded $(du -h "/work/${id}.tar.gz" | cut -f1)"
+  s3_put "/work/${id}.tar.gz" "$key"
+  echo "-- $id: uploaded $(du -h "/work/${id}.tar.gz" | cut -f1) to ${key}"
 }
 
 # ---------------------------------------------------------------------------
@@ -161,7 +175,7 @@ RPROF
 # ---------------------------------------------------------------------------
 restore_run () {   # restore_run <run_id>
   local id="$1" n d
-  if s3_get "${PREFIX}/runs/${id}.tar.gz" "/work/${id}.prev.tar.gz" 2>/dev/null; then
+  if s3_get "${PREFIX}/$(run_key "$id")" "/work/${id}.prev.tar.gz" 2>/dev/null; then
     tar xzf "/work/${id}.prev.tar.gz" -C network/runs || true
     # find, not ls+glob: with set -e, `d=$(ls nomatch*)` is a FAILED assignment
     # and kills the whole job. Rows that had draw checkpoints survived it and
