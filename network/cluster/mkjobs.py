@@ -86,6 +86,8 @@ spec:
                 - {{name: CPU_LIMIT,       value: "{cpu}"}}
                 - {{name: OMP_NUM_THREADS, value: "{cpu}"}}
                 - {{name: ROWS,            value: "{rows}"}}
+                - {{name: N_SLICES,        value: "{nslices}"}}
+                - {{name: SLICE_OFFSET,    value: "{sliceoff}"}}
                 - name: POD_NAME
                   valueFrom: {{fieldRef: {{fieldPath: metadata.name}}}}
               volumeMounts:
@@ -109,6 +111,15 @@ spec:
                   echo "== $(date -u) {name} pod ${{IDX}} =="
 
                   # One entry per pod; '+' chains dependent rows onto that pod.
+                  # With --slice every pod gets the SAME entry and a distinct
+                  # SLICE_ID, so a row that splits its own work (perm-054 by
+                  # draw range, cent-056 by split) spreads over pods without
+                  # the generator needing to know how it slices.
+                  # IDX restarts at 0 in every job, and the 24-CPU per-job cap
+                  # means a 10-way slice spans two jobs. Without the offset the
+                  # second job would redo slices 1-4 while 7-10 never ran, and
+                  # nothing would look wrong because every pod would exit 0.
+                  export SLICE_ID=$((IDX + 1 + SLICE_OFFSET))
                   ENTRY=$(echo "$ROWS" | tr ' ' '\\n' | sed -n "$((IDX + 1))p")
                   if [ -z "$ENTRY" ]; then echo "-- no entry for pod ${{IDX}}"; exit 0; fi
                   MINE=$(echo "$ENTRY" | tr '+' ' ')
@@ -186,19 +197,33 @@ def main():
                     help="memory per pod; cent-040 OOMed at 22Gi building three graphs")
     ap.add_argument("--per-job", type=int, default=PODS_PER_JOB,
                     help="pods per job; 1 isolates each row from gang eviction")
+    ap.add_argument("--slice", type=int, default=0, metavar="N",
+                    help="run the single --only row on N pods, each with its own "
+                         "SLICE_ID (1..N) and N_SLICES=N; the row decides what a "
+                         "slice means")
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
     entries = a.only.split() if a.only else HEAVY + LIGHT
+    if a.slice:
+        if len(entries) != 1:
+            ap.error("--slice takes exactly one row in --only")
+        entries = entries * a.slice          # same row on every pod
+        a.per_job = min(a.slice, PODS_PER_JOB)
     files = []
-    for i, g in enumerate(groups(entries, a.per_job), start=a.start):
+    for gi, (i, g) in enumerate(
+            list(enumerate(groups(entries, a.per_job), start=a.start))):
         name = "arm3-run-%02d" % i
         path = os.path.join(OUT, name + ".yaml")
         with open(path, "w", newline="\n") as fh:
             fh.write(TEMPLATE.format(name=name, n=len(g), rows=" ".join(g),
                                      rowlist="\n#   ".join(g), cpu=CPU,
-                                     mem=a.mem, deadline=DEADLINE))
+                                     mem=a.mem, deadline=DEADLINE,
+                                     nslices=a.slice or 1,
+                                     sliceoff=gi * a.per_job))
         files.append(path)
-        print("%-12s %d pods  %s" % (name, len(g), " ".join(g)))
+        print("%-12s %d pods  %s%s" % (name, len(g), " ".join(g[:3]),
+              ("  slices %d-%d" % (gi * a.per_job + 1, gi * a.per_job + len(g)))
+              if a.slice else ""))
     print("\n%d entries -> %d jobs, %d pods, %d CPU in all" %
           (len(entries), len(files), len(entries), len(entries) * CPU))
     if a.submit:

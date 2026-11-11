@@ -1,0 +1,10 @@
+{
+  "id": "recon-055",
+  "family": "module-trait",
+  "spec": "re-score grp-051 control_A partition through trait-053 model; only the partition differs",
+  "models": "marginal; M_001 (li + b1..b4); M_051b (li + dx + technical + b1..b4)",
+  "partitions": "fixed verified reference; grp-051 control_A",
+  "git_sha": "41dd012",
+  "r_version": "4.6.1",
+  "wgcna_version": "1.74"
+}

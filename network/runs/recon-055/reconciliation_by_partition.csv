@@ -1,0 +1,13 @@
+"partition","sample_set","n","model","n_modules","n_BH05"
+"fixed_reference","BP1_only",226,"marginal",71,15
+"fixed_reference","BP1_only",226,"M_001",71,1
+"fixed_reference","BP1_only",226,"M_051b",71,1
+"fixed_reference","all",460,"marginal",71,44
+"fixed_reference","all",460,"M_001",71,26
+"fixed_reference","all",460,"M_051b",71,1
+"grp051_control_A","BP1_only",226,"marginal",69,15
+"grp051_control_A","BP1_only",226,"M_001",69,1
+"grp051_control_A","BP1_only",226,"M_051b",69,1
+"grp051_control_A","all",460,"marginal",69,41
+"grp051_control_A","all",460,"M_001",69,33
+"grp051_control_A","all",460,"M_051b",69,1
