@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-11 · **Catalogued:** 195 items
+**Updated:** 2026-11-12 · **Catalogued:** 203 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (50 — 46 live, 4 retracted)
+## Findings (51 — 47 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -46,6 +46,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 22/25 · 7/10 | live | [Scale-free topology fails on all groups even after offset removal; composition removal rescues it](findings/2026-10-26-pow009-scale-free-composition-driven.md) | 2026-10-26 |
 | 22/25 · 4/10 | live | [trait-034: module eigengene ~ lineage fraction associations](findings/2026-10-31-trait034-module-eigengene-fraction-associations.md) | 2026-10-31 |
 | 22/25 · 8/10 | live | [perm-031 at 157 draws: the K=20 lead was a floor artifact, and there is no module-specific lithium effect](findings/2026-11-09-perm031-at-157-draws-is-a-clean-negative.md) | 2026-11-09 |
+| 22/25 · 8/10 | live | [The BPD module enrichment survives an honest null — but the null it was originally tested against was wrong by sixteen modules](findings/2026-11-12-bpd-module-enrichment-survives-but-the-old-null-was-wrong-by-16-modules.md) | 2026-11-12 |
 | 21/25 · 9/10 | CORRECTED | [Real modules do beat the random gene set — once the decomposition is real](findings/2026-10-18-modules-do-beat-gold.md) | 2026-10-18 |
 | 21/25 · 6/10 | live | [LM22 exclusion does not change module preservation pattern: circularity check negative](findings/2026-10-26-gene027-lm22-circularity-preservation.md) | 2026-10-26 |
 | 21/25 · 6/10 | live | [pres-030: density vs connectivity preservation components](findings/2026-10-31-pres030-density-connectivity-components.md) | 2026-10-31 |
@@ -115,7 +116,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-26 | 2026-10-26-how-to-read-the-preservation-rows.md | How to read the 28 preservation rows: the perm split is by design, the comparison was not |
 | 2026-11-08 | 2026-11-08-stale-running-path-ignored-progress.md | Three experiments were retired while holding 57 checkpoints between them |
 
-## Run directories (63)
+## Run directories (67)
 
 | run | status | size |
 |:--|:--|:--|
@@ -125,12 +126,14 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | ann-041 | live | 2 files |
 | ann-042 | live | 2 files |
 | ann-044 | live | 6 files |
+| ann-058 | live | 5 files |
 | base-001 | live | 37 files |
 | base-002-ceil | live | 6 files |
 | base-003-remerge | live | 6 files |
 | bmind-046 | live | 3 files |
 | bmind-047 | live | 214 files |
 | cent-040 | live | 5 files |
+| cent-056 | live | 23 files |
 | comm-038 | live | 8 files |
 | comm-039 | live | 8 files |
 | corr-005 | live | 7 files |
@@ -138,6 +141,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | driver_detached.log | live | 0 files |
 | driver_session.out | live | 0 files |
 | eos-052 | live | 6 files |
+| eos-057 | live | 4 files |
 | filt-044 | live | 4 files |
 | gene-025 | live | 49 files |
 | gene-026 | live | 49 files |
@@ -165,7 +169,8 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | net-008 | live | 49 files |
 | perm-031 | live | 143 files |
 | perm-032 | live | 44 files |
-| perm-054 | live | 2 files |
+| perm-054 | live | 505 files |
+| perm-059 | live | 307 files |
 | pow-009 | live | 2 files |
 | pow-010 | live | 49 files |
 | pow-011 | live | 49 files |
@@ -183,9 +188,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | trait-035 | live | 2 files |
 | trait-053 | live | 2 files |
 
-## Queue experiments (55)
+## Queue experiments (58)
 
-Status: DONE=53  RUNNING=2
+Status: DONE=57  RUNNING=1
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -194,17 +199,19 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | ann-041 | annot | DONE | module overlap with lithium + bipolar DEG lists (de_final/results/); Fisher exact, BH across modules |
 | ann-042 | annot | DONE | module overlap with LM22 markers and cell-type DE results; Fisher exact, BH |
 | ann-044 | geneset | DONE | RE-RUN THE MODULE ANNOTATION ON THE CURRENT NETWORK. analyses/012-full-module-annotation ran GO over-representation on t |
+| ann-058 | annotation | DONE | GO on the grp-051 partition, cross-decomposition module map, hubs, joined to 019 |
 | base-001 | baseline | DONE | ref=control;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions);stat=Zsumma |
 | base-002-ceil | baseline | DONE | SPLIT-HALF CEILING. ref=160 randomly held-out controls; test=the OTHER 74 controls (disjoint), plus bp_nolith(74) and bp |
 | base-003-remerge | baseline | DONE | THE KEY RE-RUN. Repeat base-001 exactly, but at the parameters mod-000-resolution found usable: deepSplit=4, mergeCutHei |
 | bmind-046 | celltype | DONE | REBUILD bMIND profiles: Rscript de_analysis/scripts/06_bmind_profiles.R (~3.1h). CHECKPOINT. Own window. |
 | bmind-047 | celltype | DONE | per-lineage networks from bMIND profiles (requires bmind-046 DONE) |
 | cent-040 | central | DONE | degree, betweenness, eigenvector centrality; between-group differences |
-| cent-056 | centrality | RUNNING | control-split null: 10 disjoint 74/74 splits of the control group, identical comparison |
+| cent-056 | centrality | DONE | control-split null: 10 disjoint 74/74 splits of the control group, identical comparison |
 | comm-038 | community | DONE | Louvain on adjacency; compare to WGCNA modules (ARI, NMI) |
 | comm-039 | community | DONE | Leiden on adjacency; compare to Louvain and to WGCNA (ARI, NMI) |
 | corr-005 | corr | DONE | ref=control;corr=pearson;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | corr-006 | corr | DONE | ref=control;corr=spearman;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
+| eos-057 | sensitivity | DONE | leave-one-out, subject bootstrap and fragility for the mediumpurple2 lithium association |
 | filt-044 | filtsens | DONE | reuse 31 filters from de_v2/scripts/13_filter_sweep_wb.R; which modules survive all? |
 | gene-025 | geneset | DONE | ref=control;genes=top2000_most_variable |
 | gene-026 | geneset | DONE | ref=control;genes=top5000_most_variable |
@@ -230,7 +237,8 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | net-008 | nettype | DONE | ref=control;corr=bicor;net=signed_hybrid;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | perm-031 | perm | DONE | group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws |
 | perm-032 | perm | DONE | group-label permutation null K=1000 if K=500 wall-clock allows |
-| perm-054 | permutation | RUNNING | permute diagnosis labels, refit DE, rescore modules; K=500; add-one estimator |
+| perm-054 | permutation | DONE | permute diagnosis labels, refit DE, rescore modules; K=500; add-one estimator |
+| perm-059 | permutation | RUNNING | sample-label permutation null for the 019 lithium module rank-enrichment count, K=500 |
 | pow-009 | power | DONE | pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result) |
 | pow-010 | power | DONE | ref=control;power=6 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans session |
 | pow-011 | power | DONE | ref=control;power=8 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans session |

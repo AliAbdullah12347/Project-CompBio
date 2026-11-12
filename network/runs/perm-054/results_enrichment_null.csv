@@ -1,2 +1,2 @@
 "contrast","observed_n_sig","n_modules_tested","K","null_mean","null_sd","null_median","null_q95","null_max","n_null_ge_obs","empirical_p_addone","p_floor"
-"WB_BPD",27,69,261,16.088122605364,4.87338658906192,16,24,29,4,0.0190839694656489,0.00381679389312977
+"WB_BPD",27,69,500,16.5,4.90980777880863,17,24,30,8,0.0179640718562874,0.00199600798403194
