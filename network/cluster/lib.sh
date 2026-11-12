@@ -216,3 +216,18 @@ fetch_bmind () {
     return 1
   fi
 }
+
+# perm-054 refits the de_final whole-blood model, which reads prep.rds: the
+# filtered count matrix, covariates and lineage fractions, 74 MB and
+# untracked. Only ens2sym.tsv of de_analysis/data is in git, so the sparse
+# checkout gives the directory without the file and readRDS fails two seconds
+# in. Same route as the reference cache and the bMIND profiles.
+fetch_prep () {
+  mkdir -p de_analysis/data
+  if s3_get "${PREFIX}/data/prep.rds" de_analysis/data/prep.rds; then
+    echo "-- prep.rds fetched ($(du -h de_analysis/data/prep.rds | cut -f1))"
+  else
+    echo "!! prep.rds missing in S3 - collect.py --put de_analysis/data/prep.rds data/prep.rds" >&2
+    return 1
+  fi
+}

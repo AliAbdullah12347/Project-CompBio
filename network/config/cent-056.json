@@ -1,0 +1,14 @@
+{
+  "id": "cent-056",
+  "family": "centrality",
+  "spec": "control-split null for cent-040: two disjoint halves of the control group, identical comparison",
+  "power": 12, "net_type": "signed", "cor_fnc": "bicor",
+  "adj_threshold": 0.05,
+  "half_n": 74, "n_splits": 10,
+  "observed_from": "cent-040 padj_nolith_lith: degree 52/71, eigenvector 58/71, betweenness 0/71",
+  "estimator": "add-one (1 + sum(null >= obs)) / (1 + K)",
+  "seed_base": 20317009,
+  "git_sha": "67045c8",
+  "r_version": "4.6.1",
+  "wgcna_version": "1.74"
+}

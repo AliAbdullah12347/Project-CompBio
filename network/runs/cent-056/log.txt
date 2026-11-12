@@ -1,0 +1,22 @@
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-11T20:44:41] === cent-056 starting ===
+Allowing parallel execution with up to 4 working processes.
+[2026-11-11T20:44:45] reference: 71 non-grey modules, 12368 genes
+[2026-11-11T20:44:45] controls available: 234; each split uses 148 of them
+[2026-11-11T20:44:45] config written: network/config/cent-056.json
+[2026-11-11T20:44:45] split 10: halves of 74, disjoint, drawn from 234 controls
+[2026-11-11T20:44:46]   split10-A: adjacency (74 x 12368) ...
+[2026-11-11T20:51:20]   split10-A: sparse graph 2868590 edges (A > 0.05)
+[2026-11-11T21:36:10]   split10-B: adjacency (74 x 12368) ...
+[2026-11-11T21:42:06]   split10-B: sparse graph 2929661 edges (A > 0.05)
+[2026-11-11T22:28:02] split 10 done: degree=21  eigenvector=43  betweenness=0  | edges 2868590 vs 2929661
+[2026-11-11T22:28:02] 
+[2026-11-11T22:28:02] === control-split null, K=1 splits ===
+[2026-11-11T22:28:02]   degree       observed 52/71 | null median 21.0 (min 21, max 21) | p = 0.500
+[2026-11-11T22:28:02]   eigenvector  observed 58/71 | null median 43.0 (min 43, max 43) | p = 0.500
+[2026-11-11T22:28:02]   betweenness  observed  0/71 | null median  0.0 (min 0, max 0) | p = 1.000
+[2026-11-11T22:28:02] 
+[2026-11-11T22:28:02] A null median near the observed count means the procedure returns that
+[2026-11-11T22:28:02] many 'differing' modules on two halves of ONE group, and cent-040's
+[2026-11-11T22:28:02] counts say nothing about lithium.
+[2026-11-11T22:28:02] NOTE: 1 of 10 splits present; partial but valid.

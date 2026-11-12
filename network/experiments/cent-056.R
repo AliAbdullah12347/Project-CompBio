@@ -61,7 +61,12 @@ NET_TYPE    <- "signed"
 COR_FNC     <- "bicor"
 ADJ_THRESH  <- 0.05
 HALF_N      <- 74L            # matches bp_nolith and cent-040's lith subsample
-N_SPLITS    <- 10L
+# 20, not the 10 this started with. At K=10 the add-one floor is 1/11 = 0.091,
+# so a count that beats every null draw still cannot reach 0.05 -- the same
+# K-floor that made perm-031, perm-032 and hub-037 unreadable. Degree came
+# back at 52 against a null median of 36.5 and a max of 50, which is exactly
+# the case the extra draws are for. A split costs about an hour on its own pod.
+N_SPLITS    <- 20L
 SEED_BASE   <- 20261009L + 56000L
 METRICS     <- c("degree", "eigenvector", "betweenness")
 

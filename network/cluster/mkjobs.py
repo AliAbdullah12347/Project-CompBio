@@ -143,7 +143,10 @@ spec:
                   # 209 MB, and only the bmind rows open it. Conditional rather
                   # than unconditional so the other 50 rows do not pay for it.
                   case "$ENTRY" in
-                    *bmind*) fetch_bmind || echo "-- no bMIND profiles; bmind-047 cannot run" ;;
+                    *bmind*)    fetch_bmind || echo "-- no bMIND profiles; bmind-047 cannot run" ;;
+                  esac
+                  case "$ENTRY" in
+                    *perm-054*) fetch_prep  || echo "-- no prep.rds; perm-054 cannot run" ;;
                   esac
                   write_rprofile "$CPU_LIMIT"
 
@@ -197,6 +200,9 @@ def main():
                     help="memory per pod; cent-040 OOMed at 22Gi building three graphs")
     ap.add_argument("--per-job", type=int, default=PODS_PER_JOB,
                     help="pods per job; 1 isolates each row from gang eviction")
+    ap.add_argument("--slice-start", type=int, default=1, metavar="I",
+                    help="first SLICE_ID (default 1); use it to add slices to a row "
+                         "that already has some, e.g. --slice 10 --slice-start 11")
     ap.add_argument("--slice", type=int, default=0, metavar="N",
                     help="run the single --only row on N pods, each with its own "
                          "SLICE_ID (1..N) and N_SLICES=N; the row decides what a "
@@ -219,10 +225,11 @@ def main():
                                      rowlist="\n#   ".join(g), cpu=CPU,
                                      mem=a.mem, deadline=DEADLINE,
                                      nslices=a.slice or 1,
-                                     sliceoff=gi * a.per_job))
+                                     sliceoff=gi * a.per_job + a.slice_start - 1))
         files.append(path)
         print("%-12s %d pods  %s%s" % (name, len(g), " ".join(g[:3]),
-              ("  slices %d-%d" % (gi * a.per_job + 1, gi * a.per_job + len(g)))
+              ("  slices %d-%d" % (gi * a.per_job + a.slice_start,
+                                   gi * a.per_job + a.slice_start + len(g) - 1))
               if a.slice else ""))
     print("\n%d entries -> %d jobs, %d pods, %d CPU in all" %
           (len(entries), len(files), len(entries), len(entries) * CPU))
