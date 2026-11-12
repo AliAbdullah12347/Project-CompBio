@@ -2,6 +2,36 @@
 
 Everything in `network/NEXT_STEPS.md` that is bulk compute, moved off the iMac.
 
+## State on 12 Nov 2026, 21:50 UTC
+
+`netmet-060` is running on `arm3-run-60` and `arm3-run-61`, ten pods, one draw
+per pod (`SLICE_ID` 1-10), 4 CPU and 24Gi each, burst. Each pod builds four
+n=74 networks -- ctrlA, ctrlB, bp_nolith, bp_lith -- and computes seven metric
+families on each. `netmet-061` aggregates whatever draws land and scores every
+contrast against the ctrlA-vs-ctrlB null from the same draw.
+
+Three things in that row are worth copying into later ones:
+
+- **Degree and eigenvector centrality are computed from the adjacency matrix,
+  not from an igraph object.** The full weighted graph on 12368 nodes has
+  76.5M edges and costs ~1.8 GB on top of the 1.2 GB adjacency. `rowSums`
+  matches `igraph::strength` to 1.6e-13, and power iteration matches
+  `igraph::eigen_centrality` to 1.1e-11 with Spearman 1.000, 13x faster.
+  cent-040 spent about 3 minutes per group building a graph it used twice.
+- **Clique enumeration has to be bounded by density, not by edge count.**
+  The number of maximal cliques grows with density, so an edge cap is not a
+  bound. Unsparsified, the turquoise module (1145 genes, 119k edges) had not
+  returned after 10 minutes; capping mean degree at 20 gives 157k cliques in
+  15 seconds.
+- **`aggregate()` and `reshape()` do not scale here.** Collapsing per-gene
+  shifts over draws is 3.0M rows and 98944 id combinations, and both
+  functions are superlinear in those. Genes x draws matrices and `rowMeans`
+  are the same arithmetic in one pass.
+
+`setup_r` still installs the bMIND chain on every pod whether or not the row
+needs it, about 4 minutes wasted per pod. Make it conditional before the next
+submission.
+
 ## State on 10 Nov 2026, 19:00 UTC
 
 **All 52 queue rows DONE** (19 on 8 Nov, 45 on 9 Nov, 52 now). Nothing is in
