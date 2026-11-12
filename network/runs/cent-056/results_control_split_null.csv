@@ -1,4 +1,4 @@
 "metric","observed","n_modules","K","null_mean","null_sd","null_median","null_min","null_max","n_null_ge_obs","empirical_p_addone"
-"degree",52,71,1,21,NA,21,21,21,0,0.5
-"eigenvector",58,71,1,43,NA,43,43,43,0,0.5
-"betweenness",0,71,1,0,NA,0,0,0,1,1
+"degree",52,71,20,40.25,8.20060973342836,43,21,50,0,0.0476190476190476
+"eigenvector",58,71,20,55.4,7.75547344918752,56.5,37,67,9,0.476190476190476
+"betweenness",0,71,20,5.15,4.28307562880989,3,0,15,20,1

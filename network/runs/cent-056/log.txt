@@ -20,3 +20,24 @@ Allowing parallel execution with up to 4 working processes.
 [2026-11-11T22:28:02] many 'differing' modules on two halves of ONE group, and cent-040's
 [2026-11-11T22:28:02] counts say nothing about lithium.
 [2026-11-11T22:28:02] NOTE: 1 of 10 splits present; partial but valid.
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-12T04:27:25] === cent-056 starting ===
+Allowing parallel execution with up to 4 working processes.
+[2026-11-12T04:27:30] reference: 71 non-grey modules, 12368 genes
+[2026-11-12T04:27:30] controls available: 234; each split uses 148 of them
+[2026-11-12T04:27:30] split 20: halves of 74, disjoint, drawn from 234 controls
+[2026-11-12T04:27:30]   split20-A: adjacency (74 x 12368) ...
+[2026-11-12T04:33:49]   split20-A: sparse graph 2896957 edges (A > 0.05)
+[2026-11-12T05:18:47]   split20-B: adjacency (74 x 12368) ...
+[2026-11-12T05:24:36]   split20-B: sparse graph 3407798 edges (A > 0.05)
+[2026-11-12T06:16:06] split 20 done: degree=46  eigenvector=55  betweenness=7  | edges 2896957 vs 3407798
+[2026-11-12T06:16:06] 
+[2026-11-12T06:16:06] === control-split null, K=1 splits ===
+[2026-11-12T06:16:06]   degree       observed 52/71 | null median 46.0 (min 46, max 46) | p = 0.500
+[2026-11-12T06:16:06]   eigenvector  observed 58/71 | null median 55.0 (min 55, max 55) | p = 0.500
+[2026-11-12T06:16:06]   betweenness  observed  0/71 | null median  7.0 (min 7, max 7) | p = 1.000
+[2026-11-12T06:16:06] 
+[2026-11-12T06:16:06] A null median near the observed count means the procedure returns that
+[2026-11-12T06:16:06] many 'differing' modules on two halves of ONE group, and cent-040's
+[2026-11-12T06:16:06] counts say nothing about lithium.
+[2026-11-12T06:16:06] NOTE: 1 of 20 splits present; partial but valid.

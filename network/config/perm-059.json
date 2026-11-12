@@ -1,0 +1,13 @@
+{
+  "id": "perm-059",
+  "family": "permutation",
+  "spec": "sample-label permutation null for the 019 BPD module rank-enrichment count",
+  "contrast": "WB_LI",
+  "k_total": 500,
+  "min_module_n": 20,
+  "estimator": "add-one (1 + sum(null >= obs)) / (1 + K)",
+  "partition": "network/runs/grp-051/genes_control_A.csv",
+  "seed_base": 20315009,
+  "git_sha": "7d8a008",
+  "r_version": "4.6.1"
+}

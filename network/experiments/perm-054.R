@@ -53,9 +53,16 @@
 # Every draw checkpoints, so a pod lost mid-slice still contributes.
 # ===========================================================================
 
+# One script, two rows. The lithium contrast needs exactly the same null --
+# 019 scored both against the same invalid random-gene-set null, so the
+# BPD-vs-lithium comparison is not symmetric until both have been redone the
+# same way, on the same software. Separate run directories keep their
+# checkpoints apart; everything between them is identical by construction.
+CONTRASTS <- list("perm-054" = c(sel = "BPD", published = "WB_BPD"),
+                  "perm-059" = c(sel = "LI",  published = "WB_LI"))
 id <- commandArgs(trailingOnly = TRUE)[1]
 if (is.na(id) || id == "") id <- "perm-054"
-stopifnot(id == "perm-054")
+stopifnot(id %in% names(CONTRASTS))
 
 now_ <- function() format(Sys.time(), "%Y-%m-%dT%H:%M:%S")
 msg  <- function(...) message(sprintf("[%s] %s", now_(), paste0(..., collapse = "")))
@@ -86,8 +93,8 @@ SEED_BASE <- 20261009L + 54000L
 # "WB_LI"/"WB_BPD" -- run_de.R's JOBS table maps between them. Both are needed
 # here: the first to pull the sample set out of prep.rds, the second to find
 # the published table this fit is checked against.
-CONTRAST  <- "BPD"        # key into p$sel
-PUBLISHED <- "WB_BPD"     # de_final/results/DE_<PUBLISHED>.csv.gz
+CONTRAST  <- unname(CONTRASTS[[id]]["sel"])        # key into p$sel
+PUBLISHED <- unname(CONTRASTS[[id]]["published"])  # de_final/results/DE_<...>.csv.gz
 MIN_MOD_N <- 20L          # 019's threshold; it is what makes the count 69 and not 71
 
 suppressPackageStartupMessages({ library(edgeR); library(limma) })
@@ -182,7 +189,7 @@ if (!file.exists(obs_file)) {
   dif <- max(abs(pv_obs[shared] - pub$P[match(shared, pub$gene)]))
   msg("  ", length(shared), " genes shared with the published table; max |dp| = ",
       signif(dif, 3))
-  if (dif > 1e-8) stop("the copied WB_BPD fit does not reproduce de_final/results/DE_",
+  if (dif > 1e-8) stop("the copied fit does not reproduce de_final/results/DE_",
                        PUBLISHED, ".csv.gz (max |dp| = ", signif(dif, 3),
                        "). Fix the copy before running a null for it.")
   msg("  copy reproduces the published fit exactly")
