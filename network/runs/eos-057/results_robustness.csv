@@ -1,0 +1,2 @@
+"module","n_genes","n_subjects","observed_beta","observed_p","loo_p_max","loo_n_breaking","boot_usable","boot_ci_lo","boot_ci_hi","boot_frac_sig","boot_frac_same_sign","fragility_n","fragility_pct"
+"mediumpurple2",35,226,0.0390228893279325,4.31362495666569e-05,0.000136874533720585,0,2000,0.0206226902802889,0.05703554334204,0.9815,1,13,5.75221238938053

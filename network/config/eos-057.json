@@ -1,0 +1,12 @@
+{
+  "id": "eos-057",
+  "family": "sensitivity",
+  "spec": "leave-one-out, subject bootstrap and fragility for the eosinophil module lithium association",
+  "module": "mediumpurple2", "n_genes": 35,
+  "model": "ME ~ li + age + sex + rin + plate + b1..b4, BP1 only",
+  "n_boot": 2000, "alpha": 0.05,
+  "eigengene": "rebuilt inside every resample, sign-aligned to the full-sample PC",
+  "seed": 20318009,
+  "git_sha": "e0af497",
+  "r_version": "4.6.1"
+}
