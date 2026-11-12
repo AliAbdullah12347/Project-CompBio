@@ -249,10 +249,15 @@ msg("null (K=", K, "): mean ", sprintf("%.1f", mean(draws$n_sig)),
     ", max ", max(draws$n_sig))
 msg("draws >= observed: ", sum(draws$n_sig >= obs$n_sig), " of ", K)
 msg("empirical p (add-one): ", signif(pval, 3), "   floor ", signif(1 / (1 + K), 3))
+# The verdict line used to hardcode "27 of 69", which is the BPD observed
+# count. On the lithium row that printed a sentence about a number the row
+# had never computed. Say what this row actually found.
 msg(if (pval < 0.05)
-      "  -> the distributed sub-threshold BPD signal survives a correlation-aware null"
+      sprintf("  -> %s: %d of %d exceeds what co-expression alone produces (p = %.3f)",
+              PUBLISHED, obs$n_sig, obs$n_tested, pval)
     else
-      "  -> 27 of 69 is within what co-expression alone produces; the claim must be withdrawn")
+      sprintf("  -> %s: %d of %d is WITHIN what co-expression alone produces (p = %.3f); the claim must be withdrawn",
+              PUBLISHED, obs$n_sig, obs$n_tested, pval))
 
 if (K < K_TOTAL) {
   msg("NOTE: ", K, " of ", K_TOTAL, " draws present; this is a partial but valid null.")

@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-12 · **Catalogued:** 203 items
+**Updated:** 2026-11-12 · **Catalogued:** 204 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (51 — 47 live, 4 retracted)
+## Findings (52 — 48 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -47,6 +47,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 22/25 · 4/10 | live | [trait-034: module eigengene ~ lineage fraction associations](findings/2026-10-31-trait034-module-eigengene-fraction-associations.md) | 2026-10-31 |
 | 22/25 · 8/10 | live | [perm-031 at 157 draws: the K=20 lead was a floor artifact, and there is no module-specific lithium effect](findings/2026-11-09-perm031-at-157-draws-is-a-clean-negative.md) | 2026-11-09 |
 | 22/25 · 8/10 | live | [The BPD module enrichment survives an honest null — but the null it was originally tested against was wrong by sixteen modules](findings/2026-11-12-bpd-module-enrichment-survives-but-the-old-null-was-wrong-by-16-modules.md) | 2026-11-12 |
+| 22/25 · 9/10 | live | [Lithium has 1,426 DEGs and no module structure; bipolar has 4 and some](findings/2026-11-12-lithium-has-1426-degs-and-no-module-structure-bpd-has-4-and-some.md) | 2026-11-12 |
 | 21/25 · 9/10 | CORRECTED | [Real modules do beat the random gene set — once the decomposition is real](findings/2026-10-18-modules-do-beat-gold.md) | 2026-10-18 |
 | 21/25 · 6/10 | live | [LM22 exclusion does not change module preservation pattern: circularity check negative](findings/2026-10-26-gene027-lm22-circularity-preservation.md) | 2026-10-26 |
 | 21/25 · 6/10 | live | [pres-030: density vs connectivity preservation components](findings/2026-10-31-pres030-density-connectivity-components.md) | 2026-10-31 |
@@ -170,7 +171,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | perm-031 | live | 143 files |
 | perm-032 | live | 44 files |
 | perm-054 | live | 505 files |
-| perm-059 | live | 307 files |
+| perm-059 | live | 504 files |
 | pow-009 | live | 2 files |
 | pow-010 | live | 49 files |
 | pow-011 | live | 49 files |
@@ -190,7 +191,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 
 ## Queue experiments (58)
 
-Status: DONE=57  RUNNING=1
+Status: DONE=58
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -238,7 +239,7 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | perm-031 | perm | DONE | group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws |
 | perm-032 | perm | DONE | group-label permutation null K=1000 if K=500 wall-clock allows |
 | perm-054 | permutation | DONE | permute diagnosis labels, refit DE, rescore modules; K=500; add-one estimator |
-| perm-059 | permutation | RUNNING | sample-label permutation null for the 019 lithium module rank-enrichment count, K=500 |
+| perm-059 | permutation | DONE | sample-label permutation null for the 019 lithium module rank-enrichment count, K=500 |
 | pow-009 | power | DONE | pickSoftThreshold powerVector=1:20 per group; record scale-free R2 curves (curves ARE the result) |
 | pow-010 | power | DONE | ref=control;power=6 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans session |
 | pow-011 | power | DONE | ref=control;power=8 fixed;corr=bicor;net=signed;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans session |
