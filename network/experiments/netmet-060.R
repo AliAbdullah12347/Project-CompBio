@@ -65,9 +65,23 @@
 # Aggregation is netmet-061, which reads whatever draw files exist.
 # ===========================================================================
 
+# Two variants share this file. netmet-062 is netmet-060 with the expression
+# residualised for the covariates first, and exists because the BIPOLAR
+# contrast in netmet-060 turned out to carry a 9.5-year age gap and a
+# 16.8-point tobacco gap where its null carries 1.2 years and 4.3 points.
+# Matching the controls instead is not possible: only 54 of 234 reach the
+# patients' median age, and the design needs 148 of them.
+#
+# A copy would drift, so the variant is a parameter and netmet-062.R is a
+# four-line shim that sources this file.
+VARIANTS <- list(
+  "netmet-060" = NULL,
+  "netmet-062" = ~ age + sex + tobacco + rin + plate + seqpc1 + seqpc2 + seqpc3)
+
 id <- commandArgs(trailingOnly = TRUE)[1]
 if (is.na(id) || id == "") id <- "netmet-060"
-stopifnot(id == "netmet-060")
+stopifnot(id %in% names(VARIANTS))
+RESID <- VARIANTS[[id]]
 
 now_ <- function() format(Sys.time(), "%Y-%m-%dT%H:%M:%S")
 msg  <- function(...) message(sprintf("[%s] %s", now_(), paste0(..., collapse = "")))
@@ -145,7 +159,25 @@ stopifnot(length(ctrl_id) >= 2L * N_MATCH, length(nol_id) == N_MATCH,
 # Every matrix in this row goes through here, so the gene set and its ORDER are
 # the same everywhere by construction rather than by assumption. group_metrics
 # then asserts it, which would otherwise be an assertion about luck.
-Emat <- function(ids) expr_samples(d, ids)[, genes, drop = FALSE]
+#
+# When residualising, the fit is done ONCE on all samples and then subset --
+# never per draw and never per group. Per-group coefficients would remove a
+# different quantity from each side of a contrast, which is precisely the
+# artifact the contrast is supposed to detect. Same reasoning as the library
+# offset, which expr_for computes over the full sample set for the same reason.
+#
+# This is deliberately conservative: age and tobacco both correlate with
+# diagnosis, so residualising on them across all samples absorbs part of the
+# diagnosis effect too. A difference that survives it is real; one that
+# disappears is not thereby shown to be confounding alone.
+if (is.null(RESID)) {
+  Emat <- function(ids) expr_samples(d, ids)[, genes, drop = FALSE]
+} else {
+  msg("residualising on ", deparse(RESID), " over all ", ncol(d$logtpm), " samples ...")
+  ERES <- expr_for(d, group = NULL, residualise = RESID)
+  msg("  residualised matrix: ", nrow(ERES), " x ", ncol(ERES))
+  Emat <- function(ids) ERES[ids, genes, drop = FALSE]
+}
 
 ## ---- propagation seeds ------------------------------------------------------
 # Top N_SEED by the published DE rank. Fixed before any network is built, and
@@ -180,6 +212,7 @@ if (SUBSET == 0L && !file.exists(cfg_path)) {
     paste0('  "n_seed": ', N_SEED, ', "tom_pairs": ', TOM_PAIRS, ', "mcc_degree_budget": ', MCC_DEG, ','),
     '  "mcc": "log scale: logsumexp(lgamma(clique_size)) over maximal cliques, per module subgraph",',
     '  "decision_rule": "a contrast counts only where it exceeds the paired NULL contrast on the same draw",',
+    paste0('  "residualise": ', if (is.null(RESID)) '"none"' else paste0('"', deparse(RESID), '"'), ','),
     paste0('  "seed_base": ', SEED_BASE, ', "git_sha": "', sha, '",'),
     paste0('  "r_version": "', paste(R.version$major, R.version$minor, sep = "."), '"'),
     "}"), cfg_path)

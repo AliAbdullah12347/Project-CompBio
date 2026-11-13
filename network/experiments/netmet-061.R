@@ -33,9 +33,13 @@
 #   results_summary.csv            one row per metric: the verdict
 # ===========================================================================
 
+# netmet-061 aggregates netmet-060; netmet-063 aggregates netmet-062, the
+# covariate-residualised variant. One file, two sources.
+SOURCES <- c("netmet-061" = "netmet-060", "netmet-063" = "netmet-062")
+
 id <- commandArgs(trailingOnly = TRUE)[1]
 if (is.na(id) || id == "") id <- "netmet-061"
-stopifnot(id == "netmet-061")
+stopifnot(id %in% names(SOURCES))
 
 now_ <- function() format(Sys.time(), "%Y-%m-%dT%H:%M:%S")
 msg  <- function(...) message(sprintf("[%s] %s", now_(), paste0(..., collapse = "")))
@@ -46,7 +50,8 @@ msg("=== ", id, " starting ===")
 # silently aggregate nothing.
 TEST <- suppressWarnings(as.integer(Sys.getenv("NETMET_SUBSET", "0")))
 if (is.na(TEST)) TEST <- 0L
-SRC     <- if (TEST > 0L) "network/runs/netmet-060_test" else "network/runs/netmet-060"
+SRC     <- file.path("network/runs",
+                     paste0(SOURCES[[id]], if (TEST > 0L) "_test" else ""))
 run_dir <- file.path("network/runs", if (TEST > 0L) paste0(id, "_test") else id)
 dir.create(run_dir, showWarnings = FALSE, recursive = TRUE)
 

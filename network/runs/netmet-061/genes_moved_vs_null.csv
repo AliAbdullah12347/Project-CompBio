@@ -1,0 +1,9 @@
+"metric","n_moved_NULL","n_moved_BIPOLAR","n_moved_LITHIUM"
+"degree",159,1473,946
+"eigenvector",2627,3984,2703
+"betweenness",211,1627,1549
+"mcc_log",97,893,913
+"kIN",599,1976,1888
+"kME_own",6,970,924
+"ppr_BPD",193,1725,1654
+"ppr_LI",590,3110,2899
