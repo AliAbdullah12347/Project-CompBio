@@ -45,6 +45,9 @@ def queue_rows():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--fetch", action="store_true", help="download and unpack")
+    ap.add_argument("--only", help="space-separated run ids; fetch only these")
+    ap.add_argument("--force", action="store_true",
+                    help="allow a fetch to overwrite committed, unmodified result files")
     ap.add_argument("--put", nargs=2, metavar=("FILE", "KEY"),
                     help="upload an input under the prefix, e.g. data/bmind_lineage_expr.rds")
     a = ap.parse_args()
@@ -64,6 +67,15 @@ def main():
     run_keys = [k for k in keys if k.startswith("runs/") and k.endswith(".tar.gz")]
     runs = sorted({re.sub(r"[.]slice\d+$", "",
                           k[len("runs/"):-len(".tar.gz")]) for k in run_keys})
+    if a.only:
+        want = set(a.only.split())
+        unknown = want - set(runs)
+        if unknown:
+            sys.exit("--only: no uploads for " + ", ".join(sorted(unknown)))
+        runs = [r for r in runs if r in want]
+        run_keys = [k for k in run_keys
+                    if re.sub(r"[.]slice\d+$", "",
+                              k[len("runs/"):-len(".tar.gz")]) in want]
     draws = sorted(k for k in keys if k.startswith("perm031/perm_draw_"))
     logs = sorted(k for k in keys if k.startswith("logs/"))
     q = queue_rows()
@@ -93,6 +105,45 @@ def main():
         return
 
     os.makedirs(RUNS, exist_ok=True)
+
+    # Which files under network/runs/ git is tracking, and are currently clean.
+    # A sliced row uploads one tarball per pod and EVERY pod's tarball carries
+    # that row's whole directory, including any aggregate the row wrote from
+    # its own slice alone. extractall() let the last slice win, so on 14 Nov a
+    # routine fetch silently rewrote cent-056's committed 20-split null with a
+    # 1-split one -- K=20 became K=1, null_sd became NA and p went 0.048 ->
+    # 0.5. It still looked like a result, which is the dangerous part.
+    # So: never overwrite a committed, unmodified file with different content
+    # unless asked. Untracked and already-dirty files are extracted normally.
+    def tracked_clean():
+        def git(*args):
+            r = subprocess.run(["git"] + list(args), capture_output=True,
+                               text=True, check=True)
+            return {ln.strip() for ln in r.stdout.splitlines() if ln.strip()}
+        try:
+            tracked = git("ls-files", RUNS)
+            return tracked - git("diff", "--name-only", "--", RUNS)
+        except Exception:
+            return set()          # not a checkout, or no git: guard is a no-op
+
+    protected = set() if a.force else tracked_clean()
+
+    def extract_guarded(tf, dest, label):
+        skipped = []
+        for m in tf.getmembers():
+            out = os.path.normpath(os.path.join(dest, m.name)).replace(os.sep, "/")
+            if m.isfile() and out in protected and os.path.exists(out):
+                src = tf.extractfile(m)
+                if src is not None and src.read() != open(out, "rb").read():
+                    skipped.append(out)
+                    continue
+            tf.extract(m, dest)
+        if skipped:
+            print(f"    !! {label}: kept {len(skipped)} committed file(s) rather than "
+                  f"overwrite with different content (--force to override):")
+            for x in skipped[:6]:
+                print(f"       {x}")
+
     for r in runs:
         mine = sorted(k for k in run_keys
                       if re.sub(r"[.]slice\d+$", "",
@@ -101,7 +152,7 @@ def main():
             tmp = os.path.join(RUNS, "_" + os.path.basename(key))
             s3.download_file(BUCKET, ROOT + key, tmp)
             with tarfile.open(tmp) as tf:
-                tf.extractall(RUNS)
+                extract_guarded(tf, RUNS, os.path.basename(key))
             os.remove(tmp)
         print(f"  unpacked {r}" + (f" ({len(mine)} slices)" if len(mine) > 1 else ""))
     dd = os.path.join(RUNS, "perm-031")
