@@ -51,3 +51,4 @@
 50,0,0,1,"Scale-free topology fails at every power and both sample sizes","E=4 R=2 B=3 D=4 C=2","network/runs/base-001 (sft curve) + Phase 0 probes","2026-10-09-scale-free-fails.md","2026-10-09"
 51,0,0,1.4,"BP disease drives network-wide module differences; lithium adds nothing beyond composition","E=4 R=5 B=2 D=4 C=4","network/analyses/009-all-modules-across-groups","2026-10-14-bp-disease-drives-network-globally.md","2026-10-14"
 52,0,0,-0.2,"PC1 of the full-sample ME matrix captures BP disease: a global network factor","E=4 R=4 B=2 D=4 C=4","network/analyses/010-full-pca-all-samples","2026-10-14-pc1-captures-bp-disease.md","2026-10-14"
+53,NA,NA,NA,"Centrality separates diagnosis — and between a third and two thirds of it is age, tobacco and RNA quality","E=? R=? B=? D=? C=?","","2026-11-14-centrality-separates-diagnosis-and-half-of-it-is-covariates.md","2026-11-14"

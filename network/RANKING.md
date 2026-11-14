@@ -4,7 +4,7 @@
 > Edit the per-finding files in `network/findings/` instead. On a merge conflict here,
 > regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Findings:** 52   **Updated:** 2026-11-12
+**Findings:** 53   **Updated:** 2026-11-14
 
 Two rankings. **Table A (Evidence, 0–25)** governs the write-up; it rewards evidential
 strength so a well-powered null can score top. **Table B (Interest, 0–10)** records how
@@ -67,6 +67,7 @@ is ahead of the proof.
 | 50 | **0/25** | 0/10 | +1.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) | E=4 R=2 B=3 D=4 C=2 | network/runs/base-001 (sft curve) + Phase 0 probes |
 | 51 | **0/25** | 0/10 | +1.4 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) | E=4 R=5 B=2 D=4 C=4 | network/analyses/009-all-modules-across-groups |
 | 52 | **0/25** | 0/10 | -0.2 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) | E=4 R=4 B=2 D=4 C=4 | network/analyses/010-full-pca-all-samples |
+| 53 | **NA/25** | NA/10 | NA | [Centrality separates diagnosis — and between a third and two thirds of it is age, tobacco and RNA quality](findings/2026-11-14-centrality-separates-diagnosis-and-half-of-it-is-covariates.md) | E=? R=? B=? D=? C=? |  |
 
 ## Table B — Interest
 
@@ -124,3 +125,4 @@ is ahead of the proof.
 | 50 | **0/10** | 0/25 | +1.0 | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) |
 | 51 | **0/10** | 0/25 | +1.4 | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) |
 | 52 | **0/10** | 0/25 | -0.2 | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) |
+| 53 | **NA/10** | NA/25 | NA | [Centrality separates diagnosis — and between a third and two thirds of it is age, tobacco and RNA quality](findings/2026-11-14-centrality-separates-diagnosis-and-half-of-it-is-covariates.md) |
