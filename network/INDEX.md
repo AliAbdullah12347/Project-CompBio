@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-15 · **Catalogued:** 216 items
+**Updated:** 2026-11-15 · **Catalogued:** 219 items
 
 ## How to search
 
@@ -118,7 +118,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-26 | 2026-10-26-how-to-read-the-preservation-rows.md | How to read the 28 preservation rows: the perm split is by design, the comparison was not |
 | 2026-11-08 | 2026-11-08-stale-running-path-ignored-progress.md | Three experiments were retired while holding 57 checkpoints between them |
 
-## Run directories (74)
+## Run directories (75)
 
 | run | status | size |
 |:--|:--|:--|
@@ -175,7 +175,8 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | netmet-062 | live | 11 files |
 | netmet-063 | live | 10 files |
 | netmet-063-run.log | live | 0 files |
-| netmet-064 | live | 0 files |
+| netmet-064 | live | 11 files |
+| netmet-065 | live | 11 files |
 | perm-031 | live | 143 files |
 | perm-032 | live | 44 files |
 | perm-054 | live | 505 files |
@@ -197,9 +198,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | trait-035 | live | 2 files |
 | trait-053 | live | 2 files |
 
-## Queue experiments (62)
+## Queue experiments (64)
 
-Status: DONE=62
+Status: DONE=64
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -248,6 +249,8 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | netmet-061 | netmetrics | DONE | paired scoring of netmet-060 against its own control-split null; top genes per metric |
 | netmet-062 | netmetrics | DONE | as netmet-060, covariate-residualised expression |
 | netmet-063 | netmetrics | DONE | paired scoring of netmet-062 against its own control-split null |
+| netmet-064 | netmetrics | DONE | diameter, characteristic path length, efficiency and connectivity on the netmet-060 draws |
+| netmet-065 | netmetrics | DONE | as netmet-064, covariate-residualised expression |
 | perm-031 | perm | DONE | group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws |
 | perm-032 | perm | DONE | group-label permutation null K=1000 if K=500 wall-clock allows |
 | perm-054 | permutation | DONE | permute diagnosis labels, refit DE, rescore modules; K=500; add-one estimator |

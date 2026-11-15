@@ -32,6 +32,39 @@
 > control-control contrast: lithium +0.0467 over null (10/10, p = 0.0059),
 > bipolar +0.0072 (7/10, p = 0.262).
 >
+> **SECOND CORRECTION, 2026-11-15, from netmet-064.** The "0 of 8 after
+> residualisation" above cannot be read as "the effect was confounding".
+> Rebuilding the graphs to measure path length recorded edge counts, and
+> residualisation is **not group-neutral**:
+>
+> | group | edges raw | edges residualised | removed |
+> |:--|--:|--:|--:|
+> | ctrlA | 2,979,107 | 1,364,451 | **53.5%** |
+> | ctrlB | 2,547,909 | 1,205,147 | **52.5%** |
+> | bp_nolith | 2,732,350 | 2,502,638 | **8.4%** |
+> | bp_lith | 2,073,343 | 1,596,829 | 22.8% |
+>
+> The two control groups lose the same as each other (p = 0.76), so it is a
+> property of the group. Controls lose 45 points more than bp_nolith
+> (p = 0.006), because controls carry far more covariate variance (age sd
+> 15.1 against 9.7) and removing the age term takes more with it.
+>
+> **So both arms are inconclusive for bipolar**: raw carries a 9.5-year age
+> gap, and residualised is not like-for-like. Two further consequences:
+>
+> - **The "patients are more homogeneous" claim is withdrawn too.** It does
+>   not exist in raw data (ctrl-ctrl 0.871 vs patient-patient 0.864) and
+>   appears only after the correction that thins controls six times harder.
+> - **The gene-significance dissociation weakens.** On raw values both
+>   lithium and bipolar lift GS above null (p = 0.0059 each); lithium's lead
+>   is marginal at p = 0.053. The clean "bipolar at null" version used the
+>   residualised numbers.
+>
+> What survives all of this is the lithium structural result, which is a raw
+> finding and needs no correction: mean degree 442 to 335, path length 2.947
+> to 3.074, diameter 7.0 to 7.9, all p <= 0.008, reproducing the earlier
+> independent 11-22% sparsification finding.
+
 > Caught by a reader asking whether Result 1 was about lithium or bipolar, and
 > whether it contradicted the rest of the arm. It did not contradict the arm;
 > it was scored against the wrong baseline.

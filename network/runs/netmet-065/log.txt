@@ -1,0 +1,17 @@
+[.Rprofile] detectCores -> 5 so enableWGCNAThreads picks 4: ok
+[2026-11-15T21:53:48] === netmet-065 starting ===
+[2026-11-15T21:53:48] SLICE_ID=10 (0 = every draw)
+Allowing parallel execution with up to 4 working processes.
+[2026-11-15T21:53:52] residualising on ~age + sex + tobacco + rin + plate + seqpc1 + seqpc2 + seqpc3 over all 474 samples ...
+[2026-11-15T21:53:54] config written: network/config/netmet-065.json
+[2026-11-15T21:53:54] --- draw 10 of 10 ---
+[2026-11-15T21:53:54]   [ctrlA] adjacency 74 x 12368 ...
+[2026-11-15T21:54:24]   [ctrlA] 12368 nodes, 1560937 edges, 951 component(s), giant 11403
+[2026-11-15T21:54:31]   [ctrlB] adjacency 74 x 12368 ...
+[2026-11-15T21:55:03]   [ctrlB] 12368 nodes, 999926 edges, 1268 component(s), giant 11080
+[2026-11-15T21:55:07]   [nolith] adjacency 74 x 12368 ...
+[2026-11-15T21:55:38]   [nolith] 12368 nodes, 2502638 edges, 742 component(s), giant 11621
+[2026-11-15T21:55:51]   [lith] adjacency 74 x 12368 ...
+[2026-11-15T21:56:20]   [lith] 12368 nodes, 1623248 edges, 949 component(s), giant 11403
+[2026-11-15T21:56:26] draw 10 written: network/runs/netmet-065/draw_10.csv
+[2026-11-15T21:56:26] === netmet-065 slice 10 COMPLETE ===
