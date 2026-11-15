@@ -54,6 +54,26 @@ m <- data.frame(
   stringsAsFactors = FALSE)
 stopifnot(!any(is.na(m)))
 
+# Deposited CIBERSORT fractions, carried through for the cell-composition
+# feature sets. These are the CLASSIC fractions from the series matrix, not
+# the B-mode CIBERSORTx ones: B-mode batch correction is fitted across the
+# whole cohort at once, which makes it transductive and therefore unusable
+# inside cross-validation (CLAUDE.md 4.1). Classic CIBERSORT with quantile
+# normalisation off is a per-sample operation, so it may cross the fold
+# boundary. The four structural zeros (T follicular helper, T regulatory,
+# macrophages M1, mast activated) are zero in all 480 samples and are left
+# out; summing to lineages makes them irrelevant either way.
+LM22 <- c("b.cells.naive","b.cells.memory","plasma.cells","t.cells.cd8",
+          "t.cells.cd4.naive","t.cells.cd4.memory.resting",
+          "t.cells.cd4.memory.activated","t.cells.gamma.delta",
+          "nk.cells.resting","nk.cells.activated","monocytes",
+          "macrophages.m0","macrophages.m2","dendritic.cells.resting",
+          "dendritic.cells.activated","mast.cells.resting","eosinophils",
+          "neutrophils")
+for (ct in LM22) m[[ct]] <- as.numeric(b[[ct]])
+stopifnot(!any(is.na(m[, LM22])), all(rowSums(m[, LM22]) > 0.95))
+
+
 cnt <- read.delim(gzfile(file.path(impl, "data/cohort_474/counts_474.tsv.gz")),
                   row.names = 1, check.names = FALSE)
 stopifnot(nrow(cnt) == 57820)

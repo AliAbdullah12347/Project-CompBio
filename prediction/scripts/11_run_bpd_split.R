@@ -31,6 +31,7 @@ impl    <- getarg("impl", "..")
 OUTDIR  <- getarg("outdir", file.path(impl, "prediction/results/bpd"))
 MODELS  <- strsplit(getarg("models", "enet,rf"), ",")[[1]]
 FEATSEL <- getarg("features", "all")
+COVSET  <- getarg("covset", "full")
 stopifnot(!is.na(SPLIT), COHORT %in% c("groupA", "full", "groupA_plate", "lithium"))
 # The lithium contest uses its own cache (226 BP1, is_case = lithium user) but
 # the identical pipeline otherwise, so any difference in the answer is about
@@ -83,31 +84,115 @@ E      <- log2(t(t(cnt_k + 0.5) / (lib * nf + 1)) * 1e6)
 dimnames(E) <- dimnames(cnt_k)
 
 ## ---- covariate design --------------------------------------------------------
+# Which covariates belong here is a decision, not a default. A confounder has
+# to be causally prior to the exposure, and lithium was prescribed years
+# before the blood was drawn -- so RIN, plate, library size and the sequencing
+# PCs, all created by the assay, cannot confound it. They can only add noise.
+# Of the variables that are prior, only age and sex are imbalanced with
+# lithium (|SMD| 0.46 and 0.24; tobacco is 0.08). See 18_covariate_audit.R,
+# which also shows the full block scoring 0.571 against age alone at 0.613.
+#
+#   confounder       age + sex           -- primary for the lithium contrast
+#   confounder_tech  + RIN, plate, seqPC -- sensitivity: noise reduction only
+#   full             everything          -- the original block, kept so the
+#                                          earlier results stay reproducible
+#
+# The case-control contrast is a different matter: there the assay variables
+# ARE imbalanced (plate chi-sq p = 1.6e-09), because group B was sequenced
+# apart, so `full` remains its default.
+COVSETS <- list(
+  confounder      = c("age", "sexM"),
+  confounder_tech = c("age", "sexM", "rin", "seqpc1", "seqpc2", "seqpc3", "PLATE"),
+  full            = c("age", "sexM", "tobacco", "rin", "seqpc1", "seqpc2", "seqpc3", "PLATE"))
+stopifnot(COVSET %in% names(COVSETS))
+
 # Factor levels are taken from the training fold so the test matrix has exactly
 # the same columns; a plate present only in test would otherwise shift them.
-mk_cov <- function(m, lv) {
+mk_cov <- function(m, lv, want) {
   d <- data.frame(age = as.numeric(m$age), tobacco = as.integer(m$tobacco),
                   rin = as.numeric(m$rin), seqpc1 = m$seqpc1,
-                  seqpc2 = m$seqpc2, seqpc3 = m$seqpc3)
-  d$sexM <- as.integer(m$sex == "M")
-  for (p in lv$plate[-1]) d[[paste0("plate_", p)]] <- as.integer(m$plate == p)
+                  seqpc2 = m$seqpc2, seqpc3 = m$seqpc3,
+                  sexM = as.integer(m$sex == "M"))
+  d <- d[, intersect(want, names(d)), drop = FALSE]
+  if ("PLATE" %in% want)
+    for (p in lv$plate[-1]) d[[paste0("plate_", p)]] <- as.integer(m$plate == p)
   as.matrix(d)
 }
 lv <- list(plate = sort(unique(as.character(meta$plate[tr]))))
-Cov <- mk_cov(meta, lv)
-stopifnot(!any(is.na(Cov)))
+Cov <- mk_cov(meta, lv, COVSETS[[COVSET]])
+stopifnot(!any(is.na(Cov)), ncol(Cov) > 0)
+
+## ---- cell composition --------------------------------------------------------
+# The deposited classic CIBERSORT fractions, summed onto a haematopoietic
+# lineage tree and turned into four ILR balances. Fractions sum to 1, so they
+# cannot all enter a model; the balances are the compositional way round that.
+#
+# This is NOT a covariate set. Lithium raises neutrophils (0.378 -> 0.441 here,
+# p = 2.3e-04), so composition sits on the causal path from the drug to the
+# expression. Adjusting a confounder removes bias; adjusting a mediator
+# removes the effect. It is carried as its own feature set so the question it
+# answers -- how much of the signal is cell mixture rather than transcription
+# -- is asked out loud rather than by accident.
+LIN <- list(gran = c("neutrophils", "eosinophils", "mast.cells.resting"),
+            mono = c("monocytes", "macrophages.m0", "macrophages.m2",
+                     "dendritic.cells.resting", "dendritic.cells.activated"),
+            T    = c("t.cells.cd8", "t.cells.cd4.naive", "t.cells.cd4.memory.resting",
+                     "t.cells.cd4.memory.activated", "t.cells.gamma.delta"),
+            NK   = c("nk.cells.resting", "nk.cells.activated"),
+            B    = c("b.cells.naive", "b.cells.memory", "plasma.cells"))
+L <- sapply(LIN, function(cs) rowSums(as.matrix(meta[, cs, drop = FALSE])))
+L <- L / rowSums(L)
+
+# Multiplicative zero replacement, delta = 0.65. The detection limit is the
+# smallest non-zero value per lineage, and that minimum is a cross-sample
+# quantity -- so it is taken over the TRAINING fold only and then applied to
+# both. One BP1 subject has a zero B-cell fraction; this is the rule that
+# keeps its log finite without the test fold contributing to it.
+lim <- apply(L[tr, , drop = FALSE], 2, function(v) { nz <- v[v > 0]
+  if (length(nz)) min(nz) * 0.65 else 1e-6 })
+z   <- L <= 0
+ins <- rowSums(sweep(z, 2, lim, "*"))
+L[z] <- matrix(rep(lim, each = nrow(L)), nrow(L))[z]
+L[!z] <- (L * (1 - ins))[!z]
+L <- L / rowSums(L)
+
+# Sequential binary partition. b1 splits myeloid from lymphoid, which is where
+# lithium acts, so it is the coordinate to read first.
+SBP <- list(b1 = list(n = c("gran", "mono"), d = c("T", "NK", "B")),
+            b2 = list(n = "gran",            d = "mono"),
+            b3 = list(n = "T",               d = c("NK", "B")),
+            b4 = list(n = "NK",              d = "B"))
+psi <- t(sapply(SBP, function(b) {
+  v <- setNames(numeric(ncol(L)), colnames(L))
+  r <- length(b$n); s <- length(b$d)
+  v[b$n] <- sqrt(s / (r * (r + s))); v[b$d] <- -sqrt(r / (s * (r + s))); v }))
+stopifnot(max(abs(unname(psi %*% t(psi)) - diag(nrow(psi)))) < 1e-12)
+Cells <- log(L) %*% t(psi)
+colnames(Cells) <- names(SBP)
+stopifnot(all(is.finite(Cells)))
 
 ## ---- feature sets ------------------------------------------------------------
 Xg <- t(E)                                   # samples x genes
-Btr <- qr.solve(cbind(1, Cov[tr, , drop = FALSE]), Xg[tr, , drop = FALSE])
-Xr  <- Xg - cbind(1, Cov) %*% Btr            # train-fitted coefficients
+rsd <- function(X) {                         # residualise on train-fitted coefficients
+  B <- qr.solve(cbind(1, Cov[tr, , drop = FALSE]), X[tr, , drop = FALSE])
+  X - cbind(1, Cov) %*% B
+}
+Xr <- rsd(Xg)
 stopifnot(max(abs(colMeans(Xr[tr, , drop = FALSE]))) < 1e-8)
 
-FEAT <- list(covariates  = Cov,
-             genes       = Xg,
-             genes_cov   = cbind(Xg, Cov),
-             genes_resid = Xr)
+FEAT <- list(covariates   = Cov,
+             genes        = Xg,
+             genes_cov    = cbind(Xg, Cov),
+             genes_resid  = Xr,
+             cells        = Cells,
+             cells_cov    = cbind(Cells, Cov),
+             genes_cells  = cbind(Xg, Cells),
+             # genes with the cell mixture projected out: what is left is a
+             # change in transcription that the mixture cannot explain.
+             genes_decell = Xg - cbind(1, Cells) %*%
+               qr.solve(cbind(1, Cells[tr, , drop = FALSE]), Xg[tr, , drop = FALSE]))
 if (FEATSEL != "all") FEAT <- FEAT[strsplit(FEATSEL, ",")[[1]]]
+stopifnot(length(FEAT) > 0, !any(sapply(FEAT, is.null)))
 
 ## ---- helpers -----------------------------------------------------------------
 auc <- function(score, lab) {
@@ -174,7 +259,8 @@ for (fs in names(FEAT)) {
     rows[[n]] <- data.frame(
       cohort = COHORT, perm = PERM, split_id = SPLIT,
       repeat_no = s$repeat_no[1], fold_no = s$fold_no[1],
-      feature_set = fs, model = md, n_features = ncol(X), rf_keep = RF_KEEP,
+      feature_set = fs, model = md, covset = COVSET,
+      n_features = ncol(X), rf_keep = RF_KEEP,
       n_train = sum(tr), n_test = sum(te), n_genes_kept = nrow(cnt_k),
       sample_id = s$sample_id[te], y = y[te], pred = out$pred,
       tune = out$tune, fit_seconds = round(secs, 1),
@@ -186,7 +272,10 @@ for (fs in names(FEAT)) {
 
 dir.create(OUTDIR, showWarnings = FALSE, recursive = TRUE)
 res <- do.call(rbind, rows)
-f <- file.path(OUTDIR, sprintf("%s_perm%02d_split%03d.csv", COHORT, PERM, SPLIT))
+# The covariate set is in the filename, not only in a column: two runs that
+# differ only by covset must never land on the same object and silently
+# overwrite each other in the bucket.
+f <- file.path(OUTDIR, sprintf("%s_%s_perm%02d_split%03d.csv", COHORT, COVSET, PERM, SPLIT))
 write.csv(res, f, row.names = FALSE, quote = FALSE)
 cat(sprintf("split %d (%s, perm %d): %d genes kept, %d train / %d test -> %s\n",
             SPLIT, COHORT, PERM, nrow(cnt_k), sum(tr), sum(te), basename(f)))

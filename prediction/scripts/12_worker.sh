@@ -30,7 +30,8 @@ python3 /cfg/s3.py get "$IN/splits_bpd_full.csv"         "$W/prediction/splits/s
 python3 /cfg/s3.py get "$IN/splits_bpd_groupA_plate.csv" "$W/prediction/splits/splits_bpd_groupA_plate.csv"
 python3 /cfg/s3.py get "$IN/splits_bpd_lithium.csv"      "$W/prediction/splits/splits_bpd_lithium.csv"
 python3 /cfg/s3.py get "$IN/lithium_inputs.rds"          "$W/prediction/cache/lithium_inputs.rds"
-python3 /cfg/s3.py get "$IN/worklist_bpd.tsv"            "$W/worklist.tsv"
+# Which worklist this job runs is a property of the job, not of the image.
+python3 /cfg/s3.py get "$IN/${WORKLIST:-worklist_bpd.tsv}"  "$W/worklist.tsv"
 python3 /cfg/s3.py get "$IN/11_run_bpd_split.R"          "$W/scripts/11_run_bpd_split.R"
 
 echo "=== R packages ==="
@@ -63,18 +64,26 @@ DONE=0
 # whole first cluster run produced zero-row files that way.
 TAB=$(printf '	')
 # Skip the header, then take every NWth row.
-tail -n +2 "$W/worklist.tsv" | while IFS="$TAB" read -r COHORT PERM SPLIT MODELS FEATURES; do
+# COVSET is a sixth column. An older five-column worklist still works: the
+# read leaves COVSET empty and it falls back to "full", which is what those
+# rows were run under.
+tail -n +2 "$W/worklist.tsv" | while IFS="$TAB" read -r COHORT PERM SPLIT MODELS FEATURES COVSET; do
+  COVSET="${COVSET:-full}"
   N=$((N + 1))
   [ $(( (N - 1) % NW )) -eq "$IDX" ] || continue
-  KEY="prediction/bpd/results/${COHORT}_perm$(printf '%02d' "$PERM")_split$(printf '%03d' "$SPLIT").csv"
+  # The covariate set is part of the object name because it is part of the
+  # run. Without it a confounder-set run and a full-set run collide on one
+  # key and the second is skipped as "already present" -- which looks like
+  # success and produces nothing.
+  KEY="prediction/bpd/results/${COHORT}_${COVSET}_perm$(printf '%02d' "$PERM")_split$(printf '%03d' "$SPLIT").csv"
   OUT="$W/prediction/results/bpd/$(basename "$KEY")"
   if grep -qx "$KEY" "$W/done.txt" 2>/dev/null; then
     echo "--- item $N: $KEY already in S3, skipping ---"; continue
   fi
-  echo "--- item $N: $COHORT perm=$PERM split=$SPLIT [$MODELS / $FEATURES] ---"
+  echo "--- item $N: $COHORT perm=$PERM split=$SPLIT covset=$COVSET [$MODELS / $FEATURES] ---"
   if Rscript "$W/scripts/11_run_bpd_split.R" \
        --split "$SPLIT" --cohort "$COHORT" --perm "$PERM" \
-       --models "$MODELS" --features "$FEATURES" \
+       --models "$MODELS" --features "$FEATURES" --covset "$COVSET" \
        --impl "$W" --outdir "$W/prediction/results/bpd" 2>&1 | grep -vE "^Loading|^Warning|built under"; then
     if [ -s "$OUT" ] && [ "$(wc -l < "$OUT")" -gt 1 ]; then
       python3 /cfg/s3.py put "$OUT" "$KEY" >/dev/null && echo "    -> $KEY"
