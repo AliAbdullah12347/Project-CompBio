@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-12 · **Catalogued:** 204 items
+**Updated:** 2026-11-14 · **Catalogued:** 215 items
 
 ## How to search
 
@@ -23,7 +23,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | [STATE.md](STATE.md) | what is running right now |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | file conventions, merge-conflict rules |
 
-## Findings (52 — 48 live, 4 retracted)
+## Findings (53 — 49 live, 4 retracted)
 
 | Evidence · Interest | status | finding | date |
 |:--|:--|:--|:--|
@@ -79,6 +79,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 0/25 · 0/10 | RETRACTED | [Scale-free topology fails at every power and both sample sizes](findings/2026-10-09-scale-free-fails.md) | 2026-10-09 |
 | 0/25 · 0/10 | RETRACTED | [BP disease drives network-wide module differences; lithium adds nothing beyond composition](findings/2026-10-14-bp-disease-drives-network-globally.md) | 2026-10-14 |
 | 0/25 · 0/10 | RETRACTED | [PC1 of the full-sample ME matrix captures BP disease: a global network factor](findings/2026-10-14-pc1-captures-bp-disease.md) | 2026-10-14 |
+| — | live | [Centrality separates diagnosis — and between a third and two thirds of it is age, tobacco and RNA quality](findings/2026-11-14-centrality-separates-diagnosis-and-half-of-it-is-covariates.md) | 2026-11-14 |
 
 ## Analyses (21)
 
@@ -117,7 +118,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-26 | 2026-10-26-how-to-read-the-preservation-rows.md | How to read the 28 preservation rows: the perm split is by design, the comparison was not |
 | 2026-11-08 | 2026-11-08-stale-running-path-ignored-progress.md | Three experiments were retired while holding 57 checkpoints between them |
 
-## Run directories (67)
+## Run directories (73)
 
 | run | status | size |
 |:--|:--|:--|
@@ -168,6 +169,12 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | mod-020 | live | 49 files |
 | net-007 | live | 49 files |
 | net-008 | live | 49 files |
+| netmet-060 | live | 11 files |
+| netmet-061 | live | 10 files |
+| netmet-061-run.log | live | 0 files |
+| netmet-062 | live | 11 files |
+| netmet-063 | live | 10 files |
+| netmet-063-run.log | live | 0 files |
 | perm-031 | live | 143 files |
 | perm-032 | live | 44 files |
 | perm-054 | live | 505 files |
@@ -189,9 +196,9 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | trait-035 | live | 2 files |
 | trait-053 | live | 2 files |
 
-## Queue experiments (58)
+## Queue experiments (62)
 
-Status: DONE=58
+Status: DONE=62
 
 Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 
@@ -236,6 +243,10 @@ Full detail in `RUNLOG/queue.tsv`; one row per experiment in `catalog.csv`.
 | mod-020 | moddetect | DONE | ref=control;deepSplit=2;minModuleSize=30;mergeCutHeight=0.35 |
 | net-007 | nettype | DONE | ref=control;corr=bicor;net=unsigned;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
 | net-008 | nettype | DONE | ref=control;corr=bicor;net=signed_hybrid;genes=all;draws=100;perms_per_draw=50;CHECKPOINT PER DRAW (spans sessions) |
+| netmet-060 | netmetrics | DONE | module eigengene correlation, intramodular connectivity, gene significance, topological overlap, differential connectivi |
+| netmet-061 | netmetrics | DONE | paired scoring of netmet-060 against its own control-split null; top genes per metric |
+| netmet-062 | netmetrics | DONE | as netmet-060, covariate-residualised expression |
+| netmet-063 | netmetrics | DONE | paired scoring of netmet-062 against its own control-split null |
 | perm-031 | perm | DONE | group-label permutation null K=500; draws matched observed vs permuted; BH across MODULES not draws |
 | perm-032 | perm | DONE | group-label permutation null K=1000 if K=500 wall-clock allows |
 | perm-054 | permutation | DONE | permute diagnosis labels, refit DE, rescore modules; K=500; add-one estimator |

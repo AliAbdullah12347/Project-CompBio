@@ -1,57 +1,60 @@
 # What is left, and exactly how to run it
 
-**Updated:** 2026-11-10. Everything below is runnable from a clone of this repo.
-Ordered by value per hour. Items 1 and 2 are the science; 3 is bulk compute.
+**Updated:** 2026-11-15. Everything below is runnable from a clone of this repo.
 
-> **As of 11 Nov 15:45 UTC: 53 of 55 rows DONE**, from 19 on 8 Nov. Items 1
-> and 3 are ANSWERED and item 4 is drained. **Item 2 is running** as
-> `perm-054` on `arm3-run-91/92`, alongside `cent-056` on `arm3-run-93/94`,
-> the control-split null below.
+> **The queue is drained: 62 of 62 rows DONE, nothing running, nothing open.**
+> Items 1-4 below are all ANSWERED and are kept for their method notes, not
+> because work remains.
 >
-> **Item 3 is answered and its premise was wrong.** `recon-055` ran
-> `grp-051`'s own partition through `trait-053`'s model and got **1 of 69**,
-> not 28 -- and `grp-051b`'s own output said so all along: `li_padj` = 29 is
-> the count BEFORE composition adjustment, `li_adj_padj` = 1 is after. The 28
-> was the unadjusted column. Both decompositions find exactly one surviving
-> module and, by the Jaccard in the eosinophil finding, it is the same one.
-> See `findings/2026-11-11-the-28-vs-1-discrepancy-was-a-misread-column.md`.
+> **The one open methodological question is now closed.** The 11 Nov note asked
+> for `cent-040`'s control-split null. `cent-056` ran it: two disjoint halves of
+> the control group give **43 of 71** "differing" modules against cent-040's 52.
+> The procedure was measuring the global level and module size, not biology, and
+> cent-040's 52 must never be cited as a lithium effect.
 >
-> The arm's conclusion, now resting on every test it has:
+> **The arm's negative, resting on every test it has:**
 >
-> - **0 of 25 parameter variants** show a lithium/non-lithium preservation
->   difference, p 0.441 to 0.989 (`runs/synth-048/primary_contrast_by_variant.csv`).
-> - **0 of 71 modules** against a group-label permutation null at K=157,
->   smallest p 0.038 (`perm-031`).
-> - **0 of 5 cell lineages** when the question is re-asked on bMIND
->   deconvolved expression, p 0.761 to 0.890 (`bmind-047`). This is the test
->   that closes the "bulk dilutes a cell-type-specific effect" objection.
-> - **0 of 12360 genes** change intramodular connectivity at BH 5%, K=500,
->   smallest BH 0.149, with below-chance occupancy of the p floor (`hub-037`).
-> - **70 of 71 modules** stable across 27 variants; the one that fails,
->   `skyblue2`, sits on a Z-bracket edge at 8.64.
+> - **0 of 25 parameter variants** (`synth-048`, p 0.441 to 0.989).
+> - **0 of 71 modules** against a group-label permutation null at K=157 (`perm-031`).
+> - **0 of 5 cell lineages** on bMIND deconvolved expression (`bmind-047`, p 0.761
+>   to 0.890). This closes the "bulk dilutes a cell-type-specific effect" objection.
+> - **0 of 12360 genes** change intramodular connectivity at BH 5%, K=500 (`hub-037`).
+> - **70 of 71 modules** stable across 27 variants; `skyblue2` fails on a Z-bracket
+>   edge at 8.64.
 >
-> Two positives survive all of it: the **eosinophil module** `mediumpurple2`,
-> whose lithium association strengthens under composition adjustment, and a
-> **global 11-22% thinning** of the lithium co-expression graph, reproduced in
-> three independent subsamples and localising to no module.
+> **Three positives survive all of it:**
 >
-> **Five rows reported a wrong number before today**, each having exited 0.
-> All five are fixed and re-run; the detail is in `network/cluster/README.md`.
-> `perm-032` is the one still needing care as written - its "8 modules
-> significant" is an artifact of p=0, so use
-> `results_permutation_test_addone.csv`, which gives 0. And `cent-040`'s
-> matched comparison should not be cited as "52 of 71 modules differ": that is
-> one global shift counted once per module.
+> - the **eosinophil module** `mediumpurple2`, whose lithium association
+>   strengthens under composition adjustment and which `eos-057` shows is not
+>   outlier-driven (LOO 0/226, bootstrap CI excludes zero, fragility 13 subjects);
+> - a **global 11-22% thinning** of the lithium co-expression graph, reproduced in
+>   three independent subsamples and localising to no module;
+> - **centrality separates diagnosis** (`netmet-060`/`netmet-062`). Cross-diagnosis
+>   pairs agree less than within-kind pairs on all eight gene-level metrics, 10 of
+>   10 draws, before and after residualising age, sex, tobacco, RIN, plate and the
+>   sequencing PCs -- but the gap shrinks by 33-64%, so roughly half the raw effect
+>   was demographic and technical. Lithium behaves as a within-kind pair throughout.
+>   See `findings/2026-11-14-centrality-separates-diagnosis-and-half-of-it-is-covariates.md`.
 >
-> **The one open methodological question** is `cent-040`'s control-split null:
-> cut the 234 controls into two disjoint halves of 74 and run the same
-> comparison. If two halves of one group produce a comparable count of
-> "differing" modules, the procedure is measuring the global level and module
-> size rather than biology. Two adjacency builds, about an hour.
+> **The permutation-null pair (`perm-054` / `perm-059`) is the other late result.**
+> Lithium has 1,426 DEGs and **no** module structure (21 of 69 vs null 16.4,
+> p = 0.194); BPD has 4 DEGs and **some** (27 of 69 vs 16.5, p = 0.018).
+> `analyses/019`'s "21 modules enriched for lithium" is **withdrawn**, and its 27
+> for BPD survives against 16.5 rather than the ~0 the old null implied.
+>
+> **Seven rows reported a wrong number while exiting 0.** All are fixed and re-run;
+> the detail is in `network/cluster/README.md`. `perm-032`'s "8 modules significant"
+> is an artifact of p=0 -- use `results_permutation_test_addone.csv`, which gives 0.
+>
+> **A fetch can silently overwrite a committed result.** On 14 Nov a routine
+> `collect.py --fetch` replaced `cent-056`'s 20-split null with a 1-split one:
+> K 20 to 1, sd to NA, p 0.048 to 0.5, and it still looked like a result. Every
+> sliced row was one fetch away from the same thing. `collect.py` now refuses to
+> overwrite a git-tracked, unmodified file whose content would change.
 >
 > **The bulk compute is on the research cluster, not the iMac.** See
-> `network/cluster/README.md`. **Do not read an upload count as a success
-> count** - the first drain reported 30 rows uploaded and had finished 2.
+> `network/cluster/README.md`. **Do not read an upload count as a success count**
+> - the first drain reported 30 rows uploaded and had finished 2.
 > Return codes are in `status/*.tsv`.
 
 ---

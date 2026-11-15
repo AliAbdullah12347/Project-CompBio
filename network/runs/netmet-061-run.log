@@ -1,0 +1,71 @@
+[2026-11-12T19:57:37] === netmet-061 starting ===
+[2026-11-12T19:57:37] 10 draw file(s): draw_01.rds, draw_02.rds, draw_03.rds, draw_04.rds, draw_05.rds, draw_06.rds, draw_07.rds, draw_08.rds, draw_09.rds, draw_10.rds
+[2026-11-12T19:57:43] --- draw 1 ---
+[2026-11-12T19:58:22] --- draw 2 ---
+[2026-11-12T19:59:00] --- draw 3 ---
+[2026-11-12T19:59:37] --- draw 4 ---
+[2026-11-12T20:00:17] --- draw 5 ---
+[2026-11-12T20:00:53] --- draw 6 ---
+[2026-11-12T20:01:28] --- draw 7 ---
+[2026-11-12T20:02:04] --- draw 8 ---
+[2026-11-12T20:02:40] --- draw 9 ---
+[2026-11-12T20:03:16] --- draw 10 ---
+[2026-11-12T20:03:52] paired tests over 10 draws ...
+[2026-11-12T20:03:52] top genes per metric ...
+[2026-11-12T20:03:55] per-gene shifts against the null ...
+[2026-11-12T20:04:04] 
+[2026-11-12T20:04:04] === modules differing, contrast vs its own null (mean over draws) ===
+[2026-11-12T20:04:04]   betweenness   NULL   6.5 | BIPOLAR  17.4 | LITHIUM   1.1   (of 71 modules)
+[2026-11-12T20:04:04]   degree        NULL  42.7 | BIPOLAR  52.5 | LITHIUM  50.7   (of 71 modules)
+[2026-11-12T20:04:04]   eigenvector   NULL  56.4 | BIPOLAR  67.5 | LITHIUM  53.9   (of 71 modules)
+[2026-11-12T20:04:04]   kIN           NULL  42.4 | BIPOLAR  47.9 | LITHIUM  47.2   (of 71 modules)
+[2026-11-12T20:04:04]   kME_own       NULL  23.7 | BIPOLAR  31.9 | LITHIUM  24.3   (of 71 modules)
+[2026-11-12T20:04:04]   mcc_log       NULL  27.2 | BIPOLAR  36.6 | LITHIUM  25.3   (of 71 modules)
+[2026-11-12T20:04:04]   ppr_BPD       NULL  27.8 | BIPOLAR  45.6 | LITHIUM  27.3   (of 71 modules)
+[2026-11-12T20:04:04]   ppr_LI        NULL  30.3 | BIPOLAR  49.0 | LITHIUM  29.9   (of 71 modules)
+[2026-11-12T20:04:04] 
+[2026-11-12T20:04:04] === metrics whose contrast exceeds its null at BH 0.05 ===
+[2026-11-12T20:04:04]   modules_differing:betweenness      BIPOLAR  excess +10.900  p=0.00586  BH=0.0158
+[2026-11-12T20:04:04]   modules_differing:eigenvector      BIPOLAR  excess +11.100  p=0.00589  BH=0.0158
+[2026-11-12T20:04:04]   tom_global_spearman                BIPOLAR  excess -0.105  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   d_me_mean_abs                      BIPOLAR  excess -0.012  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_degree                         BIPOLAR  excess -0.140  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_eigenvector                    BIPOLAR  excess -0.405  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_betweenness                    BIPOLAR  excess -0.049  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_mcc_log                        BIPOLAR  excess -0.072  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_kIN                            BIPOLAR  excess -0.061  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_ppr_BPD                        BIPOLAR  excess -0.103  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_ppr_LI                         BIPOLAR  excess -0.061  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   modules_differing:ppr_BPD          BIPOLAR  excess +17.800  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   tom_mod_mean_abs_delta             BIPOLAR  excess +0.008  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_betweenness                    LITHIUM  excess +0.031  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   rho_kME_own                        LITHIUM  excess +0.028  p=0.00592  BH=0.0158
+[2026-11-12T20:04:04]   modules_differing:ppr_LI           BIPOLAR  excess +18.700  p=0.008  BH=0.0179
+[2026-11-12T20:04:04]   me_cor_spearman                    BIPOLAR  excess -0.037  p=0.00805  BH=0.0179
+[2026-11-12T20:04:04]   rho_kME_own                        BIPOLAR  excess -0.036  p=0.00805  BH=0.0179
+[2026-11-12T20:04:04]   modules_differing:mcc_log          BIPOLAR  excess +9.400  p=0.00909  BH=0.0191
+[2026-11-12T20:04:04]   modules_differing:degree           BIPOLAR  excess +9.800  p=0.0165  BH=0.0331
+[2026-11-12T20:04:04]   modules_differing:betweenness      LITHIUM  excess -5.400  p=0.0238  BH=0.0453
+[2026-11-12T20:04:04] 
+[2026-11-12T20:04:04] === genes moved beyond |z| > 2 (mean over draws) ===
+[2026-11-12T20:04:04]   degree        NULL   159 | BIPOLAR  1473 | LITHIUM   946
+[2026-11-12T20:04:04]   eigenvector   NULL  2627 | BIPOLAR  3984 | LITHIUM  2703
+[2026-11-12T20:04:04]   betweenness   NULL   211 | BIPOLAR  1627 | LITHIUM  1549
+[2026-11-12T20:04:04]   mcc_log       NULL    97 | BIPOLAR   893 | LITHIUM   913
+[2026-11-12T20:04:04]   kIN           NULL   599 | BIPOLAR  1976 | LITHIUM  1888
+[2026-11-12T20:04:04]   kME_own       NULL     6 | BIPOLAR   970 | LITHIUM   924
+[2026-11-12T20:04:04]   ppr_BPD       NULL   193 | BIPOLAR  1725 | LITHIUM  1654
+[2026-11-12T20:04:04]   ppr_LI        NULL   590 | BIPOLAR  3110 | LITHIUM  2899
+[2026-11-12T20:04:04] 
+[2026-11-12T20:04:04] === top 10 betweenness, control (draw 1) ===
+[2026-11-12T20:04:04]    1  ENSG00000270066 mediumorchid     0.00425
+[2026-11-12T20:04:04]    2  JMJD4        salmon           0.00316
+[2026-11-12T20:04:04]    3  SIVA1        darkgreen        0.00304
+[2026-11-12T20:04:04]    4  ALG14        lightcyan        0.00280
+[2026-11-12T20:04:04]    5  ZNF583       cyan             0.00241
+[2026-11-12T20:04:04]    6  ZBTB25       antiquewhite4    0.00238
+[2026-11-12T20:04:04]    7  C12orf57     lightgreen       0.00237
+[2026-11-12T20:04:04]    8  NME1         cyan             0.00232
+[2026-11-12T20:04:04]    9  UQCC2        mediumorchid     0.00226
+[2026-11-12T20:04:04]   10  FAM227B      darkslateblue    0.00216
+[2026-11-12T20:04:04] === netmet-061 COMPLETE ===
