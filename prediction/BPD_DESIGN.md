@@ -163,3 +163,234 @@ With 74 cases, the CI on any AUC will be roughly ±0.07 at best. We can
 distinguish "clearly better than demographics" from "no better", but not fine
 gradations. A null result here means *this cohort at this size cannot
 demonstrate signal*, not that no signal exists.
+
+---
+
+# Covariates — which ones earn their place
+
+Added 14 November 2026, after the instruction to use the covariates that make
+sense for lithium rather than one block reused everywhere.
+
+The original code built one covariate matrix — age, sex, tobacco, RIN, plate,
+seqPC1–3 — and handed it to both contrasts. For the case-control contrast that
+is defensible. For lithium it is not, and it costs us AUC.
+
+## The two criteria
+
+Both are fixed before any AUC is looked at, and neither involves the outcome,
+so this is covariate *selection*, not covariate *fishing*.
+
+**(a) A confounder must be causally prior to the exposure.** Lithium was
+prescribed years before the blood was drawn. RIN, sequencing plate, library
+size and the sequencing-metric PCs are all created by the assay, after the
+exposure and after the outcome was biologically determined. They cannot
+confound the lithium–expression relationship. Whatever they are, they are not
+confounders.
+
+**(b) Among the variables that pass (a), adjustment only helps if the variable
+is actually imbalanced.** Threshold |SMD| > 0.1, the usual convention.
+
+## The audit
+
+`18_covariate_audit.R`, output in `results/covariate_audit.txt`:
+
+| variable | non-user | user | SMD | p | prior to exposure? |
+|:--|--:|--:|--:|--:|:--|
+| **age** | 53.4 | 48.0 | **−0.462** | 0.00072 | yes |
+| **sex (M)** | 52.7% | 40.8% | **−0.240** | 0.12 | yes |
+| tobacco | 35.1% | 31.6% | −0.075 | 0.70 | yes |
+| RIN | 7.49 | 7.48 | −0.017 | 0.91 | no — assay |
+| library size | 8.43M | 7.88M | −0.218 | 0.13 | no — assay |
+| seqPC1 | 0.007 | −0.000 | −0.156 | 0.27 | no — assay |
+| seqPC2 | 0.002 | 0.006 | 0.065 | 0.64 | no — assay |
+| seqPC3 | 0.008 | 0.006 | −0.031 | 0.83 | no — assay |
+| plate | — | — | — | 0.89 | no — assay |
+| assessment group | A | A | — | — | constant, dropped |
+
+**In: age and sex.** Both prior to prescribing, both imbalanced.
+
+**Out: tobacco** — prior, but balanced at |SMD| 0.08. Nothing to correct. It is
+a confounder in the case-control contrast (p = 4.7e-04) and that is where the
+intuition comes from, but it does not transfer.
+
+**Out: RIN, library size, plate, seqPC1–3** — post-exposure assay variables.
+
+## What the kitchen sink costs
+
+Same CV, same subjects, same model; only the covariate block changes.
+
+```
+age alone                     1 var    AUC 0.613
+age + sex  [adopted]          2 vars   AUC 0.611
++ tobacco                     3 vars   AUC 0.602
+full block [original code]   11 vars   AUC 0.571
+```
+
+Eight balanced nuisance variables are worth **−0.042 AUC** against age alone.
+They cannot reduce confounding, because there is none to reduce, so all they do
+is spend degrees of freedom and dilute the one variable that carries signal.
+The reported lithium baseline of 0.568 was understating what demographics
+alone give.
+
+This matters beyond the baseline. `genes_resid` residualises expression on this
+block, and residualising on eight variables unrelated to the exposure strips
+variance without removing bias. One pilot split: `genes_resid` scores 0.887
+under age + sex against 0.835 (all splits, full block).
+
+## Covariate sets in the code
+
+`11_run_bpd_split.R --covset`:
+
+| set | contents | used for |
+|:--|:--|:--|
+| `confounder` | age, sex | **lithium, primary** |
+| `confounder_tech` | + RIN, plate, seqPC1–3 | lithium, sensitivity — noise reduction is a separate claim from confounder control, so it is reported separately |
+| `full` | + tobacco | **case-control, primary**; also kept so earlier results reproduce |
+
+The case-control contrast keeps `full` on purpose. There the assay variables
+genuinely are imbalanced — plate is near-deterministic (chi-square p = 1.6e-09)
+because group B was sequenced apart — so criterion (b) catches them even though
+criterion (a) says they cannot be causal confounders. A variable that predicts
+the label through the study's logistics still has to be controlled.
+
+## One sensitivity run, declared in advance
+
+The full-block lithium results are already reported, so we are not in a clean
+pre-specification position and should not pretend to be. The honest handling:
+the restricted set is adopted on exposure-side reasoning alone, **both** sets
+are reported side by side, and the restricted one is primary because of the
+argument above and not because of its score.
+
+---
+
+# What we could add, and what we cannot
+
+## Added: cell composition — as a mediator, not a covariate
+
+The deposited classic CIBERSORT fractions, summed onto a haematopoietic lineage
+tree (gran / mono / T / NK / B) and expressed as four ILR balances. Classic
+fractions, not B-mode CIBERSORTx: B-mode batch correction is fitted across the
+whole cohort at once, which makes it transductive and bars it from Arm 1
+(CLAUDE.md 4.1). Zero replacement is cross-sample, so its detection limit is
+taken on the training fold only.
+
+**It is not a covariate.** Lithium raises neutrophils — 0.378 to 0.441 here,
+p = 2.3e-04, with lymphocytes falling 0.361 to 0.319, p = 0.0038. Composition is
+therefore on the causal path from drug to expression. Adjusting away a
+confounder removes bias; adjusting away a mediator removes the effect. So it
+enters as its own feature set, where the question it answers is asked out loud:
+
+| feature set | question |
+|:--|:--|
+| `cells` | can a blood count alone identify lithium users? |
+| `cells_cov` | cells plus age and sex |
+| `genes_cells` | does expression add to the count? |
+| `genes_decell` | what survives projecting the cell mixture out of expression? |
+
+Pilot numbers, 25 repeats x 3 folds: `cells` alone **0.615**, `cells_cov`
+**0.631** — about what age alone gives, and far below `genes` at 0.906. On one
+split `genes_decell` scored 0.893 against `genes` 0.917, which would mean the
+lithium signature is mostly *not* cell mixture. One split is not a result; the
+full run settles it.
+
+One honest caveat: seqPC1 correlates with neutrophil fraction (Spearman
+rho = −0.169, p = 0.011), so the original full block was partly adjusting away
+the mediator as well. Small, but it is another reason the block was wrong here.
+
+## Not added, because the deposit does not contain it
+
+Checked directly against the series matrix: all 35 characteristics fields are
+already in `metadata_474.csv`. Nothing was left behind. These belong in the
+limitations section:
+
+| missing | why it matters for lithium |
+|:--|:--|
+| **serum lithium level, dose, duration** | no dose-response check is possible; "user" lumps someone started last month with someone at 20 years |
+| **concomitant medications** | the largest gap. Lithium users are likelier to be on antipsychotics, valproate or antidepressants, all of which move the blood transcriptome. Any "lithium signature" may be a polypharmacy signature |
+| **thyroid function (TSH)** | lithium causes hypothyroidism in 20–30% of users; thyroid hormone has direct, broad transcriptional effects |
+| **renal function (creatinine, eGFR)** | lithium is renally cleared and nephrotoxic with long use |
+| **measured CBC / white cell differential** | would let us validate the deconvolution against ground truth instead of comparing to published reference intervals |
+| **time of blood draw** | neutrophil proportion swings diurnally by more than lithium's effect |
+| **BMI, alcohol, fasting state** | each has replicated transcriptome effects |
+| **mood state / episode at draw** | euthymic and manic states differ; lithium users are likelier euthymic, so this confounds with treatment |
+| **genetic ancestry** | not derivable: we have an HTSeq count matrix, not reads, so no variants can be called |
+
+The first two are the ones to state plainly. Without dose or concomitant
+medication, the contrast is "prescribed lithium or not", not "exposed to
+lithium at dose X", and it cannot separate lithium from the treatment regimen
+that accompanies it.
+
+---
+
+# Results: all three covariate sets, 15 November 2026
+
+`results/summary_cells.csv`. Lithium ran under two covariate sets, the
+case-control contrast under `full`.
+
+## The restricted set moves both affected numbers up
+
+| lithium, elastic net | full (11 vars) | confounder (age+sex) | confounder_tech |
+|:--|--:|--:|--:|
+| `covariates` | 0.568 | **0.589** | 0.571 |
+| `genes_resid` | 0.835 | **0.854** | 0.841 |
+
+## The sensitivity arm settles the noise-reduction question: no
+
+Paired by repeat, `confounder_tech` minus `confounder`, elastic net:
+
+```
+covariates    -0.018  [-0.028, -0.007]  p = 0.0017
+cells_cov     -0.046  [-0.060, -0.032]  p = 0.0000
+genes_resid   -0.013  [-0.025, -0.000]  p = 0.0486
+genes         -0.005  [-0.011, +0.001]  p = 0.0965
+genes_cov     +0.002  [-0.003, +0.007]  p = 0.4552
+genes_cells   +0.000  [-0.005, +0.005]  p = 0.9826
+genes_decell  +0.001  [-0.008, +0.009]  p = 0.8793
+```
+
+Adding RIN, plate and seqPC1-3 never helps. Where it changes anything it
+makes things worse, and it is worst exactly where those variables enter the
+model or the residualisation. So the assay variables fail on both counts:
+they cannot confound a prescription written years earlier, and they do not
+buy precision either. `confounder` is the primary set, and this is the
+sensitivity analysis that justifies it rather than merely asserting it.
+
+## Arm 1's primary hypothesis is rejected
+
+Do compositional coordinates predict as well as the full transcriptome?
+
+| contrast | cells | genes | difference | margin |
+|:--|--:|--:|:--|:--|
+| lithium | 0.614 | 0.906 | **-0.292** [-0.303, -0.282] | +/-0.05 |
+| bipolar | 0.573 | 0.819 | -0.245 [-0.261, -0.230] | +/-0.05 |
+
+Not equivalent, and not close. A routine blood count does not carry what the
+transcriptome carries. Adding cells to genes changes nothing (0.902 vs 0.906),
+so the composition contributes no information the genes do not already hold.
+
+Cell composition is not *nothing* for lithium: 0.614 against a measured null
+whose 95th percentile is 0.564. It is a real but small signal. For bipolar
+status it is indistinguishable from chance (0.573, CI [0.498, 0.644]).
+
+## How much of the lithium signature is cell mixture? Less than expected
+
+Projecting the cell mixture out of the genes costs **-0.046** [-0.055,
+-0.038]: 0.906 to 0.860. The drug's expression signature is overwhelmingly
+*not* a composition shift, which is the opposite of what the project's
+framing anticipated. The neutrophil shift is real (0.378 to 0.441,
+p = 2.3e-04) but it is not what the classifier is using.
+
+Worth stating plainly in the paper: we set out expecting cell mixture to
+explain much of lithium's apparent transcriptional effect, and it does not.
+
+## Caveats
+
+- Permutation nulls were spent on the feature sets new to each run, so some
+  rows have no null of their own. Rows without one are marked `-` in the
+  summary; do not quote a null from a different covariate set for
+  `covariates` or `genes_resid`, whose features change with the adjustment.
+- The random forest still leads elastic net on bipolar `genes_resid`
+  (0.572 vs 0.497). The matched-feature run with 1,000 permutations settled
+  this: the margin does not survive multiplicity correction, and the same
+  forest loses to elastic net on every lithium feature set. Not evidence of
+  non-linearity.

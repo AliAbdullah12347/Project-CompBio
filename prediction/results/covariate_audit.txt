@@ -1,0 +1,35 @@
+LITHIUM CONTRAST -- COVARIATE AUDIT
+226 BP1 subjects: 152 users, 74 non-users
+
+BALANCE WITH LITHIUM STATUS
+variable         non-user       user      SMD         p  prior to exposure?
+age                53.374     48.043   -0.462   0.00072  yes
+sex (M)             0.527      0.408   -0.240      0.12  yes
+tobacco             0.351      0.316   -0.075       0.7  yes
+RIN                 7.491      7.476   -0.017      0.91  NO - assay
+library size        8.433      7.880   -0.218      0.13  NO - assay
+seqPC1              0.007     -0.000   -0.156      0.27  NO - assay
+seqPC2              0.002      0.006    0.065      0.64  NO - assay
+seqPC3              0.008      0.006   -0.031      0.83  NO - assay
+plate                   -          -        -      0.89  NO - assay
+assess. group           A          A        -         -  constant, dropped
+
+VERDICT
+  IN   age      imbalanced (|SMD| 0.46) and prior to prescribing
+  IN   sex      imbalanced (|SMD| 0.24) and prior to prescribing
+  OUT  tobacco  prior, but balanced (|SMD| 0.08) -- nothing to correct
+  OUT  RIN, library size, plate, seqPC1-3
+       post-exposure assay variables. Cannot confound a prescription
+       written years earlier. Noise terms at best.
+
+WHAT THE KITCHEN SINK COSTS (25 repeats x 3 folds, logistic, no penalty)
+  age alone                     1 vars   AUC 0.613  (sd 0.006)
+  age + sex  [proposed set]     2 vars   AUC 0.611  (sd 0.017)
+  + tobacco                     3 vars   AUC 0.602  (sd 0.023)
+  full block [current code]    11 vars   AUC 0.571  (sd 0.031)
+  cell composition (4 ILR)      4 vars   AUC 0.615  (sd 0.023)
+  cells + age + sex             6 vars   AUC 0.631  (sd 0.025)
+
+  Adding eight balanced nuisance variables to age costs real AUC. They
+  cannot remove confounding -- there is none to remove -- so all they do
+  is spend degrees of freedom and dilute the one variable that matters.

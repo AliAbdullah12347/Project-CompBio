@@ -21,8 +21,10 @@ for (coh in unique(real$cohort)) for (fs in unique(real$feature_set)) for (md in
   bs <- replicate(NBOOT, { p <- sample(subj, length(subj), TRUE)
                            mean_auc(x[unlist(idx[p], use.names = FALSE), ]) })
   ci <- quantile(bs, c(0.025, 0.975), na.rm = TRUE)
-  # Null from the permutation runs, where they exist for this cohort/feature set
-  q <- pm[pm$cohort == coh & pm$feature_set == fs, ]
+  # Null from the permutation runs, matched on model as well as feature set:
+  # a forest and a penalised regression do not have the same chance level on
+  # the same inputs, so pooling their permutations blurs both.
+  q <- pm[pm$cohort == coh & pm$feature_set == fs & pm$model == md, ]
   nullmean <- if (nrow(q)) mean(as.numeric(tapply(seq_len(nrow(q)), q$perm,
                       function(i) auc(q$pred[i], q$y[i]))), na.rm = TRUE) else NA_real_
   null95 <- if (nrow(q)) quantile(as.numeric(tapply(seq_len(nrow(q)), q$perm,
