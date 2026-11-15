@@ -4,7 +4,7 @@
 > Edit the per-finding files in `network/findings/` instead. On a merge conflict here,
 > regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Findings:** 53   **Updated:** 2026-11-14
+**Findings:** 53   **Updated:** 2026-11-15
 
 Two rankings. **Table A (Evidence, 0–25)** governs the write-up; it rewards evidential
 strength so a well-powered null can score top. **Table B (Interest, 0–10)** records how

@@ -1,3 +1,41 @@
+> **CORRECTED 2026-11-15. The headline of this finding was wrong.**
+>
+> This file originally reported all eight metrics surviving covariate
+> adjustment at BH < 0.04. That used **the mean of both within-kind pairs** as
+> the baseline. The patient-patient pair (`nolith` vs `lith`) sits well above
+> the control-control pair, so averaging them inflated the baseline and
+> manufactured the gap.
+>
+> Against the correct baseline -- **control vs control**, the only apples-to-
+> apples comparison -- the result is:
+>
+> | | raw | residualised |
+> |:--|--:|--:|
+> | metrics separating ctrl-vs-patient from ctrl-vs-ctrl | **8 of 8**, BH < 0.008 | **0 of 8** |
+>
+> Five of the eight are nominally p < 0.05 after adjustment (betweenness
+> 0.014, log-MCC 0.011, eigenvector 0.032, ppr_BPD 0.032, kIN 0.042) and none
+> clears BH across the family. **The bipolar network effect is not established
+> by this analysis**, and there is therefore no tension with
+> `2026-10-26-matched-comparison-clean-negative.md`.
+>
+> **What does survive** is a different claim: patient networks resemble each
+> other more than control networks do (7 of 8 metrics, 10/10 draws,
+> BH < 0.007). That is either disease constraining the network toward a
+> stereotyped configuration -- consistent with
+> `2026-10-14-inter-module-correlations-tighten-in-bp.md` -- or the control
+> group simply being the more varied sample. This design cannot separate them.
+>
+> The lithium conclusions are unchanged: lithium is a within-kind pair and
+> shows no structural effect anywhere. The gene-significance result
+> (`gs_kme.csv`) is also unaffected, since it was always scored against the
+> control-control contrast: lithium +0.0467 over null (10/10, p = 0.0059),
+> bipolar +0.0072 (7/10, p = 0.262).
+>
+> Caught by a reader asking whether Result 1 was about lithium or bipolar, and
+> whether it contradicted the rest of the arm. It did not contradict the arm;
+> it was scored against the wrong baseline.
+
 # Centrality separates diagnosis — and between a third and two thirds of it is age, tobacco and RNA quality
 
 **Date:** 2026-11-14

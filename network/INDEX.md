@@ -3,7 +3,7 @@
 > **GENERATED FILE — do not hand-edit.** Rebuild with `Rscript network/build_catalog.R`.
 > On a merge conflict here, regenerate rather than merge. See `CONTRIBUTING.md`.
 
-**Updated:** 2026-11-14 · **Catalogued:** 215 items
+**Updated:** 2026-11-15 · **Catalogued:** 216 items
 
 ## How to search
 
@@ -118,7 +118,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | 2026-10-26 | 2026-10-26-how-to-read-the-preservation-rows.md | How to read the 28 preservation rows: the perm split is by design, the comparison was not |
 | 2026-11-08 | 2026-11-08-stale-running-path-ignored-progress.md | Three experiments were retired while holding 57 checkpoints between them |
 
-## Run directories (73)
+## Run directories (74)
 
 | run | status | size |
 |:--|:--|:--|
@@ -175,6 +175,7 @@ awk -F, '$4=="RETRACTED"' network/catalog.csv
 | netmet-062 | live | 11 files |
 | netmet-063 | live | 10 files |
 | netmet-063-run.log | live | 0 files |
+| netmet-064 | live | 0 files |
 | perm-031 | live | 143 files |
 | perm-032 | live | 44 files |
 | perm-054 | live | 505 files |
