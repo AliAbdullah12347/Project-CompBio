@@ -75,7 +75,14 @@ tail -n +2 "$W/worklist.tsv" | while IFS="$TAB" read -r COHORT PERM SPLIT MODELS
   # run. Without it a confounder-set run and a full-set run collide on one
   # key and the second is skipped as "already present" -- which looks like
   # success and produces nothing.
-  KEY="prediction/bpd/results/${COHORT}_${COVSET}_perm$(printf '%02d' "$PERM")_split$(printf '%03d' "$SPLIT").csv"
+  #
+  # RUNTAG exists for the same failure one level up. The skip-if-present
+  # resume cannot see that a row now asks for MORE feature sets than the file
+  # already in the bucket contains: it matches on the key, finds a file, and
+  # skips. That is how a run adding the proposal's five-balance input was
+  # about to finish "complete" with that input missing from every real-label
+  # item. Any run that changes what a row computes must set a new RUNTAG.
+  KEY="prediction/bpd/results/${COHORT}_${COVSET}${RUNTAG:-}_perm$(printf '%02d' "$PERM")_split$(printf '%03d' "$SPLIT").csv"
   OUT="$W/prediction/results/bpd/$(basename "$KEY")"
   if grep -qx "$KEY" "$W/done.txt" 2>/dev/null; then
     echo "--- item $N: $KEY already in S3, skipping ---"; continue

@@ -394,3 +394,93 @@ explain much of lithium's apparent transcriptional effect, and it does not.
   this: the margin does not survive multiplicity correction, and the same
   forest loses to elastic net on every lithium feature set. Not evidence of
   non-linearity.
+
+---
+
+# The proposal's prediction arm, run as written — 15 November 2026
+
+Earlier runs used four ILR balances on a five-lineage tree. The proposal
+specifies **five** balances on six parts (p.7, quoted exactly):
+
+> "five balances follow the hematopoietic lineage: myeloid {neutrophils,
+> monocytes} vs lymphoid {CD4 naive, CD4 memory, NK, B}; then neutrophils vs
+> monocytes; T {CD4 naive, CD4 memory} vs {NK, B}; CD4 naive vs CD4 memory;
+> and NK vs B cells"
+
+and the hypothesis is literally about *five* ratios. The equivalence test
+reported before was therefore against the wrong object. `cells5` is now the
+primary; the four-balance version is kept as a sensitivity.
+
+Decisions taken where the proposal names cell classes and the deposit names
+LM22 types: CD4 memory = resting + activated; NK = resting + activated;
+B = naive + memory + plasma cells. CD8 and gamma-delta T are excluded, because
+the proposal's "T" is explicitly {CD4 naive, CD4 memory}; the six parts are
+renormalised, which is a legitimate sub-composition.
+
+## The five inputs
+
+| # | name in code | status |
+|:--|:--|:--|
+| 1 | `genes` | run, 75 splits x 2 contrasts |
+| 2 | `cells5` | run |
+| 3 | `genes_decell5` | run |
+| 4 | `ct_neut` | run separately: bMIND, 4,000 genes |
+| 5 | `ct_all` | run separately: bMIND, 4,000 genes |
+
+## The pre-declared equivalence test — REJECTED
+
+Equivalent only if the whole 95% CI for (cells5 - genes) lies inside
++/-0.05. A CI containing zero is not equivalence; a CI below -0.05 rejects.
+
+| contrast | model | cells5 - genes | verdict |
+|:--|:--|:--|:--|
+| lithium | elastic net | **-0.306** [-0.319, -0.292] | rejected |
+| lithium | random forest | -0.240 [-0.251, -0.229] | rejected |
+| bipolar | elastic net | -0.256 [-0.272, -0.240] | rejected |
+| bipolar | random forest | -0.268 [-0.282, -0.254] | rejected |
+
+Not equivalent, in both contrasts, under both models, by a margin five to six
+times the one we declared. **Five compositional coordinates are not a
+substitute for the transcriptome.** This is the arm's primary result and it
+contradicts our stated expectation.
+
+Absolute numbers, lithium, elastic net: `cells5` 0.601 [0.534, 0.663] against
+`genes` 0.906 [0.865, 0.940]. Composition is not nothing -- 0.601 clears its
+measured null (95th percentile 0.557) -- but it is a small fraction of what
+the transcriptome carries.
+
+## Input 3 is the surprise
+
+Projecting the cell mixture out of the genes costs almost nothing:
+
+| contrast | model | decell5 - genes |
+|:--|:--|:--|
+| lithium | elastic net | -0.051 [-0.064, -0.037] |
+| lithium | random forest | -0.016 [-0.026, -0.007] |
+| bipolar | elastic net | -0.056 [-0.070, -0.042] |
+| bipolar | random forest | **+0.008** [-0.000, +0.016] |
+
+Lithium's signature survives at 0.856 after its cell mixture is removed. We
+expected the opposite: the proposal's hypothesis was that "most of the gene
+level changes are due to" the cell mix. The neutrophil shift is real
+(0.378 to 0.441, p = 2.3e-04) but it is not what the classifier uses.
+
+Both halves of the arm point the same way. Composition cannot do the
+transcriptome's job, and removing composition barely dents the transcriptome.
+
+## Five balances vs four
+
+| contrast | cells5 - cells4 |
+|:--|:--|
+| lithium | -0.016 [-0.025, -0.008] |
+| bipolar | -0.012 [-0.023, -0.000] |
+
+The proposal's six-part tree performs slightly *worse* than the five-lineage
+one, though both are far from the genes. Dropping CD8 and gamma-delta T costs
+a little, which is worth one line in the write-up and changes no conclusion.
+
+## Caveat on this run's nulls
+
+Permutations covered `covariates`, `genes`, `cells5` and `genes_decell5` --
+the sets the equivalence test needs. Rows without a null are marked `-` in
+`results/summary_proposal.csv`; do not borrow one from another feature set.

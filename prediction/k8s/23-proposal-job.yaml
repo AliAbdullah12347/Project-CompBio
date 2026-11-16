@@ -1,0 +1,90 @@
+# Bipolar-status contest: 375 work items across six workers.
+#
+#   225 real-label runs   3 cohorts x 75 splits, 4 feature sets x 2 models
+#   150 permutation runs  primary cohort, 50 label permutations x 3 folds
+#
+# Design and the reasoning behind every cohort decision: BPD_DESIGN.md.
+#
+# No PersistentVolumeClaim. The inputs total 15 MB, so each pod pulls its own
+# copy from S3 into an emptyDir -- scratch volumes here are reaped with their
+# claim, and at this size a shared volume buys nothing but a failure mode.
+# Results go back to S3 after each item, so an interrupted worker loses at most
+# one item and a re-run resumes from what is already in the bucket.
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: prediction-proposal
+  namespace: user-aabdullah
+spec:
+  ttlSecondsAfterFinished: 604800   # 7 days, the maximum the policy allows
+  minAvailable: 1
+  maxRetry: 20            # quota held by another job is transient, not fatal
+  schedulerName: volcano
+  priorityClassName: burst
+  queue: cpu
+  tasks:
+    - replicas: 12
+      name: worker
+      template:
+        metadata:
+          name: prediction-proposal
+        spec:
+          restartPolicy: Never
+          activeDeadlineSeconds: 86400
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+            - name: worker
+              image: bioconductor/bioconductor_docker:RELEASE_3_20
+              imagePullPolicy: IfNotPresent
+              command: ["/bin/sh", "/cfg/12_worker.sh"]
+              envFrom:
+                - secretRef:
+                    name: s3-credentials
+              env:
+                - name: WORKLIST
+                  value: "worklist_proposal.tsv"
+                - name: RUNTAG
+                  value: "_p5"
+                - name: S3_BUCKET
+                  value: aabdullah-lithium-bipolar-project-fall-2026
+                - name: NW
+                  value: "12"
+                # glmnet and randomForest are single-threaded, so the
+                # parallelism is six concurrent workers rather than threads
+                # inside one. Pinning BLAS to 2 stops six pods each spawning a
+                # thread per core on a 32-core node and thrashing.
+                - name: OMP_NUM_THREADS
+                  value: "2"
+                - name: OPENBLAS_NUM_THREADS
+                  value: "2"
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
+              resources:
+                # On burst the namespace CPU/memory quota does not bind -- only
+                # 200 pods and 50 jobs do -- so the limit that matters is the
+                # per-JOB ceiling of 24 CPU. Twelve workers at limits.cpu 2 is
+                # exactly that, and no more would be admitted in one job.
+                # Peak usage per worker is ~2Gi, so 10Gi stays comfortable.
+                requests:
+                  cpu: "1"
+                  memory: "5Gi"
+                limits:
+                  cpu: "2"
+                  memory: "10Gi"
+              volumeMounts:
+                - { name: cfg,  mountPath: /cfg }
+                - { name: work, mountPath: /work }
+          volumes:
+            - name: cfg
+              configMap:
+                name: prediction-proposal-scripts
+            - name: work
+              emptyDir: {}

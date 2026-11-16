@@ -1,0 +1,24 @@
+525 files, 390800 rows
+
+=== groupA : 74 cases / 112 controls ===
+  features     model      AUC       sd   95% CI (subject bootstrap)
+  covariates   enet     0.824    0.018   [0.767, 0.878]
+  covariates   rf       0.822    0.016   [0.766, 0.873]
+  genes        enet     0.819    0.028   [0.761, 0.871]
+  genes        rf       0.776    0.016   [0.711, 0.836]
+  genes_cov    enet     0.819    0.026   [0.761, 0.874]
+  genes_cov    rf       0.782    0.020   [0.718, 0.845]
+  genes_resid  enet     0.497    0.031   [0.475, 0.520]
+  genes_resid  rf       0.572    0.034   [0.511, 0.638]
+
+=== permutation null (primary cohort, labels shuffled) ===
+  cells        null mean 0.486  95th pct 0.544  (n=50)   observed 0.573   p = 0.020
+  cells_cov    null mean 0.481  95th pct 0.572  (n=50)   observed 0.813   p = 0.020
+  genes_cells  null mean 0.495  95th pct 0.587  (n=50)   observed 0.819   p = 0.020
+  genes_decell null mean 0.486  95th pct 0.584  (n=50)   observed 0.764   p = 0.020
+  covariates   null mean 0.491  95th pct 0.562  (n=50)   observed 0.824   p = 0.020
+  genes        null mean 0.490  95th pct 0.561  (n=50)   observed 0.819   p = 0.020
+  genes_resid  null mean 0.486  95th pct 0.540  (n=50)   observed 0.497   p = 0.431
+
+  A null that does not centre on 0.5 is the point of running it:
+  small-n CV with thousands of features does not behave like a coin.

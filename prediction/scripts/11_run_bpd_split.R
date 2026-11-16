@@ -32,6 +32,7 @@ OUTDIR  <- getarg("outdir", file.path(impl, "prediction/results/bpd"))
 MODELS  <- strsplit(getarg("models", "enet,rf"), ",")[[1]]
 FEATSEL <- getarg("features", "all")
 COVSET  <- getarg("covset", "full")
+RUNTAG  <- getarg("runtag", Sys.getenv("RUNTAG", ""))
 stopifnot(!is.na(SPLIT), COHORT %in% c("groupA", "full", "groupA_plate", "lithium"))
 # The lithium contest uses its own cache (226 BP1, is_case = lithium user) but
 # the identical pipeline otherwise, so any difference in the answer is about
@@ -133,6 +134,38 @@ stopifnot(!any(is.na(Cov)), ncol(Cov) > 0)
 # removes the effect. It is carried as its own feature set so the question it
 # answers -- how much of the signal is cell mixture rather than transcription
 # -- is asked out loud rather than by accident.
+# Two trees. The 6-part one is the PROPOSAL'S, quoted from p.7: "five balances
+# follow the hematopoietic lineage: myeloid {neutrophils, monocytes} vs
+# lymphoid {CD4 naive, CD4 memory, NK, B}; then neutrophils vs monocytes;
+# T {CD4 naive, CD4 memory} vs {NK, B}; CD4 naive vs CD4 memory; and NK vs B".
+# Six parts give five balances, which is the hypothesis as written -- "five ILR
+# ratios ... as well as the 12,368 genes" -- so this is the primary.
+#
+# Decisions taken here, because the proposal names cell classes and the deposit
+# names LM22 types:
+#   * CD4 memory  = resting + activated. The proposal says "CD4 memory"; LM22
+#     splits it, and activated is not a structural zero, so both are summed.
+#   * NK          = resting + activated, same reasoning.
+#   * B           = naive + memory + plasma cells. Plasma cells are terminally
+#     differentiated B cells, so they belong to the B part of a lineage tree.
+#   * CD8 and gamma-delta T are NOT included. The proposal's "T" is explicitly
+#     {CD4 naive, CD4 memory}. Composition is renormalised over the six parts,
+#     which is a sub-composition and legitimate in CoDA -- balances within a
+#     sub-composition do not depend on the parts left out.
+# The 5-part lineage tree is kept as a sensitivity: it uses every non-zero LM22
+# type, so it answers "does the conclusion depend on dropping CD8?".
+TREE6 <- list(neut = "neutrophils",
+              mono = "monocytes",
+              cd4n = "t.cells.cd4.naive",
+              cd4m = c("t.cells.cd4.memory.resting", "t.cells.cd4.memory.activated"),
+              NK   = c("nk.cells.resting", "nk.cells.activated"),
+              B    = c("b.cells.naive", "b.cells.memory", "plasma.cells"))
+SBP6 <- list(b1 = list(n = c("neut", "mono"), d = c("cd4n", "cd4m", "NK", "B")),
+             b2 = list(n = "neut", d = "mono"),
+             b3 = list(n = c("cd4n", "cd4m"), d = c("NK", "B")),
+             b4 = list(n = "cd4n", d = "cd4m"),
+             b5 = list(n = "NK", d = "B"))
+
 LIN <- list(gran = c("neutrophils", "eosinophils", "mast.cells.resting"),
             mono = c("monocytes", "macrophages.m0", "macrophages.m2",
                      "dendritic.cells.resting", "dendritic.cells.activated"),
@@ -171,6 +204,29 @@ Cells <- log(L) %*% t(psi)
 colnames(Cells) <- names(SBP)
 stopifnot(all(is.finite(Cells)))
 
+# The proposal's five balances, built the same way on the six-part tree. The
+# zero replacement and the ILR are repeated rather than shared because the
+# detection limit depends on which parts are in the composition.
+build_ilr <- function(parts, sbp) {
+  M <- sapply(parts, function(cs) rowSums(as.matrix(meta[, cs, drop = FALSE])))
+  M <- M / rowSums(M)
+  lm_ <- apply(M[tr, , drop = FALSE], 2, function(v) { nz <- v[v > 0]
+    if (length(nz)) min(nz) * 0.65 else 1e-6 })
+  zz <- M <= 0
+  ins <- rowSums(sweep(zz, 2, lm_, "*"))
+  M[zz] <- matrix(rep(lm_, each = nrow(M)), nrow(M))[zz]
+  M[!zz] <- (M * (1 - ins))[!zz]
+  M <- M / rowSums(M)
+  ps <- t(sapply(sbp, function(b) {
+    v <- setNames(numeric(ncol(M)), colnames(M))
+    r <- length(b$n); s <- length(b$d)
+    v[b$n] <- sqrt(s / (r * (r + s))); v[b$d] <- -sqrt(r / (s * (r + s))); v }))
+  stopifnot(max(abs(unname(ps %*% t(ps)) - diag(nrow(ps)))) < 1e-12)
+  out <- log(M) %*% t(ps); colnames(out) <- names(sbp); out
+}
+Cells5 <- build_ilr(TREE6, SBP6)
+stopifnot(all(is.finite(Cells5)), ncol(Cells5) == 5)
+
 ## ---- feature sets ------------------------------------------------------------
 Xg <- t(E)                                   # samples x genes
 rsd <- function(X) {                         # residualise on train-fitted coefficients
@@ -184,11 +240,19 @@ FEAT <- list(covariates   = Cov,
              genes        = Xg,
              genes_cov    = cbind(Xg, Cov),
              genes_resid  = Xr,
+             # INPUT 2, as the proposal writes it: five balances, six parts.
+             cells5       = Cells5,
+             cells5_cov   = cbind(Cells5, Cov),
              cells        = Cells,
              cells_cov    = cbind(Cells, Cov),
              genes_cells  = cbind(Xg, Cells),
              # genes with the cell mixture projected out: what is left is a
              # change in transcription that the mixture cannot explain.
+             # INPUT 3 is the five-balance version, since that is the
+             # composition the proposal defines; the four-balance one is the
+             # sensitivity.
+             genes_decell5 = Xg - cbind(1, Cells5) %*%
+               qr.solve(cbind(1, Cells5[tr, , drop = FALSE]), Xg[tr, , drop = FALSE]),
              genes_decell = Xg - cbind(1, Cells) %*%
                qr.solve(cbind(1, Cells[tr, , drop = FALSE]), Xg[tr, , drop = FALSE]))
 if (FEATSEL != "all") FEAT <- FEAT[strsplit(FEATSEL, ",")[[1]]]
@@ -275,7 +339,7 @@ res <- do.call(rbind, rows)
 # The covariate set is in the filename, not only in a column: two runs that
 # differ only by covset must never land on the same object and silently
 # overwrite each other in the bucket.
-f <- file.path(OUTDIR, sprintf("%s_%s_perm%02d_split%03d.csv", COHORT, COVSET, PERM, SPLIT))
+f <- file.path(OUTDIR, sprintf("%s_%s%s_perm%02d_split%03d.csv", COHORT, COVSET, RUNTAG, PERM, SPLIT))
 write.csv(res, f, row.names = FALSE, quote = FALSE)
 cat(sprintf("split %d (%s, perm %d): %d genes kept, %d train / %d test -> %s\n",
             SPLIT, COHORT, PERM, nrow(cnt_k), sum(tr), sum(te), basename(f)))
