@@ -60,6 +60,15 @@
 >   is marginal at p = 0.053. The clean "bipolar at null" version used the
 >   residualised numbers.
 >
+> - **The "lithium-treated patients sit nearer controls" result is withdrawn
+>   too.** It reverses sign between raw and residualised (raw -0.010,
+>   residualised +0.013) and is non-significant in both (p = 0.54, p = 0.26).
+>   Same artifact: ctrl-vs-lith and ctrl-vs-nolith pair networks thinned by
+>   different amounts, so the comparison is of damage, not of distance.
+>
+> That is three claims from the residualised arm withdrawn, plus the baseline
+> error. Everything that survives is measured on raw expression.
+
 > What survives all of this is the lithium structural result, which is a raw
 > finding and needs no correction: mean degree 442 to 335, path length 2.947
 > to 3.074, diameter 7.0 to 7.9, all p <= 0.008, reproducing the earlier
