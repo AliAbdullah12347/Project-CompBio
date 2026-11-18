@@ -163,3 +163,30 @@ if (file.exists(cf)) {
   save2(p3, "fig3_cells_vs_genes", 8.4, 4.8)
   cat("wrote fig3\n")
 }
+
+## ---- Figure 4: the proposal's five inputs ------------------------------------
+ff <- "results/summary_five_inputs.csv"
+if (file.exists(ff)) {
+  s5 <- read.csv(ff, stringsAsFactors = FALSE)
+  s5$lab <- factor(s5$input, levels = rev(sort(unique(s5$input))))
+  s5$mod <- factor(ifelse(s5$model == "enet", "Elastic net", "Random forest"),
+                   levels = c("Elastic net", "Random forest"))
+  p4 <- ggplot(s5, aes(auc, lab)) +
+    geom_vline(xintercept = 0.5, colour = MUTED, linetype = "22", linewidth = 0.4) +
+    geom_linerange(aes(xmin = 0.42, xmax = null_p95), linewidth = 6, colour = NULLBAR) +
+    geom_linerange(aes(xmin = lo, xmax = hi, colour = mod), linewidth = 2, alpha = 0.30) +
+    geom_point(aes(colour = mod), size = 2.8) +
+    geom_text(aes(label = sprintf("%.2f", auc)), vjust = -1.4, size = 3.2, colour = INK) +
+    facet_wrap(~mod, nrow = 1) +
+    scale_colour_manual(values = c("Elastic net" = BLUE, "Random forest" = ORANGE)) +
+    scale_x_continuous(limits = c(0.42, 1.02), breaks = seq(0.5, 1.0, 0.1)) +
+    scale_y_discrete(expand = expansion(add = c(0.45, 0.85))) +
+    labs(title = "Predicting lithium use: the five inputs we proposed",
+         subtitle = paste0("152 users vs 74 non-users. Grey is measured chance, to the 95th\n",
+           "percentile of the permutation null. Inputs 4 and 5 use 4,000 in-fold\n",
+           "selected genes against 12,210 for inputs 1-3 -- a compute limit, not a choice."),
+         x = "AUC", y = NULL) +
+    base
+  save2(p4, "fig4_five_inputs", 9.6, 4.8)
+  cat("wrote fig4\n")
+}

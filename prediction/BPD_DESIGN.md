@@ -484,3 +484,38 @@ a little, which is worth one line in the write-up and changes no conclusion.
 Permutations covered `covariates`, `genes`, `cells5` and `genes_decell5` --
 the sets the equivalence test needs. Rows without a null are marked `-` in
 `results/summary_proposal.csv`; do not borrow one from another feature set.
+
+## Inputs 4 and 5: cell-type expression (lithium)
+
+bMIND per split, train and test folds deconvolved separately, labels never
+passed. 4,000 highest-variance genes selected in the training fold -- against
+~12,210 for inputs 1-3. That gap is the cluster's 24-hour job deadline, not a
+design choice, and it must be stated wherever these numbers are quoted.
+
+| input | elastic net | vs genes, +/-0.05 margin |
+|:--|--:|:--|
+| 1 genes (12,210) | 0.906 | - |
+| 2 five ILR balances | 0.601 | -0.306 rejected |
+| 3 genes, composition out | 0.856 | -0.051 inconclusive |
+| 4 neutrophil expression | 0.856 | -0.051 inconclusive |
+| 5 all cell types | 0.814 | -0.092 worse |
+
+Input 4 is the finding. Neutrophil-specific expression alone, one lineage and
+a third of the gene universe, matches whole blood with composition removed and
+comes within the margin's width of the full transcriptome. Krebs identified
+neutrophils as the cell type whose PROPORTIONS lithium changes; this says
+neutrophils are also the cell type whose EXPRESSION carries the signal, and
+that those are two separate facts.
+
+Input 5 is worse than input 4 (0.814 vs 0.856) while containing it plus four
+more lineages at five times the features. The other lineages add noise. That
+agrees with the DE arm: 109 lithium genes in granulocytes against 28 in T, 20
+in monocytes, 4 in NK and 0 in B.
+
+Inputs 3 and 4 are reported as INCONCLUSIVE rather than equivalent. Their CIs
+straddle -0.05, so at n = 226 this design cannot resolve whether they fall
+inside the margin. Saying "equivalent" would be claiming a precision we do not
+have.
+
+**Not run: inputs 4 and 5 for the case-control contrast.** The bMIND worklist
+covered lithium only. The bipolar arm therefore stands at three inputs of five.
