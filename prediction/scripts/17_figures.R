@@ -190,3 +190,102 @@ if (file.exists(ff)) {
   save2(p4, "fig4_five_inputs", 9.6, 4.8)
   cat("wrote fig4\n")
 }
+
+## ---- Figure 5: significance vs equivalence, side by side ---------------------
+# One picture, two questions, and they are not the same question.
+#   Does the interval cross the dotted zero line?  -> is it distinguishable
+#     from the transcriptome at all?
+#   Does the interval fit inside the shaded band?  -> is whatever difference
+#     exists small enough to call the two interchangeable?
+# An input can fail both, and at this sample size most do.
+#
+# Filled circle  = significantly worse (Holm p < 0.05).
+# Hollow circle  = not distinguishable -- which means UNRESOLVED, not equal.
+#
+# Every number is a difference FROM the reference, so the reference has to be
+# on the chart: it sits as the top row at zero with its own AUC, and the
+# absolute AUC each difference lands on is printed beside every point. A
+# reader should never have to go to another figure to learn what -0.306 means.
+sf <- "results/significance_vs_genes.csv"
+if (file.exists(sf)) {
+  sg <- read.csv(sf, stringsAsFactors = FALSE)
+
+  # Absolute AUCs: lithium from the five-input summary, bipolar from the
+  # proposal summary. Both carry feature_set x model.
+  abs_auc <- NULL
+  if (file.exists("results/summary_five_inputs.csv")) {
+    a <- read.csv("results/summary_five_inputs.csv", stringsAsFactors = FALSE)
+    abs_auc <- rbind(abs_auc, data.frame(cohort = "lithium", feature_set = a$feature_set,
+                                         model = a$model, abs = a$auc))
+  }
+  if (file.exists("results/summary_proposal.csv")) {
+    b <- read.csv("results/summary_proposal.csv", stringsAsFactors = FALSE)
+    b <- b[b$cohort == "groupA", ]
+    abs_auc <- rbind(abs_auc, data.frame(cohort = "bipolar", feature_set = b$feature_set,
+                                         model = b$model, abs = b$auc))
+  }
+  sg <- merge(sg, abs_auc, by = c("cohort", "feature_set", "model"), all.x = TRUE)
+
+  REFLAB <- "1  genes (reference)"
+  for (coh in unique(sg$cohort)) {
+    x <- sg[sg$cohort == coh, ]
+    ref <- abs_auc[abs_auc$cohort == coh & abs_auc$feature_set == "genes", ]
+    # The reference itself, as a row at exactly zero.
+    r <- data.frame(cohort = coh, feature_set = "genes", model = ref$model,
+                    diff = 0, lo = 0, hi = 0, p = NA, p_holm = NA,
+                    input = REFLAB, abs = ref$abs)
+    x <- rbind(x[, names(r)], r)
+    x$lab <- factor(x$input, levels = rev(sort(unique(x$input))))
+    x$mod <- factor(ifelse(x$model == "enet", "Elastic net", "Random forest"),
+                    levels = c("Elastic net", "Random forest"))
+    x$sig <- factor(ifelse(x$input == REFLAB, "Reference: the full transcriptome",
+                    ifelse(x$p_holm < 0.05, "Significantly worse than genes",
+                                            "Not distinguishable (unresolved)")),
+                    levels = c("Reference: the full transcriptome",
+                               "Significantly worse than genes",
+                               "Not distinguishable (unresolved)"))
+    x$note <- ifelse(x$input == REFLAB, sprintf("AUC %.3f", x$abs),
+                     sprintf("%+.3f   (AUC %.3f)", x$diff, x$abs))
+    p5f <- ggplot(x, aes(diff, lab)) +
+      annotate("rect", xmin = -0.05, xmax = 0.05, ymin = -Inf, ymax = Inf,
+               fill = "#cfd8e3", alpha = 0.55) +
+      geom_vline(xintercept = 0, colour = INK, linetype = "22", linewidth = 0.45) +
+      geom_linerange(aes(xmin = lo, xmax = hi, colour = sig), linewidth = 1.9, alpha = 0.38) +
+      geom_point(aes(colour = sig, fill = sig), size = 3.1, shape = 21, stroke = 1.3) +
+      geom_text(aes(label = note), vjust = -1.5, size = 3.0, colour = INK) +
+      facet_wrap(~mod, nrow = 1, scales = "free_x") +
+      scale_colour_manual(values = c("Reference: the full transcriptome" = INK,
+                                     "Significantly worse than genes" = ORANGE,
+                                     "Not distinguishable (unresolved)" = BLUE),
+                          drop = FALSE, name = NULL) +
+      scale_fill_manual(values = c("Reference: the full transcriptome" = INK,
+                                   "Significantly worse than genes" = ORANGE,
+                                   "Not distinguishable (unresolved)" = "white"),
+                        drop = FALSE, name = NULL) +
+      scale_y_discrete(expand = expansion(add = c(0.55, 1.1))) +
+      guides(colour = guide_legend(nrow = 1)) +
+      labs(title = sprintf("%s: each input against the full transcriptome",
+                           ifelse(coh == "lithium", "Lithium use", "Bipolar status")),
+           subtitle = paste0("Everything is measured as a difference from input 1, the",
+             " reference, whose own AUC is
+the top row. Paired bootstrap over subjects",
+             " (2,000), Holm-corrected.
+",
+             "FILLED = significantly worse.  HOLLOW = not distinguishable, which means the
+",
+             "data cannot tell them apart -- not that they are equal.
+",
+             "BLUE BAND = the +/-0.05 margin. An interval lying wholly inside it would mean
+",
+             "the two inputs are interchangeable. No interval here does."),
+           x = "Difference in AUC from input 1 (genes)", y = NULL) +
+      base +
+      theme(legend.position = "top",
+            legend.text = element_text(colour = INK, size = 8.5),
+            legend.key.height = unit(10, "pt"),
+            plot.subtitle = element_text(colour = MUTED, size = 9, lineheight = 1.3))
+    save2(p5f, sprintf("fig5_vs_genes_%s", coh), 10.4, 5.8)
+  }
+  cat("wrote fig5
+")
+}

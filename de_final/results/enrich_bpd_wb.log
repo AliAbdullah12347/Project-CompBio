@@ -1,0 +1,170 @@
+== enrich_bpd_wb ==
+12368 genes tested | 4 significant at BH 0.05 | taking the top 50 by p-value
+universe = the 12368 tested genes (NOT the genome)
+
+========================================================================================================================================================================================================
+TOP 50 BIPOLAR WHOLE-BLOOD GENES (BP1 off lithium vs controls)
+========================================================================================================================================================================================================
+  rank  gene         log2FC   fold    direction   p          q (BH)    significant
+     1  C6orf163      +0.266   1.20x  up         6.51e-06   0.0489    YES
+     2  AC104820.2    +0.283   1.22x  up         1.17e-05   0.0489    YES
+     3  SMIM8         +0.197   1.15x  up         1.40e-05   0.0489    YES
+     4  WDR1          -0.196   1.15x  down       1.58e-05   0.0489    YES
+     5  BBS9          +0.167   1.12x  up         2.46e-05   0.0608    
+     6  TRAF3IP2      +0.251   1.19x  up         3.96e-05   0.0804    
+     7  LINC00662     +0.195   1.14x  up         4.55e-05   0.0804    
+     8  MBTPS2        +0.186   1.14x  up         5.32e-05   0.0815    
+     9  PPFIBP1       +0.317   1.25x  up         5.93e-05   0.0815    
+    10  CD300A        -0.233   1.18x  down       8.85e-05   0.1074    
+    11  COG4          -0.110   1.08x  down       1.05e-04   0.1074    
+    12  TLN1          -0.359   1.28x  down       1.17e-04   0.1074    
+    13  KIAA1407      +0.176   1.13x  up         1.28e-04   0.1074    
+    14  HRH4          -0.524   1.44x  down       1.37e-04   0.1074    
+    15  KAT8          -0.120   1.09x  down       1.38e-04   0.1074    
+    16  YIF1B         -0.259   1.20x  down       1.39e-04   0.1074    
+    17  ADAMTS6       +0.345   1.27x  up         1.90e-04   0.1382    
+    18  VCL           -0.287   1.22x  down       2.02e-04   0.1390    
+    19  SEC23B        -0.172   1.13x  down       2.63e-04   0.1668    
+    20  ZNF185        -0.336   1.26x  down       2.74e-04   0.1668    
+    21  RP1-102H19.8  +0.294   1.23x  up         2.83e-04   0.1668    
+    22  PVT1          +0.242   1.18x  up         3.07e-04   0.1703    
+    23  SIGLEC7       -0.240   1.18x  down       3.42e-04   0.1703    
+    24  PCCB          -0.125   1.09x  down       3.65e-04   0.1703    
+    25  RRAGB         +0.111   1.08x  up         3.77e-04   0.1703    
+    26  JAK1          -0.216   1.16x  down       3.87e-04   0.1703    
+    27  NT5C3B        +0.315   1.24x  up         4.00e-04   0.1703    
+    28  CD300LB       -0.304   1.23x  down       4.07e-04   0.1703    
+    29  XRN2          -0.163   1.12x  down       4.15e-04   0.1703    
+    30  HDC           -0.917   1.89x  down       4.22e-04   0.1703    
+    31  SF3B1         -0.156   1.11x  down       4.27e-04   0.1703    
+    32  SLC45A3       -0.585   1.50x  down       4.85e-04   0.1753    
+    33  TRPM6         -0.351   1.28x  down       5.90e-04   0.1753    
+    34  SETX          -0.169   1.12x  down       5.96e-04   0.1753    
+    35  NAF1          +0.168   1.12x  up         6.16e-04   0.1753    
+    36  COL18A1       -0.393   1.31x  down       6.28e-04   0.1753    
+    37  ZC2HC1A       +0.266   1.20x  up         6.40e-04   0.1753    
+    38  ZC3H12D       +0.202   1.15x  up         6.59e-04   0.1753    
+    39  MED27         +0.216   1.16x  up         6.65e-04   0.1753    
+    40  ZNF7          +0.103   1.07x  up         6.81e-04   0.1753    
+    41  PCNXL2        +0.189   1.14x  up         6.95e-04   0.1753    
+    42  SCARF1        -0.410   1.33x  down       6.99e-04   0.1753    
+    43  TNNI2         -0.316   1.25x  down       7.21e-04   0.1753    
+    44  CAP1          -0.197   1.15x  down       7.31e-04   0.1753    
+    45  AC092295.7    +0.225   1.17x  up         7.45e-04   0.1753    
+    46  AC016739.2    +0.276   1.21x  up         7.46e-04   0.1753    
+    47  ZNF782        +0.138   1.10x  up         7.48e-04   0.1753    
+    48  NRBP1         -0.109   1.08x  down       7.63e-04   0.1753    
+    49  DOCK3         +0.335   1.26x  up         8.09e-04   0.1753    
+    50  TMTC4         +0.185   1.14x  up         8.11e-04   0.1753    
+
+========================================================================================================================================================================================================
+GENE SETS
+========================================================================================================================================================================================================
+  Hallmark                    50 sets with 10-500 genes present in our universe
+  GO: Biological Process    3987 sets with 10-500 genes present in our universe
+  Reactome                  1172 sets with 10-500 genes present in our universe
+  KEGG                       169 sets with 10-500 genes present in our universe
+
+========================================================================================================================================================================================================
+1. OVER-REPRESENTATION among the top 50 (hypergeometric, BH-corrected)
+========================================================================================================================================================================================================
+
+  --- Hallmark --- (8 of the top 50 are annotated here)
+   set                                                              size  overlap  p          q (BH)   genes
+   HALLMARK APICAL JUNCTION                                           98        2  2.67e-02   0.2138   VCL/CAP1
+   HALLMARK COAGULATION                                               52        1  1.32e-01   0.3759   WDR1
+   HALLMARK MYOGENESIS                                                83        1  2.04e-01   0.3759   TNNI2
+   HALLMARK ESTROGEN RESPONSE LATE                                   107        1  2.56e-01   0.3759   JAK1
+   HALLMARK ESTROGEN RESPONSE EARLY                                  109        1  2.60e-01   0.3759   ZNF185
+   HALLMARK INFLAMMATORY RESPONSE                                    134        1  3.10e-01   0.3759   SCARF1
+   -> sets passing BH 0.05: 0
+
+  --- GO: Biological Process --- (35 of the top 50 are annotated here)
+   set                                                              size  overlap  p          q (BH)   genes
+   GOBP CORTICAL CYTOSKELETON ORGANIZATION                            43        3  5.71e-04   0.1980   WDR1/PPFIBP1/TLN1
+   GOBP TERMINATION OF RNA POLYMERASE II TRANSCRIPTION                11        2  7.66e-04   0.1980   XRN2/SETX
+   GOBP HOMOTYPIC CELL CELL ADHESION                                  58        3  1.37e-03   0.1980   TLN1/VCL/JAK1
+   GOBP PROTEIN LOCALIZATION TO CELL CELL JUNCTION                    17        2  1.87e-03   0.1980   VCL/JAK1
+   GOBP REGULATION OF OLIGODENDROCYTE DIFFERENTIATION                 17        2  1.87e-03   0.1980   WDR1/SLC45A3
+   GOBP CELL CELL JUNCTION ASSEMBLY                                   65        3  1.91e-03   0.1980   WDR1/TLN1/VCL
+   -> sets passing BH 0.05: 0
+
+  --- Reactome --- (29 of the top 50 are annotated here)
+   set                                                              size  overlap  p          q (BH)   genes
+   REACTOME RESPONSE TO ELEVATED PLATELET CYTOSOLIC CA2               84        4  4.73e-04   0.0785   WDR1/TLN1/VCL/CAP1
+   REACTOME MUSCLE CONTRACTION                                        74        3  4.13e-03   0.2226   TLN1/VCL/TNNI2
+   REACTOME SMOOTH MUSCLE CONTRACTION                                 27        2  6.24e-03   0.2226   TLN1/VCL
+   REACTOME PLATELET ACTIVATION SIGNALING AND AGGREGATION            171        4  6.46e-03   0.2226   WDR1/TLN1/VCL/CAP1
+   REACTOME IMMUNOREGULATORY INTERACTIONS BETWEEN A LYMPHOID AND A    88        3  6.70e-03   0.2226   CD300A/SIGLEC7/CD300LB
+   REACTOME MAP2K AND MAPK ACTIVATION                                 32        2  8.69e-03   0.2405   TLN1/VCL
+   -> sets passing BH 0.05: 0
+
+  --- KEGG --- (8 of the top 50 are annotated here)
+   set                                                              size  overlap  p          q (BH)   genes
+   KEGG FOCAL ADHESION                                               110        2  3.31e-02   0.2207   TLN1/VCL
+   KEGG HISTIDINE METABOLISM                                          15        1  3.99e-02   0.2207   HDC
+   KEGG PROPANOATE METABOLISM                                         26        1  6.82e-02   0.2207   PCCB
+   KEGG VALINE LEUCINE AND ISOLEUCINE DEGRADATION                     37        1  9.59e-02   0.2207   PCCB
+   KEGG LEISHMANIA INFECTION                                          45        1  1.16e-01   0.2207   JAK1
+   KEGG NEUROACTIVE LIGAND RECEPTOR INTERACTION                       51        1  1.30e-01   0.2207   HRH4
+   -> sets passing BH 0.05: 0
+
+========================================================================================================================================================================================================
+2. FULL-RANKING TEST (cameraPR, corrected for inter-gene correlation)
+========================================================================================================================================================================================================
+  Uses all 12,368 genes' t-statistics rather than a cut at 50, so it is far better powered
+  for a weak diffuse signal -- and it discounts the shared leukocyte-composition structure
+  that would otherwise read as pathway enrichment.
+calcNormFactors has been renamed to normLibSizes
+
+  --- Hallmark --- 50 sets tested | passing FDR 0.05: 0 | median estimated inter-gene cor 0.060
+   set                                                              size  direction   p          FDR
+   HALLMARK ANDROGEN RESPONSE                                         81  Down        2.02e-02   0.2349
+   HALLMARK APOPTOSIS                                                122  Down        2.26e-02   0.2349
+   HALLMARK MYOGENESIS                                                83  Down        2.39e-02   0.2349
+   HALLMARK ALLOGRAFT REJECTION                                      144  Down        2.57e-02   0.2349
+   HALLMARK MTORC1 SIGNALING                                         179  Down        3.38e-02   0.2349
+   HALLMARK APICAL SURFACE                                            22  Down        4.59e-02   0.2349
+   HALLMARK PI3K AKT MTOR SIGNALING                                   88  Down        4.89e-02   0.2349
+   HALLMARK CHOLESTEROL HOMEOSTASIS                                   56  Down        5.01e-02   0.2349
+
+  --- GO: Biological Process --- 3987 sets tested | passing FDR 0.05: 0 | median estimated inter-gene cor 0.038
+   set                                                              size  direction   p          FDR
+   GOBP REGULATION OF ADENYLATE CYCLASE ACTIVITY                      10  Down        1.57e-03   0.3282
+   GOBP VASCULAR ENDOTHELIAL GROWTH FACTOR SIGNALING PATHWAY          17  Down        4.20e-03   0.3282
+   GOBP REGULATION OF MEMBRANE INVAGINATION                           12  Down        4.34e-03   0.3282
+   GOBP REGULATION OF KERATINOCYTE DIFFERENTIATION                    18  Down        5.72e-03   0.3282
+   GOBP REGULATION OF CELLULAR RESPONSE TO VASCULAR ENDOTHELIAL GRO   11  Down        5.80e-03   0.3282
+   GOBP MRNA TRANSCRIPTION                                            46  Down        7.11e-03   0.3282
+   GOBP RESPONSE TO LIPOPROTEIN PARTICLE                              23  Down        7.36e-03   0.3282
+   GOBP OLIGODENDROCYTE DIFFERENTIATION                               50  Down        8.18e-03   0.3282
+
+  --- Reactome --- 1172 sets tested | passing FDR 0.05: 0 | median estimated inter-gene cor 0.062
+   set                                                              size  direction   p          FDR
+   REACTOME CELL SURFACE INTERACTIONS AT THE VASCULAR WALL            92  Down        5.47e-03   0.3693
+   REACTOME INTERLEUKIN 35 SIGNALLING                                 10  Down        6.12e-03   0.3693
+   REACTOME CHEMOKINE RECEPTORS BIND CHEMOKINES                       21  Down        8.63e-03   0.3693
+   REACTOME NEUROTRANSMITTER RELEASE CYCLE                            17  Down        1.01e-02   0.3693
+   REACTOME CELL EXTRACELLULAR MATRIX INTERACTIONS                    13  Down        1.05e-02   0.3693
+   REACTOME CONSTITUTIVE SIGNALING BY ABERRANT PI3K IN CANCER         37  Down        1.20e-02   0.3693
+   REACTOME INTERLEUKIN 6 FAMILY SIGNALING                            13  Down        1.27e-02   0.3693
+   REACTOME CLASS A 1 RHODOPSIN LIKE RECEPTORS                        86  Down        1.46e-02   0.3693
+
+  --- KEGG --- 169 sets tested | passing FDR 0.05: 0 | median estimated inter-gene cor 0.068
+   set                                                              size  direction   p          FDR
+   KEGG PROGESTERONE MEDIATED OOCYTE MATURATION                       57  Down        1.22e-02   0.2822
+   KEGG CYTOKINE CYTOKINE RECEPTOR INTERACTION                       103  Down        1.50e-02   0.2822
+   KEGG APOPTOSIS                                                     76  Down        1.84e-02   0.2822
+   KEGG PATHWAYS IN CANCER                                           198  Down        2.09e-02   0.2822
+   KEGG ANTIGEN PROCESSING AND PRESENTATION                           32  Down        2.65e-02   0.2822
+   KEGG LEUKOCYTE TRANSENDOTHELIAL MIGRATION                          69  Down        2.72e-02   0.2822
+   KEGG REGULATION OF ACTIN CYTOSKELETON                             127  Down        2.80e-02   0.2822
+   KEGG PATHOGENIC ESCHERICHIA COLI INFECTION                         41  Down        3.03e-02   0.2822
+
+========================================================================================================================================================================================================
+SUMMARY
+========================================================================================================================================================================================================
+  ORA on the top 50 .............. 0 gene sets at BH 0.05
+  cameraPR on all 12368 genes ... 0 gene sets at FDR 0.05
+
+wrote results/enrichment
